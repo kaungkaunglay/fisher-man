@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Fisherman</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/support.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="bg-white shadow-sm" style="display: none;">
+        <div class="container">
+            <!-- Top Bar -->
+            <div class="row py-3 align-items-center">
+                <div class="col-auto">
+                    <img src="/images/logo.png" alt="Logo" height="104">
+                </div>
+                <div class="col">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search your Products">
+                        <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-outline-primary"><i class="bi bi-cart"></i></button>
+                        <button class="btn btn-outline-primary"><i class="bi bi-bookmark"></i></button>
+                        <button class="btn btn-outline-primary"><i class="bi bi-person"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded-top sticky-top">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item ms-4"><a class="nav-link active" href="./home.htms">Home</a></li>
+                            <li class="nav-item ms-4"><a class="nav-link" href="#">Special Gifts</a></li>
+                            <li class="nav-item ms-4"><a class="nav-link" href="#">青物</a></li>
+                            <li class="nav-item ms-4"><a class="nav-link" href="#">イカ</a></li>
+                            <li class="nav-item ms-4"><a class="nav-link" href="#">貝各種</a></li>
+                            <li class="nav-item ms-4"><a class="nav-link" href="#">魚介類</a></li>
+                            <li class="nav-item ms-4"><a class="nav-link" href="#">その他</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb" class="py-4">
+        <div class="container">
+            <ol class="breadcrumb mb-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Support</li>
+            </ol>
+        </div>
+
+    </nav>
+
+
+    <!-- Support Page -->
+
+    <section class="container">
+        <!-- Help -->
+        <div class="accordion w-100" id="basicAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header " id="headingOne">
+                    <button class="accordion-button collapsed title" type="button"
+                        data-mdb-toggle="collapse" data-mdb-target="#basicAccordionCollapseOne" 
+                        aria-expanded="false" aria-controls="basicAccordionCollapseOne">
+                        Question #1
+                    </button>
+                </h2>
+                <div id="basicAccordionCollapseOne" class="accordion-collapse collapse"
+                    aria-labelledby="headingOne" data-mdb-parent="#basicAccordion">
+                    <div class="accordion-body">
+                        <strong>This is the first item's accordion body.</strong> It is shown by default,
+                        until the collapse plugin adds the appropriate classes that we use to style each
+                        element. These classes control the overall appearance, as well as the showing and
+                        hiding via CSS transitions. You can modify any of this with custom CSS or overriding
+                        our default variables. It's also worth noting that just about any HTML can go within
+                        the <code>.accordion-body</code>, though the transition does limit overflow.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item ">
+                <h2 class="accordion-header " id="headingTwo">
+                    <button class="accordion-button collapsed title" type="button"
+                        data-mdb-toggle="collapse" data-mdb-target="#basicAccordionCollapseTwo" 
+                        aria-expanded="false" aria-controls="basicAccordionCollapseTwo">
+                        Question #2
+                    </button>
+                </h2>
+                <div id="basicAccordionCollapseTwo" class="accordion-collapse collapse"
+                    aria-labelledby="headingTwo" data-mdb-parent="#basicAccordion">
+                    <div class="accordion-body">
+                        <strong>This is the second item's accordion body.</strong> It is hidden by default,
+                        until the collapse plugin adds the appropriate classes that we use to style each
+                        element. These classes control the overall appearance, as well as the showing and
+                        hiding via CSS transitions. You can modify any of this with custom CSS or overriding
+                        our default variables. It's also worth noting that just about any HTML can go within
+                        the <code>.accordion-body</code>, though the transition does limit overflow.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item ">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed title" type="button"
+                        data-mdb-toggle="collapse" data-mdb-target="#basicAccordionCollapseThree" 
+                        aria-expanded="false" aria-controls="basicAccordionCollapseThree">
+                        Question #3
+                    </button>
+                </h2>
+                <div id="basicAccordionCollapseThree" class="accordion-collapse collapse"
+                    aria-labelledby="headingThree" data-mdb-parent="#basicAccordion">
+                    <div class="accordion-body">
+                        <strong>This is the third item's accordion body.</strong> It is hidden by default,
+                        until the collapse plugin adds the appropriate classes that we use to style each
+                        element. These classes control the overall appearance, as well as the showing and
+                        hiding via CSS transitions. You can modify any of this with custom CSS or overriding
+                        our default variables. It's also worth noting that just about any HTML can go within
+                        the <code>.accordion-body</code>, though the transition does limit overflow.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item ">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed title" type="button"
+                        data-mdb-toggle="collapse" data-mdb-target="#basicAccordionCollapseFour" 
+                        aria-expanded="false" aria-controls="basicAccordionCollapseFour">
+                        Question #4
+                    </button>
+                </h2>
+                <div id="basicAccordionCollapseFour" class="accordion-collapse collapse"
+                    aria-labelledby="headingFour" data-mdb-parent="#basicAccordion">
+                    <div class="accordion-body">
+                        <strong>This is the third item's accordion body.</strong> It is hidden by default,
+                        until the collapse plugin adds the appropriate classes that we use to style each
+                        element. These classes control the overall appearance, as well as the showing and
+                        hiding via CSS transitions. You can modify any of this with custom CSS or overriding
+                        our default variables. It's also worth noting that just about any HTML can go within
+                        the <code>.accordion-body</code>, though the transition does limit overflow.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- support form  -->
+        <div class="container">
+            <div class="row ">
+                <!-- Left Column -->
+                <div class="col-md-6">
+                    <div class="">
+                        <h2 class="title m-b-45">Contact form</h2>
+                        <div class="row">
+                            <div class="col-12">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label title">Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                    </div>
+                
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="line-id" class="form-label title">Line ID</label>
+                                            <input type="text" class="form-control" id="line-id" placeholder="Enter your Line ID">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="phone" class="form-label title">Phone Number</label>
+                                            <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                                        </div>
+                                    </div>
+                
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label title">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                                    </div>
+                
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label title">Description</label>
+                                        <textarea class="form-control" id="description" rows="3" placeholder="Enter your description"></textarea>
+                                    </div>
+                
+                                    <div class="text-center">
+                                        <button type="submit" class="common-btn">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Right Column -->
+                <div class="col-md-6">
+                    <div class="">
+                        <h2 class="title m-b-45">Wish List form</h2>
+                        <div class="row ">
+                            <div class="col-12">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label title">Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                    </div>
+                
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="line-id" class="form-label title">Line ID</label>
+                                            <input type="text" class="form-control" id="line-id" placeholder="Enter your Line ID">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="phone" class="form-label title">Phone Number</label>
+                                            <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                                        </div>
+                                    </div>
+                
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label title">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                                    </div>
+                
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label title">Description</label>
+                                        <textarea class="form-control" id="description" rows="3" placeholder="Enter your description"></textarea>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="common-btn">Submit</button>
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        
+        <!-- location & contact -->
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="p-3">
+                        <h2 class="title m-b-20">Our Location & Contact</h2>
+                        <div class="icon">
+                            <img src="/assets/icons/fontawesome-free-5.15.4-web/svgs/brands/facebook-square.svg" alt="facebook-f">
+                            <img src="/assets/icons/fontawesome-free-5.15.4-web/svgs/brands/line.svg" alt="facebook-f">
+                            <img src="/assets/icons/fontawesome-free-5.15.4-web/svgs/brands/twitter-square.svg" alt="facebook-f">
+                            <img src="/assets/icons/fontawesome-free-5.15.4-web/svgs/brands/whatsapp.svg" alt="facebook-f">
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="txt">Address: 1234 Main Street, Anytown, Japan</p>
+                                <p class="txt">Phone: 1234567890</p>
+                                <p class="txt">Email:user@email.com</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    
+
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>Who We Are</h5>
+                    <p>Your Trusted Source for Fresh Seafood.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Useful Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Home</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Support</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Products</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Terms & Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                        <li>Address: address</li>
+                        <li>Phone: 1234567890</li>
+                        <li>Email: user@email.com</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/support.js"></script>
+</body>
+
+</html>
