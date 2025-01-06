@@ -15,8 +15,6 @@ body:before {
 	-webkit-background-size: cover;
 	background-size: cover;
 }
-
-
 .wrapper {
     width: 100%;
     display: flex;
@@ -49,11 +47,11 @@ body:before {
 }
 .login-header span {
     font-size: 30px;
-    color: var(--black-color);
+    color: black;
 }
 .login-header span:last-child{
     font-size: 20px;
-    color: var(--black-color);
+    color: black;
 }
 .login-header::before {
     content: "";
@@ -84,7 +82,7 @@ body:before {
 }
 .input-field {
     width: 100%;
-    height: 55px;
+    height: 45px;
     font-size: 16px;
     color: black;
     padding-inline: 20px 50px;
