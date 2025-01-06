@@ -1,7 +1,15 @@
-footer .logo{height: 60px;}
-footer ul li a{text-decoration: none;}
-
-footer .link-list{display: grid;
-grid-template-columns: auto auto;
+footer .logo {
+  height: 60px;
 }
-footer .link-list li a,ul li a{color: white;}
+footer ul li a {
+  text-decoration: none;
+}
+footer .link-list {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+}
+footer .link-list li a,
+ul li a {
+  color: white;
+}
