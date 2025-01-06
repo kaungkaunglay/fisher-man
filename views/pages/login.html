@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+
+<body>
+    <!-- Login Form -->
+    <div class="container mt-5 py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-6">
+                <div class="bg-secondary border-2 border-dashed rounded-3 p-4 p-md-5">
+                    <form>
+                        <div class="mb-4">
+                            <label for="username" class="form-label txt-primary  fw-semibold">User Name</label>
+                            <input type="text" class="form-control form-control-lg" id="username" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="password" class="form-label txt-primary fw-semibold">Password</label>
+                            <input type="password" class="form-control form-control-lg" id="password" required>
+                        </div>
+
+                        <div class="text-center mb-3">
+                            <button type="submit" class="btn btn-outline-primary px-5 py-2">Login</button>
+                        </div>
+
+                        <div class="text-center">
+                            <p>(or)</p>
+                        </div>
+
+                        <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+                            <button type="button" class="btn btn-outline-primary d-inline-flex align-items-center">
+                                <i class="bi bi-line me-2"></i>
+                                Login with Line
+                            </button>
+                            <button type="button" class="btn btn-outline-primary d-inline-flex align-items-center">
+                                <i class="bi bi-facebook me-2"></i>
+                                Login with Facebook
+                            </button>
+                            <button type="button" class="btn btn-outline-primary d-inline-flex align-items-center">
+                                <i class="bi bi-google me-2"></i>
+                                Login with Google
+                            </button>
+                            <button type="button" class="btn btn-outline-primary d-inline-flex align-items-center">
+                                <i class="bi bi-telegram me-2"></i>
+                                Login with Telegram
+                            </button>
+                            <button type="button" class="btn btn-outline-primary d-inline-flex align-items-center">
+                                <i class="bi bi-instagram me-2"></i>
+                                Login with Instagram
+                            </button>
+                        </div>
+
+                        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+                            <a href="#" class=" text-decoration-none mb-3 mb-sm-0">Sign up</a>
+                            <a href="#" class=" text-decoration-none">Terms & Privacy</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //Login Form -->
+    <!-- Bootstrap JS -->
+    <script src="./js/bootstrap.min.js"></script>
+</body>
+
+</html>

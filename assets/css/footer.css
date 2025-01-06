@@ -1,0 +1,7 @@
+footer .logo{height: 60px;}
+footer ul li a{text-decoration: none;}
+
+footer .link-list{display: grid;
+grid-template-columns: auto auto;
+}
+footer .link-list li a,ul li a{color: white;}
