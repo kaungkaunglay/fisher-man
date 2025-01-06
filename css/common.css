@@ -1,0 +1,97 @@
+:root {
+    --primary-color: #005B96;
+    --secondary-color: #ECF5FB;
+    --black-color: #000000;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    height: 127px;
+    background-color: #ECF5FB;
+}
+
+header .input-group {
+    width: 506px !important;
+    justify-content: center !important;
+}
+
+header .navbar-expand-lg .navbar-toggler {
+    display: block !important;
+}
+
+.bg-secondary {
+    background-color: var(--secondary-color) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--primary-color);
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--primary-color);
+    --bs-btn-border-color: var(--primary-color);
+    --bs-btn-hover-bg: var(--primary-color);
+    --bs-btn-hover-border-color: var(--primary-color);
+    --bs-btn-active-bg: var(--primary-color);
+    --bs-btn-active-border-color: var(--primary-color);
+    --bs-btn-disabled-color: var(--primary-color);
+    --bs-btn-disabled-border-color: var(--primary-color);
+}
+
+.txt-primary {
+    color: var(--primary-color);
+}
+
+.title{
+    font-family: Roboto;
+    font-size: 18px !important;
+    font-weight: bold;
+    color: #005B96 !important;
+}
+
+.txt{
+    font-family: Roboto;
+    font-size: 15px;
+    color: #005B96;
+}
+
+.m-b-20{
+    margin-bottom: 20px;
+}
+
+.m-b-45{
+    margin-bottom: 45px;
+}
+
+.common-btn{
+    background: transparent;
+    border: 1px solid #005B96 ;
+    color: #005B96;
+    font-family: Roboto;
+    font-size: 18px ;
+    font-weight: bold;
+    color: #005B96 ;
+    padding: 10px 72px ;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.common-btn:hover{
+    background: #005B96;
+    color: #fff;
+}
+
+.icon img{
+    width: 46px;
+    margin-right: 10px;
+    color: #005B96;
+}
