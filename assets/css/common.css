@@ -54,3 +54,48 @@ header .navbar-expand-lg .navbar-toggler {
 .txt-primary {
     color: var(--primary-color);
 }
+
+.title{
+    font-family: Roboto;
+    font-size: 18px !important;
+    font-weight: bold;
+    color: #005B96 !important;
+}
+
+.txt{
+    font-family: Roboto;
+    font-size: 15px;
+    color: #005B96;
+}
+
+.m-b-20{
+    margin-bottom: 20px;
+}
+
+.m-b-45{
+    margin-bottom: 45px;
+}
+
+.common-btn{
+    background: transparent;
+    border: 1px solid #005B96 ;
+    color: #005B96;
+    font-family: Roboto;
+    font-size: 18px ;
+    font-weight: bold;
+    color: #005B96 ;
+    padding: 10px 72px ;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.common-btn:hover{
+    background: #005B96;
+    color: #fff;
+}
+
+.icon img{
+    width: 46px;
+    margin-right: 10px;
+    color: #005B96;
+}
