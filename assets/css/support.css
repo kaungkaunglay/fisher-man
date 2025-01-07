@@ -21,5 +21,13 @@ input{
     .mb-mobile-3{
         margin-bottom: 1rem;
     }
+
+    .m-b-45{
+        margin-bottom: 1rem;
+    }
+
+    .contact-form h2, .wish-list-form h2{
+        text-align: center; 
+    }
     
 }
