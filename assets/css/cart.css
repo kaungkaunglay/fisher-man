@@ -107,4 +107,29 @@ iframe{
         margin-top: 20px;
     }
 
+    .mobile-del-btn{
+        background: #FF0000;
+        padding: 40px 20px;
+        border-radius: 10px;
+    }
+
+    .card-body{
+        padding: 0px;
+    }
+
+    .total{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        background-color: #005B96;
+        padding: 10px;
+    }
+
+    .total p{
+        color: #ffffff;
+        font-size: 15px;
+        margin: 0;
+    }
+
 }
