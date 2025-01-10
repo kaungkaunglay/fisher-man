@@ -1,0 +1,43 @@
+.ui-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f2f7fb;
+    border-radius: 8px;
+  }
+  
+  .icon-buttons i {
+    font-size: 24px;
+    color: #005b9a;
+    cursor: pointer;
+  }
+  
+  .icon-buttons i:not(:last-child) {
+    margin-right: 10px;
+  }
+  
+  .slider-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .slider {
+    width: 150px;
+  }
+  
+  .sort-button {
+    background-color: #005b9a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .sort-button:hover {
+    background-color: #003f6f;
+  }
+  
+  .cart-btn .btn{
+    --bs-btn-padding-y:.1rem !important;
+  }

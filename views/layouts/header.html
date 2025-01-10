@@ -16,11 +16,9 @@
          <div class="row justify-content-between w-100">
             <div class="col-2 col-lg-2"> <a class="navbar-brand" href="#"><img src="../../assets/images/logo.png" class="navbar-logo" alt=""></a></div>
             <div class="col-9 col-lg-5 d-flex justify-content-center align-items-center">
-                <div class="search-bar">
-                    <input type="text" class="txt-primary" placeholder="Search your Products">
-                    <div class="search-icon shadow-sm bg-main">
-                        <i class="fa-solid fa-magnifying-glass text-white"></i>
-                    </div>
+                <div class="input-group">
+                    <input type="text" class="form-control bg-second " placeholder="Search your Products">
+                    <button class="btn bg-main text-white"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
             </div>
             <div class="col-2 d-none d-lg-flex justify-content-center align-items-center ">
@@ -34,13 +32,13 @@
           
         </div>
     </nav>
-    <div class="container position-relative">
+    <div class="container position-relative secnav">
         <div class="row second-navbar bg-main position-absolute w-100">
             <div class="col-1 ">
                 <div class="menu-icon"><i class="fa-solid fa-bars"></i></div>
             </div>
             <div class="col-11 d-flex justify-content-center">
-                <ul class="text-nowrap">
+                <ul class="text-nowrap nav-menu">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Special Offer</a></li>
                     <li><a href="#">青物</a></li>
@@ -53,6 +51,12 @@
                 </ul>
             </div>
             </div>
-    </div>
+            
+        </div>
+        <div class="slideshow d-lg-none">
+            <marquee behavior="scroll" direction="left" scrollamount="4">
+                Scroll beside to see more menu &nbsp;&nbsp;&nbsp; Scroll beside to see more menu &nbsp;&nbsp;&nbsp; Scroll beside to see more menu
+            </marquee>
+        </div>
 </body>
 </html>
