@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header</title>
+    <link rel="stylesheet" href="../../assets/css/common.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/icons/fontawesome-free-5.15.4-web/css/fontawesome.min.css">
+    <link rel="stylesheet" href="../../assets/css/all.css">
+    <link rel="stylesheet" href="../../assets/css/cart.css">
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg bg-second shadow-sm pb-3">
+        <div class="container-fluid">
+         <div class="row justify-content-between w-100">
+            <div class="col-2 col-lg-2"> <a class="navbar-brand" href="#"><img src="../../assets/images/logo.png" class="navbar-logo" alt=""></a></div>
+            <div class="col-9 col-lg-5 d-flex justify-content-center align-items-center">
+                <div class="search-bar">
+                    <input type="text" class="txt-primary" placeholder="Search your Products">
+                    <div class="search-icon shadow-sm bg-main">
+                        <i class="fa-solid fa-magnifying-glass text-white"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 d-none d-lg-flex justify-content-center align-items-center ">
+                <div class="w-100 d-flex justify-content-around icon-list">
+                    <i class="fa-solid fa-cart-shopping fs-3 txt-primary"></i>
+                    <i class="fa-solid fa-bookmark fs-3 txt-primary"></i>
+                    <i class="fa-solid fa-circle-user fs-3 txt-primary"></i>
+                </div>
+            </div>
+         </div>
+          
+        </div>
+    </nav>
+    <div class="container position-relative">
+        <div class="row second-navbar bg-main position-absolute w-100">
+            <div class="col-1 ">
+                <div class="menu-icon"><i class="fa-solid fa-bars"></i></div>
+            </div>
+            <div class="col-11 d-flex justify-content-center">
+                <ul class="text-nowrap">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Special Offer</a></li>
+                    <li><a href="#">青物</a></li>
+                    <li><a href="#">イカ</a></li>
+                    <li><a href="#">白身魚</a></li>
+                    <li><a href="#">魚介類</a></li>
+                    <li><a href="#">エビ</a></li>
+                    <li><a href="#">たこ</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            </div>
+    </div>
+
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb" class="py-4">
+        <div class="container">
+            <ol class="breadcrumb mb-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Support</li>
+            </ol>
+        </div>
+
+    </nav>
+
+    <!-- card start-->
+    <section class="container cart">
+        <table class="table desktop">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Product address</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quanity</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        1
+                    </th>
+                    <th>
+                        <img src="../../assets/images/fisher-bg.jpg" alt="product img">
+                    </th>
+                    <td>Mark</td>
+                    <td>
+                        100$
+                    </td>
+                    <td>
+                        <div class="quanity">
+                            <button class="btn" id="decrement">-</button>
+                            <input type="text" value="1" id="quantity" readonly>
+                            <button class="btn" id="increment">+</button>
+                        </div>
+
+                    </td>
+                    <td>1</td>
+                    <td>
+                        <a href="#">
+                            <img src="../../assets/images/trash-alt.svg" alt="trash">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        2
+                    </th>
+                    <th>
+                        <img src="../../assets/images/fisher-bg.jpg" alt="product img">
+                    </th>
+                    <td>Mark</td>
+                    <td>
+                        100$
+                    </td>
+                    <td>
+                        <div class="quanity">
+                            <button class="btn" id="decrement">-</button>
+                            <input type="text" value="1" id="quantity" readonly>
+                            <button class="btn" id="increment">+</button>
+                        </div>
+
+                    </td>
+                    <td>1</td>
+                    <td>
+                        <a href="#">
+                            <img src="../../assets/images/trash-alt.svg" alt="trash">
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">Total</td>
+                    <td>200$</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="mobile">
+            <div class="card d-flex flex-row">
+                <img src="../../assets/images/fisher-bg.jpg" alt="product img">
+                <div class="card-body d-flex flex-row justify-content-between align-items-center">
+                    <div class="">
+                        <h5 class="card-title">Mark</h5>
+                        <p class="card-text">100$</p>
+                        <div class="quanity">
+                            <button class="btn" id="decrement">-</button>
+                            <input type="text" value="1" id="quantity" readonly>
+                            <button class="btn" id="increment">+</button>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn">
+                        <img src="../../assets/images/trash-alt.svg" alt="trash">
+                    </a>
+                </div>
+            </div>
+            <div class="card d-flex flex-row">
+                <img src="../../assets/images/fisher-bg.jpg" alt="product img">
+                <div class="card-body d-flex flex-row justify-content-between align-items-center">
+                    <div class="">
+                        <h5 class="card-title">Mark</h5>
+                        <p class="card-text">100$</p>
+                        <div class="quanity">
+                            <button class="btn" id="decrement">-</button>
+                            <input type="text" value="1" id="quantity" readonly>
+                            <button class="btn" id="increment">+</button>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn">
+                        <img src="../../assets/images/trash-alt.svg" alt="trash">
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="text-lg-end">
+            <a href="#" class="common-btn">Checkout</a>
+        </div>
+        <div class="checkout d-lg-flex align-items-center">
+            <div class="checkout-form col-md-5">
+                <form>
+                    <div class="mb-3">
+                        <label for="address" class="form-label title">Address</label>
+                        <input type="text" class="form-control" id="address" placeholder="Enter your address">
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label title">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                        </div>
+                        <div class="col-md-6 mb-mobile-3">
+                            <label for="postal" class="form-label title">Postal code</label>
+                            <input type="number" class="form-control" id="postal" placeholder="Enter your Postal code">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="payment" class="form-label title">Payment</label>
+                        <select class="form-control" id="payment">
+                            <option value="" disabled selected>Select your payment method</option>
+                            <option value="credit_card">Credit Card</option>
+                            <option value="paypal">PayPal</option>
+                            <option value="bank_transfer">Bank Transfer</option>
+                            <option value="cash">Cash</option>
+                        </select>
+                    </div>
+                
+                    <div class="text-center mb-mobile-3">
+                        <button type="submit" class="common-btn">Submit</button>
+                    </div>
+                </form>
+                
+            </div>
+            <div class="col-md-2"></div>
+            <div class="map col-md-5">
+                <h3 class="title m-b-20">
+                    Select your address on the map
+                </h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15635.942969457286!2d104.94809415!3d11.5528796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310957427939910d%3A0xbfc58c8bcfc56e39!2sKart%20Station%20by%20DIB%20Club!5e0!3m2!1sen!2skh!4v1736398726990!5m2!1sen!2skh" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer start -->
+    <!-- <footer class="bg-main w-100">
+        <div class="row justify-content-around w-100 py-3">
+            <div class="col-12 col-lg-2 text-center text-white">
+                <img src="../../assets/images/logo.png" class="logo" alt="">
+                <p class="">Who We Are: Your Trusted Source for Fresh Seafood.</p>
+                <div class="social-icons d-flex justify-content-center gap-4">
+                    <i class="fa-brands fa-line fs-3"></i>
+                    <i class="fa-brands fa-facebook fs-3"></i>
+                    <i class="fa-brands fa-weixin fs-3"></i>
+                    <i class="fa-brands fa-xing fs-3"></i>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 mt-3">
+                <h6 class="text-center text-primary">Useful Links</h6>
+                <ul class="list-unstyled link-list w-100 mx-auto">
+                    <li><a href="#">>>Home</a></li>
+                    <li><a href="#">>>Product</a></li>
+                    <li><a href="#">>>FAQ</a></li>
+                    <li><a href="#">>>Terms & Privacy</a></li>
+                    <li><a href="#">>>Customer Review</a></li>
+                    <li><a href="#">>>Blogs</a></li>
+                </ul>
+            </div>
+            <div class="col-12 col-lg-2 mt-3 text-center">
+                <h6 class="text-center text-primary">Contact Us</h6>
+                <ul class="list-unstyled text-white">
+                    <li><a href="#">Address : address</a></li>
+                    <li><a href="#">Phone : 098756292</a></li>
+                    <li><a href="#">payment : user@payment.com</a></li>
+            </div>
+        </div>
+        <div class="row bg-dark m-0 justify-content-around">
+            <div class="col-lg-5 text-white text-center text-lg-start">
+                <p class="my-2">&copy; Copyright 2024-fisherman Designed by Andfun</p>
+            </div>
+            <div class="col-lg-5 text-white text-lg-end text-center">
+                <p class="my-2">Privacy | Terms</p>
+            </div>
+        </div>
+    </footer> -->
+
+    <script>
+        document.querySelectorAll('.quanity').forEach((element) => {
+            const decrementBtn = element.querySelector('#decrement');
+            const incrementBtn = element.querySelector('#increment');
+            const quantityInput = element.querySelector('#quantity');
+
+            decrementBtn.addEventListener('click', () => {
+                let value = parseInt(quantityInput.value) || 1;
+                if (value > 1) {
+                    quantityInput.value = value - 1;
+                    updateTotal();
+                }
+            });
+
+            incrementBtn.addEventListener('click', () => {
+                let value = parseInt(quantityInput.value) || 1;
+                quantityInput.value = value + 1;
+                updateTotal();
+            });
+        });
+
+        function updateTotal() {
+            let total = 0;
+            document.querySelectorAll('tbody tr').forEach((row) => {
+                const price = parseFloat(row.querySelector('td:nth-child(4)').innerText.replace('$', '')) || 0;
+                const quantity = parseInt(row.querySelector('#quantity').value) || 1;
+                row.querySelector('td:nth-child(6)').innerText = `$${price * quantity}`;
+                total += price * quantity;
+            });
+            document.querySelector('tfoot td:nth-child(2)').innerText = `$${total}`;
+        }
+
+    </script>
+    
+
+</body>
+
+</html>

@@ -56,14 +56,14 @@ header .navbar-expand-lg .navbar-toggler {
 }
 
 .title{
-    font-family: Roboto;
+    /* font-family: Roboto; */
     font-size: 18px !important;
     font-weight: bold;
     color: #005B96 !important;
 }
 
 .txt{
-    font-family: Roboto;
+    /* font-family: Roboto; */
     font-size: 15px;
     color: #005B96;
 }
@@ -80,7 +80,7 @@ header .navbar-expand-lg .navbar-toggler {
     background: transparent;
     border: 1px solid #005B96 ;
     color: #005B96;
-    font-family: Roboto;
+    /* font-family: Roboto; */
     font-size: 18px ;
     font-weight: bold;
     color: #005B96 ;
