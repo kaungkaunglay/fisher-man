@@ -1,26 +1,27 @@
 body {
-	margin: 0;
-	padding: 0;
-	font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
 }
 body:before {
-	content: '';
-	position: fixed;
-	width: 100vw;
-	height: 100vh;
-	background-image: url(../images/fisher-bg.jpg);
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	-webkit-background-size: cover;
-	background-size: cover;
+    content: '';
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../images/fisher-bg.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
 }
 .wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    margin-top: 50px;
+    position: relative;
 }
 .login-box {
     position: relative;
@@ -49,7 +50,7 @@ body:before {
     font-size: 30px;
     color: black;
 }
-.login-header span:last-child{
+.login-header span:last-child {
     font-size: 20px;
     color: black;
 }
@@ -72,7 +73,6 @@ body:before {
     height: 30px;
     border-top-left-radius: 50%;
     background: transparent;
-
 }
 .input-box {
     position: relative;
@@ -98,14 +98,13 @@ body:before {
     top: -28px;
     transition: 0.2s;
 }
-
 .icon {
     position: absolute;
     top: 18px;
     right: 25px;
     font-size: 20px;
 }
-.forgot a{
+.forgot a {
     text-decoration: none;
     color: #F9F9F9;
 }
@@ -133,4 +132,43 @@ body:before {
 }
 .register a {
     font-weight: 500;
+}
+@media (max-width: 768px) {
+    .fish01, .fish02 {
+        display: none;
+    }
+}
+.fish01 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    animation: fish01-animation 2s ease-out forwards;
+}
+.fish02 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    animation: fish02-animation 2s ease-out forwards;
+}
+@keyframes fish01-animation {
+    0% {
+        left: -300px; /* Start off-screen to the left */
+    }
+    100% {
+        left: 23%; /* Adjust as needed */
+    }
+}
+@keyframes fish02-animation {
+    0% {
+        right: -300px; /* Start off-screen to the right */
+    }
+    100% {
+        right: 23%; /* Adjust as needed */
+    }
+}
+.fish01 img, .fish02 img {
+    width: 300px; /* Adjust size as needed */
+    height: auto;
 }
