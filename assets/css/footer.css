@@ -1,14 +1,35 @@
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  margin-top: 40px;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+  width: 100%;
+}
+
 footer .logo {
   height: 60px;
 }
+
 footer ul li a {
   text-decoration: none;
 }
+
 footer .link-list {
   display: grid;
   grid-template-columns: auto auto;
   gap: 10px;
 }
+
 footer .link-list li a,
 ul li a {
   color: white;
@@ -16,9 +37,9 @@ ul li a {
 
 @media screen and (max-width: 768px) {
   footer .link-list {
-    grid-template-columns: auto;
-width: 150px !important;
-
+      grid-template-columns: auto;
+      width: 150px !important;
   }
-  
 }
+
+/* footer end */
