@@ -1,11 +1,41 @@
-/* footer start */
-main {
-height: 1000px;
+/* Reset default margin and padding */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-/* footer{} */
+main {
+  flex: 1 0 auto;
+  /* Remove fixed height to allow content to determine main section height */
+}
 
+/* Footer Styles */
+/* Reset default margin and padding */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+  /* Remove fixed height to allow content to determine main section height */
+}
+
+/* Footer Styles */
 footer .logo {
   height: 60px;
 }
@@ -31,5 +61,4 @@ ul li a {
       width: 150px !important;
 
   }
-
 }
