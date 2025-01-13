@@ -1,19 +1,7 @@
-
-body {
-  display: flex;
-  flex-direction: column;
-}
-
+/* footer start */
 main {
-  flex: 1;
-  margin-top: 40px;
-}
-
-footer {
-  background-color: #333;
-  color: white;
-  padding: 10px 0;
-  width: 100%;
+  min-height: 100vh;
+  margin-top: 60px;
 }
 
 footer .logo {
@@ -39,7 +27,7 @@ ul li a {
   footer .link-list {
       grid-template-columns: auto;
       width: 150px !important;
-  }
-}
 
-/* footer end */
+  }
+
+}
