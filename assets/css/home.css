@@ -1,0 +1,154 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+.sidebar-menu{background-color:#ECF5FB ;list-style: none;padding: 15px;line-height: 27px;}
+.sidebar-menu a{
+
+  display: block;
+  text-decoration: none;
+  text-align: center;
+}
+
+.carousel-item img{height: 350px;}
+
+.breadcrumb-item+.breadcrumb-item::before {content: "|";}
+
+/* banner section */
+
+.banner {
+  margin-top: 10px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  text-wrap: nowrap;
+}
+
+.text {
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  /* gap: 10px; */
+}
+
+.line {
+  display: block;
+  height: 1px;
+  width: 50px;
+  background-color: white;
+}
+
+/* popular shop section */
+.shop-carts .card{width: 250px !important;height: 130px;}
+.shop-carts .card img{height: 90px;object-fit: cover;}
+.shop-carts .card .card-body{padding: 5px;}
+
+/* discount products section */
+.sort-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 0px 0px 0px 10px;
+  
+}
+
+.arrows {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+
+}
+
+.arrows i{height: 10px;font-size: 20px;color: #005B96;}
+
+.sort-button {
+  background-color: #005B96; /* Deep blue */
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 0px 10px 10px 0px;
+  padding: 8px 16px;
+  cursor: pointer;
+  width: 100px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sort-button:hover {
+  background-color: #003366; /* Slightly darker blue */
+}
+
+/* discount product */
+
+.product-card {
+  max-width: 300px;
+  border: none;
+  /* background-color: #ffffff; */
+  background-color: transparent;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  /* border-radius: 10px; */
+}
+
+.discount-badge {
+  position: absolute;
+  right:0px;
+  background-color: #004B8D;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 2px;
+  width: 50px;
+  text-align: center;
+  border-radius: 10px 0px 10px 0px;
+}
+
+.card-title {
+  font-size: 18px;
+}
+
+.card-text {
+  font-size: 14px;
+}
+
+.btn-outline-primary {
+  border: 1px solid #004B8D;
+  color: #004B8D;
+}
+
+.btn-outline-primary:hover {
+  background-color: #004B8D;
+  color: white;
+}
+
+.discount-products .product-card .card-body,.all-products .product-card .card-body{padding:10px 0px;}
+.discount-products .product-card .card-body .card-text{font-size: 12px;}
+.cart-btn .btn,.seemore-btn{
+  --bs-btn-padding-y:.05rem !important;
+}
+.seemore-btn{width: 150px;}
+
+/* horizontal product card */
+
+.horizontal-product-card{width: 100%;height: 125px;}
+.horizontal-product-card img{height: 125px;width: 100%;object-fit: cover;}
+.horizontal-product-card .card-body{padding-top: 0px;}
+.horizontal-product-card .card-body .card-title{color: #004B8D;}
+
+
+/* styles.css */
+.carousel-indicators [data-bs-target] {
+  width: 12px;
+  height: 12px;
+  background-color: white; /* Bootstrap Primary Blue */
+  border-radius: 50%;
+  border: none;
+  margin: 0 5px;
+}
+
+.carousel-indicators [data-bs-target].active {
+  background-color: #005B96; /* Darker blue for active indicator */
+}

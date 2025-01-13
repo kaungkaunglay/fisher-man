@@ -1,0 +1,148 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', sans-serif;
+}
+body:before {
+	content: '';
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	background-image: url(../images/fisher-bg.jpg);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	-webkit-background-size: cover;
+	background-size: cover;
+}
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.login-box {
+    position: relative;
+    backdrop-filter: blur(25px);
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    padding: 7.5em 2.5em 4em 2.5em;
+    color: #F9F9F9;
+}
+@media only screen and (max-width: 768px) {
+    .login-box {
+        width: 90%;
+    }
+}
+/* media screen for desktop */
+@media only screen and (min-width: 768px) {
+    .login-box {
+        width: 500px;
+    }
+}
+
+
+.login-header {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    flex-direction: column;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    width: 350px;
+    height: 70px;
+    border-radius: 0 0 20px 20px;
+}
+.login-header span {
+    font-size: 30px;
+    color: black;
+}
+.login-header span:last-child{
+    font-size: 20px;
+    color: black;
+}
+.login-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -30px;
+    width: 30px;
+    height: 30px;
+    border-top-right-radius: 50%;
+    background: transparent;
+}
+.login-header::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -30px;
+    width: 30px;
+    height: 30px;
+    border-top-left-radius: 50%;
+    background: transparent;
+
+}
+.input-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0;
+}
+.input-field {
+    width: 100%;
+    height: 45px;
+    font-size: 16px;
+    color: black;
+    padding-inline: 20px 50px;
+    border: 2px solid #F9F9F9;
+    border-radius: 5px;
+    outline: none;
+}
+#user {
+    margin-bottom: 10px;
+}
+.label {
+    position: absolute;
+    top: -28px;
+    transition: 0.2s;
+}
+
+.icon {
+    position: absolute;
+    top: 18px;
+    right: 25px;
+    font-size: 20px;
+}
+.forgot a{
+    text-decoration: none;
+    color: #F9F9F9;
+}
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+}
+.input-submit {
+    width: 100%;
+    height: 50px;
+    background: #c6c3c3;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.input-submit:hover {
+    background: #F9F9F9;
+}
+.register {
+    text-align: center;
+}
+.register a {
+    font-weight: 500;
+}
