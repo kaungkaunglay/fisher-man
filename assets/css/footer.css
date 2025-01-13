@@ -1,8 +1,10 @@
 /* footer start */
 main {
-  min-height: 100vh;
-  margin-top: 60px;
+height: 1000px;
 }
+
+
+/* footer{} */
 
 footer .logo {
   height: 60px;

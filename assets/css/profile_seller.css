@@ -1,0 +1,58 @@
+.breadcrumb {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #0056b3; /* Blue color */
+}
+.breadcrumb a {
+    text-decoration: none;
+    color: #0056b3;
+}
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+.breadcrumb a:not(:first-child)::before {
+    content: "|";
+    color: #000; /* Separator color */
+    margin: 0 5px;
+}
+
+.discount-products .product-card .card-body,.all-products .product-card .card-body{padding:10px 0px;}
+.discount-products .product-card .card-body .card-text{font-size: 12px;}
+.cart-btn .btn,.seemore-btn{
+  --bs-btn-padding-y:.05rem !important;
+}
+
+.sort-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    padding: 0px 0px 0px 10px;
+    
+  }
+  
+  .arrows {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  
+  }
+  
+  .arrows i{height: 10px;font-size: 20px;color: #005B96;}
+  
+  .sort-button {
+    background-color: #005B96; /* Deep blue */
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 0px 10px 10px 0px;
+    padding: 8px 16px;
+    cursor: pointer;
+    width: 100px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sort-button:hover {
+    background-color: #003366; /* Slightly darker blue */
+  }
