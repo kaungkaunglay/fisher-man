@@ -10,10 +10,6 @@
     box-sizing: border-box;
 }
 
-header {
-    height: 127px;
-    background-color: #ECF5FB;
-}
 
 header .input-group {
     width: 506px !important;
