@@ -1,3 +1,118 @@
+<<<<<<< HEAD
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wpr {
+padding: 40px;
+}
+
+.side-menu {
+  width: 25%;
+  background-color: #ECF5FB;
+  height: max-content;
+  padding: 20px;
+}
+
+.side-menu ul {
+  list-style: none;
+  gap: 20px;
+}
+
+.side-menu a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.side-menu li a:hover {
+  text-decoration: underline;
+}
+
+.see-product {
+  margin: 20px auto 0px;
+}
+
+.see-product:hover {
+  opacity: 0.8;
+}
+
+.category {
+  width: 73%;
+}
+
+.title {
+  color: var(--primary-color);
+}
+
+.top-bar button {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.btn.sort {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: #fff;
+}
+
+.category-list {
+  border: none;
+  gap: 20px;
+}
+
+.category-list li {  
+  padding: 20px;
+  gap: 20px;
+  background-color: #ECF5FB;;
+  border: none;
+}
+
+.card-list {
+  gap: 20px;
+  padding: 0;
+}
+
+.card-list li {
+  padding: 0;
+}
+
+.card {
+  border: none;
+}
+
+.card p {
+  margin-bottom: 0;
+}
+
+.fish-price {
+  color: red;
+}
+
+.fish-category {
+  color: #3498DB;
+}
+
+.fish-name {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.see-more {
+  width: max-content;
+  margin-left: auto;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 62px;
+}
+
+
+
+
+
+=======
 .ui-container {
     display: flex;
     justify-content: space-between;
@@ -41,3 +156,4 @@
   .cart-btn .btn{
     --bs-btn-padding-y:.1rem !important;
   }
+>>>>>>> 1cb12e7e89233443dce9d4a89ed49b11fac5cf7e

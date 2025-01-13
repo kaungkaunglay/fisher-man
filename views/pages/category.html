@@ -1,66 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover premium-quality fresh fish expertly selected by R-Mekiki. Perfect for sushi, sashimi, and gourmet cooking. Freshness guaranteed, delivered to your door. Order now! "> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Category</title>
+  <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/all.min.css">
+  <link rel="stylesheet" href="../../assets/css/common.css">
+  <link rel="stylesheet" href="../../assets/css/category.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
-    
-    <nav aria-label="breadcrumb" class="container mt-2">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Category</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Data</li>
-        </ol>
-      </nav>
-    <section class="category min-vh-100">
-        <div class="container mt-5">
-            <div class="ui-container">
-                <!-- Icons Section -->
-                <div class="icon-buttons">
-                    <i class="bi bi-grid-fill"></i>
-                    <i class="bi bi-list"></i>
-                </div>
-        
-                <!-- Category Name -->
-                <div>
-                    <h5 class="text-primary mb-0">Category Name</h5>
-                </div>
-        
-                <!-- Price Range Slider and Sort -->
-                <div class="d-flex align-items-center gap-3">
-                    <div class="slider-container">
-                        <span class="text-muted">$100</span>
-                        <input type="range" class="form-range slider" min="100" max="1000">
-                        <span class="text-muted">$1000</span>
-                    </div>
-                    <button class="sort-button d-flex align-items-center">
-                        <i class="bi bi-chevron-up me-1"></i> Sort by
-                    </button>
-                </div>
-            </div>
-            <div class="product-card mt-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="../../assets/images/fisher-bg.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="text-danger">$10</h5>
-                        <h4 class="text-primary">lorem</h4>
-                      <h5 class="card-title text-primary">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                     <!-- <div class="btnGroup d-flex">
-                        <a href="#" class="btn btn-outline-primary"></a>
-                        <a href="#" class="btn btn-outline-primary"></a>
-                     </div> -->
-                     <div class="d-flex gap-2 cart-btn">
-                        <button class="btn btn-outline-primary w-50" type="button"><i class="bi bi-cart"></i></button>
-                        <button class="btn btn-outline-primary w-50" type="button"><i class="bi bi-cart"></i></button>
-                      </div>
-                    </div>
-                  </div>
-            </div>
+  <!-- Main Content -->
+  <main>
+
+    <h1>hello</h1>
+    <div class="wpr d-flex justify-content-between">
+
+      <!-- Aside -->
+      <div class="side-menu rounded">
+        <ul class="list-group">
+          <li><a href="">鮮魚 (1134)</a></li>
+          <li><a href="">マグロ (188)</a></li>
+          <li><a href="">貝類 (322)</a></li>
+          <li><a href="">エビ・カニ (321)</a></li>
+          <li><a href="">イカ・タコ (190)</a></li>
+          <li><a href="">ウニ・イクラ・白子・魚卵 (119)</a></li>
+          <li><a href="">海藻・干物・漬魚・ちりめん・練物類 (401)</a></li>
+          <li><a href="">珍味・惣菜・漬物 (440)</a></li>
+          <li><a href="">調味料・わさび・飾り物 (202)</a></li>
+        </ul>
+        <div class="d-flex">
+          <a href="" class="see-product">See more Product</a>
         </div>
+      </div>
+      <!-- Aside End -->
+
+      <!-- Category List -->
+      <section class="category">
+        <ul class="d-flex flex-column category-list">
+          <li class="d-flex flex-column rounded">
+            <h2 class="title">Sub Categorie Name</h2>
+            <div class="top-bar d-flex justify-content-between">
+              <div class="wpr-1">
+                <button class="btn">
+                  <i class="fa-solid fa-th-large"></i>
+                </button>
+                <button class="btn">
+                  <i class="fa-solid fa-list"></i>
+                </button>
+              </div>
+              <div class="wpr-2">
+                <button class="btn">
+                  <i class="fa-solid fa-sort"></i>
+                </button>
+                <button class="btn btn-primary sort">Sort by</button>
+              </div>
+            </div>
+            <ul class="card-list d-flex container">
+              <li class="card">
+                <img src="../../assets/images/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+                <div class="card-body">
+                  <p class="fish-price">$10</p>
+                  <p class="fish-category">鮮魚|白身魚</p>
+                  <h3 class="fish-name card-title">真鯛</h3>
+                  <p class="fish-description card-text">
+                    A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet flavor. Commonly used in sashimi, sushi, and grilled dishes .....
+                  </p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+                  </div>
+                </div>
+              </li>
+              <li class="card">
+                <img src="../../assets/images/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+                <div class="card-body">
+                  <p class="fish-price">$10</p>
+                  <p class="fish-category">鮮魚|白身魚</p>
+                  <h3 class="fish-name card-title">真鯛</h3>
+                  <p class="fish-description card-text">
+                    A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet flavor. Commonly used in sashimi, sushi, and grilled dishes .....
+                  </p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+                  </div>
+                </div>
+              </li>
+              <li class="card">
+                <img src="../../assets/images/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+                <div class="card-body">
+                  <p class="fish-price">$10</p>
+                  <p class="fish-category">鮮魚|白身魚</p>
+                  <h3 class="fish-name card-title">真鯛</h3>
+                  <p class="fish-description card-text">
+                    A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet flavor. Commonly used in sashimi, sushi, and grilled dishes .....
+                  </p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+                  </div>
+                </div>
+              </li>
+              <li class="card">
+                <img src="../../assets/images/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+                <div class="card-body">
+                  <p class="fish-price">$10</p>
+                  <p class="fish-category">鮮魚|白身魚</p>
+                  <h3 class="fish-name card-title">真鯛</h3>
+                  <p class="fish-description card-text">
+                    A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet flavor. Commonly used in sashimi, sushi, and grilled dishes .....
+                  </p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+                  </div>
+                </div>
+              </li>
+              <li class="card">
+                <img src="../../assets/images/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+                <div class="card-body">
+                  <p class="fish-price">$10</p>
+                  <p class="fish-category">鮮魚|白身魚</p>
+                  <h3 class="fish-name card-title">真鯛</h3>
+                  <p class="fish-description card-text">
+                    A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet flavor. Commonly used in sashimi, sushi, and grilled dishes .....
+                  </p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <button class="see-more btn btn-outline-primary">See more</button>
+          </li>
+          <li class="d-flex flex-column rounded">
+            <h2 class="title">Sub Categorie Name</h2>
+            <div class="top-bar d-flex justify-content-between">
+              <div class="wpr-1">
+                <button class="btn">
+                  <i class="fa-solid fa-th-large"></i>
+                </button>
+                <button class="btn">
+                  <i class="fa-solid fa-list"></i>
+                </button>
+              </div>
+              <div class="wpr-2">
+                <button class="btn">
+                  <i class="fa-solid fa-sort"></i>
+                </button>
+                <button class="btn btn-primary sort">Sort by</button>
+              </div>
+            </div>
+            <ul class="card-list d-flex container">
+              <li class="card">
+                <img src="../../assets/images/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+                <div class="card-body">
+                  <p class="fish-price">$10</p>
+                  <p class="fish-category">鮮魚|白身魚</p>
+                  <h3 class="fish-name card-title">真鯛</h3>
+                  <p class="fish-description card-text">
+                    A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet flavor. Commonly used in sashimi, sushi, and grilled dishes .....
+                  </p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+                  </div>
+                </div>
+              </li>
+              <li class="card">
+                <img src="../../assets/images/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+                <div class="card-body">
+                  <p class="fish-price">$10</p>
+                  <p class="fish-category">鮮魚|白身魚</p>
+                  <h3 class="fish-name card-title">真鯛</h3>
+                  <p class="fish-description card-text">
+                    A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet flavor. Commonly used in sashimi, sushi, and grilled dishes .....
+                  </p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+                  </div>
+                </div>
+              </li>
+              <li class="card">
+                <img src="../../assets/images/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+                <div class="card-body">
+                  <p class="fish-price">$10</p>
+                  <p class="fish-category">鮮魚|白身魚</p>
+                  <h3 class="fish-name card-title">真鯛</h3>
+                  <p class="fish-description card-text">
+                    A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet flavor. Commonly used in sashimi, sushi, and grilled dishes .....
+                  </p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+                  </div>
+                </div>
+              </li>
+              <li class="card">
+                <img src="../../assets/images/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+                <div class="card-body">
+                  <p class="fish-price">$10</p>
+                  <p class="fish-category">鮮魚|白身魚</p>
+                  <h3 class="fish-name card-title">真鯛</h3>
+                  <p class="fish-description card-text">
+                    A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet flavor. Commonly used in sashimi, sushi, and grilled dishes .....
+                  </p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+                  </div>
+                </div>
+              </li>
+              <li class="card">
+                <img src="../../assets/images/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+                <div class="card-body">
+                  <p class="fish-price">$10</p>
+                  <p class="fish-category">鮮魚|白身魚</p>
+                  <h3 class="fish-name card-title">真鯛</h3>
+                  <p class="fish-description card-text">
+                    A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet flavor. Commonly used in sashimi, sushi, and grilled dishes .....
+                  </p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <button class="see-more btn btn-outline-primary">See more</button>
+          </li>
+          <li class="d-flex flex-column rounded">
+            <h2 class="title">Sub Categorie Name</h2>
+            <div class="top-bar d-flex justify-content-between">
+              <div class="wpr-1">
+                <button class="btn">
+                  <i class="fa-solid fa-th-large"></i>
+                </button>
+                <button class="btn">
+                  <i class="fa-solid fa-list"></i>
+                </button>
+              </div>
+              <div class="wpr-2">
+                <button class="btn">
+                  <i class="fa-solid fa-sort"></i>
+                </button>
+                <button class="btn btn-primary sort">Sort by</button>
+              </div>
+            </div>
+            <ul class="card-list d-flex container">
+              <li class="card">
+                <img src="../../assets/images/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+                <div class="card-body">
+                  <p class="fish-price">$10</p>
+                  <p class="fish-category">鮮魚|白身魚</p>
+                  <h3 class="fish-name card-title">真鯛</h3>
+                  <p class="fish-description card-text">
+                    A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet flavor. Commonly used in sashimi, sushi, and grilled dishes .....
+                  </p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+                  </div>
+                </div>
+              </li>
+              <li class="card">
+                <img src="../../assets/images/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+                <div class="card-body">
+                  <p class="fish-price">$10</p>
+                  <p class="fish-category">鮮魚|白身魚</p>
+                  <h3 class="fish-name card-title">真鯛</h3>
+                  <p class="fish-description card-text">
+                    A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet flavor. Commonly used in sashimi, sushi, and grilled dishes .....
+                  </p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+                  </div>
+                </div>
+              </li>
+              <li class="card">
+                <img src="../../assets/images/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+                <div class="card-body">
+                  <p class="fish-price">$10</p>
+                  <p class="fish-category">鮮魚|白身魚</p>
+                  <h3 class="fish-name card-title">真鯛</h3>
+                  <p class="fish-description card-text">
+                    A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet flavor. Commonly used in sashimi, sushi, and grilled dishes .....
+                  </p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+                  </div>
+                </div>
+              </li>
+              <li class="card">
+                <img src="../../assets/images/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+                <div class="card-body">
+                  <p class="fish-price">$10</p>
+                  <p class="fish-category">鮮魚|白身魚</p>
+                  <h3 class="fish-name card-title">真鯛</h3>
+                  <p class="fish-description card-text">
+                    A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet flavor. Commonly used in sashimi, sushi, and grilled dishes .....
+                  </p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+                  </div>
+                </div>
+              </li>
+              <li class="card">
+                <img src="../../assets/images/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+                <div class="card-body">
+                  <p class="fish-price">$10</p>
+                  <p class="fish-category">鮮魚|白身魚</p>
+                  <h3 class="fish-name card-title">真鯛</h3>
+                  <p class="fish-description card-text">
+                    A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet flavor. Commonly used in sashimi, sushi, and grilled dishes .....
+                  </p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="col-6 btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <button class="see-more btn btn-outline-primary">See more</button>
+          </li>
+        </ul>
       </section>
-    
+      <!-- Category List End -->
+
+    </div>
+
+  </main>
+  <!-- Main Content End -->
 </body>
 </html>
