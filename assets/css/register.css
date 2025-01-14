@@ -1,8 +1,5 @@
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance: none;margin: 0;}
+input[type=number] {-moz-appearance: textfield;}
 
 body {
     color: #fff;
@@ -11,9 +8,17 @@ body {
     background: url(../images/fisher-bg.jpg) no-repeat fixed center/cover;
 }
 
+a {
+    color: orange;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
 main {
     display: flex;
-    padding: 50px;
+    padding: 100px 0;
 }
 
 .login-box {
@@ -21,24 +26,62 @@ main {
     max-width: 748px;
     border-radius: 15px;
     padding: 20px 67px;
-    margin: 99px auto;
-    backdrop-filter: blur(25px);
+    margin: 0 auto;
+    backdrop-filter: blur(12px);
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
 }
 
 .login-header h2 {
+    color: black;
     font-size: 30px;
+    text-align: center;
+}
+
+.login-header h2 p {
+    font-size: 18px;
+    margin-top: 10px;
 }
 
 .input-container {
     gap: 20px;
 }
 
-.login-box input {
+.input-box input {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 12px;
     padding: 8px 10px;
     border: none;
     outline: none;
     border-radius: 0.5em;
+}
+
+.input-box:has(input:focus) {
+    color: orange;
+}
+
+.input-submit {
+    width: 60%;
+    padding: 8px 0;
+    margin: 10px auto 0;
+}
+
+.register {
+    font-size: 15px;
+    margin: 0 auto;
+}
+
+@media  screen and (max-width: 576px) {
+    main {
+        padding: 20px 10px;
+    }
+    .login-box {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+@media  screen and (max-width: 768px) {
+    .ph-no {
+        gap: inherit;
+    }
 }

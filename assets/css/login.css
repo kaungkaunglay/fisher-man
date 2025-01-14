@@ -1,174 +1,100 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    font-family:'Poppins', sans-serif; 
+    font-size: 18px;
+    background: url(../images/fisher-bg.jpg) no-repeat fixed center/cover;
 }
-body:before {
-    content: '';
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background-image: url(../images/fisher-bg.jpg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    -webkit-background-size: cover;
-    background-size: cover;
+
+a {
+    color: orange;
 }
-.wrapper {
-    width: 100%;
+
+a:hover {
+    opacity: 0.8;
+}
+
+main {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-    position: relative;
+    padding: 100px 0;
 }
+
 .login-box {
-    position: relative;
-    width: 450px;
-    backdrop-filter: blur(25px);
-    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    height: max-content;
+    max-width: 748px;
     border-radius: 15px;
-    padding: 7.5em 2.5em 4em 2.5em;
-    color: #F9F9F9;
+    padding: 20px 67px 50px;
+    margin: 0 auto;
+    backdrop-filter: blur(12px);
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
 }
-.login-header {
-    position: absolute;
-    top: 5%;
-    left: 50%;
-    flex-direction: column;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+.login-header h2 {
     color: black;
-    width: 350px;
-    height: 70px;
-    border-radius: 0 0 20px 20px;
-}
-.login-header span {
     font-size: 30px;
-    color: black;
-}
-.login-header span:last-child {
-    font-size: 20px;
-    color: black;
-}
-.login-header::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -30px;
-    width: 30px;
-    height: 30px;
-    border-top-right-radius: 50%;
-    background: transparent;
-}
-.login-header::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: -30px;
-    width: 30px;
-    height: 30px;
-    border-top-left-radius: 50%;
-    background: transparent;
-}
-.input-box {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin: 30px 0;
-}
-.input-field {
-    width: 100%;
-    height: 45px;
-    font-size: 16px;
-    color: black;
-    padding-inline: 20px 50px;
-    border: 2px solid #F9F9F9;
-    border-radius: 5px;
-    outline: none;
-}
-#user {
-    margin-bottom: 10px;
-}
-.label {
-    position: absolute;
-    top: -28px;
-    transition: 0.2s;
-}
-.icon {
-    position: absolute;
-    top: 18px;
-    right: 25px;
-    font-size: 20px;
-}
-.forgot a {
-    text-decoration: none;
-    color: #F9F9F9;
-}
-.remember-forgot {
-    display: flex;
-    justify-content: space-between;
-    font-size: 15px;
-}
-.input-submit {
-    width: 100%;
-    height: 50px;
-    background: #c6c3c3;
-    font-size: 16px;
-    font-weight: 500;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.input-submit:hover {
-    background: #F9F9F9;
-}
-.register {
     text-align: center;
 }
-.register a {
-    font-weight: 500;
+
+.login-header h2 p {
+    font-size: 18px;
+    margin-top: 10px;
 }
-@media (max-width: 768px) {
-    .fish01, .fish02 {
-        display: none;
+
+.input-container {
+    gap: 20px;
+}
+
+.input-box .input-group {
+    margin-top: 12px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 8px 10px;
+    border: none;
+    outline: none;
+    border-radius: 0.5em;
+}
+
+.input-box .btn {
+    width: 50px;
+}
+
+.input-box .input-group input {
+    box-shadow: none;
+}
+
+.input-box:has(input:focus) {
+    color: orange;
+}
+
+.pw-setting {
+    font-size: 15px;
+    gap: 5px;
+    justify-content: space-between;
+}
+
+.input-submit {
+    width: 60%;
+    padding: 8px 0;
+    margin: 10px auto 0;
+}
+
+.register {
+    font-size: 15px;
+    margin: 0 auto;
+}
+
+@media  screen and (max-width: 576px) {
+    main {
+        padding: 20px 10px;
     }
-}
-.fish01 {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1;
-    animation: fish01-animation 2s ease-out forwards;
-}
-.fish02 {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1;
-    animation: fish02-animation 2s ease-out forwards;
-}
-@keyframes fish01-animation {
-    0% {
-        left: -300px; /* Start off-screen to the left */
+    .login-box {
+        width: 100%;
+        padding: 20px;
     }
-    100% {
-        left: 23%; /* Adjust as needed */
+    .pw-setting {
+        flex-direction: column;
+        align-items: center;
     }
-}
-@keyframes fish02-animation {
-    0% {
-        right: -300px; /* Start off-screen to the right */
-    }
-    100% {
-        right: 23%; /* Adjust as needed */
-    }
-}
-.fish01 img, .fish02 img {
-    width: 300px; /* Adjust size as needed */
-    height: auto;
 }
