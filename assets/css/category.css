@@ -1,19 +1,15 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+body {
+  font-size: 15px;
 }
 
-/* category page */
 .wpr {
-padding: 40px;
+  padding: 41px;
 }
 
 .side-menu {
-  width: 25%;
   background-color: #ECF5FB;
   height: max-content;
-  padding: 20px;
+  padding: 20px 23px;
 }
 
 .side-menu ul {
@@ -21,14 +17,15 @@ padding: 40px;
   gap: 20px;
 }
 
-.side-menu a {
+.side-menu ul a {
   text-decoration: none;
   font-weight: bold;
   color: var(--primary-color);
+  transition: color 0.5s ease-in-out;
 }
 
-.side-menu li a:hover {
-  text-decoration: underline;
+.side-menu a:hover {
+  color: orange;
 }
 
 .see-product {
@@ -37,10 +34,6 @@ padding: 40px;
 
 .see-product:hover {
   opacity: 0.8;
-}
-
-.category {
-  width: 73%;
 }
 
 .title {
@@ -58,54 +51,80 @@ padding: 40px;
   color: #fff;
 }
 
+.category {
+  padding-right: 0;
+}
+
 .category-list {
   border: none;
   gap: 20px;
 }
 
 .category-list li {  
-  padding: 20px;
-  gap: 20px;
+  border-radius: 10px;
   background-color: #ECF5FB;;
-  border: none;
 }
 
+/* Card Design */
 .card-list {
-  gap: 20px;
-  padding: 0;
-}
-
-.card-list li {
-  padding: 0;
+  margin: 0;
 }
 
 .card {
+  width: 20%;
+  padding: 0 20px;
   border: none;
+  background-color: transparent;
+}
+
+.card-head {
+  padding: 20px;
+}
+
+.card-body {
+  padding: 0;
 }
 
 .card p {
-  margin-bottom: 0;
+  margin: 5px 0;
 }
 
+
 .fish-price {
+  font-size: 18px;
   color: red;
 }
 
 .fish-category {
+  font-size: 12px;
   color: #3498DB;
 }
 
 .fish-name {
+  font-size: 18px;
   color: var(--primary-color);
   font-weight: bold;
 }
 
+.fish-text {
+  font-size: 13px;
+}
+
+.card-btn {
+  justify-content: space-between;
+}
+
+.card-btn button {
+  width: 46%;
+}
+
+/* button */
 .see-more {
   width: max-content;
   margin-left: auto;
   font-size: 18px;
   font-weight: bold;
-  padding: 10px 62px;
+  padding: 20px;
 }
 
 
