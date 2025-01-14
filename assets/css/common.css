@@ -95,3 +95,6 @@ header .navbar-expand-lg .navbar-toggler {
     margin-right: 10px;
     color: #005B96;
 }
+
+/* customize margin */
+.m-x30{margin: 0px 30px !important;}

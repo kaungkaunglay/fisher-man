@@ -62,8 +62,8 @@
           </ul>
         </div>
       </div>
-
     </div>
+
     <div class="slideshow d-lg-none">
       <marquee behavior="scroll" direction="left" scrollamount="4">
         Scroll beside to see more menu &nbsp;&nbsp;&nbsp; Scroll beside to see more menu &nbsp;&nbsp;&nbsp; Scroll
@@ -76,49 +76,63 @@
 
   <!-- main content -->
   <main>
-    <div class="login-box">
+    <div class="login-box d-flex flex-column"">
       <div class="login-header">
         <h2> Login</h2>
         <p> Welcome to Fisherman Login Page</p>
       </div>
-      <form action="#" get="" enctype="multipart/form-data">
-        <div class="input-box">
-          <input type="text" id="user" class="input-field" required>
-          <label for="user" class="label">USERNAME</label>
+
+      <!-- form start -->
+      <form action="#" get="" enctype="multipart/form-data" class="input-container d-flex flex-column">
+        <div class="d-flex flex-column">
+          <label for="user">USERNAME</label>
+          <input type="text" id="user" required>
         </div>
-        <div class="input-box">
-          <input type="password" id="pass" class="input-field" autocomplete="off">
-          <label for="pass" class="label">PASSWORD</label>
+        <div class="d-flex flex-column">
+          <label for="pass">PASSWORD</label>
+          <input type="password" id="pass" autocomplete="off">
         </div>
-        <div class="input-box">
-          <input type="password" id="pass" class="input-field" autocomplete="off">
-          <label for="pass" class="label">CONFIRM PASSWORD</label>
+        <div class="d-flex flex-column">
+          <label for="pass">CONFIRM PASSWORD</label>
+          <input type="password" id="pass" autocomplete="off">
         </div>
-        <div class="input-box">
-          <input type="password" id="pass" class="input-field" autocomplete="off">
-          <label for="pass" class="label">LINE ID</label>
+        <div class="row">
+          <div class="col-md-6 col-xs-12 d-flex flex-column">
+            <label for="pass">First Phone No</label>
+            <input type="password" id="pass" autocomplete="off">
+          </div>
+          <div class="col-md-6 col-xs-12 d-flex flex-column">
+            <label for="pass">Second Phone No</label>
+            <input type="text" id="pass" autocomplete="off">
+          </div>
         </div>
-        <div class="input-box">
-          <input type="text" id="pass" class="input-field" autocomplete="off">
-          <label for="pass" class="label">SHIP NAME</label>
+        <div class="d-flex flex-column">
+          <label for="pass">LINE ID</label>
+          <input type="password" id="pass" autocomplete="off">
         </div>
-        <div class="input-box">
-          <input ype="text" id="pass" class="input-field" autocomplete="off">
-          <label for="pass" class="label">First Org Name</label>
+        <div class="d-flex flex-column">
+          <label for="pass">SHIP NAME</label>
+          <input type="password" id="pass" autocomplete="off">
         </div>
-        <div class="input-box">
-          <input type="text" id="pass" class="input-field" autocomplete="off">
-          <label for="pass" class="label">Trans Management</label>
+        <div class="d-flex flex-column">
+          <label for="pass">First Org Name</label>
+          <input type="password" id="pass" autocomplete="off">
+        </div>
+        <div class="d-flex flex-column">
+          <label for="pass">Trans Management</label>
+          <input type="password" id="pass" autocomplete="off">
         </div>
         <div class="input-box">
           <input type="submit" class="input-submit" value="Register">
         </div>
         <div class="register">
-          <span>Don't have an account?
+          <p>Don't have an account?
             <a href="login.html">Login</a>
-          </span>
+          </p>
         </div>
       </form>
+      <!-- form end -->
+
     </div>
   </main>
   <!-- main content -->

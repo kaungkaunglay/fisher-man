@@ -2,6 +2,7 @@ body {
     font-family: Arial, sans-serif;
   }
   
+
 .sidebar-menu{background-color:#ECF5FB ;list-style: none;padding: 15px;line-height: 27px;}
 .sidebar-menu a{
 
@@ -11,7 +12,6 @@ body {
 }
 
 .carousel-item img{height: 350px;}
-
 .breadcrumb-item+.breadcrumb-item::before {content: "|";}
 
 /* banner section */
@@ -43,7 +43,7 @@ body {
 }
 
 /* popular shop section */
-.shop-carts .card{width: 200px !important;height: 130px;}
+.shop-carts .card{height: 130px;}
 .shop-carts .card img{height: 90px;object-fit: cover;}
 .shop-carts .card .card-body{padding: 5px;}
 
@@ -61,6 +61,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0px;
+  margin-bottom: 9px;
 
 }
 
@@ -114,6 +115,9 @@ body {
   font-size: 14px;
 }
 
+.btn{
+  --bs-btn-padding-y: 0px !important;
+}
 .btn-outline-primary {
   border: 1px solid #004B8D;
   color: #004B8D;
@@ -152,3 +156,7 @@ body {
 .carousel-indicators [data-bs-target].active {
   background-color: #005B96; /* Darker blue for active indicator */
 }
+
+/* mobile nav bar start */
+
+/* mobile nav bar end */
