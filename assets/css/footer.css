@@ -4,10 +4,10 @@ body {
   flex-direction: column;
 }
 
-main {
+/* main {
   flex: 1;
   margin-top: 40px;
-}
+} */
 
 footer {
   background-color: #333;
