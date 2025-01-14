@@ -83,6 +83,7 @@ header .navbar-expand-lg .navbar-toggler {
     padding: 10px 72px ;
     border-radius: 10px;
     transition: 0.3s;
+    text-align: center;
 }
 
 .common-btn:hover{

@@ -69,6 +69,11 @@ iframe{
     display: none;
 }
 
+input[type="checkbox"] {
+    width: 20px;
+    accent-color: #005B96; /* Change the default color of the checkbox (modern browsers) */
+}
+
 @media screen and (max-width: 768px){
     .desktop{
         display: none !important;
