@@ -124,8 +124,8 @@ marquee {
     .search-bar .search-icon{width: 20px;height: 20px;}
     .search-bar .search-icon i{font-size: 10px;}
     .navbar .input-group{height: 30px;margin-bottom: 5px;font-size: 10px;width: 150px;margin-left: 50px;}
-    .navbar .input-group input,i{font-size: 10px;}
-    .navbar .input-group input,button{height: 30px;}
+    .navbar .input-group input, header i{font-size: 10px;}
+    .navbar .input-group input, header button{height: 30px;}
     .navbar .input-group button{display: flex;justify-content: center;align-items: center;}
 
     /* .second-navbar ul li a{font-size: 10px;} */

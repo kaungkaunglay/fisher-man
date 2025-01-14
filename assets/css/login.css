@@ -1,3 +1,5 @@
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {margin-left: 0;}
+
 body {
     color: #fff;
     font-family:'Poppins', sans-serif; 
@@ -5,13 +7,8 @@ body {
     background: url(../images/fisher-bg.jpg) no-repeat fixed center/cover;
 }
 
-a {
-    color: orange;
-}
-
-a:hover {
-    opacity: 0.8;
-}
+a {color: orange;}
+a:hover {opacity: 0.8;}
 
 main {
     display: flex;
@@ -19,6 +16,7 @@ main {
 }
 
 .login-box {
+    position: relative;
     width: 80%;
     height: max-content;
     max-width: 748px;
@@ -27,6 +25,40 @@ main {
     margin: 0 auto;
     backdrop-filter: blur(12px);
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+}
+
+.login-box::before,
+.login-box::after {
+    content: '';
+    width: 150px;
+    aspect-ratio: 1/1;
+    background-color: red;
+    position: absolute;z-index: 1000;
+    animation: 1.5s ease-in-out;
+}
+
+.login-box::before {
+    left: -100px;
+    top: 50%;
+    background: url(../../assets/images/fishes/Fish-01.svg) no-repeat center/300px;
+    animation-name: fish01_move;
+}
+
+.login-box::after {
+    right: -100px;
+    top: 30%;
+    background: url(../../assets/images/fishes/Fish-02.svg) no-repeat center/300px;
+    animation-name: fish02_move;
+}
+
+@keyframes fish01_move {
+    0%{left: -100vh;opacity: 0.3;}
+    100%{left: -100px;opacity: 1;}
+}
+
+@keyframes fish02_move {
+    0%{right: -100vh;opacity: 0.3;}
+    100%{right: -100px;opacity: 1;}
 }
 
 .login-header h2 {
@@ -48,6 +80,10 @@ main {
     margin-top: 12px;
 }
 
+.input-box label {
+    letter-spacing: 1.5px;
+}
+
 .input-box input {
     width: 100%;
     padding: 8px 10px;
@@ -62,6 +98,7 @@ main {
 
 .input-box .input-group input {
     box-shadow: none;
+    outline: none;
 }
 
 .input-box:has(input:focus) {
@@ -70,8 +107,7 @@ main {
 
 .pw-setting {
     font-size: 15px;
-    gap: 5px;
-    justify-content: space-between;
+    gap: 50px;
 }
 
 .input-submit {
@@ -87,7 +123,7 @@ main {
 
 @media  screen and (max-width: 576px) {
     main {
-        padding: 20px 10px;
+        padding: 50px 10px 80px;
     }
     .login-box {
         width: 100%;
@@ -96,5 +132,10 @@ main {
     .pw-setting {
         flex-direction: column;
         align-items: center;
+        gap: 5px;
+    }
+    .login-box::before,
+    .login-box::after {
+        display: none;
     }
 }
