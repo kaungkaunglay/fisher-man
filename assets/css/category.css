@@ -3,13 +3,16 @@ body {
 }
 
 .wpr {
-  padding: 41px;
+  max-width: 1440px;
+  padding: 2.9%;
+  margin: 0 auto;
 }
 
 .side-menu {
   background-color: #ECF5FB;
   height: max-content;
   padding: 20px 23px;
+  border-radius: 10px;
 }
 
 .side-menu ul {
@@ -72,7 +75,7 @@ body {
 
 .card {
   width: 20%;
-  padding: 0 20px;
+  padding: 0 1.4%;
   border: none;
   background-color: transparent;
 }
@@ -119,16 +122,41 @@ body {
 }
 
 /* button */
+.see-more-box {
+  padding: 20px;
+}
+
 .see-more {
   width: max-content;
   margin-left: auto;
   font-size: 18px;
   font-weight: bold;
-  padding: 20px;
+  padding: 5px 20px;
 }
 
 
-
-
-
+@media  screen and (max-width: 768px) {
+  .wpr {
+    padding: 20px;
+  }
+  .category {
+    width: 100%;
+    padding: 0;
+  }
+  .side-menu {
+    display: none;
+  }
+  .card-list {
+    flex-wrap: wrap;
+  }
+  .card {
+    width: 50%;
+    padding: 20px;
+  }
+  .see-more {
+    width: 40%;
+    margin: 0 auto;
+    padding: 10px 0;
+  }
+}
 
