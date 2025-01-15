@@ -9,3 +9,44 @@ margin: auto;
 
 }
 footer .link-list li a,ul li a{color: white;}
+
+/* mobile nav bar start */
+
+.mobile-nav{height: 60px;}
+
+.nav-item {
+  color: white;
+  font-size: 14px;
+ margin-top: 5px;
+  text-decoration: none;
+  transition:  1s, color 0.5s;
+}
+
+.nav-item i {
+  font-size: 19px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: #005b96;
+  border-radius: 50%;
+  transition: transform 0.5s;
+}
+.nav-item p{margin-bottom: 0px;}
+
+
+.nav-item:hover {
+  color: #00bfff; /* Change color on hover */
+}
+
+.nav-item:hover i {
+  font-size: 35px;
+  width: 60px;
+  height: 60px;
+  transform: translateY(-30px); /* Move icon up on hover */
+}
+
+.nav-item:hover p{margin-top: -30px;z-index: 1000;}
+
+/* mobile nav bar end */

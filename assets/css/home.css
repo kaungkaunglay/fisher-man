@@ -3,16 +3,35 @@ body {
   }
   
 
+  /* sidebar menu and carousel section start */
 .sidebar-menu{background-color:#ECF5FB ;list-style: none;padding: 15px;line-height: 27px;}
 .sidebar-menu a{
-
   display: block;
   text-decoration: none;
   text-align: center;
 }
 
+/* styles.css */
+.carousel-indicators [data-bs-target] {
+  width: 12px;
+  height: 12px;
+  background-color: white; /* Bootstrap Primary Blue */
+  border-radius: 50%;
+  border: none;
+  margin: 0 5px;
+}
+
+.carousel-indicators [data-bs-target].active {
+  background-color: #005B96; /* Darker blue for active indicator */
+}
+
 .carousel-item img{height: 350px;}
+
+/* breadcrumb style overwrite */
 .breadcrumb-item+.breadcrumb-item::before {content: "|";}
+
+ /* sidebar menu and carousel section end */
+
 
 /* banner section */
 
@@ -42,12 +61,15 @@ body {
   background-color: white;
 }
 
+/* banner section end */
+
 /* popular shop section */
 .shop-carts .card{height: 130px;}
 .shop-carts .card img{height: 90px;object-fit: cover;}
 .shop-carts .card .card-body{padding: 5px;}
 
-/* discount products section */
+
+/* sort button section start */
 .sort-container {
   display: flex;
   align-items: center;
@@ -84,8 +106,10 @@ body {
   background-color: #003366; /* Slightly darker blue */
 }
 
-/* discount product */
+/* sort button section end */
 
+
+/* discount product-card section start */
 .product-card {
   max-width: 200px;
   border: none;
@@ -135,6 +159,8 @@ body {
 }
 .seemore-btn{width: 150px;}
 
+/* discount-products section end */
+
 /* horizontal product card */
 
 .horizontal-product-card{width: 100%;}
@@ -143,61 +169,6 @@ body {
 .horizontal-product-card .card-body .card-title{color: #004B8D;}
 
 
-/* styles.css */
-.carousel-indicators [data-bs-target] {
-  width: 12px;
-  height: 12px;
-  background-color: white; /* Bootstrap Primary Blue */
-  border-radius: 50%;
-  border: none;
-  margin: 0 5px;
-}
-
-.carousel-indicators [data-bs-target].active {
-  background-color: #005B96; /* Darker blue for active indicator */
-}
-
-/* mobile nav bar start */
-
-.mobile-nav{height: 60px;}
-
-.nav-item {
-  color: white;
-  font-size: 14px;
- margin-top: 5px;
-  text-decoration: none;
-  transition:  1s, color 0.5s;
-}
-
-.nav-item i {
-  font-size: 19px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-  background-color: #005b96;
-  border-radius: 50%;
-  transition: transform 0.5s;
-}
-.nav-item p{margin-bottom: 0px;}
-
-
-.nav-item:hover {
-  color: #00bfff; /* Change color on hover */
-}
-
-.nav-item:hover i {
-  font-size: 35px;
-  width: 60px;
-  height: 60px;
-  transform: translateY(-30px); /* Move icon up on hover */
-}
-
-.nav-item:hover p{margin-top: -30px;z-index: 1000;}
 
 
 
-
-
-/* mobile nav bar end */
