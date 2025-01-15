@@ -99,3 +99,17 @@ header .navbar-expand-lg .navbar-toggler {
 
 /* customize margin */
 .m-x30{margin: 0px 30px !important;}
+
+/* overwrite breadcrumb */
+.breadcrumb-item+.breadcrumb-item::before {content: "|" !important;color: #005B96 !important;}
+.breadcrumb a{color: #005B96;text-decoration: none;}
+
+
+/* product card animation */
+.card-border-animate{transition: .5s;}
+.product-card:hover {
+
+}
+.card-border-animate:hover{border: 1px solid black;padding: 5px;    
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;}
+
