@@ -19,7 +19,7 @@ main {
     position: relative;
     width: 80%;
     height: max-content;
-    max-width: 748px;
+    max-width: 450px;
     border-radius: 15px;
     padding: 20px 67px 50px;
     margin: 0 auto;
@@ -62,7 +62,6 @@ main {
 }
 
 .login-header h2 {
-    color: black;
     font-size: 30px;
     text-align: center;
 }
@@ -86,10 +85,30 @@ main {
 
 .input-box input {
     width: 100%;
+    color: white;
+    background-color: transparent !important;
     padding: 8px 10px;
     border: none;
     outline: none;
     border-radius: 0.5em;
+}
+
+.input-box input:focus {
+    color: white;
+}
+
+.input-group {
+    border: 1px solid #b5b3b3;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.input-group .btn {
+    border: none;
+}
+
+.input-group .btn:active {
+    opacity: 0.5;
 }
 
 .input-box .btn {
@@ -111,7 +130,9 @@ main {
 }
 
 .input-submit {
-    width: 60%;
+    width: 100%;
+    border: none;
+    border-radius: 50px;
     padding: 8px 0;
     margin: 10px auto 0;
 }
