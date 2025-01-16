@@ -5,16 +5,11 @@ body {
     color: #fff;
     font-family:'Poppins', sans-serif; 
     font-size: 18px;
-    background: url(../images/fisher-bg.jpg) no-repeat fixed center/cover;
+    background: url(../images/bg/cristian-palmer-XexawgzYOBc-unsplash.jpg) no-repeat fixed center/cover;
 }
 
-a {
-    color: orange;
-}
-
-a:hover {
-    opacity: 0.8;
-}
+a {color: orange;}
+a:hover {opacity: 0.8;}
 
 main {
     display: flex;
@@ -32,7 +27,6 @@ main {
 }
 
 .login-header h2 {
-    color: black;
     font-size: 30px;
     text-align: center;
 }
@@ -49,8 +43,10 @@ main {
 .input-box input {
     width: 100%;
     margin-top: 12px;
+    border: 1px solid #e2e0e0;
+    color: white;
+    background-color: transparent !important;
     padding: 8px 10px;
-    border: none;
     outline: none;
     border-radius: 0.5em;
 }
@@ -59,15 +55,17 @@ main {
     color: orange;
 }
 
-.input-submit {
-    width: 60%;
-    padding: 8px 0;
-    margin: 10px auto 0;
-}
-
 .register {
     font-size: 15px;
     margin: 0 auto;
+}
+
+.input-submit {
+    width: 80%;
+    border: none;
+    border-radius: 50px;
+    padding: 8px 0;
+    margin: 10px auto 0;
 }
 
 @media  screen and (max-width: 576px) {
