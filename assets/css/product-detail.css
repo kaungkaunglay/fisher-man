@@ -1,0 +1,46 @@
+.reviewer-card{
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #ECF5FB;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.user-img{
+    width: 100px;
+    height: 100px;
+}
+
+.user-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.review-form-container{
+    width: 80%;
+    background-color: #ECF5FB;
+    padding: 20px;
+    margin: auto;
+    border-radius: 20px;
+}
+
+.review-form-container input, .review-form-container textarea, .review-form-container select{
+    background-color: transparent;
+    border: 1px solid #005B96;
+}
+
+.pagination-controls button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.pagination-controls button.active {
+    background-color: #007bff;
+    color: white;
+}
+
