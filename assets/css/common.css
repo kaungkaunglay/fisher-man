@@ -65,6 +65,7 @@ header .navbar-expand-lg .navbar-toggler {
 .txt {
     /* font-family: Roboto; */
     font-size: 15px;
+    font-weight: bold;
 }
 
 .m-b-20 {
@@ -190,4 +191,23 @@ li {
 
 .m-b-10 {
     margin-bottom: 10px;
+}
+
+.pagination-controls button, #next-btn, #prev-btn{
+    background-color: transparent;
+    border: 1px solid #3498DB;
+    padding: 9px 18px;
+    margin: 0 5px;
+    cursor: pointer;
+    color: #3498DB;
+}
+
+.pagination-controls button:hover, #next-btn:hover, #prev-btn:hover{
+    background-color: #007bff;
+    color: white;
+}
+
+.pagination-controls button.active {
+    background-color: #007bff;
+    color: white;
 }

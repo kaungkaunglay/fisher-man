@@ -31,16 +31,4 @@
     border: 1px solid #005B96;
 }
 
-.pagination-controls button {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    margin: 0 5px;
-    cursor: pointer;
-}
-
-.pagination-controls button.active {
-    background-color: #007bff;
-    color: white;
-}
 

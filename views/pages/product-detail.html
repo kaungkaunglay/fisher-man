@@ -134,7 +134,6 @@
                 </div>
             </div>
             <!-- aside end -->
-
             <!-- product start -->
             <div class="product-detail col-8">
                 <div class="row justify-content-between">
@@ -155,7 +154,6 @@
                             <div class="small-img">
                                 <img src="../../assets/images/fisher-bg.jpg" alt="product image">
                             </div>
-
                         </div>
                     </div>
                     <div class="product-descraption col-6">
@@ -189,12 +187,9 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- product end -->
             </div>
             <!-- product end -->
-
-            
         </div>
         <!-- Review start -->
         <div class="reviewer wpr p-0">
@@ -217,7 +212,7 @@
                         <p class="txt">Review text for User 1.</p>
                     </div>
                 </div>
-            
+
                 <div class="reviewer-card d-flex align-items-center gap-3 m-b-20">
                     <div class="user-img col-4">
                         <img src="../../assets/images/fisher-bg.jpg" alt="user image">
@@ -232,7 +227,7 @@
                         <p class="txt">Review text for User 2.</p>
                     </div>
                 </div>
-            
+
                 <div class="reviewer-card d-flex align-items-center gap-3 m-b-20">
                     <div class="user-img col-4">
                         <img src="../../assets/images/fisher-bg.jpg" alt="user image">
@@ -247,7 +242,7 @@
                         <p class="txt">Review text for User 3.</p>
                     </div>
                 </div>
-            
+
                 <div class="reviewer-card d-flex align-items-center gap-3 m-b-20">
                     <div class="user-img col-4">
                         <img src="../../assets/images/fisher-bg.jpg" alt="user image">
@@ -263,14 +258,10 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Pagination Controls -->
-            <div id="pagination-controls" class="pagination-controls"></div>
-            
-            
-            
-            
-        </div> 
+            <div id="pagination-controls" class="pagination-controls text-center m-b-20"></div>
+        </div>
         <div class="review-form wpr p-0">
             <h3 class="title text-center m-b-20">Add a review</h3>
             <div class="row justify-content-center review-form-container">
@@ -279,11 +270,13 @@
                         <div class="row mb-3">
                             <div class="col-md-6 mb-mobile-3">
                                 <label for="name" class="form-label title">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                                <input type="text" class="form-control" id="name" placeholder="Enter your name"
+                                    required>
                             </div>
                             <div class="col-md-6">
                                 <label for="email" class="form-label title">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email"
+                                    required>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -299,9 +292,10 @@
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label title">Description</label>
-                            <textarea class="form-control" id="description" rows="3" placeholder="Enter your description" required></textarea>
+                            <textarea class="form-control" id="description" rows="3"
+                                placeholder="Enter your description" required></textarea>
                         </div>
-    
+
                         <div class="text-center mb-mobile-3">
                             <button type="submit" class="common-btn">Submit</button>
                         </div>
@@ -357,88 +351,8 @@
     </footer>
     <!-- footer end -->
     <script src="../../assets/js/cart.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const itemsPerPage = 2;
-            const reviewContainer = document.getElementById('reviewContainer');
-            const reviews = Array.from(reviewContainer.getElementsByClassName('reviewer-card'));
-            const paginationControls = document.getElementById('pagination-controls');
+    <script src="../../assets/js/pagination.js"></script>
 
-            const totalPages = Math.ceil(reviews.length / itemsPerPage);
-            let currentPage = 1;
-
-            function showPage(page) {
-                const start = (page - 1) * itemsPerPage;
-                const end = start + itemsPerPage;
-
-                // Hide all reviews and only show the relevant ones
-                reviews.forEach((review, index) => {
-                    if (index >= start && index < end) {
-                        review.classList.add('d-flex');
-                        review.classList.remove('d-none');
-                    } else {
-                        review.classList.remove('d-flex');
-                        review.classList.add('d-none');
-                    }
-                });
-
-                // Highlight active page button
-                Array.from(paginationControls.querySelectorAll('.page-btn')).forEach((button, index) => {
-                    button.classList.toggle('active', index + 1 === page);
-                });
-
-                // Enable/disable Previous and Next buttons
-                document.getElementById('prev-btn').disabled = page === 1;
-                document.getElementById('next-btn').disabled = page === totalPages;
-
-                currentPage = page; // Update current page
-            }
-
-            function createPagination() {
-                paginationControls.innerHTML = '';
-
-                // Add Previous button
-                const prevButton = document.createElement('button');
-                prevButton.textContent = 'Previous';
-                prevButton.id = 'prev-btn';
-                prevButton.classList.add('btn', 'btn-secondary', 'm-1');
-                prevButton.disabled = true; // Initially disabled
-                prevButton.addEventListener('click', () => {
-                    if (currentPage > 1) showPage(currentPage - 1);
-                });
-                paginationControls.appendChild(prevButton);
-
-                // Add page number buttons
-                for (let i = 1; i <= totalPages; i++) {
-                    const button = document.createElement('button');
-                    button.textContent = i;
-                    button.classList.add('btn', 'btn-secondary', 'm-1', 'page-btn');
-                    button.addEventListener('click', () => showPage(i));
-                    paginationControls.appendChild(button);
-                }
-
-                // Add Next button
-                const nextButton = document.createElement('button');
-                nextButton.textContent = 'Next';
-                nextButton.id = 'next-btn';
-                nextButton.classList.add('btn', 'btn-secondary', 'm-1');
-                nextButton.addEventListener('click', () => {
-                    if (currentPage < totalPages) showPage(currentPage + 1);
-                });
-                paginationControls.appendChild(nextButton);
-            }
-
-            // Initialize
-            createPagination();
-            showPage(1);
-        });
-
-
-
-        </script>
-        
-        
-        
 </body>
 
 </html>
