@@ -19,7 +19,7 @@
   <!-- header start -->
   <header>
     <nav class="navbar navbar-expand-lg bg-second shadow-sm pb-3">
-      <div class="container-fluid">
+      <div class="container-custom">
         <div class="row justify-content-between w-100">
           <div class="col-2 col-lg-2">
             <a class="navbar-brand" href="#">

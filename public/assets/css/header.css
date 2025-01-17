@@ -1,162 +1,192 @@
-/* header style start */
-.navbar{position:static !important;}
-
-.navbar-logo {
-    height: 10vh; /* 10% of the viewport height */
-    max-height: 70px; /* Maximum height */
-    width: auto; /* Maintain aspect ratio */
+header{
+    background-color:#ECF5FB;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-@media (max-width: 768px) {
-    .navbar-logo {
-        height: 8vh; /* Adjust height for smaller screens */
-        max-height: 50px; /* Adjust maximum height for smaller screens */
-    }
+.header{
+    height: 127px;
+    position: relative;
 }
-.second-navbar {
+
+.top-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search{
     display: flex;
     align-items: center;
-    padding: 0 20px;
-    height: 50px;
-    color: white;
 }
 
-.second-navbar .menu-icon {
-    font-size: 24px;
-    margin-right: 20px;
-    cursor: pointer;
+.search input{
+    width: 403px;
+    height: 32px;
+    border: 1px solid #005B96;
+    border-radius: 10px 0px 0px 10px;
+    padding: 5px 42px;
+    background-color: transparent;
 }
 
-.second-navbar ul {
+.search a{
     display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    background-color: #005B96;
+    border-radius: 0px 10px 10px 0px;
+    text-align: center;
+    padding: 5px 42px;
+    color: #ffffff;
 }
 
-.second-navbar ul li {
-    margin: 0 15px;
-    cursor: pointer;
+.icon{
+    display: flex;
+    gap: 50px;
 }
 
-.second-navbar ul li:hover {
-    text-decoration: none;
-}
-
-.second-navbar ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.second-navbar {
-    border-radius: 15px;
-    height: 40px;
-    top: -20px;
-}
-
-/* search box */
-
-
-.search-bar input {
-    flex: 1;
-    border: none;
-    outline: none;
-    width: 160px;
-    /* font-size: 16px; */
-}
-
-.search-bar input::placeholder {
+.icon i{
+    font-size: 45px;
     color: #005B96;
 }
 
-.search-bar .search-icon {
-    border-radius: 15px;
-    width: 30px;
-    height: 30px;
+.bottom-header{
+    position: absolute;
+    bottom: -30px;
+    background-color: #005B96;
+    width: 90%;
+    padding: 12px 20px;
+    border-radius: 50px;
+    left: 50%;
+    transform: translateX(-50%); 
+}
+
+.bottom-header nav{
     display: flex;
+    gap: 180px;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
 }
 
-.second-navbar ul {
-    overflow-x: auto;
-    -ms-overflow-style: none; /*IE and Edge */
-    scroll-behavior: smooth;
-}
-
-.second-navbar ul::-webkit-scrollbar {
-    width: 5px; /* Chrome, Safari, and Opera */
-    height: 5px;
-}
-
-.second-navbar ul::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.5); /* Scrollbar thumb color */
-    border-radius: 5px;
-}
-
-
-.second-navbar ul::-webkit-scrollbar-track {
-    background: transparent; /* Scrollbar track color */
-}
-
-
-.secnav{margin-top: -10px;}
-
-.secnav .row>* {padding-right: 0px;}
-
-.slideshow {
-    width: 100%;
-    height: 30px;
-    background-color: #3498DB;
-    /* border-radius: 10px; */
+.hambuger-menu i{
+    font-size: 21px;
+    color: #ffffff;
     display: flex;
     justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 18px;
-    text-align: center;
-    overflow: hidden;
 }
 
-marquee {
-    width: 100%;
-    height: 100%;
+.bottom-header nav ul {
     display: flex;
-    align-items: center;
+    gap: 50px;
+    padding: 3px 20px;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent wrapping */
+    scroll-behavior: smooth; /* Smooth scrolling effect */
 }
 
-/* Responsive adjustments for iPhone SE */
-@media (max-width: 475px) {
-    .navbar-logo{height: 50px;}
-    .search-bar{height: 10px;}
-    .search-bar input{width: 100px;font-size: 10px;}
-    .search-bar .search-icon{width: 20px;height: 20px;}
-    .search-bar .search-icon i{font-size: 10px;}
-    .navbar .input-group{height: 30px;margin-bottom: 5px;font-size: 10px;width: 150px;margin-left: 50px;}
-    .navbar .input-group input, header i{font-size: 10px;}
-    .navbar .input-group input, header button{height: 30px;}
-    .navbar .input-group button{display: flex;justify-content: center;align-items: center;}
+.bottom-header nav ul::-webkit-scrollbar {
+    display: none; /* Optional: hide the scrollbar for a cleaner look */
+}
 
-    /* .second-navbar ul li a{font-size: 10px;} */
-    .second-navbar{height: 30px;}
-    .menu-icon{display: flex;}
-    .menu-icon i{font-size: 15px;}
-    .nav-menu li{display: flex;}
-    .nav-menu li a{font-size: 10px !important;}
-    .slideshow{font-size: 10px;height: 20px;margin-top: 10px;}
-    .second-navbar ul {
-        overflow-x: scroll;
-        -ms-overflow-style: none; /*IE and Edge */
-        scroll-behavior: smooth;
+.bottom-nav {
+    display: none;
+}
+
+@media screen and (max-width: 1100px) {
+
+    .icon{
+        display: none;
     }
 
+    .bottom-nav {
+        position: sticky;
+        bottom: 0;
+        z-index: 1000;
+        background: #005B96;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .bottom-nav a{
+        text-align: center;
+    }
+
+    .bottom-nav div{
+        position: relative;
+        width: 83px;
+    }
+
+    .mobile-shopping-card{
+        position: absolute;
+        border-radius: 50px;
+        padding: 13px 10px;
+        background-color: #005B96;
+        top: -60px;
+    }
+
+    .shopping{
+        font-size: 30px !important;
+    }
+
+    .bottom-header{
+        width: 100%;
+    }
 }
 
-@media (max-width: 575px) {
-    .navbar .input-group{width: 250px;margin-left: 60px;}
+@media screen and (max-width: 850px) {
+
+    .search input{
+        width: 303px;
+    }
+
+    .search a{
+        padding: 5px 22px;
+    }
+
+    .bottom-header nav{
+        gap: 100px;
+    }
+
+    .bottom-header nav ul {
+        gap: 30px;
+    }
+    
 }
+
+@media screen and (max-width: 768px) {
+
+    .container{
+        padding: 0px 10px;
+    }
+
+    .header{
+        height: 60px;
+    }
+
+    .logo{
+        width: 79px;
+    }
+
+    .search input{
+        width: 165px;
+        padding: 5px 20px;
+    }
+
+    .bottom-header{
+        padding: 0 10px;
+        bottom: -13px;
+    }
+
+    .bottom-header nav{
+        gap: 50px;
+    }
+    
+}
+
 
 
 

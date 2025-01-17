@@ -90,6 +90,7 @@ input[type="checkbox"] {
         background: #FF0000;
         padding: 40px 5px;
         border-radius: 10px;
+        color: #ffffff;
     }
 
     .card-body{

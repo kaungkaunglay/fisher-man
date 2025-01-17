@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ asset('assets/css/cart.css') }}" />
 @endsection
 @section('contents')
-<div class="container cart">
+<div class="container cart m-t-20">
     <table class="table desktop">
         <thead>
             <tr>
@@ -39,7 +39,7 @@
                 <td>1</td>
                 <td>
                     <a href="#">
-                        <img src="../../assets/images/trash-alt.svg" alt="trash">
+                        <i class="fa-solid fa-trash-can"></i>
                     </a>
                 </td>
             </tr>
@@ -65,7 +65,7 @@
                 <td>1</td>
                 <td>
                     <a href="#">
-                        <img src="../../assets/images/trash-alt.svg" alt="trash">
+                        <i class="fa-solid fa-trash-can"></i>
                     </a>
                 </td>
             </tr>
@@ -93,7 +93,7 @@
                 </div>
                 
                 <a href="#" class="btn mobile-del-btn">
-                    <img src="../../assets/images/trash-alt-mobile.svg" alt="trash">
+                    <i class="fa-solid fa-trash-can"></i>
                 </a>
             </div>
         </div>
@@ -111,7 +111,7 @@
                 </div>
                 
                 <a href="#" class="btn mobile-del-btn">
-                    <img src="../../assets/images/trash-alt-mobile.svg" alt="trash">
+                    <i class="fa-solid fa-trash-can"></i>
                 </a>
             </div>
         </div>

@@ -65,26 +65,15 @@
     </div>
 
   </section>
-  <div class="banner bg-main">
-    <span class="text">
-        <span class="line"></span> Discount Products <span class="line"></span>
-    </span>
-    <span class="text">
-        <span class="line"></span> Discount Products <span class="line"></span>
-    </span>
-    <span class="text">
-        <span class="line"></span> Discount Products <span class="line"></span>
-    </span>
-    <span class="text">
-        <span class="line"></span> Discount Products <span class="line"></span>
-    </span>
-    <span class="text">
-        <span class="line"></span> Discount Products <span class="line"></span>
-    </span>
-    <span class="text">
-        <span class="line"></span> Discount Products <span class="line"></span>
-    </span>
-  </div>
+  <section class="m-t-b-20 moving-discount">
+        <div id="moving-text">
+            <p class="title">Discount Products</p>
+            <p class="title">Discount Products</p>
+            <p class="title">Discount Products</p>
+            <p class="title">Discount Products</p>
+            <p class="title">Discount Products</p>
+        </div>
+    </section>
 
   <section class="popular_top_rate_shop_section mt-3">
     <div class="m-x30 px-4">
