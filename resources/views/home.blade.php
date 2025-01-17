@@ -565,7 +565,7 @@ document.getElementById('listView').addEventListener('click', () => {
         }
     </style> --}}
 
-    <section class="all-products container-custom">
+    <section class="all-products container-custom my-3">
         <div class="">
             <h6 class="txt-primary fw-bold mb-3">All Products</h6>
             <div class="filter d-flex justify-content-between align-items-center mb-3">
