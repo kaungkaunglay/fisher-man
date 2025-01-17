@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" />
 
-    {{-- favicon --}}
+    <!-- {{-- favicon --}} -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/images/favicon/apple-touch-icon.png')}}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/images/favicon/favicon-32x32.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/favicon/favicon-16x16.png')}}">
@@ -98,7 +98,7 @@
     <footer class="bg-main w-100">
         <div class="row justify-content-around w-100 py-3">
             <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white">
-                <a style="pt" href="{{route('home')}}"><img src="{{ asset('assets/images/logo.png') }}" class="logo" alt=""></a>
+                <a  href="{{route('home')}}"><img src="{{ asset('assets/images/logo.png') }}" class="logo" alt=""></a>
                 <p class="text-center">Who We Are: Your Trusted Source for Fresh Seafood.</p>
                 <div class="social-icons d-flex justify-content-center gap-4">
                     <i class="fa-brands fa-line fs-3"></i>

@@ -16,7 +16,17 @@ header{
     align-items: center;
 }
 
-.search{
+header .input-group {
+    width: 506px !important;
+    height: 32px;
+    justify-content: center !important;
+}
+
+header .input-group input{border-color: #005B96;border-radius: 10px 0px 0px 10px;height: 100%;font-size: 13px;
+    padding-left: 30px;}
+header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
+
+/* .search{
     display: flex;
     align-items: center;
 }
@@ -40,7 +50,7 @@ header{
     text-align: center;
     padding: 5px 42px;
     color: #ffffff;
-}
+} */
 
 .icon{
     display: flex;
