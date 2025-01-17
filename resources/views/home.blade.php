@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" />
 @endsection
 @section('contents')
-  <section class="hero mt-3 pt-3">
+  <section class="hero mt-3 pt-3  container-custom">
     <div class="m-x30">
         <div class="row justify-content-between">
             <div class="col-lg-4 col-md-6 d-none d-md-block">
@@ -75,8 +75,8 @@
         </div>
     </section>
 
-  <section class="popular_top_rate_shop_section mt-3">
-    <div class="m-x30 px-4">
+  <section class="popular_top_rate_shop_section mt-3  container-custom">
+    <div class="">
         <h6 class="txt-primary fw-bold mb-3">Popular & Top Rating Shop</h6>
         <div class="row shop-carts">
             <div class="col-6 col-md-6 col-lg-3 mb-3">
@@ -122,8 +122,8 @@
   </section>
 
 
-  <section class="discount-products bg-second my-3 py-4">
-    <div class="m-x30 px-4">
+  <section class="discount-products bg-second my-3 py-4 ">
+    <div class="px-4  container-custom">
         <h6 class="txt-primary fw-bold mb-3">Discount Products</h6>
         <div class="filter d-flex justify-content-between align-items-center mb-3">
             <!-- <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="grid-2" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-grid-2 fa-lg"><path fill="currentColor" d="M224 80c0-26.5-21.5-48-48-48L80 32C53.5 32 32 53.5 32 80l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96zm0 256c0-26.5-21.5-48-48-48l-96 0c-26.5 0-48 21.5-48 48l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96zM288 80l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48l-96 0c-26.5 0-48 21.5-48 48zM480 336c0-26.5-21.5-48-48-48l-96 0c-26.5 0-48 21.5-48 48l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96z" class=""></path></svg> -->
@@ -277,8 +277,8 @@
     </div>
   </section>
 
-  <section class="all-products my-3">
-    <div class="m-x30 px-4">
+  <section class="all-products container-custom">
+    <div class="">
         <h6 class="txt-primary fw-bold mb-3">All Products</h6>
         <div class="filter d-flex justify-content-between align-items-center mb-3">
             <!-- <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="grid-2" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-grid-2 fa-lg"><path fill="currentColor" d="M224 80c0-26.5-21.5-48-48-48L80 32C53.5 32 32 53.5 32 80l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96zm0 256c0-26.5-21.5-48-48-48l-96 0c-26.5 0-48 21.5-48 48l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96zM288 80l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48l-96 0c-26.5 0-48 21.5-48 48zM480 336c0-26.5-21.5-48-48-48l-96 0c-26.5 0-48 21.5-48 48l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96z" class=""></path></svg> -->

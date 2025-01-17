@@ -284,6 +284,7 @@ li {
     .category-popup{
         width: 80%;
         align-items: flex-start !important;
+        justify-content: flex-start !important;
     }
 }
 

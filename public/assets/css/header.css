@@ -6,14 +6,18 @@ header{
 }
 
 .header{
-    height: 127px;
     position: relative;
+}
+
+.logo{
+    width: 10%;
 }
 
 .top-header{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 20px;
 }
 
 header .input-group {
@@ -32,7 +36,7 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
 }
 
 .search input{
-    width: 403px;
+    width: 100%;
     height: 32px;
     border: 1px solid #005B96;
     border-radius: 10px 0px 0px 10px;
@@ -58,16 +62,16 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
 }
 
 .icon i{
-    font-size: 45px;
+    font-size: 25px;
     color: #005B96;
 }
 
 .bottom-header{
     position: absolute;
-    bottom: -30px;
+    bottom: -20px;
     background-color: #005B96;
     width: 90%;
-    padding: 12px 20px;
+    padding: 5px 20px;
     border-radius: 50px;
     left: 50%;
     transform: translateX(-50%); 
@@ -147,11 +151,14 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
     }
 }
 
-@media screen and (max-width: 850px) {
-
-    .search input{
-        width: 303px;
+@media screen and (max-width: 992px) {
+    .top-header {
+        padding-top: 10px;
+        padding-bottom: 25px;
     }
+}
+
+@media screen and (max-width: 850px) {
 
     .search a{
         padding: 5px 22px;
@@ -169,20 +176,15 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
 
 @media screen and (max-width: 768px) {
 
-    .container{
+    .container-custom{
         padding: 0px 10px;
     }
 
-    .header{
-        height: 60px;
-    }
-
     .logo{
-        width: 79px;
+        width: 100px;
     }
 
     .search input{
-        width: 165px;
         padding: 5px 20px;
     }
 
@@ -196,6 +198,7 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
     }
     
 }
+
 
 
 

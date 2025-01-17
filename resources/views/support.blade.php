@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ asset('assets/css/support.css') }}" />
 @endsection
 @section('contents')
-<div class="container">
+<div class="container m-t-20">
     <!-- Help -->
     <div class="accordion w-100" id="basicAccordion">
         <div class="accordion-item">
@@ -199,4 +199,6 @@
             </div>
         </div>
 </div>
+
+<script src="{{ asset('assets/js/support.js') }}"></script>
 @endsection
