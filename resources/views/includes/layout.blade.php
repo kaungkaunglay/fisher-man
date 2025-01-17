@@ -36,9 +36,15 @@
                         <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
                     </div>
                     <div class="icon">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <i class="fa-solid fa-bookmark"></i>
-                        <i class="fa-solid fa-user"></i>
+                        <a href="{{url('/cart')}}">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                        <a href="{{url('/white-list')}}">
+                            <i class="fa-solid fa-bookmark"></i>
+                        </a>
+                        <a href="{{url('/login')}}">
+                            <i class="fa-solid fa-user"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="bottom-header">
@@ -49,15 +55,15 @@
                             </a>
                         </div>
                         <ul>
-                            <li><a href="#" class="menu-header">Home</a></li>
-                            <li><a href="#" class="menu-header">Special Offer</a></li>
-                            <li><a href="#" class="menu-header">青物</a></li>
-                            <li><a href="#" class="menu-header">イカ</a></li>
-                            <li><a href="#" class="menu-header">白身魚</a></li>
-                            <li><a href="#" class="menu-header">魚介類</a></li>
-                            <li><a href="#" class="menu-header">エビ</a></li>
-                            <li><a href="#" class="menu-header">たこ</a></li>
-                            <li><a href="#" class="menu-header">Support</a></li>
+                            <li><a href="{{ url('/') }}" class="menu-header">Home</a></li>
+                            <li><a href="{{ url('/category') }}" class="menu-header">Special Offer</a></li>
+                            <li><a href="{{ url('/category') }}" class="menu-header">青物</a></li>
+                            <li><a href="{{ url('/category') }}" class="menu-header">イカ</a></li>
+                            <li><a href="{{ url('/category') }}" class="menu-header">白身魚</a></li>
+                            <li><a href="{{ url('/category') }}" class="menu-header">魚介類</a></li>
+                            <li><a href="{{ url('/category') }}" class="menu-header">エビ</a></li>
+                            <li><a href="{{ url('/category') }}" class="menu-header">たこ</a></li>
+                            <li><a href="{{ url('/support') }}" class="menu-header">Support</a></li>
                         </ul>
                     </nav>
                 </div>
