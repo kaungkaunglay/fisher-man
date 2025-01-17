@@ -53,7 +53,7 @@
     <input type="submit" class="input-submit" value="Register">
     <div class="register">
       <p>Already have an account?
-        <a href="login.html" class="ms-1">Login</a>
+        <a href="{{ url('/login') }}" class="ms-1">Login</a>
       </p>
     </div>
   </form>

@@ -84,7 +84,7 @@ header .navbar-expand-lg .navbar-toggler {
     color: #ffffff;
 }
 
-.menu-category{
+.menu-category, .form-label{
     /* font-family: "Roboto", serif; */
     font-size: 15px;
     font-weight: bold;
@@ -113,7 +113,7 @@ header .navbar-expand-lg .navbar-toggler {
 }
 
 .m-b-10 {
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
 }
 
 .common-btn {
@@ -267,8 +267,6 @@ li {
 .category-popup.active {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .close-popup{
@@ -283,8 +281,6 @@ li {
 @media screen and (max-width: 1100px) {
     .category-popup{
         width: 80%;
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
     }
 }
 

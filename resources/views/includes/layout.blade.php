@@ -56,7 +56,7 @@
                         </div>
                         <ul>
                             <li><a href="{{ url('/') }}" class="menu-header">Home</a></li>
-                            <li><a href="{{ url('/category') }}" class="menu-header">Special Offer</a></li>
+                            <li><a href="{{ url('/special-offer') }}" class="menu-header">Special Offer</a></li>
                             <li><a href="{{ url('/category') }}" class="menu-header">青物</a></li>
                             <li><a href="{{ url('/category') }}" class="menu-header">イカ</a></li>
                             <li><a href="{{ url('/category') }}" class="menu-header">白身魚</a></li>
