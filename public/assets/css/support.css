@@ -13,8 +13,16 @@
     border-radius: 10px !important;
 }
 
-.icon{
+.support-icon{
     margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.support-icon i{
+    font-size: 42px;
+    color: #005B96;
 }
 
 @media screen and (max-width: 768px){

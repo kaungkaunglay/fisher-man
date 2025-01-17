@@ -55,3 +55,7 @@ Route::get('/policy', function () {
 Route::get('/white-list', function () {
     return view('whitelist');
 })->name('whitelist');
+
+Route::get('/special-offer', function () {
+    return view('special-offer');
+})->name('special-offer');

@@ -4,12 +4,23 @@
 @endsection
 @section('contents')
 <div class="container m-t-20">
+
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb" class="py-4">
+        <div class="container">
+            <ol class="breadcrumb mb-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Support</li>
+            </ol>
+        </div>
+    </nav>
+
     <!-- Help -->
     <div class="accordion w-100" id="basicAccordion">
         <div class="accordion-item">
             <h2 class="accordion-header " id="headingOne">
                 <button class="accordion-button collapsed title" type="button"
-                    data-mdb-toggle="collapse" data-mdb-target="#basicAccordionCollapseOne" 
+                    data-mdb-toggle="collapse" data-mdb-target="#basicAccordionCollapseOne"
                     aria-expanded="false" aria-controls="basicAccordionCollapseOne">
                     Question #1
                 </button>
@@ -29,7 +40,7 @@
         <div class="accordion-item ">
             <h2 class="accordion-header " id="headingTwo">
                 <button class="accordion-button collapsed title" type="button"
-                    data-mdb-toggle="collapse" data-mdb-target="#basicAccordionCollapseTwo" 
+                    data-mdb-toggle="collapse" data-mdb-target="#basicAccordionCollapseTwo"
                     aria-expanded="false" aria-controls="basicAccordionCollapseTwo">
                     Question #2
                 </button>
@@ -49,7 +60,7 @@
         <div class="accordion-item ">
             <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed title" type="button"
-                    data-mdb-toggle="collapse" data-mdb-target="#basicAccordionCollapseThree" 
+                    data-mdb-toggle="collapse" data-mdb-target="#basicAccordionCollapseThree"
                     aria-expanded="false" aria-controls="basicAccordionCollapseThree">
                     Question #3
                 </button>
@@ -69,7 +80,7 @@
         <div class="accordion-item ">
             <h2 class="accordion-header" id="headingFour">
                 <button class="accordion-button collapsed title" type="button"
-                    data-mdb-toggle="collapse" data-mdb-target="#basicAccordionCollapseFour" 
+                    data-mdb-toggle="collapse" data-mdb-target="#basicAccordionCollapseFour"
                     aria-expanded="false" aria-controls="basicAccordionCollapseFour">
                     Question #4
                 </button>
@@ -98,31 +109,31 @@
                         <div class="col-12">
                             <form>
                                 <div class="mb-3">
-                                    <label for="name" class="form-label title">Name</label>
+                                    <label for="name" class="form-label">Name</label>
                                     <input type="text" class="form-control" id="name" placeholder="Enter your name">
                                 </div>
-            
+
                                 <div class="row mb-3">
                                     <div class="col-md-6 mb-mobile-3">
-                                        <label for="line-id" class="form-label title">Line ID</label>
+                                        <label for="line-id" class="form-label">Line ID</label>
                                         <input type="text" class="form-control" id="line-id" placeholder="Enter your Line ID">
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="phone" class="form-label title">Phone Number</label>
+                                        <label for="phone" class="form-label">Phone Number</label>
                                         <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
                                     </div>
                                 </div>
-            
+
                                 <div class="mb-3">
-                                    <label for="email" class="form-label title">Email</label>
+                                    <label for="email" class="form-label">Email</label>
                                     <input type="email" class="form-control" id="email" placeholder="Enter your email">
                                 </div>
-            
+
                                 <div class="mb-3">
-                                    <label for="description" class="form-label title">Description</label>
+                                    <label for="description" class="form-label">Description</label>
                                     <textarea class="form-control" id="description" rows="3" placeholder="Enter your description"></textarea>
                                 </div>
-            
+
                                 <div class="text-center mb-mobile-3">
                                     <button type="submit" class="common-btn">Submit</button>
                                 </div>
@@ -140,64 +151,64 @@
                         <div class="col-12">
                             <form>
                                 <div class="mb-3">
-                                    <label for="name" class="form-label title">Name</label>
+                                    <label for="name" class="form-label">Name</label>
                                     <input type="text" class="form-control" id="name" placeholder="Enter your name">
                                 </div>
-            
+
                                 <div class="row mb-3">
                                     <div class="col-md-6 mb-mobile-3">
-                                        <label for="line-id" class="form-label title">Line ID</label>
+                                        <label for="line-id" class="form-label">Line ID</label>
                                         <input type="text" class="form-control" id="line-id" placeholder="Enter your Line ID">
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="phone" class="form-label title">Phone Number</label>
+                                        <label for="phone" class="form-label">Phone Number</label>
                                         <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
                                     </div>
                                 </div>
-            
+
                                 <div class="mb-3">
-                                    <label for="email" class="form-label title">Email</label>
+                                    <label for="email" class="form-label">Email</label>
                                     <input type="email" class="form-control" id="email" placeholder="Enter your email">
                                 </div>
-            
+
                                 <div class="mb-3">
-                                    <label for="description" class="form-label title">Description</label>
+                                    <label for="description" class="form-label">Description</label>
                                     <textarea class="form-control" id="description" rows="3" placeholder="Enter your description"></textarea>
                                 </div>
                                 <div class="text-center mb-mobile-3">
                                     <button type="submit" class="common-btn">Submit</button>
                                 </div>
-                                
+
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>  
-    
-    <!-- location & contact -->
-        <div class="row">
-            <div class="col-md-6">
-                <div class="p-3">
-                    <h2 class="title m-b-20">Our Location & Contact</h2>
-                    <div class="icon">
-                        <img src="/assets/icons/fontawesome-free-5.15.4-web/svgs/brands/facebook-square.svg" alt="facebook-f">
-                        <img src="/assets/icons/fontawesome-free-5.15.4-web/svgs/brands/line.svg" alt="facebook-f">
-                        <img src="/assets/icons/fontawesome-free-5.15.4-web/svgs/brands/twitter-square.svg" alt="facebook-f">
-                        <img src="/assets/icons/fontawesome-free-5.15.4-web/svgs/brands/whatsapp.svg" alt="facebook-f">
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p class="txt">Address: 1234 Main Street, Anytown, Japan</p>
-                            <p class="txt">Phone: 1234567890</p>
-                            <p class="txt">Email:user@email.com</p>
+    </div>
 
-                        </div>
+    <!-- location & contact -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="p-3">
+                <h2 class="title m-b-20">Our Location & Contact</h2>
+                <div class="support-icon">
+                    <i class="fa-brands fa-line"></i>
+                    <i class="fa-brands fa-square-facebook"></i>
+                    <i class="fa-brands fa-x-twitter"></i>
+                    <i class="fa-brands fa-square-instagram"></i>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <p class="txt m-b-10">Address: 1234 Main Street, Anytown, Japan</p>
+                        <p class="txt m-b-10">Phone: 1234567890</p>
+                        <p class="txt m-b-10">Email:user@email.com</p>
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </div>
 
 <script src="{{ asset('assets/js/support.js') }}"></script>

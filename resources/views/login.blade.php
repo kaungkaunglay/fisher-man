@@ -43,7 +43,7 @@
 
     <div class="register">
       <span>Don't have an account?
-        <a href="register.html" class="ms-1">Register</a>
+        <a href="{{ url('/register') }}" class="ms-1">Register</a>
       </span>
       <p class="">(or)</p> 
     </div>
