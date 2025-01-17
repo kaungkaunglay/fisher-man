@@ -25,7 +25,7 @@
 
     <!-- header section start -->
     <header>
-        <div class="container">
+        <div class="container-custom">
             <div class="header">
                 <div class="top-header">
                     <div class="logo">
