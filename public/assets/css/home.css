@@ -4,7 +4,7 @@ body {
   
 
   /* sidebar menu and carousel section start */
-.sidebar-menu{background-color:#ECF5FB ;list-style: none;padding: 15px;line-height: 27px;}
+.sidebar-menu{background-color:#ECF5FB ;list-style: none;padding: 15px;line-height: 35px;}
 .sidebar-menu a{
   display: block;
   text-decoration: none;
@@ -25,7 +25,7 @@ body {
   background-color: #005B96; /* Darker blue for active indicator */
 }
 
-.carousel-item img{height: 350px;}
+.carousel-item img{height: 415px;}
 
 /* breadcrumb style overwrite */
 .breadcrumb-item+.breadcrumb-item::before {content: "|";}

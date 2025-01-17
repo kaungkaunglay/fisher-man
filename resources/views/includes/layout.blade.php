@@ -31,10 +31,10 @@
                     <div class="logo">
                         <img src="{{ asset('assets/images/logo.png') }}" alt="logo">
                     </div>
-                    <div class="search">
-                        <input type="text" placeholder="Search">
-                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    </div>
+                    <div class="input-group">
+                <input type="text" class="form-control bg-second " placeholder="Search your Products">
+                <button class="btn bg-main text-white"><i class="fa-solid fa-magnifying-glass"></i></button>
+              </div>
                     <div class="icon">
                         <a href="{{url('/cart')}}">
                             <i class="fa-solid fa-cart-shopping"></i>
@@ -70,6 +70,7 @@
             </div>
         </div>
     </header>
+    
     <div class="category-popup" id="category-popup">
         <ul>
             <li class="close-popup"><a href="#" id="close-popup">

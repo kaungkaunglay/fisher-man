@@ -3,11 +3,10 @@
 <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" />
 @endsection
 @section('contents')
-  <section class="hero mt-3 pt-3  container-custom">
-    <div class="m-x30">
-        <div class="row justify-content-between">
+  <section class="hero mt-5 container-custom">
+        <div class="row justify-content-between" >
             <div class="col-lg-4 col-md-6 d-none d-md-block">
-                <ul class="sidebar-menu rounded h-100 txt-primary">
+                <ul class="sidebar-menu rounded fw-bold p-4 txt-primary">
                     <li>鮮魚 (1134)</li>
                     <li>マグロ (188)</li>
                     <li>貝類 (322)</li>
@@ -20,7 +19,7 @@
                     <a href="" class="txt-primary mt-3">&lt;&lt; See more Product &gt;&gt;</a>
                 </ul>
             </div>
-            <div class="col-lg-8 col-md-6">
+            <div class="col-lg-8 col-md-6 ">
                 <div id="carouselExample" class="carousel slide">
                     <!-- Carousel Items -->
                     <div class="carousel-inner rounded">
@@ -62,7 +61,7 @@
                 </div>
             </div>
         </div>
-    </div>
+ 
 
   </section>
   <section class="m-t-b-20 moving-discount">
