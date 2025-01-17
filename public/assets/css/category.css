@@ -1,0 +1,162 @@
+body {
+  font-size: 15px;
+}
+
+.wpr {
+  max-width: 1440px;
+  padding: 2.9%;
+  margin: 0 auto;
+}
+
+.side-menu {
+  background-color: #ECF5FB;
+  height: max-content;
+  padding: 20px 23px;
+  border-radius: 10px;
+}
+
+.side-menu ul {
+  list-style: none;
+  gap: 20px;
+}
+
+.side-menu ul a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--primary-color);
+  transition: color 0.5s ease-in-out;
+}
+
+.side-menu a:hover {
+  color: orange;
+}
+
+.see-product {
+  margin: 20px auto 0px;
+}
+
+.see-product:hover {
+  opacity: 0.8;
+}
+
+.title {
+  color: var(--primary-color);
+}
+
+.top-bar button {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.btn.sort {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: #fff;
+}
+
+.category {
+  padding-right: 0;
+}
+
+.category-list {
+  border: none;
+  gap: 20px;
+}
+
+.category-list li {  
+  border-radius: 10px;
+  background-color: #ECF5FB;;
+}
+
+/* Card Design */
+.card-list {
+  margin: 0;
+}
+
+.card {
+  width: 20%;
+  padding: 0 1.4%;
+  border: none;
+  background-color: transparent;
+}
+
+.card-head {
+  padding: 20px;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.card p {
+  margin: 5px 0;
+}
+
+
+.fish-price {
+  font-size: 18px;
+  color: red;
+}
+
+.fish-category {
+  font-size: 12px;
+  color: #3498DB;
+}
+
+.fish-name {
+  font-size: 18px;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.fish-text {
+  font-size: 13px;
+}
+
+.card-btn {
+  justify-content: space-between;
+}
+
+.card-btn button {
+  width: 46%;
+}
+
+/* button */
+.see-more-box {
+  padding: 20px;
+}
+
+.see-more {
+  width: max-content;
+  margin-left: auto;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px 20px;
+}
+
+
+@media  screen and (max-width: 768px) {
+  .wpr {
+    padding: 20px;
+  }
+  .category {
+    width: 100%;
+    padding: 0;
+  }
+  .side-menu {
+    display: none;
+  }
+  .card-list {
+    flex-wrap: wrap;
+  }
+  .card {
+    width: 50%;
+    padding: 20px;
+  }
+  .see-more {
+    width: 40%;
+    margin: 0 auto;
+    padding: 10px 0;
+  }
+}
+

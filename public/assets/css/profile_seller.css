@@ -1,0 +1,98 @@
+
+
+/* all products section */
+
+/* sortBy button start*/
+.sort-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 0px 0px 0px 10px;
+  
+}
+
+.arrows {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  margin-bottom: 9px;
+
+}
+
+.arrows i{height: 10px;font-size: 20px;color: #005B96;}
+
+.sort-button {
+  background-color: #005B96; /* Deep blue */
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 0px 10px 10px 0px;
+  padding: 8px 16px;
+  cursor: pointer;
+  width: 100px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sort-button:hover {
+  background-color: #003366; /* Slightly darker blue */
+}
+/* sortBy button end */
+
+/* product card start */
+.product-card {
+  max-width: 200px;
+  border: none;
+  /* background-color: #ffffff; */
+  background-color: transparent;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  /* border-radius: 10px; */
+}
+
+.btn{
+  --bs-btn-padding-y: 0px !important;
+}
+.all-products .product-card .card-body{padding:10px 0px;}
+
+
+/* pagination start */
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 8px;
+  padding: 0;
+}
+
+.pagination li {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #005B96;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #005B96;
+  cursor: pointer;
+  background-color: #fff;
+  transition: .5s;
+}
+
+/* .pagination li.active {
+  background-color: #005B96;
+  color: #fff;
+} */
+
+.pagination li:hover {
+  background-color: #005B96;
+  color:#00CCFF;
+}
+
+  /* pagination end */
+
+/* product card end */
+
+

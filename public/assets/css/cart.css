@@ -1,0 +1,114 @@
+a{
+    text-decoration: none;
+}
+
+.cart th img{
+    width: 100px;
+    height: 100px;
+}
+
+.cart thead th, .cart tfoot td{
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    background: #005B96;
+}
+
+.cart tbody th, .cart tbody td{
+    font-size: 18px;
+    font-weight: bold;
+    color: #005B96;
+    background-color: #ECF5FB;
+}
+
+
+
+.checkout{
+    background-color: #ECF5FB;
+    margin: 20px 0;
+    padding: 20px;
+}
+
+.checkout-form input, .checkout-form select{
+    height: 45px;
+    border: 1px solid #005B96;
+    background-color: transparent;
+}
+
+iframe{
+    width: 100%;
+}
+
+.mobile{
+    display: none;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    accent-color: #005B96; /* Change the default color of the checkbox (modern browsers) */
+}
+
+@media screen and (max-width: 768px){
+    .desktop{
+        display: none !important;
+    }
+
+    .mobile{
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .mobile .card{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        border: 1px solid #005B96;
+        margin: 10px 0;
+    }
+
+    .card img{
+        width: 100px;
+        height: 100px;
+    }
+
+    .card .btn img{
+        width: 20px;
+        height: 20px;
+    }
+
+    p{
+        margin-bottom: 8px;
+    }
+
+    .map{
+        margin-top: 20px;
+    }
+
+    .mobile-del-btn{
+        background: #FF0000;
+        padding: 40px 5px;
+        border-radius: 10px;
+    }
+
+    .card-body{
+        padding: 0px;
+    }
+
+    .total{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        background-color: #005B96;
+        padding: 10px;
+    }
+
+    .total p{
+        color: #ffffff;
+        font-size: 15px;
+        margin: 0;
+    }
+
+}

@@ -1,0 +1,77 @@
+.reviewer-card{
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #ECF5FB;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.user-img{
+    width: 100px;
+    height: 100px;
+}
+
+.user-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.review-form-container{
+    width: 80%;
+    background-color: #ECF5FB;
+    padding: 20px;
+    margin: auto;
+    border-radius: 20px;
+}
+
+.review-form-container input, .review-form-container textarea, .review-form-container select{
+    background-color: transparent;
+    border: 1px solid #005B96;
+}
+
+@media screen and (max-width: 1400px){
+    
+    .product-btn-container{
+        flex-direction: column;
+        gap:20px;
+    }
+    
+}
+
+@media screen and (max-width: 992px) {
+
+    .product-btn-container .common-btn{
+        padding: 10px 20px;
+    }
+
+    .form-mobile{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-mobile div{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .product-mobile{
+        flex-direction: column;
+        gap:20px;
+    }
+
+    .product-mobile div{
+        width: 100%;
+    }
+
+    .review-form-container , .review-form-container div{
+        width: 100%;
+    }
+
+    .review-form-container div{
+        padding-right: 0px;
+    }
+
+}
