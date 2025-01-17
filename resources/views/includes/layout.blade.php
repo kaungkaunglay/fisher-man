@@ -142,7 +142,7 @@
         <a href="#" class="menu-header"><i class="fa-solid fa-home"></i><br>Home</a>
         <a href="#" class="menu-header"><i class="fa-solid fa-tags" id="category-link"></i><br>Category</a>
         <div class="">
-            <a href="#" class="menu-header mobile-shopping-card"><i class="fa-solid fa-cart-shopping shopping"><br></i>Cart ( <span class="price">2</span> )</a>
+            <a href="#" class="menu-header mobile-shopping-card"><i class="fa-solid fa-cart-shopping shopping"></i><br>Cart ( <span class="price">2</span> )</a>
         </div>
         <a href="#" class="menu-header"><i class="fa-solid fa-tags"></i><br>Offers</a>
         <a href="#" class="menu-header"><i class="fa-solid fa-user"></i><br>Profile</a>

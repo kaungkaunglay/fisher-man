@@ -76,7 +76,7 @@
     </section>
 
   <section class="popular_top_rate_shop_section mt-3  container-custom">
-    <div class="m-x30 px-4">
+    <div class="">
         <h6 class="txt-primary fw-bold mb-3">Popular & Top Rating Shop</h6>
         <div class="row shop-carts">
             <div class="col-6 col-md-6 col-lg-3 mb-3">
