@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
   }
-  
+
 
   /* sidebar menu and carousel section start */
 .sidebar-menu{background-color:#ECF5FB ;list-style: none;padding: 15px;line-height: 35px;}
@@ -102,7 +102,7 @@ body {
   gap: 10px;
   border-radius: 10px;
   padding: 0px 0px 0px 10px;
-  
+
 }
 
 .arrows {
@@ -137,7 +137,7 @@ body {
 
 /* discount product-card section start */
 .product-card {
-  max-width: 200px;
+  /* max-width: 200px; */
   border: none;
   /* background-color: #ffffff; */
   background-color: transparent;
@@ -148,6 +148,7 @@ body {
 .discount-badge {
   position: absolute;
   right:0px;
+  top: 0px;
   background-color: #004B8D;
   font-weight: bold;
   font-size: 12px;
