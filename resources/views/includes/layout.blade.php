@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" />
 
-    {{-- favicon --}}
+    <!-- {{-- favicon --}} -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/images/favicon/apple-touch-icon.png')}}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/images/favicon/favicon-32x32.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/favicon/favicon-16x16.png')}}">
@@ -31,10 +31,10 @@
                     <div class="logo">
                         <img src="{{ asset('assets/images/logo.png') }}" alt="logo">
                     </div>
-                    <div class="search">
-                        <input type="text" placeholder="Search">
-                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    </div>
+                    <div class="input-group">
+                <input type="text" class="form-control bg-second " placeholder="Search your Products">
+                <button class="btn bg-main text-white"><i class="fa-solid fa-magnifying-glass"></i></button>
+              </div>
                     <div class="icon">
                         <a href="{{url('/cart')}}">
                             <i class="fa-solid fa-cart-shopping"></i>
@@ -70,6 +70,7 @@
             </div>
         </div>
     </header>
+    
     <div class="category-popup" id="category-popup">
         <ul>
             <li class="close-popup"><a href="#" id="close-popup">
@@ -98,7 +99,7 @@
     <footer class="bg-main w-100">
         <div class="row justify-content-around w-100 py-3">
             <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white">
-                <a style="pt" href="{{route('home')}}"><img src="{{ asset('assets/images/logo.png') }}" class="logo" alt=""></a>
+                <a  href="{{route('home')}}"><img src="{{ asset('assets/images/logo.png') }}" class="logo" alt=""></a>
                 <p class="text-center">Who We Are: Your Trusted Source for Fresh Seafood.</p>
                 <div class="social-icons d-flex justify-content-center gap-4">
                     <i class="fa-brands fa-line fs-3"></i>

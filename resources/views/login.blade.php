@@ -47,17 +47,15 @@
       </span>
       <p class="">(or)</p> 
     </div>
-    <div class="line-wpr">
+    <div class="line-wpr green-bg">
       <a href="">
-        <i class="fab fa-line icon"></i>
+        <img class="icon" src="{{asset('assets/icons/custom/line.png')}}" alt="Line">
         Login with Line
       </a>
     </div>
     <div class="icon-wpr">
-      <a href=""><i class="fab fa-facebook icon" title="Login with facebook"></i></a>
-      <a href=""><i class="fab fa-google icon" title="Login with google"></i></a>
-      <a href=""><i class="fab fa-telegram icon" title="Login with telegram"></i></a>
-      <a href=""><i class="fab fa-instagram icon" title="Login with instagram"></i></a>
+      <a href=""><img class="icon" src="{{asset('assets/icons/custom/google.png')}}" alt="Google"></a>
+      <a href=""><img class="icon" src="{{asset('assets/icons/custom/facebook.png')}}" alt="Facebook"></a>
     </div>
   </form>
   <!-- form end -->
