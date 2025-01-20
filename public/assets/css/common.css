@@ -75,6 +75,7 @@ header .navbar-expand-lg .navbar-toggler {
     /* font-family: Roboto; */
     font-size: 15px;
     font-weight: bold;
+    color: #000000;
 }
 
 .menu-header{
@@ -91,12 +92,20 @@ header .navbar-expand-lg .navbar-toggler {
     color: #005B96;
 }
 
+.m-t-10{
+    margin-top: 10px;
+}
+
 .m-t-20{
     margin-top: 20px;
 }
 
 .m-t-40{
     margin-top: 40px;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
 }
 
 .m-b-20 {
@@ -107,6 +116,9 @@ header .navbar-expand-lg .navbar-toggler {
     margin-bottom: 45px;
 }
 
+.m-t-b-10 {
+    margin: 10px 0;
+}
 
 .m-t-b-20 {
     margin: 20px 0;
@@ -289,4 +301,94 @@ li {
         margin:0px ;
     }
 
+}
+
+/* item card  */
+.card-list .menu-category, .row-list .menu-category{
+    color: #3498DB;
+}
+
+.card-list .txt, .row-list .txt{
+    text-align: justify;
+}
+
+.item-card{
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.row-list .item-card{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.item-card:hover{
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+}
+
+.card-list .card-btn{
+    justify-content: space-between;
+}
+
+.product-btn{
+    font-size: 14px;
+    color: #005B96;
+    border: 1px solid #005B96;
+    border-radius: 5px;
+    padding: 2px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-btn:hover{
+    color: #FFFFFF;
+    background-color: #005B96;
+}
+
+.row-list .title-category{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.row-list .left{
+    width: 80%;
+}
+
+.row-list .right{
+    width: 20%;
+}
+
+.row-list .price{
+    margin: 0px !important;
+}
+
+.row-list .product-btn{
+    font-size: 20px;
+    padding: 7px 50px;
+}
+
+.row-list .card-btn{
+    gap: 20px;
+}
+
+@media screen and (max-width:1100px) {
+    
+    .row-list .right {
+        width: 40%;
+    }
+
+    .row-list .left {
+        width: 60%;
+    }
+
+    .row-list .product-btn {
+        font-size: 15px;
+        padding: 5px 25px;
+    }
 }

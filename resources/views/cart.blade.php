@@ -169,4 +169,6 @@
         </div>
     </div>
 </div>
+
+<script src="{{ asset('assets/js/cart.js') }}"></script>
 @endsection

@@ -3,7 +3,16 @@
 <link rel="stylesheet" href="{{ asset('assets/css/category.css') }}" />
 @endsection
 @section('contents')
-<div class="wpr row">
+<div class="container-custom">
+<nav aria-label="breadcrumb" class="py-4">
+        <div class="container">
+            <ol class="breadcrumb mb-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Support</li>
+            </ol>
+        </div>
+    </nav>
+<div class="row">
   <!-- aside start -->
   <div class="side-menu col-3">
     <ul class="list-group">
@@ -137,4 +146,6 @@
   </div>
   <!-- category list end -->
 </div>
+</div>
+
 @endsection

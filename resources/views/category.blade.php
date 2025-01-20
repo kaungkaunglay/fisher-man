@@ -31,8 +31,8 @@
           <h2 class="title">Sub Categorie Name</h2>
           <div class="top-bar d-flex justify-content-between">
             <div>
-              <button class="btn"><i class="fa-solid fa-th-large"></i></button>
-              <button class="btn"><i class="fa-solid fa-list"></i></button>
+              <button class="btn" id="card-list-btn"><i class="fa-solid fa-th-large"></i></button>
+              <button class="btn" id="row-list-btn"><i class="fa-solid fa-list"></i></button>
             </div>
             <div>
               <button class="btn"><i class="fa-solid fa-sort"></i></button>
@@ -42,104 +42,135 @@
         </div>
 
         <!-- card itmes list start -->
-        <div class="card-list d-flex">
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+        <div class="card-list" id="view-list">
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
         </div>
         <!-- card items list end -->
-        <div class="see-more-box d-flex">
-          <button class="see-more btn btn-outline-primary">See more</button>
+        <div class="see-more-box d-flex m-t-b-20 justify-content-center justify-content-lg-end">
+          <a href="{{ url('/sub-category') }}" class="common-btn">See More</a>
         </div>
       </li>
+
       <li class="d-flex flex-column">
         <div class="card-head">
           <h2 class="title">Sub Categorie Name</h2>
           <div class="top-bar d-flex justify-content-between">
             <div>
-              <button class="btn"><i class="fa-solid fa-th-large"></i></button>
-              <button class="btn"><i class="fa-solid fa-list"></i></button>
+              <button class="btn" id="card-list-btn"><i class="fa-solid fa-th-large"></i></button>
+              <button class="btn" id="row-list-btn"><i class="fa-solid fa-list"></i></button>
             </div>
             <div>
               <button class="btn"><i class="fa-solid fa-sort"></i></button>
@@ -149,104 +180,135 @@
         </div>
 
         <!-- card itmes list start -->
-        <div class="card-list d-flex">
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+        <div class="card-list" id="view-list">
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
         </div>
         <!-- card items list end -->
-        <div class="see-more-box d-flex">
-          <button class="see-more btn btn-outline-primary">See more</button>
+        <div class="see-more-box d-flex m-t-b-20 justify-content-center justify-content-lg-end">
+          <a href="{{ url('/sub-category') }}" class="common-btn">See More</a>
         </div>
       </li>
+
       <li class="d-flex flex-column">
         <div class="card-head">
           <h2 class="title">Sub Categorie Name</h2>
           <div class="top-bar d-flex justify-content-between">
             <div>
-              <button class="btn"><i class="fa-solid fa-th-large"></i></button>
-              <button class="btn"><i class="fa-solid fa-list"></i></button>
+              <button class="btn" id="card-list-btn"><i class="fa-solid fa-th-large"></i></button>
+              <button class="btn" id="row-list-btn"><i class="fa-solid fa-list"></i></button>
             </div>
             <div>
               <button class="btn"><i class="fa-solid fa-sort"></i></button>
@@ -256,104 +318,135 @@
         </div>
 
         <!-- card itmes list start -->
-        <div class="card-list d-flex">
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+        <div class="card-list" id="view-list">
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
         </div>
         <!-- card items list end -->
-        <div class="see-more-box d-flex">
-          <button class="see-more btn btn-outline-primary">See more</button>
+        <div class="see-more-box d-flex m-t-b-20 justify-content-center justify-content-lg-end">
+          <a href="{{ url('/sub-category') }}" class="common-btn">See More</a>
         </div>
       </li>
+
       <li class="d-flex flex-column">
         <div class="card-head">
           <h2 class="title">Sub Categorie Name</h2>
           <div class="top-bar d-flex justify-content-between">
             <div>
-              <button class="btn"><i class="fa-solid fa-th-large"></i></button>
-              <button class="btn"><i class="fa-solid fa-list"></i></button>
+              <button class="btn" id="card-list-btn"><i class="fa-solid fa-th-large"></i></button>
+              <button class="btn" id="row-list-btn"><i class="fa-solid fa-list"></i></button>
             </div>
             <div>
               <button class="btn"><i class="fa-solid fa-sort"></i></button>
@@ -363,99 +456,132 @@
         </div>
 
         <!-- card itmes list start -->
-        <div class="card-list d-flex">
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+        <div class="card-list" id="view-list">
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            <div class="card-body">
-              <p class="fish-price">$10</p>
-              <p class="fish-category">鮮魚|白身魚</p>
-              <h3 class="fish-name">真鯛</h3>
-              <p class="fish-text">
-                A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet
-                flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-              </p>
-              <div class="d-flex card-btn">
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn btn-outline-primary"><i class="fa-solid fa-bookmark"></i></button>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+              <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">$10</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">真鯛</h3>
+              </div>
+              <a href="{{ url('/product') }}" class="txt m-b-10">
+                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+              </a>
+              <div class="d-flex card-btn m-t-10">
+                <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
           </div>
         </div>
         <!-- card items list end -->
-        <div class="see-more-box d-flex">
-          <button class="see-more btn btn-outline-primary">See more</button>
+        <div class="see-more-box d-flex m-t-b-20 justify-content-center justify-content-lg-end">
+          <a href="{{ url('/sub-category') }}" class="common-btn">See More</a>
         </div>
       </li>
+
     </ul>
   </div>
   <!-- category list end -->
 </div>
+
+<script src="{{ asset('assets/js/view-list.js') }}"></script>
 @endsection
