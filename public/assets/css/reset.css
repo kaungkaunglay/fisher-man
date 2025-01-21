@@ -41,10 +41,6 @@ dl, ol, ul {
   margin: 0 !important;
 }
 
-p{
-    margin: 0 !important;
-}
-
 /* Remove default quotes from blockquote and q elements */
 blockquote, q {
   quotes: none;
