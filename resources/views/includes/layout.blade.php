@@ -72,7 +72,7 @@
             </div>
         </div>
     </header>
-    
+
     <div class="category-popup" id="category-popup">
         <ul>
             <li class="close-popup"><a href="#" id="close-popup">
@@ -90,8 +90,10 @@
     </div>
     <!-- header section end -->
 
+
     <!-- main section start -->
     <main class="m-t-40">
+        @include('includes.aside')
         @yield('contents')
     </main>
     <!-- main section end -->
@@ -101,17 +103,19 @@
     <footer class="bg-main w-100">
         <div class="row justify-content-around w-100 py-3">
             <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white">
-                <a  href="{{route('home')}}"><img src="{{ asset('assets/images/logo.png') }}" class="logo" alt=""></a>
+                <a  href="{{route('home')}}"><img src="{{ asset('assets/images/logo.png') }}" class="logo w-100" alt=""></a>
                 <p class="text-center">Who We Are: Your Trusted Source for Fresh Seafood.</p>
                 <div class="social-icons d-flex justify-content-center gap-4">
-                    <i class="fa-brands fa-line fs-3"></i>
-                    <i class="fa-brands fa-facebook fs-3"></i>
-                    <i class="fa-brands fa-weixin fs-3"></i>
-                    <i class="fa-brands fa-xing fs-3"></i>
+                    <a href="">
+                        <img class="icon_social" src="{{asset('assets/icons/custom/line.png')}}" alt="Line">
+                    </a>
+                    <a href=""><img class="icon_social" src="{{asset('assets/icons/custom/facebook.png')}}" alt="Line"></a>
+                      <a href=""><img class="icon_social" src="{{asset('assets/icons/custom/wechat.png')}}" alt="Line"></a>
+                      <a href=""><img class="icon_social" src="{{asset('assets/icons/custom/xing.svg')}}"></a>
                 </div>
             </div>
             <div class="col-12 col-lg-3 mt-3">
-                <h6 class="text-center text-color">Useful Links</h6>
+                <h6 class="text-center text-primary">Useful Links</h6>
                 <ul class="list-unstyled link-list">
                     <li><a href="{{ route('home') }}">>>Home</a></li>
                     <li><a href="{{route('product_details')}}">>>Product</a></li>
@@ -121,9 +125,9 @@
                     <li><a href="#">>>Blogs</a></li>
                 </ul>
             </div>
-            <div class="col-12 col-lg-2 mt-3 text-center">
-                <h6 class="text-center text-color">Contact Us</h6>
-                <ul class="list-unstyled text-white">
+            <div class="col-12 col-lg-2 mt-3 ">
+                <h6 class="text-center text-primary">Contact Us</h6>
+                <ul class="list-unstyled text-white text-start">
                     <li><a href="#">Address : address</a></li>
                     <li><a href="#">Phone : 098756292</a></li>
                     <li><a href="#">Email : user@email.com</a></li>

@@ -1,28 +1,38 @@
-<div class="slider-wrapper">
-    <div class="slider-container">
-      <button id="prev-btn" class="slider-btn">Prev</button>
-      <div class="slider">
-        <div class="slides">
-          <div class="slide">
-            <img src="{{ asset('assets/images/bg/fisher-bg.jpg') }}" alt="Slide 1">
-          </div>
-          <div class="slide">
-            <img src="{{ asset('assets/images/bg/Rectangle_90.jpg') }}" alt="Slide 2">
-          </div>
-          <div class="slide">
-            <img src="{{ asset('assets/images/bg/fisher-bg.jpg') }}" alt="Slide 3">
-          </div>
-          <div class="slide">
-            <img src="{{ asset('assets/images/bg/Rectangle_90.jpg') }}" alt="Slide 4">
-          </div>
+<div class="col-lg-8 col-md-6 ">
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <!-- Carousel Items -->
+        <div class="carousel-inner rounded">
+            <div class="carousel-item active" data-bs-interval="500">
+                <img src="{{ asset('assets/images/bg/fisher-bg.jpg') }}" class="d-block w-100" alt="Slide 1" />
+            </div>
+            <div class="carousel-item" data-bs-interval="500">
+                <img src="{{ asset('assets/images/bg/fisher-bg.jpg') }}" class="d-block w-100" alt="Slide 2" />
+            </div>
+            <div class="carousel-item" data-bs-interval="500">
+                <img src="{{ asset('assets/images/bg/fisher-bg.jpg') }}" class="d-block w-100" alt="Slide 3" />
+            </div>
         </div>
-      </div>
-      <button id="next-btn" class="slider-btn">Next</button>
+
+        <!-- Circle Indicators -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-    <div class="dots">
-      <span class="dot" data-index="0"></span>
-      <span class="dot" data-index="1"></span>
-      <span class="dot" data-index="2"></span>
-      <span class="dot" data-index="3"></span>
-    </div>
-  </div>
+</div>

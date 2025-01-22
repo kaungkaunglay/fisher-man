@@ -1,9 +1,12 @@
 @extends('includes.layout')
 @section('style')
 <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" />
+<link rel="stylesheet" href="{{asset('assets/css/category.css')}}">
 @endsection
+
 @section('contents')
-<section class="hero mt-5 container-custom">
+
+{{-- <section class="hero mt-5 container-custom">
     <div class="row justify-content-between">
         <div class="col-lg-4 col-md-6 d-none d-md-block">
             <ul class="sidebar-menu rounded fw-bold p-4 txt-primary">
@@ -58,7 +61,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <section class="m-t-b-20 moving-discount">
     <div id="moving-text">
         <p class="title">Discount Products</p>
@@ -70,7 +73,6 @@
 </section>
 
 <section class="popular_top_rate_shop_section mt-3  container-custom">
-    <div class="">
         <h6 class="txt-primary fw-bold mb-3">Popular & Top Rating Shop</h6>
         <div class="row shop-carts">
             <div class="col-6 col-md-6 col-lg-3 mb-3">
@@ -105,10 +107,7 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
-    </div>
 </section>
 
 
@@ -127,16 +126,133 @@
             <button class="sort-button">Sort by</button>
         </div>
     </div>
-    <div class="row" id="productContainer">
 
-    </div>
+    {{-- <div class="row" id="productContainer">
+
+    </div> --}}
+        <div class="card-list" id="view-list">
+            <div class="item-card">
+              <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+              </a>
+              <div class="left">
+                <p class="price m-t-b-10">$10</p>
+                <div class="title-category">
+                  <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                  <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                  たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                  <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                  <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="item-card">
+              <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+              </a>
+              <div class="left">
+                <p class="price m-t-b-10">$10</p>
+                <div class="title-category">
+                  <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                  <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                  たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                  <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                  <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="item-card">
+              <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+              </a>
+              <div class="left">
+                <p class="price m-t-b-10">$10</p>
+                <div class="title-category">
+                  <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                  <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                  たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                  <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                  <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="item-card">
+              <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+              </a>
+              <div class="left">
+                <p class="price m-t-b-10">$10</p>
+                <div class="title-category">
+                  <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                  <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                  たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                  <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                  <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="item-card">
+              <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+              </a>
+              <div class="left">
+                <p class="price m-t-b-10">$10</p>
+                <div class="title-category">
+                  <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                  <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                  たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                  <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                  <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="item-card">
+              <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+              </a>
+              <div class="left">
+                <p class="price m-t-b-10">$10</p>
+                <div class="title-category">
+                  <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                  <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                  たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                  <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                  <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
+
     <div class="row justify-content-center">
         <div class="col-5 col-lg-3 text-center">
             <button class="btn btn-outline-primary see-more-btn mt-3" id="load-more">
                 See More
-            </button>
-            <button class="btn btn-outline-primary see-less-btn mt-3" id="see-less" style="display: none;">
-                See Less
             </button>
         </div>
     </div>
@@ -274,12 +390,12 @@
         // Add more product data here
     ];
 
-    let visibleCount = 5; // Number of items to display
-    const container = document.getElementById('productContainer');
-    const loadMoreBtn = document.getElementById('load-more');
+    let visibleCount = 12; // Number of items to display
+    const viewList = document.getElementById('view-list');
+    // const loadMoreBtn = document.getElementById('load-more');
 
     function renderProducts() {
-        container.innerHTML = '';
+        viewList.innerHTML = '';
         const visibleProducts = products.slice(0, visibleCount);
 
         visibleProducts.forEach(product => {
@@ -348,7 +464,7 @@
     renderProducts();
 </script>
 
-<style>
+{{-- <style>
     /* Product card general styling */
     .product-card {
         display: flex;
@@ -423,168 +539,9 @@
     .product-info p {
         margin: 0;
     }
-</style>
+</style> --}}
 
-{{-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const gridView = document.getElementById('grid-view');
-            const listView = document.getElementById('list-view');
-            const productContainer = document.getElementById('product-container');
-            const loadMoreButton = document.getElementById('load-more');
-            const seeLessButton = document.getElementById('see-less');
-            let currentView = 'grid';
-            let itemsToShow = 10;
 
-            function toggleView(view) {
-                currentView = view;
-                productContainer.classList.toggle('list-view', view === 'list');
-                productContainer.classList.toggle('grid-view', view === 'grid');
-                const allProducts = productContainer.querySelectorAll('.product-card');
-                allProducts.forEach((product, index) => {
-                    if (view === 'list') {
-                        product.innerHTML = `
-                            <div class="col-12">
-                                <div class="card mb-3 border-0 horizontal-product-card">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img src="{{ asset('assets/images/bg/fisher-bg.jpg') }}" class="img-fluid" alt="..." />
-</div>
-<div class="col-md-8">
-    <div class="card-body ps-0 pt-2 pt-md-0 ps-md-3">
-        <div class="header d-flex flex-column-reverse flex-md-row">
-            <h5 class="card-title txt-primary fw-bold w-25">真鯛</h5>
-            <div class="price-category d-flex flex-column flex-md-row w-100 justify-content-between">
-                <span class="text-danger fw-bold">$10</span>
-                <p class="text-primary small mb-1">鮮魚 | 白身魚</p>
-            </div>
-        </div>
-        <p class="card-text">
-            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-        </p>
-        <div class="row">
-            <div class="col-12 col-md-4">
-                <div class="d-flex gap-2 cart-btn">
-                    <button class="btn btn-outline-primary w-50" type="button">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </button>
-                    <button class="btn btn-outline-primary w-50" type="button">
-                        <i class="fa-solid fa-bookmark"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-</div>`;
-} else {
-product.innerHTML = `
-<div class="card product-card rounded-0">
-    <div class="position-relative">
-        <img src="{{ asset('assets/images/fishes/Red_sea_bream.svg') }}" class="card-img-top rounded-0" alt="Fish Image" />
-        <span class="discount-badge text-danger">-50%</span>
-    </div>
-    <div class="card-body">
-        <h5 class="card-title">
-            <span class="text-decoration-line-through text-danger text-opacity-50">$20</span>
-            <span class="text-danger fw-bold">$10</span>
-        </h5>
-        <p class="text-primary small mb-1">鮮魚 | 白身魚</p>
-        <h6 class="txt-primary fw-bold">真鯛</h6>
-        <p class="card-text text-muted">
-            A prized sea bream in Japanese cuisine, known for its firm, white flesh and delicate, slightly sweet flavor. Commonly used in sashimi, sushi, and grilled dishes .....
-        </p>
-        <div class="d-flex gap-2 cart-btn">
-            <button class="btn btn-outline-primary w-50" type="button">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </button>
-            <button class="btn btn-outline-primary w-50" type="button">
-                <i class="fa-solid fa-bookmark"></i>
-            </button>
-        </div>
-    </div>
-</div>`;
-}
-});
-}
-
-gridView.addEventListener('click', function() {
-toggleView('grid');
-});
-
-listView.addEventListener('click', function() {
-toggleView('list');
-});
-
-loadMoreButton.addEventListener('click', function() {
-itemsToShow += 10;
-const allProducts = productContainer.querySelectorAll('.product-card');
-allProducts.forEach((product, index) => {
-if (index < itemsToShow) {
-    product.style.display='block' ;
-    }
-    });
-    if (itemsToShow>= allProducts.length) {
-    loadMoreButton.style.display = 'none';
-    seeLessButton.style.display = 'block';
-    }
-    });
-
-    seeLessButton.addEventListener('click', function() {
-    itemsToShow = 10;
-    const allProducts = productContainer.querySelectorAll('.product-card');
-    allProducts.forEach((product, index) => {
-    if (index >= itemsToShow) {
-    product.style.display = 'none';
-    }
-    });
-    loadMoreButton.style.display = 'block';
-    seeLessButton.style.display = 'none';
-    });
-
-    toggleView(currentView);
-    });
-    </script> --}}
-
-    {{-- <style>
-        .list-view .product-card {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-        }
-
-        .list-view .product-card .card {
-            flex-direction: row;
-        }
-
-        .list-view .product-card .card img {
-            width: 150px;
-            height: auto;
-        }
-
-        .list-view .product-card .card-body {
-            flex: 1;
-            padding-left: 20px;
-        }
-
-        .grid-view .product-card {
-            display: block;
-        }
-
-        .grid-view .product-card .card {
-            flex-direction: column;
-        }
-
-        .grid-view .product-card .card img {
-            width: 100%;
-            height: auto;
-        }
-
-        .grid-view .product-card .card-body {
-            padding-left: 0;
-        }
-    </style> --}}
 
     <section class="all-products container-custom my-3">
         <div class="">
