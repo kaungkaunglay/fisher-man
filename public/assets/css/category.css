@@ -8,36 +8,6 @@ body {
   margin: 0 auto;
 }
 
-.side-menu {
-  background-color: #ECF5FB;
-  height: max-content;
-  padding: 20px 23px;
-  border-radius: 10px;
-}
-
-.side-menu ul {
-  list-style: none;
-  gap: 20px;
-}
-
-.side-menu ul a {
-  text-decoration: none;
-  font-weight: bold;
-  color: var(--primary-color);
-  transition: color 0.5s ease-in-out;
-}
-
-.side-menu a:hover {
-  color: orange;
-}
-
-.see-product {
-  margin: 20px auto 0px;
-}
-
-.see-product:hover {
-  opacity: 0.8;
-}
 
 .title {
   color: var(--primary-color);
