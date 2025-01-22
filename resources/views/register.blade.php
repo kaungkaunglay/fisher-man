@@ -15,16 +15,19 @@
     <div class="input-box d-flex flex-column">
       <label for="user">Username</label>
       <input id="username" name="username" placeholder="John Doe" type="text" id="user" spellcheck="false" autofocus required>
+      <span></span>
     </div>
     <div class="input-box d-flex flex-column">
       <label for="email">Email</label>
       <input id="email" name="email" placeholder="example@domain.com" type="text" id="email" spellcheck="false" autofocus required>
+      <span></span>
     </div>
     <div class="input-box d-flex flex-column">
       <label for="pass">Password</label>
       <div class="input-group">
         <input name="password" placeholder="********" type="password" id="pass" class="form-control bg-second ">
         <button class="btn password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
+        <span></span>
       </div>
     </div>
     <div class="input-box d-flex flex-column">
@@ -32,6 +35,7 @@
       <div class="input-group">
         <input id="confirm_password" name="confirm_password" placeholder="********" type="password" class="form-control bg-second">
         <button class="btn password" tabindex="-1" autocomplete="off"><i class="fa-solid fa-eye"></i></button>
+        <span></span>
       </div>
     </div>
     <div class="row ph-no">
