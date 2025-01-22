@@ -20,9 +20,8 @@ class UsersController extends Controller
         $validator = Validator::make($request->all(), [
             'username' => 'required|min:4|max:12',
             'email' => 'required|email',
-            'password' => 'required|min:6|max:12',
+            'password' => 'required|min:6|max:16',
             'confirm_password' => 'required',
-            // validaet phone number
             'first_phone' => 'required',
             'second_phone' => 'required',
             'line_id' => 'required'
@@ -58,6 +57,5 @@ class UsersController extends Controller
             }
             return response()->json(['status' => false, 'message' => 'Login Failed']);
         }
-        
     }
 }
