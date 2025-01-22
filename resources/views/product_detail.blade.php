@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ asset('assets/css/product_detail.css') }}" />
 @endsection
 @section('contents')
-<div class="wpr row gap-4 p-0">
+<div class="container-custom d-flex gap-4 p-0">
     <!-- aside start -->
     <div class="side-menu col-3">
         <ul class="list-group">
@@ -23,7 +23,7 @@
     </div>
     <!-- aside end -->
     <!-- product start -->
-    <div class="product-detail col-lg-8">
+    <div class="product-detail col-lg-9">
         <div class="row justify-content-between product-mobile">
             <div class="product-image-container col-6">
                 <div class="product-image-bigger d-flex flex-direction-column m-b-10">
@@ -53,7 +53,7 @@
                     <p class="m-b-10 price ">$200</p>
                     <p class="m-0 category-txt"><a href="#">鮮魚</a> | <a href="#">白身魚</a></p>
                 </div>
-                <div class="d-flex justify-content-between m-t-b-20 product-btn-container">
+                <div class="m-b-20 m-t-10">
                     <div class="quanity">
                         <button class="btn" id="decrement">-</button>
                         <input type="text" value="1" id="quantity" readonly>
@@ -80,7 +80,7 @@
     <!-- product end -->
 </div>
 <!-- Review start -->
-<div class="reviewer wpr p-0">
+<div class="reviewer container-custom p-0">
     <h3 class="m-t-b-20 title">
         Review
     </h3>
@@ -150,7 +150,7 @@
     <!-- Pagination Controls -->
     <div id="pagination-controls" class="pagination-controls text-center m-b-20"></div>
 </div>
-<div class="review-form wpr p-0">
+<div class="review-form container-custom p-0">
     <h3 class="title text-center m-b-20">Add a review</h3>
     <div class="row justify-content-center review-form-container">
         <div class="col-6">
@@ -191,4 +191,5 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('assets/js/cart.js') }}"></script>
 @endsection

@@ -423,6 +423,7 @@ li {
         }
     
   }
+}
 
 /* end price range  */
 
@@ -454,7 +455,6 @@ li {
     border: 0;
     background: transparent;
 }
-
 
 .pagination-controls button, #next-btn, #prev-btn{
     background-color: transparent;
