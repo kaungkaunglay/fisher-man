@@ -158,6 +158,7 @@
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/popup.js') }}"></script>
     <script src="{{ asset('assets/js/moving-text.js') }}"></script>
+    <script src="{{ asset('assets/js/password.js') }}"></script>
 </body>
 
 </html>

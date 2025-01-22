@@ -84,6 +84,7 @@ main {
 
 .input-box .input-group input {
     font-size: 18px;
+    box-shadow: none;
 }
 
 .input-box label {
@@ -108,12 +109,6 @@ main {
 
 .input-group .btn:active {
     opacity: 0.5;
-}
-
-
-.input-box .input-group input {
-    box-shadow: none;
-    outline: none;
 }
 
 .pw-setting {
