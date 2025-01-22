@@ -26,7 +26,7 @@
       <label for="pass">Password</label>
       <div class="input-group">
         <input name="password" placeholder="********" type="password" id="pass" class="form-control bg-second ">
-        <button class="btn" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
+        <button class="btn password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
       </div>
     </div>
 

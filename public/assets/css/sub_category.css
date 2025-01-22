@@ -2,3 +2,12 @@
   gap: 20px;
 }
 
+.product-btn{
+  padding: 4px 40px ;
+}
+
+@media screen and (max-width:768px) {
+  .product-btn{
+    padding: 4px 28px;
+  }
+}
