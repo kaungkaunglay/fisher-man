@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SellersController;
-use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\UsersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,18 +19,14 @@ Route::get('/', function () {
 })->name('home');
 
 // login for Customer and Seller
-Route::get('/login_c', [CustomersController::class, 'login'])->name('login_customer');
-Route::get('/login_s', [SellersController::class, 'login'])->name('login_seller');
-
-Route::post('/login_c', [CustomersController::class, 'login_store'])->name('login_store_customer');
-Route::post('/login_s', [SellersController::class, 'login_store'])->name('login_store_seller');
+Route::get('/login', [UsersController::class, 'login'])->name('login');
+Route::post('/login', [UsersController::class, 'login_store'])->name('login_store');
+// Route::post('/login_s', [SellersController::class, 'login_store'])->name('login_store_seller');
 
 // Registration for Customer and Seller
-Route::get('/register_c', [CustomersController::class, 'register'])->name('register_customer');
-Route::get('/register_s', [SellersController::class, 'register'])->name('register_seller');
+Route::get('/register', [UsersController::class, 'register'])->name('register');
+Route::post('/register', [UsersController::class, 'register_store'])->name('register_store');
 
-Route::post('/register_c', [CustomersController::class, 'register_store'])->name('register_store_customer');
-Route::post('/register_s', [SellersController::class, 'register_store'])->name('register_store_seller');
 
 Route::get('/category', function () {
     return view('category');

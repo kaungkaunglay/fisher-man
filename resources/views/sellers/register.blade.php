@@ -57,11 +57,9 @@
     <input name="submit" type="submit" class="input-submit" value="Register">
     <div class="register">
       <p>Already have an account?
-        <a href="{{ route('login_seller') }}" class="ms-1">Login</a>
+        <a href="{{ route('login') }}" class="ms-1">Login</a>
       </p>
-      <p>Need to buy products?
-        <a href="{{ route('register_customer') }}" class="ms-1">Register For Free</a>
-      </p>
+    
     </div>
   </form>
   <!-- form end -->
