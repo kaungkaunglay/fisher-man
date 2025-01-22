@@ -28,23 +28,25 @@
         <button class="btn" id="row-list-btn"><i class="fa-solid fa-list"></i></button>
       </div>
       <div class="m-b-20">
-        <div class="range-slider">
-          <input type="number" class="min-price" value="25" min="1" max="100">
+        
+        <button class="btn"><i class="fa-solid fa-sort"></i></button>
+        <button class="btn btn-primary sort">Sort by</button>
+      </div>
+      
+    </div>
+    <div class="range-slider">
+          <input type="number" class="min-price" value="1" min="1" max="100">
           <h3 class="txt">Price Range</h3>
-          <input type="number" class="max-price" value="75" min="1" max="100">
+          <input type="number" class="max-price" value="25" min="1" max="100">
           <div class="range">
-            <input type="range" class="min-input" value="25" min="1" max="100">
-            <input type="range" class="max-input" value="75" min="1" max="100">
+            <input type="range" class="min-input" value="1" min="1" max="100">
+            <input type="range" class="max-input" value="25" min="1" max="100">
 
             <div class="price-slider">
               <div class="prograss"></div>
             </div>
           </div>
         </div>
-        <button class="btn"><i class="fa-solid fa-sort"></i></button>
-        <button class="btn btn-primary sort">Sort by</button>
-      </div>
-    </div>
     <div class="sub-category-item">
       <div class="card-list" id="view-list">
         <div class="item-card">
