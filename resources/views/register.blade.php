@@ -15,39 +15,35 @@
     <div class="input-box d-flex flex-column">
       <label for="user">Username</label>
       <input id="username" name="username" placeholder="John Doe" type="text" id="user" spellcheck="false" autofocus required>
-      <p></p>
     </div>
     <div class="input-box d-flex flex-column">
       <label for="email">Email</label>
       <input id="email" name="email" placeholder="example@domain.com" type="text" id="email" spellcheck="false" autofocus required>
-      <p></p>
     </div>
     <div class="input-box d-flex flex-column">
       <label for="pass">Password</label>
-      <input id="password" name="password" placeholder="********" type="password" id="pass" autocomplete="off">
-      <p></p>
+      <div class="input-group">
+        <input name="password" placeholder="********" type="password" id="pass" class="form-control bg-second ">
+        <button class="btn" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
+      </div>
     </div>
     <div class="input-box d-flex flex-column">
       <label for="pass">Confirm Password</label>
       <input id="confirm_password" name="confirm_password" placeholder="********" type="password" id="pass" autocomplete="off">
-      <p></p>
     </div>
     <div class="row ph-no">
       <div class="input-box col-md-6 col-xs-12 d-flex flex-column">
         <label for="primary-no">First Phone No</label>
         <input id="first_phone" name="first_phone" placeholder="+81 90-1234-5678" type="number" id="primary-no" autocomplete="off">
-        <p></p>
       </div>
       <div class="input-box col-md-6 col-xs-12 d-flex flex-column">
         <label for="secondory-no">Second Phone No</label>
         <input id="second_phone" name="second_phone" placeholder="+81 90-1234-5678" type="number" id="secondory-no" autocomplete="off">
-        <p></p>
       </div>
     </div>
     <div class="input-box d-flex flex-column">
       <label for="line">Line ID</label>
       <input id="line_id" name="line_id" placeholder="U8189cf6745fc0d808977bdb0b9f22995" type="string" id="line" autocomplete="off">
-      <p></p>
     </div>
 
     <input name="submit" type="submit" class="input-submit" value="Register">
