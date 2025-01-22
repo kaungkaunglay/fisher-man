@@ -17,6 +17,7 @@ class Sellers extends Model
         'line_id',
         'ship_name',
         'firt_org',
-        'trans_management'
+        'trans_management',
+        'user_id',
     ]; 
 }

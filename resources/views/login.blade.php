@@ -12,13 +12,13 @@
   </div>
 
   <!-- form start -->
-  <form method="POST" id="login_seller_form" name="login_seller_form" class="input-container d-flex flex-column">
+  <form method="POST" id="login_form" name="login_form" class="input-container d-flex flex-column">
     
     <div class="input-box  d-flex flex-column">
       <label for="user">Username</label>
       <div class="input-group">
         <input name="username" placeholder="Username or Email" type="text" id="user" class="form-control bg-second ">
-        <button class="btn text-white" tabindex="-1"><i class="fa-solid fa-user"></i></button>
+        <button class="btn" tabindex="-1"><i class="fa-solid fa-user"></i></button>
       </div>
     </div>
 
@@ -26,7 +26,7 @@
       <label for="pass">Password</label>
       <div class="input-group">
         <input name="password" placeholder="********" type="password" id="pass" class="form-control bg-second ">
-        <button class="btn text-white" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
+        <button class="btn" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
       </div>
     </div>
 
@@ -43,7 +43,7 @@
 
     <div class="register">
       <span>Don't have an account?
-        <a href="{{ route('register_customer') }}" class="ms-1">Register</a>
+        <a href="{{ route('register') }}" class="ms-1">Register</a>
       </span>
       <p class="">(or)</p> 
     </div>
@@ -67,11 +67,11 @@
                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
              }
          });
-         $("#login_seller_form").submit(function(e) {
+         $("#login_form").submit(function(e) {
              e.preventDefault();
              var formData = new FormData(this);
              $.ajax({
-                 url: "{{ route('login_store_customer') }}",
+                 url: "{{ route('login_store') }}",
                  type: 'POST',
                  dataType: 'json',
                  data: formData,
@@ -79,7 +79,7 @@
                  processData: false,
                  success: function(response) {
                      if (response.status == true) {
-                         window.location.href = "{{ route('login_customer') }}";
+                         window.location.href = "{{ route('login') }}";
                      } else{
                          if(response.message){
                              alert(response.message);
