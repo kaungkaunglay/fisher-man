@@ -24,21 +24,36 @@
       <label for="pass">Password</label>
       <div class="input-group">
         <input name="password" placeholder="********" type="password" id="pass" class="form-control bg-second ">
-        <button class="btn" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
+        <button class="btn password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
       </div>
     </div>
     <div class="input-box d-flex flex-column">
-      <label for="pass">Confirm Password</label>
-      <input id="confirm_password" name="confirm_password" placeholder="********" type="password" id="pass" autocomplete="off">
+      <label for="confirm_password">Confirm Password</label>
+      <div class="input-group">
+        <input id="confirm_password" name="confirm_password" placeholder="********" type="password" class="form-control bg-second">
+        <button class="btn password" tabindex="-1" autocomplete="off"><i class="fa-solid fa-eye"></i></button>
+      </div>
     </div>
     <div class="row ph-no">
       <div class="input-box col-md-6 col-xs-12 d-flex flex-column">
         <label for="primary-no">First Phone No</label>
-        <input id="first_phone" name="first_phone" placeholder="+81 90-1234-5678" type="number" id="primary-no" autocomplete="off">
+        <div class="input-group">
+          <select>
+            <option value="">+81</option>
+            <option value="">+95</option>
+          </select>
+          <input id="first_phone" name="first_phone" placeholder="90-1234-5678" type="number" id="primary-no" class="form-control bg-second" autocomplete="off">
+        </div>
       </div>
       <div class="input-box col-md-6 col-xs-12 d-flex flex-column">
         <label for="secondory-no">Second Phone No</label>
-        <input id="second_phone" name="second_phone" placeholder="+81 90-1234-5678" type="number" id="secondory-no" autocomplete="off">
+        <div class="input-group">
+          <select>
+            <option value="">+81</option>
+            <option value="">+95</option>
+          </select>
+          <input id="second_phone" name="second_phone" placeholder="90-1234-5678" type="number" id="secondory-no" class="form-control bg-second" autocomplete="off">
+        </div>
       </div>
     </div>
     <div class="input-box d-flex flex-column">

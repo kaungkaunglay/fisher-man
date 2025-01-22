@@ -50,6 +50,8 @@ main {
 .input-box .input-group input {
     font-size: 18px;
     background-color: transparent !important;
+    box-shadow: none;
+    border: none;
 }
 
 .input-box label {
@@ -69,6 +71,12 @@ main {
     border: none;
     color: #5a5a5a;
     width: 50px;
+}
+
+.input-group select {
+    border: none;
+    width: max-content;
+    outline: none;
 }
 
 .input-group .btn:active {
