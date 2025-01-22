@@ -35,7 +35,7 @@
                     </div>
                     <div class="input-group">
                 <input type="text" class="form-control bg-second " placeholder="Search your Products">
-                <button class="btn bg-main text-white"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="bg-main text-white"><i class="fa-solid fa-magnifying-glass"></i></button>
               </div>
                     <div class="icon">
                         <a href="{{url('/cart')}}">
