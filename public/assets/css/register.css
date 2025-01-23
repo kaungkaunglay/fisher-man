@@ -12,7 +12,7 @@ a:hover {color: #0045ac;text-decoration: underline !important;}
 
 main {
     display: flex;
-    padding: 100px 0;
+    padding: 60px 0;
 }
 
 .login-box {
@@ -33,7 +33,7 @@ main {
 
 .login-header h2 p {
     font-size: 18px;
-    margin-top: 10px;
+    margin-bottom: 25px;
 }
 
 .input-container {
@@ -102,20 +102,21 @@ input:focus {
 }
 
 .input-submit {
-    width: 80%;
-    border: none;
+    width: 100%;
+    border: 1px solid #005B96;
+    background-color: #005B96;
     font-weight: bold;
-    color: #005B96;
+    color: #fff;
     border-radius: 50px;
     padding: 8px 0;
     margin: 10px auto 0;
-    transition: background .3s ease-in-out,
-    color .3s ease-in-out;
+    transition: background-color .3s ease-in-out,
+                color .3s ease-in-out;
 }
 
 .input-submit:hover {
-    background-color: #005B96;
-    color: #fff;
+    background-color: #fff;
+    color: #005B96;
 }
 
 .input-submit:active {

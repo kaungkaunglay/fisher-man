@@ -17,7 +17,7 @@
     <div class="input-box d-flex flex-column">
       <label for="username">Username</label>
       <div class="input-group">
-        <input name="username" placeholder="Username or Email" type="text" id="username" class="form-control bg-second">
+        <input id="username" name="username" placeholder="Username or Email" type="text"  class="form-control">
         <button class="btn" tabindex="-1"><i class="fa-solid fa-user"></i></button>
       </div>
       <span class="invalid-feedback"></span>
@@ -26,10 +26,10 @@
     <div class="input-box d-flex flex-column">
       <label for="password">Password</label>
       <div class="input-group">
-        <input name="password" placeholder="********" type="password" id="password" class="form-control bg-second">
+        <input name="password" placeholder="********" type="password" id="password" class="form-control">
         <button class="btn password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
       </div>
-      <span class="invalid-feedback"></span>
+      <span class="error_message"></span>
     </div>
 
     <div class="pw-setting d-flex">
@@ -43,7 +43,7 @@
       </div>
     </div>
 
-    <input type="submit" class="input-submit" value="Login">
+    <button name="submit" id="submit" type="submit" class="input-submit">Login</button>
 
     <div class="register">
       <span>Don't have an account?
@@ -87,27 +87,30 @@
                          window.location.href = "{{ route('login') }}";
                      } else{
                       var errors = response.errors;
+                      
                       var fields = [
                           'username',
                           'password',
-                          'message'
                       ];
 
                       fields.forEach(function(field) {
                         if (errors[field]) {
-                             $('#' + field).addClass('is-invalid')
+                             $('#' + field)
                                  .closest('.input-box')
                                  .find('span.invalid-feedback')
                                  .addClass('d-block')
                                  .html(errors[field]);
                          } else {
-                             $('#' + field).removeClass('is-invalid')
+                             $('#' + field)
                                  .closest('.input-box')
                                  .find('span.invalid-feedback')
                                  .removeClass('d-block')
                                  .html('');
                          }
-                      });
+                      }); 
+                      if (errors.message) {
+                          alert('error found');
+                      }
                      }
                  }
              });

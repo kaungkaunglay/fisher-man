@@ -69,7 +69,7 @@
         <span class="invalid-feedback"></span>
     </div>
 
-    <input name="submit" type="submit" class="input-submit" value="Register">
+    <button name="submit" id="submit" type="submit" class="input-submit">Register</button>
     <div class="register">
         <p>Already have an account?
             <a href="{{ route('login') }}" class="ms-1">Login</a>
@@ -126,13 +126,13 @@
 
                      fields.forEach(function(field) {
                          if (errors[field]) {
-                             $('#' + field).addClass('is-invalid')
+                             $('#' + field)
                                  .closest('.input-box')
                                  .find('span.invalid-feedback')
                                  .addClass('d-block')
                                  .html(errors[field]);
                          } else {
-                             $('#' + field).removeClass('is-invalid')
+                             $('#' + field)
                                  .closest('.input-box')
                                  .find('span.invalid-feedback')
                                  .removeClass('d-block')

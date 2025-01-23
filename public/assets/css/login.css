@@ -11,7 +11,7 @@ a:hover {color: #0045ac;text-decoration: underline !important;}
 
 main {
     display: flex;
-    padding: 100px 0;
+    padding: 60px 0;
 }
 
 .login-box {
@@ -32,7 +32,7 @@ main {
     width: 150px;
     aspect-ratio: 1/1;
     background-color: red;
-    position: absolute;z-index: 1000;
+    position: absolute;
     animation: 1.5s ease-in-out;
 }
 
@@ -68,7 +68,7 @@ main {
 
 .login-header h2 p {
     font-size: 18px;
-    margin-top: 10px;
+    margin-bottom: 25px;
 }
 
 .input-container {
@@ -120,6 +120,10 @@ main {
     opacity: 0.5;
 }
 
+.form-control.is-invalid {
+    border: none;
+}
+
 .pw-setting {
     font-size: 15px;
     justify-content: space-between;
@@ -137,19 +141,20 @@ main {
 
 .input-submit {
     width: 100%;
-    border: none;
+    border: 1px solid #005B96;
+    background-color: #005B96;
     font-weight: bold;
-    color: #005B96;
+    color: #fff;
     border-radius: 50px;
     padding: 8px 0;
     margin: 10px auto 0;
-    transition: background .3s ease-in-out,
+    transition: background-color .3s ease-in-out,
                 color .3s ease-in-out;
 }
 
 .input-submit:hover {
-    background-color: #005B96;
-    color: #fff;
+    background-color: #fff;
+    color: #005B96;
 }
 
 .input-submit:active {
@@ -176,9 +181,10 @@ main {
 .line-wpr a {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 10px;
     color: #00C300;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .icon {
