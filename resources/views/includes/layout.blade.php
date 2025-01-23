@@ -91,11 +91,61 @@
   <!-- header section end -->
 
 
+<<<<<<< HEAD
   <!-- main section start -->
   <main class="m-t-40">
     @yield('contents')
   </main>
   <!-- main section end -->
+=======
+    <!-- footer start -->
+    <!-- filepath: /C:/fisherman/laravel/fisherman/resources/views/includes/layout.blade.php -->
+    <footer class="bg-main w-100">
+        <div class="row justify-content-around w-100 py-3">
+            <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white">
+                <a  href="{{route('home')}}"><img src="{{ asset('assets/images/logo.png') }}" class="logo w-100" alt=""></a>
+                <p class="text-center">Who We Are: Your Trusted Source for Fresh Seafood.</p>
+                <div class="social-icons d-flex justify-content-center gap-4">
+                    <a href="">
+                        <img class="icon_social" src="{{asset('assets/icons/custom/line.png')}}" alt="Line">
+                    </a>
+                    <a href=""><img class="icon_social" src="{{asset('assets/icons/custom/facebook.png')}}" alt="Line"></a>
+                      <a href=""><img class="icon_social" src="{{asset('assets/icons/custom/wechat.png')}}" alt="Line"></a>
+                      <a href=""><img class="icon_social" src="{{asset('assets/icons/custom/xing.svg')}}"></a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 mt-3">
+                <h6 class="text-center text-primary">Useful Links</h6>
+                <div class="usefulLinks d-flex justify-content-center">
+                    <ul class="list-unstyled link-list">
+                        <li><a href="{{ route('home') }}">>>Home</a></li>
+                        <li><a href="{{route('product_details')}}">>>Product</a></li>
+                        <li><a href="#">>>FAQ</a></li>
+                        <li><a href="{{route('policy')}}">>>Terms & Privacy</a></li>
+                        <li><a href="#">>>Customer Review</a></li>
+                        <li><a href="#">>>Blogs</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-lg-2 mt-3 ">
+                <h6 class="text-center text-primary">Contact Us</h6>
+                <ul class="list-unstyled text-white text-start">
+                    <li><a href="#">Address : address</a></li>
+                    <li><a href="#">Phone : 098756292</a></li>
+                    <li><a href="#">Email : user@email.com</a></li>
+            </div>
+        </div>
+        <div class="row bg-dark m-0 justify-content-around">
+            <div class="col-lg-5 text-white text-center text-lg-start">
+                <p class="my-2">&copy; Copyright 2024-fisherman Designed by Andfun</p>
+            </div>
+            <div class="col-lg-5 text-white text-lg-end text-center">
+                <p class="my-2">Privacy | Terms</p>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+>>>>>>> 2de32c8202dbea5fe7335f67720706d9513537c3
 
   <!-- footer start -->
   <!-- filepath: /C:/fisherman/laravel/fisherman/resources/views/includes/layout.blade.php -->
