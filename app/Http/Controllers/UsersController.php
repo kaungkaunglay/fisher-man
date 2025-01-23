@@ -71,6 +71,7 @@ class UsersController extends Controller
         }
     }
     public function login_store(Request $request){
+        logger($request->all());
         $validator = Validator::make($request->all(), [
             'username' => 'required',
             'password' => 'required',
@@ -78,9 +79,8 @@ class UsersController extends Controller
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
-            $user_email = User::where('email', $request->username)->first();
-            $user_username = User::where('username', $request->username)->first();
-            if($user = $user_email ?? $user_username){
+            $user = User::where('email', $request->username)->first();
+            if($user){
                 if(Hash::check($request->password, $user->password)){
                     return response()->json(['status' => true, 'message' => 'Login Success']);
                 }
