@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SellersController;
-use App\Http\Controllers\UsersController;
+use App\Http\Controllers\CustomersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,14 +19,22 @@ Route::get('/', function () {
 })->name('home');
 
 // login for Customer and Seller
-Route::get('/login', [UsersController::class, 'login'])->name('login');
-Route::post('/login', [UsersController::class, 'login_store'])->name('login_store');
+Route::get('/login', [CustomersController::class, 'login'])->name('login');
+Route::post('/login', [CustomersController::class, 'login_store'])->name('login_store');
 // Route::post('/login_s', [SellersController::class, 'login_store'])->name('login_store_seller');
 
 // Registration for Customer and Seller
-Route::get('/register', [UsersController::class, 'register'])->name('register');
-Route::post('/register', [UsersController::class, 'register_store'])->name('register_store');
+Route::get('/register', [CustomersController::class, 'register'])->name('register');
+Route::post('/register', [CustomersController::class, 'register_store'])->name('register_store');
 
+Route::get('/check-auth', function () {
+    return Auth::guard('user')->check() ? 'Authenticated' : 'Not Authenticated';
+});
+Route::middleware(['auth.user'])->group(function(){
+    Route::get('/profile/user', action: function () {
+        return view('profile_user');
+    })->name('profile_user');
+});
 
 Route::get('/category', function () {
     return view('category');
@@ -48,9 +56,7 @@ Route::get('/profile', action: function () {
     return view('profile_seller');
 })->name('profile');
 
-Route::get('/profile/user', action: function () {
-    return view('profile_user');
-})->name('profile_user');
+
 
 
 Route::get('/support', function () {

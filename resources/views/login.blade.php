@@ -87,7 +87,7 @@
                  processData: false,
                  success: function(response) {
                      if (response.status == true) {
-                         window.location.href = "{{ route('login') }}";
+                        window.location.href = "{{ route('home') }}";
                      } else{
                       if(response.message){
                         $('#message').html(response.message);

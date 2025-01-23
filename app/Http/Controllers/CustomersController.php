@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Str;
+use App\Models\Customers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
-class UsersController extends Controller
+class CustomersController extends Controller
 {
     public function register() { 
         return view('register');
@@ -17,7 +18,6 @@ class UsersController extends Controller
         return view('login');
     }
     public function register_store(Request $request){
-        logger($request->all());
         $messages = [
             'username.required' => 'The username field is required.',
             'username.min' => 'The username must be at least 4 characters.',
@@ -58,7 +58,7 @@ class UsersController extends Controller
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
-            $user = new User();
+            $user = new Customers();
             $user->username = $request->username;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
@@ -71,7 +71,6 @@ class UsersController extends Controller
         }
     }
     public function login_store(Request $request){
-        logger($request->all());
         $validator = Validator::make($request->all(), [
             'username' => 'required',
             'password' => 'required',
@@ -79,12 +78,13 @@ class UsersController extends Controller
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
-            $user = User::where('email', $request->username)->first();
-            if($user){
-                if(Hash::check($request->password, $user->password)){
-                    return response()->json(['status' => true, 'message' => 'Login Success']);
-                }
+
+            $user = Customers::where('username', $request->username)->first();
+            if($user && Hash::check($request->password, $user->password)){
+                
+                return response()->json(['status' => true, 'message' => 'Login success', 'errors'=> '']);
             }
+
             return response()->json(['status' => false, 'message' => 'Username or Password is Incorrect']);
         }
     }
