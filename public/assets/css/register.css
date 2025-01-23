@@ -4,11 +4,11 @@ input[type=number] {-moz-appearance: textfield;}
 body {
     color: #005B96;
     font-family:'Poppins', sans-serif; 
-    font-size: 18px;
     background: url(../images/bg/cristian-palmer-XexawgzYOBc-unsplash.jpg) no-repeat fixed center/cover;
 }
 
-a:hover {opacity: 0.8;}
+a {transition: color 0.3s}
+a:hover {color: #0045ac;text-decoration: underline !important;}
 
 main {
     display: flex;
@@ -55,7 +55,7 @@ main {
 }
 
 .input-box label {
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
 }
 
 .input-box input {
@@ -77,10 +77,22 @@ main {
     border: none;
     width: max-content;
     outline: none;
+    background-color: transparent;
+    padding: 0 10px;
 }
 
 .input-group .btn:active {
     opacity: 0.5;
+}
+
+.input-group:has(input:focus),
+input:focus {
+    box-shadow: 0 2px 3px .1px #0152cbdf;
+    border-color: #0045ac;
+}
+
+.input-group:has(input:focus) i {
+    color: #0152cbdf;
 }
 
 
@@ -97,6 +109,17 @@ main {
     border-radius: 50px;
     padding: 8px 0;
     margin: 10px auto 0;
+    transition: background .3s ease-in-out,
+    color .3s ease-in-out;
+}
+
+.input-submit:hover {
+    background-color: #005B96;
+    color: #fff;
+}
+
+.input-submit:active {
+    opacity: 0.7;
 }
 
 @media  screen and (max-width: 576px) {
