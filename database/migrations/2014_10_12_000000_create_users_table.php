@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email');  
             $table->string('password'); 
             $table->string('first_phone');
-            $table->string('second_phone'); 
+            $table->string('second_phone')->nullable(); 
             $table->string('line_id');
             $table->rememberToken();
             $table->timestamps();
