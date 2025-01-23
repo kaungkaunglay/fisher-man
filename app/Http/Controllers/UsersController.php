@@ -54,7 +54,7 @@ class UsersController extends Controller
             'second_phone' => ['nullable', 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'],
             'line_id' => 'required|min:4|max:20'
         ], $messages);
-        
+
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
@@ -78,8 +78,9 @@ class UsersController extends Controller
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
-            $user = User::where('email', $request->username)->first();
-            if($user){
+            $user_email = User::where('email', $request->username)->first();
+            $user_username = User::where('username', $request->username)->first();
+            if($user = $user_email ?? $user_username){
                 if(Hash::check($request->password, $user->password)){
                     return response()->json(['status' => true, 'message' => 'Login Success']);
                 }

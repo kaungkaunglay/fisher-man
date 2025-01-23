@@ -13,21 +13,23 @@
 
   <!-- form start -->
   <form method="POST" id="login_form" name="login_form" class="input-container d-flex flex-column">
-    
-    <div class="input-box  d-flex flex-column">
-      <label for="user">Username</label>
+    @csrf
+    <div class="input-box d-flex flex-column">
+      <label for="username">Username</label>
       <div class="input-group">
-        <input name="username" placeholder="Username or Email" type="text" id="user" class="form-control bg-second ">
+        <input name="username" placeholder="Username or Email" type="text" id="username" class="form-control bg-second">
         <button class="btn" tabindex="-1"><i class="fa-solid fa-user"></i></button>
       </div>
+      <span class="invalid-feedback"></span>
     </div>
 
-    <div class="input-box  d-flex flex-column">
-      <label for="pass">Password</label>
+    <div class="input-box d-flex flex-column">
+      <label for="password">Password</label>
       <div class="input-group">
-        <input name="password" placeholder="********" type="password" id="pass" class="form-control bg-second ">
+        <input name="password" placeholder="********" type="password" id="password" class="form-control bg-second">
         <button class="btn password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
       </div>
+      <span class="invalid-feedback"></span>
     </div>
 
     <div class="pw-setting d-flex">
@@ -35,10 +37,12 @@
         <input type="checkbox" id="remember">
         <label for="remember">Remember me</label>
       </div>
+  
       <div class="forgot-pw">
         <a href="#">Forgot password</a>
       </div>
     </div>
+
     <input type="submit" class="input-submit" value="Login">
 
     <div class="register">
@@ -57,6 +61,7 @@
       <a href=""><img class="icon_social" src="{{asset('assets/icons/custom/google.png')}}" alt="Google"></a>
       <a href=""><img class="icon_social" src="{{asset('assets/icons/custom/facebook.png')}}" alt="Facebook"></a>
     </div>
+
   </form>
   <!-- form end -->
 </div>
@@ -81,9 +86,28 @@
                      if (response.status == true) {
                          window.location.href = "{{ route('login') }}";
                      } else{
-                         if(response.message){
-                             alert(response.message);
+                      var errors = response.errors;
+                      var fields = [
+                          'username',
+                          'password',
+                          'message'
+                      ];
+
+                      fields.forEach(function(field) {
+                        if (errors[field]) {
+                             $('#' + field).addClass('is-invalid')
+                                 .closest('.input-box')
+                                 .find('span.invalid-feedback')
+                                 .addClass('d-block')
+                                 .html(errors[field]);
+                         } else {
+                             $('#' + field).removeClass('is-invalid')
+                                 .closest('.input-box')
+                                 .find('span.invalid-feedback')
+                                 .removeClass('d-block')
+                                 .html('');
                          }
+                      });
                      }
                  }
              });
