@@ -85,7 +85,7 @@ class UsersController extends Controller
                     return response()->json(['status' => true, 'message' => 'Login Success']);
                 }
             }
-            return response()->json(['status' => false, 'message' => 'Login Failed']);
+            return response()->json(['status' => false, 'message' => 'Username or Password is Incorrect']);
         }
     }
 }

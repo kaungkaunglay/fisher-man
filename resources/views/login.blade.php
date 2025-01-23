@@ -14,7 +14,7 @@
   <!-- form start -->
   <form method="POST" id="login_form" name="login_form" class="input-container d-flex flex-column">
     @csrf
-    <div class="input-box d-flex flex-column">
+    <div class="input-box d-flex flex-column mt-3">
       <label for="username">Username</label>
       <div class="input-group">
         <input id="username" name="username" placeholder="Username or Email" type="text"  class="form-control">
@@ -29,9 +29,11 @@
         <input name="password" placeholder="********" type="password" id="password" class="form-control">
         <button class="btn password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
       </div>
-      <span class="error_message"></span>
+      <span class="invalid-feedback"></span>
     </div>
-
+    <div class="input-box d-flex flex-column">
+      <span class="mb-3 text-danger" id="message"></span>
+    </div>
     <div class="pw-setting d-flex">
       <div class="remember">
         <input type="checkbox" id="remember">
@@ -72,6 +74,7 @@
                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
              }
          });
+
          $("#login_form").submit(function(e) {
              e.preventDefault();
              var formData = new FormData(this);
@@ -86,32 +89,33 @@
                      if (response.status == true) {
                          window.location.href = "{{ route('login') }}";
                      } else{
+                      if(response.message){
+                        $('#message').html(response.message);
+                      }
                       var errors = response.errors;
-                      
+                  
                       var fields = [
                           'username',
-                          'password',
+                          'password'
                       ];
 
                       fields.forEach(function(field) {
-                        if (errors[field]) {
-                             $('#' + field)
-                                 .closest('.input-box')
-                                 .find('span.invalid-feedback')
-                                 .addClass('d-block')
-                                 .html(errors[field]);
-                         } else {
-                             $('#' + field)
-                                 .closest('.input-box')
-                                 .find('span.invalid-feedback')
-                                 .removeClass('d-block')
-                                 .html('');
-                         }
-                      }); 
-                      if (errors.message) {
-                          alert('error found');
-                      }
-                     }
+                          if (errors[field]) {
+                              $('#' + field)
+                                  .closest('.input-box')
+                                  .find('span.invalid-feedback')
+                                  .addClass('d-block')
+                                  .html(errors[field]);
+                          } else {
+                              $('#' + field)
+                                  .closest('.input-box')
+                                  .find('span.invalid-feedback')
+                                  .removeClass('d-block')
+                                  .html('');
+                          }
+                      });
+                      
+                    }
                  }
              });
          });
