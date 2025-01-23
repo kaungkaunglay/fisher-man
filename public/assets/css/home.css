@@ -64,8 +64,8 @@ body {
 /* banner section end */
 
 /* popular shop section */
-.shop-carts .card{height: 130px;}
-.shop-carts .card img{height: 90px;object-fit: cover;}
+.shop-carts .card{height: 150px;}
+.shop-carts .card img{height: 110px;object-fit: cover;}
 .shop-carts .card .card-body{padding: 5px;}
 
 /* moving discount section */
@@ -88,6 +88,7 @@ body {
   position: absolute;
   white-space: nowrap;
   display: none;
+  margin-bottom: 0px;
   color: #ffffff !important;
 }
 

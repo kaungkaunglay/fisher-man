@@ -93,7 +93,6 @@
 
     <!-- main section start -->
     <main class="m-t-40">
-        @include('includes.aside')
         @yield('contents')
     </main>
     <!-- main section end -->

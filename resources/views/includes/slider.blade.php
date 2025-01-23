@@ -3,13 +3,13 @@
         <!-- Carousel Items -->
         <div class="carousel-inner rounded">
             <div class="carousel-item active" data-bs-interval="500">
-                <img src="{{ asset('assets/images/bg/fisher-bg.jpg') }}" class="d-block w-100" alt="Slide 1" />
+                <img src="{{ asset('assets/images/Rectangle_90.jpg') }}" class="d-block w-100" alt="Slide 1" />
             </div>
             <div class="carousel-item" data-bs-interval="500">
-                <img src="{{ asset('assets/images/bg/fisher-bg.jpg') }}" class="d-block w-100" alt="Slide 2" />
+                <img src="{{ asset('assets/images/Rectangle_90.jpg') }}" class="d-block w-100" alt="Slide 2" />
             </div>
             <div class="carousel-item" data-bs-interval="500">
-                <img src="{{ asset('assets/images/bg/fisher-bg.jpg') }}" class="d-block w-100" alt="Slide 3" />
+                <img src="{{ asset('assets/images/Rectangle_90.jpg') }}" class="d-block w-100" alt="Slide 3" />
             </div>
         </div>
 
