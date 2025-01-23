@@ -5,13 +5,13 @@
 @section('contents')
 <div class="wpr row">
   <!-- aside start -->
-  <div class="side-menu col-3">
+  <div class="side-menu col-4">
     @include('includes.aside')
   </div>
   <!-- aside end -->
 
   <!-- category list start -->
-  <div class="category col-9">
+  <div class="category col-8">
     <ul class="list-group category-list">
       <li class="d-flex flex-column">
         <div class="card-head">

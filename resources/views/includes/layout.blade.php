@@ -5,9 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fisherman</title>
-    <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}" />
     @yield('style')
     <link rel="icon" href="demo_icon.gif" type="image/gif" sizes="16x16">
     <meta name="csrf-token" content="{{ csrf_token() }}">

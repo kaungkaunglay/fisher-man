@@ -3,35 +3,6 @@ body {
   }
 
 
-  /* sidebar menu and carousel section start */
-.sidebar-menu{background-color:#ECF5FB ;list-style: none;padding: 15px;line-height: 35px;}
-.sidebar-menu a{
-  display: block;
-  text-decoration: none;
-  text-align: center;
-}
-
-/* styles.css */
-.carousel-indicators [data-bs-target] {
-  width: 12px;
-  height: 12px;
-  background-color: white; /* Bootstrap Primary Blue */
-  border-radius: 50%;
-  border: none;
-  margin: 0 5px;
-}
-
-.carousel-indicators [data-bs-target].active {
-  background-color: #005B96; /* Darker blue for active indicator */
-}
-
-.carousel-item img{height: 415px;}
-
-/* breadcrumb style overwrite */
-.breadcrumb-item+.breadcrumb-item::before {content: "|";}
-
- /* sidebar menu and carousel section end */
-
 
 /* banner section */
 
