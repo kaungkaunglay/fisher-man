@@ -17,7 +17,7 @@
     <div class="input-box d-flex flex-column">
       <label for="username">Username</label>
       <div class="input-group">
-        <input name="username" placeholder="Username or Email" type="text" id="username" class="form-control bg-second">
+        <input id="username" name="username" placeholder="Username or Email" type="text"  class="form-control bg-second">
         <button class="btn" tabindex="-1"><i class="fa-solid fa-user"></i></button>
       </div>
       <span class="invalid-feedback"></span>
@@ -29,7 +29,7 @@
         <input name="password" placeholder="********" type="password" id="password" class="form-control bg-second">
         <button class="btn password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
       </div>
-      <span class="invalid-feedback"></span>
+      <span class="error_message"></span>
     </div>
 
     <div class="pw-setting d-flex">
@@ -43,8 +43,8 @@
       </div>
     </div>
 
-    <input type="submit" class="input-submit" value="Login">
-
+    <input name="submit" id="submit" type="submit" class="input-submit" value="Login">
+ 
     <div class="register">
       <span>Don't have an account?
         <a href="{{ route('register') }}" class="ms-1">Register</a>
@@ -87,10 +87,10 @@
                          window.location.href = "{{ route('login') }}";
                      } else{
                       var errors = response.errors;
+                      
                       var fields = [
                           'username',
                           'password',
-                          'message'
                       ];
 
                       fields.forEach(function(field) {
@@ -107,7 +107,10 @@
                                  .removeClass('d-block')
                                  .html('');
                          }
-                      });
+                      }); 
+                      if (errors.message) {
+                          alert('error found');
+                      }
                      }
                  }
              });
