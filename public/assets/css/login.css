@@ -120,6 +120,10 @@ main {
     opacity: 0.5;
 }
 
+.form-control.is-invalid {
+    border: none;
+}
+
 .pw-setting {
     font-size: 15px;
     justify-content: space-between;
