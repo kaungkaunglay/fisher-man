@@ -92,7 +92,7 @@
 
 
   <!-- main section start -->
-  <main class="m-t-40">
+  <main>
     @yield('contents')
   </main>
   <!-- main section end -->

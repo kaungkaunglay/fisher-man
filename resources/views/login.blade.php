@@ -14,7 +14,7 @@
   <!-- form start -->
   <form method="POST" id="login_form" name="login_form" class="input-container d-flex flex-column">
     @csrf
-    <div class="input-box d-flex flex-column mt-3">
+    <div class="input-box d-flex flex-column">
       <label for="username">Username</label>
       <div class="input-group">
         <input id="username" name="username" placeholder="Username or Email" type="text"  class="form-control">
