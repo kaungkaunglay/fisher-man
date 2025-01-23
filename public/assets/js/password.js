@@ -3,6 +3,7 @@ window.addEventListener('DOMContentLoaded', () => {
   btn.forEach( i => {
     
     i.addEventListener('click', (ev) => {
+      ev.preventDefault();
       const icon = ev.currentTarget.querySelector('i');
       const container = ev.currentTarget.closest('.input-group');
       const input = container.querySelector('input');
