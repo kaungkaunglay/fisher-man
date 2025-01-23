@@ -1,20 +1,20 @@
 .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {margin-left: 0;}
 
-body {
+main {
     color: #005B96;
     font-family:'Poppins', sans-serif; 
     background: url(../images/bg/cristian-palmer-XexawgzYOBc-unsplash.jpg) no-repeat fixed center/cover;
 }
 
-a {transition: color 0.3s}
-a:hover {color: #0045ac;text-decoration: underline !important;}
+main a {transition: color 0.3s}
+main a:hover {color: #0045ac;text-decoration: underline !important;}
 
 main {
     display: flex;
     padding: 60px 0;
 }
 
-.login-box {
+main .login-box {
     position: relative;
     width: 80%;
     height: max-content;
@@ -26,8 +26,8 @@ main {
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
 }
 
-.login-box::before,
-.login-box::after {
+main .login-box::before,
+main .login-box::after {
     content: '';
     width: 150px;
     aspect-ratio: 1/1;
@@ -36,14 +36,14 @@ main {
     animation: 1.5s ease-in-out;
 }
 
-.login-box::before {
+main .login-box::before {
     left: -100px;
     top: 50%;
     background: url(../../assets/images/fishes/Fish-01.svg) no-repeat center/300px;
     animation-name: fish01_move;
 }
 
-.login-box::after {
+main .login-box::after {
     right: -100px;
     top: 30%;
     background: url(../../assets/images/fishes/Fish-02.svg) no-repeat center/300px;
@@ -60,38 +60,38 @@ main {
     100%{right: -100px;opacity: 1;}
 }
 
-.login-header h2 {
+main .login-header h2 {
     font-weight: bold;
     font-size: 30px;
     text-align: center;
 }
 
-.login-header h2 p {
+main .login-header h2 p {
     font-size: 18px;
     margin-bottom: 25px;
 }
 
-.input-container {
+main .input-container {
     gap: 20px;
 }
 
-.input-box .input-group {
+main .input-box .input-group {
     margin-top: 5px;
     border: 1px solid #e2e0e0;
     border-radius: 10px;
     overflow: hidden;
 }
 
-.input-box .input-group input {
+main .input-box .input-group input {
     font-size: 18px;
     box-shadow: none;
 }
 
-.input-box label {
+main .input-box label {
     letter-spacing: 1.5px;
 }
 
-.input-box input {
+main .input-box input {
     width: 100%;
     color: #000;
     background-color: transparent !important;
@@ -101,45 +101,45 @@ main {
     border-radius: 0.5em;
 }
 
-.input-group:has(input:focus) {
+main .input-group:has(input:focus) {
     box-shadow: 0 2px 3px .1px #0152cbdf;
     border-color: #0045ac;
 }
 
-.input-group:has(input:focus) i {
+main .input-group:has(input:focus) i {
     color: #0152cbdf;
 }
 
-.input-group .btn {
+main .input-group .btn {
     border: none;
     color: #5a5a5a;
     width: 50px;
 }
 
-.input-group .btn:active {
+main .input-group .btn:active {
     opacity: 0.5;
 }
 
-.form-control.is-invalid {
+main .form-control.is-invalid {
     border: none;
 }
 
-.pw-setting {
+main .pw-setting {
     font-size: 15px;
     justify-content: space-between;
 }
 
-.register {
+main .register {
     font-size: 15px;
     margin: 0 auto;
 }
 
-.register p {
+main .register p {
     text-align: center;
     margin-top: 20px;
 }
 
-.input-submit {
+main .input-submit {
     width: 100%;
     border: 1px solid #005B96;
     background-color: #005B96;
@@ -152,16 +152,16 @@ main {
                 color .3s ease-in-out;
 }
 
-.input-submit:hover {
+main .input-submit:hover {
     background-color: #fff;
     color: #005B96;
 }
 
-.input-submit:active {
+main .input-submit:active {
     opacity: 0.7;
 }
 
-.line-wpr {
+main .line-wpr {
     margin: 0 auto;
     width: max-content;
     border: 1px solid #00C300;
@@ -169,16 +169,16 @@ main {
     border-radius: 10px;
 }
 
-.icon-wpr {
+main .icon-wpr {
     display: flex;
     gap: 10px;
     justify-content: center;
 }
-.icon_social{
+main .icon_social{
     width: 30px;
     height: 30px;
 }
-.line-wpr a {
+main .line-wpr a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -187,12 +187,12 @@ main {
     text-decoration: none !important;
 }
 
-.icon {
+main .icon {
     color: #fbfbfc;
     font-size: 20px;
 }
 
-.icon.fa-line {
+main .icon.fa-line {
     font-size: 25px;
 }
 
@@ -200,12 +200,12 @@ main {
     main {
         padding: 50px 10px 80px;
     }
-    .login-box {
+    main .login-box {
         width: 100%;
         padding: 20px;
     }
-    .login-box::before,
-    .login-box::after {
+    main .login-box::before,
+    main .login-box::after {
         display: none;
     }
 }
