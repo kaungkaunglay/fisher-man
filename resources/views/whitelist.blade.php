@@ -1,7 +1,7 @@
 @extends('includes.layout')
 @section('style')
 <link rel="stylesheet" href="{{ asset('assets/css/cart.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/template.css') }}">
+<!-- <link rel="stylesheet" href="{{ asset('assets/css/template.css') }}"> -->
 @endsection
 @section('contents')
 <!-- Breadcrumbs -->

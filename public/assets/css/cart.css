@@ -12,15 +12,26 @@ a{
     font-weight: bold;
     color: #ffffff;
     background: #005B96;
+    text-align: center;
 }
 
 .cart tbody th, .cart tbody td{
-    font-size: 18px;
     font-weight: bold;
     color: #005B96;
     background-color: #ECF5FB;
+    vertical-align: middle;
+    text-align: center;
 }
 
+.cart thead th:nth-child(3),
+.cart tbody td:nth-child(3) {
+    text-align: start;
+}
+
+.cart tbody td:nth-child(2) {
+    display: flex;
+    justify-content: center;
+}
 
 .checkout{
     background-color: #ECF5FB;

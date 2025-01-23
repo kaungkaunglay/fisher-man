@@ -17,7 +17,7 @@
     <div class="input-box d-flex flex-column">
       <label for="username">Username</label>
       <div class="input-group">
-        <input id="username" name="username" placeholder="Username or Email" type="text"  class="form-control bg-second">
+        <input id="username" name="username" placeholder="Username or Email" type="text"  class="form-control">
         <button class="btn" tabindex="-1"><i class="fa-solid fa-user"></i></button>
       </div>
       <span class="invalid-feedback"></span>
@@ -26,7 +26,7 @@
     <div class="input-box d-flex flex-column">
       <label for="password">Password</label>
       <div class="input-group">
-        <input name="password" placeholder="********" type="password" id="password" class="form-control bg-second">
+        <input name="password" placeholder="********" type="password" id="password" class="form-control">
         <button class="btn password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
       </div>
       <span class="error_message"></span>
@@ -43,8 +43,8 @@
       </div>
     </div>
 
-    <input name="submit" id="submit" type="submit" class="input-submit" value="Login">
- 
+    <button name="submit" id="submit" type="submit" class="input-submit">Login</button>
+
     <div class="register">
       <span>Don't have an account?
         <a href="{{ route('register') }}" class="ms-1">Register</a>
@@ -95,13 +95,13 @@
 
                       fields.forEach(function(field) {
                         if (errors[field]) {
-                             $('#' + field).addClass('is-invalid')
+                             $('#' + field)
                                  .closest('.input-box')
                                  .find('span.invalid-feedback')
                                  .addClass('d-block')
                                  .html(errors[field]);
                          } else {
-                             $('#' + field).removeClass('is-invalid')
+                             $('#' + field)
                                  .closest('.input-box')
                                  .find('span.invalid-feedback')
                                  .removeClass('d-block')
