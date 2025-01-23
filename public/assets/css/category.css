@@ -45,10 +45,10 @@ body {
   margin-top: 20px;
 }
 
-.card-list {
+/* .card-list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-}
+} */
 
  @media screen and (max-width: 1350px) {
   .card-list {
