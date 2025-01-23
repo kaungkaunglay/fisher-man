@@ -48,6 +48,11 @@ Route::get('/profile', action: function () {
     return view('profile_seller');
 })->name('profile');
 
+Route::get('/profile/user', action: function () {
+    return view('profile_user');
+})->name('profile_user');
+
+
 Route::get('/support', function () {
     return view('support');
 })->name('support');
