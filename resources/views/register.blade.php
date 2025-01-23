@@ -69,7 +69,7 @@
         <span class="invalid-feedback"></span>
     </div>
 
-    <input name="submit" type="submit" class="input-submit" value="Register">
+    <button name="submit" id="submit" type="submit" class="input-submit">Register</button>
     <div class="register">
         <p>Already have an account?
             <a href="{{ route('login') }}" class="ms-1">Login</a>
