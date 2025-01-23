@@ -15,10 +15,15 @@ a{
 }
 
 .cart tbody th, .cart tbody td{
-    font-size: 18px;
     font-weight: bold;
     color: #005B96;
     background-color: #ECF5FB;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.cart tbody td:nth-child(3) {
+    text-align: start;
 }
 
 
