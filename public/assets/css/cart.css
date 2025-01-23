@@ -28,7 +28,7 @@ a{
     text-align: start;
 }
 
-.cart tbody td:nth-child(2) {
+.cart tbody th:nth-child(2) {
     display: flex;
     justify-content: center;
 }
