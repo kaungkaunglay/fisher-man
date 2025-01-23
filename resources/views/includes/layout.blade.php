@@ -115,14 +115,16 @@
             </div>
             <div class="col-12 col-lg-3 mt-3">
                 <h6 class="text-center text-primary">Useful Links</h6>
-                <ul class="list-unstyled link-list">
-                    <li><a href="{{ route('home') }}">>>Home</a></li>
-                    <li><a href="{{route('product_details')}}">>>Product</a></li>
-                    <li><a href="#">>>FAQ</a></li>
-                    <li><a href="{{route('policy')}}">>>Terms & Privacy</a></li>
-                    <li><a href="#">>>Customer Review</a></li>
-                    <li><a href="#">>>Blogs</a></li>
-                </ul>
+                <div class="usefulLinks d-flex justify-content-center">
+                    <ul class="list-unstyled link-list">
+                        <li><a href="{{ route('home') }}">>>Home</a></li>
+                        <li><a href="{{route('product_details')}}">>>Product</a></li>
+                        <li><a href="#">>>FAQ</a></li>
+                        <li><a href="{{route('policy')}}">>>Terms & Privacy</a></li>
+                        <li><a href="#">>>Customer Review</a></li>
+                        <li><a href="#">>>Blogs</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="col-12 col-lg-2 mt-3 ">
                 <h6 class="text-center text-primary">Contact Us</h6>

@@ -168,6 +168,9 @@ body {
 .horizontal-product-card .card-body .card-title{color: #004B8D;}
 
 
+.all-products .item-card{display: none;}
+.row-list .item-card{display: flex !important;}
+
 
 
 
