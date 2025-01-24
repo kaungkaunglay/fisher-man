@@ -15,12 +15,12 @@
     @csrf
     <div class="input-box d-flex flex-column">
         <label for="username">Username</label>
-        <input id="username" name="username" placeholder="John Doe" type="text" spellcheck="false" autofocus required>
+        <input id="username" name="username" placeholder="John Doe" type="text" spellcheck="false" autofocus >
         <span class="invalid-feedback"></span>
     </div>
     <div class="input-box d-flex flex-column">
         <label for="email">Email</label>
-        <input id="email" name="email" placeholder="example@domain.com" type="text" spellcheck="false" required>
+        <input id="email" name="email" placeholder="example@domain.com" type="text" spellcheck="false">
         <span class="invalid-feedback"></span>
     </div>
     <div class="input-box d-flex flex-column">
