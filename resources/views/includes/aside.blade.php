@@ -14,6 +14,4 @@
     <a href="" class="txt-primary mt-3">&lt;&lt; See more Product &gt;&gt;</a>
 </ul>
 
-
-
 <!-- aside end -->

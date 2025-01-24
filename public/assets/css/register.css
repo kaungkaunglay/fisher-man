@@ -127,14 +127,22 @@ main .input-submit:active {
     main {
         padding: 20px 10px;
     }
-    .login-box {
+    main .login-box {
         width: 100%;
         padding: 20px;
+        
     }
+
 }
 
 @media  screen and (max-width: 768px) {
     main .ph-no {
         gap: inherit;
     }
+    .login-box .login-header{margin-bottom: 10px;}
+    .login-box .login-header h2{font-size: 20px;}
+    .login-box .login-header p{font-weight:600;}
+
+    #register_form .input-box label{font-size: ;}
+   
 }

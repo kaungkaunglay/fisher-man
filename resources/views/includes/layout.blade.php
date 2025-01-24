@@ -91,13 +91,18 @@
   <!-- header section end -->
 
 
+  <!-- main section start -->
+  <main>
+    @yield('contents')
+  </main>
+  <!-- main section end -->
 
   <!-- footer start -->
   <!-- filepath: /C:/fisherman/laravel/fisherman/resources/views/includes/layout.blade.php -->
   <footer class="bg-main w-100">
-    <div class="row justify-content-around w-100 py-3">
+    <div class="row justify-content-around w-100 pb-3">
       <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white">
-        <a href="{{route('home')}}"><img src="{{ asset('assets/images/logo.png') }}" class="logo w-100" alt=""></a>
+        <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo" alt=""></a>
         <p class="text-center">Who We Are: Your Trusted Source for Fresh Seafood.</p>
         <div class="social-icons d-flex justify-content-center gap-4">
           <a href="">
@@ -108,7 +113,7 @@
           <a href=""><img class="icon_social" src="{{asset('assets/icons/custom/xing.svg')}}"></a>
         </div>
       </div>
-      <div class="col-12 col-lg-3 mt-3 d-flex flex-column">
+      <div class="col-12 col-lg-3 mt-3 d-flex flex-column justify-content-center">
         <h6 class="text-center text-primary">Useful Links</h6>
         <ul class="list-unstyled link-list">
           <li><a href="{{ route('home') }}">>>Home</a></li>
@@ -152,7 +157,6 @@
   </div>
 
   <!-- mobile nav end -->
-
 
   <!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
   <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
