@@ -8,12 +8,12 @@
 
 <section class="hero mt-5 container-custom">
     <div class="row justify-content-between">
-    <div class="col-lg-4 col-md-6 d-none d-lg-block">
-        @include('includes.aside')
-    </div>
-    <div class="col-lg-8 col-md-12">
-        @include('includes.slider')
-    </div>
+        <div class="col-lg-4 col-md-6 d-none d-lg-block">
+            @include('includes.aside')
+        </div>
+        <div class="col-lg-8 col-md-12">
+            @include('includes.slider')
+        </div>
     </div>
 </section>
 

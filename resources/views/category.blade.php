@@ -6,7 +6,7 @@
 <div class="wpr row">
   <!-- aside start -->
   <div class="side-menu col-4">
-    @include('includes.aside')
+      @include('includes.aside')
   </div>
   <!-- aside end -->
 

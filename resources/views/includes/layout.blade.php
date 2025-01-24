@@ -103,7 +103,7 @@
     <div class="row justify-content-around w-100 pb-3">
       <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white">
         <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo" alt=""></a>
-        <p class="text-center">Who We Are: Your Trusted Source for Fresh Seafood.</p>
+        <p class="text-center txt-18">Who We Are: Your Trusted Source for Fresh Seafood.</p>
         <div class="social-icons d-flex justify-content-center gap-4">
           <a href="">
             <img class="icon_social" src="{{asset('assets/icons/custom/line.png')}}" alt="Line">
@@ -114,8 +114,8 @@
         </div>
       </div>
       <div class="col-12 col-lg-3 mt-3 d-flex flex-column justify-content-center">
-        <h6 class="text-center text-primary">Useful Links</h6>
-        <ul class="list-unstyled link-list">
+        <h6 class="text-center text-primary mb-2">Useful Links</h6>
+        <ul class="list-unstyled link-list txt-15">
           <li><a href="{{ route('home') }}">>>Home</a></li>
           <li><a href="{{route('product_details')}}">>>Product</a></li>
           <li><a href="#">>>FAQ</a></li>
@@ -125,8 +125,8 @@
         </ul>
       </div>
       <div class="col-12 col-lg-2 mt-3 ">
-        <h6 class="text-center text-primary">Contact Us</h6>
-        <ul class="list-unstyled text-white text-start">
+        <h6 class="text-center text-primary mb-2">Contact Us</h6>
+        <ul class="list-unstyled text-white txt-15 text-start">
           <li><a href="#">Address : address</a></li>
           <li><a href="#">Phone : 098756292</a></li>
           <li><a href="#">Email : user@email.com</a></li>
@@ -134,10 +134,10 @@
     </div>
     <div class="row bg-dark m-0 justify-content-around">
       <div class="col-lg-5 text-white text-center text-lg-start">
-        <p class="my-2">&copy; Copyright 2024-fisherman Designed by Andfun</p>
+        <p class="my-2 txt-13">&copy; Copyright 2024-fisherman Designed by Andfun</p>
       </div>
       <div class="col-lg-5 text-white text-lg-end text-center">
-        <p class="my-2">Privacy | Terms</p>
+        <p class="my-2 txt-13">Privacy | Terms</p>
       </div>
     </div>
   </footer>

@@ -78,6 +78,10 @@ header .navbar-expand-lg .navbar-toggler {
     color: #000000;
 }
 
+.txt-13{font-size: 13px !important;}
+.txt-15{font-size: 15px !important;}
+.txt-18{font-size: 18px !important;}
+
 .menu-header{
     /* font-family: "Roboto", serif; */
     font-size: 15px;
@@ -244,7 +248,7 @@ li {
 
 /* side bar  */
 
-.side-menu {
+/* .side-menu {
     background-color: #ECF5FB;
     height: max-content;
     padding: 20px 23px;
@@ -273,7 +277,7 @@ li {
 
   .see-product:hover {
     opacity: 0.8;
-  }
+  } */
 
 
 /* end side bar  */
