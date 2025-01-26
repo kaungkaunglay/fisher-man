@@ -4,7 +4,7 @@
 @endsection
 @section('contents')
 <div class="login-box d-flex flex-column">
-      
+
   <div class="login-header">
     <h2> Login
       <p> Welcome to Fisherman Login Page</p>
@@ -39,9 +39,9 @@
         <input type="checkbox" id="remember">
         <label for="remember">Remember me</label>
       </div>
-  
+
       <div class="forgot-pw">
-        <a href="#">Forgot password</a>
+        <a href="{{route('forgotpassword')}}">Forgot password</a>
       </div>
     </div>
 
@@ -51,7 +51,7 @@
       <span>Don't have an account?
         <a href="{{ route('register') }}" class="ms-1">Register</a>
       </span>
-      <p class="">(or)</p> 
+      <p class="">(or)</p>
     </div>
     <div class="line-wpr green-bg">
       <a href="">
@@ -93,7 +93,7 @@
                         $('#message').html(response.message);
                       }
                       var errors = response.errors;
-                  
+
                       var fields = [
                           'username',
                           'password'
@@ -114,7 +114,7 @@
                                   .html('');
                           }
                       });
-                      
+
                     }
                  }
              });

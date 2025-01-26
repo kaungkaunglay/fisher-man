@@ -20,7 +20,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/images/favicon/favicon-32x32.png')}}">
   <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/favicon/favicon-16x16.png')}}">
   <link rel="manifest" href="{{asset('assets/images/favicon/site.webmanifest')}}">
-  <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
+
 </head>
 
 <body>
@@ -163,6 +163,7 @@
   <script src="{{ asset('assets/js/popup.js') }}"></script>
   <script src="{{ asset('assets/js/moving-text.js') }}"></script>
   <script src="{{ asset('assets/js/password.js') }}"></script>
+  <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
 </body>
 
 </html>

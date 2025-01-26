@@ -27,6 +27,9 @@ Route::post('/login', [CustomersController::class, 'login_store'])->name('login_
 Route::get('/register', [CustomersController::class, 'register'])->name('register');
 Route::post('/register', [CustomersController::class, 'register_store'])->name('register_store');
 
+// Forgot_password for customer and seller
+Route::get('/forgot_password',[CustomersController::class,'forgot_password'])->name('forgotpassword');
+
 Route::get('/check-auth', function () {
     return Auth::guard('user')->check() ? 'Authenticated' : 'Not Authenticated';
 });

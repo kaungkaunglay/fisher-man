@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 class CustomersController extends Controller
 {
-    public function register() { 
+    public function register() {
         return view('register');
     }
     public function login(){
@@ -39,7 +39,7 @@ class CustomersController extends Controller
             'line_id.min' => 'The line ID must be at least 4 characters.',
             'line_id.max' => 'The line ID may not be greater than 20 characters.',
         ];
-        
+
         $validator = Validator::make($request->all(), [
             'username' => 'required|min:4|max:12|unique:users,username',
             'email' => 'required|email|unique:users,email',
@@ -66,7 +66,7 @@ class CustomersController extends Controller
             $user->second_phone = $request->second_phone;
             $user->line_id = $request->line_id;
             $user->remember_token = Str::random(60);
-            $user->save(); 
+            $user->save();
             return response()->json(['status' => true, 'message' => 'Register Success']);
         }
     }
@@ -81,11 +81,16 @@ class CustomersController extends Controller
 
             $user = Customers::where('username', $request->username)->first();
             if($user && Hash::check($request->password, $user->password)){
-                
+
                 return response()->json(['status' => true, 'message' => 'Login success', 'errors'=> '']);
             }
 
             return response()->json(['status' => false, 'message' => 'Username or Password is Incorrect']);
         }
+    }
+
+    // forgotpassword for user
+    public function forgot_password(){
+        return view('forgot_password');
     }
 }
