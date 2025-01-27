@@ -28,7 +28,8 @@ a{
     text-align: start;
 }
 
-.cart tbody th:nth-child(2) {
+.cart tbody th:nth-child(2),
+.cart tbody th:nth-child(5) {
     display: flex;
     justify-content: center;
 }
@@ -52,6 +53,8 @@ iframe{
 .mobile{
     display: none;
 }
+
+.mobile #cost {display: none;}
 
 input[type="checkbox"] {
     width: 20px;

@@ -4,8 +4,22 @@
 <link rel="stylesheet" href="{{ asset('assets/css/whitelist.css') }}" />
 @endsection
 @section('contents')
-<div class="container cart m-t-20">
-    <table class="table desktop">
+<!-- Breadcrumbs -->
+<nav aria-label="breadcrumb" class="py-4">
+    <div class="container">
+        <ol class="breadcrumb mb-0 bg-transparent">
+            <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Cart</li>
+        </ol>
+    </div>
+</nav>
+<!-- ./Breadcrumbs -->
+
+<!-- Main Content -->
+<div class="container cart">
+
+    <!-- Desktop Style -->
+    <table class="table desktop" id="table">
         <thead>
             <tr>
                 <th scope="col">No.</th>
@@ -18,7 +32,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr id="row">
                 <th scope="row">
                     1
                 </th>
@@ -26,9 +40,7 @@
                     <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
                 </th>
                 <td>Mark</td>
-                <td>
-                    100$
-                </td>
+                <td id="price">$100</td>
                 <td>
                     <div class="quanity">
                         <button class="btn" id="decrement">-</button>
@@ -37,14 +49,14 @@
                     </div>
 
                 </td>
-                <td>1</td>
+                <td id="cost">$100</td>
                 <td>
                     <a href="#">
                         <i class="fa-solid fa-trash-can"></i>
                     </a>
                 </td>
             </tr>
-            <tr>
+            <tr id="row">
                 <th scope="row">
                     2
                 </th>
@@ -52,9 +64,7 @@
                     <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
                 </th>
                 <td>Mark</td>
-                <td>
-                    100$
-                </td>
+                <td id="price">$100</td>
                 <td>
                     <div class="quanity">
                         <button class="btn" id="decrement">-</button>
@@ -63,7 +73,7 @@
                     </div>
 
                 </td>
-                <td>1</td>
+                <td id="cost">$100</td>
                 <td>
                     <a href="#">
                         <i class="fa-solid fa-trash-can"></i>
@@ -74,18 +84,25 @@
         <tfoot>
             <tr>
                 <td colspan="5">Total</td>
-                <td>200$</td>
-                <td></td>
+                <td colspan="2">
+                    <span id="total"></span>
+                </td>
             </tr>
         </tfoot>
     </table>
-    <div class="mobile">
+    <!-- ./Desktop Style -->
+
+    <!-- Mobile Style -->
+    <div class="mobile" id="table">
         <div class="card d-flex flex-row">
             <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
             <div class="card-body d-flex flex-row justify-content-between align-items-center">
-                <div class="">
+                <div id="row">
                     <h5 class="card-title">Mark</h5>
-                    <p class="card-text">100$</p>
+                    <p class="card-text">
+                        <span id="cost">$100</span>
+                        <span id="price">$100</span>
+                    </p>
                     <div class="quanity">
                         <button class="btn" id="decrement">-</button>
                         <input type="text" value="1" id="quantity" readonly>
@@ -101,9 +118,12 @@
         <div class="card d-flex flex-row">
             <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
             <div class="card-body d-flex flex-row justify-content-between align-items-center">
-                <div class="">
+                <div id="row">
                     <h5 class="card-title">Mark</h5>
-                    <p class="card-text">100$</p>
+                    <p class="card-text">
+                        <span id="cost">$100</span>
+                        <span id="price">$100</span>
+                    </p>
                     <div class="quanity">
                         <button class="btn" id="decrement">-</button>
                         <input type="text" value="1" id="quantity" readonly>
@@ -118,15 +138,21 @@
         </div>
         <div class="total">
             <p>Total :</p>
-            <p>$200</p>
+            <p>
+                <span id="total"></span>
+            </p>
         </div>
         
     </div>
+    <!-- ./Mobile Style -->
 
     <div class="text-end">
         <a href="#" class="common-btn">Checkout</a>
     </div>
-    <div class="checkout d-lg-flex align-items-center">
+    
+    <div class="checkout d-md-flex align-items-center">
+
+        <!-- Form Section -->
         <div class="checkout-form col-md-5">
             <form>
                 <div class="mb-3">
@@ -159,17 +185,22 @@
                     <button type="submit" class="common-btn">Submit</button>
                 </div>
             </form>
-            
         </div>
+        <!-- ./Form Section -->
+
         <div class="col-md-2"></div>
+
         <div class="map col-md-5">
             <h3 class="title m-b-20">
                 Select your address on the map
             </h3>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15635.942969457286!2d104.94809415!3d11.5528796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310957427939910d%3A0xbfc58c8bcfc56e39!2sKart%20Station%20by%20DIB%20Club!5e0!3m2!1sen!2skh!4v1736398726990!5m2!1sen!2skh" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
+
     </div>
+
 </div>
+<!-- ./Main Content -->
 
 <script src="{{ asset('assets/js/cart.js') }}"></script>
 @endsection

@@ -1,7 +1,6 @@
 @extends('includes.layout')
 @section('style')
-<link rel="stylesheet" href="{{ asset('assets/css/cart.css') }}">
-<!-- <link rel="stylesheet" href="{{ asset('assets/css/template.css') }}"> -->
+<link rel="stylesheet" href="{{ asset('assets/css/whitelist.css') }}">
 @endsection
 @section('contents')
 <!-- Breadcrumbs -->
@@ -13,119 +12,128 @@
         </ol>
     </div>
 </nav>
+<!-- ./Breadcrumbs -->
 
-<main>
-    <div class="container cart m-b-20">
-        <table class="table desktop">
-            <thead>
-                <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Product address</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Remove</th>
-                    <th scope="col">Select</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">
-                        1
-                    </th>
-                    <th>
-                        <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
-                    </th>
-                    <td>Mark</td>
-                    <td>
-                        100$
-                    </td>
-                    <td>
-                        <i class="fa-solid fa-trash-can"></i>
-                    </td>
-                    <td>
-                        <input type="checkbox">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        1
-                    </th>
-                    <th>
-                        <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
-                    </th>
-                    <td>Mark</td>
-                    <td>
-                        100$
-                    </td>
-                    <td>
-                        <i class="fa-solid fa-trash-can"></i>
-                    </td>
-                    <td>
-                        <input type="checkbox">
-                    </td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3">Total</td>
-                    <td colspan="3">200$</td>
-                </tr>
-            </tfoot>
-        </table>
-        <div class="mobile">
-            <div class="card d-flex flex-row">
-                <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
-                <div class="card-body d-flex flex-row justify-content-between align-items-center">
-                    <div class="">
-                        <h5 class="card-title">Mark</h5>
-                        <p class="card-text">100$</p>
-                        <div class="quanity">
-                            <button class="btn" id="decrement">-</button>
-                            <input type="text" value="1" id="quantity" readonly>
-                            <button class="btn" id="increment">+</button>
-                        </div>
-                    </div>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="btn mobile-del-btn">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </a>
-                        <input type="checkbox" class="mobile-select">
-                    </div>
-                </div>
-            </div>
-            <div class="card d-flex flex-row">
-                <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
-                <div class="card-body d-flex flex-row justify-content-between align-items-center">
-                    <div class="">
-                        <h5 class="card-title">Mark</h5>
-                        <p class="card-text">100$</p>
-                        <div class="quanity">
-                            <button class="btn" id="decrement">-</button>
-                            <input type="text" value="1" id="quantity" readonly>
-                            <button class="btn" id="increment">+</button>
-                        </div>
-                    </div>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="btn mobile-del-btn">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </a>
-                        <input type="checkbox" class="mobile-select">
+<!-- Main Content -->
+<div class="container cart m-b-20">
+
+    <!-- Desktop Style -->
+    <table class="table desktop">
+        <thead>
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Image</th>
+                <th scope="col">Product address</th>
+                <th scope="col">Price</th>
+                <th scope="col">Remove</th>
+                <th scope="col">Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th class="number" scope="row">
+                    1
+                </th>
+                <th>
+                    <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
+                </th>
+                <td>Mark</td>
+                <td id="price">$100</td>
+                <td>
+                    <i class="fa-solid fa-trash-can"></i>
+                </td>
+                <td>
+                    <input type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <th class="number" scope="row">
+                    1
+                </th>
+                <th>
+                    <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
+                </th>
+                <td>Mark</td>
+                <td id="price">$100</td>
+                <td>
+                    <i class="fa-solid fa-trash-can"></i>
+                </td>
+                <td>
+                    <input type="checkbox">
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">Total</td>
+                <td>
+                    <span id="total"></span>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <!-- ./Desktop Style -->
+
+    <!-- Mobile Style -->
+    <div class="table mobile">
+        <div class="card d-flex flex-row">
+            <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
+            <div class="card-body d-flex flex-row justify-content-between align-items-center">
+                <div class="">
+                    <h5 class="card-title">Mark</h5>
+                    <p class="card-text">
+                        <span id="price">$100</span>
+                    </p>
+                    <div class="quanity">
+                        <button class="btn" id="decrement">-</button>
+                        <input type="text" value="1" id="quantity" readonly>
+                        <button class="btn" id="increment">+</button>
                     </div>
                 </div>
+                <div class="d-flex gap-3">
+                    <a href="#" class="btn mobile-del-btn">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </a>
+                    <input type="checkbox" class="mobile-select">
+                </div>
             </div>
-            <div class="total">
-                <p>Total :</p>
-                <p>$200</p>
+        </div>
+        <div class="card d-flex flex-row">
+            <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
+            <div class="card-body d-flex flex-row justify-content-between align-items-center">
+                <div class="">
+                    <h5 class="card-title">Mark</h5>
+                    <p class="card-text">
+                        <span id="price">$100</span>
+                    </p>
+                    <div class="quanity">
+                        <button class="btn" id="decrement">-</button>
+                        <input type="text" value="1" id="quantity" readonly>
+                        <button class="btn" id="increment">+</button>
+                    </div>
+                </div>
+                <div class="d-flex gap-3">
+                    <a href="#" class="btn mobile-del-btn">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </a>
+                    <input type="checkbox" class="mobile-select">
+                </div>
             </div>
-
         </div>
-
-        <div class="text-end d-flex flex-column flex-lg-row gap-3 justify-content-end">
-            <a href="#" class="common-btn">Shop more</a>
-            <a href="#" class="common-btn">Add to Card</a>
+        <div class="total">
+            <p>Total :</p>
+            <p>
+                <span id="total"></span>
+            </p>
         </div>
-
     </div>
-</main>
+    <!-- ./Mobile Style -->
+
+    <div class="text-end d-flex flex-column flex-lg-row gap-3 justify-content-end">
+        <a href="#" class="common-btn">Shop more</a>
+        <a href="#" class="common-btn">Add to Card</a>
+    </div>
+</div>
+<!-- ./Main Content -->
 <script src="{{ asset('assets/js/cart.js') }}"></script>
 @endsection
