@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Users; 
+use App\Models\Users;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -50,7 +51,7 @@ class UsersController extends Controller
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,16}$/'
             ],
             'confirm_password' => 'required|same:password',
-            'first_phoone' => ['required', 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'],
+            'first_phone' => ['required', 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'],
             'second_phone' => ['nullable', 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'],
             'line_id' => 'required|min:4|max:20'
         ], $messages);
@@ -78,11 +79,14 @@ class UsersController extends Controller
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
+            // Attempt to find the user by username or email
+            $user = Users::where('username', $request->username)
+            ->orWhere('email', $request->username)
+            ->first();
 
-            $user = Users::where('username', $request->username)->first();
             if($user && Hash::check($request->password, $user->password)){
-
-                return response()->json(['status' => true, 'message' => 'Login success', 'errors'=> '']);
+                Auth::login($user);
+                return response()->json(['status' => true, 'message' => 'Login success']);
             }
 
             return response()->json(['status' => false, 'message' => 'Username or Password is Incorrect']);
