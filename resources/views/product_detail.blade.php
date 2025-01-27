@@ -38,7 +38,7 @@
                         <p class="m-0">20/02/2025</p>
                     </div>
                     <div class="product-price">
-                        <p class="m-b-10 price ">$200</p>
+                        <p class="m-b-10 price ">¥1000</p>
                         <p class="m-0 category-txt"><a href="#">鮮魚</a> | <a href="#">白身魚</a></p>
                     </div>
                     <div class="m-b-20 m-t-10">
@@ -46,8 +46,8 @@
                             <button class="btn" id="decrement">-</button>
                             <input type="text" value="1" id="quantity" readonly>
                             <button class="btn" id="increment">+</button>
+                            <button class="common-btn ms-5">Add to Cart</button>
                         </div>
-                        <!-- <button class="common-btn">Add to Cart</button> -->
                     </div>
                     <div class="detail">
                         <h3 class="m-b-20 title">Detail</h3>
@@ -71,7 +71,7 @@
 </section>
 <!-- Review start -->
 <div class="reviewer container-custom">
-    <h3 class="m-t-b-20 title">
+    <h3 class="m-t-b-20 fs-2 fw-bold txt-primary">
         Review
     </h1>
     <div class="user-review-container" id="reviewContainer">
@@ -141,7 +141,7 @@
     <div id="pagination-controls" class="pagination-controls text-center m-b-20"></div>
 </div>
 <div class="review-form container-custom mb-3 p-0">
-    <h3 class="title text-center m-b-20">Add a review</h3>
+    <h3 class="text-center m-b-20 fs-2 fw-bold txt-primary">Add a review</h3>
     <div class="row justify-content-center review-form-container">
         <div class="col-6">
             <form>
@@ -182,4 +182,5 @@
     </div>
 </div>
 <script src="{{ asset('assets/js/cart.js') }}"></script>
+<script src="{{ asset('assets/js/pagination.js') }}"></script>
 @endsection

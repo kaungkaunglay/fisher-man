@@ -1,40 +1,36 @@
 @extends('includes.layout')
 @section('style')
 <link rel="stylesheet" href="{{ asset('assets/css/sub_category.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" />
 @endsection
 @section('contents')
+
+<section class="hero mt-5 container-custom">
+    <div class="row justify-content-between">
+        <div class="col-lg-4 col-md-6 d-none d-lg-block">
+            @include('includes.aside')
+        </div>
+        <div class="col-lg-8 col-md-12">
+            @include('includes.slider')
+        </div>
+    </div>
+</section>
 <div class="container-custom">
-  <div class="hero-section d-flex justify-content-center">
-    <div class="side-menu col-3">
-      @include('includes.aside')
-    </div>
-    <div class="slider-hero col-9">
-      @include('includes.slider')
-    </div>
-  </div>
   <nav aria-label="breadcrumb" class="py-4">
-    <div class="container">
       <ol class="breadcrumb mb-0 bg-transparent">
         <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Support</li>
+        <li class="breadcrumb-item" aria-current="page"><a href="">Categories</a></li>
+        <li class="breadcrumb-item" aria-current="page"><a href="">イカ</a></li>
       </ol>
-    </div>
   </nav>
-  <div class="sub-category">
+  <div class="sub-category mb-3">
     <h3 class="title text-center m-b-20">Category Name</h3>
-    <div class="top-bar d-flex justify-content-between">
-      <div>
-        <button class="btn" id="card-list-btn"><i class="fa-solid fa-th-large"></i></button>
-        <button class="btn" id="row-list-btn"><i class="fa-solid fa-list"></i></button>
-      </div>
-      <div class="m-b-20">
-        
-        <button class="btn"><i class="fa-solid fa-sort"></i></button>
-        <button class="btn btn-primary sort">Sort by</button>
-      </div>
-      
-    </div>
-    <div class="range-slider">
+    <div class="filter d-flex justify-content-between align-items-center mb-3">
+        <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
+            <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
+            <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
+        </div>
+        <div class="range-slider">
           <input type="number" class="min-price" value="1" min="1" max="100">
           <h3 class="txt">Price Range</h3>
           <input type="number" class="max-price" value="25" min="1" max="100">
@@ -47,6 +43,24 @@
             </div>
           </div>
         </div>
+        <div class="sort-container">
+            <div class="arrows">
+                <button><i class="fa-solid fa-caret-up"></i></button>
+                <button><i class="fa-solid fa-caret-down"></i></button>
+            </div>
+            <div class="dropdown">
+                <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Sort by
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  
     <div class="sub-category-item">
       <div class="card-list" id="view-list">
         <div class="item-card">
@@ -54,7 +68,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -73,7 +87,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -92,7 +106,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -111,7 +125,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -130,7 +144,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -149,7 +163,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -168,7 +182,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -187,7 +201,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -206,7 +220,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -225,7 +239,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -244,7 +258,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -263,7 +277,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -282,7 +296,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -301,7 +315,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -320,7 +334,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -339,7 +353,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -358,7 +372,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -377,7 +391,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -396,7 +410,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -415,7 +429,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -434,7 +448,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -453,7 +467,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -472,7 +486,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -491,7 +505,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -510,7 +524,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -529,7 +543,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -548,7 +562,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -567,7 +581,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -586,7 +600,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -605,7 +619,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -624,7 +638,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -643,7 +657,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -662,7 +676,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -681,7 +695,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -700,7 +714,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -719,7 +733,7 @@
             <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
           </a>
           <div class="left">
-            <p class="price m-t-b-10">$10</p>
+            <p class="price m-t-b-10">¥1000</p>
             <div class="title-category">
               <a href="" class="menu-category ">鮮魚 | 白身魚</a>
               <h3 class="title m-t-b-10">真鯛</h3>
@@ -736,12 +750,14 @@
       </div>
     </div>
     <!-- Pagination -->
-      <div class="pagination" id="pagination"></div>
+      <div class="pagination mt-2" id="pagination"></div>
+      <!-- <div id="pagination-controls" class="pagination-controls text-center m-b-20"></div> -->
   </div>
 </div>
 
 <script src="{{asset('assets/js/slider.js')}}"></script>
 <script src="{{asset('assets/js/price-range.js')}}"></script>
+<script src="{{asset('assets/js/pagination.js')}}"></script>
 <script>
  const itemsPerPage = 24;
   const items = document.querySelectorAll(".item-card");
@@ -806,5 +822,7 @@
   createPagination();
   showPage(1);
 </script>
+
+<script src="{{ asset('assets/js/view-list.js') }}"></script>
 
 @endsection

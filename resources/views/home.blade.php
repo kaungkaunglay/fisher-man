@@ -1,7 +1,7 @@
 @extends('includes.layout')
 @section('style')
 <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" />
-<link rel="stylesheet" href="{{asset('assets/css/category.css')}}">
+<!-- <link rel="stylesheet" href="{{asset('assets/css/category.css')}}"> -->
 @endsection
 
 @section('contents')
@@ -32,7 +32,7 @@
     <h6 class="txt-primary fw-bold mb-3">Popular & Top Rating Shop</h6>
     <div class="row shop-carts">
         <div class="col-6 col-md-6 col-lg-3 mb-3">
-            <div class="card rounded-4 overflow-hidden w-100" style="width: 15rem">
+            <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
                 <img src="{{ asset('assets/images/fishes/Rectangle 92 (3).png') }}" class="card-img-top" alt="..." />
                 <div class="card-body bg-main">
                     <p class="card-text text-center text-white">Shop Name</p>
@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="col-6 col-md-6 col-lg-3 mb-3">
-            <div class="card rounded-4 overflow-hidden w-100" style="width: 15rem">
+            <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
                 <img src="{{ asset('assets/images/fishes/Rectangle 92 (2).png') }}" class="card-img-top" alt="..." />
                 <div class="card-body bg-main">
                     <p class="card-text text-center text-white">Shop Name</p>
@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="col-6 col-md-6 col-lg-3 mb-3">
-            <div class="card rounded-4 overflow-hidden w-100" style="width: 15rem">
+            <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
                 <img src="{{ asset('assets/images/fishes/Rectangle 92 (1).png') }}" class="card-img-top" alt="..." />
                 <div class="card-body bg-main">
                     <p class="card-text text-center text-white">Shop Name</p>
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="col-6 col-md-6 col-lg-3 mb-3">
-            <div class="card rounded-4 overflow-hidden w-100" style="width: 15rem">
+            <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
                 <img src="{{ asset('assets/images/fishes/Rectangle 92.png') }}" class="card-img-top" alt="..." />
                 <div class="card-body bg-main">
                     <p class="card-text text-center text-white">Shop Name</p>
@@ -98,7 +98,7 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>
@@ -117,7 +117,7 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>
@@ -136,7 +136,7 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>
@@ -155,7 +155,7 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>
@@ -174,7 +174,7 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>
@@ -193,7 +193,7 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>
@@ -207,125 +207,12 @@
                 </div>
             </div>
         </div>
-        <div class="item-card">
-            <a href="{{ url('/product') }}" class="right">
-                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            </a>
-            <div class="left">
-                <p class="price m-t-b-10">$10</p>
-                <div class="title-category">
-                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
-                    <h3 class="title m-t-b-10">真鯛</h3>
-                </div>
-                <a href="{{ url('/product') }}" class="txt m-b-10">
-                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
-                </a>
-                <div class="d-flex card-btn m-t-10">
-                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
-                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="item-card">
-            <a href="{{ url('/product') }}" class="right">
-                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            </a>
-            <div class="left">
-                <p class="price m-t-b-10">$10</p>
-                <div class="title-category">
-                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
-                    <h3 class="title m-t-b-10">真鯛</h3>
-                </div>
-                <a href="{{ url('/product') }}" class="txt m-b-10">
-                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
-                </a>
-                <div class="d-flex card-btn m-t-10">
-                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
-                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="item-card">
-            <a href="{{ url('/product') }}" class="right">
-                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            </a>
-            <div class="left">
-                <p class="price m-t-b-10">$10</p>
-                <div class="title-category">
-                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
-                    <h3 class="title m-t-b-10">真鯛</h3>
-                </div>
-                <a href="{{ url('/product') }}" class="txt m-b-10">
-                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
-                </a>
-                <div class="d-flex card-btn m-t-10">
-                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
-                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="item-card">
-            <a href="{{ url('/product') }}" class="right">
-                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            </a>
-            <div class="left">
-                <p class="price m-t-b-10">$10</p>
-                <div class="title-category">
-                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
-                    <h3 class="title m-t-b-10">真鯛</h3>
-                </div>
-                <a href="{{ url('/product') }}" class="txt m-b-10">
-                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
-                </a>
-                <div class="d-flex card-btn m-t-10">
-                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
-                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="item-card">
-            <a href="{{ url('/product') }}" class="right">
-                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            </a>
-            <div class="left">
-                <p class="price m-t-b-10">$10</p>
-                <div class="title-category">
-                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
-                    <h3 class="title m-t-b-10">真鯛</h3>
-                </div>
-                <a href="{{ url('/product') }}" class="txt m-b-10">
-                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
-                </a>
-                <div class="d-flex card-btn m-t-10">
-                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
-                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="item-card">
-            <a href="{{ url('/product') }}" class="right">
-                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
-            </a>
-            <div class="left">
-                <p class="price m-t-b-10">$10</p>
-                <div class="title-category">
-                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
-                    <h3 class="title m-t-b-10">真鯛</h3>
-                </div>
-                <a href="{{ url('/product') }}" class="txt m-b-10">
-                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
-                </a>
-                <div class="d-flex card-btn m-t-10">
-                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
-                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
-                </div>
-            </div>
-        </div>
+        
     </div>
 
     <div class="row justify-content-center">
         <div class="col-5 col-lg-3 text-center">
-            <a class="btn btn-outline-primary see-more-btn mt-3">
+            <a class="btn btn-outline-primary see-more-btn mt-3" href="{{ route('special-offer') }}">
                 See More
             </a>
         </div>
@@ -363,7 +250,7 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>
@@ -382,7 +269,7 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>
@@ -401,7 +288,7 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>
@@ -420,7 +307,7 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>
@@ -439,7 +326,7 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>
@@ -458,7 +345,7 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>
@@ -477,7 +364,7 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>
@@ -496,7 +383,7 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>
@@ -515,7 +402,7 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>
@@ -534,7 +421,7 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>
@@ -553,7 +440,7 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>
@@ -572,7 +459,235 @@
                 <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
             </a>
             <div class="left">
-                <p class="price m-t-b-10">$10</p>
+                <p class="price m-t-b-10">¥1000</p>
+                <div class="title-category">
+                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                    <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+                <p class="price m-t-b-10">¥1000</p>
+                <div class="title-category">
+                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                    <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+                <p class="price m-t-b-10">¥1000</p>
+                <div class="title-category">
+                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                    <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+                <p class="price m-t-b-10">¥1000</p>
+                <div class="title-category">
+                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                    <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+                <p class="price m-t-b-10">¥1000</p>
+                <div class="title-category">
+                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                    <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+                <p class="price m-t-b-10">¥1000</p>
+                <div class="title-category">
+                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                    <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+                <p class="price m-t-b-10">¥1000</p>
+                <div class="title-category">
+                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                    <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+                <p class="price m-t-b-10">¥1000</p>
+                <div class="title-category">
+                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                    <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+                <p class="price m-t-b-10">¥1000</p>
+                <div class="title-category">
+                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                    <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+                <p class="price m-t-b-10">¥1000</p>
+                <div class="title-category">
+                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                    <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+                <p class="price m-t-b-10">¥1000</p>
+                <div class="title-category">
+                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                    <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+                <p class="price m-t-b-10">¥1000</p>
+                <div class="title-category">
+                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                    <h3 class="title m-t-b-10">真鯛</h3>
+                </div>
+                <a href="{{ url('/product') }}" class="txt m-b-10">
+                    たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                </a>
+                <div class="d-flex card-btn m-t-10">
+                    <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#" class="product-btn"><i class="fa-solid fa-bookmark"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item-card">
+            <a href="{{ url('/product') }}" class="right">
+                <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
+            </a>
+            <div class="left">
+                <p class="price m-t-b-10">¥1000</p>
                 <div class="title-category">
                     <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                     <h3 class="title m-t-b-10">真鯛</h3>

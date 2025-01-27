@@ -78,14 +78,14 @@
       <li class="close-popup"><a href="#" id="close-popup">
           <i class="fa-solid fa-xmark"></i>
         </a></li>
-      <li><a href="#" class="menu-category">鮮魚 (1134)</a></li>
-      <li><a href="#" class="menu-category">マグロ (188)</a></li>
-      <li><a href="#" class="menu-category">貝類 (322)</a></li>
-      <li><a href="#" class="menu-category">イカ・タコ (190)</a></li>
-      <li><a href="#" class="menu-category">ウニ・イクラ・白子・魚卵 (119)</a></li>
-      <li><a href="#" class="menu-category">海藻・干物・漬魚・ちりめん・練物類 (401)</a></li>
-      <li><a href="#" class="menu-category">珍味・惣菜・漬物 (440)</a></li>
-      <li><a href="#" class="menu-category">調味料・わさび・飾り物 (202)</a></li>
+      <li><a href="{{ route('sub_category') }}" class="menu-category">鮮魚 (1134)</a></li>
+      <li><a href="{{ route('sub_category') }}" class="menu-category">マグロ (188)</a></li>
+      <li><a href="{{ route('sub_category') }}" class="menu-category">貝類 (322)</a></li>
+      <li><a href="{{ route('sub_category') }}" class="menu-category">イカ・タコ (190)</a></li>
+      <li><a href="{{ route('sub_category') }}" class="menu-category">ウニ・イクラ・白子・魚卵 (119)</a></li>
+      <li><a href="{{ route('sub_category') }}" class="menu-category">海藻・干物・漬魚・ちりめん・練物類 (401)</a></li>
+      <li><a href="{{ route('sub_category') }}" class="menu-category">珍味・惣菜・漬物 (440)</a></li>
+      <li><a href="{{ route('sub_category') }}" class="menu-category">調味料・わさび・飾り物 (202)</a></li>
     </ul>
   </div>
   <!-- header section end -->
@@ -110,7 +110,7 @@
           </a>
           <a href=""><img class="icon_social" src="{{asset('assets/icons/custom/facebook.png')}}" alt="Line"></a>
           <a href=""><img class="icon_social" src="{{asset('assets/icons/custom/wechat.png')}}" alt="Line"></a>
-          <a href=""><img class="icon_social" src="{{asset('assets/icons/custom/xing.svg')}}"></a>
+          <a href=""><img class="icon_social" src="{{asset('assets/icons/custom/xcom.png')}}"></a>
         </div>
       </div>
       <div class="col-12 col-lg-3 mt-3 d-flex flex-column justify-content-center">
@@ -137,7 +137,7 @@
         <p class="my-2 txt-13">&copy; Copyright 2024-fisherman Designed by Andfun</p>
       </div>
       <div class="col-lg-5 text-white text-lg-end text-center">
-        <p class="my-2 txt-13">Privacy | Terms</p>
+        <p class="my-2 txt-13"><a href="{{route('policy')}}">Privacy | Terms</a></p>
       </div>
     </div>
   </footer>
