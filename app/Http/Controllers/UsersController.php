@@ -50,6 +50,7 @@ class UsersController extends Controller
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,16}$/'
             ],
             'confirm_password' => 'required|same:password',
+            'first_phone' => ['required', 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'],
             'second_phone' => ['nullable', 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'],
             'line_id' => 'required|min:4|max:20'
         ], $messages);
@@ -78,9 +79,11 @@ class UsersController extends Controller
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
 
-            $user = Users::where('username', $request->username)->first();
+            $user = Users::where('username', $request->username)
+            ->orWhere('email', $request->username)
+            ->first();
+            
             if($user && Hash::check($request->password, $user->password)){
-
                 return response()->json(['status' => true, 'message' => 'Login success', 'errors'=> '']);
             }
 

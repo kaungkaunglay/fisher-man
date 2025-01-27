@@ -14,7 +14,8 @@
   <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" />
-
+  <!-- add jquery -->
+  <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
   <!-- {{-- favicon --}} -->
   <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/images/favicon/apple-touch-icon.png')}}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/images/favicon/favicon-32x32.png')}}">
