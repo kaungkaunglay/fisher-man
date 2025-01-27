@@ -1,6 +1,4 @@
-a{
-    text-decoration: none;
-}
+a{text-decoration: none;}
 
 .cart th img{
     width: 100px;
@@ -44,10 +42,17 @@ a{
     padding: 20px;
 }
 
-.checkout-form input, .checkout-form select{
+.checkout-form input,
+.checkout-form select{
     height: 45px;
     border: 1px solid #005B96;
     background-color: transparent;
+}
+
+.checkout-form input:focus,
+.checkout-form select:focus {
+    box-shadow: 0 2px 3px .1px #0152cbdf;
+    border-color: #0045ac;
 }
 
 iframe{
@@ -59,11 +64,6 @@ iframe{
 }
 
 .mobile #cost {display: none;}
-
-input[type="checkbox"] {
-    width: 20px;
-    accent-color: #005B96; /* Change the default color of the checkbox (modern browsers) */
-}
 
 @media screen and (max-width: 768px){
     .desktop{
