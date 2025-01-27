@@ -50,6 +50,7 @@ class UsersController extends Controller
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,16}$/'
             ],
             'confirm_password' => 'required|same:password',
+            'first_phoone' => ['required', 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'],
             'second_phone' => ['nullable', 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'],
             'line_id' => 'required|min:4|max:20'
         ], $messages);
