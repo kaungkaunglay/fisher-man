@@ -1,7 +1,6 @@
 @extends('includes.layout')
 @section('style')
-<!-- <link rel="stylesheet" href="{{ asset('assets/css/cart.css') }}" /> -->
-<link rel="stylesheet" href="{{ asset('assets/css/whitelist.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/css/cart.css') }}" />
 @endsection
 @section('contents')
 <!-- Breadcrumbs -->
@@ -83,8 +82,8 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="5">Total</td>
-                <td colspan="2">
+                <td colspan="6">Total</td>
+                <td>
                     <span id="total"></span>
                 </td>
             </tr>

@@ -15,6 +15,10 @@ a{
     text-align: center;
 }
 
+.cart tfoot td{
+    text-align: end;
+}
+
 .cart tbody th, .cart tbody td{
     font-weight: bold;
     color: #005B96;
@@ -100,8 +104,9 @@ input[type="checkbox"] {
     }
 
     .mobile-del-btn{
+        width: max-content;
+        aspect-ratio: 1/1;
         background: #FF0000;
-        padding: 40px 5px;
         border-radius: 10px;
         color: #ffffff;
     }
