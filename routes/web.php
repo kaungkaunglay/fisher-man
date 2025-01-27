@@ -31,11 +31,10 @@ Route::post('/register', [UsersController::class, 'register_store'])->name('regi
 // Forgot_password for customer and seller
 Route::get('/forgot_password',[UsersController::class,'forgot_password'])->name('forgotpassword');
 
-Route::middleware(['auth.user'])->group(function(){
-    Route::get('/profile/user', action: function () {
-        return view('profile_user');
-    })->name('profile_user');
-});
+Route::get('/profile/user', action: function () {
+    return view('profile_user');
+})->name('profile_user');
+
 
 Route::get('/category', function () {
     return view('category');
