@@ -78,6 +78,10 @@ header .navbar-expand-lg .navbar-toggler {
     color: #000000;
 }
 
+.txt-13{font-size: 13px !important;}
+.txt-15{font-size: 15px !important;}
+.txt-18{font-size: 18px !important;}
+
 .menu-header{
     /* font-family: "Roboto", serif; */
     font-size: 15px;
@@ -174,6 +178,47 @@ header .navbar-expand-lg .navbar-toggler {
     text-decoration: none;
 }
 
+.icon-buttons i{cursor: pointer;}
+
+/* sort button section start */
+.sort-container {
+  display: flex;
+  /* align-items: center; */
+  gap: 10px;
+  border-radius: 10px;
+  padding: 0px 0px 0px 10px;
+
+}
+
+.arrows {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  margin-bottom: 9px;
+
+}
+.arrows button{display: flex;}
+.arrows i{font-size: 20px;color: #005B96;}
+
+.sort-button {
+  background-color: #005B96; /* Deep blue */
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 0px 10px 10px 0px;
+  padding: 8px 16px;
+  cursor: pointer;
+  width: 100px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sort-button:hover {
+  background-color: #003366; /* Slightly darker blue */
+}
+
+/* sort button section end */
+
 
 /* product card animation */
 .card-border-animate {
@@ -244,7 +289,7 @@ li {
 
 /* side bar  */
 
-.side-menu {
+/* .side-menu {
     background-color: #ECF5FB;
     height: max-content;
     padding: 20px 23px;
@@ -273,7 +318,7 @@ li {
 
   .see-product:hover {
     opacity: 0.8;
-  }
+  } */
 
 
 /* end side bar  */
@@ -648,7 +693,7 @@ li {
 /* Card Design */
 
 #view-list{
-    margin-top: 20px;
+    /* margin-top: 20px; */
   }
   
   .card-list {

@@ -4,10 +4,10 @@
 @endsection
 @section('contents')
 <div class="login-box d-flex flex-column">
-  <div class="login-header">
+  <div class="login-header mx-auto">
     <h2> Customer Registeration
+        </h2>
       <p>Register Account & Buy Our Products</p>
-    </h2>
   </div>
 
   <!-- form start -->

@@ -1,7 +1,7 @@
 footer .logo {
-  height: 8vh; /* 8% of the viewport height */
-  max-height: 60px; /* Maximum height */
-  width: auto; /* Maintain aspect ratio */
+  height: 100px; /* 8% of the viewport height */
+  max-height: 100px; /* Maximum height */
+  width: 100px; /* Maintain aspect ratio */
 }
 
 footer .col-12.col-lg-2 {
@@ -12,12 +12,7 @@ footer .col-12.col-lg-2 {
   text-align: center; /* Ensure the content is centered horizontally */
 }
 
-@media (max-width: 768px) {
-  footer .logo {
-      height: 10vh; /* Adjust height for smaller screens */
-      max-height: 60px; /* Adjust maximum height for smaller screens */
-  }
-}
+
 
 footer ul li a {
   text-decoration: none;

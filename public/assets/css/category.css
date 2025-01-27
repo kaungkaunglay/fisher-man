@@ -33,7 +33,7 @@ body {
   gap: 20px;
 }
 
-.category-list li {
+.category-list>li {
   border-radius: 10px;
   background-color: #ECF5FB;
   padding: 20px;
@@ -42,13 +42,13 @@ body {
 /* Card Design */
 
 #view-list{
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
-/* .card-list {
+.card-list {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-} */
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
 
  @media screen and (max-width: 1350px) {
   .card-list {

@@ -17,7 +17,8 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
+    padding-top: 10px;
 }
 
 header .input-group {
@@ -139,7 +140,7 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
 @media screen and (max-width: 992px) {
     .top-header {
         padding-top: 10px;
-        padding-bottom: 25px;
+        padding-bottom: 35px;
     }
 }
 
@@ -181,6 +182,7 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
     .bottom-header nav{
         gap: 50px;
     }
+
     
 }
 

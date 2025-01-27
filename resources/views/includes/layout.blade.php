@@ -20,7 +20,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/images/favicon/favicon-32x32.png')}}">
   <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/favicon/favicon-16x16.png')}}">
   <link rel="manifest" href="{{asset('assets/images/favicon/site.webmanifest')}}">
-  <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
+
 </head>
 
 <body>
@@ -100,10 +100,10 @@
   <!-- footer start -->
   <!-- filepath: /C:/fisherman/laravel/fisherman/resources/views/includes/layout.blade.php -->
   <footer class="bg-main w-100">
-    <div class="row justify-content-around w-100 py-3">
+    <div class="row justify-content-around w-100 pb-3">
       <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white">
-        <a href="{{route('home')}}"><img src="{{ asset('assets/images/logo.png') }}" class="logo w-100" alt=""></a>
-        <p class="text-center">Who We Are: Your Trusted Source for Fresh Seafood.</p>
+        <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo" alt=""></a>
+        <p class="text-center txt-18">Who We Are: Your Trusted Source for Fresh Seafood.</p>
         <div class="social-icons d-flex justify-content-center gap-4">
           <a href="">
             <img class="icon_social" src="{{asset('assets/icons/custom/line.png')}}" alt="Line">
@@ -113,9 +113,9 @@
           <a href=""><img class="icon_social" src="{{asset('assets/icons/custom/xing.svg')}}"></a>
         </div>
       </div>
-      <div class="col-12 col-lg-3 mt-3 d-flex flex-column">
-        <h6 class="text-center text-primary">Useful Links</h6>
-        <ul class="list-unstyled link-list">
+      <div class="col-12 col-lg-3 mt-3 d-flex flex-column justify-content-center">
+        <h6 class="text-center text-primary mb-2">Useful Links</h6>
+        <ul class="list-unstyled link-list txt-15">
           <li><a href="{{ route('home') }}">>>Home</a></li>
           <li><a href="{{route('product_details')}}">>>Product</a></li>
           <li><a href="#">>>FAQ</a></li>
@@ -125,8 +125,8 @@
         </ul>
       </div>
       <div class="col-12 col-lg-2 mt-3 ">
-        <h6 class="text-center text-primary">Contact Us</h6>
-        <ul class="list-unstyled text-white text-start">
+        <h6 class="text-center text-primary mb-2">Contact Us</h6>
+        <ul class="list-unstyled text-white txt-15 text-start">
           <li><a href="#">Address : address</a></li>
           <li><a href="#">Phone : 098756292</a></li>
           <li><a href="#">Email : user@email.com</a></li>
@@ -134,10 +134,10 @@
     </div>
     <div class="row bg-dark m-0 justify-content-around">
       <div class="col-lg-5 text-white text-center text-lg-start">
-        <p class="my-2">&copy; Copyright 2024-fisherman Designed by Andfun</p>
+        <p class="my-2 txt-13">&copy; Copyright 2024-fisherman Designed by Andfun</p>
       </div>
       <div class="col-lg-5 text-white text-lg-end text-center">
-        <p class="my-2">Privacy | Terms</p>
+        <p class="my-2 txt-13">Privacy | Terms</p>
       </div>
     </div>
   </footer>
@@ -158,12 +158,13 @@
 
   <!-- mobile nav end -->
 
-
   <!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
-  <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+  <!-- <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="{{ asset('assets/js/popup.js') }}"></script>
   <script src="{{ asset('assets/js/moving-text.js') }}"></script>
   <script src="{{ asset('assets/js/password.js') }}"></script>
+  <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
 </body>
 
 </html>

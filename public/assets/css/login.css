@@ -203,6 +203,7 @@ main .icon.fa-line {
     main .login-box {
         width: 100%;
         padding: 20px;
+     
     }
     main .login-box::before,
     main .login-box::after {
