@@ -18,7 +18,7 @@
 <div class="container cart m-b-20">
 
     <!-- Desktop Style -->
-    <table class="table desktop">
+    <table class="table desktop" id="table">
         <thead>
             <tr>
                 <th scope="col">No.</th>
@@ -30,7 +30,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr id="row">
                 <th class="number" scope="row">
                     1
                 </th>
@@ -38,7 +38,7 @@
                     <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
                 </th>
                 <td>Mark</td>
-                <td id="price">$100</td>
+                <td id="cost">$100</td>
                 <td>
                     <i class="fa-solid fa-trash-can"></i>
                 </td>
@@ -46,15 +46,15 @@
                     <input type="checkbox">
                 </td>
             </tr>
-            <tr>
+            <tr id="row">
                 <th class="number" scope="row">
-                    1
+                    2
                 </th>
                 <th>
                     <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
                 </th>
                 <td>Mark</td>
-                <td id="price">$100</td>
+                <td id="cost">$100</td>
                 <td>
                     <i class="fa-solid fa-trash-can"></i>
                 </td>
@@ -75,20 +75,15 @@
     <!-- ./Desktop Style -->
 
     <!-- Mobile Style -->
-    <div class="table mobile">
+    <div class="mobile" id="table">
         <div class="card d-flex flex-row">
             <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
             <div class="card-body d-flex flex-row justify-content-between align-items-center">
-                <div class="">
+                <div id="row">
                     <h5 class="card-title">Mark</h5>
                     <p class="card-text">
-                        <span id="price">$100</span>
+                        <span id="cost">$100</span>
                     </p>
-                    <div class="quanity">
-                        <button class="btn" id="decrement">-</button>
-                        <input type="text" value="1" id="quantity" readonly>
-                        <button class="btn" id="increment">+</button>
-                    </div>
                 </div>
                 <div class="d-flex gap-3">
                     <a href="#" class="btn mobile-del-btn">
@@ -101,16 +96,11 @@
         <div class="card d-flex flex-row">
             <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
             <div class="card-body d-flex flex-row justify-content-between align-items-center">
-                <div class="">
+                <div id="row">
                     <h5 class="card-title">Mark</h5>
                     <p class="card-text">
-                        <span id="price">$100</span>
+                        <span id="cost">$100</span>
                     </p>
-                    <div class="quanity">
-                        <button class="btn" id="decrement">-</button>
-                        <input type="text" value="1" id="quantity" readonly>
-                        <button class="btn" id="increment">+</button>
-                    </div>
                 </div>
                 <div class="d-flex gap-3">
                     <a href="#" class="btn mobile-del-btn">

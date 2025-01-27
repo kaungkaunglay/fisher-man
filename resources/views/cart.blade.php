@@ -1,6 +1,6 @@
 @extends('includes.layout')
 @section('style')
-<link rel="stylesheet" href="{{ asset('assets/css/cart.css') }}" />
+<!-- <link rel="stylesheet" href="{{ asset('assets/css/cart.css') }}" /> -->
 <link rel="stylesheet" href="{{ asset('assets/css/whitelist.css') }}" />
 @endsection
 @section('contents')

@@ -1,3 +1,5 @@
+
+
 window.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.quanity').forEach((element) => {
@@ -24,6 +26,10 @@ window.addEventListener('DOMContentLoaded', () => {
     totalSum('.mobile');
 })
 
+/**
+ * Update the total cost amount of that event maker by multiplying with the quantity.
+ * @param {*} target return the parent container of the that target.
+ */
 function update(target) {
     const row = target.closest('#row');
     const price = Number(row.querySelector('#price').textContent.replace('$', ''));
@@ -36,6 +42,11 @@ function update(target) {
     stateCheck();
 }
 
+/**
+ * Caculating the total sum of prices inside container.If use the row parameter, will return the parent of the target. 
+ * @param {*} target the element that calls event. (nor) return a container.
+ * @param {*} row the container name of the target.
+ */
 function totalSum (target, row) {
     const container = row ? target.closest(row): document.querySelector(target);
     const price = container.querySelectorAll('#cost');
@@ -50,12 +61,20 @@ function totalSum (target, row) {
     total.textContent = '$' + result; 
 }
 
+/**
+ * Check between the two states of mobile & desktop and call a secific copyValues function.
+ */
 function stateCheck() {
 
     const mobileState = window.getComputedStyle(document.querySelector('.mobile')).display;
     mobileState !== 'none' ? copyValues('.mobile','.desktop'): copyValues('.desktop','.mobile');
 }
 
+/**
+ * Copying prices, quantities and total from one to another.
+ * @param {*} con1 first container that will give the values.
+ * @param {*} con2 second container for receiving values.
+ */
 function copyValues(con1,con2) {
     const container1 = document.querySelector(con1);
     const container2 = document.querySelector(con2);
