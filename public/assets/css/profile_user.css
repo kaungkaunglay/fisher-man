@@ -1,106 +1,18 @@
 input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance: none;margin: 0;}
 input[type=number] {-moz-appearance: textfield;}
-
-ul {list-style: none;}
+i.fa-line {color: #005B96;;}
 
 body {
   color: #005B96;
-  font-size: 13px;
 }
 
-main {
-  padding: 20px;
-}
-
-.breadcrumb a {
-  color: #005B96;
-  font-size: 15px;
-  font-weight: bold;
-  padding: 0px 5px;
-  text-decoration: none;
-}
-
-.breadcrumb a:first-child {
-  border-right: 1px solid #005B96;
-}
-
-.profile-img img {
-  width: 100%;
-  vertical-align: bottom;
-}
-
-.profile a {
-  width: max-content;
-  display: block;
-  color: inherit;
-  text-decoration: none;
-}
-
-.tele {
-  font-style: normal;
-}
-
-.profile-status {
-  align-items: end;
-}
-
-.profile-detail {
-  gap: 10px;
-  font-weight: bold;
-}
-
-.profile-detail p,
-.title {
-  font-size: 18px;
-}
-
-.profile-detail p {
-    margin-bottom: 0;
-}
-
-.profile-detail .mail,
-.profile-detail .line-acc {
-  font-size: 15px;
-}
-
-.profile-detail i {
-  font-size: 42px;
-}
-
-.address {
-  padding: 20px 0;
-}
-
-.address .title {
-  margin-bottom: 20px;
-}
-
-.profile-address, 
-.profile-tele-list li:first-child {
-  text-indent: -7px;
-}
-
-.profile-tele-list {
-  flex-wrap: wrap;
-}
-
-.btn-container {
-  gap: 20px;
-}
-
-.map .title  {
-  margin-bottom: 20px;
-}
-
-.map iframe {
-  width: 100%;
-  /* height: 100%; */
-  vertical-align: bottom;
+.detail-title {
+  justify-content: space-between;
 }
 
 /* history */
 .history {
-  margin-top: 20px;
+  margin: 20px 0 50px;
   padding: 20px;
   background-color: #ECF5FB;
 }
