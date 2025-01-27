@@ -1,10 +1,27 @@
 .hero-section{
   gap: 20px;
 }
-
-.product-btn{
-  padding: 4px 40px ;
+.pagination{
+  display: flex;
+  justify-content: center;
 }
+
+.pagination a{
+  background-color: transparent;
+  border: 1px solid #3498DB;
+  border-radius: 5px;
+  padding: 9px 18px;
+  margin: 0 5px;
+  cursor: pointer;
+  color: #3498DB;
+}
+
+.pagination a:hover{
+border: 1px solid #3498DB;
+}
+
+
+
 
 @media screen and (max-width:768px) {
   .product-btn{
