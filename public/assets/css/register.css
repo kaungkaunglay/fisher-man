@@ -41,7 +41,7 @@ main .input-container {
 
 main .input-box .input-group {
     margin-top: 5px;
-    border: 1px solid #e2e0e0;
+    border: 2px solid #e2e0e0;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -60,7 +60,7 @@ main .input-box label {
 main .input-box input {
     width: 100%;
     color: #000;
-    border: 1px solid #e2e0e0;
+    border: 2px solid #e2e0e0;
     padding: 8px 10px;
     outline: none;
     border-radius: 0.5em;
@@ -86,12 +86,12 @@ main .input-group .btn:active {
 
 main .input-group:has(input:focus),
 main input:focus {
-    box-shadow: 0 2px 3px .1px #0152cbdf;
-    border-color: #0045ac;
+    box-shadow: 0 2px 3px .1px #0178c7d0;
+    border-color: #0178c7;
 }
 
 main .input-group:has(input:focus) i {
-    color: #0152cbdf;
+    color: #005b96;
 }
 
 
@@ -140,8 +140,5 @@ main .input-submit:active {
     }
     .login-box .login-header{margin-bottom: 10px;}
     .login-box .login-header h2{font-size: 20px;}
-    .login-box .login-header p{font-weight:600;}
-
-    #register_form .input-box label{font-size: ;}
-   
+    .login-box .login-header p{font-weight:600;} 
 }

@@ -76,7 +76,7 @@ main .input-container {
 
 main .input-box .input-group {
     margin-top: 5px;
-    border: 1px solid #e2e0e0;
+    border: 2px solid #e2e0e0;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -101,12 +101,12 @@ main .input-box input {
 }
 
 main .input-group:has(input:focus) {
-    box-shadow: 0 2px 3px .1px #0152cbdf;
-    border-color: #0045ac;
+    box-shadow: 0 2px 3px .1px #0178c7d0;
+    border-color: #0178c7;
 }
 
 main .input-group:has(input:focus) i {
-    color: #0152cbdf;
+    color: #005B96;
 }
 
 main .input-group .btn {

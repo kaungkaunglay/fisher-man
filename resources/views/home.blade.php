@@ -704,7 +704,7 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-5 col-lg-3 text-center">
-            <button class="btn btn-outline-primary see-more-btn mt-3" id="load-more">
+            <button class="common-btn mt-3" id="load-more">
                 Load More
             </button>
         </div>
