@@ -2,7 +2,6 @@ main .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):n
 
 main {
     color: #005B96;
-    font-family:'Poppins', sans-serif; 
     background: url(../images/bg/cristian-palmer-XexawgzYOBc-unsplash.jpg) no-repeat fixed center/cover;
 }
 
