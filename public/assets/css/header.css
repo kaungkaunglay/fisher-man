@@ -170,6 +170,8 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
         width: 100px;
     }
 
+  
+
     .search input{
         padding: 5px 20px;
     }
@@ -184,6 +186,12 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
     }
 
     
+}
+
+@media screen and (max-width: 584px) {
+    .header .input-group {
+        width: 250px !important;
+    }
 }
 
 
