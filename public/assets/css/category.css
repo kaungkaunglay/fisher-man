@@ -47,12 +47,23 @@ body {
 
 .card-list {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr !important;
+}
+
+.product-btn{
+  padding: 4px 35px !important;
 }
 
  @media screen and (max-width: 1350px) {
   .card-list {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+  
+}
+
+@media screen and (max-width: 1045px) {
+  .card-list {
+    grid-template-columns: 1fr 1fr !important;
   }
   
 }
@@ -72,7 +83,16 @@ body {
   }
 
   .card-list {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr !important;
+  }
+  
+}
+
+@media screen and (max-width: 500px) {
+  .card-list {
+  /* background-color: red; */
+  margin-right: 10px;
+  width: 100%;
   }
   
 }
