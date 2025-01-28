@@ -18,7 +18,7 @@
 <section class="container-custom mt-2">
   <div class="row">
     <!-- aside start -->
-    <div class="col-4">
+    <div class="col-4 side-menu">
       @include('includes.aside')
     </div>
     <!-- aside end -->
@@ -102,6 +102,12 @@
           <p class="txt">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam voluptate doloremque quidem reiciendis repudiandae ducimus atque nulla maxime placeat deserunt iure deleniti eius consequatur aliquid, quibusdam enim voluptatibus velit iste!
           </p>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <img src="" alt="">
         </div>
       </div>
 
