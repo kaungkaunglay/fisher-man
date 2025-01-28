@@ -10,8 +10,13 @@
     padding: 0;
     box-sizing: border-box;
 }
+@font-face {
+  font-family: 'BlinkMacSystemFont' !important;
+  src: url('../fonts/BlinkMacSystemFont/blinkmacsystemfont-regular.ttf') format('truetype') !important;
+}
 body{
-    font-size: 18px;
+    font-size: 18px !important;
+    font-family: 'BlinkMacSystemFont', sans-serif !important;
 }
 
 header .input-group {
