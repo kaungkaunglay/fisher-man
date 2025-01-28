@@ -7,13 +7,13 @@
   <title>Fisherman</title>
   <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}" />
-  <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}" />
   @yield('style')
   <link rel="icon" href="demo_icon.gif" type="image/gif" sizes="16x16">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}" />
   <!-- add jquery -->
   <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
   <!-- {{-- favicon --}} -->
