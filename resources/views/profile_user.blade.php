@@ -15,12 +15,12 @@
 <!-- ./Breadcrumbs -->
 
 <!-- Main Content -->
-<div class="container">
+<div class="container-custom">
   <div class="row">
     <div class="col -12 col-lg-6">
       <div class="row">
         <div class="col-12 col-lg-6">
-          <img src="{{asset('assets/images/profile.png')}}" class="w-100" alt="">
+          <img src="{{asset('assets/images/account1.svg')}}" class="w-100" alt="">
         </div>
         <div class="col-12 col-lg-6 mt-2 mt-lg-0">
           <button class="w-100 d-block text-end "><i class="fa-solid fa-pen-to-square fs-5 text-danger "></i></button>

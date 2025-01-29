@@ -1,3 +1,6 @@
+.common-btn {
+    margin-left: auto !important;
+}
 
 .user-review-container{
     width: 80%;
@@ -62,12 +65,24 @@
 }
 
 @media screen and (max-width: 768px){
+    .product-detail {
+        width: 100%;
+    }
+
     .product-mobile{
         flex-direction: column;
         gap:20px;
     }
 
-    .product-mobile div{
+    .quanity .common-btn {
+        padding: 10px 20px;
+    }
+
+    .side-menu {
+        display: none;
+    }
+
+    .product-mobile div {
         width: 100%;
     }
 
@@ -77,6 +92,10 @@
 
     .review-form-container div{
         padding-right: 0px;
+    }
+
+    .user-review-container {
+        width: 100%;
     }
 
 }
