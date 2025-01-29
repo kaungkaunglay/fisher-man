@@ -27,6 +27,7 @@ Route::post('/login', [UsersController::class, 'login_store'])->name('login_stor
 Route::get('/register', [UsersController::class, 'register'])->name('register');
 Route::post('/register', [UsersController::class, 'register_store'])->name('register_store');
 
+
 // Forgot_password for customer and seller
 Route::get('/forgot_password',[UsersController::class,'forgot_password'])->name('forgotpassword');
 
@@ -70,3 +71,9 @@ Route::get('/white-list', function () {
 Route::get('/special-offer', function () {
     return view('special-offer');
 })->name('special-offer');
+
+// Admin dashbaord
+Route::get('/admin', function () {
+    return view('admin.index');
+})->name('admin_home');
+
