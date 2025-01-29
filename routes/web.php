@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 
@@ -72,8 +73,9 @@ Route::get('/special-offer', function () {
     return view('special-offer');
 })->name('special-offer');
 
-// Admin dashbaord
-Route::get('/admin', function () {
-    return view('admin.index');
-})->name('admin_home');
-
+// Admin Controller
+Route::get('/admin', [AdminController::class, 'home'])->name('admin');
+Route::get('/admin/categories', [AdminController::class, 'categoreis'])->name('admin.categories');
+Route::get('/admin/category', [AdminController::class, 'category'])->name('admin.category');
+Route::get('/admin/products', [AdminController::class, 'products'])->name('admin.products');
+Route::get('/admin/product', [AdminController::class, 'product'])->name('admin.product');

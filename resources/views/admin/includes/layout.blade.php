@@ -63,7 +63,7 @@
                                         </a>
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
-                               5                 <a href="index.html" class="active">
+                                                <a href="index.html" class="active">
                                                     <div class="text">Home 01</div>
                                                 </a>
                                             </li>
