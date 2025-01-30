@@ -3,203 +3,223 @@
 <link rel="stylesheet" href="{{ asset('assets/css/cart.css') }}" />
 @endsection
 @section('contents')
-<!-- Breadcrumbs -->
-<nav aria-label="breadcrumb" class="py-4">
-    <div class="container">
-        <ol class="breadcrumb mb-0 bg-transparent">
-            <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Cart</li>
-        </ol>
-    </div>
-</nav>
-<!-- ./Breadcrumbs -->
 
-<!-- Main Content -->
-<div class="container cart">
+<div class="container-custom py-5">
 
-    <!-- Desktop Style -->
-    <table class="table desktop" id="table">
+  <!-- Step List -->
+  <ul class="step-list d-flex justify-content-between text-center mb-4">
+    <li class="step active d-flex flex-md-row flex-column align-items-center">
+      <span class="me-2">1</span>
+      Order details
+    </li>
+    <li class="step d-flex flex-md-row flex-column align-items-center">
+      <span class="me-2">2</span>
+      Login
+    </li>
+    <li class="step d-flex flex-md-row flex-column align-items-center">
+      <span class="me-2">3</span>
+      Shopping address
+    </li>
+    <li class="step d-flex flex-md-row flex-column align-items-center">
+      <span class="me-2">4</span>
+      Payment
+    </li>
+    <li class="step d-flex flex-md-row flex-column align-items-center">
+      <span class="me-2">5</span>
+      Complete
+    </li>
+  </ul>
+  <!-- ./Step List -->
+  
+  <!-- Step Content -->
+  <div class="container-custom cart">
+
+    <!-- Checkout -->
+    <div class="checkout">
+      <!-- Desktop Style -->
+      <table class="table desktop text-center d-md-table d-none" id="table">
         <thead>
-            <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Image</th>
-                <th scope="col">Product address</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quanity</th>
-                <th scope="col">Total</th>
-                <th scope="col">Remove</th>
-            </tr>
+          <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Product address</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quanity</th>
+            <th scope="col">Total</th>
+            <th scope="col">Remove</th>
+          </tr>
         </thead>
         <tbody>
-            <tr id="row">
-                <th scope="row">
-                    1
-                </th>
-                <th>
-                    <img src="{{asset('assets/images/account1.svg')}}" alt="product img">
-                </th>
-                <td>Mark</td>
-                <td id="price">$100</td>
-                <td>
-                    <div class="quanity">
-                        <button class="btn" id="decrement">-</button>
-                        <input type="text" value="1" id="quantity" readonly>
-                        <button class="btn" id="increment">+</button>
-                    </div>
-
-                </td>
-                <td id="cost">$100</td>
-                <td>
-                    <a href="#">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </a>
-                </td>
-            </tr>
-            <tr id="row">
-                <th scope="row">
-                    2
-                </th>
-                <th>
-                    <img src="{{asset('assets/images/account2.svg')}}" alt="product img">
-                </th>
-                <td>Mark</td>
-                <td id="price">$100</td>
-                <td>
-                    <div class="quanity">
-                        <button class="btn" id="decrement">-</button>
-                        <input type="text" value="1" id="quantity" readonly>
-                        <button class="btn" id="increment">+</button>
-                    </div>
-
-                </td>
-                <td id="cost">$100</td>
-                <td>
-                    <a href="#">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </a>
-                </td>
-            </tr>
+        <tr id="row">
+            <td class="col-img">
+              <div class="table-img"><img src="{{asset('assets/images/account1.svg')}}" alt="product img"></div>
+            </td>
+            <td clas="col-name">Mark</td>
+            <td class="col-price" id="price">$100</td>
+            <td class="col-quantity">
+              <div class="quanity">
+                <button class="btn" id="decrement">-</button>
+                <input type="text" value="1" id="quantity" readonly>
+                <button class="btn" id="increment">+</button>
+              </div>
+            </td>
+            <td class="col-cost" id="cost">$100</td>
+            <td class="col-remove"><a href="#" class="mx-auto"><i class="fa-solid fa-trash-can"></i></a>
+            </td>
+          </tr>
+          <tr id="row">
+            <td class="col-img">
+              <div class="table-img"><img src="{{asset('assets/images/account2.svg')}}" alt="product img"></div>
+            </td>
+            <td class="col-name">Mark</td>
+            <td id="price">$100</td>
+            <td class="col-quantity">
+              <div class="quanity">
+                <button class="btn" id="decrement">-</button>
+                <input type="text" value="1" id="quantity" readonly>
+                <button class="btn" id="increment">+</button>
+              </div>
+            </td>
+            <td class="cost" id="cost">$100</td>
+            <td class="remove"><a href="#"><i class="fa-solid fa-trash-can"></i></a>
+            </td>
+          </tr>
         </tbody>
         <tfoot>
-            <tr>
-                <td colspan="6">Total</td>
-                <td>
-                    <span id="total"></span>
-                </td>
-            </tr>
+          <tr>
+            <td colspan="5" class="total">Total</td>
+            <td>
+              <span id="total"></span>
+            </td>
+          </tr>
         </tfoot>
-    </table>
-    <!-- ./Desktop Style -->
-
-    <!-- Mobile Style -->
-    <div class="mobile" id="table">
-        <div class="card d-flex flex-row">
-            <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
-            <div class="card-body d-flex flex-row justify-content-between align-items-center">
-                <div id="row">
-                    <h5 class="card-title">Mark</h5>
-                    <p class="card-text">
-                        <span id="cost">$100</span>
-                        <span id="price">$100</span>
-                    </p>
-                    <div class="quanity">
-                        <button class="btn" id="decrement">-</button>
-                        <input type="text" value="1" id="quantity" readonly>
-                        <button class="btn" id="increment">+</button>
-                    </div>
-                </div>
-                
-                <a href="#" class="btn mobile-del-btn">
-                    <i class="fa-solid fa-trash-can"></i>
-                </a>
-            </div>
-        </div>
-        <div class="card d-flex flex-row">
-            <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
-            <div class="card-body d-flex flex-row justify-content-between align-items-center">
-                <div id="row">
-                    <h5 class="card-title">Mark</h5>
-                    <p class="card-text">
-                        <span id="cost">$100</span>
-                        <span id="price">$100</span>
-                    </p>
-                    <div class="quanity">
-                        <button class="btn" id="decrement">-</button>
-                        <input type="text" value="1" id="quantity" readonly>
-                        <button class="btn" id="increment">+</button>
-                    </div>
-                </div>
-                
-                <a href="#" class="btn mobile-del-btn">
-                    <i class="fa-solid fa-trash-can"></i>
-                </a>
-            </div>
-        </div>
-        <div class="total">
-            <p>Total :</p>
-            <p>
-                <span id="total"></span>
-            </p>
-        </div>
-        
-    </div>
-    <!-- ./Mobile Style -->
-
-    <div class="text-end">
-        <a href="#" class="common-btn">Checkout</a>
-    </div>
+      </table>
+      <!-- ./Desktop Style -->
     
-    <div class="checkout d-md-flex align-items-center">
-
-        <!-- Form Section -->
-        <div class="checkout-form col-md-5">
-            <form>
-                <div class="mb-3">
-                    <label for="address" class="form-label title">Address</label>
-                    <input type="text" class="form-control" id="address" placeholder="Enter your address">
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="phone" class="form-label title">Phone Number</label>
-                        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
-                    </div>
-                    <div class="col-md-6 mb-mobile-3">
-                        <label for="postal" class="form-label title">Postal code</label>
-                        <input type="number" class="form-control" id="postal" placeholder="Enter your Postal code">
-                    </div>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="payment" class="form-label title">Payment</label>
-                    <select class="form-control" id="payment">
-                        <option value="" disabled selected>Select your payment method</option>
-                        <option value="credit_card">Credit Card</option>
-                        <option value="paypal">PayPal</option>
-                        <option value="bank_transfer">Bank Transfer</option>
-                        <option value="cash">Cash</option>
-                    </select>
-                </div>
-            
-                <div class="text-center mb-mobile-3">
-                    <button type="submit" class="common-btn">Submit</button>
-                </div>
-            </form>
-        </div>
-        <!-- ./Form Section -->
-
-        <div class="col-md-2"></div>
-
-        <div class="map col-md-5">
-            <h3 class="title m-b-20">
-                Select your address on the map
-            </h3>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15635.942969457286!2d104.94809415!3d11.5528796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310957427939910d%3A0xbfc58c8bcfc56e39!2sKart%20Station%20by%20DIB%20Club!5e0!3m2!1sen!2skh!4v1736398726990!5m2!1sen!2skh" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <!-- Mobile Style -->
+      <div class="mobile d-md-none d-flex flex-column gap-3" id="table">
+        <div class="card">
+          <div class="card-img">
+            <img src="{{asset('assets/images/account1.svg')}}" alt="product img">
+          </div>
+          <div class="card-body">
+            <div id="row">
+              <p class="card-name">Mark</p>
+              <div class="card-text">
+                <span id="cost">$100</span>
+                <span id="price">$100</span>
+              </div>
+              <div class="quanity">
+                <button class="btn" id="decrement">-</button>
+                <input type="text" value="1" id="quantity" readonly>
+                <button class="btn" id="increment">+</button>
+              </div>
+            </div>
+            <a href="#" class="btn del-btn">
+              <i class="fa-solid fa-trash-can"></i>
+            </a>
+          </div>
         </div>
 
+        <div class="card">
+          <div class="card-img">
+            <img src="{{asset('assets/images/account2.svg')}}" alt="product img">
+          </div>
+          <div class="card-body">
+            <div id="row">
+              <p class="card-name">Mark</p>
+              <div class="card-text">
+                <span id="cost">$100</span>
+                <span id="price">$100</span>
+              </div>
+              <div class="quanity">
+                <button class="btn" id="decrement">-</button>
+                <input type="text" value="1" id="quantity" readonly>
+                <button class="btn" id="increment">+</button>
+              </div>
+            </div>
+            <a href="#" class="btn del-btn">
+              <i class="fa-solid fa-trash-can"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between bg-primary text-white p-2 mt-3">
+          <p>Total :</p>
+          <p>
+            <span id="total"></span>
+          </p>
+        </div>
+      </div>
+      <!-- ./Mobile Style -->
+  
+      <div class="text-end my-4">
+        <a href="#" class="common-btn btn-next">Next</a>
+      </div>
     </div>
-    
+    <!-- ./Checkout -->
+  
+    <!-- Payment -->
+    <div class="payment">
+      <h2 class="py-3 px-3 bg-primary text-white">Select Payment</h2>
+      <div class="d-flex gap-3 py-3 px-3">
+        <input type="checkbox">
+        Credit Card
+      </div>
+    </div>
+    <!-- ./Payment -->
+
+    <!-- Address -->
+    <div class="address">
+      <h2 class="py-3 px-3 bg-primary text-white">Address</h2>
+      <ul class="list-group gap-3 py-3 px-3">
+        <li>
+          <span>Name </span>
+          : Customer Name
+        </li>
+        <li>
+          <span>Phone Number </span>
+          : 0988888888
+        </li>
+        <li>
+          <span>Line ID </span>
+          : Afasd-222
+        </li>
+        <li>
+          <span>Postal Code </span>
+          : 110001
+        </li>
+        <li>
+          <span>Country </span>
+          : Japan
+          <button class="btn btn-outline-primary common-btn float-end">Edit</button>
+        </li>
+        <li>
+          <span>Delivery Address </span>
+          : Customer Address 
+        </li>
+      </ul>
+      <div class="d-flex gap-3 my-4 justify-content-end">
+        <button class="btn btn-outline-primary common-btn">Go Back</button>
+        <button class="btn btn-outline-primary common-btn btn-next">Next</button>
+      </div>
+    </div>
+    <!-- ./Address -->
+
+    <!-- Complete -->
+      <div class="complete">
+        <p class="text-center">Your Payment is Successful. We will sent the invoice to your mail and Line ID Please check.</p>
+        <div class="d-flex gap-3 py-5 justify-content-center">
+          <button class="btn btn-outline-primary common-btn">Contact Us</button>
+          <button class="btn btn-outline-primary common-btn">Home Page</button>
+        </div>
+      </div>
+    <!-- ./Complete -->
+
+  </div>
+  <!-- ./Step Content -->
+
 </div>
-<!-- ./Main Content -->
 
 <script src="{{ asset('assets/js/cart.js') }}"></script>
+<script src="{{ asset('assets/js/step.js') }}"></script>
 @endsection
