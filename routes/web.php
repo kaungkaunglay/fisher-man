@@ -79,3 +79,7 @@ Route::get('/admin/categories', [AdminController::class, 'categoreis'])->name('a
 Route::get('/admin/category', [AdminController::class, 'category'])->name('admin.category');
 Route::get('/admin/products', [AdminController::class, 'products'])->name('admin.products');
 Route::get('/admin/product', [AdminController::class, 'product'])->name('admin.product');
+Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
+Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
+Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
