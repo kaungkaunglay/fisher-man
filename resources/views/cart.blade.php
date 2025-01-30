@@ -36,7 +36,7 @@
                     1
                 </th>
                 <th>
-                    <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
+                    <img src="{{asset('assets/images/account1.svg')}}" alt="product img">
                 </th>
                 <td>Mark</td>
                 <td id="price">$100</td>
@@ -60,7 +60,7 @@
                     2
                 </th>
                 <th>
-                    <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
+                    <img src="{{asset('assets/images/account2.svg')}}" alt="product img">
                 </th>
                 <td>Mark</td>
                 <td id="price">$100</td>

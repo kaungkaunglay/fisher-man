@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 
@@ -26,6 +27,7 @@ Route::post('/login', [UsersController::class, 'login_store'])->name('login_stor
 // Registration for Customer and Seller
 Route::get('/register', [UsersController::class, 'register'])->name('register');
 Route::post('/register', [UsersController::class, 'register_store'])->name('register_store');
+
 
 // Forgot_password for customer and seller
 Route::get('/forgot_password',[UsersController::class,'forgot_password'])->name('forgotpassword');
@@ -70,3 +72,10 @@ Route::get('/white-list', function () {
 Route::get('/special-offer', function () {
     return view('special-offer');
 })->name('special-offer');
+
+// Admin Controller
+Route::get('/admin', [AdminController::class, 'home'])->name('admin');
+Route::get('/admin/categories', [AdminController::class, 'categoreis'])->name('admin.categories');
+Route::get('/admin/category', [AdminController::class, 'category'])->name('admin.category');
+Route::get('/admin/products', [AdminController::class, 'products'])->name('admin.products');
+Route::get('/admin/product', [AdminController::class, 'product'])->name('admin.product');
