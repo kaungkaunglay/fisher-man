@@ -56,7 +56,7 @@
                             <div class="center-item">
                                 <div class="center-heading">Main Home</div>
                                 <li class="menu-item">
-                                    <a href="{{route('admin')}}" class="">
+                                    <a href="{{route('admin')}}" class="{{ request()->is('admin') ? 'active' : '' }}">
                                         <div class="icon"><i class="icon-grid"></i></div>
                                         <div class="text">Home</div>
                                     </a>
@@ -65,50 +65,50 @@
                             <div class="center-item">
                                 <div class="center-heading">Product Management</div>
                                 <ul class="menu-list">
-                                    <li class="menu-item has-children">
+                                    <li class="menu-item has-children {{ request()->is('admin/product*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-shopping-cart"></i></div>
                                             <div class="text">Products</div>
                                         </a>
                                         <ul class="sub-menu">
                                             <li class="sub-menu-item">
-                                                <a href="{{route('admin.product')}}" class="">
+                                                <a href="{{route('admin.product')}}" class="{{ request()->is('admin/product') ? 'active' : '' }}">
                                                     <div class="text">Add Product</div>
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
-                                                <a href="{{route('admin.products')}}" class="">
+                                                <a href="{{route('admin.products')}}" class="{{ request()->is('admin/products') ? 'active' : '' }}">
                                                     <div class="text">Product List</div>
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item has-children">
+                                    <li class="menu-item has-children {{ request()->is('admin/categ*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-layers"></i></div>
                                             <div class="text">Category</div>
                                         </a>
                                         <ul class="sub-menu">
                                             <li class="sub-menu-item">
-                                                <a href="{{route('admin.categories')}}" class="">
+                                                <a href="{{route('admin.categories')}}" class="{{request()->is('admin/categories') ? 'active' : ''}}">
                                                     <div class="text">Category list</div>
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
-                                                <a href="{{route('admin.category')}}" class="">
+                                                <a href="{{route('admin.category')}}" class="{{request()->is('admin/category') ? 'active' : ''}}">
                                                     <div class="text">New category</div>
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item has-children">
+                                    <li class="menu-item has-children {{ request()->is('admin/order*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-file-plus"></i></div>
                                             <div class="text">Order</div>
                                         </a>
                                         <ul class="sub-menu">
                                             <li class="sub-menu-item">
-                                                <a href="{{route('admin.orders')}}" class="">
+                                                <a href="{{route('admin.orders')}}" class="{{request()->is('admin/orders') ? 'active' : ''}}">
                                                     <div class="text">Order list</div>
                                                 </a>
                                             </li>
@@ -119,19 +119,19 @@
                             <div class="center-item">
                                 <div class="center-heading">User Management</div>
                                 <ul class="menu-list">
-                                    <li class="menu-item has-children active">
+                                    <li class="menu-item has-children {{ request()->is('admin/user*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-user"></i></div>
                                             <div class="text">User</div>
                                         </a>
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
-                                                <a href="{{route('admin.users')}}" class="active">
+                                                <a href="{{route('admin.users')}}" class="{{request()->is('admin/users') ? 'active' : ''}}">
                                                     <div class="text">All user</div>
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
-                                                <a href="{{route('admin.user')}}" class="">
+                                                <a href="{{route('admin.user')}}" class="{{request()->is('admin/user') ? 'active' : ''}}">
                                                     <div class="text">Add new user</div>
                                                 </a>
                                             </li>
@@ -281,8 +281,8 @@
                             <div class="header-grid">
                                 <div class="header-item country">
                                     <select class="image-select no-text">
-                                        <option data-thumbnail="admin/images/country/1.png">ENG</option>
-                                        <option data-thumbnail="admin/images/country/9.png">VIE</option>
+                                        <option data-thumbnail="{{asset('assets/admin/images/country/1.png')}}">ENG</option>
+                                        <option data-thumbnail="{{asset('assets/admin/images/country/9.png')}}">JAP</option>
                                     </select>
                                 </div>
                                 <div class="header-item button-dark-light">
@@ -301,9 +301,9 @@
                                                 <h6>Message</h6>
                                             </li>
                                             <li>
-                                                <div class="noti-item w-full wg-user active">
+                                                <div class="noti-item w-full wg-user">
                                                     <div class="image">
-                                                        <img src="{{asset('admin/admin/images/avatar/user-11.png')}}" alt="">
+                                                        <img src="{{asset('admin/images/avatar/user-11.png')}}" alt="">
                                                     </div>
                                                     <div class="flex-grow">
                                                         <div class="flex items-center justify-between">
@@ -317,7 +317,7 @@
                                             <li>
                                                 <div class="noti-item w-full wg-user active">
                                                     <div class="image">
-                                                        <img src="{{asset('admin/admin/images/avatar/user-12.png')}}" alt="">
+                                                        <img src="{{asset('admin/images/avatar/user-12.png')}}" alt="">
                                                     </div>
                                                     <div class="flex-grow">
                                                         <div class="flex items-center justify-between">
@@ -331,7 +331,7 @@
                                             <li>
                                                 <div class="noti-item w-full wg-user active">
                                                     <div class="image">
-                                                        <img src="{{asset('admin/admin/images/avatar/user-13.png')}}" alt="">
+                                                        <img src="{{asset('admin/images/avatar/user-13.png')}}" alt="">
                                                     </div>
                                                     <div class="flex-grow">
                                                         <div class="flex items-center justify-between">
@@ -440,7 +440,7 @@
                                                 <ul class="list-apps">
                                                     <li class="item">
                                                         <div class="image">
-                                                            <img src="{{asset('admin/admin/images/apps/item-1.png')}}" alt="">
+                                                            <img src="{{asset('admin/images/apps/item-1.png')}}" alt="">
                                                         </div>
                                                         <a href="#">
                                                             <div class="text-tiny">Photoshop</div>
@@ -448,7 +448,7 @@
                                                     </li>
                                                     <li class="item">
                                                         <div class="image">
-                                                            <img src="{{asset('admin/admin/images/apps/item-2.png')}}" alt="">
+                                                            <img src="{{asset('admin/images/apps/item-2.png')}}" alt="">
                                                         </div>
                                                         <a href="#">
                                                             <div class="text-tiny">illustrator</div>
@@ -456,7 +456,7 @@
                                                     </li>
                                                     <li class="item">
                                                         <div class="image">
-                                                            <img src="{{asset('admin/admin/images/apps/item-3.png')}}" alt="">
+                                                            <img src="{{asset('admin/images/apps/item-3.png')}}" alt="">
                                                         </div>
                                                         <a href="#">
                                                             <div class="text-tiny">Sheets</div>
@@ -472,7 +472,7 @@
                                                     </li>
                                                     <li class="item">
                                                         <div class="image">
-                                                            <img src="{{asset('admin/admin/images/apps/item-5.png')}}" alt="">
+                                                            <img src="{{asset('admin/images/apps/item-5.png')}}" alt="">
                                                         </div>
                                                         <a href="#">
                                                             <div class="text-tiny">Messenger</div>
@@ -480,7 +480,7 @@
                                                     </li>
                                                     <li class="item">
                                                         <div class="image">
-                                                            <img src="{{asset('admin/admin/images/apps/item-6.png')}}" alt="">
+                                                            <img src="{{asset('admin/images/apps/item-6.png')}}" alt="">
                                                         </div>
                                                         <a href="#">
                                                             <div class="text-tiny">Youtube</div>
@@ -488,7 +488,7 @@
                                                     </li>
                                                     <li class="item">
                                                         <div class="image">
-                                                            <img src="{{asset('admin/admin/images/apps/item-7.png')}}" alt="">
+                                                            <img src="{{asset('admin/images/apps/item-7.png')}}" alt="">
                                                         </div>
                                                         <a href="#">
                                                             <div class="text-tiny">Flaticon</div>
