@@ -58,7 +58,7 @@
                 <div class="section-menu-left">
                     <div class="box-logo">
                         <a href="index.html" id="site-logo-inner">
-                            <img class="" id="logo_header" alt="" src="images/logo/logo.png" data-light="images/logo/logo.png" data-dark="images/logo/logo-dark.png" >
+                            <img class="" id="logo_header" alt="" src="images/logo/logo.png" data-light="images/logo/logo.png" data-dark="{{asset('assets/images/logo.png')}}" >
                         </a>
                         <div class="button-show-hide">
                             <i class="icon-menu-left"></i>
@@ -418,7 +418,7 @@
                         <div class="wrap">
                             <div class="header-left">
                                 <a href="index.html">
-                                    <img class="" id="logo_header_mobile" alt="" src="images/logo/logo.png" data-light="images/logo/logo.png" data-dark="images/logo/logo-dark.png" data-width="154px" data-height="52px" data-retina="images/logo/logo@2x.png">
+                                    <img class="" id="logo_header_mobile" alt="" src="images/logo/logo.png" data-light="images/logo/logo.png" data-dark="{{asset('assets/images/logo.png')}}" data-width="154px" data-height="52px" data-retina="images/logo/logo@2x.png">
                                 </a>
                                 <div class="button-show-hide">
                                     <i class="icon-menu-left"></i>

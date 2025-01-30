@@ -32,7 +32,7 @@
       <div class="header">
         <div class="top-header">
           <div class="logo">
-            <img src="{{ asset('assets/images/logo.png') }}" alt="logo">
+            <img src="{{ asset('{{asset('assets/images/logo.png')}}') }}" alt="logo">
           </div>
           <div class="input-group">
             <input type="text" class="form-control bg-second " placeholder="Search your Products">
