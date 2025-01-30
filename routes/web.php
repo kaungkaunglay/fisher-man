@@ -31,6 +31,12 @@ Route::post('/register', [UsersController::class, 'register_store'])->name('regi
 
 // Forgot_password for customer and seller
 Route::get('/forgot_password',[UsersController::class,'forgot_password'])->name('forgotpassword');
+// Handle Reset Link
+Route::post('/forgot-password', [UsersController::class, 'sendResetLinkEmail'])->name('password.email');
+// Password Reset Form
+Route::get('/reset-password/{token}', [UsersController::class, 'showResetForm'])->name('password.reset');
+// Handle Password Reset
+Route::post('/reset-password', [UsersController::class, 'reset'])->name('password.update');
 
 Route::get('/profile/user', action: function () {
     return view('profile_user');

@@ -11,7 +11,7 @@
     <li><a href="{{ route('sub_category') }}">海藻・干物・漬魚・ちりめん・練物類 (401)</a></li>
     <li><a href="{{ route('sub_category') }}">珍味・惣菜・漬物 (440)</a></li>
     <li><a href="{{ route('sub_category') }}">調味料・わさび・飾り物 (202)</a></li>
-    <a href="{{ route('sub_category') }}" class="txt-primary mt-3 text-center">&lt;&lt; See more Product &gt;&gt;</a>
+    <a href="{{ route('sub_category') }}" id="see-more-link" class="txt-primary mt-3 text-center">&lt;&lt; See more Product &gt;&gt;</a>
 </ul>
 
 <!-- aside end -->
