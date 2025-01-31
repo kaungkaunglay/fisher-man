@@ -192,13 +192,21 @@
 
   var retinaLogos = function() {
     var retina = window.devicePixelRatio > 1 ? true : false;
-      if(retina) {
-        if ($(".dark-theme").length > 0) {
-          $('#logo_header').attr({src:'images/logo/logo-dark@2x.png',width:'154px',height:'52px'});
-        } else {
-          $('#logo_header').attr({src:'images/logo/logo@2x.png',width:'154px',height:'52px'});
-        }
+    if (retina) {
+      if ($(".dark-theme").length > 0) {
+          $('#logo_header').attr({
+              src: logoDark,
+              width: '100px',
+              height: '52px'
+          });
+      } else {
+          $('#logo_header').attr({
+              src: logoLight,
+              width: '100px',
+              height: '52px'
+          });
       }
+  }
   };  
 
   var preloader = function () {
