@@ -678,6 +678,7 @@ li {
 .row-list .product-btn{
     font-size: 20px;
     padding: 7px 50px;
+    width: 210px !important;
 }
 
 .row-list .card-btn{
@@ -714,6 +715,12 @@ li {
    @media screen and (max-width: 1350px) {
     .card-list {
       grid-template-columns: 1fr 1fr 1fr;
+    }
+    .product-btn{
+      width: 200px !important;
+    }
+    .card-list .card-btn{
+      justify-content: center;
     }
     
   }
