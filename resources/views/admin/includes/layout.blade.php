@@ -10,7 +10,7 @@
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-    <title>Remos eCommerce Admin Dashboard HTML Template</title>
+    <title>Fisherman Admin</title>
 
     <meta name="author" content="themesflat.com">
 
@@ -423,97 +423,6 @@
                                 <div class="header-item button-zoom-maximize">
                                     <div class="">
                                         <i class="icon-maximize"></i>
-                                    </div>
-                                </div>
-                                <div class="popup-wrap apps type-header">
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton4" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <span class="header-item">
-                                                <i class="icon-grid"></i>
-                                            </span>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-end has-content" aria-labelledby="dropdownMenuButton4" >
-                                            <li>
-                                                <h6>Related apps</h6>
-                                            </li>
-                                            <li>
-                                                <ul class="list-apps">
-                                                    <li class="item">
-                                                        <div class="image">
-                                                            <img src="{{asset('admin/images/apps/item-1.png')}}" alt="">
-                                                        </div>
-                                                        <a href="#">
-                                                            <div class="text-tiny">Photoshop</div>
-                                                        </a>
-                                                    </li>
-                                                    <li class="item">
-                                                        <div class="image">
-                                                            <img src="{{asset('admin/images/apps/item-2.png')}}" alt="">
-                                                        </div>
-                                                        <a href="#">
-                                                            <div class="text-tiny">illustrator</div>
-                                                        </a>
-                                                    </li>
-                                                    <li class="item">
-                                                        <div class="image">
-                                                            <img src="{{asset('admin/images/apps/item-3.png')}}" alt="">
-                                                        </div>
-                                                        <a href="#">
-                                                            <div class="text-tiny">Sheets</div>
-                                                        </a>
-                                                    </li>
-                                                    <li class="item">
-                                                        <div class="image">
-                                                            <img src="admin/images/apps/item-4.png" alt="">
-                                                        </div>
-                                                        <a href="#">
-                                                            <div class="text-tiny">Gmail</div>
-                                                        </a>
-                                                    </li>
-                                                    <li class="item">
-                                                        <div class="image">
-                                                            <img src="{{asset('admin/images/apps/item-5.png')}}" alt="">
-                                                        </div>
-                                                        <a href="#">
-                                                            <div class="text-tiny">Messenger</div>
-                                                        </a>
-                                                    </li>
-                                                    <li class="item">
-                                                        <div class="image">
-                                                            <img src="{{asset('admin/images/apps/item-6.png')}}" alt="">
-                                                        </div>
-                                                        <a href="#">
-                                                            <div class="text-tiny">Youtube</div>
-                                                        </a>
-                                                    </li>
-                                                    <li class="item">
-                                                        <div class="image">
-                                                            <img src="{{asset('admin/images/apps/item-7.png')}}" alt="">
-                                                        </div>
-                                                        <a href="#">
-                                                            <div class="text-tiny">Flaticon</div>
-                                                        </a>
-                                                    </li>
-                                                    <li class="item">
-                                                        <div class="image">
-                                                            <img src="{{asset('admin/images/apps/item-8.png')}}" alt="">
-                                                        </div>
-                                                        <a href="#">
-                                                            <div class="text-tiny">Instagram</div>
-                                                        </a>
-                                                    </li>
-                                                    <li class="item">
-                                                        <div class="image">
-                                                            <img src="{{asset('admin/images/apps/item-9.png')}}" alt="">
-                                                        </div>
-                                                        <a href="#">
-                                                            <div class="text-tiny">PDF</div>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#" class="tf-button w-full">View all app</a></li>
-                                        </ul>
                                     </div>
                                 </div>
                                 <div class="popup-wrap user type-header">

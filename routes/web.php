@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 
@@ -89,3 +90,7 @@ Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.ord
 Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
+
+Route::post('/admin/mail', [MailController::class,'sendmail'])->name('mail.reset');
+
+
