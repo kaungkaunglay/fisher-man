@@ -35,10 +35,11 @@ Route::get('/forgot_password',[UsersController::class,'forgot_password'])->name(
 // Handle Reset Link
 Route::post('/forgot-password', [UsersController::class, 'sendResetLinkEmail'])->name('password.email');
 // Password Reset Form
-Route::get('/reset-password',[UsersController::class,'showResetForm'])->name('password.reset');
+Route::get('/reset_password',[UsersController::class,'showResetForm'])->name('password.reset');
 // Route::get('/reset-password/{token}', [UsersController::class, 'showResetForm'])->name('password.reset');
 // Handle Password Reset
-Route::post('/reset-password', [UsersController::class, 'reset'])->name('password.update');
+Route::post('/reset_password', [UsersController::class, 'reset'])->name('password.update');
+Route::post('/update_password', [UsersController::class, 'update_password'])->name('update_password');
 
 Route::get('/profile/user', action: function () {
     return view('profile_user');
@@ -91,6 +92,7 @@ Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.ord
 Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
+
 // Mail Route
 Route::post('/admin/mail', [MailController::class,'sendmail'])->name('mail.reset');
 Route::get('/admin/mail/schedule', function(){

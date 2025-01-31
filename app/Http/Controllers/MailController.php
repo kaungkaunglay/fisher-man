@@ -16,7 +16,7 @@ class MailController extends Controller
         $validator = Validator::make($request->all(),[
             'email' => 'required|email',
         ]);
-
+        
         if($validator->fails()){ 
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{

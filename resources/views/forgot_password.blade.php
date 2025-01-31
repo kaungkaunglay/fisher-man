@@ -15,7 +15,7 @@
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" name="email" id="email" class="form-control required autofocus">
+                            <input type="email" name="email" id="email" class="form-control" required autofocus>
                             <span></span>
                         </div>
                         <button id="submit" name="submit" type="submit" class="btn btn-primary w-100">Send Reset Link</button>
