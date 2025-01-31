@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
@@ -83,8 +84,8 @@ Route::get('/special-offer', function () {
 
 // Admin Controller
 Route::get('/admin', [AdminController::class, 'home'])->name('admin');
-Route::get('/admin/categories', [AdminController::class, 'categoreis'])->name('admin.categories');
-Route::get('/admin/category', [AdminController::class, 'category'])->name('admin.category');
+Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('admin.categories');
+Route::get('/admin/category', [CategoriesController::class, 'add_category'])->name('admin.category');
 Route::get('/admin/products', [AdminController::class, 'products'])->name('admin.products');
 Route::get('/admin/product', [AdminController::class, 'product'])->name('admin.product');
 Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
