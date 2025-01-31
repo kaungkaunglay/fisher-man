@@ -31,57 +31,5 @@
     </div>
 </div>
 <script>
-//    $(document).ready(function() {
-//      $.ajaxSetup({
-//              headers: {
-//                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//              }
-//          });
-
-//          $("#login_form").submit(function(e) {
-//              e.preventDefault();
-//              var formData = new FormData(this);
-//              $.ajax({
-//                  url: "{{ route('login_store') }}",
-//                  type: 'POST',
-//                  dataType: 'json',
-//                  data: formData,
-//                  contentType: false,
-//                  processData: false,
-//                  success: function(response) {
-//                      if (response.status == true) {
-//                         window.location.href = "{{ route('home') }}";
-//                      } else{
-//                       if(response.message){
-//                         $('#message').html(response.message);
-//                       }
-//                       var errors = response.errors;
-
-//                       var fields = [
-//                           'username',
-//                           'password'
-//                       ];
-
-//                       fields.forEach(function(field) {
-//                           if (errors[field]) {
-//                               $('#' + field)
-//                                   .closest('.input-box')
-//                                   .find('span.invalid-feedback')
-//                                   .addClass('d-block')
-//                                   .html(errors[field]);
-//                           } else {
-//                               $('#' + field)
-//                                   .closest('.input-box')
-//                                   .find('span.invalid-feedback')
-//                                   .removeClass('d-block')
-//                                   .html('');
-//                           }
-//                       });
-
-//                     }
-//                  }
-//              });
-//          });
-//   });
 </script>
 @endsection
