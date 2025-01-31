@@ -3,20 +3,18 @@
 <link rel="stylesheet" href="{{ asset('assets/css/profile_user.css') }}" />
 @endsection
 @section('contents')
-<!-- Breadcrumbs -->
-<nav aria-label="breadcrumb" class="py-4">
-  <div class="container">
-    <ol class="breadcrumb mb-0 bg-transparent">
-      <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Porfile</li>
-    </ol>
-  </div>
-</nav>
-<!-- ./Breadcrumbs -->
 
 <!-- Main Content -->
 <div class="container-custom">
   <div class="row">
+    <!-- Breadcrumbs -->
+            <nav aria-label="breadcrumb" class="py-4 mt-3">
+          <ol class="breadcrumb mb-0 bg-transparent">
+            <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Porfile</li>
+          </ol>
+      </nav>  
+    <!-- ./Breadcrumbs -->
     <div class="col -12 col-lg-6">
       <div class="row">
         <div class="col-12 col-lg-6">

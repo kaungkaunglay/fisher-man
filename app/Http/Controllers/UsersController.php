@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Users; 
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use App\Models\Users;
+use App\Models\forgot_password;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Mail\ForgotPasswordMail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 
 class UsersController extends Controller
@@ -76,6 +79,14 @@ class UsersController extends Controller
             return response()->json(['status' => true, 'message' => 'Register Success']);
         }
     }
+    public function  update_password(Request $request){
+        $user_id = $request->userid; 
+        $user_password = $request->password;
+        logger($user_id. ' ' . $user_password);
+        $user = Users::where('id', $user_id)->first();
+        $user->password = Hash::make($user_password);
+        $user->save();
+    }
     public function login_store(Request $request){
         $validator = Validator::make($request->all(), [
             'username' => 'required',
@@ -84,11 +95,10 @@ class UsersController extends Controller
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
-
             $user = Users::where('username', $request->username)
             ->orWhere('email', $request->username)
             ->first();
-            
+
             if($user && Hash::check($request->password, $user->password)){
                 return response()->json(['status' => true, 'message' => 'Login success', 'errors'=> '']);
             }
@@ -100,5 +110,72 @@ class UsersController extends Controller
     // forgotpassword for user
     public function forgot_password(){
         return view('forgot_password');
+    }
+
+    public function sendResetLinkEmail(Request $request){
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+        if($validator->fails()){
+            return response()->json(['status' => false, 'errors' => $validator->errors()]);
+        }else{
+            $user = Users::where('email', $request->email)->first();
+
+            // dd($user);
+            if($user){
+                $user->remember_token = Str::random(60);
+                // $user->save();
+                Mail::to($user->email)->send(new ForgotPasswordMail($user));
+                return response()->json(['status' => true, 'message' => 'Reset Link Sent']);
+            }
+            return response()->json(['status' => false, 'message' => 'Email is not found']);
+        }
+    }
+
+    public function showResetForm(Request $request) {
+        $token = $request->query('token');  
+        $user_forgot_password = forgot_password::where('token', $token)->first();
+        if(!$user_forgot_password){
+            return abort(404);
+        }
+        if($user_forgot_password->is_used == 0){
+            $user_forgot_password->is_used = 1;
+            $user_forgot_password->save();
+            //delete token after reset password
+            return view('reset_password', ['user_id' => $user_forgot_password->user_id]);
+        }
+    }
+
+    // public function showResetForm($token){
+    //     $user = Users::where('remember_token', $token)->first();
+    //     if($user){
+    //         return view('reset_password', ['token' => $token]);
+    //     }
+    //     return redirect()->route('login');
+    // }
+
+    public function reset(Request $request){
+        $validator = Validator::make($request->all(), [
+            'password' => [
+                'required',
+                'min:6',
+                'max:16',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,16}$/'
+            ],
+            'confirm_password' => 'required|same:password',
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['status' => false, 'errors' => $validator->errors()]);
+        }else{
+            $user = Users::where('remember_token', $request->token)->first();
+            if($user){
+                $user->password = Hash::make($request->password);
+                $user->remember_token = Str::random(60);
+                $user->save();
+                return response()->json(['status' => true, 'message' => 'Password Reset Success']);
+            }
+            return response()->json(['status' => false, 'message' => 'Token is not found']);
+        }
     }
 }

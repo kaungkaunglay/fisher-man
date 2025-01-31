@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 
@@ -31,6 +33,14 @@ Route::post('/register', [UsersController::class, 'register_store'])->name('regi
 
 // Forgot_password for customer and seller
 Route::get('/forgot_password',[UsersController::class,'forgot_password'])->name('forgotpassword');
+// Handle Reset Link
+Route::post('/forgot-password', [UsersController::class, 'sendResetLinkEmail'])->name('password.email');
+// Password Reset Form
+Route::get('/reset_password',[UsersController::class,'showResetForm'])->name('password.reset');
+// Route::get('/reset-password/{token}', [UsersController::class, 'showResetForm'])->name('password.reset');
+// Handle Password Reset
+Route::post('/reset_password', [UsersController::class, 'reset'])->name('password.update');
+Route::post('/update_password', [UsersController::class, 'update_password'])->name('update_password');
 
 Route::get('/profile/user', action: function () {
     return view('profile_user');
@@ -75,11 +85,19 @@ Route::get('/special-offer', function () {
 
 // Admin Controller
 Route::get('/admin', [AdminController::class, 'home'])->name('admin');
-Route::get('/admin/categories', [AdminController::class, 'categoreis'])->name('admin.categories');
-Route::get('/admin/category', [AdminController::class, 'category'])->name('admin.category');
+Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('admin.categories');
+Route::get('/admin/category', [CategoriesController::class, 'add_category'])->name('admin.category');
 Route::get('/admin/products', [AdminController::class, 'products'])->name('admin.products');
 Route::get('/admin/product', [AdminController::class, 'product'])->name('admin.product');
 Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
 Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
+
+// Mail Route
+Route::post('/admin/mail', [MailController::class,'sendmail'])->name('mail.reset');
+Route::get('/admin/mail/schedule', function(){
+    return view('mail.index');
+})->name('admin.mail');
+
+

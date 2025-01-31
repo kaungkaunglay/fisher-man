@@ -6,24 +6,28 @@
 <div class="container-custom my-5 forgotpass">
       <div class="row justify-content-center h-100 align-items-center">
             <div class="col-12 col-md-8 col-lg-5">
-        <div class="card shadow">
+            <div class="card shadow">
                 <div class="card-header bg-primary text-white text-center">
-                    <h3>Forgot Password</h3>
+                    <h3>Reset Password</h3>
                 </div>
                 <div class="card-body">
-                    <form method="post" name="forgot_password" id="forgot_password">
+                    <form name="reset_password" id="reset_password" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" required autofocus>
-                            <span></span>
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" id="password" class="form-control" required autofocus>
                         </div>
-                        <button id="submit" name="submit" type="submit" class="btn btn-primary w-100">Send Reset Link</button>
+                        <div class="mb-3">
+                            <label for="confirm-password" class="form-label">Confirm Password</label>
+                            <input type="password" name="confirm_password" id="confirm-password" class="form-control @error('confirm-password') is-invalid @enderror" required autofocus>
+                        </div>
+                        <input type="hidden" name="userid" value="{{ $user_id }}">
+                        <button name="submit" id="submit" type="submit" class="btn btn-primary w-100">Reset Password</button>
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
+            </div>
+      </div>
 </div>
 <script>
     $(document).ready(function() {
@@ -32,12 +36,12 @@
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
               }
           });
- 
-          $("#forgot_password").submit(function(e) {
+          
+          $("#reset_password").submit(function(e) {
               e.preventDefault();
               var formData = new FormData(this);
               $.ajax({
-                  url: "{{ route('mail.reset') }}",
+                  url: "{{ route('update_password') }}",
                   type: 'POST',
                   dataType: 'json',
                   data: formData,
@@ -45,8 +49,8 @@
                   processData: false,
                   success: function(response) {
                       if (response.status == true) {
-                         window.location.href = "{{ route('forgotpassword') }}";
-                      } else{
+                        alert('Password reset successfully');
+                      }else{
                        if(response.message){
                             $('#message').html(response.message);
                        }
