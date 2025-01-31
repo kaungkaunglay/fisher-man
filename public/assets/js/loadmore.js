@@ -1,4 +1,4 @@
-const itemsPerPage = 6; // Number of items to display per batch
+const itemsPerPage = 24; // Number of items to display per batch
 let currentVisible = 0; // Number of currently visible items
 
 const productCards = document.querySelectorAll('.all-products .item-card');

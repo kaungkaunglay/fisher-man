@@ -35,7 +35,8 @@ Route::get('/forgot_password',[UsersController::class,'forgot_password'])->name(
 // Handle Reset Link
 Route::post('/forgot-password', [UsersController::class, 'sendResetLinkEmail'])->name('password.email');
 // Password Reset Form
-Route::get('/reset-password/{token}', [UsersController::class, 'showResetForm'])->name('password.reset');
+Route::get('/reset-password',[UsersController::class,'showResetForm'])->name('password.reset');
+// Route::get('/reset-password/{token}', [UsersController::class, 'showResetForm'])->name('password.reset');
 // Handle Password Reset
 Route::post('/reset-password', [UsersController::class, 'reset'])->name('password.update');
 

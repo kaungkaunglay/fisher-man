@@ -124,13 +124,18 @@ class UsersController extends Controller
         }
     }
 
-    public function showResetForm($token){
-        $user = Users::where('remember_token', $token)->first();
-        if($user){
-            return view('reset_password', ['token' => $token]);
-        }
-        return redirect()->route('login');
+    public function showResetForm() {
+        return view('reset_password');
+        
     }
+
+    // public function showResetForm($token){
+    //     $user = Users::where('remember_token', $token)->first();
+    //     if($user){
+    //         return view('reset_password', ['token' => $token]);
+    //     }
+    //     return redirect()->route('login');
+    // }
 
     public function reset(Request $request){
         $validator = Validator::make($request->all(), [
