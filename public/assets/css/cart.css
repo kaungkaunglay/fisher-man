@@ -1,10 +1,16 @@
-a{text-decoration: none;}
-body {color: #005B96;}
+a {text-decoration: none;}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
+input[type=number] {-moz-appearance: textfield;}
 
-.payment,
-.address,
-.complete {
+#address,
+#payment,
+#complete {
     display: none;
+}
+
+body {
+    color: #005B96;
 }
 
 .step span {
@@ -47,12 +53,96 @@ body {color: #005B96;}
     text-align: start;
 }
 
+.popup {
+    height: 100vh;
+    width: 100%;
+    padding: 30px 20px;
+    background-color: #0a0a0ac4;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    transition: padding 0.5s linear;
+}
+
+#payment-form {
+    width: 100%;
+    max-width: 550px;
+    min-width: 310px;
+    padding: 1.5rem;
+    transition: padding 0.5s linear;
+    transform: translateY(5%);
+    box-shadow: 0px 0px 8px #18181899;
+}
+
+#payment-form input,
+#payment-form select {
+    background-color: #fff;
+    border: 1px solid #797979;
+}
+
+#payment-form .input-container {
+    overflow: hidden;
+}
+
+#payment-form .input-container:has(input:focus),
+#payment-form input:focus,
+#payment-form select:focus {
+    outline: 2px solid #0052cd;
+}
+
+#payment-form .input-container input:focus  {
+    outline: none;
+}
+
+#payment-form .title {
+    font-size: 20px !important;
+}
+
+#payment-form form {
+    gap: 1rem;
+    margin-top: 1rem;
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: .5rem;
+}
+
+#payment-form .input-wpr {
+    gap: 1rem;
+}
+
+#payment-form .content {
+    font-size: .8rem;
+    color: #797979;
+}
+
+#payment-form .common-btn {
+    width: 50%;
+    max-width: 200px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#payment-form select {
+    padding: 12px .5rem !important;
+}
+
+.card-bank-img {
+  width: 30%;  
+}
+
+.cvc-bank-img {
+    width: 15%;
+}
+
 /* mobile */
-.mobile{
+.mobile {
     display: none;
 }
 
-.mobile #cost {display: none;}
+.mobile #cost {
+    display: none;
+}
 
 .card,
 .card-body {
@@ -75,7 +165,7 @@ body {color: #005B96;}
     height: 100px;
 }
 
-.del-btn{
+.del-btn {
     width: max-content;
     aspect-ratio: 1/1;
     background: #FF0000;
@@ -85,4 +175,57 @@ body {color: #005B96;}
 
 .card-body {
     padding: 0;
+}
+
+@media screen and (max-width: 576px) {
+    .popup {
+        font-size: .6rem;
+        padding: .5rem;
+    }
+
+    #payment-form .title {
+        font-size: 14px !important;
+    }
+
+    #payment-form {
+        padding: .1rem .5rem .5rem;
+    }
+
+    #payment-form form {
+        margin-top: .1rem;
+        padding: .5rem;
+        gap: .2rem;
+    }
+
+    #payment-form .input-container:has(input:focus),
+    #payment-form input:focus,
+    #payment-form select:focus {
+        outline-width: 1px;
+    }
+
+    #payment-form .content {
+        font-size: .5rem;
+    }
+
+    #payment-form .input-wpr {
+        gap: .2rem;
+    }
+
+    #payment-form .common-btn {
+        margin-top: .2rem;
+        font-size: 14px;
+        width: 40% !important;
+        padding: .2rem;
+    }
+
+    .cvc-bank-img {
+        width: 5%;
+    }
+}
+
+@media screen and (max-height: 500px) {
+
+    #payment-form {
+        transform: translateY(10px);
+    }
 }

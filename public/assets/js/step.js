@@ -1,13 +1,45 @@
 $('document').ready(() => {
 
-    $('.checkout .btn-next').click(()=> {
+    // forward
+    change_step('#checkout .btn-next', '#checkout');
 
-        $('.checkout').hide()
-        $('.address').show();
+    function change_step(trigger, from) {
+
+        $(trigger).click((e)=> {
+            e.preventDefault();
+
+            const header = $('header').outerHeight() || 0;
+            
+            $(from).hide();
+            $($(trigger).attr('href')).fadeIn();
+    
+            $('html, body').animate({
+
+                scrollTop: $('main').offset().top - header
+            },1000)
+        })
+    }
+
+    $('#address .btn-next').click(()=> {
+
+        $('#address').hide();
+        $('#payment').fadeIn();
     })
-    $('.address .btn-next').click(()=> {
+    $('#payment .btn-next').click(()=> {
 
-        $('.checkout').show();
-        $('.payment').show();
+        $('#payment').hide();
+        $('#complete').fadeIn();
+    })
+
+    //backward
+    $('#payment .btn-back').click(()=> {
+
+        $('#payment').hide();
+        $('#address').fadeIn();
+    })
+    $('#address .btn-back').click(()=> {
+
+        $('#address').hide();
+        $('#checkout').fadeIn();
     })
 })
