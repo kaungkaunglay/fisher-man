@@ -37,9 +37,21 @@
                         <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                         <h3 class="title m-t-b-10">真鯛</h3>
                     </div>
-                    <a href="{{ url('/product') }}" class="txt m-b-10 description">
-                        たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                    <a href="{{ url('/product') }}" class="txt m-b-10">
+                      hello
                     </a>
+                    <p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed, obcaecati.</p>
+                    <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                        var descriptions = document.querySelectorAll('.description');
+                        console.log(descriptions.);
+                        // descriptions.forEach(function(description) {
+                        //   if (description.textContent.length > 10) {
+                        //     description.textContent = description.textContent.substring(0, 5) ;
+                        //   }
+                        // });
+                      });
+                    </script>
                     <div class="d-flex card-btn m-t-10">
                         <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
                         <a href="#" class="product-btn w-100"><i class="fa-solid fa-bookmark"></i></a>

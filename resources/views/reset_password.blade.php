@@ -17,16 +17,16 @@
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
                         <div class="mb-3">
-                            <label for="email" class="form-label">Password</label>
-                            <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" required autofocus>
-                            @error('email')
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" required autofocus>
+                            @error('password')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Confirm Password</label>
-                            <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" required autofocus>
-                            @error('password')
+                            <label for="confirm-password" class="form-label">Confirm Password</label>
+                            <input type="confirm-password" name="confirm-password" id="confirm-password" class="form-control @error('confirm-password') is-invalid @enderror" required autofocus>
+                            @error('confirm-password')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
