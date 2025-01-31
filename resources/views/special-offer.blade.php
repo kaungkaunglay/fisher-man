@@ -3,18 +3,18 @@
 <link rel="stylesheet" href="{{ asset('assets/css/category.css') }}" />
 @endsection
 @section('contents')
+
+
+<div class="wpr row">
+
 <!-- Breadcrumbs -->
 <nav aria-label="breadcrumb" class="py-4">
-    <div class="container">
         <ol class="breadcrumb mb-0 bg-transparent">
             <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Special Offer</li>
         </ol>
-    </div>
 </nav>
 <!-- ./Breadcrumbs -->
-
-<div class="wpr row">
   <!-- aside start -->
   <div class="side-menu col-4">
     @include('includes.aside')
@@ -55,7 +55,7 @@
         <!-- card itmes list start -->
 
         <div class="card-list" id="view-list">
-        <div class="item-card">
+          <div class="item-card">
                 <a href="{{ url('/product') }}" class="right">
                     <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
                 </a>
@@ -73,7 +73,7 @@
                         <a href="#" class="product-btn w-100"><i class="fa-solid fa-bookmark"></i></a>
                     </div>
                 </div>
-            </div>
+          </div>
             <div class="item-card">
                 <a href="{{ url('/product') }}" class="right">
                     <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top" alt="Red_sea_bream">
