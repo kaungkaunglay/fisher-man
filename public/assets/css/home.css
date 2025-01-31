@@ -1,0 +1,144 @@
+/* banner section */
+
+.banner {
+  margin-top: 10px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  text-wrap: nowrap;
+}
+
+.text {
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  /* gap: 10px; */
+}
+
+.line {
+  display: block;
+  height: 1px;
+  width: 50px;
+  background-color: white;
+}
+
+/* banner section end */
+
+/* popular shop section */
+.shop-carts .card{height: 150px;}
+.shop-carts .card img{height: 110px;object-fit: cover;}
+.shop-carts .card .card-body{padding: 5px;}
+
+/* moving discount section */
+
+.moving-discount{
+  overflow: hidden;
+}
+
+#moving-text {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #005B96;
+}
+
+#moving-text p {
+  position: absolute;
+  white-space: nowrap;
+  display: none;
+  margin-bottom: 0px;
+  color: #ffffff !important;
+}
+
+#moving-text p.active {
+  display: block;
+}
+
+.shop-card{
+  cursor: pointer;
+  transition: transform 0.5s;
+}
+
+.shop-card:hover{
+  transform: translateY(-5px);
+}
+
+
+/* discount product-card section start */
+.product-card {
+  /* max-width: 200px; */
+  border: none;
+  /* background-color: #ffffff; */
+  background-color: transparent;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  /* border-radius: 10px; */
+}
+
+.discount-badge {
+  position: absolute;
+  right:0px;
+  top: 0px;
+  background-color: #004B8D;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 2px;
+  width: 50px;
+  text-align: center;
+  border-radius: 10px 0px 10px 0px;
+}
+
+.card-title {
+  font-size: 18px;
+}
+
+.card-text {
+  font-size: 14px;
+}
+
+.btn{
+  --bs-btn-padding-y: 0px !important;
+}
+.btn-outline-primary {
+  border: 1px solid #004B8D;
+  color: #004B8D;
+}
+
+.btn-outline-primary:hover {
+  background-color: #004B8D;
+  color: white;
+}
+
+.discount-products .product-card .card-body,.all-products .product-card .card-body{padding:10px 0px;}
+.discount-products .product-card .card-body .card-text{font-size: 12px;}
+.cart-btn .btn,.seemore-btn{
+  --bs-btn-padding-y:.05rem !important;
+}
+.seemore-btn{width: 150px;}
+
+/* discount-products section end */
+
+/* horizontal product card */
+
+.horizontal-product-card{width: 100%;}
+.horizontal-product-card img{height: 125px;width: 100%;object-fit: cover;}
+.horizontal-product-card .card-body{padding-top: 0px;}
+.horizontal-product-card .card-body .card-title{color: #004B8D;}
+
+
+.all-products .item-card{display: none;}
+.row-list .item-card{display: flex !important;}
+
+@media screen and (max-width: 584px) {
+    .product-btn{padding: 4px 30px !important;}
+}
+
+
+
+

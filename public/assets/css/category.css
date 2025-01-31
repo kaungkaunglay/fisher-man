@@ -1,0 +1,106 @@
+body {
+  font-size: 15px;
+}
+
+.wpr {
+  max-width: 1440px;
+  padding: 2.9%;
+  margin: 0 auto;
+}
+
+
+.title {
+  color: var(--primary-color);
+}
+
+.top-bar button {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.btn.sort {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: #fff;
+}
+
+.category {
+  padding-right: 0;
+}
+
+.category-list {
+  border: none;
+  gap: 20px;
+}
+
+.category-list>li {
+  border-radius: 10px;
+  background-color: #ECF5FB;
+  padding: 20px;
+}
+
+/* Card Design */
+
+#view-list{
+  /* margin-top: 20px; */
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr !important;
+}
+
+.product-btn{
+  padding: 4px 35px !important;
+}
+
+ @media screen and (max-width: 1350px) {
+  .card-list {
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+  
+}
+
+@media screen and (max-width: 1045px) {
+  .card-list {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  
+}
+
+@media screen and (max-width: 768px) {
+  .wpr {
+    padding: 20px;
+  }
+
+  .category {
+    width: 100%;
+    padding: 0;
+  }
+
+  .side-menu {
+    display: none;
+  }
+
+  .card-list {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  
+}
+
+@media screen and (max-width: 500px) {
+  .card-list {
+  /* background-color: red; */
+  margin-right: 10px;
+  width: 100%;
+  }
+  
+}
+
+@media screen and (max-width: 500px) {
+  .category-list>li{
+    padding:9px;
+  }
+  /* .card-list{background-color: red;} */
+  
+}

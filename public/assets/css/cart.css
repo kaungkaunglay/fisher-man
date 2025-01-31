@@ -1,0 +1,88 @@
+a{text-decoration: none;}
+body {color: #005B96;}
+
+.payment,
+.address,
+.complete {
+    display: none;
+}
+
+.step span {
+    display: inline-block;
+    width: 30px;
+    aspect-ratio: 1/1;
+    border: 1px solid #0045ac;
+    color: #0045ac;
+    border-radius: 100%;
+}
+
+.step.active span {
+    background-color: #0045ac;
+    color: white;
+}
+
+/* table */
+.table-img {
+    width: 75px;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.table td,
+.table th {
+    font-size: 20px;
+    background: #005B96;
+    color: white;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.cart tbody td {
+    color: #005B96;
+    background-color: #ECF5FB;
+}
+
+.cart thead th:nth-child(2),
+.cart tbody td:nth-child(2) {
+    text-align: start;
+}
+
+/* mobile */
+.mobile{
+    display: none;
+}
+
+.mobile #cost {display: none;}
+
+.card,
+.card-body {
+    display: flex;
+    flex-direction: row;
+    border: none;
+}
+
+.card-body {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-img {
+    width: 25%;
+}
+
+.card-img img {
+    max-width: 100px;
+    height: 100px;
+}
+
+.del-btn{
+    width: max-content;
+    aspect-ratio: 1/1;
+    background: #FF0000;
+    border-radius: 10px;
+    color: #ffffff;
+}
+
+.card-body {
+    padding: 0;
+}
