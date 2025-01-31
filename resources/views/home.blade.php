@@ -37,7 +37,7 @@
                         <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                         <h3 class="title m-t-b-10">真鯛</h3>
                     </div>
-                    <a href="{{ url('/product') }}" class="txt m-b-10">
+                    <a href="{{ url('/product') }}" class="txt m-b-10 description">
                         たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
                     </a>
                     <div class="d-flex card-btn m-t-10">
@@ -339,9 +339,9 @@
             </div>
         </div>
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center my-3">
           <div class="col-5 col-lg-3 text-center">
-            <a class="btn btn-outline-primary see-more-btn mt-3" href="{{ route('special-offer') }}">
+            <a class="common-btn see-more-btn mt-3" href="{{ route('special-offer') }}">
               See More
             </a>
           </div>

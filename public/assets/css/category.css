@@ -96,3 +96,11 @@ body {
   }
   
 }
+
+@media screen and (max-width: 500px) {
+  .category-list>li{
+    padding:9px;
+  }
+  /* .card-list{background-color: red;} */
+  
+}

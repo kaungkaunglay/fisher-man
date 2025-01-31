@@ -466,6 +466,10 @@ li {
     grid-template-columns: 1fr 1fr;
   }
 
+  .container-custom {
+    padding: 0px 20px;
+  }
+
 }
 
 /* end slider */
@@ -777,7 +781,7 @@ li {
 
 @media screen and (max-width: 768px) {
   .wpr {
-    padding: 20px;
+    padding: 10px;
   }
 
   .category {
@@ -792,5 +796,18 @@ li {
   .card-list {
     grid-template-columns: 1fr 1fr;
   }
+
+  .common-btn{
+    padding: 7px 20px;
+  }
+
+}
+@media screen and (max-width: 490px) {
+ 
+
+  .card-list {
+    grid-template-columns: 1fr !important;
+  }
+
 
 }
