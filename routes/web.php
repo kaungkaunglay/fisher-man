@@ -92,7 +92,10 @@ Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.ord
 Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
-
+// Mail Route
 Route::post('/admin/mail', [MailController::class,'sendmail'])->name('mail.reset');
+Route::get('/admin/mail/schedule', function(){
+    return view('mail.index');
+})->name('admin.mail');
 
 
