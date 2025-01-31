@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categories extends Model
+class forgot_password extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['category_name', 'image'];
+    protected $fillable = [
+        'token', 
+        'is_used', 
+        'user_id',
+    ]; 
 }

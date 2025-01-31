@@ -16,7 +16,7 @@ class FishermanMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(private $one_time_password)
     {
         //
     }
@@ -37,7 +37,8 @@ class FishermanMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.index'
+            view: 'mail.index',
+            with: ['one_time_password' => $this->one_time_password],
         );
     }
 
