@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
@@ -31,11 +32,11 @@ Route::post('/register', [UsersController::class, 'register_store'])->name('regi
 
 
 // Forgot_password for customer and seller
-Route::get('/forgot_password',[UsersController::class,'forgot_password'])->name('forgotpassword');
+Route::get('/forgot_password', [UsersController::class, 'forgot_password'])->name('forgotpassword');
 // Handle Reset Link
 Route::post('/forgot-password', [UsersController::class, 'sendResetLinkEmail'])->name('password.email');
 // Password Reset Form
-Route::get('/reset-password',[UsersController::class,'showResetForm'])->name('password.reset');
+Route::get('/reset-password', [UsersController::class, 'showResetForm'])->name('password.reset');
 // Route::get('/reset-password/{token}', [UsersController::class, 'showResetForm'])->name('password.reset');
 // Handle Password Reset
 Route::post('/reset-password', [UsersController::class, 'reset'])->name('password.update');
@@ -83,8 +84,6 @@ Route::get('/special-offer', function () {
 
 // Admin Controller
 Route::get('/admin', [AdminController::class, 'home'])->name('admin');
-Route::get('/admin/categories', [AdminController::class, 'categoreis'])->name('admin.categories');
-Route::get('/admin/category', [AdminController::class, 'category'])->name('admin.category');
 Route::get('/admin/products', [AdminController::class, 'products'])->name('admin.products');
 Route::get('/admin/product', [AdminController::class, 'product'])->name('admin.product');
 Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
@@ -92,6 +91,13 @@ Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
 
-Route::post('/admin/mail', [MailController::class,'sendmail'])->name('mail.reset');
+Route::post('/admin/mail', [MailController::class, 'sendmail'])->name('mail.reset');
 
+// Categories Controller
 
+Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('admin.categories');
+Route::get('/admin/categories/create', [CategoriesController::class, 'create'])->name('create_category');
+Route::post('/admin/categories', [CategoriesController::class, 'store'])->name('add_category');
+Route::get('/admin/categories/{category}/edit', [CategoriesController::class, 'edit'])->name('admin.categories.edit');
+Route::put('/admin/categories/{category}', [CategoriesController::class, 'update'])->name('update_category');
+Route::delete('/admin/categories/{category}', [CategoriesController::class, 'destroy'])->name('admin.categories.destroy');
