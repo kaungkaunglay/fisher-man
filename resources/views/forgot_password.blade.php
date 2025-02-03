@@ -1,6 +1,6 @@
 @extends('includes.layout')
 @section('style')
-<link rel="stylesheet" href="{{ asset('assets/css/forgot_password.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/css/fotgot_password.css') }}" />
 @endsection
 @section('contents')
 <div class="forgotpass rounded mx-auto overflow-hidden bg-white shadow">
@@ -11,6 +11,11 @@
       <label for="email" class="form-label">Email</label>
       <input type="email" name="email" id="email" class="form-control" required autofocus>
       <span></span>
+<div class="container-custom my-5 forgotpass">
+      <div class="row justify-content-center h-100 align-items-center">
+            <div class="col-12 col-md-8 col-lg-5">
+            @include('messages.index')
+        </div>
     </div>
     <div class="d-flex flex-column align-items-center">
       <button id="submit" name="submit" type="submit" class="common-btn btn btn-primar rounded-pill">Send Reset Link</button>
@@ -63,12 +68,51 @@
                   .removeClass('d-block')
                   .html('');
               }
-            });
-
-          }
-        }
-      });
-    });
-  });
-</script>
+          });
+ 
+          $("#forgot_password").submit(function(e) {
+              e.preventDefault();
+              var formData = new FormData(this);
+              $.ajax({
+                  url: "{{ route('mail.reset') }}",
+                  type: 'POST',
+                  dataType: 'json',
+                  data: formData,
+                  contentType: false,
+                  processData: false,
+                  success: function(response) {
+                      if (response.status == true) {
+                         window.location.href = "{{ route('forgotpassword') }}";
+                      } else{
+                       if(response.message){
+                            $('#message').html(response.message);
+                       }
+                       var errors = response.errors;
+                       
+                       var fields = [
+                           'email',
+                       ];
+                       
+                       fields.forEach(function(field) {
+                          if (errors[field]) {
+                              $('#' + field)
+                                  .closest('.input-box')
+                                  .find('span.invalid-feedback')
+                                  .addClass('d-block')
+                                  .html(errors[field]);
+                          } else {
+                              $('#' + field)
+                                  .closest('.input-box')
+                                  .find('span.invalid-feedback')
+                                  .removeClass('d-block')
+                                  .html('');
+                          }
+                      });
+ 
+                     }
+                  }
+              });
+          });
+   });
+ </script>
 @endsection
