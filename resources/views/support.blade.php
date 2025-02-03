@@ -212,4 +212,5 @@
 </div>
 
 <script src="{{ asset('assets/js/support.js') }}"></script>
+
 @endsection

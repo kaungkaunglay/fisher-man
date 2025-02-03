@@ -3,20 +3,19 @@
 <link rel="stylesheet" href="{{ asset('assets/css/product_detail.css') }}" />
 @endsection
 @section('contents')
-<!-- Breadcrumbs -->
+
+
+<section class="container-custom mt-2">
+  <div class="row">
+    <!-- Breadcrumbs -->
 <nav aria-label="breadcrumb" class="py-4">
-  <div class="container">
     <ol class="breadcrumb mb-0 bg-transparent">
       <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
       <li class="breadcrumb-item"><a href="./">Products</a></li>
       <li class="breadcrumb-item active" aria-current="page">Product Name</li>
     </ol>
-  </div>
 </nav>
 <!-- ./Breadcrumbs -->
-
-<section class="container-custom mt-2">
-  <div class="row">
     <!-- aside start -->
     <div class="col-4 side-menu">
       @include('includes.aside')
@@ -55,9 +54,11 @@
           </div>
           <div class="m-b-20 m-t-10">
             <div class="quanity">
-              <button class="btn" id="decrement">-</button>
-              <input type="text" value="1" id="quantity" readonly>
-              <button class="btn" id="increment">+</button>
+              <div class="d-flex">
+                <button class="btn" id="decrement">-</button>
+                <input type="text" value="1" id="quantity" readonly>
+                <button class="btn" id="increment">+</button>
+              </div>
               <button class="common-btn ms-5">Add to Cart</button>
             </div>
           </div>

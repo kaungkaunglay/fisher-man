@@ -454,6 +454,8 @@ li {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
 }
 
+.card-list .item-card .card-btn{margin-top: 40px;}
+
 @media screen and (max-width: 1350px) {
   #view-list {
     grid-template-columns: 1fr 1fr 1fr;
@@ -555,12 +557,7 @@ li {
 
 /* end price range  */
 
-.quanity {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2px;
-}
+
 
 #decrement,
 #increment {
@@ -741,6 +738,10 @@ li {
 
   .row-list .right {
     width: 40%;
+    height: 200px;
+  }
+  .row-list .right img{
+    height: 100%;
   }
 
   .row-list .left {

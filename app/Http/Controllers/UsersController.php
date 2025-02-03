@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Users;
+use App\Models\forgot_password;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\ForgotPasswordMail;
@@ -78,6 +79,17 @@ class UsersController extends Controller
             return response()->json(['status' => true, 'message' => 'Register Success']);
         }
     }
+    public function  update_password(Request $request){
+        $user_password = $request->password;
+        $user = Users::where('id', $request->userid)->first();
+        if ($user) {
+            $user->password = Hash::make($user_password);
+            $user->save();
+            return response()->json(['status' => true, 'message' => 'Password Updated']);
+        }else{
+            return response()->json(['status' => false, 'message' => 'User not found']);
+        }
+    }
     public function login_store(Request $request){
         $validator = Validator::make($request->all(), [
             'username' => 'required',
@@ -86,7 +98,6 @@ class UsersController extends Controller
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
-
             $user = Users::where('username', $request->username)
             ->orWhere('email', $request->username)
             ->first();
@@ -124,9 +135,18 @@ class UsersController extends Controller
         }
     }
 
-    public function showResetForm() {
-        return view('reset_password');
-        
+    public function showResetForm(Request $request) {
+        $token = $request->query('token');  
+        $user_forgot_password = forgot_password::where('token', $token)->first();
+        if(!$user_forgot_password){
+            return abort(404);
+        }
+        if($user_forgot_password->is_used == 0){
+            $user_forgot_password->is_used = 1;
+            $user_forgot_password->save();
+            //delete token after reset passwordk
+            return view('reset_password', ['user_id' => $user_forgot_password->user_id]);
+        }
     }
 
     // public function showResetForm($token){
