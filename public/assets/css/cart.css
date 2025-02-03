@@ -190,6 +190,9 @@ main {
 }
 
 @media screen and (max-width: 576px) {
+    .cart {
+        padding: 0;
+    }
     .popup {
         font-size: .6rem;
         padding: .5rem;
@@ -232,6 +235,10 @@ main {
 
     .cvc-bank-img {
         width: 5%;
+    }
+
+    #complete .common-btn {
+        padding: 7px 5px;
     }
 }
 

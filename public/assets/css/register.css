@@ -94,6 +94,12 @@ main .input-group:has(input:focus) i {
     color: #005b96;
 }
 
+main input[type="password"] {
+    font-size: 10px !important;
+    letter-spacing: 1.5px;
+    min-height: 43px;
+}
+
 
 main .register {
     font-size: 15px;

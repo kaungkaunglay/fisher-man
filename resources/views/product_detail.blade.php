@@ -87,17 +87,17 @@
   <h3 class="m-t-b-20 fs-2 fw-bold txt-primary">
     Review
     </h1>
-    <div class="user-review-container" id="reviewContainer">
+    <div class="user-review-container w-md-100" id="reviewContainer">
       <!-- Reviewer Cards -->
-      <div class="reviewer-card d-flex align-items-center gap-3 m-b-20">
-        <div class="user-img col-4">
+      <div class="reviewer-card d-flex align-items-start gap-3 m-b-20">
+        <div class="user-img">
           <img src="{{asset('assets/images/account.svg')}}" alt="user image">
         </div>
-        <div class="user-descraption col-8">
-          <div class="d-flex gap-4 align-items-center m-b-10">
+        <div class="user-descraption w-100">
+          <div class="d-flex flex-column flex-sm-row gap-sm-4 gap-2 m-b-10">
             <h3 class="title m-0">User Name 1</h3>
             <div class="user-rating">
-              <img src="../../assets/images/rating.svg" alt="user rating">
+              <img src="{{asset('assets/images/rating.svg')}}" alt="user rating">
             </div>
           </div>
           <p class="txt">
@@ -112,15 +112,15 @@
         </div>
       </div>
 
-      <div class="reviewer-card d-flex align-items-center gap-3 m-b-20">
-        <div class="user-img col-4">
+      <div class="reviewer-card d-flex align-items-start gap-3 m-b-20">
+        <div class="user-img"">
           <img src="{{asset('assets/images/account.svg')}}" alt="user image">
         </div>
-        <div class="user-descraption col-8">
-          <div class="d-flex gap-4 align-items-center m-b-10">
+        <div class="user-descraption w-100">
+          <div class="d-flex flex-column flex-sm-row gap-sm-4 gap-2 m-b-10">
             <h3 class="title m-0">User Name 2</h3>
             <div class="user-rating">
-              <img src="../../assets/images/rating.svg" alt="user rating">
+              <img src="{{asset('assets/images/rating.svg')}}" alt="user rating">
             </div>
           </div>
           <p class="txt">
@@ -130,14 +130,14 @@
       </div>
 
       <div class="reviewer-card d-flex align-items-center gap-3 m-b-20">
-        <div class="user-img col-4">
-          <img src="{{asset('assets/images/fishes/Red_sea_bream.svg')}}" alt="user image">
+        <div class="user-img"">
+          <img src="{{asset('assets/images/account2.svg')}}" alt="user image">
         </div>
-        <div class="user-descraption col-8">
-          <div class="d-flex gap-4 align-items-center m-b-10">
+        <div class="user-descraption w-100">
+          <div class="d-flex flex-column flex-sm-row gap-sm-4 gap-2 m-b-10">
             <h3 class="title m-0">User Name 3</h3>
             <div class="user-rating">
-              <img src="../../assets/images/rating.svg" alt="user rating">
+              <img src="{{asset('assets/images/rating.svg')}}" alt="user rating">
             </div>
           </div>
           <p class="txt">Review text for User 3.</p>
@@ -145,11 +145,11 @@
       </div>
 
       <div class="reviewer-card d-flex align-items-center gap-3 m-b-20">
-        <div class="user-img col-4">
-          <img src="{{asset('assets/images/fishes/Red_sea_bream.svg')}}" alt="user image">
+        <div class="user-img"">
+          <img src="{{asset('assets/images/account2.svg')}}" alt="user image">
         </div>
-        <div class="user-descraption col-8">
-          <div class="d-flex gap-4 align-items-center m-b-10">
+        <div class="user-descraption w-100">
+          <div class="d-flex flex-column flex-sm-row gap-sm-4 gap-2 m-b-10">
             <h3 class="title m-0">User Name 4</h3>
             <div class="user-rating">
               <img src="../../assets/images/rating.svg" alt="user rating">
@@ -166,7 +166,7 @@
 <div class="review-form container-custom mb-3 p-0">
   <h3 class="text-center m-b-20 fs-2 fw-bold txt-primary">Add a review</h3>
   <div class="row justify-content-center review-form-container">
-    <div class="col-6">
+    <div>
       <form>
         <div class="row mb-3 form-mobile">
           <div class="col-md-6 mb-mobile-3">

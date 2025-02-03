@@ -138,6 +138,12 @@ main .register p {
     margin-top: 20px;
 }
 
+main input[type="password"] {
+    font-size: 10px !important;
+    letter-spacing: 1.5px;
+    min-height: 43px;
+}
+
 main .input-submit {
     width: 100%;
     border: 1px solid #005B96;

@@ -32,7 +32,7 @@
   <!-- ./Step List -->
 
   <!-- Step Content -->
-  <div class="container-custom cart">
+  <div class="container cart">
 
     <!-- Checkout -->
     <div class="page" id="checkout">
@@ -43,7 +43,7 @@
             <th scope="col">Image</th>
             <th scope="col">Product address</th>
             <th scope="col">Price</th>
-            <th scope="col">Quanity</th>
+            <th scope="col">Quantity</th>
             <th scope="col">Total</th>
             <th scope="col">Remove</th>
           </tr>
@@ -56,7 +56,7 @@
             <td clas="col-name">Mark</td>
             <td class="col-price" id="price">$100</td>
             <td class="col-quantity">
-              <div class="quanity d-flex">
+              <div class="quantity d-flex">
                 <button class="btn" id="decrement">-</button>
                 <input type="text" value="1" id="quantity" readonly>
                 <button class="btn" id="increment">+</button>
@@ -73,7 +73,7 @@
             <td class="col-name">Mark</td>
             <td id="price">$100</td>
             <td class="col-quantity">
-              <div class="quanity d-flex">
+              <div class="quantity d-flex">
                 <button class="btn" id="decrement">-</button>
                 <input type="text" value="1" id="quantity" readonly>
                 <button class="btn" id="increment">+</button>
@@ -108,7 +108,7 @@
                 <span id="cost">$100</span>
                 <span id="price">$100</span>
               </div>
-              <div class="quanity">
+              <div class="quantity d-flex">
                 <button class="btn" id="decrement">-</button>
                 <input type="text" value="1" id="quantity" readonly>
                 <button class="btn" id="increment">+</button>
@@ -131,7 +131,7 @@
                 <span id="cost">$100</span>
                 <span id="price">$100</span>
               </div>
-              <div class="quanity">
+              <div class="quantity d-flex">
                 <button class="btn" id="decrement">-</button>
                 <input type="text" value="1" id="quantity" readonly>
                 <button class="btn" id="increment">+</button>
@@ -273,7 +273,7 @@
             <th scope="col">Image</th>
             <th scope="col">Product address</th>
             <th scope="col">Price</th>
-            <th scope="col">Quanity</th>
+            <th scope="col">Quantity</th>
             <th scope="col">Total</th>
             <th scope="col">Remove</th>
           </tr>
@@ -286,7 +286,7 @@
             <td clas="col-name">Mark</td>
             <td class="col-price" id="price">$100</td>
             <td class="col-quantity">
-              <div class="quanity d-flex">
+              <div class="quantity d-flex">
                 <button class="btn" id="decrement">-</button>
                 <input type="text" value="1" id="quantity" readonly>
                 <button class="btn" id="increment">+</button>
@@ -303,7 +303,7 @@
             <td class="col-name">Mark</td>
             <td id="price">$100</td>
             <td class="col-quantity">
-              <div class="quanity d-flex">
+              <div class="quantity d-flex">
                 <button class="btn" id="decrement">-</button>
                 <input type="text" value="1" id="quantity" readonly>
                 <button class="btn" id="increment">+</button>
@@ -338,7 +338,7 @@
                 <span id="cost">$100</span>
                 <span id="price">$100</span>
               </div>
-              <div class="quanity">
+              <div class="quantity d-flex">
                 <button class="btn" id="decrement">-</button>
                 <input type="text" value="1" id="quantity" readonly>
                 <button class="btn" id="increment">+</button>
@@ -361,7 +361,7 @@
                 <span id="cost">$100</span>
                 <span id="price">$100</span>
               </div>
-              <div class="quanity">
+              <div class="quantity d-flex">
                 <button class="btn" id="decrement">-</button>
                 <input type="text" value="1" id="quantity" readonly>
                 <button class="btn" id="increment">+</button>
