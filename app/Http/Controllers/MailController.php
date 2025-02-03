@@ -18,7 +18,7 @@ class MailController extends Controller
         ]);
         
         if($validator->fails()){ 
-            return response()->json(['status' => false, 'errors' => $validator->errors()]);
+            return response()->json(['status' => false, 'errors' => $validator->errors()], 400);
         }else{
             $user = Users::where('email', $request->email)->first();
             if(!$user){
@@ -31,6 +31,7 @@ class MailController extends Controller
                 $forgot_password->token = $one_time_password;
                 $forgot_password->save(); 
                 Mail::to($request->email)->send(new FishermanMail($one_time_password));
+                session(['status' => 'success', "message" => "We sent you a password reset link to your email"]);
                 return response()->json(['status' => true, 'message' => 'Mail Sent']);
             }
         }

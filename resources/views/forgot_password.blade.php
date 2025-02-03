@@ -1,22 +1,25 @@
 @extends('includes.layout')
 @section('style')
-<link rel="stylesheet" href="{{ asset('assets/css/forgot_password.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/css/fotgot_password.css') }}" />
 @endsection
 @section('contents')
 <div class="container-custom my-5 forgotpass">
       <div class="row justify-content-center h-100 align-items-center">
             <div class="col-12 col-md-8 col-lg-5">
+            @include('messages.index')
         <div class="card shadow">
                 <div class="card-header bg-primary text-white text-center">
                     <h3>Forgot Password</h3>
                 </div>
+       
                 <div class="card-body">
+                    
                     <form method="post" name="forgot_password" id="forgot_password">
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" required autofocus>
-                            <span></span>
+                            <input type="email" name="email" id="email" class="form-control" autofocus>
+                            <span class="invalid-feedback"></span>
                         </div>
                         <button id="submit" name="submit" type="submit" class="btn btn-primary w-100">Send Reset Link</button>
                     </form>
@@ -57,20 +60,20 @@
                        ];
                        
                        fields.forEach(function(field) {
-                           if (errors[field]) {
-                               $('#' + field)
-                                   .closest('.input-box')
-                                   .find('span.invalid-feedback')
-                                   .addClass('d-block')
-                                   .html(errors[field]);
-                           } else {
-                               $('#' + field)
-                                   .closest('.input-box')
-                                   .find('span.invalid-feedback')
-                                   .removeClass('d-block')
-                                   .html('');
-                           }
-                       });
+                          if (errors[field]) {
+                              $('#' + field)
+                                  .closest('.input-box')
+                                  .find('span.invalid-feedback')
+                                  .addClass('d-block')
+                                  .html(errors[field]);
+                          } else {
+                              $('#' + field)
+                                  .closest('.input-box')
+                                  .find('span.invalid-feedback')
+                                  .removeClass('d-block')
+                                  .html('');
+                          }
+                      });
  
                      }
                   }

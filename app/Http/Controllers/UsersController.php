@@ -81,16 +81,14 @@ class UsersController extends Controller
     }
     public function  update_password(Request $request){
         $user_password = $request->password;
-        $user = new Users(); 
-        $user_value = $user->where('id', $request->id)->first();    
-        if ($user_value) {
+        $user = Users::where('id', $request->userid)->first();
+        if ($user) {
             $user->password = Hash::make($user_password);
             $user->save();
             return response()->json(['status' => true, 'message' => 'Password Updated']);
         }else{
             return response()->json(['status' => false, 'message' => 'User not found']);
         }
-      
     }
     public function login_store(Request $request){
         $validator = Validator::make($request->all(), [
@@ -146,7 +144,7 @@ class UsersController extends Controller
         if($user_forgot_password->is_used == 0){
             $user_forgot_password->is_used = 1;
             $user_forgot_password->save();
-            //delete token after reset password
+            //delete token after reset passwordk
             return view('reset_password', ['user_id' => $user_forgot_password->user_id]);
         }
     }

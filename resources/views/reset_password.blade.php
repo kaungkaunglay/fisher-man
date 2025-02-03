@@ -6,6 +6,7 @@
 <div class="container-custom my-5 forgotpass">
       <div class="row justify-content-center h-100 align-items-center">
             <div class="col-12 col-md-8 col-lg-5">
+                @include('messages.index')
             <div class="card shadow">
                 <div class="card-header bg-primary text-white text-center">
                     <h3>Reset Password</h3>
@@ -41,7 +42,7 @@
               e.preventDefault();
               var formData = new FormData(this);
               $.ajax({
-                  url: "{{ route('update_password') }}",
+                  url: "{{ route('password.update') }}",
                   type: 'POST',
                   dataType: 'json',
                   data: formData,
@@ -49,7 +50,8 @@
                   processData: false,
                   success: function(response) {
                       if (response.status == true) {
-                        alert('Password reset successfully');
+                        alert('Password Updated successfully');
+                        window.location.href = "{{ route('login') }}";
                       }else{
                        if(response.message){
                             $('#message').html(response.message);
@@ -59,22 +61,22 @@
                        var fields = [
                            'email',
                        ];
-                       
-                       fields.forEach(function(field) {
-                           if (errors[field]) {
-                               $('#' + field)
-                                   .closest('.input-box')
-                                   .find('span.invalid-feedback')
-                                   .addClass('d-block')
-                                   .html(errors[field]);
-                           } else {
-                               $('#' + field)
-                                   .closest('.input-box')
-                                   .find('span.invalid-feedback')
-                                   .removeClass('d-block')
-                                   .html('');
-                           }
-                       });
+
+                        fields.forEach(function(field) {
+                          if (errors[field]) {
+                              $('#' + field)
+                                  .closest('.input-box')
+                                  .find('span.invalid-feedback')
+                                  .addClass('d-block')
+                                  .html(errors[field]);
+                          } else {
+                              $('#' + field)
+                                  .closest('.input-box')
+                                  .find('span.invalid-feedback')
+                                  .removeClass('d-block')
+                                  .html('');
+                          }
+                      });
  
                      }
                   }
