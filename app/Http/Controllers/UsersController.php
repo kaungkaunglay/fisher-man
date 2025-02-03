@@ -80,12 +80,17 @@ class UsersController extends Controller
         }
     }
     public function  update_password(Request $request){
-        $user_id = $request->userid; 
         $user_password = $request->password;
-        logger($user_id. ' ' . $user_password);
-        $user = Users::where('id', $user_id)->first();
-        $user->password = Hash::make($user_password);
-        $user->save();
+        $user = new Users(); 
+        $user_value = $user->where('id', $request->id)->first();    
+        if ($user_value) {
+            $user->password = Hash::make($user_password);
+            $user->save();
+            return response()->json(['status' => true, 'message' => 'Password Updated']);
+        }else{
+            return response()->json(['status' => false, 'message' => 'User not found']);
+        }
+      
     }
     public function login_store(Request $request){
         $validator = Validator::make($request->all(), [
