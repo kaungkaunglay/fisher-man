@@ -56,7 +56,7 @@
             <td clas="col-name">Mark</td>
             <td class="col-price" id="price">$100</td>
             <td class="col-quantity">
-              <div class="quanity">
+              <div class="quanity d-flex">
                 <button class="btn" id="decrement">-</button>
                 <input type="text" value="1" id="quantity" readonly>
                 <button class="btn" id="increment">+</button>
@@ -73,7 +73,7 @@
             <td class="col-name">Mark</td>
             <td id="price">$100</td>
             <td class="col-quantity">
-              <div class="quanity">
+              <div class="quanity d-flex">
                 <button class="btn" id="decrement">-</button>
                 <input type="text" value="1" id="quantity" readonly>
                 <button class="btn" id="increment">+</button>
@@ -98,7 +98,7 @@
       <!-- Mobile Style -->
       <div class="mobile d-md-none d-flex flex-column gap-3" id="table">
         <div class="card">
-          <div class="card-img flex-grow-1">
+          <div class="card-img align-content-center me-2">
             <img src="{{asset('assets/images/account1.svg')}}" alt="product img">
           </div>
           <div class="card-body">
@@ -121,7 +121,7 @@
         </div>
 
         <div class="card">
-          <div class="card-img flex-grow-1">
+          <div class="card-img align-content-center me-2">
             <img src="{{asset('assets/images/account2.svg')}}" alt="product img">
           </div>
           <div class="card-body">
@@ -258,8 +258,8 @@
             </div>
 
             <div class="d-flex gap-3 text-center justify-content-center">
-              <button class="common-btn btn btn-outline-primary">Cancel</button>
-              <button type="submit" class="common-btn btn btn-outline-primary">Save</button>
+              <button class="common-btn btn btn-outline-primary" id="cancel">Cancel</button>
+              <a href="#complete" class="common-btn btn btn-outline-primary btn-next">Save</a>
             </div>
           </form>
         </div>
@@ -286,7 +286,7 @@
             <td clas="col-name">Mark</td>
             <td class="col-price" id="price">$100</td>
             <td class="col-quantity">
-              <div class="quanity">
+              <div class="quanity d-flex">
                 <button class="btn" id="decrement">-</button>
                 <input type="text" value="1" id="quantity" readonly>
                 <button class="btn" id="increment">+</button>
@@ -303,7 +303,7 @@
             <td class="col-name">Mark</td>
             <td id="price">$100</td>
             <td class="col-quantity">
-              <div class="quanity">
+              <div class="quanity d-flex">
                 <button class="btn" id="decrement">-</button>
                 <input type="text" value="1" id="quantity" readonly>
                 <button class="btn" id="increment">+</button>
@@ -328,7 +328,7 @@
       <!-- Mobile Style -->
       <div class="mobile d-md-none d-flex flex-column gap-3" id="table">
         <div class="card">
-          <div class="card-img flex-grow-1">
+          <div class="card-img align-content-center me-2">
             <img src="{{asset('assets/images/account1.svg')}}" alt="product img">
           </div>
           <div class="card-body">
@@ -351,7 +351,7 @@
         </div>
 
         <div class="card">
-          <div class="card-img flex-grow-1">
+          <div class="card-img align-content-center me-2">
             <img src="{{asset('assets/images/account2.svg')}}" alt="product img">
           </div>
           <div class="card-body">
@@ -382,9 +382,9 @@
       </div>
       <!-- ./Mobile Style -->
 
-      <h2 class="py-3 px-3 bg-primary text-white">Select Payment</h2>
+      <h2 class="py-3 px-3 mt-5 bg-primary text-white">Select Payment</h2>
       <div class="d-flex gap-3 py-3 px-3">
-        <input type="checkbox">
+        <input type="checkbox" id="select-payment">
         Credit Card
       </div>
 
@@ -416,18 +416,19 @@
         </li>
       </ul>
       <div class="d-flex gap-3 my-4 justify-content-end">
-        <a href="#payment" class="btn btn-outline-primary common-btn btn-back">Go Back</a>
+        <a href="#address" class="btn btn-outline-primary common-btn btn-back">Go Back</a>
+        <button class="btn btn-outline-primary common-btn btn-payment">Check Out</button>
         <a href="#complete" class="btn btn-outline-primary common-btn btn-next">Check Out</a>
       </div>
     </div>
     <!-- ./Payment -->
 
     <!-- Complete -->
-    <div id="complete">
+    <div class="page" id="complete">
       <p class="text-center">Your Payment is Successful. We will sent the invoice to your mail and Line ID Please check.
       </p>
       <div class="d-flex gap-3 py-5 justify-content-center">
-        <a href="{{ url('/') }}" class="btn btn-outline-primary common-btn">Contact Us</a>
+        <a href="{{ url(path: '/') }}" class="btn btn-outline-primary common-btn">Contact Us</a>
         <a href="{{ url('/') }}" class="btn btn-outline-primary common-btn">Home Page</a>
       </div>
     </div>
