@@ -42,6 +42,12 @@
     width: max-content;
 }
 
+.product-descraption button {
+    width: 50%;
+    text-align: center;
+    padding: 10px 0;
+}
+
 .review-form-container{
     width: 80%;
     background-color: #ECF5FB;
@@ -58,6 +64,7 @@
 .form-mobile input:focus,
 .form-select:focus,
 textarea.form-control:focus {
+    background-color: #fff;
     box-shadow: none;
 }
 
@@ -119,6 +126,14 @@ textarea.form-control:focus {
 
     .review-form{
         margin: 20px !important;
+    }
+
+    .review-form button {
+        max-width: 203px;
+        width: 50%;
+        padding-left: 0;
+        padding-right: 0;
+        text-align: center;
     }
 
     .quanity {

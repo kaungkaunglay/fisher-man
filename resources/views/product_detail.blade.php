@@ -8,14 +8,14 @@
 <section class="container-custom mt-2">
   <div class="row">
     <!-- Breadcrumbs -->
-<nav aria-label="breadcrumb" class="py-4">
-    <ol class="breadcrumb mb-0 bg-transparent">
-      <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
-      <li class="breadcrumb-item"><a href="./">Products</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Product Name</li>
-    </ol>
-</nav>
-<!-- ./Breadcrumbs -->
+    <nav aria-label="breadcrumb" class="py-4">
+      <ol class="breadcrumb mb-0 bg-transparent">
+        <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="./">Products</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Product Name</li>
+      </ol>
+    </nav>
+    <!-- ./Breadcrumbs -->
     <!-- aside start -->
     <div class="col-4 side-menu">
       @include('includes.aside')
@@ -84,7 +84,7 @@
 </section>
 <!-- Review start -->
 <div class="reviewer container-custom">
-  <h3 class="m-t-b-20 fs-2 fw-bold txt-primary">
+  <h3 class="m-t-b-20 fs-2 fw-bold txt-primary text-center">
     Review
     </h1>
     <div class="user-review-container w-md-100" id="reviewContainer">
@@ -101,7 +101,9 @@
             </div>
           </div>
           <p class="txt">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam voluptate doloremque quidem reiciendis repudiandae ducimus atque nulla maxime placeat deserunt iure deleniti eius consequatur aliquid, quibusdam enim voluptatibus velit iste!
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam voluptate doloremque quidem reiciendis
+            repudiandae ducimus atque nulla maxime placeat deserunt iure deleniti eius consequatur aliquid, quibusdam
+            enim voluptatibus velit iste!
           </p>
         </div>
       </div>
@@ -114,7 +116,7 @@
 
       <div class="reviewer-card d-flex align-items-start gap-3 m-b-20">
         <div class="user-img"">
-          <img src="{{asset('assets/images/account.svg')}}" alt="user image">
+          <img src=" {{asset('assets/images/account.svg')}}" alt="user image">
         </div>
         <div class="user-descraption w-100">
           <div class="d-flex flex-column flex-sm-row gap-sm-4 gap-2 m-b-10">
@@ -124,14 +126,16 @@
             </div>
           </div>
           <p class="txt">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, nesciunt? Praesentium cum beatae quam accusantium voluptates minima tempora id exercitationem! Qui perspiciatis exercitationem, ab doloribus ut corporis quo cupiditate. Maiores.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, nesciunt? Praesentium cum beatae quam
+            accusantium voluptates minima tempora id exercitationem! Qui perspiciatis exercitationem, ab doloribus ut
+            corporis quo cupiditate. Maiores.
           </p>
         </div>
       </div>
 
       <div class="reviewer-card d-flex align-items-center gap-3 m-b-20">
         <div class="user-img"">
-          <img src="{{asset('assets/images/account2.svg')}}" alt="user image">
+          <img src=" {{asset('assets/images/account2.svg')}}" alt="user image">
         </div>
         <div class="user-descraption w-100">
           <div class="d-flex flex-column flex-sm-row gap-sm-4 gap-2 m-b-10">
@@ -146,7 +150,7 @@
 
       <div class="reviewer-card d-flex align-items-center gap-3 m-b-20">
         <div class="user-img"">
-          <img src="{{asset('assets/images/account2.svg')}}" alt="user image">
+          <img src=" {{asset('assets/images/account2.svg')}}" alt="user image">
         </div>
         <div class="user-descraption w-100">
           <div class="d-flex flex-column flex-sm-row gap-sm-4 gap-2 m-b-10">
