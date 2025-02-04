@@ -441,4 +441,5 @@
 
 <script src="{{ asset('assets/js/cart.js') }}"></script>
 <script src="{{ asset('assets/js/step.js') }}"></script>
+<script src="{{ asset('assets/js/cart.test.js') }}"></script>
 @endsection
