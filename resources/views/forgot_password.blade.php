@@ -12,26 +12,8 @@
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input type="email" name="email" id="email" class="form-control border-2" placeholder="email@gmail.com" autofocus>
-        <span class="invalid-feedback"></span>
+        <p></p>
       </div>
-
-      <!-- reset -->
-       <!-- <div class="mb-3 password-wpr">
-         <label for="password" class="form-label">Password</label>
-         <div class="input-group border border-2 rounded overflow-hidden">
-           <input id="password" name="password" type="password" placeholder="Enter New Password" class="form-control border-0 shadow-none" required autofocus>
-           <button class="btn border-0 password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
-         </div>
-       </div> -->
-
-       <!-- <div class="mb-3 password-wpr">
-         <label for="confirm-password" class="form-label">Confirm Password</label>
-         <div class="input-group border border-2 rounded overflow-hidden">
-           <input id="confirm-password" name="confirm-password" type="password" placeholder="Re-Enter Password" class="form-control border-0 shadow-none @error('confirm-password') is-invalid @enderror" required autofocus>
-           <button class="btn border-0 password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
-         </div>
-       </div> -->
-      <!-- /rest -->
 
       <div class="d-flex flex-column align-items-center">
         <button id="submit" name="submit" type="submit" class="common-btn btn btn-primar rounded-pill">Send Reset a Link</button>
