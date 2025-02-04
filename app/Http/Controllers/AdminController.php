@@ -22,7 +22,7 @@ class AdminController extends Controller
         return view('admin.order');
     }
     public function products(){
-        return view(view: 'admin.products'); 
+        return view('admin.products'); 
     }
     public function product(){
         return view('admin.product');
