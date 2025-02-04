@@ -95,7 +95,7 @@
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
-                                                <a href="{{route('admin.category')}}" class="{{request()->is('admin/category') ? 'active' : ''}}">
+                                                <a href="{{route('create_category')}}" class="{{request()->is('admin/categories/create') ? 'active' : ''}}">
                                                     <div class="text">New category</div>
                                                 </a>
                                             </li>
