@@ -37,7 +37,7 @@
     <!-- Checkout -->
     <div class="page" id="checkout">
       <!-- Desktop Style -->
-      <table class="table desktop text-center d-md-table d-none" id="table">
+      <table class="table desktop text-center d-md-table d-none" id="sample-table">
         <thead>
           <tr>
             <th scope="col">Image</th>
@@ -96,7 +96,7 @@
       <!-- ./Desktop Style -->
 
       <!-- Mobile Style -->
-      <div class="mobile d-md-none d-flex flex-column gap-3" id="table">
+      <div class="mobile d-md-none d-flex flex-column gap-3">
         <div class="card">
           <div class="card-img align-content-center me-2">
             <img src="{{asset('assets/images/account1.svg')}}" alt="product img">
@@ -267,7 +267,7 @@
       <!-- ./Payment Method Form -->
 
       <!-- Desktop Style -->
-      <table class="table desktop text-center d-md-table d-none" id="table">
+      <table class="table desktop text-center d-md-table d-none">
         <thead>
           <tr>
             <th scope="col">Image</th>
@@ -308,7 +308,7 @@
       <!-- ./Desktop Style -->
 
       <!-- Mobile Style -->
-      <div class="mobile d-md-none d-flex flex-column gap-3" id="table">
+      <div class="mobile d-md-none d-flex flex-column gap-3">
         <div class="card">
           <div class="card-img align-content-center me-2">
             <img src="{{asset('assets/images/account1.svg')}}" alt="product img">

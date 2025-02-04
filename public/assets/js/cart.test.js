@@ -5,6 +5,8 @@ $(document).ready(() => {
   quantityChange('.decrement', -1)
   quantityChange('.increment', 1)
 
+  totalNetResult()
+
   // for testing
   skipStepTester()
 })
@@ -21,17 +23,28 @@ function quantityChange(target, value) {
     const add = amount + value;
 
     quantity.val(value > 0 ? add : sub);
-    cost.text('$' + Number(quantity.val()) * Number(price.text().replace('$','')))
+    cost.text('¥' + Number(quantity.val()) * Number(price.text().replace('$','')))
+    totalNetResult();
   })
 
-  totalNetResult();
 }
 
-function totalNetResult(value) {
+function totalNetResult() {
   
-  const allPrice = $('#price').length;
+  const allPrice = $('#sample-table #cost');
+  const total = $('main #total');
+  let result = 0;
 
-  console.log(allPrice);
+  for(i = 0; i < allPrice.length; i ++) {
+
+    const value = $(allPrice[i]).text().replace('$', '');
+    result += Number(value);
+  }
+
+  for(i = 0; i < total.length; i ++) {
+
+    $(total[i]).text('¥' + result);
+  }
 }
 
 
