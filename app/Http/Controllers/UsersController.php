@@ -80,6 +80,17 @@ class UsersController extends Controller
         }
     }
     public function  update_password(Request $request){
+        $validator = Validator::make($request->all(), [
+            'password' => [
+                'required',
+                'min:6',
+                'max:16',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,16}$/'
+            ],
+        ]);
+        if($validator->fails()){
+            return response()->json(['status' => false, 'errors' => $validator->errors()]);
+        }
         $user_password = $request->password;
         $user = Users::where('id', $request->userid)->first();
         if ($user) {

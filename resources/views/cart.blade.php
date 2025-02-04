@@ -57,9 +57,9 @@
             <td class="col-price" id="price">$100</td>
             <td class="col-quantity">
               <div class="quantity d-flex">
-                <button class="btn" id="decrement">-</button>
+                <button class="btn decrement">-</button>
                 <input type="text" value="1" id="quantity" readonly>
-                <button class="btn" id="increment">+</button>
+                <button class="btn increment">+</button>
               </div>
             </td>
             <td class="col-cost" id="cost">$100</td>
@@ -74,9 +74,9 @@
             <td id="price">$100</td>
             <td class="col-quantity">
               <div class="quantity d-flex">
-                <button class="btn" id="decrement">-</button>
+                <button class="btn decrement">-</button>
                 <input type="text" value="1" id="quantity" readonly>
-                <button class="btn" id="increment">+</button>
+                <button class="btn increment">+</button>
               </div>
             </td>
             <td class="cost" id="cost">$100</td>
@@ -109,9 +109,9 @@
                 <span id="price">$100</span>
               </div>
               <div class="quantity d-flex">
-                <button class="btn" id="decrement">-</button>
+                <button class="btn decrement">-</button>
                 <input type="text" value="1" id="quantity" readonly>
-                <button class="btn" id="increment">+</button>
+                <button class="btn increment">+</button>
               </div>
             </div>
             <a href="#" class="btn del-btn">
@@ -132,9 +132,9 @@
                 <span id="price">$100</span>
               </div>
               <div class="quantity d-flex">
-                <button class="btn" id="decrement">-</button>
+                <button class="btn decrement">-</button>
                 <input type="text" value="1" id="quantity" readonly>
-                <button class="btn" id="increment">+</button>
+                <button class="btn increment">+</button>
               </div>
             </div>
             <a href="#" class="btn del-btn">
@@ -273,9 +273,7 @@
             <th scope="col">Image</th>
             <th scope="col">Product address</th>
             <th scope="col">Price</th>
-            <th scope="col">Quantity</th>
             <th scope="col">Total</th>
-            <th scope="col">Remove</th>
           </tr>
         </thead>
         <tbody>
@@ -285,15 +283,7 @@
             </td>
             <td clas="col-name">Mark</td>
             <td class="col-price" id="price">$100</td>
-            <td class="col-quantity">
-              <div class="quantity d-flex">
-                <button class="btn" id="decrement">-</button>
-                <input type="text" value="1" id="quantity" readonly>
-                <button class="btn" id="increment">+</button>
-              </div>
-            </td>
             <td class="col-cost" id="cost">$100</td>
-            <td class="col-remove"><a href="#" class="mx-auto"><i class="fa-solid fa-trash-can"></i></a>
             </td>
           </tr>
           <tr id="row">
@@ -302,21 +292,13 @@
             </td>
             <td class="col-name">Mark</td>
             <td id="price">$100</td>
-            <td class="col-quantity">
-              <div class="quantity d-flex">
-                <button class="btn" id="decrement">-</button>
-                <input type="text" value="1" id="quantity" readonly>
-                <button class="btn" id="increment">+</button>
-              </div>
-            </td>
             <td class="cost" id="cost">$100</td>
-            <td class="remove"><a href="#"><i class="fa-solid fa-trash-can"></i></a>
             </td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="5" class="total">Total</td>
+            <td colspan="3" class="total">Total</td>
             <td>
               <span id="total"></span>
             </td>
@@ -338,15 +320,7 @@
                 <span id="cost">$100</span>
                 <span id="price">$100</span>
               </div>
-              <div class="quantity d-flex">
-                <button class="btn" id="decrement">-</button>
-                <input type="text" value="1" id="quantity" readonly>
-                <button class="btn" id="increment">+</button>
-              </div>
             </div>
-            <a href="#" class="btn del-btn">
-              <i class="fa-solid fa-trash-can"></i>
-            </a>
           </div>
         </div>
 
@@ -361,15 +335,7 @@
                 <span id="cost">$100</span>
                 <span id="price">$100</span>
               </div>
-              <div class="quantity d-flex">
-                <button class="btn" id="decrement">-</button>
-                <input type="text" value="1" id="quantity" readonly>
-                <button class="btn" id="increment">+</button>
-              </div>
             </div>
-            <a href="#" class="btn del-btn">
-              <i class="fa-solid fa-trash-can"></i>
-            </a>
           </div>
         </div>
 
@@ -382,10 +348,11 @@
       </div>
       <!-- ./Mobile Style -->
 
-      <h2 class="py-3 px-3 mt-5 bg-primary text-white">Select Payment</h2>
+      <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">Select Payment</h2>
       <div class="d-flex gap-3 py-3 px-3">
         <input type="checkbox" id="select-payment">
         Credit Card
+        <div class="ms-auto text-danger" id="warning-msg">Please Check the mark</div>
       </div>
 
       <h2 class="py-3 px-3 bg-primary text-white">Address</h2>
@@ -418,7 +385,6 @@
       <div class="d-flex gap-3 my-4 justify-content-end">
         <a href="#address" class="btn btn-outline-primary common-btn btn-back">Go Back</a>
         <button class="btn btn-outline-primary common-btn btn-payment">Check Out</button>
-        <a href="#complete" class="btn btn-outline-primary common-btn btn-next">Check Out</a>
       </div>
     </div>
     <!-- ./Payment -->
@@ -441,4 +407,5 @@
 
 <script src="{{ asset('assets/js/cart.js') }}"></script>
 <script src="{{ asset('assets/js/step.js') }}"></script>
+<script src="{{ asset('assets/js/cart.test.js') }}"></script>
 @endsection

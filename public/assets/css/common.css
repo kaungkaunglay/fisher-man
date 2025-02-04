@@ -559,8 +559,8 @@ li {
 
 
 
-#decrement,
-#increment {
+.decrement,
+.increment {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -570,6 +570,12 @@ li {
   background-color: #005B96;
   font-size: 20px;
   font-weight: bold;
+  color: #ffffff;
+}
+
+.decrement:hover,
+.increment:hover {
+  background-color: #005B96;
   color: #ffffff;
 }
 

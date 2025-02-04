@@ -3,8 +3,7 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
 input[type=number] {-moz-appearance: textfield;}
 
-#payment:has(#select-payment:not(:checked)) .btn-payment,
-#payment:has(#select-payment:checked) .btn-next:not(.popup .btn-next),
+#warning-msg,
 .popup,
 .page {
     display: none;
@@ -46,6 +45,11 @@ main {
     color: white;
     font-weight: bold;
     vertical-align: middle;
+}
+
+.total {
+    text-align: end;
+    padding-right: 20px;
 }
 
 .cart tbody td {
