@@ -1,6 +1,41 @@
 
 $(document).ready(() => {
 
+  // track id code to show page
+  const page = $(location).attr('href');
+  if (page.includes('#address')) $('#address').show();
+  else if (page.includes('#payment')) $('#payment').show();
+  else if (page.includes('#complete')) $('#complete').show();
+  else $('#checkout').show();
+
+  // forward
+  change_step('#checkout .btn-next');
+  change_step('#address .btn-next');
+  change_step('#payment .btn-next');
+
+  //backward
+  change_step('#payment .btn-back');
+  change_step('#address .btn-back');
+  change_step('#checkout .btn-back');
+
+  // for popup 
+
+  $(document).on('click', '#payment:has(#select-payment:checked) .btn-payment', () => {
+    $('#warning-msg').hide();
+    $('#payment .popup').fadeIn();
+  });
+  $(document).on('click', '#payment:has(#select-payment:not(:checked)) .btn-payment', () => {
+    $('#warning-msg').show();
+    const header = $('header').outerHeight() || 0;
+    $('html, body').animate({
+      scrollTop: $('#payment-check-sec').offset().top - (header + 30)
+    }, 1000)
+  });
+  $('#cancel').click((ev) => {
+    ev.preventDefault();
+    $('.popup').fadeOut();
+  });
+
   quantityChange('.decrement', -1);
   quantityChange('.increment', 1);
   netTotal(true);
@@ -10,6 +45,11 @@ $(document).ready(() => {
   // skipStepTester();
 })
 
+/**
+ * This function updates the quantity of an item when a specified target button is clicked. It increments or decrements the quantity based on the provided value. After updating the quantity, it triggers additional functions to recalculate and set the price.
+ * @param {string | jQuery selector} target The clickable element to attach the event handler.
+ * @param {number} value The value by which the quantity is adjusted (can be positive or negative).
+ */
 function quantityChange(target, value) {
   $(target).click((ev) => {
 
@@ -18,7 +58,7 @@ function quantityChange(target, value) {
     const amount = Number(quanity.val());
 
     // for only sepcific quantity value;
-    const sub = amount > 0 ? amount + value: 0;
+    const sub = amount > 0 ? amount + value : 0;
     const add = amount + value;
 
     quanity.val(value > 0 ? add : sub);
@@ -45,21 +85,21 @@ function setPrice(target) {
   function numList(item) {
     const list = $(sample).find(item);
     const result = [];
-    const state = item.includes('quantity') ? true: false;
+    const state = item.includes('quantity') ? true : false;
 
-    Array.from(list).forEach( (i,index) => result[index] = state ? $(i).val(): $(i).text());
+    Array.from(list).forEach((i, index) => result[index] = state ? $(i).val() : $(i).text());
 
     return result;
   }
 
-  function totalSum(item,array) {
+  function totalSum(item, array) {
 
-    Array.from(tables).forEach( (i) => {
+    Array.from(tables).forEach((i) => {
 
       const target = $(i).find(item);
-      const state = item.includes('quantity') ? true: false;
+      const state = item.includes('quantity') ? true : false;
 
-      for(i = 0; i < array.length; i ++) {
+      for (i = 0; i < array.length; i++) {
 
         state ? $(target[i]).val(array[i]) : $(target[i]).text(array[i]);
       }
@@ -78,23 +118,23 @@ function caculating(target) {
 }
 
 function netTotal(addtion) {
-  
+
   const table = $('.table-item');
-  
-  Array.from(table).forEach( (i) => {
-    
+
+  Array.from(table).forEach((i) => {
+
     const cost = $(i).find('.cost');
     const total = $(i).find('.total');
     const price = $(i).find('.price');
     const quantity = $(i).find('.quantity-value');
     let result = 0;
-    
-    for(i = 0; i < cost.length; i ++) {
-      
+
+    for (i = 0; i < cost.length; i++) {
+
       const priceVal = $(price[i]).text().replace(currencyUnit(), '');
       const quantityVal = $(quantity[i]).val();
 
-      if(addtion) $(cost[i]).text( currencyUnit() + Number(priceVal) * Number(quantityVal));
+      if (addtion) $(cost[i]).text(currencyUnit() + Number(priceVal) * Number(quantityVal));
 
       result += Number($(cost[i]).text().replace(currencyUnit(), ''));
     };
@@ -120,5 +160,40 @@ function skipStepTester() {
     $('.page').hide();
     $($target).show();
   }
+}
+
+
+/**
+ * Handles navigation between steps in a multi-step form or checkout process. It supports both forward (btn-next) and backward (btn-back) navigation.
+ * @param {string|jQuery} trigger The button that triggers the step change (e.g., .btn-next, .btn-back).
+ */
+function change_step(trigger) {
+
+  $(trigger).click((ev) => {
+    ev.preventDefault();
+
+    const header = $('header').outerHeight() || 0;
+    const dir = ev.currentTarget.classList.contains('btn-next') ? true : false; //true for forward dir & false for backward dir
+    const index = ($('.page').index(ev.currentTarget.closest('.page')));
+
+    if (dir) {
+      for (i = 1; i <= index + 2; i++) {
+        $($('.step')[i]).addClass('active');
+      }
+    } else {
+      for (i = 4; i > index - (index == '1' ? 1 : 0); i--) {
+        $($('.step')[i]).removeClass('active');
+      }
+    }
+    console.log(index);
+
+    $($(trigger).closest('.page')).hide();
+    $($(trigger).attr('href')).fadeIn();
+
+    $('html, body').animate({
+
+      scrollTop: $('main').offset().top - header
+    }, 1000)
+  })
 }
 

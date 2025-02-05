@@ -4,7 +4,7 @@
 @endsection
 @section('contents')
 <div class="login-box d-flex flex-column">
-      
+
   <div class="login-header">
     <h2> Login
       <p> Welcome to Fisherman Login Page</p>

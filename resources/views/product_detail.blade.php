@@ -53,11 +53,11 @@
             <p class="m-0 category-txt"><a href="#">鮮魚</a> | <a href="#">白身魚</a></p>
           </div>
           <div class="m-b-20 m-t-10">
-            <div class="quanity">
-              <div class="d-flex">
-                <button class="btn" id="decrement">-</button>
-                <input type="text" value="1" id="quantity" readonly>
-                <button class="btn" id="increment">+</button>
+            <div class="d-flex">
+              <div class="quantity d-flex">
+                <button class="btn decrement">-</button>
+                <input type="text" class="quantity-value" value="1" readonly>
+                <button class="btn increment">+</button>
               </div>
               <button class="common-btn ms-5">Add to Cart</button>
             </div>

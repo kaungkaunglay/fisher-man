@@ -54,7 +54,7 @@
               <div class="table-img"><img src="{{asset('assets/images/account1.svg')}}" alt="product img"></div>
             </td>
             <td clas="col-name">Mark</td>
-            <td class="price">¥300</td>
+            <td class="price">¥100</td>
             <td>
               <div class="quantity d-flex">
                 <button class="btn decrement">-</button>
@@ -79,7 +79,7 @@
                 <button class="btn increment">+</button>
               </div>
             </td>
-            <td class="cost" class="cost">¥100</td>
+            <td class="cost">¥100</td>
             <td class="remove"><a href="#"><i class="fa-solid fa-trash-can"></i></a>
             </td>
           </tr>
@@ -283,7 +283,10 @@
             </td>
             <td clas="col-name">Mark</td>
             <td class="price">¥100</td>
-            <td  class="cost">¥100</td>
+            <td  class="cost">
+              ¥100
+              <input type="hidden" value="1" class="quantity-value">
+            </td>
             </td>
           </tr>
           <tr class="table-row">
@@ -292,7 +295,10 @@
             </td>
             <td class="col-name">Mark</td>
             <td class="price">¥100</td>
-            <td class="cost" class="cost">¥100</td>
+            <td class="cost">
+              ¥100
+              <input type="hidden" value="1" class="quantity-value">
+            </td>
             </td>
           </tr>
         </tbody>
@@ -317,7 +323,10 @@
             <div class="table-row">
               <p class="card-name">Mark</p>
               <div class="card-text">
-                <span class="cost">¥100</span>
+                <span class="cost">
+                  ¥100
+                  <input type="hidden" value="1" class="quantity-value">
+                </span>
                 <span class="price">¥100</span>
               </div>
             </div>
@@ -332,7 +341,10 @@
             <div class="table-row">
               <p class="card-name">Mark</p>
               <div class="card-text">
-                <span class="cost">¥100</span>
+                <span class="cost">
+                  ¥100
+                  <input type="hidden" value="1" class="quantity-value">
+                </span>
                 <span class="price">¥100</span>
               </div>
             </div>

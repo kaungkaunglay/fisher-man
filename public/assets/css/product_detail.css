@@ -42,7 +42,7 @@
     width: max-content;
 }
 
-.product-descraption button {
+.product-descraption .common-btn {
     width: 50%;
     text-align: center;
     padding: 10px 0;

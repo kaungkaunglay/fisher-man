@@ -137,6 +137,8 @@
 
 @media screen and (max-width: 584px) {
     .product-btn{padding: 4px 30px !important;}
+
+    #load-more {width: max-content;}
 }
 
 
