@@ -37,7 +37,7 @@
     <!-- Checkout -->
     <div class="page" id="checkout">
       <!-- Desktop Style -->
-      <table class="table desktop text-center d-md-table d-none" id="sample-table">
+      <table class="table desktop text-center d-md-table d-none table-item">
         <thead>
           <tr>
             <th scope="col">Image</th>
@@ -49,46 +49,46 @@
           </tr>
         </thead>
         <tbody>
-          <tr id="row">
-            <td class="col-img">
+          <tr class="table-row">
+            <td >
               <div class="table-img"><img src="{{asset('assets/images/account1.svg')}}" alt="product img"></div>
             </td>
             <td clas="col-name">Mark</td>
-            <td class="col-price" id="price">$100</td>
-            <td class="col-quantity">
+            <td class="price">¥300</td>
+            <td>
               <div class="quantity d-flex">
                 <button class="btn decrement">-</button>
-                <input type="text" value="1" id="quantity" readonly>
+                <input type="text" value="1" class="quantity-value" readonly>
                 <button class="btn increment">+</button>
               </div>
             </td>
-            <td class="col-cost" id="cost">$100</td>
+            <td  class="cost">¥100</td>
             <td class="col-remove"><a href="#" class="mx-auto"><i class="fa-solid fa-trash-can"></i></a>
             </td>
           </tr>
-          <tr id="row">
-            <td class="col-img">
+          <tr class="table-row">
+            <td >
               <div class="table-img"><img src="{{asset('assets/images/account2.svg')}}" alt="product img"></div>
             </td>
             <td class="col-name">Mark</td>
-            <td id="price">$100</td>
-            <td class="col-quantity">
+            <td class="price">¥100</td>
+            <td>
               <div class="quantity d-flex">
                 <button class="btn decrement">-</button>
-                <input type="text" value="1" id="quantity" readonly>
+                <input type="text" value="1" class="quantity-value" readonly>
                 <button class="btn increment">+</button>
               </div>
             </td>
-            <td class="cost" id="cost">$100</td>
+            <td class="cost" class="cost">¥100</td>
             <td class="remove"><a href="#"><i class="fa-solid fa-trash-can"></i></a>
             </td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="5" class="total">Total</td>
+            <td colspan="5" class="text-end pe-2">Total</td>
             <td>
-              <span id="total"></span>
+              <span class="total"></span>
             </td>
           </tr>
         </tfoot>
@@ -96,21 +96,21 @@
       <!-- ./Desktop Style -->
 
       <!-- Mobile Style -->
-      <div class="mobile d-md-none d-flex flex-column gap-3">
+      <div class="mobile d-md-none d-flex flex-column gap-3 table-item">
         <div class="card">
           <div class="card-img align-content-center me-2">
             <img src="{{asset('assets/images/account1.svg')}}" alt="product img">
           </div>
           <div class="card-body">
-            <div id="row">
+            <div class="table-row">
               <p class="card-name">Mark</p>
               <div class="card-text">
-                <span id="cost">$100</span>
-                <span id="price">$100</span>
+                <span class="cost">¥100</span>
+                <span class="price">¥100</span>
               </div>
               <div class="quantity d-flex">
                 <button class="btn decrement">-</button>
-                <input type="text" value="1" id="quantity" readonly>
+                <input type="text" value="1" class="quantity-value" readonly>
                 <button class="btn increment">+</button>
               </div>
             </div>
@@ -125,15 +125,15 @@
             <img src="{{asset('assets/images/account2.svg')}}" alt="product img">
           </div>
           <div class="card-body">
-            <div id="row">
+            <div class="table-row">
               <p class="card-name">Mark</p>
               <div class="card-text">
-                <span id="cost">$100</span>
-                <span id="price">$100</span>
+                <span class="cost">¥100</span>
+                <span class="price">¥100</span>
               </div>
               <div class="quantity d-flex">
                 <button class="btn decrement">-</button>
-                <input type="text" value="1" id="quantity" readonly>
+                <input type="text" value="1" class="quantity-value" readonly>
                 <button class="btn increment">+</button>
               </div>
             </div>
@@ -146,7 +146,7 @@
         <div class="d-flex justify-content-between bg-primary text-white p-2 mt-3">
           <p>Total :</p>
           <p>
-            <span id="total"></span>
+            <span class="total"></span>
           </p>
         </div>
       </div>
@@ -267,7 +267,7 @@
       <!-- ./Payment Method Form -->
 
       <!-- Desktop Style -->
-      <table class="table desktop text-center d-md-table d-none">
+      <table class="table desktop text-center d-md-table d-none table-item">
         <thead>
           <tr>
             <th scope="col">Image</th>
@@ -277,30 +277,30 @@
           </tr>
         </thead>
         <tbody>
-          <tr id="row">
-            <td class="col-img">
+          <tr class="table-row">
+            <td >
               <div class="table-img"><img src="{{asset('assets/images/account1.svg')}}" alt="product img"></div>
             </td>
             <td clas="col-name">Mark</td>
-            <td class="col-price" id="price">$100</td>
-            <td class="col-cost" id="cost">$100</td>
+            <td class="price">¥100</td>
+            <td  class="cost">¥100</td>
             </td>
           </tr>
-          <tr id="row">
-            <td class="col-img">
+          <tr class="table-row">
+            <td >
               <div class="table-img"><img src="{{asset('assets/images/account2.svg')}}" alt="product img"></div>
             </td>
             <td class="col-name">Mark</td>
-            <td id="price">$100</td>
-            <td class="cost" id="cost">$100</td>
+            <td class="price">¥100</td>
+            <td class="cost" class="cost">¥100</td>
             </td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="3" class="total">Total</td>
+            <td colspan="3" class="text-end pe-2">Total</td>
             <td>
-              <span id="total"></span>
+              <span class="total"></span>
             </td>
           </tr>
         </tfoot>
@@ -308,17 +308,17 @@
       <!-- ./Desktop Style -->
 
       <!-- Mobile Style -->
-      <div class="mobile d-md-none d-flex flex-column gap-3">
+      <div class="mobile d-md-none d-flex flex-column gap-3 table-item">
         <div class="card">
           <div class="card-img align-content-center me-2">
             <img src="{{asset('assets/images/account1.svg')}}" alt="product img">
           </div>
           <div class="card-body">
-            <div id="row">
+            <div class="table-row">
               <p class="card-name">Mark</p>
               <div class="card-text">
-                <span id="cost">$100</span>
-                <span id="price">$100</span>
+                <span class="cost">¥100</span>
+                <span class="price">¥100</span>
               </div>
             </div>
           </div>
@@ -329,11 +329,11 @@
             <img src="{{asset('assets/images/account2.svg')}}" alt="product img">
           </div>
           <div class="card-body">
-            <div id="row">
+            <div class="table-row">
               <p class="card-name">Mark</p>
               <div class="card-text">
-                <span id="cost">$100</span>
-                <span id="price">$100</span>
+                <span class="cost">¥100</span>
+                <span class="price">¥100</span>
               </div>
             </div>
           </div>
@@ -342,7 +342,7 @@
         <div class="d-flex justify-content-between bg-primary text-white p-2 mt-3">
           <p>Total :</p>
           <p>
-            <span id="total"></span>
+            <span class="total"></span>
           </p>
         </div>
       </div>
@@ -407,5 +407,4 @@
 
 <script src="{{ asset('assets/js/cart.js') }}"></script>
 <script src="{{ asset('assets/js/step.js') }}"></script>
-<script src="{{ asset('assets/js/cart.test.js') }}"></script>
 @endsection

@@ -579,7 +579,7 @@ li {
   color: #ffffff;
 }
 
-#quantity {
+.quantity-value {
   width: 35px;
   text-align: center;
   font-size: 20px;

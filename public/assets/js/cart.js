@@ -1,93 +1,124 @@
 
+$(document).ready(() => {
 
-window.addEventListener('DOMContentLoaded', () => {
+  quantityChange('.decrement', -1);
+  quantityChange('.increment', 1);
+  netTotal(true);
+  netTotal();
 
-    document.querySelectorAll('.quanity').forEach((element) => {
-        const decrementBtn = element.querySelector('#decrement');
-        const incrementBtn = element.querySelector('#increment');
-        const quantityInput = element.querySelector('#quantity');
-    
-        decrementBtn.addEventListener('click', () => {
-            let value = parseInt(quantityInput.value) || 1;
-            if (value > 1) {
-                quantityInput.value = value - 1;
-                update(element);
-            }
-        });
-    
-        incrementBtn.addEventListener('click', () => {
-            let value = parseInt(quantityInput.value) || 1;
-            quantityInput.value = value + 1;
-            update(element);
-        });
-    });
-
-    totalSum('.desktop');
-    totalSum('.mobile');
+  // for testing
+  // skipStepTester();
 })
 
-/**
- * Update the total cost amount of that event maker by multiplying with the quantity.
- * @param {*} target return the parent container of the that target.
- */
-function update(target) {
-    const row = target.closest('#row');
-    const price = Number(row.querySelector('#price').textContent.replace('$', ''));
-    const quantity = Number(row.querySelector('#quantity').value);
-    const cost = row.querySelector('#cost'); 
+function quantityChange(target, value) {
+  $(target).click((ev) => {
 
-    cost.textContent = '$' + price * quantity;
+    const target = ev.currentTarget;
+    const quanity = $(target).siblings('.quantity-value');
+    const amount = Number(quanity.val());
+
+    // for only sepcific quantity value;
+    const sub = amount > 0 ? amount + value: 0;
+    const add = amount + value;
+
+    quanity.val(value > 0 ? add : sub);
+    caculating(target);
+    setPrice(target);
+  })
+}
+
+function setPrice(target) {
+
+  const sample = target.closest('.table-item');
+  const getPrice = numList('.price');
+  const getCost = numList('.cost');
+  const getQuantity = numList('.quantity-value');
+  const getTotal = numList('.total');
+  const tables = $('.table-item');
+
+  totalSum('.price', getPrice);
+  totalSum('.cost', getCost);
+  totalSum('.quantity-value', getQuantity);
+  totalSum('.total', getTotal);
+  netTotal();
+
+  function numList(item) {
+    const list = $(sample).find(item);
+    const result = [];
+    const state = item.includes('quantity') ? true: false;
+
+    Array.from(list).forEach( (i,index) => result[index] = state ? $(i).val(): $(i).text());
+
+    return result;
+  }
+
+  function totalSum(item,array) {
+
+    Array.from(tables).forEach( (i) => {
+
+      const target = $(i).find(item);
+      const state = item.includes('quantity') ? true: false;
+
+      for(i = 0; i < array.length; i ++) {
+
+        state ? $(target[i]).val(array[i]) : $(target[i]).text(array[i]);
+      }
+    })
+  }
+}
+
+function caculating(target) {
+
+  const container = target.closest('.table-row');
+  const price = $(container).find('.price').text().replace(currencyUnit(), '');
+  const quantity = $(container).find('.quantity-value').val();
+  const cost = $(container).find('.cost');
+
+  cost.text(currencyUnit() + Number(price) * Number(quantity));
+}
+
+function netTotal(addtion) {
+  
+  const table = $('.table-item');
+  
+  Array.from(table).forEach( (i) => {
     
-    totalSum(target, '#table');
-    stateCheck();
-}
-
-/**
- * Caculating the total sum of prices inside container.If use the row parameter, will return the parent of the target. 
- * @param {*} target the element that calls event. (nor) return a container.
- * @param {*} row the container name of the target.
- */
-function totalSum (target, row) {
-    const container = row ? target.closest(row): document.querySelector(target);
-    const price = container.querySelectorAll('#cost');
-    const total = container.querySelector('#total');
+    const cost = $(i).find('.cost');
+    const total = $(i).find('.total');
+    const price = $(i).find('.price');
+    const quantity = $(i).find('.quantity-value');
     let result = 0;
+    
+    for(i = 0; i < cost.length; i ++) {
+      
+      const priceVal = $(price[i]).text().replace(currencyUnit(), '');
+      const quantityVal = $(quantity[i]).val();
 
-    for(i = 0; i < price.length; i ++) {
+      if(addtion) $(cost[i]).text( currencyUnit() + Number(priceVal) * Number(quantityVal));
 
-       result +=  Number(price[i].textContent.replace('$', ''));
-    }
+      result += Number($(cost[i]).text().replace(currencyUnit(), ''));
+    };
 
-    total.textContent = '$' + result; 
+    total.text(currencyUnit() + result);
+  })
 }
 
-/**
- * Check between the two states of mobile & desktop and call a secific copyValues function.
- */
-function stateCheck() {
+function currencyUnit() {
 
-    const mobileState = window.getComputedStyle(document.querySelector('.mobile')).display;
-    mobileState !== 'none' ? copyValues('.mobile','.desktop'): copyValues('.desktop','.mobile');
+  return $('.price').first().text()[0];
 }
 
-/**
- * Copying prices, quantities and total from one to another.
- * @param {*} con1 first container that will give the values.
- * @param {*} con2 second container for receiving values.
- */
-function copyValues(con1,con2) {
-    const container1 = document.querySelector(con1);
-    const container2 = document.querySelector(con2);
-    const row = container2.querySelectorAll('#row');
-    const total = container2.querySelector('#total');
+// func for testing
+function skipStepTester() {
 
-    for (let i = 0; i < row.length; i++) {
-        const price = container2.querySelectorAll('#cost')[i];
-        const quanity = container2.querySelectorAll('#quantity')[i];
+  $('.step:nth-child(1)').click(() => goStep('#checkout'));
+  $('.step:nth-child(3)').click(() => goStep('#address'));
+  $('.step:nth-child(4)').click(() => goStep('#payment'));
+  $('.step:nth-child(5)').click(() => goStep('#complete'));
 
-        price.textContent = container1.querySelectorAll('#cost')[i].textContent;
-        quanity.value = container1.querySelectorAll('#quantity')[i].value;
-        
-    }
-    total.textContent = container1.querySelector('#total').textContent;
+  function goStep($target) {
+    $('.page').hide();
+    $($target).show();
+  }
 }
+
