@@ -3,19 +3,20 @@
 <link rel="stylesheet" href="{{ asset('assets/css/forgot_password.css') }}" />
 @endsection
 @section('contents')
+
+@include('messages.index')
+
 <div class="forgotpass mx-auto rounded-3 overflow-hidden shadow">
-  @include('messages.index')
   <h3 class="bg-primary py-2 text-white text-center">Reset Password</h3>
   <div class="bg-white px-3 py-4">
     <form name="reset_password" id="reset_password" method="POST">
       @csrf
     
-      <!-- reset -->
+      <!-- Reset -->
       <div class="mb-3 password-wpr">
         <label for="password" class="form-label">Password</label>
         <div class="input-group border border-2 rounded overflow-hidden">
-          <input id="password" name="password" type="password" placeholder="Enter New Password"
-            class="form-control border-0 shadow-none" required autofocus>
+          <input id="password" name="password" type="password" placeholder="Enter New Password" class="form-control border-0 shadow-none" required autofocus>
           <button class="btn border-0 password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
         </div>
       </div>
@@ -23,20 +24,18 @@
       <div class="mb-3 password-wpr">
         <label for="confirm-password" class="form-label">Confirm Password</label>
         <div class="input-group border border-2 rounded overflow-hidden">
-          <input id="confirm-password" name="confirm-password" type="password" placeholder="Re-Enter Password"
-            class="form-control border-0 shadow-none @error('confirm-password') is-invalid @enderror" required
-            autofocus>
+          <input id="confirm-password" name="confirm-password" type="password" placeholder="Re-Enter Password" class="form-control border-0 shadow-none @error('confirm-password') is-invalid @enderror" required autofocus>
           <button class="btn border-0 password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
         </div>
       </div>
-      <!-- /rest -->
 
       <div class="d-flex flex-column align-items-center">
         <input type="hidden" name="userid" value="{{ $user_id }}">
-        <button name="submit" id="submit" type="submit" class="common-btn btn btn-primar rounded-pill">Reset
-          Password</button>
+        <button name="submit" id="submit" type="submit" class="common-btn btn btn-primar rounded-pill">Reset Password</button>
         <a href="{{url('/login')}}" class="mt-3">Back to Login</a>
       </div>
+      <!-- /Rest -->
+       
     </form>
   </div>
 </div>

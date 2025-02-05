@@ -1,17 +1,16 @@
 $('document').ready(() => {
 
-    // page change usign sepcific url
-    // const page = $(location).attr('href');
-    // if(page.split('#')[1] == 'address') $('#address').show();
-    // else if(page.split('#')[1] == 'payment') $('#payment').show();
-    // else if(page.split('#')[1] == 'complete') $('#complete').show();
-    $('#checkout').show();
+    // track id code to show page
+    const page = $(location).attr('href');
+    if(page.includes('#address')) $('#address').show();
+    else if(page.includes('#payment')) $('#payment').show();
+    else if(page.includes('#complete')) $('#complete').show();
+    else $('#checkout').show();
 
     // forward
     change_step('#checkout .btn-next');
     change_step('#address .btn-next');
     change_step('#payment .btn-next');
-    change_step('.popup .btn-next');
 
     //backward
     change_step('#payment .btn-back');
@@ -19,7 +18,19 @@ $('document').ready(() => {
     change_step('#checkout .btn-back');
     
     // for popup 
-    $('.btn-payment').click(()=> $('#payment .popup').fadeIn());
+    const warningText = 'Why you forgot to check! hmm why?';
+
+    $(document).on('click', '#payment:has(#select-payment:checked) .btn-payment', () => {
+        $('#warning-msg').hide();
+        $('#payment .popup').fadeIn();
+    });
+    $(document).on('click', '#payment:has(#select-payment:not(:checked)) .btn-payment', () => {
+        $('#warning-msg').show();
+        const header = $('header').outerHeight() || 0; 
+        $('html, body').animate({
+            scrollTop: $('#payment-check-sec').offset().top - (header + 30)
+        },1000)
+    });
     $('#cancel').click((ev)=> {
         ev.preventDefault();
         $('.popup').fadeOut();

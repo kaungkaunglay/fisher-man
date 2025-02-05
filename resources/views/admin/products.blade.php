@@ -39,10 +39,10 @@
         </div>
         <!-- product-list -->
         <div class="wg-box">
-            <div class="title-box">
+            <!-- <div class="title-box">
                 <i class="icon-coffee"></i>
                 <div class="body-text">Tip search by Product ID: Each product is provided with a unique ID, which you can rely on to find the exact product you need.</div>
-            </div>
+            </div> -->
             <div class="flex items-center justify-between gap10 flex-wrap">
                 <div class="wg-filter flex-grow">
                     <div class="show">
@@ -97,7 +97,7 @@
                 <ul class="flex flex-column">
                     <li class="product-item gap14">
                         <div class="image no-bg">
-                            <img src="images/products/41.png" alt="">
+                            <img src="images/products/41.png" alt="fish">
                         </div>
                         <div class="flex items-center justify-between gap20 flex-grow">
                             <div class="name">

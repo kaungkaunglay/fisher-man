@@ -3,12 +3,16 @@
 <link rel="stylesheet" href="{{ asset('assets/css/forgot_password.css') }}" />
 @endsection
 @section('contents')
+
+@include('messages.index')
+
 <div class="forgotpass mx-auto rounded-3 overflow-hidden shadow">
-  @include('messages.index')
   <h3 class="bg-primary py-2 text-white text-center">Forgot Password</h3>
   <div class="bg-white px-4 py-lg-4 py-3">
     <form method="post" name="forgot_password" id="forgot_password">
       @csrf
+      
+      <!-- Forgot -->
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input type="email" name="email" id="email" class="form-control border-2" placeholder="email@gmail.com" autofocus>
@@ -19,6 +23,8 @@
         <button id="submit" name="submit" type="submit" class="common-btn btn btn-primar rounded-pill">Send Reset a Link</button>
         <a href="{{url('/login')}}" class="mt-3">Back to Login</a>
       </div>
+      <!-- /Forgot -->
+
     </form>
   </div>
 </div>
