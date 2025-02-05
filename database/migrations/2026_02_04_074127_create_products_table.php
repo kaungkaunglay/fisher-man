@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('day_of_caught')->nullable();
             $table->date('expiration_date')->nullable(); 
             $table->decimal('delivery_fee', 8, 2)->default(0);
-            $table->foreignId('sub_category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('sub_category_id')->constrained('sub_categories')->onDelete('cascade');
             $table->text('description')->nullable();
             $table->timestamps();
         });

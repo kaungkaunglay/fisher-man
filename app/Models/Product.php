@@ -8,10 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    protected $fillable = ['name', 'product_price', 'product_image', 'stock', 'weight', 'size', 'day_of_caught', 'expiration_date', 'delivery_fee', 'sub_category_id','description'];
 
-    protected $fillable = ['name', 'product_price', 'product_image', 'stock', 'weight', 'size', 'day_of_caught', 'expiration_date', 'delivery_fee', 'description'];
-
-    // public function subCategory() {
-    //     return $this->belongsTo(SubCategory::class);
-    // }
+    public function subCategory() {
+        return $this->belongsTo(sub_categories::class);
+    }
 }
