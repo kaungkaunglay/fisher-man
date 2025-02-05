@@ -3,6 +3,7 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
 input[type=number] {-moz-appearance: textfield;}
 
+.mobile .cost,
 #warning-msg,
 .popup,
 .page {
@@ -45,11 +46,6 @@ main {
     color: white;
     font-weight: bold;
     vertical-align: middle;
-}
-
-.total {
-    text-align: end;
-    padding-right: 20px;
 }
 
 .cart tbody td {
@@ -153,10 +149,6 @@ main {
 
 /* mobile */
 .mobile {
-    display: none;
-}
-
-.mobile #cost {
     display: none;
 }
 
