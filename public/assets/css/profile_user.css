@@ -1,6 +1,6 @@
 input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance: none;margin: 0;}
 input[type=number] {-moz-appearance: textfield;}
-i.fa-line {color: #005B96;;}
+i.fa-line {color: #005B96;}
 
 body {
   color: #005B96;
@@ -24,10 +24,6 @@ body {
 .history .title {
   border-bottom: 2px solid #005B96;
   padding-bottom: 20px;
-}
-
-.history-list {
-  /* padding-left: 20px; */
 }
 
 .history-item {

@@ -3,10 +3,10 @@ $(document).ready(() => {
 
   // track id code to show page
   const page = $(location).attr('href');
-  if (page.includes('#address')) $('#address').show();
-  else if (page.includes('#payment')) $('#payment').show();
-  else if (page.includes('#complete')) $('#complete').show();
-  else $('#checkout').show();
+  if (page.includes('#address')) showPage('#address');
+  else if (page.includes('#payment')) showPage('#payment');
+  else if (page.includes('#complete')) showPage('#complete');
+  else showPage('#checkout');
 
   // forward
   change_step('#checkout .btn-next');
@@ -42,8 +42,13 @@ $(document).ready(() => {
   netTotal();
 
   // for testing
-  // skipStepTester();
+  skipStepTester();
 })
+
+function showPage(target) {
+  $('.page').hide();
+  $(target).show();
+}
 
 /**
  * This function updates the quantity of an item when a specified target button is clicked. It increments or decrements the quantity based on the provided value. After updating the quantity, it triggers additional functions to recalculate and set the price.
@@ -58,15 +63,16 @@ function quantityChange(target, value) {
     const amount = Number(quanity.val());
 
     // for only sepcific quantity value;
-    const sub = amount > 0 ? amount + value : 0;
+    const sub = amount > 1 ? amount + value : 1;
     const add = amount + value;
 
-    quanity.val(value > 0 ? add : sub);
+    quanity.val(value >= 1 ? add : sub);
     caculating(target);
     setPrice(target);
   })
 }
 
+// function for Price Change
 function setPrice(target) {
 
   const sample = target.closest('.table-item');
@@ -176,6 +182,7 @@ function change_step(trigger) {
     const dir = ev.currentTarget.classList.contains('btn-next') ? true : false; //true for forward dir & false for backward dir
     const index = ($('.page').index(ev.currentTarget.closest('.page')));
 
+    // 
     if (dir) {
       for (i = 1; i <= index + 2; i++) {
         $($('.step')[i]).addClass('active');
@@ -185,7 +192,6 @@ function change_step(trigger) {
         $($('.step')[i]).removeClass('active');
       }
     }
-    console.log(index);
 
     $($(trigger).closest('.page')).hide();
     $($(trigger).attr('href')).fadeIn();
@@ -193,7 +199,7 @@ function change_step(trigger) {
     $('html, body').animate({
 
       scrollTop: $('main').offset().top - header
-    }, 1000)
+    }, 500);
   })
 }
 

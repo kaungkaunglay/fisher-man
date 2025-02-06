@@ -8,7 +8,7 @@
   <nav aria-label="breadcrumb" class="py-4">
     <ol class="breadcrumb mb-0 bg-transparent">
       <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Special Offer</li>
+      <li class="breadcrumb-item active" aria-current="page">Search</li>
     </ol>
   </nav>
   <!-- ./Breadcrumbs -->
@@ -23,7 +23,7 @@
     <ul class="list-group category-list">
       <li class="d-flex flex-column">
         <div class="card-head">
-          <h2 class="title">Special Offer</h2>
+          <h2 class="title">Search</h2>
           <div class="filter d-flex justify-content-between align-items-center">
             <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
               <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>

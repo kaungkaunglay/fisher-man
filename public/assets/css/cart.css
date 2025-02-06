@@ -10,8 +10,10 @@ input[type=number] {-moz-appearance: textfield;}
     display: none;
 }
 
+html,
 body {
     color: #005B96;
+    scroll-behavior: smooth;
 }
 
 main {
@@ -80,24 +82,14 @@ main {
     box-shadow: 0px 0px 8px #18181899;
 }
 
-#payment-form input,
-#payment-form select {
-    background-color: #fff;
-    border: 1px solid #797979;
-}
-
 #payment-form .input-container {
     overflow: hidden;
 }
 
-#payment-form .input-container:has(input:focus),
+#payment-form .input-group:has(input:focus),
 #payment-form input:focus,
 #payment-form select:focus {
     outline: 2px solid #0052cd;
-}
-
-#payment-form .input-container input:focus  {
-    outline: none;
 }
 
 #payment-form .title {
@@ -132,12 +124,17 @@ main {
     padding: 12px .5rem !important;
 }
 
-.card-bank-img {
-  width: 30%;  
+#payment-form .input-group .form-control {
+    margin: 0;
+    font-size: inherit;
 }
 
-.cvc-bank-img {
-    width: 15%;
+#payment-form .input-group .form-control:focus {
+    outline: none !important;
+}
+
+.card-bank-img {
+    width: 30px;
 }
 
 .btn-save {
@@ -194,6 +191,10 @@ main {
         padding: .5rem;
     }
 
+    .card-bank-img {
+        width: 13px;
+    }
+
     #payment-form .title {
         font-size: 14px !important;
     }
@@ -208,7 +209,7 @@ main {
         gap: .2rem;
     }
 
-    #payment-form .input-container:has(input:focus),
+    #payment-form .input-group,
     #payment-form input:focus,
     #payment-form select:focus {
         outline-width: 1px;
