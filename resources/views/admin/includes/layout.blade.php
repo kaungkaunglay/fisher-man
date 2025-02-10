@@ -72,7 +72,7 @@
                                         </a>
                                         <ul class="sub-menu">
                                             <li class="sub-menu-item">
-                                                <a href="{{route('admin.product')}}" class="{{ request()->is('admin/product') ? 'active' : '' }}">
+                                                <a href="{{route('admin.products')}}" class="{{ request()->is('admin/product') ? 'active' : '' }}">
                                                     <div class="text">Add Product</div>
                                                 </a>
                                             </li>
