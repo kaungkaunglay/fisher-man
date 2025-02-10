@@ -89,6 +89,11 @@
                     <input class="mb-10" type="number" name="weight" step="0.01" value="{{ old('weight', $product->weight ?? '') }}" required>
                 </fieldset>
 
+                <fieldset class="size">
+                    <div class="body-title mb-10">Size <span class="tf-color-1">*</span></div>
+                    <input class="mb-10" type="number" name="size" step="0.01" value="{{ old('size', $product->size ?? '') }}" required>
+                </fieldset>
+
                 <fieldset class="description">
                     <div class="body-title mb-10">Description</div>
                     <textarea class="mb-10" name="description" placeholder="Description">{{ old('description', $product->description ?? '') }}</textarea>
@@ -109,11 +114,19 @@
                             <label class="uploadfile" for="product_image">
                                 <span class="icon"><i class="icon-upload-cloud"></i></span>
                                 <span class="text-tiny">Drop your image here or select <span class="tf-color">click to browse</span></span>
-                                <input type="file" id="product_image" name="product_image">
+                                <input type="file" id="product_image" name="product_image" required>
                             </label>
                         </div>
                     </div>
                     <div class="body-text">Add a product image. The quality and background standards should be maintained.</div>
+                </fieldset>
+                <fieldset class="date">
+                    <div class="body-title mb-10">Day of Caught <span class="tf-color-1">*</span></div>
+                    <input class="mb-10" type="date" name="day_of_caught" step="0.01" value="{{ old('day_of_caught', $product->day_of_caught ?? '') }}" required>
+                </fieldset>
+                <fieldset class="date">
+                    <div class="body-title mb-10">Expiration Date <span class="tf-color-1">*</span></div>
+                    <input class="mb-10" type="date" name="expiration_date" step="0.01" value="{{ old('expiration_date', $product->expiration_date ?? '') }}" required>
                 </fieldset>
             </div>
 

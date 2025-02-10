@@ -92,7 +92,7 @@
                         <div class="body-title">Stock</div>
                     </li>
                     <li>
-                        <div class="body-title">Start date</div>
+                        <div class="body-title">Uploaded date</div>
                     </li>
                     <li>
                         <div class="body-title">Action</div>
