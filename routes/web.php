@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\SubCategoriesController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
@@ -87,8 +88,6 @@ Route::get('/special-offer', function () {
 
 // Admin Controller
 Route::get('/admin', [AdminController::class, 'home'])->name('admin');
-Route::get('/admin/products', [AdminController::class, 'products'])->name('admin.products');
-Route::get('/admin/product', [AdminController::class, 'product'])->name('admin.product');
 Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
 Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
@@ -114,4 +113,12 @@ Route::post('/admin/sub-categories', [SubCategoriesController::class, 'store'])-
 Route::get('/admin/sub-categories/{sub_category}/edit', [SubCategoriesController::class, 'edit'])->name('admin.sub_categories.edit');
 Route::put('/admin/sub-categories/{sub_category}', [SubCategoriesController::class, 'update'])->name('update_sub_category');
 Route::delete('/admin/sub-categories/{sub_category}', [SubCategoriesController::class, 'destroy'])->name('admin.sub_categories.destroy');
+
+// Product Routes
+Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products');
+Route::get('/admin/products/create', [ProductController::class, 'create'])->name('create_product');
+Route::post('/admin/products', [ProductController::class, 'store'])->name('add_product');
+Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('update_product');
+Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 
