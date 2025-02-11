@@ -52,15 +52,12 @@
         <input type="number" class="min-price" value="1" min="1" max="100">
         <h3 class="txt">Price Range</h3>
         <input type="number" class="max-price" value="25" min="1" max="100">
-        <div class="range">
-          <input type="range" class="min-input" value="1" min="1" max="100">
-          <input type="range" class="max-input" value="25" min="1" max="100">
-
-          <div class="price-slider">
-            <div class="prograss"></div>
-          </div>
+        <div class="range-container position-relative mt-3 w-100">
+            <div class="slider-track"></div>
+            <input type="range" min="1" max="100" value="1" id="slider-1" oninput="slideOne()">
+            <input type="range" min="1" max="100" value="25" id="slider-2" oninput="slideTwo()">
         </div>
-      </div>
+    </div>
 
     <div class="sub-category-item">
       <div class="card-list" id="view-list">
@@ -757,7 +754,8 @@
 </div>
 
 <script src="{{asset('assets/js/slider.js')}}"></script>
-<script src="{{asset('assets/js/price-range.js')}}"></script>
+<!-- <script src="{{asset('assets/js/price-range.js')}}"></script> -->
+<script src="{{asset('assets/js/price-range.test.js')}}"></script>
 <script src="{{asset('assets/js/pagination.js')}}"></script>
 <script src="{{ asset('assets/js/words-limit.js') }}"></script>  
 <script>

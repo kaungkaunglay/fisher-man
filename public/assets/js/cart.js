@@ -19,7 +19,6 @@ $(document).ready(() => {
   change_step('#checkout .btn-back');
 
   // for popup 
-
   $(document).on('click', '#payment:has(#select-payment:checked) .btn-payment', () => {
     $('#warning-msg').hide();
     $('#payment .popup').fadeIn();
@@ -36,6 +35,20 @@ $(document).ready(() => {
     $('.popup').fadeOut();
   });
 
+  // form input show
+  $('#edit').click(() => {
+    $('.address-detail').hide();
+    $('.address-form').show();
+  })
+
+  $('#address #cancel').click(() => {
+    $('.address-form').hide();
+    $('.address-detail').show();
+    $('#address input').val('');
+    $('#address select').val($(''));
+  })
+
+  // price caculation
   quantityChange('.decrement', -1);
   quantityChange('.increment', 1);
   netTotal(true);
@@ -168,11 +181,7 @@ function skipStepTester() {
   }
 }
 
-
-/**
- * Handles navigation between steps in a multi-step form or checkout process. It supports both forward (btn-next) and backward (btn-back) navigation.
- * @param {string|jQuery} trigger The button that triggers the step change (e.g., .btn-next, .btn-back).
- */
+// step chaging function
 function change_step(trigger) {
 
   $(trigger).click((ev) => {
@@ -203,3 +212,7 @@ function change_step(trigger) {
   })
 }
 
+// address form input show
+function formShow() {
+  
+}

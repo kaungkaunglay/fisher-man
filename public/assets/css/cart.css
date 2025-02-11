@@ -3,6 +3,7 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
 input[type=number] {-moz-appearance: textfield;}
 
+.address-form,
 .mobile .cost,
 #warning-msg,
 .popup,
@@ -38,6 +39,10 @@ main {
 .table-img {
     width: 75px;
     padding: 0;
+    margin: 0 auto;
+}
+
+.quantity {
     margin: 0 auto;
 }
 
