@@ -67,10 +67,13 @@
                     <span class="invalid-feedback"></span>
                 </div>
             </div>
-            <div class="input-box d-flex flex-column">
-                <label for="line_id">Line ID</label>
-                <input id="line_id" name="line_id" type="text" autocomplete="off">
-                <span class="invalid-feedback"></span>
+            <div class="d-flex mt-2">
+                <div class="rounded text-center qr-box">
+                    <button class="p-2 qr-btn">
+                        <img src="{{ asset('assets/images/QR.svg') }}" alt="QR.svg">
+                    </button>
+                </div>
+                <button class="bg-primary ps-3 py-2 pe-2 mt-auto mb-4 qr-btn qr-text">Scan Your Line ID Here</button>
             </div>
 
             <button name="submit" id="submit" type="submit" class="input-submit">Register</button>

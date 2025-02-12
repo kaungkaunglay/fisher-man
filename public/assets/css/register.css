@@ -128,6 +128,41 @@ main .input-submit:active {
     opacity: 0.7;
 }
 
+.qr-box {
+    position: relative;
+    width: 30%;
+    height: max-content;
+    border: 1px solid #005B96;
+}
+
+.qr-box button::after {
+    content: '';
+    width: 30%;
+    height: 30%;
+    left: 36%;
+    top: 35%;
+    border-radius: .2rem;
+    background: #fff url(../icons/custom/line.png) no-repeat center/contain;
+    position: absolute;
+}
+
+.qr-text {
+    position: relative;
+    color: #fff;
+    height: max-content;
+}
+
+.qr-text::after {
+    content: '';
+    position: absolute;
+    width: 0;
+	height: 0;
+	border-top: 13px solid transparent;
+	border-left: 15px solid #fff;
+    left: -1px;
+	border-bottom: 13px solid transparent;
+}
+
 @media  screen and (max-width: 576px) {
     main {
         padding: 20px 10px;
