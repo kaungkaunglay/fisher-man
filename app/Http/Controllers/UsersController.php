@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Users;
-use App\Models\forgot_password;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\forgot_password;
 use App\Mail\ForgotPasswordMail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -47,6 +48,15 @@ class UsersController extends Controller
             'line_id.required' => 'The line ID field is required.',
             'line_id.min' => 'The line ID must be at least 4 characters.',
             'line_id.max' => 'The line ID may not be greater than 20 characters.',
+            'ship_name.required' => 'The ship name field is required.',
+            'ship_name.min' => 'The ship name must be at least 4 characters.',
+            'ship_name.max' => 'The ship name may not be greater than 20 characters.',
+            'first_org_name.required' => 'The first organization name field is required',
+            'first_org_name.min' => 'The first organization name must be at least 4 characters.',
+            'first_org_name.max' => 'The first organization name may not be greater than 20 characters.',
+            'trans_management.required' => 'The transportation management field is required.',
+            'trans_management.min' => 'The transportation management must be at least 4 characters',
+            'trans_management.max' => 'The transportation management may not be greater than 20 characters.'
         ];
 
         $validator = Validator::make($request->all(), [
@@ -64,6 +74,15 @@ class UsersController extends Controller
             'line_id' => 'required|min:4|max:20'
         ], $messages);
 
+        if($this->is_seller($request))
+        {
+            $validator->addRules([
+                'ship_name' => 'required|min:4|max:20',
+                'first_org_name' => 'required|min:4|max:20',
+                'trans_management' => 'required|min:4|max:20'
+            ]);
+        }
+
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
@@ -75,7 +94,18 @@ class UsersController extends Controller
             $user->second_phone = $request->second_phone;
             $user->line_id = $request->line_id;
             $user->remember_token = Str::random(60);
+
+            if($this->is_seller($request))
+            {
+                $user->ship_name = $request->ship_name;
+                $user->first_org_name = $request->first_org_name;
+                $user->trans_management = $request->trans_management;
+            }
+
             $user->save();
+
+            $this->is_seller($request) ? $user->roles()->attach(2) : $user->roles()->attach(3);
+
             return response()->json(['status' => true, 'message' => 'Register Success']);
         }
     }
@@ -114,6 +144,8 @@ class UsersController extends Controller
             ->first();
 
             if($user && Hash::check($request->password, $user->password)){
+
+                session()->put('user_id', $user->id);
                 return response()->json(['status' => true, 'message' => 'Login success', 'errors'=> '']);
             }
 
@@ -147,7 +179,7 @@ class UsersController extends Controller
     }
 
     public function showResetForm(Request $request) {
-        $token = $request->query('token');  
+        $token = $request->query('token');
         $user_forgot_password = forgot_password::where('token', $token)->first();
         if(!$user_forgot_password){
             return abort(404);
@@ -191,5 +223,15 @@ class UsersController extends Controller
             }
             return response()->json(['status' => false, 'message' => 'Token is not found']);
         }
+    }
+
+    public function logout(){
+        session()->forget('user_id');
+        return redirect()->route('login');
+    }
+
+    public function is_seller($request)
+    {
+        return $request->has('ship_name') && $request->has('first_org_name') && $request->has('trans_management');
     }
 }
