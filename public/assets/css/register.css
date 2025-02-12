@@ -1,0 +1,185 @@
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance: none;margin: 0;}
+input[type=number] {-moz-appearance: textfield;}
+
+main {
+    color: #005B96;
+    background: url(../images/bg/cristian-palmer-XexawgzYOBc-unsplash.jpg) no-repeat fixed center/cover;
+}
+
+main a {transition: color 0.3s}
+main a:hover {color: #0045ac;text-decoration: underline !important;}
+
+main {
+    display: flex;
+    padding: 60px 0;
+}
+
+main .login-box {
+    width: 80%;
+    max-width: 748px;
+    border-radius: 15px;
+    padding: 20px 67px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+}
+
+main .login-header h2 {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
+
+main .login-header h2 p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+main .input-container {
+    gap: 20px;
+}
+
+main .input-box .input-group {
+    margin-top: 5px;
+    border: 2px solid #e2e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+main .input-box .input-group input {
+    font-size: 18px;
+    background-color: transparent !important;
+    box-shadow: none;
+    border: none;
+}
+
+main .input-box label {
+    letter-spacing: 1px;
+}
+
+main .input-box input {
+    width: 100%;
+    color: #000;
+    border: 2px solid #e2e0e0;
+    padding: 8px 10px;
+    outline: none;
+    border-radius: 0.5em;
+}
+
+main .input-group .btn {
+    border: none;
+    color: #5a5a5a;
+    width: 50px;
+}
+
+main .input-group select {
+    border: none;
+    width: max-content;
+    outline: none;
+    background-color: transparent;
+    padding: 0 10px;
+}
+
+main .input-group .btn:active {
+    opacity: 0.5;
+}
+
+main .input-group:has(input:focus),
+main input:focus {
+    box-shadow: 0 2px 3px .1px #0178c7d0;
+    border-color: #0178c7;
+}
+
+main .input-group:has(input:focus) i {
+    color: #005b96;
+}
+
+main input[type="password"] {
+    font-size: 10px !important;
+    letter-spacing: 1.5px;
+    min-height: 43px;
+}
+
+
+main .register {
+    font-size: 15px;
+    margin: 0 auto;
+}
+
+main .input-submit {
+    width: 100%;
+    border: 1px solid #005B96;
+    background-color: #005B96;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 50px;
+    padding: 8px 0;
+    margin: 10px auto 0;
+    transition: background-color .3s ease-in-out,
+                color .3s ease-in-out;
+}
+
+main .input-submit:hover {
+    background-color: #fff;
+    color: #005B96;
+}
+
+main .input-submit:active {
+    opacity: 0.7;
+}
+
+.qr-box {
+    position: relative;
+    width: 30%;
+    height: max-content;
+    border: 1px solid #005B96;
+}
+
+.qr-box button::after {
+    content: '';
+    width: 30%;
+    height: 30%;
+    left: 36%;
+    top: 35%;
+    border-radius: .2rem;
+    background: #fff url(../icons/custom/line.png) no-repeat center/contain;
+    position: absolute;
+}
+
+.qr-text {
+    position: relative;
+    color: #fff;
+    height: max-content;
+}
+
+.qr-text::after {
+    content: '';
+    position: absolute;
+    width: 0;
+	height: 0;
+	border-top: 13px solid transparent;
+	border-left: 15px solid #fff;
+    left: -1px;
+	border-bottom: 13px solid transparent;
+}
+
+@media  screen and (max-width: 576px) {
+    main {
+        padding: 20px 10px;
+    }
+    main .login-box {
+        width: 100%;
+        padding: 20px;
+        
+    }
+
+}
+
+@media  screen and (max-width: 768px) {
+    main .ph-no {
+        gap: inherit;
+    }
+    .login-box .login-header{margin-bottom: 10px;}
+    .login-box .login-header h2{font-size: 20px;}
+    .login-box .login-header p{font-weight:600;} 
+}

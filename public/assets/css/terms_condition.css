@@ -1,0 +1,46 @@
+/* Footer Styles */
+/* Reset default margin and padding */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  main {
+    flex: 1 0 auto;
+    /* Remove fixed height to allow content to determine main section height */
+  }
+  
+  /* Footer Styles */
+  /* footer .logo {
+    height: 60px;
+  } */
+  
+  footer ul li a {
+    text-decoration: none;
+  }
+  
+  footer .link-list {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+  }
+  
+  footer .link-list li a,
+  ul li a {
+    color: white;
+  }
+  
+  @media screen and (max-width: 768px) {
+    footer .link-list {
+        grid-template-columns: auto;
+        width: 150px !important;
+  
+    }
+  }

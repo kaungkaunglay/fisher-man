@@ -1,0 +1,252 @@
+a {text-decoration: none;}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
+input[type=number] {-moz-appearance: textfield;}
+
+.address-form,
+.mobile .cost,
+#warning-msg,
+.popup,
+.page {
+    display: none;
+}
+
+html,
+body {
+    color: #005B96;
+    scroll-behavior: smooth;
+}
+
+main {
+    min-height: 100vh;
+}
+
+.step span {
+    display: inline-block;
+    width: 30px;
+    aspect-ratio: 1/1;
+    border: 1px solid #0045ac;
+    color: #0045ac;
+    border-radius: 100%;
+}
+
+.step.active span {
+    background-color: #0045ac;
+    color: white;
+}
+
+/* table */
+.table-img {
+    width: 75px;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.quantity {
+    margin: 0 auto;
+}
+
+.table td,
+.table th {
+    font-size: 20px;
+    background: #005B96;
+    color: white;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.cart tbody td {
+    color: #005B96;
+    background-color: #ECF5FB;
+}
+
+.cart thead th:nth-child(2),
+.cart tbody td:nth-child(2) {
+    text-align: start;
+}
+
+.popup {
+    height: 100vh;
+    width: 100%;
+    padding: 30px 20px;
+    background-color: #0a0a0ac4;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    transition: padding 0.5s linear;
+}
+
+#payment-form {
+    width: 100%;
+    max-width: 550px;
+    min-width: 310px;
+    padding: 1.5rem;
+    transition: padding 0.5s linear;
+    transform: translateY(5%);
+    box-shadow: 0px 0px 8px #18181899;
+}
+
+#payment-form .input-container {
+    overflow: hidden;
+}
+
+#payment-form .input-group:has(input:focus),
+#payment-form input:focus,
+#payment-form select:focus {
+    outline: 2px solid #0052cd;
+}
+
+#payment-form .title {
+    font-size: 20px !important;
+}
+
+#payment-form form {
+    gap: 1rem;
+    margin-top: 1rem;
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: .5rem;
+}
+
+#payment-form .input-wpr {
+    gap: 1rem;
+}
+
+#payment-form .content {
+    font-size: .8rem;
+    color: #797979;
+}
+
+#payment-form .common-btn {
+    width: 50%;
+    max-width: 200px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#payment-form select {
+    padding: 12px .5rem !important;
+}
+
+#payment-form .input-group .form-control {
+    margin: 0;
+    font-size: inherit;
+}
+
+#payment-form .input-group .form-control:focus {
+    outline: none !important;
+}
+
+.card-bank-img {
+    width: 30px;
+}
+
+.btn-save {
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    font-weight: inherit;
+}
+
+/* mobile */
+.mobile {
+    display: none;
+}
+
+.card,
+.card-body {
+    display: flex;
+    flex-direction: row;
+    border: none;
+}
+
+.card-body {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-img {
+    width: 25%;
+}
+
+.card-img img {
+    max-width: 100px;
+    height: 100px;
+}
+
+.del-btn {
+    width: max-content;
+    aspect-ratio: 1/1;
+    background: #FF0000;
+    border-radius: 10px;
+    color: #ffffff;
+}
+
+.card-body {
+    padding: 0;
+}
+
+@media screen and (max-width: 576px) {
+    .cart {
+        padding: 0;
+    }
+    .popup {
+        font-size: .6rem;
+        padding: .5rem;
+    }
+
+    .card-bank-img {
+        width: 13px;
+    }
+
+    #payment-form .title {
+        font-size: 14px !important;
+    }
+
+    #payment-form {
+        padding: .1rem .5rem .5rem;
+    }
+
+    #payment-form form {
+        margin-top: .1rem;
+        padding: .5rem;
+        gap: .2rem;
+    }
+
+    #payment-form .input-group,
+    #payment-form input:focus,
+    #payment-form select:focus {
+        outline-width: 1px;
+    }
+
+    #payment-form .content {
+        font-size: .5rem;
+    }
+
+    #payment-form .input-wpr {
+        gap: .2rem;
+    }
+
+    #payment-form .common-btn {
+        margin-top: .2rem;
+        font-size: 14px;
+        width: 40% !important;
+        padding: .2rem;
+    }
+
+    .cvc-bank-img {
+        width: 5%;
+    }
+
+    #complete .common-btn {
+        padding: 7px 5px;
+    }
+}
+
+@media screen and (max-height: 500px) {
+
+    #payment-form {
+        transform: translateY(10px);
+    }
+}
