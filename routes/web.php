@@ -21,40 +21,38 @@ use App\Http\Controllers\UsersController;
 */
 
 // login for Customer and Seller
-Route::get('/login', [UsersController::class, 'login'])->name('login');
-Route::post('/login', [UsersController::class, 'login_store'])->name('login_store');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'login_store'])->name('login_store');
 // Route::post('/login_s', [SellersController::class, 'login_store'])->name('login_store_seller');
 
 // Registration for Customer and Seller
-Route::get('/register', [UsersController::class, 'register'])->name('register');
-Route::get('/register_s', [UsersController::class, 'register_seller'])->name('register_seller');
-Route::post('/register', [UsersController::class, 'register_store'])->name('register_store');
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::get('/register_s', [AuthController::class, 'register_seller'])->name('register_seller');
+Route::post('/register', [AuthController::class, 'register_store'])->name('register_store');
 
 
 // Forgot_password for customer and seller
-Route::get('/forgot_password', [UsersController::class, 'forgot_password'])->name('forgotpassword');
+Route::get('/forgot_password', [AuthController::class, 'forgot_password'])->name('forgotpassword');
 // Handle Reset Link
-Route::post('/forgot-password', [UsersController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::post('/forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
 // Password Reset Form
-Route::get('/reset-password', [UsersController::class, 'showResetForm'])->name('password.reset');
+Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
 // Route::get('/reset-password/{token}', [UsersController::class, 'showResetForm'])->name('password.reset');
 // Handle Password Reset
-Route::post('/reset-password', [UsersController::class, 'reset'])->name('reset');
+Route::post('/reset-password', [AuthController::class, 'reset'])->name('reset');
 
-Route::post('/update-password', [UsersController::class, 'update_password'])->name('password.update');
+Route::post('/update-password', [AuthController::class, 'update_password'])->name('password.update');
 
 // Logout
-Route::get('/logout', [UsersController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // guest
-Route::middleware(['guest'])->group(function () {
-    Route::get('/', function () {
-        return view('home');
-    })->name('home');
-});
+Route::get('/', function () {
+    return view('home');
+})->name('home');
 
 // auth
-Route::middleware(['authcheck'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['is_seller'])->group(function () {
         Route::get('/profile/seller', action: function () {
@@ -104,7 +102,7 @@ Route::get('/special-offer', function () {
 })->name('special-offer');
 
 // Admin Controller
-Route::get('/admin', [AdminController::class, 'home'])->name('admin');
+Route::get('/admin', [AdminController::class, 'home'])->name('admin.index');
 Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
 Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
@@ -114,7 +112,7 @@ Route::post('/admin/mail', [MailController::class, 'sendmail'])->name('mail.rese
 // Admin auth
 Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'login_store'])->name('admin.login_store');
-
+Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 // Categories Controller
 
 Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('admin.categories');

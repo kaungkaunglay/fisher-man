@@ -37,7 +37,7 @@
             </div>
             <div class="pw-setting d-flex">
                 <div class="remember">
-                    <input type="checkbox" id="remember">
+                    <input type="checkbox" name="remember" id="remember" value="1">
                     <label for="remember">Remember me</label>
                 </div>
 

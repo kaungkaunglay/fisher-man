@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use App\Models\Users;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class IsSeller
@@ -16,14 +17,14 @@ class IsSeller
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if the user is authenticated
-        if(!session()->has('user_id')){
-            return to_route('login');
+        if(!auth()->check())
+        {
+            return redirect()->route('login');
         }
 
-        $user = Users::find(session()->get('user_id'));
+        $user = Auth::user();
 
-        if ($user->roles()->first()->id != 2) {
+        if ($user->roles->first()->id != 2) {
             abort(403, 'Unauthorized Access');
         }
 

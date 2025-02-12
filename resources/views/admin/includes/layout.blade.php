@@ -44,7 +44,7 @@
                 <!-- section-menu-left -->
                 <div class="section-menu-left">
                     <div class="box-logo">
-                        <a href="{{route('admin')}}" id="site-logo-inner">
+                        <a href="{{route('admin.index')}}" id="site-logo-inner">
                             <img class="" id="logo_header" alt="" src="{{asset('assets/admin/images/logo.png')}}" data-light="{{asset('assets/admin/images/logo.png')}}" data-dark="{{asset('assets/admin/images/logo.png')}}" >
                         </a>
                         <div class="button-show-hide">
@@ -56,7 +56,7 @@
                             <div class="center-item">
                                 <div class="center-heading">Main Home</div>
                                 <li class="menu-item">
-                                    <a href="{{route('admin')}}" class="{{ request()->is('admin') ? 'active' : '' }}">
+                                    <a href="{{route('admin.index')}}" class="{{ request()->is('admin') ? 'active' : '' }}">
                                         <div class="icon"><i class="icon-grid"></i></div>
                                         <div class="text">Home</div>
                                     </a>
@@ -153,14 +153,14 @@
                                                     <div class="text">Add new user</div>
                                                 </a>
                                             </li>
-                                
+
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
-                    
+
                         </div>
-            
+
                     </div>
                 </div>
                 <!-- /section-menu-left -->
@@ -514,7 +514,7 @@
                     </div>
                     <!-- /header-dashboard -->
                     <!-- main-content -->
-                    <div class="main-content"> 
+                    <div class="main-content">
                         @yield('contents')
                     </div>
                     <!-- /main-content -->

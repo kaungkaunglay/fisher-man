@@ -11,7 +11,7 @@
   <div class="bg-white px-4 py-lg-4 py-3">
     <form method="post" name="forgot_password" id="forgot_password">
       @csrf
-      
+
       <!-- Forgot -->
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
@@ -48,7 +48,7 @@
         processData: false,
         success: function (response) {
           if (response.status == true) {
-            window.location.href = "{{ route('forgotpassword') }}";
+            window.location.href = "{{ route('password.email') }}";
           } else {
             var errors = response.errors;
             if (errors.email) {

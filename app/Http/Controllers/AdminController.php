@@ -62,5 +62,10 @@ class AdminController extends Controller
         }
     }
 
+    public function logout(){
+        session()->forget('admin_user_id');
+        return redirect()->route('admin.login');
+    }
+
 
 }
