@@ -42,7 +42,6 @@ class AuthController extends Controller
             'first_phone.required' => 'The first phone field is required.',
             'first_phone.regex' => 'The first phone format is invalid.',
             'second_phone.regex' => 'The second phone format is invalid.',
-            'line_id.required' => 'The line ID field is required.',
             'line_id.min' => 'The line ID must be at least 4 characters.',
             'line_id.max' => 'The line ID may not be greater than 20 characters.',
             'ship_name.required' => 'The ship name field is required.',
