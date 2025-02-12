@@ -37,6 +37,9 @@ Route::post('/register', [AuthController::class, 'register_store'])->name('regis
 Route::get('/forgot_password', [AuthController::class, 'forgot_password'])->name('forgotpassword');
 // Handle Reset Link
 Route::post('/forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/email_success/{email}',[AuthController::class, 'showEmailSuccess'])->name('email_success');
+// Resent reset password link
+Route::post('/resend-email', [AuthController::class, 'resentResetLinkEmail'])->name('resend.email');
 // Password Reset Form
 Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
 // Route::get('/reset-password/{token}', [UsersController::class, 'showResetForm'])->name('password.reset');

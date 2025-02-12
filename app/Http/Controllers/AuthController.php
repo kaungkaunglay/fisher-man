@@ -167,6 +167,12 @@ class AuthController extends Controller
 
             // dd($user);
             if($user){
+
+                if( DB::table('password_reset_tokens')->where('email', $user->email)->first() ){
+                    return response()->json(['status' => false, 'message' => 'Reset Link Already Sent']);
+                }
+
+
                 $token = Str::random(60);
 
                 DB::table('password_reset_tokens')->insert([
@@ -176,11 +182,47 @@ class AuthController extends Controller
                 ]);
 
                 Mail::to($user->email)->send(new ForgotPasswordMail($user,$token));
-                return response()->json(['status' => true, 'message' => 'Reset Link Sent', 'token' => $token]);
+                return response()->json(['status' => true, 'message' => 'Reset Link Sent', 'email' => $user->email]);
             }
             return response()->json(['status' => false, 'message' => 'Email is not found']);
         }
     }
+
+    public function showEmailSuccess($email){
+        return view('email_success', ['email' => $email]);
+    }
+
+    public function resentResetLinkEmail(Request $request){
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['status' => false, 'errors' => $validator->errors()]);
+        }else{
+            $user = Users::where('email', $request->email)->first();
+
+            if($user){
+
+                if( DB::table('password_reset_tokens')->where('email', $user->email)->first() ){
+                    DB::table('password_reset_tokens')->where('email', $user->email)->delete();
+                }
+
+                $token = Str::random(60);
+
+                DB::table('password_reset_tokens')->insert([
+                    'email' => $user->email,
+                    'token' => $token,
+                    'created_at' => now(),
+                ]);
+
+                Mail::to($user->email)->send(new ForgotPasswordMail($user,$token));
+                return response()->json(['status' => true, 'message' => 'Reset Link Sent', 'email' => $user->email]);
+            }
+            return response()->json(['status' => false, 'message' => 'Email is not found']);
+        }
+    }
+
 
     // public function showResetForm(Request $request) {
     //     $token = $request->query('token');
@@ -204,14 +246,13 @@ class AuthController extends Controller
     //     return redirect()->route('login');
     // }
 
-    public function showResetForm(Request $request, $token)
+    public function showResetForm($token)
     {
         return view('reset_password', ['token' => $token]);
     }
 
     public function reset(Request $request){
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
             'password' => [
                 'required',
                 'min:6',
@@ -226,7 +267,6 @@ class AuthController extends Controller
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
             $resetRecord = DB::table('password_reset_tokens')
-            ->where('email', $request->email)
             ->where('token', $request->token)
             ->first();
 
@@ -234,13 +274,15 @@ class AuthController extends Controller
                 return response()->json(['status' => false, 'message' => 'Invalid or expired reset token']);
             }
 
-            $user = Users::where('email', $request->email)->first();
+            $email = $resetRecord->email;
+
+            $user = Users::where('email', $email)->first();
 
             $user->password = Hash::make($request->password);
             $user->save();
 
             // Delete the password reset token from the database
-            DB::table('password_reset_tokens')->where('email', $request->email)->delete();
+            DB::table('password_reset_tokens')->where('email', $email)->delete();
 
             return response()->json(['status' => true, 'message' => 'Password Reset Success']);
         }
