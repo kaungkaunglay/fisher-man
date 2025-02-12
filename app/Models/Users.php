@@ -23,7 +23,10 @@ class Users extends Authenticatable implements CanResetPassword
         'remember_token',
         'ship_name',
         'first_org_name',
-        'trans_management'
+        'trans_management',
+        'avatar',
+        'location',
+        'address'
     ];
 
     protected $hidden = [

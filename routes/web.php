@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LineController;
+use App\Http\Controllers\ProfileController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\UsersController;
 
@@ -60,15 +61,11 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['is_seller'])->group(function () {
-        Route::get('/profile/seller', action: function () {
-            return view('profile_seller');
-        })->name('profile');
+        Route::get('/profile/seller', [ProfileController::class,'seller_profile'])->name('profile_seller');
     });
 
     Route::middleware(['is_buyer'])->group(function () {
-        Route::get('/profile/user', action: function () {
-            return view('profile_user');
-        })->name('profile_user');
+        Route::get('/profile/user', [ProfileController::class,'user_profile'])->name('profile_user');
     });
 
 });
