@@ -9,8 +9,8 @@ use LINE\Clients\MessagingApi\Configuration;
 use LINE\Clients\MessagingApi\Model\TextMessage;
 use LINE\Clients\MessagingApi\Model\ReplyMessageRequest;
 use LINE\Constants\MessageType;
-use App\Models\Api;
 use App\Models\Apis;
+use Illuminate\Support\Facades\Session; 
 use Exception;
 
 class LineApisController extends Controller
@@ -37,7 +37,7 @@ class LineApisController extends Controller
             config: $config
         );
     }
-      public function getUserId($event)
+      public function getUserId($event): mixed
     {
         if (isset($event['source']['userId'])) {
             return $event['source']['userId'];
@@ -58,7 +58,7 @@ class LineApisController extends Controller
                 $userId = $this->getUserId($event);
                 if ($userId) {
                     \Log::info('Extracted User ID: ' . $userId);
-    
+                    Session::put('line_user_id', $userId); 
                     // ðŸ”¹ Save to database
                     Apis::create([
                         'line_user_id' => $userId,

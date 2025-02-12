@@ -7,6 +7,8 @@ use App\Http\Controllers\SubCategoriesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LineController;
+use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\UsersController;
 
 /*
@@ -71,7 +73,6 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-
 Route::get('/category', function () {
     return view('category');
 })->name('category');
@@ -127,7 +128,6 @@ Route::delete('/admin/categories/{category}', [CategoriesController::class, 'des
 
 // sub categories
 
-
 Route::get('/admin/sub-categories', [SubCategoriesController::class, 'index'])->name('admin.sub_categories');
 Route::get('/admin/sub-categories/create', [SubCategoriesController::class, 'create'])->name('create_sub_category');
 Route::post('/admin/sub-categories', [SubCategoriesController::class, 'store'])->name('add_sub_category');
@@ -143,3 +143,8 @@ Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])
 Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('update_product');
 Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 
+Route::get('/login/line', function () {
+    return Socialite::driver('line')->redirect();
+})->name('line.login');
+
+Route::get('/login/line/callback', [LineController::class, 'handleLineCallback']);

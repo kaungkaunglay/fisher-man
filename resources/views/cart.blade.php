@@ -353,14 +353,14 @@
 
           <div class="d-flex flex-column flex-sm-row input-wpr">
             <div class="w-100">
-              <label for="country">Country</label>
-              <select name="" id="country" class="w-100 p-2 border rounded">
+              <label for="count">Country</label>
+              <select id="count" class="w-100 p-2 border rounded">
                 <option value="jpn" selected>Japan</option>
               </select>
             </div>
             <div class="w-100">
-              <label for="zip">ZIP</label>
-              <input name="" type="number" id="zip" class="w-100 p-2 border rounded" placeholder="104-0044">
+              <label for="zp">ZIP</label>
+              <input name="" type="number" id="zp" class="w-100 p-2 border rounded" placeholder="104-0044">
             </div>
           </div>
 
