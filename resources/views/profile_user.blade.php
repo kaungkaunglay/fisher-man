@@ -3,19 +3,18 @@
 <link rel="stylesheet" href="{{ asset('assets/css/profile_user.css') }}" />
 @endsection
 @section('contents')
-
 <!-- Main Content -->
-<div class="container-custom">
+<div class="container-custom mt-2">
+  <!-- Breadcrumbs -->
+  <nav aria-label="breadcrumb" class="py-4">
+    <ol class="breadcrumb mb-0 bg-transparent">
+      <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Porfile</li>
+    </ol>
+  </nav>
+  <!-- ./Breadcrumbs -->
   <div class="row">
-    <!-- Breadcrumbs -->
-            <nav aria-label="breadcrumb" class="py-4 mt-3">
-          <ol class="breadcrumb mb-0 bg-transparent">
-            <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Porfile</li>
-          </ol>
-      </nav>  
-    <!-- ./Breadcrumbs -->
-    <div class="col -12 col-lg-6">
+    <div class="col-12 col-lg-6">
       <div class="row">
         <div class="col-12 col-lg-6">
           <img src="{{asset('assets/images/account1.svg')}}" class="w-100" alt="">
@@ -23,10 +22,10 @@
         <div class="col-12 col-lg-6 mt-2 mt-lg-0">
           <button class="w-100 d-block text-end "><i class="fa-solid fa-pen-to-square fs-5 text-danger "></i></button>
           <h6 class="fw-bold">Name or Organization name</h6>
-          <p class="mb-0">email@gmail.com</p>
-          <p class="mb-0">LineID</p>
+          <a href="mailto:email@gmail.com" class="mb-0 d-block">email@gmail.com</a>
+          <a href="#" class="mb-0 d-block">LineID</a>
           <p class="mb-0">Chat with name or Organization name</p>
-          <button><i class="fa-brands fa-line fs-2 mt-2"></i></button>
+          <a class="line-btn"><i class="fa-brands fa-line fs-2 mt-2"></i></a>
         </div>
       </div>
       <div class="row mt-3">
@@ -45,7 +44,10 @@
           </div>
           <div class="address d-flex mb-2">
             <p class="w-25 fw-semibold">Phone No</p>
-            <p class="ms-5 text-black">:09429523324,0966723634</p>
+            <p class="ms-5 text-black"> :
+              <a href="tele:+959429523324">09429523324</a>,
+              <a href="tele:+959667236344">09667236344</a>
+            </p>
           </div>
         </div>
       </div>
@@ -67,7 +69,6 @@
         referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
-
   <!-- History Table -->
   <div class="history">
     <h2 class="title">History</h2>

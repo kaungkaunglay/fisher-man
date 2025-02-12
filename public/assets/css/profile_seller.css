@@ -1,6 +1,7 @@
-
-
 /* all products section */
+body {
+  color: #005B96;
+}
 
 /* sortBy button start*/
 .sort-container {

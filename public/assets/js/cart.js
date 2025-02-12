@@ -3,10 +3,10 @@ $(document).ready(() => {
 
   // track id code to show page
   const page = $(location).attr('href');
-  if (page.includes('#address')) $('#address').show();
-  else if (page.includes('#payment')) $('#payment').show();
-  else if (page.includes('#complete')) $('#complete').show();
-  else $('#checkout').show();
+  if (page.includes('#address')) showPage('#address');
+  else if (page.includes('#payment')) showPage('#payment');
+  else if (page.includes('#complete')) showPage('#complete');
+  else showPage('#checkout');
 
   // forward
   change_step('#checkout .btn-next');
@@ -19,7 +19,6 @@ $(document).ready(() => {
   change_step('#checkout .btn-back');
 
   // for popup 
-
   $(document).on('click', '#payment:has(#select-payment:checked) .btn-payment', () => {
     $('#warning-msg').hide();
     $('#payment .popup').fadeIn();
@@ -36,14 +35,33 @@ $(document).ready(() => {
     $('.popup').fadeOut();
   });
 
+  // form input show
+  $('#edit').click(() => {
+    $('.address-detail').hide();
+    $('.address-form').show();
+  })
+
+  $('#address #cancel').click(() => {
+    $('.address-form').hide();
+    $('.address-detail').show();
+    $('#address input').val('');
+    $('#address select').val($(''));
+  })
+
+  // price caculation
   quantityChange('.decrement', -1);
   quantityChange('.increment', 1);
   netTotal(true);
   netTotal();
 
   // for testing
-  // skipStepTester();
+  skipStepTester();
 })
+
+function showPage(target) {
+  $('.page').hide();
+  $(target).show();
+}
 
 /**
  * This function updates the quantity of an item when a specified target button is clicked. It increments or decrements the quantity based on the provided value. After updating the quantity, it triggers additional functions to recalculate and set the price.
@@ -58,15 +76,16 @@ function quantityChange(target, value) {
     const amount = Number(quanity.val());
 
     // for only sepcific quantity value;
-    const sub = amount > 0 ? amount + value : 0;
+    const sub = amount > 1 ? amount + value : 1;
     const add = amount + value;
 
-    quanity.val(value > 0 ? add : sub);
+    quanity.val(value >= 1 ? add : sub);
     caculating(target);
     setPrice(target);
   })
 }
 
+// function for Price Change
 function setPrice(target) {
 
   const sample = target.closest('.table-item');
@@ -162,11 +181,7 @@ function skipStepTester() {
   }
 }
 
-
-/**
- * Handles navigation between steps in a multi-step form or checkout process. It supports both forward (btn-next) and backward (btn-back) navigation.
- * @param {string|jQuery} trigger The button that triggers the step change (e.g., .btn-next, .btn-back).
- */
+// step chaging function
 function change_step(trigger) {
 
   $(trigger).click((ev) => {
@@ -176,6 +191,7 @@ function change_step(trigger) {
     const dir = ev.currentTarget.classList.contains('btn-next') ? true : false; //true for forward dir & false for backward dir
     const index = ($('.page').index(ev.currentTarget.closest('.page')));
 
+    // 
     if (dir) {
       for (i = 1; i <= index + 2; i++) {
         $($('.step')[i]).addClass('active');
@@ -185,7 +201,6 @@ function change_step(trigger) {
         $($('.step')[i]).removeClass('active');
       }
     }
-    console.log(index);
 
     $($(trigger).closest('.page')).hide();
     $($(trigger).attr('href')).fadeIn();
@@ -193,7 +208,11 @@ function change_step(trigger) {
     $('html, body').animate({
 
       scrollTop: $('main').offset().top - header
-    }, 1000)
+    }, 500);
   })
 }
 
+// address form input show
+function formShow() {
+  
+}

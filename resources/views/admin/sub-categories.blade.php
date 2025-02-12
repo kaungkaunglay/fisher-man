@@ -18,7 +18,7 @@
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>Product List</h3>
+            <h3>All sub-category</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
                     <a href="index.html">
@@ -30,23 +30,19 @@
                 </li>
                 <li>
                     <a href="#">
-                        <div class="text-tiny">Ecommerce</div>
+                        <div class="text-tiny">Sub-Category</div>
                     </a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">Product List</div>
+                    <div class="text-tiny">All sub-category</div>
                 </li>
             </ul>
         </div>
-        <!-- product-list -->
+        <!-- all-sub-category -->
         <div class="wg-box">
-            <!-- <div class="title-box">
-                <i class="icon-coffee"></i>
-                <div class="body-text">Tip search by Product ID: Each product is provided with a unique ID, which you can rely on to find the exact product you need.</div>
-            </div> -->
             <div class="flex items-center justify-between gap10 flex-wrap">
                 <div class="wg-filter flex-grow">
                     <div class="show">
@@ -69,110 +65,81 @@
                         </div>
                     </form>
                 </div>
-                <a class="tf-button style-1 w208" href="/admin/products/create"><i class="icon-plus"></i>Add new</a>
+                <a class="tf-button style-1 w208" href="/admin/sub-categories/create"><i class="icon-plus"></i>Add new</a>
             </div>
-            <div class="wg-table table-product-list">
+            <div class="wg-table table-all-sub-category">
                 <ul class="table-title flex gap20 mb-14">
                     <li>
-                        <div class="body-title">Product</div>
+                        <div class="body-title">Sub-Category</div>
                     </li>
                     <li>
-                        <div class="body-title">Product ID</div>
-                    </li>
-                    <li>
-                        <div class="body-title">Price</div>
-                    </li>
-                    <li>
-                        <div class="body-title">Quantity</div>
-                    </li>
-                    <li>
-                        <div class="body-title">Sale</div>
-                    </li>
-                    <li>
-                        <div class="body-title">Stock</div>
-                    </li>
-                    <li>
-                        <div class="body-title">Uploaded date</div>
+                        <div class="body-title">Start date</div>
                     </li>
                     <li>
                         <div class="body-title">Action</div>
                     </li>
                 </ul>
-
-                @foreach($products as $product)
                 <ul class="flex flex-column">
+                    @foreach($sub_categories as $subCategory)
                     <li class="product-item gap14">
                         <div class="image no-bg">
-                            <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
+                            <img src="{{ asset($subCategory->image) }}" alt="{{ $subCategory->name }}">
                         </div>
                         <div class="flex items-center justify-between gap20 flex-grow">
                             <div class="name">
-                                <a href="{{ route('admin.products', $product->id) }}" class="body-title-2">{{ $product->name }}</a>
+                                <a href="{{ route('admin.sub_categories.edit', $subCategory) }}" class="body-title-2">{{ $subCategory->name }}</a>
                             </div>
-                            <div class="body-text">{{ $product->id }}</div>
-                            <div class="body-text">${{ number_format($product->product_price, 2) }}</div>
-                            <div class="body-text">{{ $product->stock }}</div>
-                            <div class="body-text">{{ $product->sale_percentage ?? 'N/A' }}</div>
-                            <div>
-                                @if($product->stock <= 0)
-                                    <div class="block-not-available">Out of stock</div>
-                            @else
-                            <div class="body-text">{{ $product->stock }}</div>
-                            @endif
-                        </div>
-                        <div class="body-text">${{ number_format($product->delivery_fee, 2) }}</div>
-                        <div class="list-icon-function">
-                            <div class="item eye">
-                                <a href="{{ route('admin.products', $product->id) }}">
+                            <div class="body-text">{{ $subCategory->created_at->format('d M Y') }}</div>
+                            <div class="list-icon-function">
+                                <div class="item eye">
                                     <i class="icon-eye"></i>
-                                </a>
-                            </div>
-                            <div class="item edit">
-                                <a href="{{ route('admin.products.edit', $product->id) }}">
-                                    <i class="icon-edit-3"></i>
-                                </a>
-                            </div>
-                            <div class="item trash">
-                                    <form id="delete-form-{{ $product->id }}" action="{{ route('admin.products.destroy', $product->id) }}" method="POST" style="display: none;">
+                                </div>
+                                <div class="item edit">
+                                    <a href="{{ route('admin.sub_categories.edit', $subCategory) }}">
+                                        <i class="icon-edit-3"></i>
+                                    </a>
+                                </div>
+                                <div class="item trash">
+                                    <form id="delete-form-{{ $subCategory->id }}" action="{{ route('admin.sub_categories.destroy', $subCategory->id) }}" method="POST" style="display: none;">
                                         @csrf
                                         @method('DELETE')
                                     </form>
-                                    <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $product->id }}').submit();" class="btn-trash">
+                                    <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $subCategory->id }}').submit();" class="btn-trash">
                                         <i class="icon-trash-2"></i>
                                     </a>
                                 </div>
+                            </div>
                         </div>
-            </div>
-            </li>
-            </ul>
-            @endforeach
-        </div>
+                    </li>
+                    @endforeach
+                </ul>
 
-        <div class="divider"></div>
-        <div class="flex items-center justify-between flex-wrap gap10">
-            <div class="text-tiny">Showing 10 entries</div>
-            <ul class="wg-pagination">
-                <li>
-                    <a href="#"><i class="icon-chevron-left"></i></a>
-                </li>
-                <li>
-                    <a href="#">1</a>
-                </li>
-                <li class="active">
-                    <a href="#">2</a>
-                </li>
-                <li>
-                    <a href="#">3</a>
-                </li>
-                <li>
-                    <a href="#"><i class="icon-chevron-right"></i></a>
-                </li>
-            </ul>
+            </div>
+            <div class="divider"></div>
+            <div class="flex items-center justify-between flex-wrap gap10">
+                <div class="text-tiny">Showing 10 entries</div>
+                <ul class="wg-pagination">
+                    <li>
+                        <a href="#"><i class="icon-chevron-left"></i></a>
+                    </li>
+                    <li>
+                        <a href="#">1</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">2</a>
+                    </li>
+                    <li>
+                        <a href="#">3</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-chevron-right"></i></a>
+                    </li>
+                </ul>
+            </div>
         </div>
+        <!-- /all-sub-category -->
     </div>
-    <!-- /product-list -->
-</div>
-<!-- /main-content-wrap -->
+    <!-- /main-content-wrap -->
 </div>
 <!-- /main-content-wrap -->
 <!-- bottom-page -->

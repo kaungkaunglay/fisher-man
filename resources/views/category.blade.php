@@ -4,7 +4,7 @@
 @endsection
 @section('contents')
 
-<div class="wpr row">
+<div class="container-custom row">
     <!-- Breadcrumbs -->
     <nav aria-label="breadcrumb" class="py-4">
         <ol class="breadcrumb mb-0 bg-transparent">

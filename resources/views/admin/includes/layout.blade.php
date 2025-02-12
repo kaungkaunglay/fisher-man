@@ -72,7 +72,7 @@
                                         </a>
                                         <ul class="sub-menu">
                                             <li class="sub-menu-item">
-                                                <a href="{{route('admin.product')}}" class="{{ request()->is('admin/product') ? 'active' : '' }}">
+                                                <a href="{{route('create_product')}}" class="{{ request()->is('admin/product') ? 'active' : '' }}">
                                                     <div class="text">Add Product</div>
                                                 </a>
                                             </li>
@@ -97,6 +97,24 @@
                                             <li class="sub-menu-item">
                                                 <a href="{{route('create_category')}}" class="{{request()->is('admin/categories/create') ? 'active' : ''}}">
                                                     <div class="text">New category</div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item has-children {{ request()->is('admin/sub_categ*') ? 'active' : '' }}">
+                                        <a href="javascript:void(0);" class="menu-item-button">
+                                            <div class="icon"><i class="icon-layers"></i></div>
+                                            <div class="text">Sub Category</div>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('admin.sub_categories')}}" class="{{request()->is('admin/sub-categories') ? 'active' : ''}}">
+                                                    <div class="text">Sub Category list</div>
+                                                </a>
+                                            </li>
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('create_sub_category')}}" class="{{request()->is('admin/sub-categories/create') ? 'active' : ''}}">
+                                                    <div class="text">New sub category</div>
                                                 </a>
                                             </li>
                                         </ul>

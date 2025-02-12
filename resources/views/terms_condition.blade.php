@@ -14,7 +14,7 @@
 </nav>
 <!-- ./Breadcrumbs -->
 
-<div class="container mt-2">
+<div class="container mt-2 mb-5">
   <h1>Terms and Conditions</h1>
   <p>Please read these terms and conditions ("terms and conditions", "terms") carefully before using [website URL]
     website (“website”, "service") operated by [company name] ("us", "we", "our").</p>

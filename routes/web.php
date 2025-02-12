@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\SubCategoriesController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
@@ -17,10 +20,6 @@ use App\Http\Controllers\UsersController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
-
 // login for Customer and Seller
 Route::get('/login', [UsersController::class, 'login'])->name('login');
 Route::post('/login', [UsersController::class, 'login_store'])->name('login_store');
@@ -28,6 +27,7 @@ Route::post('/login', [UsersController::class, 'login_store'])->name('login_stor
 
 // Registration for Customer and Seller
 Route::get('/register', [UsersController::class, 'register'])->name('register');
+Route::get('/register_s', [UsersController::class, 'register_seller'])->name('register_seller');
 Route::post('/register', [UsersController::class, 'register_store'])->name('register_store');
 
 
@@ -43,9 +43,32 @@ Route::post('/reset-password', [UsersController::class, 'reset'])->name('reset')
 
 Route::post('/update-password', [UsersController::class, 'update_password'])->name('password.update');
 
-Route::get('/profile/user', action: function () {
-    return view('profile_user');
-})->name('profile_user');
+// Logout
+Route::get('/logout', [UsersController::class, 'logout'])->name('logout');
+
+// guest
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', function () {
+        return view('home');
+    })->name('home');
+});
+
+// auth
+Route::middleware(['authcheck'])->group(function () {
+
+    Route::middleware(['is_seller'])->group(function () {
+        Route::get('/profile/seller', action: function () {
+            return view('profile_seller');
+        })->name('profile');
+    });
+
+    Route::middleware(['is_buyer'])->group(function () {
+        Route::get('/profile/user', action: function () {
+            return view('profile_user');
+        })->name('profile_user');
+    });
+
+});
 
 
 Route::get('/category', function () {
@@ -63,10 +86,6 @@ Route::get('/cart', function () {
 Route::get('/product', function () {
     return view('product_detail');
 })->name('product_details');
-
-Route::get('/profile', action: function () {
-    return view('profile_seller');
-})->name('profile');
 
 Route::get('/support', function () {
     return view('support');
@@ -86,14 +105,15 @@ Route::get('/special-offer', function () {
 
 // Admin Controller
 Route::get('/admin', [AdminController::class, 'home'])->name('admin');
-Route::get('/admin/products', [AdminController::class, 'products'])->name('admin.products');
-Route::get('/admin/product', [AdminController::class, 'product'])->name('admin.product');
 Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
 Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
-
 Route::post('/admin/mail', [MailController::class, 'sendmail'])->name('mail.reset');
+
+// Admin auth
+Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
+Route::post('/admin/login', [AdminController::class, 'login_store'])->name('admin.login_store');
 
 // Categories Controller
 
@@ -103,3 +123,22 @@ Route::post('/admin/categories', [CategoriesController::class, 'store'])->name('
 Route::get('/admin/categories/{category}/edit', [CategoriesController::class, 'edit'])->name('admin.categories.edit');
 Route::put('/admin/categories/{category}', [CategoriesController::class, 'update'])->name('update_category');
 Route::delete('/admin/categories/{category}', [CategoriesController::class, 'destroy'])->name('admin.categories.destroy');
+
+// sub categories
+
+
+Route::get('/admin/sub-categories', [SubCategoriesController::class, 'index'])->name('admin.sub_categories');
+Route::get('/admin/sub-categories/create', [SubCategoriesController::class, 'create'])->name('create_sub_category');
+Route::post('/admin/sub-categories', [SubCategoriesController::class, 'store'])->name('add_sub_category');
+Route::get('/admin/sub-categories/{sub_category}/edit', [SubCategoriesController::class, 'edit'])->name('admin.sub_categories.edit');
+Route::put('/admin/sub-categories/{sub_category}', [SubCategoriesController::class, 'update'])->name('update_sub_category');
+Route::delete('/admin/sub-categories/{sub_category}', [SubCategoriesController::class, 'destroy'])->name('admin.sub_categories.destroy');
+
+// Product Routes
+Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products');
+Route::get('/admin/products/create', [ProductController::class, 'create'])->name('create_product');
+Route::post('/admin/products', [ProductController::class, 'store'])->name('add_product');
+Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('update_product');
+Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+
