@@ -42,7 +42,6 @@ class AuthController extends Controller
             'first_phone.required' => 'The first phone field is required.',
             'first_phone.regex' => 'The first phone format is invalid.',
             'second_phone.regex' => 'The second phone format is invalid.',
-            'line_id.required' => 'The line ID field is required.',
             'line_id.min' => 'The line ID must be at least 4 characters.',
             'line_id.max' => 'The line ID may not be greater than 20 characters.',
             'ship_name.required' => 'The ship name field is required.',
@@ -67,8 +66,7 @@ class AuthController extends Controller
             ],
             'confirm_password' => 'required|same:password',
             'first_phone' => ['required', 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'],
-            'second_phone' => ['nullable', 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'],
-            'line_id' => 'required|min:4|max:20'
+            'second_phone' => ['nullable', 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/']
         ], $messages);
 
         if($this->is_seller($request))
