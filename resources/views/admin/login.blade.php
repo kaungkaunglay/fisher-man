@@ -51,29 +51,29 @@
                             <h3>Login to account</h3>
                             <div class="body-text">Enter your email & password to login</div>
                         </div>
-                        <form class="form-login flex flex-column gap24">
+                        <form id="login_form" class="form-login flex flex-column gap24">
+                            @csrf
                             <fieldset class="email">
                                 <div class="body-title mb-10">Email address <span class="tf-color-1">*</span></div>
-                                <input class="flex-grow" type="email" placeholder="Enter your email address" name="email" tabindex="0" value="" aria-required="true" required="">
+                                <input class="flex-grow" id="email" type="email" placeholder="Enter your email address" name="email" tabindex="0" value="" aria-required="true" required="">
                                 <span class="invalid-feedback"></span>
+
                             </fieldset>
                             <fieldset class="password">
                                 <div class="body-title mb-10">Password <span class="tf-color-1">*</span></div>
-                                <input class="password-input" type="password" placeholder="Enter your password" name="password" tabindex="0" value="" aria-required="true" required="">
+                                <input class="password-input" id="password" type="password" placeholder="Enter your password" name="password" tabindex="0" value="" aria-required="true" required="">
+                                <span class="invalid-feedback"></span>
                                 <span class="show-pass">
                                     <i class="icon-eye view"></i>
                                     <i class="icon-eye-off hide"></i>
                                 </span>
-                                <span class="invalid-feedback"></span>
+
                             </fieldset>
-                            <div class="flex justify-between items-center">
-                                <div class="flex gap10">
-                                    <input class="" type="checkbox" id="signed">
-                                    <label class="body-text" for="signed">Keep me signed in</label>
-                                </div>
-                                <a href="#" class="body-text tf-color">Forgot password?</a>
+                            <div class="input-box d-flex flex-column">
+                                <p class="mb-3 text-danger" id="message"></p>
                             </div>
-                            <a href="index.html" class="tf-button w-full">Login</a>
+
+                            <button type="submit" class="tf-button w-full">Login</button>
                         </form>
                     </div>
                 </div>
@@ -100,6 +100,7 @@
             $("#login_form").submit(function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);
+                // console.log(formData.get('email'),formData.get('password'));
                 $.ajax({
                     url: "{{ route('admin.login_store') }}",
                     type: 'POST',
@@ -109,8 +110,10 @@
                     processData: false,
                     success: function(response) {
                         if (response.status == true) {
-                            window.location.href = "{{ route('admin') }}";
+                            window.location.href = "{{ route('admin.index')}}";
                         } else {
+
+                            console.log(message,errors)
 
                             // if response has message, show the message , if not empty the message, clear the error messages
                             $('#message').html(response.message ?? '');
