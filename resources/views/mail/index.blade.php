@@ -101,10 +101,10 @@
 
             <div class="content">
                 <h1>Reset Your Password</h1>
-                <p>Hello,</p>
+                <p>Hello, My name is zwe</p>
                 <p>We received a request to reset the password for your account. To proceed with the password reset, please click the button below:</p>
 
-                <a href="{{}}" class="button">Reset Password</a>
+                <a href="" class="button">Reset Password</a>
 
                 <div class="security-notice">
                     <p style="margin-bottom: 0;">
@@ -117,7 +117,7 @@
 
             <div class="footer">
                 <p class="footer-text">If you're having trouble with the button above, copy and paste the URL below into your web browser:</p>
-                <p class="alternative-link">{{route('password.reset',)}}</p>
+                <p class="alternative-link"></p>
                 <div class="divider"></div>
                 <p class="footer-text">This is an automated message, please do not reply to this email. For assistance, please contact our support team.</p>
                 <p class="footer-text">© 2025 <a href="https://{{env('APP_NAME')}}">{{env('APP_NAME')}}</a> . All rights reserved.</p>
