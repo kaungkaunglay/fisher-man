@@ -1,63 +1,80 @@
-const slider = document.querySelector(".range-slider");
-const progress = slider.querySelector(".prograss");
-const minPriceInput = slider.querySelector(".min-price");
-const maxPriceInput = slider.querySelector(".max-price");
-const minInput = slider.querySelector(".min-input");
-const maxInput = slider.querySelector(".max-input");
+$(document).ready(function () {
+  const sliderOne = $("#slider-1");
+  const sliderTwo = $("#slider-2");
+  const sliderTrack = $(".slider-track");
+  const minInput = $(".min-price");
+  const maxInput = $(".max-price");
 
-const updateProgress = () => {
-    const minValue = parseInt(minInput.value);
-    const maxValue = parseInt(maxInput.value);
+  let minGap = 0;
+  let sliderMaxValue = parseInt(sliderOne.attr("max"));
 
-    const range = maxInput.max - minInput.min;
-    const valueRange = maxValue - minValue;
+  function slideOne() {
+      let sliderOneValue = parseInt(sliderOne.val());
+      let sliderTwoValue = parseInt(sliderTwo.val());
 
-    const width = (valueRange / range) * 100;
-    const minOffset = ((minValue - minInput.min) / range) * 100;
+      if (sliderTwoValue - sliderOneValue <= minGap) {
+          sliderOne.val(sliderTwoValue - minGap);
+      }
 
-    progress.style.width = width + "%";
+      minInput.val(sliderOne.val());
+      fillColor();
+  }
 
-    progress.style.left = minOffset + "%";
+  function slideTwo() {
+      let sliderOneValue = parseInt(sliderOne.val());
+      let sliderTwoValue = parseInt(sliderTwo.val());
 
-    minPriceInput.value = minValue;
-    maxPriceInput.value = maxValue;
-};
+      if (sliderTwoValue - sliderOneValue <= minGap) {
+          sliderTwo.val(sliderOneValue + minGap);
+      }
 
-const updateRange = (event) => {
-    const input = event.target;
+      maxInput.val(sliderTwo.val());
+      fillColor();
+  }
 
-    let min = parseInt(minPriceInput.value);
-    let max = parseInt(maxPriceInput.value);
+  function fillColor() {
+      let percent1 = (parseInt(sliderOne.val()) / sliderMaxValue) * 100;
+      let percent2 = (parseInt(sliderTwo.val()) / sliderMaxValue) * 100;
+      
+      sliderTrack.css("background", `linear-gradient(to right, #dadae5 ${percent1}% , #005B96 ${percent1}% , #005B96 ${percent2}%, #dadae5 ${percent2}%)`);
+  }
 
-    if (input === minPriceInput && max > min) {
-        max = min;
-        maxPriceInput.value = max;
-    } else if (input === maxPriceInput && max < min) {
-        min = max;
-        minPriceInput.value = min;
-    }
+  function syncMinPrice() {
+      let value = parseInt(minInput.val());
+      let maxValue = parseInt(sliderTwo.val());
 
-    minInput.value = min;
-    maxInput.value = max;
+      if (value < parseInt(sliderOne.attr("min"))) value = parseInt(sliderOne.attr("min"));
+      if (value > maxValue - minGap) value = maxValue - minGap;
 
-    updateProgress();
-};
+      sliderOne.val(value);
+      fillColor();
+  }
 
-minPriceInput.addEventListener("input", updateRange);
-maxPriceInput.addEventListener("input", updateRange);
+  function syncMaxPrice() {
+      let value = parseInt(maxInput.val());
+      let minValue = parseInt(sliderOne.val());
 
-minInput.addEventListener("input", () => {
-    if (parseInt(minInput.value) >= parseInt(maxInput.value)) {
-        maxInput.value = minInput.value;
-    }
-    updateProgress();
+      if (value > sliderMaxValue) value = sliderMaxValue;
+      if (value < minValue + minGap) value = minValue + minGap;
+
+      sliderTwo.val(value);
+      fillColor();
+  }
+
+  sliderOne.on("input", slideOne);
+  sliderTwo.on("input", slideTwo);
+
+  minInput.on("input", function () {
+      syncMinPrice();
+      slideOne();
+  });
+
+  maxInput.on("input", function () {
+      syncMaxPrice();
+      slideTwo();
+  });
+
+  // Initialize
+  slideOne();
+  slideTwo();
 });
-
-maxInput.addEventListener("input", () => {
-    if (parseInt(maxInput.value) <= parseInt(minInput.value)) {
-        minInput.value = maxInput.value;
-    }
-    updateProgress();
-});
-
-updateProgress();

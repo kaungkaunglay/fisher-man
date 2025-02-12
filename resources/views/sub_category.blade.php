@@ -54,8 +54,8 @@
         <input type="number" class="max-price" value="25" min="1" max="100">
         <div class="range-container position-relative mt-3 w-100">
             <div class="slider-track"></div>
-            <input type="range" min="1" max="100" value="1" id="slider-1" oninput="slideOne()">
-            <input type="range" min="1" max="100" value="25" id="slider-2" oninput="slideTwo()">
+            <input type="range" min="1" max="100" value="1" id="slider-1">
+            <input type="range" min="1" max="100" value="25" id="slider-2">
         </div>
     </div>
 
@@ -754,8 +754,7 @@
 </div>
 
 <script src="{{asset('assets/js/slider.js')}}"></script>
-<!-- <script src="{{asset('assets/js/price-range.js')}}"></script> -->
-<script src="{{asset('assets/js/price-range.test.js')}}"></script>
+<script src="{{asset('assets/js/price-range.js')}}"></script>
 <script src="{{asset('assets/js/pagination.js')}}"></script>
 <script src="{{ asset('assets/js/words-limit.js') }}"></script>  
 <script>
