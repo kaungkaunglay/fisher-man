@@ -75,8 +75,8 @@
                 </fieldset>
 
                 <fieldset class="product_price">
-                    <div class="body-title mb-10">Delivary Fee <span class="tf-color-1">*</span></div>
-                    <input class="mb-10" type="number" name="delivery_fee" value="{{ old('delivery_fee', $product->delivery_fee ?? '') }}" required>
+                    <div class="body-title mb-10">Discount</div>
+                    <input class="mb-10" type="number" name="discount" value="{{ old('discount', $product->discount ?? '') }}">
                 </fieldset>
 
                 <fieldset class="stock">

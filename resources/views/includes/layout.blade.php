@@ -113,7 +113,7 @@
                     <h6 class="text-center text-warning mb-2">Useful Links</h6>
                     <ul class="list-unstyled link-list txt-15">
                         <li><a href="{{ route('home') }}">>>Home</a></li>
-                        <li><a href="{{route('product_details')}}">>>Product</a></li>
+                        <li><a href="#">>>Product</a></li>
                         <li><a href="#">>>FAQ</a></li>
                         <li><a href="{{route('policy')}}">>>Terms & Privacy</a></li>
                         <li><a href="#">>>Customer Review</a></li>

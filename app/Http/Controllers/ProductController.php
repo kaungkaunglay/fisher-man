@@ -36,10 +36,10 @@ class ProductController extends Controller
             'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'stock' => 'required|integer',
             'weight' => 'required|numeric',
-            'size' => 'nullable|string|max:255',
-            'day_of_caught' => 'nullable|date',
-            'expiration_date' => 'nullable|date',
-            'delivery_fee' => 'required|numeric',
+            'size' => 'required|nullable|string|max:255',
+            'day_of_caught' => 'required|nullable|date',
+            'expiration_date' => 'required|nullable|date',
+            'discount' => '',
             'description' => 'nullable|string',
         ]);
 
@@ -66,7 +66,7 @@ class ProductController extends Controller
             'size' => $request->size,
             'day_of_caught' => $request->day_of_caught,
             'expiration_date' => $request->expiration_date,
-            'delivery_fee' => $request->delivery_fee,
+            'discount' => $request->discount,
             'description' => $request->description,
         ]);
 
@@ -77,8 +77,18 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::with('subCategory')->findOrFail($id);
-        return view('admin.products.show', compact('product'));
+        return view('product_detail', compact('product'));
     }
+
+    public function discountProducts()
+    {
+        $products = Product::where('discount', '>', 0.00)
+            ->latest() 
+            ->get();
+
+        return view('special-offer', compact('products'));
+    }
+
 
     public function edit(Product $product)
     {
@@ -97,7 +107,7 @@ class ProductController extends Controller
             'size' => 'sometimes|string|max:255',
             'day_of_caught' => 'sometimes|date',
             'expiration_date' => 'sometimes|date',
-            'delivery_fee' => 'sometimes|numeric',
+            'discount' => '',
             'sub_category_id' => 'sometimes|integer|exists:sub_categories,id',
             'description' => 'sometimes|string',
         ]);

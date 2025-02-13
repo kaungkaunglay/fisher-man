@@ -5,7 +5,7 @@
 @section('contents')
 
 
-<section class="container-custom mt-2">
+<section class="container-custom mt-2 m-b-45">
   <div class="row">
     <!-- Breadcrumbs -->
     <nav aria-label="breadcrumb" class="py-4">
@@ -25,10 +25,11 @@
     <div class="product-detail col-8">
       <div class="row justify-content-between product-mobile">
         <div class="product-image-container col-6">
-          <div class="product-image-bigger d-flex flex-direction-column mb-3">
-            <img src="{{asset('assets/images/fishes/Red_sea_bream.svg')}}" alt="product image">
-          </div>
-          <div class="product-image-smaller d-flex justify-content-between gap-3">
+        <div class="product-image-bigger d-flex flex-column mb-3">
+            <img src="{{ asset($product->product_image) }}" 
+                 alt="{{ $product->name }}" class="img-fluid">
+        </div>
+          <!-- <div class="product-image-smaller d-flex justify-content-between gap-3">
             <div class="small-img">
               <img src="{{asset('assets/images/fishes/Red_sea_bream.svg')}}" alt="product image">
             </div>
@@ -41,15 +42,15 @@
             <div class="small-img">
               <img src="{{asset('assets/images/fishes/Red_sea_bream.svg')}}" alt="product image">
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="product-descraption col-6">
           <div class="product-title&date d-flex justify-content-between align-items-center">
-            <h2 class="m-0 title">Product Title</h2>
-            <p class="m-0">20/02/2025</p>
+            <h2 class="m-0 title">{{ $product-> name}}</h2>
+            <p class="m-0">{{ $product-> created_at->format('d M Y')}}</p>
           </div>
           <div class="product-price">
-            <p class="m-b-10 price ">¥1000</p>
+            <p class="m-b-10 price ">¥ {{ $product-> product_price}}</p>
             <p class="m-0 category-txt"><a href="#">鮮魚</a> | <a href="#">白身魚</a></p>
           </div>
           <div class="m-b-20 m-t-10">
@@ -65,13 +66,13 @@
           <div class="detail">
             <h3 class="m-b-20 title">Detail</h3>
             <ul>
-              <li class="txt mb-1">Stock : 20</li>
-              <li class="txt mb-1">Weight : 20kg</li>
-              <li class="txt mb-1">Size : 20cm</li>
-              <li class="txt mb-1">Day of Caught : 12/10/2024</li>
-              <li class="txt mb-1">Expiration Date : 12/10/2024</li>
-              <li class="txt mb-1">Delivery Fee : 20$ (by buyer)</li>
-              <li class="txt mb-1">How can cook : Sashimi, Broil, Boil, Fry, Miced for Hotpot</li>
+              <li class="txt mb-1">Stock : {{ $product-> stock}}</li>
+              <li class="txt mb-1">Weight : {{ $product-> weight}}</li>
+              <li class="txt mb-1">Size : {{ $product-> size}}cm</li>
+              <li class="txt mb-1">Day of Caught : {{ $product-> day_of_caught}}</li>
+              <li class="txt mb-1">Expiration Date : {{ $product-> expiration_date}}</li>
+              <li class="txt mb-1">Delivery Fee : ¥ {{ $product-> product_price}} (by buyer)</li>
+              <li class="txt mb-1">Descraption : {{ $product-> description}}</li>
             </ul>
           </div>
         </div>
@@ -83,12 +84,11 @@
 
 </section>
 <!-- Review start -->
-<div class="reviewer container-custom">
+<!-- <div class="reviewer container-custom">
   <h3 class="m-t-b-20 fs-2 fw-bold txt-primary text-center">
     Review
     </h1>
     <div class="user-review-container w-md-100" id="reviewContainer">
-      <!-- Reviewer Cards -->
       <div class="reviewer-card d-flex align-items-start gap-3 m-b-20">
         <div class="user-img">
           <img src="{{asset('assets/images/account.svg')}}" alt="user image">
@@ -164,10 +164,9 @@
       </div>
     </div>
 
-    <!-- Pagination Controls -->
     <div id="pagination-controls" class="pagination-controls text-center m-b-20"></div>
-</div>
-<div class="review-form container-custom mb-3 p-0">
+</div> -->
+<!-- <div class="review-form container-custom mb-3 p-0">
   <h3 class="text-center m-b-20 fs-2 fw-bold txt-primary">Add a review</h3>
   <div class="row justify-content-center review-form-container">
     <div>
@@ -205,7 +204,7 @@
       </form>
     </div>
   </div>
-</div>
+</div> -->
 <script src="{{ asset('assets/js/cart.js') }}"></script>
 <script src="{{ asset('assets/js/pagination.js') }}"></script>
 @endsection

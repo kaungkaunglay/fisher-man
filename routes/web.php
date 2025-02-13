@@ -54,6 +54,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // guest
 Route::get('/', [ProductController::class, 'showallproducts'])->name('home');
+Route::get('/special-offer', [ProductController::class, 'discountProducts'])->name('special-offer');
 
 // auth
 Route::middleware(['auth'])->group(function () {
@@ -80,10 +81,6 @@ Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
 
-Route::get('/product', function () {
-    return view('product_detail');
-})->name('product_details');
-
 Route::get('/support', function () {
     return view('support');
 })->name('support');
@@ -95,10 +92,6 @@ Route::get('/policy', function () {
 Route::get('/white-list', function () {
     return view('whitelist');
 })->name('whitelist');
-
-Route::get('/special-offer', function () {
-    return view('special-offer');
-})->name('special-offer');
 
 // Admin Controller
 Route::get('/admin', [AdminController::class, 'home'])->name('admin.index');
@@ -137,6 +130,9 @@ Route::post('/admin/products', [ProductController::class, 'store'])->name('add_p
 Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
 Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('update_product');
 Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+
+// Product detail
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
 Route::get('/login/line', function () {
     return Socialite::driver('line')->redirect();
