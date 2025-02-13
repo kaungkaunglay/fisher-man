@@ -49,4 +49,9 @@ class Users extends Authenticatable implements CanResetPassword
         return $this->belongsToMany(Product::class, 'white_lists', 'user_id', 'product_id');
     }
 
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
 }
