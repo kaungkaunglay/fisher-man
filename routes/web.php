@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LineController;
+use App\Http\Controllers\MailController;
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WhiteListController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\SubCategoriesController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\MailController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LineController;
-use App\Http\Controllers\ProfileController;
-use Laravel\Socialite\Facades\Socialite;
-use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,13 +95,20 @@ Route::get('/policy', function () {
     return view('terms_condition');
 })->name('policy');
 
-Route::get('/white-list', function () {
-    return view('whitelist');
-})->name('whitelist');
 
 Route::get('/special-offer', function () {
     return view('special-offer');
 })->name('special-offer');
+
+
+
+// Whitelist Routes
+Route::get('/whitelists', [WhiteListController::class,'index'])->name('whitelist.index');
+Route::post('/whitelists/{product_id}',[WhiteListController::class,'store'])->name('whitelist.store');
+Route::delete('/whitelists/{product_id}',[WhiteListController::class,'delete'])->name('whitelist.delete');
+
+//
+
 
 // Admin Controller
 Route::get('/admin', [AdminController::class, 'home'])->name('admin.index');

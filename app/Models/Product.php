@@ -13,4 +13,8 @@ class Product extends Model
     public function subCategory() {
         return $this->belongsTo(Sub_category::class);
     }
+
+    public function whitelists() {
+        return $this->belongsToMany(Users::class, 'white_lists', 'product_id', 'user_id');
+    }
 }
