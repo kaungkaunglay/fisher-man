@@ -378,7 +378,7 @@
     </div>
   </div>
   <div class="card-list" id="view-list">
-  @foreach($products as $product)
+  {{-- @foreach($products as $product)
     <div class="item-card">
       <a href="{{ url('/product') }}" class="right">
         <img src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
@@ -398,7 +398,7 @@
         </div>
       </div>
     </div>
-  @endforeach
+  @endforeach --}}
   </div>
   <div class="row justify-content-center">
     <div class="col-5 col-lg-3 text-center">
