@@ -679,6 +679,11 @@ li {
   cursor: pointer;
 }
 
+.item-card a img{
+  height: 110px;
+  object-fit: contain;
+}
+
 .row-list .item-card {
   display: flex;
   justify-content: space-between;

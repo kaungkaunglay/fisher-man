@@ -53,9 +53,7 @@ Route::post('/update-password', [AuthController::class, 'update_password'])->nam
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // guest
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [ProductController::class, 'showallproducts'])->name('home');
 
 // auth
 Route::middleware(['auth'])->group(function () {
