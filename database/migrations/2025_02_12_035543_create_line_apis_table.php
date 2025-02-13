@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sellers', function (Blueprint $table) {
+        Schema::create('line_apis', function (Blueprint $table) {
             $table->id();
-            $table->string('ship_name');
-            $table->string('firt_org');
-            $table->string('trans_management');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->rememberToken(); 
+            $table->string('line_user_id');
+            $table->string('events')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sellers');
+        Schema::dropIfExists('line_apis');
     }
 };

@@ -5,12 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class roles extends Model
+
+class LineApis extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'role_id';
-    protected $fillable = [
-        'name',
-        'description',
-    ];
+    protected $fillable = ['line_user_id', 'events'];
 }

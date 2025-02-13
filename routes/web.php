@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\SubCategoriesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LineController;
+use App\Http\Controllers\ProfileController;
+use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\UsersController;
 
 /*
@@ -19,34 +23,52 @@ use App\Http\Controllers\UsersController;
 |
 */
 
-Route::get('/', [ProductController::class, 'showallproducts'])->name('home');
-
 // login for Customer and Seller
-Route::get('/login', [UsersController::class, 'login'])->name('login');
-Route::post('/login', [UsersController::class, 'login_store'])->name('login_store');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'login_store'])->name('login_store');
 // Route::post('/login_s', [SellersController::class, 'login_store'])->name('login_store_seller');
 
 // Registration for Customer and Seller
-Route::get('/register', [UsersController::class, 'register'])->name('register');
-Route::post('/register', [UsersController::class, 'register_store'])->name('register_store');
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::get('/register_s', [AuthController::class, 'register_seller'])->name('register_seller');
+Route::post('/register', [AuthController::class, 'register_store'])->name('register_store');
 
 
 // Forgot_password for customer and seller
-Route::get('/forgot_password', [UsersController::class, 'forgot_password'])->name('forgotpassword');
+Route::get('/forgot_password', [AuthController::class, 'forgot_password'])->name('forgotpassword');
 // Handle Reset Link
-Route::post('/forgot-password', [UsersController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::post('/forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/email_success/{email}',[AuthController::class, 'showEmailSuccess'])->name('email_success');
+// Resent reset password link
+Route::post('/resend-email', [AuthController::class, 'resentResetLinkEmail'])->name('resend.email');
 // Password Reset Form
-Route::get('/reset-password', [UsersController::class, 'showResetForm'])->name('password.reset');
+Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
 // Route::get('/reset-password/{token}', [UsersController::class, 'showResetForm'])->name('password.reset');
 // Handle Password Reset
-Route::post('/reset-password', [UsersController::class, 'reset'])->name('reset');
+Route::post('/reset-password', [AuthController::class, 'reset'])->name('reset');
 
-Route::post('/update-password', [UsersController::class, 'update_password'])->name('password.update');
+Route::post('/update-password', [AuthController::class, 'update_password'])->name('password.update');
 
-Route::get('/profile/user', action: function () {
-    return view('profile_user');
-})->name('profile_user');
+// Logout
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+// guest
+Route::get('/', function () {
+    return view('home');
+})->name('home');
+
+// auth
+Route::middleware(['auth'])->group(function () {
+
+    Route::middleware(['is_seller'])->group(function () {
+        Route::get('/profile/seller', [ProfileController::class,'seller_profile'])->name('profile_seller');
+    });
+
+    Route::middleware(['is_buyer'])->group(function () {
+        Route::get('/profile/user', [ProfileController::class,'user_profile'])->name('profile_user');
+    });
+
+});
 
 Route::get('/category', function () {
     return view('category');
@@ -63,10 +85,6 @@ Route::get('/cart', function () {
 Route::get('/product', function () {
     return view('product_detail');
 })->name('product_details');
-
-Route::get('/profile', action: function () {
-    return view('profile_seller');
-})->name('profile');
 
 Route::get('/support', function () {
     return view('support');
@@ -85,14 +103,17 @@ Route::get('/special-offer', function () {
 })->name('special-offer');
 
 // Admin Controller
-Route::get('/admin', [AdminController::class, 'home'])->name('admin');
+Route::get('/admin', [AdminController::class, 'home'])->name('admin.index');
 Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
 Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
-
 Route::post('/admin/mail', [MailController::class, 'sendmail'])->name('mail.reset');
 
+// Admin auth
+Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
+Route::post('/admin/login', [AdminController::class, 'login_store'])->name('admin.login_store');
+Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 // Categories Controller
 
 Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('admin.categories');
@@ -103,7 +124,6 @@ Route::put('/admin/categories/{category}', [CategoriesController::class, 'update
 Route::delete('/admin/categories/{category}', [CategoriesController::class, 'destroy'])->name('admin.categories.destroy');
 
 // sub categories
-
 
 Route::get('/admin/sub-categories', [SubCategoriesController::class, 'index'])->name('admin.sub_categories');
 Route::get('/admin/sub-categories/create', [SubCategoriesController::class, 'create'])->name('create_sub_category');
@@ -120,3 +140,8 @@ Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])
 Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('update_product');
 Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 
+Route::get('/login/line', function () {
+    return Socialite::driver('line')->redirect();
+})->name('line.login');
+
+Route::get('/login/line/callback', [LineController::class, 'handleLineCallback']);

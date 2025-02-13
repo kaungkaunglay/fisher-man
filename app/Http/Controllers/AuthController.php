@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Users;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\forgot_password;
 use App\Mail\ForgotPasswordMail;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
-
-class UsersController extends Controller
+class AuthController extends Controller
 {
     public function register() {
         return view('register');
@@ -21,9 +20,7 @@ class UsersController extends Controller
     public function register_seller(){
         return view('sellers.register');
     }
-    public function login_seller(){
-        return view('sellers.login');
-    }
+
     public function login(){
         return view('login');
     }
@@ -45,7 +42,6 @@ class UsersController extends Controller
             'first_phone.required' => 'The first phone field is required.',
             'first_phone.regex' => 'The first phone format is invalid.',
             'second_phone.regex' => 'The second phone format is invalid.',
-            'line_id.required' => 'The line ID field is required.',
             'line_id.min' => 'The line ID must be at least 4 characters.',
             'line_id.max' => 'The line ID may not be greater than 20 characters.',
             'ship_name.required' => 'The ship name field is required.',
@@ -70,8 +66,7 @@ class UsersController extends Controller
             ],
             'confirm_password' => 'required|same:password',
             'first_phone' => ['required', 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'],
-            'second_phone' => ['nullable', 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'],
-            'line_id' => 'required|min:4|max:20'
+            'second_phone' => ['nullable', 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/']
         ], $messages);
 
         if($this->is_seller($request))
@@ -86,14 +81,13 @@ class UsersController extends Controller
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
-            $user = new User();
+            $user = new Users();
             $user->username = $request->username;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
             $user->first_phone = $request->first_phone;
             $user->second_phone = $request->second_phone;
             $user->line_id = $request->line_id;
-            $user->remember_token = Str::random(60);
 
             if($this->is_seller($request))
             {
@@ -122,7 +116,7 @@ class UsersController extends Controller
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }
         $user_password = $request->password;
-        $user = User::where('id', $request->userid)->first();
+        $user = Users::where('id', $request->userid)->first();
         if ($user) {
             $user->password = Hash::make($user_password);
             $user->save();
@@ -139,13 +133,17 @@ class UsersController extends Controller
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
-            $user = User::where('username', $request->username)
+            $user = Users::where('username', $request->username)
             ->orWhere('email', $request->username)
             ->first();
 
-            if($user && Hash::check($request->password, $user->password)){
 
-                session()->put('user_id', $user->id);
+
+            if($user && Hash::check($request->password, $user->password)){
+                $remember = $request->has('remember') && $request->remember == 1;
+
+                Auth::login($user,$remember);
+
                 return response()->json(['status' => true, 'message' => 'Login success', 'errors'=> '']);
             }
 
@@ -165,40 +163,93 @@ class UsersController extends Controller
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
-            $user = User::where('email', $request->email)->first();
+            $user = Users::where('email', $request->email)->first();
 
             // dd($user);
             if($user){
-                $user->remember_token = Str::random(60);
-                // $user->save();
-                Mail::to($user->email)->send(new ForgotPasswordMail($user));
-                return response()->json(['status' => true, 'message' => 'Reset Link Sent']);
+
+                if( DB::table('password_reset_tokens')->where('email', $user->email)->first() ){
+                    return response()->json(['status' => false, 'message' => 'Reset Link Already Sent']);
+                }
+
+
+                $token = Str::random(60);
+
+                DB::table('password_reset_tokens')->insert([
+                    'email' => $user->email,
+                    'token' => $token,
+                    'created_at' => now(),
+                ]);
+
+                Mail::to($user->email)->send(new ForgotPasswordMail($user,$token));
+                return response()->json(['status' => true, 'message' => 'Reset Link Sent', 'email' => $user->email]);
             }
             return response()->json(['status' => false, 'message' => 'Email is not found']);
         }
     }
 
-    public function showResetForm(Request $request) {
-        $token = $request->query('token');
-        $user_forgot_password = forgot_password::where('token', $token)->first();
-        if(!$user_forgot_password){
-            return abort(404);
-        }
-        if($user_forgot_password->is_used == 0){
-            $user_forgot_password->is_used = 1;
-            $user_forgot_password->save();
-            //delete token after reset passwordk
-            return view('reset_password', ['user_id' => $user_forgot_password->user_id]);
+    public function showEmailSuccess($email){
+        return view('email_success', ['email' => $email]);
+    }
+
+    public function resentResetLinkEmail(Request $request){
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['status' => false, 'errors' => $validator->errors()]);
+        }else{
+            $user = Users::where('email', $request->email)->first();
+
+            if($user){
+
+                if( DB::table('password_reset_tokens')->where('email', $user->email)->first() ){
+                    DB::table('password_reset_tokens')->where('email', $user->email)->delete();
+                }
+
+                $token = Str::random(60);
+
+                DB::table('password_reset_tokens')->insert([
+                    'email' => $user->email,
+                    'token' => $token,
+                    'created_at' => now(),
+                ]);
+
+                Mail::to($user->email)->send(new ForgotPasswordMail($user,$token));
+                return response()->json(['status' => true, 'message' => 'Reset Link Sent', 'email' => $user->email]);
+            }
+            return response()->json(['status' => false, 'message' => 'Email is not found']);
         }
     }
 
+
+    // public function showResetForm(Request $request) {
+    //     $token = $request->query('token');
+    //     $user_forgot_password = forgot_password::where('token', $token)->first();
+    //     if(!$user_forgot_password){
+    //         return abort(404);
+    //     }
+    //     if($user_forgot_password->is_used == 0){
+    //         $user_forgot_password->is_used = 1;
+    //         $user_forgot_password->save();
+    //         //delete token after reset passwordk
+    //         return view('reset_password', ['user_id' => $user_forgot_password->user_id]);
+    //     }
+    // }
+
     // public function showResetForm($token){
-    //     $user = User::where('remember_token', $token)->first();
+    //     $user = Users::where('remember_token', $token)->first();
     //     if($user){
     //         return view('reset_password', ['token' => $token]);
     //     }
     //     return redirect()->route('login');
     // }
+
+    public function showResetForm($token)
+    {
+        return view('reset_password', ['token' => $token]);
+    }
 
     public function reset(Request $request){
         $validator = Validator::make($request->all(), [
@@ -209,24 +260,36 @@ class UsersController extends Controller
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,16}$/'
             ],
             'confirm_password' => 'required|same:password',
+            'token' => 'required'
         ]);
 
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
-            $user = User::where('remember_token', $request->token)->first();
-            if($user){
-                $user->password = Hash::make($request->password);
-                $user->remember_token = Str::random(60);
-                $user->save();
-                return response()->json(['status' => true, 'message' => 'Password Reset Success']);
+            $resetRecord = DB::table('password_reset_tokens')
+            ->where('token', $request->token)
+            ->first();
+
+            if (!$resetRecord) {
+                return response()->json(['status' => false, 'message' => 'Invalid or expired reset token']);
             }
-            return response()->json(['status' => false, 'message' => 'Token is not found']);
+
+            $email = $resetRecord->email;
+
+            $user = Users::where('email', $email)->first();
+
+            $user->password = Hash::make($request->password);
+            $user->save();
+
+            // Delete the password reset token from the database
+            DB::table('password_reset_tokens')->where('email', $email)->delete();
+
+            return response()->json(['status' => true, 'message' => 'Password Reset Success']);
         }
     }
 
     public function logout(){
-        session()->forget('user_id');
+        Auth::logout();
         return redirect()->route('login');
     }
 

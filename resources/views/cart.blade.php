@@ -83,7 +83,8 @@
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="5" class="text-end pe-2">Total</td>
+          <td colspan="4"></td>
+          <td>Total</td>
           <td>
             <span class="total"></span>
           </td>
@@ -156,7 +157,7 @@
 
   <!-- Address -->
   <div class="page" id="address">
-    <div class="py-3 px-3 bg-primary d-flex text-white">
+    <div class="p-3 bg-primary d-flex text-white">
       <div class="d-flex justify-content-between align-items-center w-100">
         <h2>Address</h2>
         <button id="edit">
@@ -164,40 +165,142 @@
         </button>
       </div>
     </div>
-    <ul class="list-group gap-3 py-3 px-3">
-      <li>
-        <label for="name">Name </label> :
-        <input type="text" id="name" value="Customer Name" readonly>
-      </li>
-      <li>
-        <label for="ph">Phone Number </label> :
-        <a href="tele:+959888888888">0988888888</a>
-        <input type="hidden" id="ph" value="0988888888">
-      </li>
-      <li>
-        <label for="line-id">Line ID </label> :
-        <a href="#">Afasd-222</a>
-        <input type="hidden" id="line-id" value="Afasd-222">
-      </li>
-      <li>
-        <label for="zip">Postal Code </label> :
-        <input type="number" id="zip" value="110001" readonly>
-      </li>
-      <li>
-        <label for="country">Country </label> :
-        <select id="country">
-          <option value="jpn" selected>japan</option>
-        </select>
-      </li>
-      <li>
-        <label>Delivery Address </label> :
-        <input type="text" value="Customer Address" readonly>
-      </li>
-    </ul>
-    <div class="d-flex gap-3 my-4 justify-content-end">
-      <a href="#checkout" class="btn btn-outline-primary common-btn btn-back">Go Back</a>
-      <a href="#payment" class="btn btn-outline-primary common-btn btn-next">Next</a>
+
+    <!-- input -->
+    <div class="address-form">
+      <form action="#" method="post">
+        <table>
+          <tr>
+            <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
+              <label for="name">Name</label>
+              <b>:</b>
+            </th>
+            <td class="p-1 bg-white">
+              <input type="text" id="name" class="p-1">
+            </td>
+          </tr>
+          <tr>
+            <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
+              <label for="tel">Phone Number</label>
+              <b>:</b>
+            </th>
+            <td class="p-1 bg-white">
+              <input type="number" id="tel" class="p-1">
+            </td>
+          </tr>
+          <tr>
+            <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
+              <label for="line_id">Line ID</label>
+              <b>:</b>
+            </th>
+            <td class="p-1 bg-white">
+              <input type="text" id="line_id" class="p-1">
+            </td>
+          </tr>
+          <tr>
+            <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
+              <label for="zip">Postal Code</label>
+              <b>:</b>
+            </th>
+            <td class="p-1 bg-white">
+              <input type="number" id="zip" class="p-1">
+            </td>
+          </tr>
+          <tr>
+            <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
+              <label for="country">Country</label>
+              <b>:</b>
+            </th>
+            <td class="p-1 bg-white">
+              <select id="country" class="p-1">
+                <option value="Japan" selected>Japan</option>
+                <option value="America" selected>America</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
+              <label for="delivery">Delivery Address</label>
+              <b>:</b>
+            </th>
+            <td class="p-1 bg-white">
+              <input type="number" id="delivery" class="p-1">
+            </td>
+          </tr>
+        </table>
+        <div class="d-flex gap-3 my-4 justify-content-end">
+          <button href="#checkout" class="btn btn-outline-primary common-btn" id="cancel">Cancel</button>
+          <button type="submit" href="#payment" class="btn btn-outline-primary common-btn">Save</button>
+        </div>
+      </form>
     </div>
+    <!-- /input -->
+
+    <!-- output -->
+    <div class="address-detail">
+      <table>
+        <tr>
+          <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
+            <p>Name</p>
+            <b>:</b>
+          </th>
+          <td class="p-1 bg-white">
+            <p class="p-1">Customer Name</p>
+          </td>
+        </tr>
+        <tr>
+          <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
+            <p>Phone Number</p>
+            <b>:</b>
+          </th>
+          <td class="p-1 bg-white">
+            <a class="p-1" href="tel:0988888888">0988888888</a>
+          </td>
+        </tr>
+        <tr>
+          <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
+            <p>Line ID</p>
+            <b>:</b>
+          </th>
+          <td class="p-1 bg-white">
+            <a class="p-1" href="#">Afasd-222</a>
+          </td>
+        </tr>
+        <tr>
+          <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
+            <p>Postal Code</p>
+            <b>:</b>
+          </th>
+          <td class="p-1 bg-white">
+            <p class="p-1">110001</p>
+          </td>
+        </tr>
+        <tr>
+          <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
+            <p>Country</p>
+            <b>:</b>
+          </th>
+          <td class="p-1 bg-white">
+            <p class="p-1">Japan</p>
+          </td>
+        </tr>
+        <tr>
+          <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
+            <p>Delivery Address</p>
+            <b>:</b>
+          </th>
+          <td class="p-1 bg-white">
+            <p class="p-1">Customer Address</p>
+          </td>
+        </tr>
+      </table>
+      <div class="d-flex gap-3 my-4 justify-content-end">
+        <a href="#checkout" class="btn btn-outline-primary common-btn btn-back">Go Back</a>
+        <a href="#payment" class="btn btn-outline-primary common-btn btn-next">Next</a>
+      </div>
+    </div>
+    <!-- /output -->
+
   </div>
   <!-- ./Address -->
 
@@ -211,24 +314,6 @@
         <form class="d-flex flex-column" action="">
           <div>
             <label for="card-number">Card number</label>
-            <!-- <div class="input-container d-flex border bg-white pe-2 rounded-2">
-              <input type="number" name="" id="card-number" class="w-100 p-2 border-0 align-items-center" placeholder="1234 1234 1234 1234">
-              <div class="d-flex gap-1">
-                <div class="card-bank-img">
-                  <img src="{{asset('assets/icons/custom/visa.svg')}}" alt="visa.svg">
-                </div>
-                <div class="card-bank-img">
-                  <img src="{{asset('assets/icons/custom/mastercard.svg')}}" alt="visa.svg">
-                </div>
-                <div class="card-bank-img">
-                  <img src="{{asset('assets/icons/custom/amex.svg')}}" alt="visa.svg">
-                </div>
-                <div class="card-bank-img">
-                  <img src="{{asset('assets/icons/custom/discover.svg')}}" alt="visa.svg">
-                </div>
-              </div>
-            </div> -->
-
             <div class="input-group border bg-white rounded">
               <input type="number" name="" id="card-number" class="form-control border-0 p-2 shadow-none" placeholder="1234 1234 1234 1234">
               <div class="input-group-append d-flex gap-1 p-2 align-item-center">
@@ -268,14 +353,14 @@
 
           <div class="d-flex flex-column flex-sm-row input-wpr">
             <div class="w-100">
-              <label for="country">Country</label>
-              <select name="" id="country" class="w-100 p-2 border rounded">
+              <label for="count">Country</label>
+              <select id="count" class="w-100 p-2 border rounded">
                 <option value="jpn" selected>Japan</option>
               </select>
             </div>
             <div class="w-100">
-              <label for="zip">ZIP</label>
-              <input type="number" id="zip" class="w-100 p-2 border rounded" placeholder="104-0044">
+              <label for="zp">ZIP</label>
+              <input name="" type="number" id="zp" class="w-100 p-2 border rounded" placeholder="104-0044">
             </div>
           </div>
 
@@ -338,7 +423,8 @@
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="3" class="text-end pe-2">Total</td>
+          <td colspan="2"></td>
+          <td>Total</td>
           <td>
             <span class="total"></span>
           </td>

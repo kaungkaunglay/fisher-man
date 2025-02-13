@@ -6,6 +6,15 @@
   justify-content: center;
 }
 
+input[type='range'] {
+  top: 0;
+  left: 0;
+}
+
+#min-range {
+  width: 0;
+}
+
 .pagination a{
   background-color: transparent;
   border: 1px solid #3498DB;
@@ -24,4 +33,71 @@ border: 1px solid #3498DB;
   .product-btn{
     padding: 4px 28px;
   }
+}
+
+input[type="range"]{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  outline: none;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  background-color: transparent;
+  pointer-events: none;
+}
+.slider-track{
+  width: 100%;
+  height: 10px;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  border-radius: 5px;
+}
+input[type="range"]::-webkit-slider-runnable-track{
+  -webkit-appearance: none;
+  height: 5px;
+}
+input[type="range"]::-moz-range-track{
+  -moz-appearance: none;
+  height: 5px;
+}
+input[type="range"]::-ms-track{
+  appearance: none;
+  height: 5px;
+}
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  height: 1em;
+  width: 1em;
+  background-color: #005B96;
+  cursor: pointer;
+  margin-top: -9px;
+  pointer-events: auto;
+  border-radius: 50%;
+}
+input[type="range"]::-moz-range-thumb{
+  -webkit-appearance: none;
+  height: 1em;
+  width: 1em;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #005B96;
+  pointer-events: auto;
+}
+input[type="range"]::-ms-thumb{
+  appearance: none;
+  height: 1em;
+  width: 1em;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #005B96;
+  pointer-events: auto;
+}
+input[type="range"]:active::-webkit-slider-thumb{
+  background-color: #ffffff;
+  border: 3px solid #005B96;
 }
