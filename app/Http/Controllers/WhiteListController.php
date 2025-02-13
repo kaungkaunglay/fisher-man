@@ -64,7 +64,7 @@ class WhiteListController extends Controller
             return response()->json(['status' => false, 'message' => 'Product not found']);
         }
 
-        if($user->whitelists()->where('product_id',$product_id)->isEmpty()){
+        if($user->whitelists()->where('product_id',$product_id)->exists()){
             session()->flash('status','error');
             session()->flash('message','Product is not in your whitelist');
             return response()->json(['status' => false, 'message' => 'Product is not in your whitelist']);
