@@ -17,87 +17,23 @@
 
     <!-- Help -->
     <div class="accordion w-100" id="basicAccordion">
+        @foreach($faqs as $faq)
         <div class="accordion-item">
-            <h2 class="accordion-header " id="headingOne">
+            <h2 class="accordion-header " id="heading{{ $faq->id }}">
                 <button class="accordion-button collapsed title" type="button"
-                    data-mdb-toggle="collapse" data-mdb-target="#basicAccordionCollapseOne"
+                    data-mdb-toggle="collapse" data-mdb-target="#basicAccordionCollapse{{ $faq->id }}"
                     aria-expanded="false" aria-controls="basicAccordionCollapseOne">
-                    Question #1
+                    {{ $faq->question }}
                 </button>
             </h2>
-            <div id="basicAccordionCollapseOne" class="accordion-collapse collapse"
-                aria-labelledby="headingOne" data-mdb-parent="#basicAccordion">
+            <div id="basicAccordionCollapse{{ $faq->id }}" class="accordion-collapse collapse"
+                aria-labelledby="heading{{ $faq->id }}" data-mdb-parent="#basicAccordion">
                 <div class="accordion-body">
-                    <strong>This is the first item's accordion body.</strong> It is shown by default,
-                    until the collapse plugin adds the appropriate classes that we use to style each
-                    element. These classes control the overall appearance, as well as the showing and
-                    hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                    our default variables. It's also worth noting that just about any HTML can go within
-                    the <code>.accordion-body</code>, though the transition does limit overflow.
+                    <strong>{{ $faq->answer }}</strong>
                 </div>
             </div>
         </div>
-        <div class="accordion-item ">
-            <h2 class="accordion-header " id="headingTwo">
-                <button class="accordion-button collapsed title" type="button"
-                    data-mdb-toggle="collapse" data-mdb-target="#basicAccordionCollapseTwo"
-                    aria-expanded="false" aria-controls="basicAccordionCollapseTwo">
-                    Question #2
-                </button>
-            </h2>
-            <div id="basicAccordionCollapseTwo" class="accordion-collapse collapse"
-                aria-labelledby="headingTwo" data-mdb-parent="#basicAccordion">
-                <div class="accordion-body">
-                    <strong>This is the second item's accordion body.</strong> It is hidden by default,
-                    until the collapse plugin adds the appropriate classes that we use to style each
-                    element. These classes control the overall appearance, as well as the showing and
-                    hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                    our default variables. It's also worth noting that just about any HTML can go within
-                    the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item ">
-            <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed title" type="button"
-                    data-mdb-toggle="collapse" data-mdb-target="#basicAccordionCollapseThree"
-                    aria-expanded="false" aria-controls="basicAccordionCollapseThree">
-                    Question #3
-                </button>
-            </h2>
-            <div id="basicAccordionCollapseThree" class="accordion-collapse collapse"
-                aria-labelledby="headingThree" data-mdb-parent="#basicAccordion">
-                <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                    until the collapse plugin adds the appropriate classes that we use to style each
-                    element. These classes control the overall appearance, as well as the showing and
-                    hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                    our default variables. It's also worth noting that just about any HTML can go within
-                    the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item ">
-            <h2 class="accordion-header" id="headingFour">
-                <button class="accordion-button collapsed title" type="button"
-                    data-mdb-toggle="collapse" data-mdb-target="#basicAccordionCollapseFour"
-                    aria-expanded="false" aria-controls="basicAccordionCollapseFour">
-                    Question #4
-                </button>
-            </h2>
-            <div id="basicAccordionCollapseFour" class="accordion-collapse collapse"
-                aria-labelledby="headingFour" data-mdb-parent="#basicAccordion">
-                <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                    until the collapse plugin adds the appropriate classes that we use to style each
-                    element. These classes control the overall appearance, as well as the showing and
-                    hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                    our default variables. It's also worth noting that just about any HTML can go within
-                    the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-            </div>
-        </div>
-    </div>
+        @endforeach
     <!-- support form  -->
     <div class="container support-form">
         <div class="row ">
@@ -107,31 +43,32 @@
                     <h2 class="title m-b-45">Contact form</h2>
                     <div class="row">
                         <div class="col-12">
-                            <form>
+                            <form action="{{ route('contact') }}" method="POST">
+                                @csrf
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name">
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-md-6 mb-mobile-3">
                                         <label for="line-id" class="form-label">Line ID</label>
-                                        <input type="text" class="form-control" id="line-id" placeholder="Enter your Line ID">
+                                        <input type="text" name="line_id" class="form-control" id="line-id" placeholder="Enter your Line ID">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="phone" class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                                        <input type="tel" name="phone" class="form-control" id="phone" placeholder="Enter your phone number">
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Description</label>
-                                    <textarea class="form-control" id="description" rows="3" placeholder="Enter your description"></textarea>
+                                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Enter your description"></textarea>
                                 </div>
 
                                 <div class="text-center mb-mobile-3">
@@ -150,6 +87,7 @@
                     <div class="row ">
                         <div class="col-12">
                             <form>
+                                @csrf
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name</label>
                                     <input type="text" class="form-control" id="name" placeholder="Enter your name">
