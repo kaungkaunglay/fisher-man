@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Users;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class AdminUserSeeder extends Seeder
 {
@@ -12,14 +13,28 @@ class AdminUserSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = \App\Models\Users::create([
-            'username' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('admin123'),
-            'first_phone' => '+819000000000',
-            'line_id' => 'admin',
-        ]);
+        $users = [
+            [
+                'username' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'password' => bcrypt('P@$$w0rd'),
+            ],
+            [
+                'username' => 'seller',
+                'email' => 'seller@gmail.com',
+                'password' => bcrypt('P@$$w0rd'),
+            ],
+            [
+                'username' => 'buyer',
+                'email' => 'buyer@gmail.com',
+                'password' => bcrypt('P@$$w0rd'),
+            ]
+        ];
 
-        $user->roles()->attach(1);
+
+        foreach ($users as $idx => $user) {
+            $user = Users::create($user);
+            $user->roles()->attach(2);
+        }
     }
 }

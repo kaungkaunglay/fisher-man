@@ -1,129 +1,223 @@
 @extends('includes.layout')
 @section('style')
-<link rel="stylesheet" href="{{ asset('assets/css/whitelist.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/whitelist.css') }}">
 @endsection
 @section('contents')
-<!-- Breadcrumbs -->
-<nav aria-label="breadcrumb" class="py-4">
-  <div class="container">
-    <ol class="breadcrumb mb-0 bg-transparent">
-      <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">White List</li>
-    </ol>
-  </div>
-</nav>
-<!-- ./Breadcrumbs -->
-
-<!-- Main Content -->
-<div class="container cart m-b-20">
-
-  <!-- Desktop Style -->
-  <table class="table desktop" id="table">
-    <thead>
-      <tr>
-        <th scope="col">No.</th>
-        <th scope="col">Image</th>
-        <th scope="col">Product address</th>
-        <th scope="col">Price</th>
-        <th scope="col">Remove</th>
-        <th scope="col">Select</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr id="row">
-        <th class="number" scope="row">
-          1
-        </th>
-        <th>
-          <img src="{{asset('assets/images/account1.svg')}}" alt="product img">
-        </th>
-        <td>Mark</td>
-        <td id="cost">$100</td>
-        <td>
-          <i class="fa-solid fa-trash-can"></i>
-        </td>
-        <td>
-          <input type="checkbox">
-        </td>
-      </tr>
-      <tr id="row">
-        <th class="number" scope="row">
-          2
-        </th>
-        <th>
-          <img src="{{asset('assets/images/account2.svg')}}" alt="product img">
-        </th>
-        <td>Mark</td>
-        <td id="cost">$100</td>
-        <td>
-          <i class="fa-solid fa-trash-can"></i>
-        </td>
-        <td>
-          <input type="checkbox">
-        </td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="5">Total</td>
-        <td>
-          <span id="total"></span>
-        </td>
-      </tr>
-    </tfoot>
-  </table>
-  <!-- ./Desktop Style -->
-
-  <!-- Mobile Style -->
-  <div class="mobile" id="table">
-    <div class="card d-flex flex-row">
-      <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
-      <div class="card-body d-flex flex-row justify-content-between align-items-center">
-        <div id="row">
-          <h5 class="card-title">Mark</h5>
-          <p class="card-text">
-            <span id="cost">$100</span>
-          </p>
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb" class="py-4">
+        <div class="container">
+            <ol class="breadcrumb mb-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">White List</li>
+            </ol>
         </div>
-        <div class="d-flex gap-3">
-          <a href="#" class="btn mobile-del-btn">
-            <i class="fa-solid fa-trash-can"></i>
-          </a>
-          <input type="checkbox" class="mobile-select">
+    </nav>
+    <!-- ./Breadcrumbs -->
+
+    <!-- Main Content -->
+    <div class="container cart m-b-20">
+
+        @include('messages.index')
+
+        <!-- Desktop Style -->
+        <div class="desktop">
+            <table class="table" id="table">
+                <thead class="">
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Product address</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Remove</th>
+                        <th scope="col">Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(!$whitelist_products->isEmpty())
+                        @foreach ($whitelist_products as $index=>$product)
+
+                            <tr id="row">
+                                <th class="number" scope="row">
+                                    {{ $index+1 }}
+                                </th>
+                                <th>
+                                    <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
+                                </th>
+                                <td>{{ $product->name }}</td>
+                                <td id="cost">{{ $product->product_price }}</td>
+                                <td>
+                                    <a href="javascript:void(0);" class="desktop-del-btn" data-id="{{ $product->id }}"><i class="fa-solid fa-trash-can"></i></a>
+                                    {{-- for delete --}}
+
+                                </td>
+                                <td>
+                                    <input type="checkbox" class="desktop-check-product" value="{{ $product->id }}"  />
+                                </td>
+                            </tr>
+
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="6" class="text-center">No product in the whitelist</td>
+                        </tr>
+                    @endif
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">Total</td>
+                        <td>
+                            <span id="total">{{ $total }}</span>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div class="text-end d-flex gap-3 justify-content-end">
+                <a href="/" class="common-btn">Shop more</a>
+                <a href="javascript:void(0);" class="common-btn" id="dsk-add-to-cart-btn">Add to Card</a>
+            </div>
         </div>
-      </div>
+        <!-- ./Desktop Style -->
+
+        <!-- Mobile Style -->
+        <div class="mobile" id="table">
+
+            @if(!$whitelist_products->isEmpty())
+                @foreach ($whitelist_products as $idx=>$product)
+                    <div class="card d-flex flex-row">
+                        <img src="{{ asset( $product->product_image ) }}" alt="product img">
+                        <div class="card-body d-flex flex-row justify-content-between align-items-center">
+                            <div id="row">
+                                <h5 class="card-title">{{ $product->name }}</h5>
+                                <p class="card-text">
+                                    <span id="cost">{{ $product->product_price }}</span>
+                                </p>
+                            </div>
+                            <div class="d-flex gap-3">
+                                <a href="javascript:void(0);" class="btn mobile-del-btn"  data-id="{{ $product->id }}">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </a>
+
+                                <input type="checkbox" class="mobile-select mobile-check-product">
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <div class="text-center my-3">No product in the whitelist</div>
+            @endif
+
+
+            <div class="total">
+                <p>Total :</p>
+                <p>
+                    <span id="total">{{ $total }}</span>
+                </p>
+            </div>
+
+            <div class="text-end d-flex flex-column gap-3 mt-3">
+                <a href="/" class="common-btn">Shop more</a>
+                <a href="javascript:void(0);" class="common-btn" id="mb-add-to-cart-btn">Add to Card</a>
+            </div>
+        </div>
+        <!-- ./Mobile Style -->
+
+
     </div>
-    <div class="card d-flex flex-row">
-      <img src="{{asset('assets/images/bg/fisher-bg.jpg')}}" alt="product img">
-      <div class="card-body d-flex flex-row justify-content-between align-items-center">
-        <div id="row">
-          <h5 class="card-title">Mark</h5>
-          <p class="card-text">
-            <span id="cost">$100</span>
-          </p>
-        </div>
-        <div class="d-flex gap-3">
-          <a href="#" class="btn mobile-del-btn">
-            <i class="fa-solid fa-trash-can"></i>
-          </a>
-          <input type="checkbox" class="mobile-select">
-        </div>
-      </div>
-    </div>
-    <div class="total">
-      <p>Total :</p>
-      <p>
-        <span id="total"></span>
-      </p>
-    </div>
-  </div>
-  <!-- ./Mobile Style -->
+    <!-- ./Main Content -->
+    <script src="{{ asset('assets/js/cart.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-  <div class="text-end d-flex flex-column flex-lg-row gap-3 justify-content-end">
-    <a href="#" class="common-btn">Shop more</a>
-    <a href="#" class="common-btn">Add to Card</a>
-  </div>
-</div>
-<!-- ./Main Content -->
-<script src="{{ asset('assets/js/cart.js') }}"></script>
+            // for desktop
+
+            // desktop delete button
+            $('.desktop-del-btn').click(function(){
+                const getid = $(this).data('id');
+
+                $.ajax({
+                    url: "{{ route('white_list.delete',1) }}".replace('1',getid),
+                    type: "DELETE",
+                    data: {
+                        id: getid
+                    },
+                    success: function(response) {
+                        location.reload();
+                    }
+                });
+            });
+
+            $('#dsk-add-to-cart-btn').click(function(){
+                const selected_products = [];
+                $('.desktop-check-product:checked').each(function(){
+                    selected_products.push($(this).val());
+                });
+
+                $.ajax({
+                    url: "",
+                    type: "DELETE",
+                    data: {
+                        products: selected_products
+                    },
+                    success: function(response) {
+                        if(response.status == "success"){
+                            location.href = "{{ route('cart') }}";
+                        }
+
+                        if(response.status == false){
+                            alert(response.message);
+                        }
+                    }
+                });
+            });
+
+            // mobile delete button
+            $('.mobile-del-btn').click(function(){
+                const getid = $(this).data('id');
+
+                $.ajax({
+                    url: `/whitelists/delete/${getid}`,
+                    type: "DELETE",
+                    data: {
+                        id: getid
+                    },
+                    success: function(response) {
+                        location.reload();
+                    }
+                });
+            });
+
+            $('#mb-add-to-cart-btn').click(function(){
+                const selected_products = [];
+                $('.mobile-check-product:checked').each(function(){
+                    selected_products.push($(this).val());
+                });
+
+                $.ajax({
+                    url: "",
+                    type: "POST",
+                    data: {
+                        products: selected_products
+                    },
+                    success: function(response) {
+                        if(response.status){
+                            location.href = "{{ route('cart') }}";
+                        }
+
+                        if(response.status == false){
+                            alert(response.message);
+                        }
+                    }
+                });
+            });
+
+
+        });
+    </script>
+
 @endsection

@@ -3270,6 +3270,11 @@ select.h40 {
   gap: 30px 20px;
   grid-template-columns: repeat(8, minmax(0, 1fr));
 }
+.tf-section-custom{
+    display: grid !important;
+    gap: 30px 20px;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+}
 .tf-section-5 > div:nth-child(1) {
   grid-column: span 3/span 3 !important;
 }

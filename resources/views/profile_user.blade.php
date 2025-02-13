@@ -153,4 +153,16 @@
 </div>
 <!-- ./Main Content -->
 
+<script>
+    $(document).ready(function() {
+        if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            console.log("Found your location \nLat : "+position.coords.latitude+" \nLang :"+ position.coords.longitude);
+        }, function(error) {
+            console.error("Error getting location:", error);
+        });
+    }
+    });
+</script>
+
 @endsection

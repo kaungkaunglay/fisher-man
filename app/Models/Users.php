@@ -44,6 +44,14 @@ class Users extends Authenticatable implements CanResetPassword
         return null !== $this->roles()->where('name', $role)->first();
     }
 
+    public function whitelists()
+    {
+        return $this->belongsToMany(Product::class, 'white_lists', 'user_id', 'product_id');
+    }
 
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 
 }

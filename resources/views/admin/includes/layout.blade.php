@@ -35,11 +35,11 @@
             <!-- layout-wrap -->
            <div class="layout-wrap">
                 <!-- preload -->
-                <div id="preload" class="preload-container">
+                {{-- <div id="preload" class="preload-container">
                     <div class="preloading">
                         <span></span>
                     </div>
-                </div>
+                </div> --}}
                 <!-- /preload -->
                 <!-- section-menu-left -->
                 <div class="section-menu-left">
@@ -151,6 +151,30 @@
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.user')}}" class="{{request()->is('admin/user') ? 'active' : ''}}">
                                                     <div class="text">Add new user</div>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="center-item">
+                                <div class="center-heading">Manage FAQs</div>
+                                <ul class="menu-list">
+                                    <li class="menu-item has-children {{ request()->is('admin/user*') ? 'active' : '' }}">
+                                        <a href="javascript:void(0);" class="menu-item-button">
+                                            <div class="icon"><i class="icon-user"></i></div>
+                                            <div class="text">FAQs</div>
+                                        </a>
+                                        <ul class="sub-menu" style="display: block;">
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('admin.faqs')}}" class="{{request()->is('admin/faqs') ? 'active' : ''}}">
+                                                    <div class="text">All FAQs</div>
+                                                </a>
+                                            </li>
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('create_faq')}}" class="{{ request()->is('admin/faq') ? 'active' : '' }}">
+                                                    <div class="text">Add new FAQ</div>
                                                 </a>
                                             </li>
 

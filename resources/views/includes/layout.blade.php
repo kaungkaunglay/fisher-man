@@ -44,7 +44,7 @@
             <a href="{{url('/cart')}}">
               <i class="fa-solid fa-cart-shopping"></i>
             </a>
-            <a href="{{url('/white-list')}}">
+            <a href="{{ route('white_list.index')}}">
               <i class="fa-solid fa-bookmark"></i>
             </a>
             <a href="{{url('/login')}}">

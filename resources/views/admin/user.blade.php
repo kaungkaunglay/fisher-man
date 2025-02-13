@@ -27,13 +27,13 @@
                             <i class="icon-chevron-right"></i>
                         </li>
                         <li>
-                            <a href="#"><div class="text-tiny">User</div></a>
+                            <a href="#"><div class="text-tiny">FAQs</div></a>
                         </li>
                         <li>
                             <i class="icon-chevron-right"></i>
                         </li>
                         <li>
-                            <div class="text-tiny">Add New User</div>
+                            <div class="text-tiny">Add New FAQ</div>
                         </li>
                     </ul>
                 </div>
