@@ -15,6 +15,11 @@ class SubCategoriesController extends Controller
         return view('admin.sub-categories', compact('sub_categories'));
     }
 
+    public function showsubcategory(){
+        $sub_categories = Sub_category::all();
+        return view('includes.aside', compact('sub_categories'));
+    }
+
     public function create()
     {
         $categories = Category::all();
