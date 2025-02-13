@@ -21,8 +21,8 @@
         </div>
         <div class="col-12 col-lg-6 mt-2 mt-lg-0">
           <button class="w-100 d-block text-end "><i class="fa-solid fa-pen-to-square fs-5 text-danger "></i></button>
-          <h6 class="fw-bold">Name or Organization name</h6>
-          <a href="mailto:email@gmail.com" class="mb-0 d-block">email@gmail.com</a>
+          <h6 class="fw-bold">{{ $user->username }}</h6>
+          <a href="mailto:email@gmail.com" class="mb-0 d-block">{{ $user->email }}</a>
           <a href="#" class="mb-0 d-block">LineID</a>
           <p class="mb-0">Chat with name or Organization name</p>
           <a class="line-btn"><i class="fa-brands fa-line fs-2 mt-2"></i></a>
@@ -45,8 +45,8 @@
           <div class="address d-flex mb-2">
             <p class="w-25 fw-semibold">Phone No</p>
             <p class="ms-5 text-black"> :
-              <a href="tele:+959429523324">09429523324</a>,
-              <a href="tele:+959667236344">09667236344</a>
+              <a href="tele:+959429523324">{{ $user->first_phone }}</a>,
+              <a href="tele:+959667236344">{{ $user->second_phone }}</a>
             </p>
           </div>
         </div>
