@@ -44,7 +44,6 @@ class LineController extends Controller
                 $user->username = $line->getName();
                 $user->email = $line->getEmail();
                 $user->avatar = $line->getAvatar();
-                $user->line_token = $line->token;
                 $user->save();
             }else{
                 // Save the user information to the Users model
@@ -58,13 +57,17 @@ class LineController extends Controller
             
 
             // save the informatoin to Oauth with user id 
-            $oauth = new OAuths();
-            $oauth->provider = 'line';
-            $oauth->token = $line->token; 
-            $oauth->refresh_token = $line->refreshToken;  
-            $oauth->expires_in = $line->expiresIn;
-            $oauth->user_id = $user->id;
-            $oauth->save();
+            $oauth = OAuths::updateOrCreate(
+                [
+                    'user_id' => $user->id,
+                    'provider' => 'line'
+                ],
+                [
+                    'token' => $line->token,
+                    'refresh_token' => $line->refreshToken,
+                    'expires_in' => $line->expiresIn
+                ]
+            );
 
             // Redirect the user to the dashboard or home page
             return redirect()->route('home');
