@@ -7,6 +7,9 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\forgot_password;
 use App\Mail\ForgotPasswordMail;
+use App\Mail\ThankYouMail;
+use App\Models\Contact;
+use App\Models\FAQs;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -223,6 +226,35 @@ class UsersController extends Controller
             }
             return response()->json(['status' => false, 'message' => 'Token is not found']);
         }
+    }
+
+    public function support(){
+        $faqs = FAQs::all();
+        return view('support', compact('faqs'));
+    }
+
+    public function contact(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'line_id' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email',
+            'description' => 'required'
+        ]);
+
+        // dd($request->all());
+
+        $contact = Contact::create([
+        'name' => $request->name,
+        'line_id' => $request->line_id,
+        'phone' => $request->phone,
+        'email' => $request->email,
+        'description' => $request->description,
+    ]);
+
+    Mail::to($request->email)->send(new ThankYouMail($contact));
+
+        return redirect()->back()->with('success', 'Your message has been sent successfully!');
     }
 
     public function logout(){

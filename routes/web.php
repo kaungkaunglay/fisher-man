@@ -86,9 +86,7 @@ Route::get('/product', function () {
     return view('product_detail');
 })->name('product_details');
 
-Route::get('/support', function () {
-    return view('support');
-})->name('support');
+Route::get('/support', [UsersController::class,'support'])->name('support');
 
 Route::get('/policy', function () {
     return view('terms_condition');
@@ -101,6 +99,8 @@ Route::get('/white-list', function () {
 Route::get('/special-offer', function () {
     return view('special-offer');
 })->name('special-offer');
+
+Route::post('/contact', [UsersController::class,'contact'])->name('contact');
 
 // Admin Controller
 Route::get('/admin', [AdminController::class, 'home'])->name('admin.index');
@@ -139,6 +139,14 @@ Route::post('/admin/products', [ProductController::class, 'store'])->name('add_p
 Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
 Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('update_product');
 Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+
+//FAQs
+Route::get('/admin/faqs', [AdminController::class, 'all_faqs'])->name('admin.faqs');
+Route::get('/admin/faq/create', [AdminController::class, 'faq'])->name('create_faq');
+Route::post('/admin/faq', [AdminController::class, 'store'])->name('add_faq');
+Route::get('/admin/faqs/{faq}/edit', [AdminController::class, 'edit'])->name('admin.faqs.edit');
+Route::put('/admin/faqs/{faq}', [AdminController::class, 'update'])->name('update_faq');
+Route::delete('/admin/faqs/{faq}', [AdminController::class, 'destroy'])->name('admin.faqs.destroy');
 
 Route::get('/login/line', function () {
     return Socialite::driver('line')->redirect();
