@@ -62,12 +62,9 @@
             <ul>
               <li><a href="{{ url('/') }}" class="menu-header">Home</a></li>
               <li><a href="{{ url('/special-offer') }}" class="menu-header">Special Offer</a></li>
-              <li><a href="{{ url('/category') }}" class="menu-header">青物</a></li>
-              <li><a href="{{ url('/category') }}" class="menu-header">イカ</a></li>
-              <li><a href="{{ url('/category') }}" class="menu-header">白身魚</a></li>
-              <li><a href="{{ url('/category') }}" class="menu-header">魚介類</a></li>
-              <li><a href="{{ url('/category') }}" class="menu-header">エビ</a></li>
-              <li><a href="{{ url('/category') }}" class="menu-header">たこ</a></li>
+              @foreach($categories as $category)
+                <li><a href="{{ url('/category') }}" class="menu-header">{{ $category->category_name }}</a></li>
+              @endforeach
               <li><a href="{{ url('/support') }}" class="menu-header">Support</a></li>
             </ul>
           </nav>
@@ -81,14 +78,9 @@
       <li class="close-popup"><a href="#" id="close-popup">
           <i class="fa-solid fa-xmark"></i>
         </a></li>
-      <li><a href="{{ route('sub_category') }}" class="menu-category">鮮魚 (1134)</a></li>
-      <li><a href="{{ route('sub_category') }}" class="menu-category">マグロ (188)</a></li>
-      <li><a href="{{ route('sub_category') }}" class="menu-category">貝類 (322)</a></li>
-      <li><a href="{{ route('sub_category') }}" class="menu-category">イカ・タコ (190)</a></li>
-      <li><a href="{{ route('sub_category') }}" class="menu-category">ウニ・イクラ・白子・魚卵 (119)</a></li>
-      <li><a href="{{ route('sub_category') }}" class="menu-category">海藻・干物・漬魚・ちりめん・練物類 (401)</a></li>
-      <li><a href="{{ route('sub_category') }}" class="menu-category">珍味・惣菜・漬物 (440)</a></li>
-      <li><a href="{{ route('sub_category') }}" class="menu-category">調味料・わさび・飾り物 (202)</a></li>
+        @foreach($subcategories as $subcategory)
+          <li><a href="{{ route('sub_category') }}" class="menu-category">{{ $subcategory->name }}</a></li>
+        @endforeach
     </ul>
   </div>
   <!-- header section end -->

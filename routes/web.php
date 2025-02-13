@@ -19,9 +19,7 @@ use App\Http\Controllers\UsersController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [ProductController::class, 'showallproducts'])->name('home');
 
 // login for Customer and Seller
 Route::get('/login', [UsersController::class, 'login'])->name('login');
