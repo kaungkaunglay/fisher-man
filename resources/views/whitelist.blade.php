@@ -17,6 +17,8 @@
     <!-- Main Content -->
     <div class="container cart m-b-20">
 
+        @include('messages.index')
+
         <!-- Desktop Style -->
         <div class="desktop">
             <table class="table" id="table">
@@ -71,7 +73,7 @@
             </table>
 
             <div class="text-end d-flex gap-3 justify-content-end">
-                <a href="#" class="common-btn">Shop more</a>
+                <a href="/" class="common-btn">Shop more</a>
                 <a href="javascript:void(0);" class="common-btn" id="dsk-add-to-cart-btn">Add to Card</a>
             </div>
         </div>
@@ -114,7 +116,7 @@
             </div>
 
             <div class="text-end d-flex flex-column gap-3 mt-3">
-                <a href="#" class="common-btn">Shop more</a>
+                <a href="/" class="common-btn">Shop more</a>
                 <a href="javascript:void(0);" class="common-btn" id="mb-add-to-cart-btn">Add to Card</a>
             </div>
         </div>
@@ -139,19 +141,13 @@
                 const getid = $(this).data('id');
 
                 $.ajax({
-                    url: `/white-list/delete/${getid}`,
-                    type: "POST",
+                    url: "{{ route('white_list.delete',1) }}".replace('1',getid),
+                    type: "DELETE",
                     data: {
                         id: getid
                     },
-                    success: function(data) {
-                        if(response.status){
-                            location.reload();
-                        }
-
-                        if(response.status == false){
-                            alert(response.message);
-                        }
+                    success: function(response) {
+                        location.reload();
                     }
                 });
             });
@@ -164,12 +160,12 @@
 
                 $.ajax({
                     url: "",
-                    type: "POST",
+                    type: "DELETE",
                     data: {
                         products: selected_products
                     },
                     success: function(response) {
-                        if(response.status){
+                        if(response.status == "success"){
                             location.href = "{{ route('cart') }}";
                         }
 
@@ -185,18 +181,13 @@
                 const getid = $(this).data('id');
 
                 $.ajax({
-                    url: `/white-list/delete/${getid}`,
-                    type: "POST",
+                    url: `/whitelists/delete/${getid}`,
+                    type: "DELETE",
                     data: {
                         id: getid
                     },
-                    success: function(data) {
-                        if(response.status){
-                            location.reload();
-                        }
-                        if(response.status == false){
-                            alert(response.message);
-                        }
+                    success: function(response) {
+                        location.reload();
                     }
                 });
             });

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LineController;
 use App\Http\Controllers\MailController;
 use Laravel\Socialite\Facades\Socialite;
@@ -54,9 +55,13 @@ Route::post('/update-password', [AuthController::class, 'update_password'])->nam
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // guest
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+// Route::get('/', function () {
+//     return view('home');
+// })->name('home');
+
+//for testing
+Route::get('/',[HomeController::class,'index'])->name('home');
+
 
 // auth
 Route::middleware(['auth'])->group(function () {
@@ -103,9 +108,9 @@ Route::get('/special-offer', function () {
 
 
 // Whitelist Routes
-Route::get('/whitelists', [WhiteListController::class,'index'])->name('whitelist.index');
-Route::post('/whitelists/{product_id}',[WhiteListController::class,'store'])->name('whitelist.store');
-Route::delete('/whitelists/{product_id}',[WhiteListController::class,'delete'])->name('whitelist.delete');
+Route::get('/whitelists', [WhiteListController::class,'index'])->name('white_list.index');
+Route::post('/whitelists/{product_id}',[WhiteListController::class,'store'])->name('white_list.store');
+Route::delete('/whitelists/delete/{product_id}',[WhiteListController::class,'delete'])->name('white_list.delete');
 
 //
 
