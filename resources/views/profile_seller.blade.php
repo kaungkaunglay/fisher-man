@@ -18,7 +18,7 @@
       <div class="col -12 col-lg-6">
         <div class="row">
           <div class="col-12 col-lg-6">
-            <img src="{{ assets($user->avatar) ?? asset('assets/images/account1.svg') }}" class="w-100" alt="">
+            <img src="{{ asset('assets/images/account1.svg') }}" class="w-100" alt="">
           </div>
           <div class="col-12 col-lg-6 mt-2 mt-lg-0">
             <span class="w-100 d-block text-end ">
