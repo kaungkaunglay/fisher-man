@@ -28,11 +28,13 @@ class LineController extends Controller
      */
     public function handleLineCallback(Request $request)
     {
+        logger('it is working');
         try {
             // Get the user information from LINE
             $user = Socialite::driver('line')->user();
 
-            logger(json_encode($user));
+            logger(json_encode($user, JSON_PRETTY_PRINT));
+
             // Redirect the user to the dashboard or home page
             return redirect()->route('home');
         } catch (\Exception $e) {
