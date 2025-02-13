@@ -3,6 +3,30 @@ body {
   color: #005B96;
 }
 
+.profile-form:not(.active) input {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.profile-form:not(.active) .cancel,
+.profile-form:not(.active) .save {
+  display: none;
+}
+
+.profile-form.active .edit,
+.profile-form.active .cor {
+  display: none;
+}
+
+.profile-form.active. {
+
+}
+ 
+.profile-form.active .phone-no-container {
+  flex-direction: column;
+}
+
 /* sortBy button start*/
 .sort-container {
   display: flex;
@@ -10,7 +34,6 @@ body {
   gap: 10px;
   border-radius: 10px;
   padding: 0px 0px 0px 10px;
-  
 }
 
 .arrows {
@@ -39,7 +62,6 @@ body {
 .sort-button:hover {
   background-color: #003366; /* Slightly darker blue */
 }
-/* sortBy button end */
 
 /* product card start */
 .product-card {
@@ -82,18 +104,10 @@ body {
   transition: .5s;
 }
 
-/* .pagination li.active {
-  background-color: #005B96;
-  color: #fff;
-} */
-
 .pagination li:hover {
   background-color: #005B96;
   color:#00CCFF;
 }
 
-  /* pagination end */
-
-/* product card end */
 
 
