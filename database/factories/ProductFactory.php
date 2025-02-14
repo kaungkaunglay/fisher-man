@@ -29,6 +29,7 @@ class ProductFactory extends Factory
             'weight' => $this->faker->randomFloat(2, 1, 10),
             'size' => $this->faker->randomFloat(2, 1, 10),
             'day_of_caught' => $this->faker->date(),
+            'discount' => $this->faker->randomFloat(2,1,10),
             'expiration_date' => $this->faker->date(),
             'sub_category_id' => $this->faker->numberBetween(1, 10),
             'description' => $this->faker->text

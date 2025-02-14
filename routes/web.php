@@ -88,9 +88,9 @@ Route::get('/sub-category', function () {
     return view('sub_category');
 })->name('sub_category');
 
-// Route::get('/cart', function () {
-//     return view('cart');
-// })->name('cart');
+Route::get('/cart', function () {
+    return view('cart');
+})->name('cart');
 
 Route::get('/support', [UsersController::class,'support'])->name('support');
 
@@ -103,7 +103,7 @@ Route::post('/white-list/{product_id}', [WhiteListController::class, 'store'])->
 Route::delete('/white-list/delete/{product_id}',[WhiteListController::class, 'delete'])->name('white_list.delete');
 
 // cart
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/cart-process', [CartController::class, 'index'])->name('cart-process');
 Route::post('/add-to-cart',[CartController::class, 'addToCart'])->name('add_to_cart');
 
 // Admin Controller
