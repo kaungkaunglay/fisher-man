@@ -311,17 +311,19 @@
                             <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
                             <a href="#" class="product-btn w-100"><i class="fa-solid fa-bookmark"></i></a>
                         </div>
-                        <div class="row justify-content-center">
-                            <div class="col-5 col-lg-3 text-center">
-                                <button class="common-btn mt-3" id="load-more">
-                                    Load More
-                                </button>
-                            </div>
 
-                        </div>
                     </div>
                 </div>
             @endforeach
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-5 col-lg-3 text-center">
+                <button class="common-btn mt-3" id="load-more">
+                    Load More
+                </button>
+            </div>
+
+        </div>
     </section>
 
     <script src="{{ asset('assets/js/loadmore.js') }}"></script>
