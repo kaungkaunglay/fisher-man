@@ -7,28 +7,35 @@
 <div class="container-custom mt-2 cart">
 
   <!-- Step List -->
-  <ul class="step-list d-flex justify-content-between text-center py-4">
-    <li class="step active d-flex flex-row align-items-center">
-      <span class="me-2">1</span>
-      <p class="d-none d-md-block">Order details</p>
-    </li>
-    <li class="step d-flex flex-row align-items-center">
-      <span class="me-2">2</span>
-      <p class="d-none d-md-block">Login</p>
-    </li>
-    <li class="step d-flex flex-row align-items-center">
-      <span class="me-2">3</span>
-      <p class="d-none d-md-block">Shopping address</p>
-    </li>
-    <li class="step d-flex flex-row align-items-center">
-      <span class="me-2">4</span>
-      <p class="d-none d-md-block">Payment</p>
-    </li>
-    <li class="step d-flex flex-row align-items-center">
-      <span class="me-2">5</span>
-      <p class="d-none d-md-block">Complete</p>
-    </li>
-  </ul>
+   <div class="py-4 position-relative">
+     <div class="progress-box w-100 h-100 position-absolute d-flex">
+       <span class="progress-bar m-auto">
+          <span class="progress"></span>
+       </span>
+     </div>
+     <ul class="step-list d-flex text-center">
+       <li class="step active d-flex flex-column align-items-center">
+         <span class="me-2">1</span>
+         <p class="d-none d-md-block">Order details</p>
+       </li>
+       <li class="step d-flex flex-column align-items-center">
+         <span class="me-2">2</span>
+         <p class="d-none d-md-block">Login</p>
+       </li>
+       <li class="step d-flex flex-column align-items-center">
+         <span class="me-2">3</span>
+         <p class="d-none d-md-block">Shopping address</p>
+       </li>
+       <li class="step d-flex flex-column align-items-center">
+         <span class="me-2">4</span>
+         <p class="d-none d-md-block">Payment</p>
+       </li>
+       <li class="step d-flex flex-column align-items-center">
+         <span class="me-2">5</span>
+         <p class="d-none d-md-block">Complete</p>
+       </li>
+     </ul>
+   </div>
   <!-- ./Step List -->
 
   <!-- Checkout -->
@@ -51,7 +58,7 @@
             <div class="table-img"><img src="{{asset('assets/images/account1.svg')}}" alt="product img"></div>
           </td>
           <td clas="col-name">Mark</td>
-          <td class="price">¥100</td>
+          <td class="price">¥422</td>
           <td>
             <div class="quantity d-flex">
               <button class="btn decrement">-</button>

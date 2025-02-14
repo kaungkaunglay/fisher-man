@@ -66,18 +66,25 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
     border-width: 2px !important;
 }
 
-.icon{
-    display: flex;
-    gap: 50px;
-}
-
-.icon i {
+.icon {
     font-size: 25px;
     color: #005B96;
 }
 
-.icon i:hover {
-    font-weight: normal;
+.icon:hover {
+    color: #ffc107;
+    text-shadow: 0px 0px .2rem #1c1c1c;
+}
+
+.dropdown {
+    border: 1px solid black;
+    width: 250px;
+    overflow: hidden;
+    height: 0;
+}
+
+.dropdown.active {
+    height: 100px;
 }
 
 .bottom-header{
@@ -123,7 +130,7 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
 }
 
 .menu-header:hover {
-    color: rgb(255, 193, 7);
+    color: #ffc107;
 }
 
 @media screen and (max-width: 1100px) {

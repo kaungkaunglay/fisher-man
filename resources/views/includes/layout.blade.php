@@ -40,16 +40,20 @@
             <input type="text" class="form-control bg-second" placeholder="Search your Products">
             <button class="bg-main text-white magnifying-glass"><i class="fa-solid fa-magnifying-glass"></i></button>
           </div>
-          <div class="icon">
+          <div class="d-flex gap-5">
             <a href="{{url('/cart')}}">
-              <i class="fa-solid fa-cart-shopping"></i>
+              <i class="fa-solid fa-cart-shopping icon"></i>
             </a>
             <a href="{{ route('white_list.index')}}">
-              <i class="fa-solid fa-bookmark"></i>
+              <i class="fa-solid fa-bookmark icon"></i>
             </a>
-            <a href="{{url('/login')}}">
-              <i class="fa-solid fa-user"></i>
-            </a>
+            <button href="{{url('/login')}} btn-login position-relative">
+              <i class="fa-solid fa-user icon"></i>
+              <ul class="dropdown position-absolute bg-white">
+                <li class="py-3"><a href="#" class="px-3 d-flex gap-2 text-black text-center"><i class="fa-solid fa-address-card icon"></i>Profile</a></li>
+                <li class="py-3"><a href="#" class="px-3 d-flex gap-2 text-black text-center"><i class="fas fa-door-open icon"></i>Logout</a></li>
+              </ul>
+            </button>
           </div>
         </div>
         <div class="bottom-header">
@@ -166,6 +170,16 @@
   <script src="{{ asset('assets/js/moving-text.js') }}"></script>
   <script src="{{ asset('assets/js/password.js') }}"></script>
   <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
+  <script>
+    $(document).ready(() => {
+
+    
+      $('.btn-login').click(()=> {
+
+        $('.dropdown').toggleClass('active');
+      })
+    })
+  </script>
 </body>
 
 </html>
