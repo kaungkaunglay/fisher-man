@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Users;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\OAuths; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session; 
 use Illuminate\Support\Facades\Auth;
-use Session;
 
 
 class LineController extends Controller
@@ -34,11 +35,15 @@ class LineController extends Controller
         try {
             // Get the user information from LINE
             $line = Socialite::driver('line')->user();
+            //token encrypt 
+            $line_token = Hash::make($line->token); 
+            $refresh_token = Hash::make($line->refresh_token); 
 
             // Log the user information from LINE
             Log::info('LINE User:', (array) $line);
             // check if the user is already registered
             $user = Users::where('line_id', $line->getId())->first();
+            logger($user);
             if($user){
                 // Update the user's information
                 $user->username = $line->getName();
@@ -63,12 +68,15 @@ class LineController extends Controller
                     'provider' => 'line'
                 ],
                 [
-                    'token' => $line->token,
-                    'refresh_token' => $line->refreshToken,
+                    'token' => $line_token,
+                    'refresh_token' => $refresh_token,
                     'expires_in' => $line->expiresIn
                 ]
             );
-
+            //save the token in session
+            Session::put('line_token', $line_token );
+            Session::put('user_id', $user->id );
+            Session::put('line_refresh_token', $refresh_token );
             // Redirect the user to the dashboard or home page
             return redirect()->route('home');
         } catch (\Exception $e) {
