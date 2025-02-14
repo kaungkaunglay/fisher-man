@@ -104,6 +104,10 @@ Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users
 Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
 Route::post('/admin/mail', [MailController::class, 'sendmail'])->name('mail.reset');
 
+//admin settings
+Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
+Route::post('/admin/settings/save', [AdminController::class, 'save'])->name('admin.settings.save');
+
 // Admin auth
 Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'login_store'])->name('admin.login_store');
