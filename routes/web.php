@@ -91,6 +91,9 @@ Route::get('/policy', function () {
     return view('terms_condition');
 })->name('policy');
 
+Route::get('/white-list', [WhiteListController::class, 'index'])->name('white_list.index');
+Route::post('/white-list/{product_id}', [WhiteListController::class, 'store'])->name('white_list.store');
+Route::delete('/white-list/delete/{product_id}',[WhiteListController::class, 'delete'])->name('white_list.delete');
 
 // Admin Controller
 Route::get('/admin', [AdminController::class, 'home'])->name('admin.index');
