@@ -30,7 +30,6 @@ class ProductFactory extends Factory
             'size' => $this->faker->randomFloat(2, 1, 10),
             'day_of_caught' => $this->faker->date(),
             'expiration_date' => $this->faker->date(),
-            'delivery_fee' => $this->faker->randomFloat(2, 1, 10),
             'sub_category_id' => $this->faker->numberBetween(1, 10),
             'description' => $this->faker->text
         ];
