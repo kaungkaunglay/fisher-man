@@ -4,7 +4,9 @@
     @foreach($subcategories as $subcategory)
         <li><a href="{{ route('sub_category') }}">{{ $subcategory->name }}</a></li>
     @endforeach
-    <a href="{{ route('sub_category') }}" id="see-more-link" class="txt-primary mt-3 text-center">&lt;&lt; See more Product &gt;&gt;</a>
+    <div class="d-flex">
+        <a href="{{ route('sub_category') }}" id="see-more-link" class="txt-primary d-inline-block mt-3 mx-auto"> See more Product </a>
+    </div>
 </ul>
 
 <!-- aside end -->

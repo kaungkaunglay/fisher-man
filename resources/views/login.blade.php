@@ -17,8 +17,7 @@
             <div class="input-box d-flex flex-column">
                 <label for="username">Username</label>
                 <div class="input-group">
-                    <input id="username" name="username" placeholder="Username or Email" type="text"
-                        class="form-control">
+                    <input id="username" name="username" placeholder="Username or Email" type="text" class="form-control">
                     <button class="btn" tabindex="-1"><i class="fa-solid fa-user"></i></button>
                 </div>
                 <span class="invalid-feedback"></span>
@@ -61,8 +60,7 @@
                 </a>
             </div>
             <div class="icon-wpr">
-                <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/google.png') }}"
-                        alt="Google"></a>
+                <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/google.png') }}" alt="Google"></a>
                 <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/facebook.png') }}"
                         alt="Facebook"></a>
             </div>
@@ -71,14 +69,14 @@
         <!-- form end -->
     </div>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
 
-            $("#login_form").submit(function(e) {
+            $("#login_form").submit(function (e) {
                 e.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
@@ -88,7 +86,7 @@
                     data: formData,
                     contentType: false,
                     processData: false,
-                    success: function(response) {
+                    success: function (response) {
                         if (response.status == true) {
                             window.location.href = "{{ route('home') }}";
                         } else {
@@ -103,7 +101,7 @@
                                 'password'
                             ];
 
-                            fields.forEach(function(field) {
+                            fields.forEach(function (field) {
                                 if (errors[field]) {
                                     $('#' + field)
                                         .closest('.input-box')

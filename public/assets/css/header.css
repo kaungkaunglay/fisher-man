@@ -41,14 +41,43 @@ header input:focus {
 header .input-group input {border-color: #005B96;border-radius: 10px 0px 0px 10px;height: 100%;font-size: 13px;padding-left: 30px;box-shadow: none;}
 header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
 
+
+.input-group:has(.magnifying-glass) .form-control {
+    border: 1px solid #005B96;   
+    box-shadow: none !important;
+}
+
+.input-group:has(.magnifying-glass) .form-control:focus {
+    border-width: 2px;
+}
+
+.magnifying-glass:hover {
+    background-color: transparent !important;
+    color: #005B96 !important;
+    border: 1px solid #005B96 !important;
+}
+
+.magnifying-glass:active {
+    background-color: #005B96 !important;
+    color: white !important;
+}
+
+.input-group:has(.form-control:focus) .magnifying-glass:hover {
+    border-width: 2px !important;
+}
+
 .icon{
     display: flex;
     gap: 50px;
 }
 
-.icon i{
+.icon i {
     font-size: 25px;
     color: #005B96;
+}
+
+.icon i:hover {
+    font-weight: normal;
 }
 
 .bottom-header{
@@ -91,6 +120,10 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
 
 .bottom-nav {
     display: none;
+}
+
+.menu-header:hover {
+    color: rgb(255, 193, 7);
 }
 
 @media screen and (max-width: 1100px) {

@@ -10,14 +10,7 @@ class WhiteListController extends Controller
 {
     public function index()
     {
-
-        if(!Auth::check()){
-            return redirect()->route('login');
-        }
-
-        $user = Auth::user();
-
-        $whitelist_products = $user->whitelists;
+        $whitelist_products = Auth::check() ? Auth::user()->whitelists : Product::whereIn('id',session('white_lists'))->get();
         $total = 0;
         $total = $whitelist_products->sum('product_price');
 
@@ -26,17 +19,27 @@ class WhiteListController extends Controller
 
     public function store($product_id)
     {
-        if(!Auth::check()){
-            return redirect()->route('login');
-        }
 
-        $user = Auth::user();
-
-        $product = Product::find($product_id);
-        if(!$product){
+        if(!Product::where('id',$product_id)->exists()){
             session()->flash('error','Product not found');
             return response()->json(['status' => false, 'message' => 'Product not found']);
         }
+
+        if(!Auth::check()){
+
+            $white_lists = session('white_lists', []);
+            if (in_array($product_id, $white_lists)) {
+                return response()->json(['status' => false, 'message' => 'Product is already in your whitelist']);
+            }
+
+            session()->push('white_lists',$product_id);
+            return response()->json(['status' => true, 'message' => 'Product added to whitelist']);
+        }
+
+
+        $user = Auth::user();
+
+
 
         if($user->whitelists()->where('product_id', $product_id)->exists()){
             session()->flash('error','Product is already in your whitelist');
@@ -52,13 +55,21 @@ class WhiteListController extends Controller
     public function delete($product_id)
     {
         if(!Auth::check()){
-            return redirect()->route('login');
+
+            $white_lists = session('white_lists', []);
+            $white_lists = array_diff($white_lists, [$product_id]);
+            $white_lists = array_values($white_lists);
+            session(['white_lists' => $white_lists]);
+
+            session()->flash('status','error');
+            session()->flash('message','Product removed from whitelist');
+            return response()->json(['message' => 'Product removed from whitelist']);
         }
 
         $user = Auth::user();
 
-        $product = Product::find($product_id);
-        if(!$product){
+
+        if(!Product::where('id',$product_id)->exists()){
             session()->flash('status','error');
             session()->flash('message','Product not found');
             return response()->json(['status' => false, 'message' => 'Product not found']);
@@ -72,7 +83,7 @@ class WhiteListController extends Controller
 
         $user->whitelists()->detach($product_id);
 
-        session()->flash('status','success');
+        session()->flash('status','error');
         session()->flash('message','Product removed from whitelist');
         return response()->json(['status' => true, 'message' => 'Product removed from whitelist']);
     }

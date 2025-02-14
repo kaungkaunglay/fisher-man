@@ -20,7 +20,7 @@
             <h3>{{ isset($category) ? 'Edit Category' : 'New Category' }}</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="{{ route('admin') }}"><div class="text-tiny">Dashboard</div></a>
+                    <a href="{{ route('admin.index') }}"><div class="text-tiny">Dashboard</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>

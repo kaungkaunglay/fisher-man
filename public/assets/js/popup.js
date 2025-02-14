@@ -32,7 +32,9 @@ document.addEventListener("click", function (event) {
   }
 });
 
-seeMoreLink.addEventListener("click", function (event) {
-  event.preventDefault();
-  categoryPopup.classList.toggle("active");
-});
+if(seeMoreLink) {
+  seeMoreLink.addEventListener("click", function (event) {
+    event.preventDefault();
+    categoryPopup.classList.toggle("active");
+  });
+}
