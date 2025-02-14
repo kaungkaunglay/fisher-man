@@ -53,27 +53,27 @@
 
         <div class="card-list" id="view-list">
           @foreach($products as $product)
-            <div class="item-card">
-              <a href="{{ route('product.show', $product->id) }}" class="right">
-                <img src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
+          <div class="item-card">
+            <a href="{{ route('product.show', $product->id) }}" class="right">
+              <img src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">{{ $product->name }}</h3>
+              </div>
+              <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
+                {{ $product->description }}
               </a>
-              <div class="left">
-                <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
-                <div class="title-category">
-                  <a href="" class="menu-category ">鮮魚 | 白身魚</a>
-                  <h3 class="title m-t-b-10">{{ $product->name }}</h3>
-                </div>
-                <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
-                  {{ $product->description }}
-                </a>
-                <div class="d-flex card-btn m-t-10">
-                  <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                  <a href="#" class="product-btn w-100"><i class="fa-solid fa-bookmark"></i></a>
-                </div>
+              <div class="d-flex card-btn m-t-10">
+                <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
+                <a href="#" class="product-btn w-100"><i class="fa-solid fa-bookmark"></i></a>
               </div>
             </div>
-          @endforeach
           </div>
+          @endforeach
+        </div>
   </div>
 
   <!-- card items list end -->

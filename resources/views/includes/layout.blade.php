@@ -45,7 +45,10 @@
               <i class="fa-solid fa-cart-shopping icon"></i>
             </a>
             <a href="{{ route('white_list.index')}}">
-              <i class="fa-solid fa-bookmark icon"></i>
+              <i class="fa-solid fa-bookmark"></i>
+            </a>
+            <a href="{{ url('/profile') }}">
+              <i class="fa-solid fa-user"></i>
             </a>
             <button href="{{url('/login')}} btn-login position-relative">
               <i class="fa-solid fa-user icon"></i>
@@ -104,7 +107,12 @@
         <div class="container-custom">
             <div class="row justify-content-around w-100 pb-3">
                     <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white">
-                    <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo" alt=""></a>
+                      {{-- @if($settings['logo']) --}}
+                      <a href="{{route('home')}}"><img src="{{ asset('storage/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="Site Logo"  class="logo">
+                      </a>
+                      {{-- @endif --}}
+                     
+                    {{-- <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo" alt=""></a> --}}
                     <p class="text-center txt-18">Who We Are: Your Trusted Source for Fresh Seafood.</p>
                     <div class="social-icons d-flex justify-content-center gap-4">
                         <a href="">
@@ -129,9 +137,9 @@
                     <div class="col-12 col-lg-2 mt-3 ">
                     <h6 class="text-center text-warning mb-2">Contact Us</h6>
                     <ul class="list-unstyled text-white txt-15 text-center">
-                        <li><a href="#">Address : address</a></li>
-                        <li><a href="tel:098756292">Phone : 098756292</a></li>
-                        <li><a href="mailto:user@email.com">Email : user@email.com</a></li>
+                        <li><a href="#">Address : {{ App\Models\Setting::getValue('contact_address') }}</a></li>
+                        <li><a href="#">Phone : {{ App\Models\Setting::getValue('contact_phone') }}</a></li>
+                        <li><a href="#">Email : {{ App\Models\Setting::getValue('contact_email') }}</a></li>
                     </div>
               </div>
             </div>

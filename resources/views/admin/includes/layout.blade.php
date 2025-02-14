@@ -182,6 +182,30 @@
                                     </li>
                                 </ul>
                             </div>
+                            <div class="center-item">
+                                <div class="center-heading">Manage System Data</div>
+                                <ul class="menu-list">
+                                    <li class="menu-item has-children {{ request()->is('admin/user*') ? 'active' : '' }}">
+                                        <a href="javascript:void(0);" class="menu-item-button">
+                                            <div class="icon"><i class="icon-user"></i></div>
+                                            <div class="text">System Data</div>
+                                        </a>
+                                        <ul class="sub-menu" style="display: block;">
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('admin.settings')}}" class="{{request()->is('admin/setting') ? 'active' : ''}}">
+                                                    <div class="text">All system Data</div>
+                                                </a>
+                                            </li>
+                                            {{-- <li class="sub-menu-item">
+                                                <a href="{{route('create_faq')}}" class="{{ request()->is('admin/faq') ? 'active' : '' }}">
+                                                    <div class="text">Add new FAQ</div>
+                                                </a>
+                                            </li> --}}
+
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
 
                         </div>
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LineController;
 use App\Http\Controllers\MailController;
@@ -64,6 +65,9 @@ Route::post('/wishList', [UsersController::class,'wishList'])->name('wishList');
 // auth
 Route::middleware(['auth'])->group(function () {
 
+    Route::get('/profile')->middleware('check_role')->name('profile');
+
+
     Route::middleware(['is_seller'])->group(function () {
         Route::get('/profile/seller', [ProfileController::class,'seller_profile'])->name('profile_seller');
     });
@@ -74,6 +78,8 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+
+
 Route::get('/category', function () {
     return view('category');
 })->name('category');
@@ -82,9 +88,9 @@ Route::get('/sub-category', function () {
     return view('sub_category');
 })->name('sub_category');
 
-Route::get('/cart', function () {
-    return view('cart');
-})->name('cart');
+// Route::get('/cart', function () {
+//     return view('cart');
+// })->name('cart');
 
 Route::get('/support', [UsersController::class,'support'])->name('support');
 
@@ -96,6 +102,10 @@ Route::get('/white-list', [WhiteListController::class, 'index'])->name('white_li
 Route::post('/white-list/{product_id}', [WhiteListController::class, 'store'])->name('white_list.store');
 Route::delete('/white-list/delete/{product_id}',[WhiteListController::class, 'delete'])->name('white_list.delete');
 
+// cart
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('/add-to-cart',[CartController::class, 'addToCart'])->name('add_to_cart');
+
 // Admin Controller
 Route::get('/admin', [AdminController::class, 'home'])->name('admin.index');
 Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
@@ -103,6 +113,10 @@ Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
 Route::post('/admin/mail', [MailController::class, 'sendmail'])->name('mail.reset');
+
+//admin settings
+Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
+Route::post('/admin/settings/save', [AdminController::class, 'save'])->name('admin.settings.save');
 
 // Admin auth
 Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');

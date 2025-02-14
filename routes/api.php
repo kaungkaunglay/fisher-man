@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/line/webhook', [LineApisController::class, 'webhook']);
+Route::post('/line/send', [LineApisController::class, 'sendPushNotification']);

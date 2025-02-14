@@ -311,7 +311,7 @@
                         </a>
                         <div class="d-flex card-btn m-t-10">
                             <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                            <a href="#" class="product-btn p-2 mx-auto w-100" title="Save in Whitelist"><i class="fa-solid fa-bookmark"></i></a>
+                            <a href="javascript:void(0);" class="product-btn w-100" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
                         </div>
 
                     </div>
@@ -344,7 +344,7 @@
                 const getid = $(this).data('id');
 
                 $.ajax({
-                    url: "{{ route('white_list.store', 1) }}".replace('1', getid),
+                    url: `/white-list/${getid}`,
                     type: "POST",
                     data: {
                         id: getid

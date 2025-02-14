@@ -24,7 +24,7 @@ class AdminUserSeeder extends Seeder
                 'email' => 'seller@gmail.com',
                 'password' => bcrypt('P@$$w0rd'),
             ],
-            [
+        [
                 'username' => 'buyer',
                 'email' => 'buyer@gmail.com',
                 'password' => bcrypt('P@$$w0rd'),
