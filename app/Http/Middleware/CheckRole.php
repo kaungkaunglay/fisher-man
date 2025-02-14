@@ -3,15 +3,11 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Models\Users;
-use App\Models\OAuths;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsSeller
+class CheckRole
 {
     /**
      * Handle an incoming request.
@@ -27,10 +23,13 @@ class IsSeller
 
         $user = Auth::user();
 
-        if ($user->roles->first()->id != 2) {
-            abort(403, 'Unauthorized Access');
+        if ($user->roles->first()->id == 2) {
+            return to_route('profile_seller');
         }
 
+        if ($user->roles->first()->id == 3) {
+            return to_route('profile_user');
+        }
         return $next($request);
     }
 }

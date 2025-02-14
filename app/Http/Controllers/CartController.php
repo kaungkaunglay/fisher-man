@@ -12,10 +12,35 @@ class CartController extends Controller
 {
     public function index()
     {
-        return view('cart');
+        if(Auth::check()){
+            $carts = auth()->user()->carts;
+
+            $carts = $carts->transform(function ($cart) {
+                $cart->product = Product::find($cart->product_id);
+                return $cart;
+            });
+        } else {
+            $productIds = session('cart', []);
+
+
+            $products = Product::whereIn('id', $productIds)->get();
+
+
+            $carts = $products->map(function($product) {
+                $cart = new Cart();
+                $cart->product = $product;
+                $cart->quantity = 1;
+                return $cart;
+            });
+
+        }
+
+        return view('cart',compact('carts'));
+
+
     }
 
-    public function store(Request $request)
+    public function addToCart(Request $request)
     {
         $product_ids = array_unique($request->input('product_ids'));
 
@@ -64,8 +89,6 @@ class CartController extends Controller
     {
 
         if(!Product::where('id',$product_id)->exists()){
-            session()->flash('status','error');
-            session()->flash('message','Product not found');
             return response()->json(['status' => false, 'message' => 'Product not found']);
         }
 
@@ -84,7 +107,13 @@ class CartController extends Controller
         $user = Auth::user();
 
         if(!$user->carts->where('product_id',$product_id)->exists()){
-            return response()->json(['status' => false, 'message' => 'Product not found']);
+            return response()->json(['status' => false, 'message' => 'Product not found in cart']);
         }
+
+        $user->carts()->where('product_id',$product_id)->delete();
+        session()->flash('status','error');
+        session()->flash('message','Product removed from cart');
+        return response()->json(['message' => 'Product removed from cart']);
+
     }
 }

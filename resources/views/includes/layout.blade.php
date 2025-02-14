@@ -47,7 +47,7 @@
             <a href="{{ route('white_list.index')}}">
               <i class="fa-solid fa-bookmark"></i>
             </a>
-            <a href="{{url('/login')}}">
+            <a href="{{ url('/profile') }}">
               <i class="fa-solid fa-user"></i>
             </a>
           </div>

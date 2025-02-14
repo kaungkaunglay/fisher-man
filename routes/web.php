@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LineController;
 use App\Http\Controllers\MailController;
@@ -61,6 +62,9 @@ Route::get('/special-offer', [ProductController::class, 'discountProducts'])->na
 // auth
 Route::middleware(['auth'])->group(function () {
 
+    Route::get('/profile')->middleware('check_role')->name('profile');
+
+
     Route::middleware(['is_seller'])->group(function () {
         Route::get('/profile/seller', [ProfileController::class,'seller_profile'])->name('profile_seller');
     });
@@ -71,6 +75,8 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+
+
 Route::get('/category', function () {
     return view('category');
 })->name('category');
@@ -79,9 +85,9 @@ Route::get('/sub-category', function () {
     return view('sub_category');
 })->name('sub_category');
 
-Route::get('/cart', function () {
-    return view('cart');
-})->name('cart');
+// Route::get('/cart', function () {
+//     return view('cart');
+// })->name('cart');
 
 Route::get('/support', function () {
     return view('support');
@@ -94,6 +100,10 @@ Route::get('/policy', function () {
 Route::get('/white-list', [WhiteListController::class, 'index'])->name('white_list.index');
 Route::post('/white-list/{product_id}', [WhiteListController::class, 'store'])->name('white_list.store');
 Route::delete('/white-list/delete/{product_id}',[WhiteListController::class, 'delete'])->name('white_list.delete');
+
+// cart
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('/add-to-cart',[CartController::class, 'addToCart'])->name('add_to_cart');
 
 // Admin Controller
 Route::get('/admin', [AdminController::class, 'home'])->name('admin.index');
