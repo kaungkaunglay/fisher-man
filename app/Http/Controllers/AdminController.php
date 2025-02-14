@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FAQs;
+use App\Models\Setting;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -41,6 +42,50 @@ class AdminController extends Controller
     public function login()
     {
         return view('admin.login');
+    }
+
+    //settings
+
+    public function settings(){
+        // dd(Setting::where('key', 'contact_email'));
+        $settings = [
+            'contact_email' => Setting::where('key', 'contact_email')->value('value') ?? '',
+            'contact_phone' => Setting::where('key', 'contact_phone')->value('value') ?? '',
+            'contact_address' => Setting::where('key', 'contact_address')->value('value') ?? '',
+            'logo' => Setting::where('key', 'logo')->value('value') ?? '',
+        ];
+        return view('admin.settings',compact('settings'));
+    }
+
+    public function save(Request $request){
+        // dd($request->all());
+        $request->validate([
+            'contact_email' => 'required|email',
+            'contact_phone' => 'required',
+            'contact_address' => 'required',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        $settings = [
+            'contact_email' => request('contact_email'),
+            'contact_phone' => request('contact_phone'),
+            'contact_address' => request('contact_address'),
+        ];
+
+        foreach ($settings as $key => $value) {
+            Setting::updateOrCreate(['key' => $key], ['value' => $value]);
+        }
+
+        // Handle Logo Upload
+        if ($request->hasFile('logo')) {
+         
+            $file = $request->file('logo');
+            $imageName = time() . '.' . $file->getClientOriginalExtension(); // Generate unique name
+            $file->storeAs('images', $imageName, 'public'); // Store in storage/app/public/logos
+       
+            Setting::updateOrCreate(['key' => 'logo'], ['value' => $imageName]);
+        }
+
+        return redirect()->back()->with('success', 'Settings updated successfully.');
     }
 
     public function login_store(Request $request){
