@@ -16,6 +16,7 @@ use App\Http\Controllers\LineApisController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-});
+});g
 
 Route::post('/line/webhook', [LineApisController::class, 'webhook']);
+Route::post('/line/send', [LineApisController::class, 'sendPushNotification']);
