@@ -10,7 +10,7 @@ class WhiteListController extends Controller
 {
     public function index()
     {
-        $whitelist_products = Auth::check() ? Auth::user()->whitelists : Product::whereIn('id',session('white_lists'))->get();
+        $whitelist_products = Auth::check() ? Auth::user()->whitelists : Product::whereIn('id',session('white_lists',[]))->get();
         $total = 0;
         $total = $whitelist_products->sum('product_price');
 
