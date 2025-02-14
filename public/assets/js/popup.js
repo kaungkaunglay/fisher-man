@@ -9,28 +9,27 @@ hamburgerMenu.addEventListener("click", function (event) {
   categoryPopup.classList.toggle("active");
 });
 
+
 categoryLink.addEventListener("click", function (event) {
   event.preventDefault();
   categoryPopup.classList.toggle("active");
 });
 
-document.addEventListener("click", function (event) {
-  if (
-    !categoryPopup.contains(event.target) &&
-    !hamburgerMenu.contains(event.target)
-    &&
-    !categoryLink.contains(event.target) ) {
-    if(seeMoreLink) {
-      if(!seeMoreLink.contains(event.target)) categoryPopup.classList.remove("active");
-    }else {
-      categoryPopup.classList.remove("active");
-    }
-  }
-});
 
 closePopup.addEventListener("click", function (event) {
   event.preventDefault();
   categoryPopup.classList.remove("active");
+});
+
+document.addEventListener("click", function (event) {
+  if (
+    !categoryPopup.contains(event.target) &&
+    !hamburgerMenu.contains(event.target) &&
+    !categoryLink.contains(event.target) &&
+    (!seeMoreLink || !seeMoreLink.contains(event.target))
+  ) {
+    categoryPopup.classList.remove("active");
+  }
 });
 
 if(seeMoreLink) {

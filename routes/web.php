@@ -58,6 +58,9 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/', [ProductController::class, 'showallproducts'])->name('home');
 Route::get('/special-offer', [ProductController::class, 'discountProducts'])->name('special-offer');
 
+Route::post('/contact', [UsersController::class,'contact'])->name('contact');
+Route::post('/wishList', [UsersController::class,'wishList'])->name('wishList');
+
 // auth
 Route::middleware(['auth'])->group(function () {
 
@@ -83,9 +86,7 @@ Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
 
-Route::get('/support', function () {
-    return view('support');
-})->name('support');
+Route::get('/support', [UsersController::class,'support'])->name('support');
 
 Route::get('/policy', function () {
     return view('terms_condition');
@@ -135,6 +136,14 @@ Route::delete('/admin/products/{product}', [ProductController::class, 'destroy']
 
 // Product detail
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
+
+//FAQs
+Route::get('/admin/faqs', [AdminController::class, 'all_faqs'])->name('admin.faqs');
+Route::get('/admin/faq/create', [AdminController::class, 'faq'])->name('create_faq');
+Route::post('/admin/faq', [AdminController::class, 'store'])->name('add_faq');
+Route::get('/admin/faqs/{faq}/edit', [AdminController::class, 'edit'])->name('admin.faqs.edit');
+Route::put('/admin/faqs/{faq}', [AdminController::class, 'update'])->name('update_faq');
+Route::delete('/admin/faqs/{faq}', [AdminController::class, 'destroy'])->name('admin.faqs.destroy');
 
 Route::get('/login/line', function () {
     return Socialite::driver('line')->redirect();

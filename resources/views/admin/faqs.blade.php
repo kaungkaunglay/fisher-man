@@ -129,7 +129,7 @@
         <div class="divider"></div>
         <div class="flex items-center justify-between flex-wrap gap10">
             <div class="text-tiny">Showing 10 entries</div>
-            <ul class="wg-pagination">
+            {{-- <ul class="wg-pagination">
                 <li>
                     <a href="#"><i class="icon-chevron-left"></i></a>
                 </li>
@@ -145,7 +145,7 @@
                 <li>
                     <a href="#"><i class="icon-chevron-right"></i></a>
                 </li>
-            </ul>
+            </ul> --}}
         </div>
     </div>
     <!-- /product-list -->

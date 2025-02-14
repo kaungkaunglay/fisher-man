@@ -34,6 +34,10 @@
             </div>
         </div>
         @endforeach
+
+        <div class="text-success">
+            <hr>
+        </div>
     <!-- support form  -->
     <div class="container support-form">
         <div class="row ">
@@ -86,32 +90,32 @@
                     <h2 class="title m-b-45">Wish List form</h2>
                     <div class="row ">
                         <div class="col-12">
-                            <form>
+                            <form action="{{ route('wishList') }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name">
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-md-6 mb-mobile-3">
                                         <label for="line-id" class="form-label">Line ID</label>
-                                        <input type="text" class="form-control" id="line-id" placeholder="Enter your Line ID">
+                                        <input type="text" name="lineID" class="form-control" id="line-id" placeholder="Enter your Line ID">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="phone" class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                                        <input type="tel" name="phone" class="form-control" id="phone" placeholder="Enter your phone number">
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Description</label>
-                                    <textarea class="form-control" id="description" rows="3" placeholder="Enter your description"></textarea>
+                                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Enter your description"></textarea>
                                 </div>
                                 <div class="text-center mb-mobile-3">
                                     <button type="submit" class="common-btn">Submit</button>
