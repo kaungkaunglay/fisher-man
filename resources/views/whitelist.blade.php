@@ -141,7 +141,7 @@
                 const getid = $(this).data('id');
 
                 $.ajax({
-                    url: "{{ route('white_list.delete',1) }}".replace('1',getid),
+                    url: `/white-list/delete/${getid}`,
                     type: "DELETE",
                     data: {
                         id: getid
@@ -181,7 +181,7 @@
                 const getid = $(this).data('id');
 
                 $.ajax({
-                    url: `/whitelists/delete/${getid}`,
+                    url: `/white-list/delete/${getid}`,
                     type: "DELETE",
                     data: {
                         id: getid
