@@ -76,8 +76,8 @@
                 <span class="invalid-feedback"></span>
             </div>
             <div class="input-box d-flex flex-column">
-                <label for="ship_name">Ship Name</label>
-                <input name="ship_name" placeholder="Ship Name" type="text" id="ship_name" spellcheck="false"
+                <label for="shop_name">Shop Name</label>
+                <input name="shop_name" placeholder="Shop Name" type="text" id="shop_name" spellcheck="false"
                     autocomplete="off">
                 <span class="invalid-feedback"></span>
             </div>

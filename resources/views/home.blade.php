@@ -228,6 +228,7 @@
                     </div>
                 </div>
             </div>
+        </div>
 
     <div class="card-list" id="view-list">
       @foreach($products->filter(fn($product) => $product->discount > 0.00)->take(6) as $product)
@@ -262,7 +263,7 @@
       </div>
     </div>
   </div>
-</section>
+    </section>
 
 
 <section class="all-products container-custom my-3">
@@ -315,6 +316,7 @@
                 </button>
             </div>
         </div>
+    @endforeach
     </section>
 
     <script src="{{ asset('assets/js/loadmore.js') }}"></script>
