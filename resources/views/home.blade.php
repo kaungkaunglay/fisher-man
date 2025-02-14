@@ -43,7 +43,7 @@
 
                         <div class="d-flex card-btn m-t-10">
                             <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                            <a href="#" class="product-btn w-100"><i class="fa-solid fa-bookmark"></i></a>
+                            <a href="#" class="product-btn p-2 w-100"><i class="fa-solid fa-bookmark"></i></a>
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                         </a>
                         <div class="d-flex card-btn m-t-10">
                             <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                            <a href="#" class="product-btn w-100"><i class="fa-solid fa-bookmark"></i></a>
+                            <a href="#" class="product-btn p-2 w-100"><i class="fa-solid fa-bookmark"></i></a>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                         </a>
                         <div class="d-flex card-btn m-t-10">
                             <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                            <a href="#" class="product-btn w-100"><i class="fa-solid fa-bookmark"></i></a>
+                            <a href="#" class="product-btn p-2 w-100"><i class="fa-solid fa-bookmark"></i></a>
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                         </a>
                         <div class="d-flex card-btn m-t-10">
                             <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                            <a href="#" class="product-btn w-100"><i class="fa-solid fa-bookmark"></i></a>
+                            <a href="#" class="product-btn p-2 w-100"><i class="fa-solid fa-bookmark"></i></a>
                         </div>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
                         </a>
                         <div class="d-flex card-btn m-t-10">
                             <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                            <a href="#" class="product-btn w-100"><i class="fa-solid fa-bookmark"></i></a>
+                            <a href="#" class="product-btn p-2 w-100"><i class="fa-solid fa-bookmark"></i></a>
                         </div>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                         </a>
                         <div class="d-flex card-btn m-t-10">
                             <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                            <a href="#" class="product-btn w-100"><i class="fa-solid fa-bookmark"></i></a>
+                            <a href="#" class="product-btn p-2 w-100"><i class="fa-solid fa-bookmark"></i></a>
                         </div>
                     </div>
                 </div>
@@ -256,7 +256,7 @@
             </div>
 
 
-            <div class="row justify-content-center my-3">
+            <div class="row justify-content-center mx-0">
                 <div class="col-5 col-lg-3 text-center">
                     <a class="common-btn see-more-btn mt-3" href="{{ route('special-offer') }}">
                         See More
@@ -310,7 +310,7 @@
                         </a>
                         <div class="d-flex card-btn m-t-10">
                             <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                            <a href="#" class="product-btn w-100"><i class="fa-solid fa-bookmark"></i></a>
+                            <a href="#" class="product-btn p-2 mx-auto w-100" title="Save in Whitelist"><i class="fa-solid fa-bookmark"></i></a>
                         </div>
 
                     </div>
@@ -319,8 +319,8 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-5 col-lg-3 text-center">
-                <button class="common-btn mt-3" id="load-more">
-                    Load More
+                <button class="btn btn-outline-primary px-5 py-2  mt-5" id="load-more" title="Load More Items">
+                    <i class="fas fa-chevron-down"></i>
                 </button>
             </div>
         </div>

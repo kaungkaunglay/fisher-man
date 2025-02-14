@@ -37,8 +37,8 @@
             </a>
           </div>
           <div class="input-group">
-            <input type="text" class="form-control bg-second " placeholder="Search your Products">
-            <button class="bg-main text-white"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <input type="text" class="form-control bg-second" placeholder="Search your Products">
+            <button class="bg-main text-white magnifying-glass"><i class="fa-solid fa-magnifying-glass"></i></button>
           </div>
           <div class="icon">
             <a href="{{url('/cart')}}">
@@ -75,9 +75,11 @@
 
   <div class="category-popup" id="category-popup">
     <ul>
-      <li class="close-popup"><a href="#" id="close-popup">
+      <li class="close-popup">
+        <button id="close-popup">
           <i class="fa-solid fa-xmark"></i>
-        </a></li>
+        </button>
+      </li>
         @foreach($subcategories as $subcategory)
           <li><a href="{{ route('sub_category') }}" class="menu-category">{{ $subcategory->name }}</a></li>
         @endforeach
@@ -111,21 +113,21 @@
                     </div>
                     <div class="col-12 col-lg-3 mt-3 d-flex flex-column justify-content-center">
                     <h6 class="text-center text-warning mb-2">Useful Links</h6>
-                    <ul class="list-unstyled link-list txt-15">
-                        <li><a href="{{ route('home') }}">>>Home</a></li>
-                        <li><a href="#">>>Product</a></li>
-                        <li><a href="#">>>FAQ</a></li>
-                        <li><a href="{{route('policy')}}">>>Terms & Privacy</a></li>
-                        <li><a href="#">>>Customer Review</a></li>
-                        <li><a href="#">>>Blogs</a></li>
+                    <ul class="list-unstyled link-list txt-15 useful-link">
+                        <li><a href="{{ route('home') }}">Home</a></li>
+                        <li><a href="#">Product</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="{{route('policy')}}">Terms & Privacy</a></li>
+                        <li><a href="#">Customer Review</a></li>
+                        <li><a href="#">Blogs</a></li>
                     </ul>
                     </div>
                     <div class="col-12 col-lg-2 mt-3 ">
                     <h6 class="text-center text-warning mb-2">Contact Us</h6>
                     <ul class="list-unstyled text-white txt-15 text-center">
                         <li><a href="#">Address : address</a></li>
-                        <li><a href="#">Phone : 098756292</a></li>
-                        <li><a href="#">Email : user@email.com</a></li>
+                        <li><a href="tel:098756292">Phone : 098756292</a></li>
+                        <li><a href="mailto:user@email.com">Email : user@email.com</a></li>
                     </div>
               </div>
             </div>

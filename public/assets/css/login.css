@@ -170,8 +170,15 @@ main .line-wpr {
     margin: 0 auto;
     width: max-content;
     border: 1px solid #00C300;
-    padding: 9px 25px;
     border-radius: 10px;
+}
+
+main .line-wpr a {
+    padding: 9px 25px;
+}
+
+main .line-wpr:hover {
+    box-shadow: 0px 0px 3px rgb(26, 98, 0);
 }
 
 main .icon-wpr {
