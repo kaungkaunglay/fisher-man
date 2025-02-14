@@ -229,92 +229,99 @@
                 </div>
             </div>
 
-    <div class="card-list" id="view-list">
-      @foreach($products->filter(fn($product) => $product->discount > 0.00)->take(6) as $product)
-        <div class="item-card">
-          <a href="{{ route('product.show', $product->id) }}" class="right">
-            <img src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
-          </a>
-          <div class="left">
-            <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
-            <div class="title-category">
-              <a href="" class="menu-category ">鮮魚 | 白身魚</a>
-              <h3 class="title m-t-b-10">{{ $product->name }}</h3>
+            <div class="card-list" id="view-list">
+                @foreach ($products->filter(fn($product) => $product->discount > 0.0)->take(6) as $product)
+                    <div class="item-card">
+                        <a href="{{ route('product.show', $product->id) }}" class="right">
+                            <img src="{{ asset($product->product_image) }}" class="card-img-top"
+                                alt="{{ $product->name }}">
+                        </a>
+                        <div class="left">
+                            <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
+                            <div class="title-category">
+                                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                                <h3 class="title m-t-b-10">{{ $product->name }}</h3>
+                            </div>
+                            <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
+                                {{ $product->description }}
+                            </a>
+                            <div class="d-flex card-btn m-t-10">
+                                <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
+                                <a href="#" class="product-btn w-100"><i class="fa-solid fa-bookmark"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-            <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
-              {{ $product->description }}
-            </a>
-            <div class="d-flex card-btn m-t-10">
-              <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-              <a href="#" class="product-btn w-100"><i class="fa-solid fa-bookmark"></i></a>
-            </div>
-          </div>
-        </div>
-      @endforeach
-    </div>
 
 
-    <div class="row justify-content-center my-3">
-      <div class="col-5 col-lg-3 text-center">
-        <a class="common-btn see-more-btn mt-3" href="{{ route('special-offer') }}">
-          See More
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="all-products container-custom my-3">
-  <h6 class="txt-primary fw-bold mb-3">All Products</h6>
-  <div class="filter d-flex justify-content-between align-items-center mb-3">
-    <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
-      <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
-      <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
-    </div>
-    <div class="sort-container">
-      <div class="arrows">
-        <button><i class="fa-solid fa-caret-up"></i></button>
-        <button><i class="fa-solid fa-caret-down"></i></button>
-      </div>
-      <div class="dropdown">
-        <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Sort by
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="card-list" id="view-list">
-  @foreach($products as $product)
-    <div class="item-card">
-      <a href="{{ route('product.show', $product->id) }}" class="right">
-        <img src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
-      </a>
-      <div class="left">
-        <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
-        <div class="title-category">
-          <a href="" class="menu-category ">鮮魚 | 白身魚</a>
-          <h3 class="title m-t-b-10">{{ $product->name }}</h3>
-        </div>
-        <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
-          {{ $product->description }}
-        </a>
-        <div class="d-flex card-btn m-t-10">
-          <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-          <a href="#" class="product-btn w-100"><i class="fa-solid fa-bookmark"></i></a>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-5 col-lg-3 text-center">
-                <button class="common-btn mt-3" id="load-more">
-                    Load More
-                </button>
+            <div class="row justify-content-center my-3">
+                <div class="col-5 col-lg-3 text-center">
+                    <a class="common-btn see-more-btn mt-3" href="{{ route('special-offer') }}">
+                        See More
+                    </a>
+                </div>
             </div>
         </div>
+    </section>
+
+
+    <section class="all-products container-custom my-3">
+        <h6 class="txt-primary fw-bold mb-3">All Products</h6>
+        <div class="filter d-flex justify-content-between align-items-center mb-3">
+            <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
+                <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
+                <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
+            </div>
+            <div class="sort-container">
+                <div class="arrows">
+                    <button><i class="fa-solid fa-caret-up"></i></button>
+                    <button><i class="fa-solid fa-caret-down"></i></button>
+                </div>
+                <div class="dropdown">
+                    <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Sort by
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card-list" id="view-list">
+            @foreach ($products as $product)
+                <div class="item-card">
+                    <a href="{{ route('product.show', $product->id) }}" class="right">
+                        <img src="{{ asset($product->product_image) }}" class="card-img-top"
+                            alt="{{ $product->name }}">
+                    </a>
+                    <div class="left">
+                        <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
+                        <div class="title-category">
+                            <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                            <h3 class="title m-t-b-10">{{ $product->name }}</h3>
+                        </div>
+                        <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
+                            {{ $product->description }}
+                        </a>
+                        <div class="d-flex card-btn m-t-10">
+                            <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
+                            <a href="#" class="product-btn w-100"><i class="fa-solid fa-bookmark"></i></a>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-5 col-lg-3 text-center">
+                                <button class="common-btn mt-3" id="load-more">
+                                    Load More
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            @endforeach
     </section>
 
     <script src="{{ asset('assets/js/loadmore.js') }}"></script>
@@ -340,7 +347,7 @@
                         id: getid
                     },
                     success: function(data) {
-                        if(data.status){
+                        if (data.status) {
 
                         }
                         console.log(data.message);
