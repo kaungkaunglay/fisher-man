@@ -36,33 +36,43 @@
             </ul>
         </div>
 
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <!-- form-add-product -->
         <form class="tf-section-2 form-add-product" action="{{ route('admin.settings.save') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <!-- Check for validation errors -->
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
             <div class="wg-box">
                 <fieldset class="name">
                     <div class="body-title mb-10">Contact Email<span class="tf-color-1">*</span></div>
-                    <input class="mb-10" type="email" placeholder="" name="contact_email" value="{{ old('contact_email', $settings['contact_email']) }}" required>
+                    <input class="mb-10 @error('contact_email') is-invalid @enderror" type="email" placeholder="" name="contact_email" value="{{ old('contact_email', $settings['contact_email']) }}">
+                    @error('contact_email')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
                 </fieldset>
                 <fieldset class="name">
                     <div class="body-title mb-10">Contact Phone<span class="tf-color-1">*</span></div>
-                    <input class="mb-10" type="text" placeholder="" name="contact_phone" value="{{ old('contact_phone', $settings['contact_phone']) }}" required>
+                    <input class="mb-10 @error('contact_phone') is-invalid @enderror" type="text" placeholder="" name="contact_phone" value="{{ old('contact_phone', $settings['contact_phone']) }}">
+                    @error('contact_phone')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
                 </fieldset>
                 <fieldset class="name">
                     <div class="body-title mb-10">Contact Address <span class="tf-color-1">*</span></div>
-                    <input class="mb-10" type="text" placeholder="" name="contact_address" value="{{ old('contact_address', $settings['contact_address']) }}" required>
+                    <input class="mb-10 @error('contact_address') is-invalid @enderror" type="text" placeholder="" name="contact_address" value="{{ old('contact_address', $settings['contact_address']) }}">
+                    @error('contact_address')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
                 </fieldset>
                 {{-- <fieldset class="name">
                     <div class="body-title mb-10">Logo <span class="tf-color-1">*</span></div>
@@ -84,7 +94,12 @@
                             <label class="uploadfile" for="logo">
                                 <span class="icon"><i class="icon-upload-cloud"></i></span>
                                 <span class="text-tiny">Drop your image here or select <span class="tf-color">click to browse</span></span>
-                                <input type="file" id="logo" name="logo" required>
+                                <input type="file" id="logo" name="logo" class="@error('logo') is-invalid @enderror" >
+                                @error('logo')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                             </label>
                         </div>
                     </div>
@@ -93,8 +108,8 @@
             </div>
 
             <div class="cols gap10">
-                <button class="tf-button w-full" type="submit">Save Settings</button>
-                <a href="" class="tf-button style-2 w-full">Cancel</a>
+                <button class="tf-button " type="submit">Save Settings</button>
+                {{-- <a href="" class="tf-button style-2 w-full">Cancel</a> --}}
             </div>
         </form>
     </div>

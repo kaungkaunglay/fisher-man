@@ -58,7 +58,7 @@ class AdminController extends Controller
     }
 
     public function save(Request $request){
-        // dd($request->all());
+
         $request->validate([
             'contact_email' => 'required|email',
             'contact_phone' => 'required',
@@ -78,7 +78,7 @@ class AdminController extends Controller
 
         // Handle Logo Upload
         if ($request->hasFile('logo')) {
-
+            // dd('hit');
             $file = $request->file('logo');
             $imageName = time() . '.' . $file->getClientOriginalExtension(); // Generate unique name
             $file->storeAs('images', $imageName, 'public'); // Store in storage/app/public/logos
@@ -86,7 +86,7 @@ class AdminController extends Controller
             Setting::updateOrCreate(['key' => 'logo'], ['value' => $imageName]);
         }
 
-        return redirect()->back()->with('success', 'Settings updated successfully.');
+        return back()->with('success', 'Settings updated successfully.');
     }
 
     public function login_store(Request $request){

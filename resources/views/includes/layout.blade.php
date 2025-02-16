@@ -33,7 +33,7 @@
         <div class="top-header">
           <div class="logo">
             <a href="{{url('/')}}">
-              <img src="{{ asset('assets/images/logo.png') }}" alt="logo">
+              <img src="{{ asset('storage/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="logo">
             </a>
           </div>
           <div class="input-group">
@@ -111,7 +111,7 @@
                       <a href="{{route('home')}}"><img src="{{ asset('storage/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="Site Logo"  class="logo">
                       </a>
                       {{-- @endif --}}
-                     
+
                     {{-- <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo" alt=""></a> --}}
                     <p class="text-center txt-18">Who We Are: Your Trusted Source for Fresh Seafood.</p>
                     <div class="social-icons d-flex justify-content-center gap-4">
@@ -181,7 +181,7 @@
   <script>
     $(document).ready(() => {
 
-    
+
       $('.btn-login').click(()=> {
 
         $('.dropdown').toggleClass('active');
