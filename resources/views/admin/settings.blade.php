@@ -13,11 +13,12 @@
 <link rel="stylesheet" href="{{ asset('assets/admin/icon/style.css') }}">
 @endsection
 @section('contents')
+{{-- @dd($settings) --}}
 <div class="main-content-inner">
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
             <h3>Add setting</h3>
-        
+
 
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li><a href="index.html">
@@ -30,11 +31,11 @@
                 {{-- <li><i class="icon-chevron-right"></i></li> --}}
                 <li>
                     <div class="text-tiny">Add setting</div>
-                    
+
                 </li>
             </ul>
         </div>
-        
+
         <!-- form-add-product -->
         <form class="tf-section-2 form-add-product" action="{{ route('admin.settings.save') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -65,19 +66,19 @@
                 </fieldset>
                 {{-- <fieldset class="name">
                     <div class="body-title mb-10">Logo <span class="tf-color-1">*</span></div>
-                    <input type="file" name="logo" id="" class="mb-10" required>            
+                    <input type="file" name="logo" id="" class="mb-10" required>
                 </fieldset> --}}
-                    
-            </div> 
+
+            </div>
 
             <div class="wg-box">
                 <fieldset>
                     <div class="body-title mb-10">Logo</div>
                     <div class="upload-image mb-16">
                         <div class="item">
-                            {{-- @if(isset($product) && $product->product_image)
-                            <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
-                            @endif --}}
+                            @if(isset($settings['logo']) && $settings['logo'])
+                                <img src="{{ asset('storage/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="{{ $settings['logo'] }}">
+                            @endif
                         </div>
                         <div class="item up-load">
                             <label class="uploadfile" for="logo">
@@ -87,7 +88,7 @@
                             </label>
                         </div>
                     </div>
-                   
+
                 </fieldset>
             </div>
 

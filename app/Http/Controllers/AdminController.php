@@ -70,6 +70,7 @@ class AdminController extends Controller
             'contact_phone' => request('contact_phone'),
             'contact_address' => request('contact_address'),
         ];
+        // dd("here");
 
         foreach ($settings as $key => $value) {
             Setting::updateOrCreate(['key' => $key], ['value' => $value]);
@@ -77,11 +78,11 @@ class AdminController extends Controller
 
         // Handle Logo Upload
         if ($request->hasFile('logo')) {
-         
+
             $file = $request->file('logo');
             $imageName = time() . '.' . $file->getClientOriginalExtension(); // Generate unique name
             $file->storeAs('images', $imageName, 'public'); // Store in storage/app/public/logos
-       
+
             Setting::updateOrCreate(['key' => 'logo'], ['value' => $imageName]);
         }
 
