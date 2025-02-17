@@ -20,6 +20,8 @@ class CartController extends Controller
                 return $cart;
             });
         } else {
+
+            
             $productIds = session('cart', []);
 
 
@@ -113,7 +115,7 @@ class CartController extends Controller
 
             session()->flash('status','error');
             session()->flash('message','Product removed from cart');
-            return response()->json(['status'=> true,'message' => 'Product removed from cart']);
+            return response()->json(['status'=> true,'product_id' => $product_id,'message' => 'Product removed from cart']);
         }
 
         $user = Auth::user();
@@ -126,7 +128,7 @@ class CartController extends Controller
 
         session()->flash('status','error');
         session()->flash('message','Product removed from cart');
-        return response()->json(['status' => true,'message' => 'Product removed from cart']);
+        return response()->json(['status' => true, 'product_id' => $product_id,'message' => 'Product removed from cart']);
 
     }
 }

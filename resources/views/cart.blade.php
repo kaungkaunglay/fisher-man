@@ -37,7 +37,6 @@
         </div>
         <!-- ./Step List -->
 
-        @include('messages.index')
 
         <!-- Checkout -->
         <div class="page" id="checkout">
@@ -128,7 +127,7 @@
             <!-- ./Mobile Style -->
 
             <div class="text-end my-4">
-                <a href="#address" class="common-btn btn-next">Next</a>
+                <a href="#address" id="next-btn" class="common-btn btn-next">Next</a>
             </div>
         </div>
         <!-- ./Checkout -->
@@ -154,7 +153,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="text" id="name" class="p-1">
+                                <input type="text" id="name" class="p-1" value="{{ auth()->user()->username }}">
                             </td>
                         </tr>
                         <tr>
@@ -163,7 +162,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="number" id="tel" class="p-1">
+                                <input type="number" id="tel" class="p-1" value="{{ auth()->user()->first_phone }}">
                             </td>
                         </tr>
                         <tr>
@@ -172,7 +171,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="text" id="line_id" class="p-1">
+                                <input type="text" id="line_id" class="p-1" value="{{ auth()->user()->line_id }}">
                             </td>
                         </tr>
                         <tr>
@@ -181,7 +180,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="number" id="zip" class="p-1">
+                                <input type="number" id="zip" class="p-1" >
                             </td>
                         </tr>
                         <tr>
@@ -202,7 +201,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="number" id="delivery" class="p-1">
+                                <input type="number" id="delivery" class="p-1" value="{{ auth()->user()->address }}">
                             </td>
                         </tr>
                     </table>
@@ -224,7 +223,7 @@
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
-                            <p class="p-1">Customer Name</p>
+                            <p class="p-1">{{ auth()->user()->username }}</p>
                         </td>
                     </tr>
                     <tr>
@@ -233,7 +232,7 @@
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
-                            <a class="p-1" href="tel:0988888888">0988888888</a>
+                            <a class="p-1" href="tel:0988888888">{{ auth()->user()->first_phone }}</a>
                         </td>
                     </tr>
                     <tr>
@@ -242,7 +241,7 @@
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
-                            <a class="p-1" href="#">Afasd-222</a>
+                            <a class="p-1" href="#">{{ auth()->user()->line_id }}</a>
                         </td>
                     </tr>
                     <tr>
@@ -269,7 +268,7 @@
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
-                            <p class="p-1">Customer Address</p>
+                            <p class="p-1">{{ auth()->user()->address }}</p>
                         </td>
                     </tr>
                 </table>
@@ -381,19 +380,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="table-row">
-                        <td>
-                            <div class="table-img"><img src="{{ asset('assets/images/account1.svg') }}"
-                                    alt="product img"></div>
-                        </td>
-                        <td clas="col-name">Mark</td>
-                        <td class="price">¥100</td>
-                        <td class="cost">
-                            ¥100
-                            <input type="hidden" value="1" class="quantity-value">
-                        </td>
-                        </td>
-                    </tr>
+                    @foreach ($carts as  $item)
+                        <tr class="table-row">
+                            <td>
+                                <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
+                                        alt="product img"></div>
+                            </td>
+                            <td clas="col-name">{{ $item->product->name}}</td>
+                            <td class="price">¥{{ $item->product->product_price }}</td>
+                            <td class="cost">
+                                ¥100
+                                <input type="hidden" value="1" class="quantity-value">
+                            </td>
+                            </td>
+                        </tr>
+
+                    @endforeach
                     <tr class="table-row">
                         <td>
                             <div class="table-img"><img src="{{ asset('assets/images/account2.svg') }}"
@@ -543,7 +545,7 @@
 
             function removeCart(target,id)
             {
-                target.closest('.cart-'+id).remove();
+                $('.table-item').find(`.cart-${id}`).remove();
                 checkIfEmpty();
             }
 
@@ -562,21 +564,22 @@
 
                 const cur = $(this);
 
-                console.log(cur.find('.cart-'+getid));
+                console.log(`.cart-${getid}`)
 
-                // $.ajax({
-                //     url: `/cart/delete/${getid}`,
-                //     type: "DELETE",
-                //     data: {
-                //         id: getid
-                //     },
-                //     success: function(response) {
-                //         // location.reload();
-                //         if (response.status) {
-                //             removeCart(cur,getid);
-                //         }
-                //     }
-                // });
+                $.ajax({
+                    url: `/cart/delete/${getid}`,
+                    type: "DELETE",
+                    data: {
+                        id: getid
+                    },
+                    success: function(response) {
+                        // location.reload();
+                        if (response.status) {
+                            console.log(response.product_id);
+                            removeCart(cur,response.product_id);
+                        }
+                    }
+                });
             });
 
             // mobile delete button
@@ -586,22 +589,29 @@
 
                 const cur = $(this);
 
-                console.log(cur.find('.cart-'+getid));
+                // console.log(`.cart-${getid}`)
 
-                // $.ajax({
-                //     url: `cart/delete/${getid}`,
-                //     type: "DELETE",
-                //     data: {
-                //         id: getid
-                //     },
-                //     success: function(response) {
-                //         // location.reload();
-                //         if(response.status)
-                //         {
-                //             removeCart(cur,getid);
-                //         }
-                //     }
-                // });
+                $.ajax({
+                    url: `cart/delete/${getid}`,
+                    type: "DELETE",
+                    data: {
+                        id: getid
+                    },
+                    success: function(response) {
+                        // location.reload();
+                        if(response.status)
+                        {
+                            console.log(response.product_id);
+                            removeCart(cur,response.product_id);
+                        }
+                    }
+                });
+            });
+
+            $('#next-btn').click(()=>{
+                @if (!Auth::check())
+                    window.location.href ="{{ route('login')}}"
+                @endif
             });
 
         });

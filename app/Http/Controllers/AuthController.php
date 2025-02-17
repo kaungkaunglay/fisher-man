@@ -144,7 +144,9 @@ class AuthController extends Controller
 
                 Auth::login($user,$remember);
 
-                return redirect()->intended('home');
+                return redirect()->intended('/');
+
+                // return response()->json(['status' => true, 'message' => 'login successfull']);
             }
 
             return response()->json(['status' => false, 'message' => 'Username or Password is Incorrect']);

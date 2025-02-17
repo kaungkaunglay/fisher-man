@@ -77,7 +77,7 @@
             });
 
             $("#login_form").submit(function (e) {
-                e.preventDefault();
+                // e.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
                     url: "{{ route('login_store') }}",
