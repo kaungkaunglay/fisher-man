@@ -13,6 +13,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WhiteListController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\SubCategoriesController;
 
 /*
@@ -175,8 +176,24 @@ Route::get('/admin/categories/{category}/edit', [CategoriesController::class, 'e
 Route::put('/admin/categories/{category}', [CategoriesController::class, 'update'])->name('update_category');
 Route::delete('/admin/categories/{category}', [CategoriesController::class, 'destroy'])->name('admin.categories.destroy');
 
+// Line Auth
 Route::get('/login/line', function () {
     return Socialite::driver('line')->redirect();
 })->name('line.login');
 
-Route::get('/login/line/callback', [LineController::class, 'handleLineCallback']);
+Route::get('/login/line/callback', [OAuthController::class, 'handleLineCallback']);
+
+// Google Auth  
+Route::get('/auth/google', function () {
+    return Socialite::driver('google')->redirect();
+})->name('google.login');
+
+Route::get('/login/google/callback', [OAuthController::class, 'handleGoogleCallback']);
+
+// Facebook Auth
+Route::get('/auth/facebook', function () {
+    return Socialite::driver('facebook')->redirect();
+})->name('facebook.login');
+
+Route::get('/login/facebook/callback', [OAuthController::class, 'handleFacebookCallback']); 
+
