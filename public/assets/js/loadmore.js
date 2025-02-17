@@ -1,31 +1,38 @@
 const itemsPerPage = 24; // Number of items to display per batch
 let currentVisible = 0; // Number of currently visible items
+let load = 'more'; // State of load more
 
 const productCards = document.querySelectorAll('.all-products .item-card');
 const loadMoreBtn = document.getElementById('load-more');
-// console.log(productCards);
 
 // Function to show the next batch of items
-const showMoreItems = () => {
-   
-  const nextBatch = Array.from(productCards).slice(
-    currentVisible,
-    currentVisible + itemsPerPage
-  );
-//   console.log(nextBatch);
-  nextBatch.forEach((card) => {
-    card.style.display = 'block'; // Make the card visible
+const showItems = () => {
+  
+  currentVisible = currentVisible + itemsPerPage * (load == 'more' ? 1 : -1);
+
+  productCards.forEach((card, index) => {
+
+    card.style.display = 'none';
+    if(index <= currentVisible) {
+
+      card.style.display = 'block'; // Make the card visible
+    }
   });
-  currentVisible += itemsPerPage;
+
 
   // Hide the button if all items are displayed
   if (currentVisible >= productCards.length) {
-    loadMoreBtn.style.display = 'none';
+    loadMoreBtn.querySelector('i').classList.replace('fa-chevron-down', 'fa-chevron-up');
+    load = 'less';
+  }
+  if(currentVisible <= 0) {
+    loadMoreBtn.querySelector('i').classList.replace('fa-chevron-up', 'fa-chevron-down');
+    load = 'more';
   }
 };
 
 // Initial load
-showMoreItems();
+showItems();
 
 // Event listener for "Load More" button
-loadMoreBtn.addEventListener('click', showMoreItems);
+loadMoreBtn.addEventListener('click', showItems);
