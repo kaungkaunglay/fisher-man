@@ -33,7 +33,11 @@
         <div class="top-header">
           <div class="logo">
             <a href="{{url('/')}}">
-              <img src="{{ asset('storage/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="logo">
+              @if(file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
+              <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="logo">
+              @else
+                <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="logo">  
+              @endif
             </a>
           </div>
           <div class="input-group">
@@ -107,10 +111,11 @@
         <div class="container-custom">
             <div class="row justify-content-around w-100 pb-3">
                     <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white">
-                      {{-- @if($settings['logo']) --}}
-                      <a href="{{route('home')}}"><img src="{{ asset('storage/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="Site Logo"  class="logo">
-                      </a>
-                      {{-- @endif --}}
+                      @if(file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
+                      <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="logo">
+                      @else
+                        <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="logo">  
+                      @endif
 
                     {{-- <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo" alt=""></a> --}}
                     <p class="text-center txt-18">Who We Are: Your Trusted Source for Fresh Seafood.</p>

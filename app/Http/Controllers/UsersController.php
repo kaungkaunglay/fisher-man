@@ -259,13 +259,22 @@ class UsersController extends Controller
         return back()->with('success', 'Your message has been sent successfully!');
     }
     public function wishList(Request $request){
+        $messages = [
+            'wish_name.required' => 'The name field is required.',
+            'lineID.required' => 'The line ID field is required.',
+            'wish_phone.required' => 'The phone field is required.',
+            'wish_email.required' => 'The email field is required.',
+            'wish_email.email' => 'The email must be a valid email address.',
+            'wish_description.required' => 'The description field is required.'
+        ];
+
         $request->validate([
             'wish_name' => 'required',
             'lineID' => 'required',
             'wish_phone' => 'required',
             'wish_email' => 'required|email',
             'wish_description' => 'required'
-        ]);
+        ], $messages);
 
 
         $wishList = wishList::create([

@@ -6,6 +6,7 @@ use App\Models\FAQs;
 use App\Models\Setting;
 use App\Models\Users;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -78,10 +79,11 @@ class AdminController extends Controller
 
         // Handle Logo Upload
         if ($request->hasFile('logo')) {
-            // dd('hit');
             $file = $request->file('logo');
             $imageName = time() . '.' . $file->getClientOriginalExtension(); // Generate unique name
-            $file->storeAs('images', $imageName, 'public'); // Store in storage/app/public/logos
+
+            // $resizedImage = Image::make($file)->resize(300, 300)->encode();
+            $file->move(public_path('assets/logos'),$imageName);
 
             Setting::updateOrCreate(['key' => 'logo'], ['value' => $imageName]);
         }
@@ -107,6 +109,11 @@ class AdminController extends Controller
 
             return response()->json(['status' => false, 'message' => 'email or Password is Incorrect']);
         }
+    }
+
+    //user request
+    public function contact(){
+        return view('admin.contact-request');
     }
 
     //faq

@@ -175,7 +175,7 @@
                                         <div class="body-text">Sflat</div>
                                     </div>
                                     <div class="country">
-                                        <img src="images/country/2.png" alt="">
+                                        <img src="{{asset('assets/admin/images/country/2.png')}}" alt="">
                                     </div>
                                     <div>
                                         <div class="body-title-2 mb-3">-15%</div>
@@ -197,7 +197,7 @@
                                         <div class="body-text">Sflat</div>
                                     </div>
                                     <div class="country">
-                                        <img src="images/country/3.png" alt="">
+                                        <img src="{{asset('assets/admin/images/country/3.png')}}" alt="">
                                     </div>
                                     <div>
                                         <div class="body-title-2 mb-3">-15%</div>
@@ -219,7 +219,7 @@
                                         <div class="body-text">Sflat</div>
                                     </div>
                                     <div class="country">
-                                        <img src="{{asset('assets/admin/images/country/1.png')}}" alt="">
+                                        <img src="{{asset('assets/admin/images/country/3.png')}}" alt="">
                                     </div>
                                     <div>
                                         <div class="body-title-2 mb-3">-15%</div>
@@ -241,7 +241,7 @@
                                         <div class="body-text">Sflat</div>
                                     </div>
                                     <div class="country">
-                                        <img src="images/country/4.png" alt="">
+                                        <img src="{{asset('assets/admin/images/country/4.png')}}" alt="">
                                     </div>
                                     <div>
                                         <div class="body-title-2 mb-3">-15%</div>
@@ -251,7 +251,7 @@
                             </li>
                             <li class="product-item">
                                 <div class="image">
-                                    <img src="images/products/5.png" alt="">
+                                    <img src="{{asset('assets/admin/images/products/5.png')}}" alt="">
                                 </div>
                                 <div class="flex items-center justify-between flex-grow">
                                     <div class="name">
@@ -263,7 +263,7 @@
                                         <div class="body-text">Sflat</div>
                                     </div>
                                     <div class="country">
-                                        <img src="images/country/5.png" alt="">
+                                        <img src="{{asset('assets/admin/images/country/5.png')}}" alt="">
                                     </div>
                                     <div>
                                         <div class="body-title-2 mb-3">-15%</div>
@@ -304,7 +304,7 @@
                     <ul class="flex flex-column justify-between gap10 h-full">
                         <li class="country-item">
                             <div class="image">
-                                <img src="images/country/6.png" alt="">
+                                <img src="{{asset('assets/admin/images/country/6.png')}}" alt="">
                             </div>
                             <div class="flex-grow flex items-center justify-between">
                                 <a href="countries.html" class="body-text name">Turkish Flag</a>
@@ -316,7 +316,7 @@
                         </li>
                         <li class="country-item">
                             <div class="image">
-                                <img src="images/country/7.png" alt="">
+                                <img src="{{asset('assets/admin/images/country/7.png')}}" alt="">
                             </div>
                             <div class="flex-grow flex items-center justify-between">
                                 <a href="countries.html" class="body-text name">Belgium</a>
@@ -328,7 +328,7 @@
                         </li>
                         <li class="country-item">
                             <div class="image">
-                                <img src="images/country/8.png" alt="">
+                                <img src="{{asset('assets/admin/images/country/8.png')}}" alt="">
                             </div>
                             <div class="flex-grow flex items-center justify-between">
                                 <a href="countries.html" class="body-text name">Sweden</a>
@@ -340,7 +340,7 @@
                         </li>
                         <li class="country-item">
                             <div class="image">
-                                <img src="images/country/9.png" alt="">
+                                <img src="{{asset('assets/admin/images/country/9.png')}}" alt="">
                             </div>
                             <div class="flex-grow flex items-center justify-between">
                                 <a href="countries.html" class="body-text name">Vietnamese</a>
@@ -352,7 +352,7 @@
                         </li>
                         <li class="country-item">
                             <div class="image">
-                                <img src="images/country/10.png" alt="">
+                                <img src="{{asset('assets/admin/images/country/10.png')}}" alt="">
                             </div>
                             <div class="flex-grow flex items-center justify-between">
                                 <a href="countries.html" class="body-text name">Australia</a>
@@ -364,7 +364,7 @@
                         </li>
                         <li class="country-item">
                             <div class="image">
-                                <img src="images/country/11.png" alt="">
+                                <img src="{{asset('assets/admin/images/country/11.png')}}" alt="">
                             </div>
                             <div class="flex-grow flex items-center justify-between">
                                 <a href="countries.html" class="body-text name">Saudi Arabia</a>
@@ -415,7 +415,7 @@
                         <ul class="flex flex-column gap18">
                             <li class="shop-item">
                                 <div class="image">
-                                    <img src="images/shop/1.png" alt="">
+                                    <img src="{{asset('assets/admin/images/shop/1.png')}}" alt="">
                                 </div>
                                 <div class="flex-grow flex items-center justify-between gap20">
                                     <div>
@@ -434,7 +434,7 @@
                             </li>
                             <li class="shop-item">
                                 <div class="image">
-                                    <img src="images/shop/2.png" alt="">
+                                    <img src="{{asset('assets/admin/images/shop/2.png')}}" alt="">
                                 </div>
                                 <div class="flex-grow flex items-center justify-between gap20">
                                     <div>
@@ -453,7 +453,7 @@
                             </li>
                             <li class="shop-item">
                                 <div class="image">
-                                    <img src="images/shop/3.png" alt="">
+                                    <img src="{{asset('assets/admin/images/shop/3.png')}}" alt="">
                                 </div>
                                 <div class="flex-grow flex items-center justify-between gap20">
                                     <div>
@@ -472,7 +472,7 @@
                             </li>
                             <li class="shop-item">
                                 <div class="image">
-                                    <img src="images/shop/4.png" alt="">
+                                    <img src="{{asset('assets/admin/images/shop/4.png')}}" alt="">
                                 </div>
                                 <div class="flex-grow flex items-center justify-between gap20">
                                     <div>
@@ -491,7 +491,7 @@
                             </li>
                             <li class="shop-item">
                                 <div class="image">
-                                    <img src="images/shop/5.png" alt="">
+                                    <img src="{{asset('assets/admin/images/shop/5.png')}}" alt="">
                                 </div>
                                 <div class="flex-grow flex items-center justify-between gap20">
                                     <div>
@@ -510,7 +510,7 @@
                             </li>
                             <li class="shop-item">
                                 <div class="image">
-                                    <img src="images/shop/6.png" alt="">
+                                    <img src="{{asset('assets/admin/images/shop/6.png')}}" alt="">
                                 </div>
                                 <div class="flex-grow flex items-center justify-between gap20">
                                     <div>
@@ -529,7 +529,7 @@
                             </li>
                             <li class="shop-item">
                                 <div class="image">
-                                    <img src="images/shop/7.png" alt="">
+                                    <img src="{{asset('assets/admin/images/shop/7.png')}}" alt="">
                                 </div>
                                 <div class="flex-grow flex items-center justify-between gap20">
                                     <div>
@@ -595,7 +595,7 @@
                         <ul class="flex flex-column gap10">
                             <li class="product-item gap14">
                                 <div class="image">
-                                    <img src="images/products/6.png" alt="">
+                                    <img src="{{asset('assets/admin/images/products/6.png')}}" alt="">
                                 </div>
                                 <div class="flex items-center justify-between flex-grow">
                                     <div class="name">
@@ -611,7 +611,7 @@
                             </li>
                             <li class="product-item gap14">
                                 <div class="image">
-                                    <img src="images/products/7.png" alt="">
+                                    <img src="{{asset('assets/admin/images/products/7.png')}}" alt="">
                                 </div>
                                 <div class="flex items-center justify-between flex-grow">
                                     <div class="name">
@@ -627,7 +627,7 @@
                             </li>
                             <li class="product-item gap14">
                                 <div class="image">
-                                    <img src="images/products/8.png" alt="">
+                                    <img src="{{asset('assets/admin/images/products/8.png')}}" alt="">
                                 </div>
                                 <div class="flex items-center justify-between flex-grow">
                                     <div class="name">
@@ -643,7 +643,7 @@
                             </li>
                             <li class="product-item gap14">
                                 <div class="image">
-                                    <img src="images/products/9.png" alt="">
+                                    <img src="{{asset('assets/admin/images/products/9.png')}}" alt="">
                                 </div>
                                 <div class="flex items-center justify-between flex-grow">
                                     <div class="name">
@@ -661,7 +661,7 @@
                             </li>
                             <li class="product-item gap14">
                                 <div class="image">
-                                    <img src="images/products/10.png" alt="">
+                                    <img src="{{asset('assets/admin/images/products/10.png')}}" alt="">
                                 </div>
                                 <div class="flex items-center justify-between flex-grow">
                                     <div class="name">
@@ -735,7 +735,7 @@
                         <ul class="flex flex-column gap18">
                             <li class="product-item gap14">
                                 <div class="image small">
-                                    <img src="images/products/11.png" alt="">
+                                    <img src="{{asset('assets/admin/images/products/11.png')}}" alt="">
                                 </div>
                                 <div class="flex items-center justify-between flex-grow gap10">
                                     <div class="name">
@@ -747,7 +747,7 @@
                             </li>
                             <li class="product-item gap14">
                                 <div class="image small">
-                                    <img src="images/products/12.png" alt="">
+                                    <img src="{{asset('assets/admin/images/products/12.png')}}" alt="">
                                 </div>
                                 <div class="flex items-center justify-between flex-grow gap10">
                                     <div class="name">
@@ -759,7 +759,7 @@
                             </li>
                             <li class="product-item gap14">
                                 <div class="image small">
-                                    <img src="images/products/13.png" alt="">
+                                    <img src="{{asset('assets/admin/images/products/13.png')}}" alt="">
                                 </div>
                                 <div class="flex items-center justify-between flex-grow gap10">
                                     <div class="name">
@@ -771,7 +771,7 @@
                             </li>
                             <li class="product-item gap14">
                                 <div class="image small">
-                                    <img src="images/products/14.png" alt="">
+                                    <img src="{{asset('assets/admin/images/products/14.png')}}" alt="">
                                 </div>
                                 <div class="flex items-center justify-between flex-grow gap10">
                                     <div class="name">
@@ -783,7 +783,7 @@
                             </li>
                             <li class="product-item gap14">
                                 <div class="image small">
-                                    <img src="images/products/15.png" alt="">
+                                    <img src="{{asset('assets/admin/images/products/15.png')}}" alt="">
                                 </div>
                                 <div class="flex items-center justify-between flex-grow gap10">
                                     <div class="name">
@@ -797,225 +797,7 @@
                     </div>
                 </div>
                 <!-- /orders -->
-                <!-- earnings -->
-                <div class="wg-box">
-                    <div class="flex items-center justify-between">
-                        <h5>Earnings</h5>
-                        <div class="dropdown default">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               <span class="icon-more"><i class="icon-more-horizontal"></i></span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li>  
-                                    <a href="javascript:void(0);">This Week</a>
-                                </li>
-                                <li>  
-                                    <a href="javascript:void(0);">Last Week</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap gap40">
-                        <div>
-                            <div class="mb-2">
-                                <div class="block-legend">
-                                    <div class="dot t1"></div>
-                                    <div class="text-tiny">Revenue</div>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap10">
-                                <h4>$37,802</h4>
-                                <div class="box-icon-trending up">
-                                    <i class="icon-trending-up"></i>
-                                    <div class="body-title number">0.56%</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="mb-2">
-                                <div class="block-legend">
-                                    <div class="dot t2"></div>
-                                    <div class="text-tiny">Profit</div>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap10">
-                                <h4>$28,305</h4>
-                                <div class="box-icon-trending up">
-                                    <i class="icon-trending-up"></i>
-                                    <div class="body-title number">0.56%</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="line-chart-6"></div>
-                </div>
-                <!-- /earnings -->
-                <!-- new-comment -->
-                <div class="wg-box">
-                    <div class="flex items-center justify-between">
-                        <h5>New Comments</h5>
-                        <div class="dropdown default">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               <span class="icon-more"><i class="icon-more-horizontal"></i></span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li>  
-                                    <a href="javascript:void(0);">This Week</a>
-                                </li>
-                                <li>  
-                                    <a href="javascript:void(0);">Last Week</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <ul class="flex flex-column gap20 overflow-h">
-                        <li class="comment-item">
-                            <div class="image">
-                                <img src="images/avatar/user-2.png" alt="">
-                            </div>
-                            <div class="">
-                                <div class="mb-4 name">
-                                    <a href="all-user.html" class="body-title-2">Kathryn Murphy</a>
-                                </div>
-                                <div class="ratings mb-10">
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1"></i>
-                                </div>
-                                <div class="text-tiny">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec dolor vel est interdum</div>
-                            </div>
-                        </li>
-                        <li class="comment-item">
-                            <div class="image">
-                                <img src="images/avatar/user-3.png" alt="">
-                            </div>
-                            <div class="">
-                                <div class="mb-4 name">
-                                    <a href="all-user.html" class="body-title-2">Leslie Alexander</a>
-                                </div>
-                                <div class="ratings mb-10">
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1"></i>
-                                </div>
-                                <div class="text-tiny">Cras nec viverra justo, a mattis lacus. Vestibulum eleifend, leo sit amet aliquam laoreet, turpis leo vulputate orci</div>
-                            </div>
-                        </li>
-                        <li class="comment-item">
-                            <div class="image">
-                                <img src="images/avatar/user-4.png" alt="">
-                            </div>
-                            <div class="">
-                                <div class="mb-4 name">
-                                    <a href="all-user.html" class="body-title-2">Devon Lane</a>
-                                </div>
-                                <div class="ratings mb-10">
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1"></i>
-                                </div>
-                                <div class="text-tiny">Morbi eget commodo diam. Praesent dignissim purus ac turpis porta</div>
-                            </div>
-                        </li>
-                        <li class="comment-item">
-                            <div class="image">
-                                <img src="images/avatar/user-5.png" alt="">
-                            </div>
-                            <div class="">
-                                <div class="mb-4 name">
-                                    <a href="all-user.html" class="body-title-2">Eleanor Pena</a>
-                                </div>
-                                <div class="ratings mb-10">
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1"></i>
-                                </div>
-                                <div class="text-tiny">Phasellus et eros ullamcorper, efficitur eros eget, pharetra ante. Sed blandit risus vitae dolor feugiat, eu vulputate elit rhoncus</div>
-                            </div>
-                        </li>
-                        <li class="comment-item">
-                            <div class="image">
-                                <img src="images/avatar/user-2.png" alt="">
-                            </div>
-                            <div class="">
-                                <div class="mb-4 name">
-                                    <a href="all-user.html" class="body-title-2">Kathryn Murphy</a>
-                                </div>
-                                <div class="ratings mb-10">
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1"></i>
-                                </div>
-                                <div class="text-tiny">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec dolor vel est interdum</div>
-                            </div>
-                        </li>
-                        <li class="comment-item">
-                            <div class="image">
-                                <img src="images/avatar/user-3.png" alt="">
-                            </div>
-                            <div class="">
-                                <div class="mb-4 name">
-                                    <a href="all-user.html" class="body-title-2">Leslie Alexander</a>
-                                </div>
-                                <div class="ratings mb-10">
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1"></i>
-                                </div>
-                                <div class="text-tiny">Cras nec viverra justo, a mattis lacus. Vestibulum eleifend, leo sit amet aliquam laoreet, turpis leo vulputate orci</div>
-                            </div>
-                        </li>
-                        <li class="comment-item">
-                            <div class="image">
-                                <img src="images/avatar/user-4.png" alt="">
-                            </div>
-                            <div class="">
-                                <div class="mb-4 name">
-                                    <a href="all-user.html" class="body-title-2">Devon Lane</a>
-                                </div>
-                                <div class="ratings mb-10">
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1"></i>
-                                </div>
-                                <div class="text-tiny">Morbi eget commodo diam. Praesent dignissim purus ac turpis porta</div>
-                            </div>
-                        </li>
-                        <li class="comment-item">
-                            <div class="image">
-                                <img src="images/avatar/user-5.png" alt="">
-                            </div>
-                            <div class="">
-                                <div class="mb-4 name">
-                                    <a href="all-user.html" class="body-title-2">Eleanor Pena</a>
-                                </div>
-                                <div class="ratings mb-10">
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1 active"></i>
-                                    <i class="icon-star1"></i>
-                                </div>
-                                <div class="text-tiny">Phasellus et eros ullamcorper, efficitur eros eget, pharetra ante. Sed blandit risus vitae dolor feugiat, eu vulputate elit rhoncus</div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /new-comment -->
+           
             </div>
         </div>
         <!-- /main-content-wrap -->
