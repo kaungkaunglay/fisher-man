@@ -101,7 +101,6 @@ class CartController extends Controller
 
     public function delete($product_id)
     {
-        dd($product_id);
         if(!Product::where('id',$product_id)->exists()){
             return response()->json(['status' => false, 'message' => 'Product not found']);
         }
