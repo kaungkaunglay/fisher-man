@@ -67,7 +67,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/profile')->middleware('check_role')->name('profile');
 
-
     Route::middleware(['is_seller'])->group(function () {
         Route::get('/profile/seller', [ProfileController::class,'seller_profile'])->name('profile_seller');
     });
@@ -75,10 +74,49 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['is_buyer'])->group(function () {
         Route::get('/profile/user', [ProfileController::class,'user_profile'])->name('profile_user');
     });
+    Route::middleware(['is_admin'])->group(function () {
+        // sub categories
+        Route::get('/admin/sub-categories', [SubCategoriesController::class, 'index'])->name('admin.sub_categories');
+        Route::get('/admin/sub-categories/create', [SubCategoriesController::class, 'create'])->name('create_sub_category');
+        Route::post('/admin/sub-categories', [SubCategoriesController::class, 'store'])->name('add_sub_category');
+        Route::get('/admin/sub-categories/{sub_category}/edit', [SubCategoriesController::class, 'edit'])->name('admin.sub_categories.edit');
+        Route::put('/admin/sub-categories/{sub_category}', [SubCategoriesController::class, 'update'])->name('update_sub_category');
+        Route::delete('/admin/sub-categories/{sub_category}', [SubCategoriesController::class, 'destroy'])->name('admin.sub_categories.destroy');
+
+        // Product Routes
+        Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products');
+        Route::get('/admin/products/create', [ProductController::class, 'create'])->name('create_product');
+        Route::post('/admin/products', [ProductController::class, 'store'])->name('add_product');
+        Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+        Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('update_product');
+        Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+
+        //FAQs
+        Route::get('/admin/faqs', [AdminController::class, 'all_faqs'])->name('admin.faqs');
+        Route::get('/admin/faq/create', [AdminController::class, 'faq'])->name('create_faq');
+        Route::post('/admin/faq', [AdminController::class, 'store'])->name('add_faq');
+        Route::get('/admin/faqs/{faq}/edit', [AdminController::class, 'edit'])->name('admin.faqs.edit');
+        Route::put('/admin/faqs/{faq}', [AdminController::class, 'update'])->name('update_faq');
+        Route::delete('/admin/faqs/{faq}', [AdminController::class, 'destroy'])->name('admin.faqs.destroy');
+        // Admin Controller
+        Route::get('/admin', [AdminController::class, 'home'])->name('admin.index');
+        Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
+        Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
+        Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+        Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
+        Route::post('/admin/mail', [MailController::class, 'sendmail'])->name('mail.reset');
+
+        //admin settings
+        Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
+        Route::post('/admin/settings/save', [AdminController::class, 'save'])->name('admin.settings.save');
+
+    });
 
 });
 
 
+// Product detail
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
 Route::get('/category', function () {
     return view('category');
@@ -107,17 +145,6 @@ Route::get('/cart-process', [CartController::class, 'index'])->name('cart-proces
 Route::delete('/cart/delete/{$product_id}',[CartController::class, 'remove_cart'])->name('cart.delete');
 Route::post('/add-to-cart',[CartController::class, 'addToCart'])->name('add_to_cart');
 
-// Admin Controller
-Route::get('/admin', [AdminController::class, 'home'])->name('admin.index');
-Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
-Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
-Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
-Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
-Route::post('/admin/mail', [MailController::class, 'sendmail'])->name('mail.reset');
-
-//admin settings
-Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
-Route::post('/admin/settings/save', [AdminController::class, 'save'])->name('admin.settings.save');
 
 // Admin auth
 Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
@@ -132,33 +159,6 @@ Route::get('/admin/categories/{category}/edit', [CategoriesController::class, 'e
 Route::put('/admin/categories/{category}', [CategoriesController::class, 'update'])->name('update_category');
 Route::delete('/admin/categories/{category}', [CategoriesController::class, 'destroy'])->name('admin.categories.destroy');
 
-// sub categories
-
-Route::get('/admin/sub-categories', [SubCategoriesController::class, 'index'])->name('admin.sub_categories');
-Route::get('/admin/sub-categories/create', [SubCategoriesController::class, 'create'])->name('create_sub_category');
-Route::post('/admin/sub-categories', [SubCategoriesController::class, 'store'])->name('add_sub_category');
-Route::get('/admin/sub-categories/{sub_category}/edit', [SubCategoriesController::class, 'edit'])->name('admin.sub_categories.edit');
-Route::put('/admin/sub-categories/{sub_category}', [SubCategoriesController::class, 'update'])->name('update_sub_category');
-Route::delete('/admin/sub-categories/{sub_category}', [SubCategoriesController::class, 'destroy'])->name('admin.sub_categories.destroy');
-
-// Product Routes
-Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products');
-Route::get('/admin/products/create', [ProductController::class, 'create'])->name('create_product');
-Route::post('/admin/products', [ProductController::class, 'store'])->name('add_product');
-Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
-Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('update_product');
-Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
-
-// Product detail
-Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
-
-//FAQs
-Route::get('/admin/faqs', [AdminController::class, 'all_faqs'])->name('admin.faqs');
-Route::get('/admin/faq/create', [AdminController::class, 'faq'])->name('create_faq');
-Route::post('/admin/faq', [AdminController::class, 'store'])->name('add_faq');
-Route::get('/admin/faqs/{faq}/edit', [AdminController::class, 'edit'])->name('admin.faqs.edit');
-Route::put('/admin/faqs/{faq}', [AdminController::class, 'update'])->name('update_faq');
-Route::delete('/admin/faqs/{faq}', [AdminController::class, 'destroy'])->name('admin.faqs.destroy');
 
 Route::get('/login/line', function () {
     return Socialite::driver('line')->redirect();
