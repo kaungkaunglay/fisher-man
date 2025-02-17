@@ -21,8 +21,8 @@
     @yield('style')
 
     <!-- Favicon and Touch Icons  -->
-    <link rel="shortcut icon" href="admin/images/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="admin/images/favicon.png">
+    <link rel="shortcut icon" href="{{asset('assets/images/Logo only.png')}}">
+    <link rel="apple-touch-icon-precomposed" href="{{asset('assets/images/Logo only.png')}}">
 
 </head>
 
@@ -157,11 +157,32 @@
                                         </ul>
                                     </li>
                                 </ul>
+                                <ul class="menu-list">
+                                    <li class="menu-item has-children {{ request()->is('admin/userRequest*') ? 'active' : '' }}">
+                                        <a href="javascript:void(0);" class="menu-item-button">
+                                            <div class="icon"><i class="icon-user"></i></div>
+                                            <div class="text">User Request</div>
+                                        </a>
+                                        <ul class="sub-menu" style="display: block;">
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('admin.users.contact')}}" class="{{request()->is('admin/users/request-contact') ? 'active' : ''}}">
+                                                    <div class="text">Contact Form</div>
+                                                </a>
+                                            </li>
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('admin.users.wishList')}}" class="{{request()->is('admin/users/request-wishList') ? 'active' : ''}}">
+                                                    <div class="text">Wish List Form</div>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="center-item">
                                 <div class="center-heading">Manage FAQs</div>
                                 <ul class="menu-list">
-                                    <li class="menu-item has-children {{ request()->is('admin/user*') ? 'active' : '' }}">
+                                    <li class="menu-item has-children {{ request()->is('admin/faq*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-user"></i></div>
                                             <div class="text">FAQs</div>
@@ -185,14 +206,14 @@
                             <div class="center-item">
                                 <div class="center-heading">Manage System Data</div>
                                 <ul class="menu-list">
-                                    <li class="menu-item has-children {{ request()->is('admin/user*') ? 'active' : '' }}">
+                                    <li class="menu-item has-children {{ request()->is('admin/setting*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-user"></i></div>
                                             <div class="text">System Data</div>
                                         </a>
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
-                                                <a href="{{route('admin.settings')}}" class="{{request()->is('admin/setting') ? 'active' : ''}}">
+                                                <a href="{{route('admin.settings')}}" class="{{request()->is('admin/settings') ? 'active' : ''}}">
                                                     <div class="text">All system Data</div>
                                                 </a>
                                             </li>
@@ -243,7 +264,7 @@
                                                 <ul>
                                                     <li class="product-item gap14 mb-10">
                                                         <div class="image no-bg">
-                                                            <img src="admin/images/products/17.png" alt="">
+                                                            <img src="{{asset('assets/admin/images/products/17.png')}}" alt="">
                                                         </div>
                                                         <div class="flex items-center justify-between gap20 flex-grow">
                                                             <div class="name">
@@ -256,7 +277,7 @@
                                                     </li>
                                                     <li class="product-item gap14 mb-10">
                                                         <div class="image no-bg">
-                                                            <img src="admin/images/products/18.png" alt="">
+                                                            <img src="{{asset('assets/admin/images/products/18.png')}}" alt="">
                                                         </div>
                                                         <div class="flex items-center justify-between gap20 flex-grow">
                                                             <div class="name">
@@ -269,7 +290,7 @@
                                                     </li>
                                                     <li class="product-item gap14">
                                                         <div class="image no-bg">
-                                                            <img src="admin/images/products/19.png" alt="">
+                                                            <img src="{{asset('assets/admin/images/products/19.png')}}" alt="">
                                                         </div>
                                                         <div class="flex items-center justify-between gap20 flex-grow">
                                                             <div class="name">
@@ -291,7 +312,7 @@
                                                 <ul>
                                                     <li class="product-item gap14 mb-10">
                                                         <div class="image no-bg">
-                                                            <img src="admin/images/products/20.png" alt="">
+                                                            <img src="{{asset('assets/admin/images/products/20.png')}}" alt="">
                                                         </div>
                                                         <div class="flex items-center justify-between gap20 flex-grow">
                                                             <div class="name">
@@ -304,7 +325,7 @@
                                                     </li>
                                                     <li class="product-item gap14 mb-10">
                                                         <div class="image no-bg">
-                                                            <img src="admin/images/products/21.png" alt="">
+                                                            <img src="{{asset('assets/admin/images/products/21.png')}}" alt="">
                                                         </div>
                                                         <div class="flex items-center justify-between gap20 flex-grow">
                                                             <div class="name">
@@ -317,7 +338,7 @@
                                                     </li>
                                                     <li class="product-item gap14 mb-10">
                                                         <div class="image no-bg">
-                                                            <img src="admin/images/products/22.png" alt="">
+                                                            <img src="{{asset('assets/admin/images/products/22.png')}}" alt="">
                                                         </div>
                                                         <div class="flex items-center justify-between gap20 flex-grow">
                                                             <div class="name">
@@ -330,7 +351,7 @@
                                                     </li>
                                                     <li class="product-item gap14">
                                                         <div class="image no-bg">
-                                                            <img src="admin/images/products/23.png" alt="">
+                                                            <img src="{{asset('assets/admin/images/products/23.png')}}" alt="">
                                                         </div>
                                                         <div class="flex items-center justify-between gap20 flex-grow">
                                                             <div class="name">
@@ -369,7 +390,7 @@
                                             <li>
                                                 <div class="noti-item w-full wg-user">
                                                     <div class="image">
-                                                        <img src="{{asset('admin/images/avatar/user-11.png')}}" alt="">
+                                                        <img src="{{asset('assets/admin/images/avatar/user-11.png')}}" alt="">
                                                     </div>
                                                     <div class="flex-grow">
                                                         <div class="flex items-center justify-between">
@@ -383,7 +404,7 @@
                                             <li>
                                                 <div class="noti-item w-full wg-user active">
                                                     <div class="image">
-                                                        <img src="{{asset('admin/images/avatar/user-12.png')}}" alt="">
+                                                        <img src="{{asset('assets/admin/images/avatar/user-12.png')}}" alt="">
                                                     </div>
                                                     <div class="flex-grow">
                                                         <div class="flex items-center justify-between">
@@ -397,7 +418,7 @@
                                             <li>
                                                 <div class="noti-item w-full wg-user active">
                                                     <div class="image">
-                                                        <img src="{{asset('admin/images/avatar/user-13.png')}}" alt="">
+                                                        <img src="{{asset('assets/admin/images/avatar/user-13.png')}}" alt="">
                                                     </div>
                                                     <div class="flex-grow">
                                                         <div class="flex items-center justify-between">
@@ -411,7 +432,7 @@
                                             <li>
                                                 <div class="noti-item w-full wg-user active">
                                                     <div class="image">
-                                                        <img src="admin/images/avatar/user-11.png" alt="">
+                                                        <img src="{{asset('assets/admin/images/avatar/user-11.png')}}" alt="">
                                                     </div>
                                                     <div class="flex-grow">
                                                         <div class="flex items-center justify-between">
@@ -496,7 +517,7 @@
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
                                             <span class="header-user wg-user">
                                                 <span class="image">
-                                                    <img src="{{asset('admin/images/avatar/user-1.png')}}" alt="">
+                                                    <img src="{{asset('assets/admin/images/avatar/user-1.png')}}" alt="">
                                                 </span>
                                                 <span class="flex flex-column">
                                                     <span class="body-title mb-2">Kristin Watson</span>

@@ -13,6 +13,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WhiteListController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\SubCategoriesController;
 
 /*
@@ -146,6 +147,23 @@ Route::post('/add-to-cart',[CartController::class, 'addToCart'])->name('add_to_c
 Route::delete('/cart/delete/{product_id}',[CartController::class, 'delete'])->name('cart.delete');
 
 
+// Admin Controller
+Route::get('/admin', [AdminController::class, 'home'])->name('admin.index');
+Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
+Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
+Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
+Route::post('/admin/mail', [MailController::class, 'sendmail'])->name('mail.reset');
+
+//User Request
+Route::get('/admin/users/request-contact', [AdminController::class, 'contact'])->name('admin.users.contact');
+Route::get('/admin/users/wishList', [AdminController::class, 'wishList'])->name('admin.users.wishList');
+
+//admin settings
+Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
+Route::post('/admin/settings/save', [AdminController::class, 'save'])->name('admin.settings.save');
+
+
 // Admin auth
 Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'login_store'])->name('admin.login_store');
@@ -159,8 +177,24 @@ Route::get('/admin/categories/{category}/edit', [CategoriesController::class, 'e
 Route::put('/admin/categories/{category}', [CategoriesController::class, 'update'])->name('update_category');
 Route::delete('/admin/categories/{category}', [CategoriesController::class, 'destroy'])->name('admin.categories.destroy');
 
+// Line Auth
 Route::get('/login/line', function () {
     return Socialite::driver('line')->redirect();
 })->name('line.login');
 
-Route::get('/login/line/callback', [LineController::class, 'handleLineCallback']);
+Route::get('/login/line/callback', [OAuthController::class, 'handleLineCallback']);
+
+// Google Auth  
+Route::get('/auth/google', function () {
+    return Socialite::driver('google')->redirect();
+})->name('google.login');
+
+Route::get('/login/google/callback', [OAuthController::class, 'handleGoogleCallback']);
+
+// Facebook Auth
+Route::get('/auth/facebook', function () {
+    return Socialite::driver('facebook')->redirect();
+})->name('facebook.login');
+
+Route::get('/login/facebook/callback', [OAuthController::class, 'handleFacebookCallback']); 
+

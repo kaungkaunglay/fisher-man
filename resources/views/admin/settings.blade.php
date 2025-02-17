@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="{{ asset('assets/admin/icon/style.css') }}">
 @endsection
 @section('contents')
-{{-- @dd($settings) --}}
+{{-- @dd($settings['logo']) --}}
 <div class="main-content-inner">
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
@@ -86,8 +86,10 @@
                     <div class="body-title mb-10">Logo</div>
                     <div class="upload-image mb-16">
                         <div class="item">
-                            @if(isset($settings['logo']) && $settings['logo'])
-                                <img src="{{ asset('storage/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="{{ $settings['logo'] }}">
+                            @if(isset($settings['logo']) && $settings['logo'] && file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
+                                <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="{{ $settings['logo'] }}">  
+                                @else
+                                <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="{{ $settings['logo'] }}">  
                             @endif
                         </div>
                         <div class="item up-load">
