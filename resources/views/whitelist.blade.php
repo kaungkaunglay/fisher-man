@@ -166,7 +166,7 @@
                     },
                     success: function(response) {
                         if(response.status){
-                            window.location.href = "{{ route('cart-process') }}";
+                            window.location.href = "{{ route('cart') }}";
                         }
 
                         if(!response.status){
@@ -206,7 +206,7 @@
                     },
                     success: function(response) {
                         if(response.status){
-                            location.href = "{{ route('cart-process') }}";
+                            location.href = "{{ route('cart') }}";
                         }
 
                         if(response.status == false){

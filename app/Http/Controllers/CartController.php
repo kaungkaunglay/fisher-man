@@ -44,19 +44,19 @@ class CartController extends Controller
     {
         $product_ids = $request->input('product_ids') ? array_unique($request->input('product_ids')) : null;
 
+        if($product_ids === null){
+            return response()->json([
+                'status' => true,
+                'message' => "You doesn't choice any product"
+            ]);
+        }
+
         if(!Auth::check()){
 
             session()->forget('cart');
 
             $cart = session('cart',[]);
 
-
-            if($product_ids === null){
-                return response()->json([
-                    'status' => true,
-                    'message' => "You doesn't choice any product"
-                ]);
-            }
 
             foreach($product_ids as $product_id){
                 if(!in_array($product_id,$cart)){
@@ -71,17 +71,15 @@ class CartController extends Controller
         }
 
         $user = Auth::user();
-        $existing_product_ids = $user->carts->pluck('product_id')->toArray();
+        $existing_product_id = $user->carts ? $user->carts()->pluck('id')->toArray() : [];
 
-        if(!is_array($product_ids) || !is_array($existing_product_ids)){
-            return response()->json(['status' => true, 'message' => 'Something was wrong']);
-        }
 
-        logger(array_diff($product_ids, $existing_product_ids));
+        dd($cart);
 
-        if(empty($new_product_ids)){
-            return response()->json(['status' => false, 'message' => 'Product already added to cart']);
-        }
+        return response()->json([
+            'status' => true,
+            'message' => 'Products added to cart'
+        ]);
 
         foreach($new_product_ids as $product_id){
             $cart = new Cart();

@@ -71,7 +71,7 @@
                                 </td>
                                 <td class="cost"></td>
                                 <td class="col-remove">
-                                    <a href="javascript:void(0);" class="mx-auto dsk-del-btn"
+                                    <a href="javascript:void(0);" class="mx-auto dsk-cart-del-btn"
                                         data-id="{{ $item->product->id }}">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </a>
@@ -118,7 +118,7 @@
                                         <button class="btn increment">+</button>
                                     </div>
                                 </div>
-                                <a href="javascript:void(0);" class="btn mb-del-btn" data-id="{{ $item->product->id }}">
+                                <a href="javascript:void(0);" class="btn mb-dsk-del-btn" data-id="{{ $item->product->id }}">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </a>
                             </div>
@@ -534,4 +534,46 @@
     </div>
 
     <script src="{{ asset('assets/js/cart.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            // for desktop
+            // desktop delete button
+            $('.dsk-cart-del-btn').click(function(){
+                const getid = $(this).data('id');
+
+                $.ajax({
+                    url: `/cart/delete/${getid}`,
+                    type: "DELETE",
+                    data: {
+                        id: getid
+                    },
+                    success: function(response) {
+                        location.reload();
+                    }
+                });
+            });
+
+            // mobile delete button
+            $('.mb-cart-del-btn').click(function(){
+                const getid = $(this).data('id');
+
+                $.ajax({
+                    url: `cart/delete/${getid}`,
+                    type: "DELETE",
+                    data: {
+                        id: getid
+                    },
+                    success: function(response) {
+                        location.reload();
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
