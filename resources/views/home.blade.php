@@ -4,7 +4,6 @@
     <!-- <link rel="stylesheet" href="{{ asset('assets/css/category.css') }}"> -->
 @endsection
 
-
 @section('contents')
     <section class="hero mt-5 container-custom">
         <div class="row justify-content-between">

@@ -157,7 +157,7 @@ class AdminController extends Controller
 
 
     public function logout(){
-        session()->forget('admin_user_id');
+        Auth::logout(); 
         return redirect()->route('admin.login');
     }
 

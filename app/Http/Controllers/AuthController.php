@@ -143,7 +143,7 @@ class AuthController extends Controller
                 $remember = $request->has('remember') && $request->remember == 1;
 
                 Auth::login($user,$remember);
-
+                    
                 return response()->json(['status' => true, 'message' => 'Login success', 'errors'=> '']);
             }
 
