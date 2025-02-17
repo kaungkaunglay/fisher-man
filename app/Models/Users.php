@@ -20,10 +20,12 @@ class Users extends Authenticatable implements CanResetPassword
         'first_phone',
         'second_phone',
         'line_id',
+        'facebook_id', 
+        'google_id', 
         'remember_token',
         'ship_name',
         'first_org_name',
-        'trans_management',
+        'trans_management', 
         'avatar',
         'location',
         'address'

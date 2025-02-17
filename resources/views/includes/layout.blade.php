@@ -27,13 +27,17 @@
 <body>
 
   <!-- header section start -->
-  <header>
+  <header class="position-relative">
     <div class="container-custom">
       <div class="header">
         <div class="top-header">
           <div class="logo">
             <a href="{{url('/')}}">
-              <img src="{{ asset('storage/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="logo">
+              @if(file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
+              <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="logo">
+              @else
+                <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="logo">  
+              @endif
             </a>
           </div>
           <div class="input-group">
@@ -45,17 +49,10 @@
               <i class="fa-solid fa-cart-shopping icon"></i>
             </a>
             <a href="{{ route('white_list.index')}}">
-              <i class="fa-solid fa-bookmark"></i>
+              <i class="fa-solid fa-bookmark icon"></i>
             </a>
-            <a href="{{ url('/profile') }}">
-              <i class="fa-solid fa-user"></i>
-            </a>
-            <button href="{{url('/login')}} btn-login position-relative">
+            <button class="btn-login">
               <i class="fa-solid fa-user icon"></i>
-              <ul class="dropdown position-absolute bg-white">
-                <li class="py-3"><a href="#" class="px-3 d-flex gap-2 text-black text-center"><i class="fa-solid fa-address-card icon"></i>Profile</a></li>
-                <li class="py-3"><a href="#" class="px-3 d-flex gap-2 text-black text-center"><i class="fas fa-door-open icon"></i>Logout</a></li>
-              </ul>
             </button>
           </div>
         </div>
@@ -77,6 +74,12 @@
           </nav>
         </div>
       </div>
+    </div>
+    <div class="dropdown w-100 position-absolute d-flex justify-content-end">
+      <ul class="bg-white">
+        <li class="py-3"><a href="{{ url('/profile') }}" class="px-3 d-flex gap-2 text-black text-center"><i class="fa-solid fa-address-card icon"></i>Profile</a></li>
+        <li class="py-3"><a href="{{url('/login')}}" class="px-3 d-flex gap-2 text-black text-center"><i class="fas fa-door-open icon"></i>Logout</a></li>
+      </ul>
     </div>
   </header>
 
@@ -107,10 +110,11 @@
         <div class="container-custom">
             <div class="row justify-content-around w-100 pb-3">
                     <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white">
-                      {{-- @if($settings['logo']) --}}
-                      <a href="{{route('home')}}"><img src="{{ asset('storage/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="Site Logo"  class="logo">
-                      </a>
-                      {{-- @endif --}}
+                      @if(file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
+                      <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="logo">
+                      @else
+                        <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" alt="logo">  
+                      @endif
 
                     {{-- <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo" alt=""></a> --}}
                     <p class="text-center txt-18">Who We Are: Your Trusted Source for Fresh Seafood.</p>
@@ -180,7 +184,6 @@
   <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
   <script>
     $(document).ready(() => {
-
 
       $('.btn-login').click(()=> {
 
