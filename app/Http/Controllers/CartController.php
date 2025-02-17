@@ -46,17 +46,14 @@ class CartController extends Controller
 
         if($product_ids === null){
             return response()->json([
-                'status' => true,
+                'status' => false,
                 'message' => "You doesn't choice any product"
             ]);
         }
 
         if(!Auth::check()){
 
-            session()->forget('cart');
-
             $cart = session('cart',[]);
-
 
             foreach($product_ids as $product_id){
                 if(!in_array($product_id,$cart)){
@@ -71,15 +68,19 @@ class CartController extends Controller
         }
 
         $user = Auth::user();
-        $existing_product_id = $user->carts ? $user->carts()->pluck('id')->toArray() : [];
+        $existing_product_ids = $user->carts ? $user->carts()->pluck('id')->toArray() : [];
 
+        $new_product_ids = array_diff($product_ids,$existing_product_ids);
 
-        dd($cart);
+        // dd($new_product_ids);
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Products added to cart'
-        ]);
+        if(empty($new_product_ids)){
+            return response()->json([
+                'status' => true,
+                'message' => 'Products added to cart'
+            ]);
+        }
+
 
         foreach($new_product_ids as $product_id){
             $cart = new Cart();
@@ -112,20 +113,20 @@ class CartController extends Controller
 
             session()->flash('status','error');
             session()->flash('message','Product removed from cart');
-            return response()->json(['message' => 'Product removed from cart']);
+            return response()->json(['status'=> true,'message' => 'Product removed from cart']);
         }
 
         $user = Auth::user();
 
-        if(!$user->carts->where('product_id',$product_id)->exists()){
+        if(!$user->carts()->where('product_id',$product_id)->exists()){
             return response()->json(['status' => false, 'message' => 'Product not found in cart']);
         }
 
-        $user->carts->where('product_id',$product_id)->delete();
+        $user->carts()->where('product_id',$product_id)->delete();
 
         session()->flash('status','error');
         session()->flash('message','Product removed from cart');
-        return response()->json(['message' => 'Product removed from cart']);
+        return response()->json(['status' => true,'message' => 'Product removed from cart']);
 
     }
 }
