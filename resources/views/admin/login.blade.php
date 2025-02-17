@@ -77,7 +77,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="text-tiny">Copyright © 2024 Remos, All rights reserved.</div>
+                <div class="text-tiny">Copyright © <?php echo date('Y') ?> r-mekiki.com, All rights reserved.</div>
             </div>
         </div>
         <!-- /#page -->

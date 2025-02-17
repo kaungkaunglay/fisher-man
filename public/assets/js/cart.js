@@ -1,6 +1,8 @@
 
 $(document).ready(() => {
 
+  document.body.getClientRects()
+
   // track id code to show page
   const page = $(location).attr('href');
   if (page.includes('#address')) showPage('#address');
@@ -9,13 +11,13 @@ $(document).ready(() => {
   else showPage('#checkout');
 
   // forward
-  change_step('#checkout .btn-next');
-  change_step('#address .btn-next');
-  change_step('#payment .btn-next');
+  change_step('#checkout .btn-next', 2);
+  change_step('#address .btn-next', 3);
+  change_step('#payment .btn-next', 4);
 
   //backward
-  change_step('#payment .btn-back');
-  change_step('#address .btn-back');
+  change_step('#payment .btn-back', 2);
+  change_step('#address .btn-back', 0);
   change_step('#checkout .btn-back');
 
   // for popup 
@@ -182,7 +184,7 @@ function skipStepTester() {
 }
 
 // step chaging function
-function change_step(trigger) {
+function change_step(trigger, point) {
 
   $(trigger).click((ev) => {
     ev.preventDefault();
@@ -190,6 +192,7 @@ function change_step(trigger) {
     const header = $('header').outerHeight() || 0;
     const dir = ev.currentTarget.classList.contains('btn-next') ? true : false; //true for forward dir & false for backward dir
     const index = ($('.page').index(ev.currentTarget.closest('.page')));
+    const progress = document.querySelector('.progress');
 
     // 
     if (dir) {
@@ -202,6 +205,8 @@ function change_step(trigger) {
       }
     }
 
+    progress.style.width = `calc((100% / 4) * ${point}`
+
     $($(trigger).closest('.page')).hide();
     $($(trigger).attr('href')).fadeIn();
 
@@ -212,7 +217,6 @@ function change_step(trigger) {
   })
 }
 
-// address form input show
-function formShow() {
+function progress() {
   
 }

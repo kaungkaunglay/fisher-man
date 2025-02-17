@@ -34,15 +34,15 @@
                 </li>
             </ul>
         </div>
-        
+
         <!-- form-add-product -->
-        <form class="tf-section-custom form-add-product" action="{{ isset($faq) ? route('update_faq', $faq->id) : route('add_faq') }}" method="POST" enctype="multipart/form-data">
-        <!-- {{ isset($faq) ? route('update_faq', $faq->id) : route('add_faq') }} -->
+        <form class="tf-section-custom form-add-product" action="{{ isset($faq) ? route('update_faq', $faq->id) : route('add_faq') }}" method="POST">
+
             @csrf
-            @if(isset($faq)) @method('PUT') @endif
+            {{-- @if(isset($faq)) @method('PUT') @endif --}}
 
             <!-- Check for validation errors -->
-            @if ($errors->any())
+            {{-- @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -50,20 +50,30 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
+            @endif --}}
 
             <div class="wg-box">
                 <fieldset class="name">
                     <div class="body-title mb-10">FAQ Question <span class="tf-color-1">*</span></div>
-                    <input class="mb-10" type="text" placeholder="Enter faq question" name="question" value="{{ old('question', $faq->question ?? '') }}" required>
+                    <input class="mb-10 @error('question') is-invalid @enderror" type="text" placeholder="Enter faq question" name="question" value="{{ old('question', $faq->question ?? '') }}">
+                    @error('question')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <!-- <div class="text-tiny">Do not exceed 255 characters when entering the product name.</div> -->
                 </fieldset>
                 <fieldset class="description">
                     <div class="body-title mb-10">FAQ Answer</div>
-                    <textarea class="mb-10" name="answer" placeholder="Enter faq answer">{{ old('answer', $faq->answer ?? '') }}</textarea>
+                    <textarea class="mb-10 @error('answer') is-invalid @enderror" name="answer" placeholder="Enter faq answer">{{ old('answer', $faq->answer ?? '') }}</textarea>
+                    @error('answer')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                     <!-- <div class="text-tiny">Do not exceed 255 characters when entering the product description.</div> -->
                 </fieldset>
-            </div> 
+            </div>
 
             <div class="cols gap10">
                 <button class="tf-button w-full" type="submit">{{ isset($faq) ? 'Update FAQ' : 'Add FAQ' }}</button>

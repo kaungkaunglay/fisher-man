@@ -159,14 +159,14 @@
                 });
 
                 $.ajax({
-                    url: "",
-                    type: "DELETE",
+                    url: "{{ route('add_to_cart')}}",
+                    type: "POST",
                     data: {
-                        products: selected_products
+                        product_ids: selected_products
                     },
                     success: function(response) {
                         if(response.status == "success"){
-                            location.href = "{{ route('cart') }}";
+                            window.location.href = "{{ route('cart-process') }}";
                         }
 
                         if(response.status == false){
@@ -199,14 +199,14 @@
                 });
 
                 $.ajax({
-                    url: "",
+                    url: "{{ route('add_to_cart')}}",
                     type: "POST",
                     data: {
-                        products: selected_products
+                        product_ids: selected_products
                     },
                     success: function(response) {
                         if(response.status){
-                            location.href = "{{ route('cart') }}";
+                            location.href = "{{ route('cart-process') }}";
                         }
 
                         if(response.status == false){

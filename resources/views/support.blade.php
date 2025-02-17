@@ -5,6 +5,7 @@
 @section('contents')
 <div class="container m-t-20">
 
+
     <!-- Breadcrumbs -->
     <nav aria-label="breadcrumb" class="py-4">
         <div class="container">
@@ -40,7 +41,14 @@
         </div>
     <!-- support form  -->
     <div class="container support-form">
-        <div class="row ">
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
+
+        <div class="row">
+
             <!-- Left Column -->
             <div class="col-md-6">
                 <div class="contact-form">
@@ -51,28 +59,53 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name</label>
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name">
+                                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter your name">
+                                    @error('name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-md-6 mb-mobile-3">
                                         <label for="line-id" class="form-label">Line ID</label>
-                                        <input type="text" name="line_id" class="form-control" id="line-id" placeholder="Enter your Line ID">
+                                        <input type="text" name="line_id" class="form-control @error('line_id') is-invalid @enderror" id="line-id" placeholder="Enter your Line ID">
+                                            @error('line_id')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                     </div>
                                     <div class="col-md-6">
                                         <label for="phone" class="form-label">Phone Number</label>
-                                        <input type="tel" name="phone" class="form-control" id="phone" placeholder="Enter your phone number">
+                                        <input type="tel" name="phone" class="form-control @error('phone') is-invalid @enderror" id="phone" placeholder="Enter your phone number">
+                                        @error('phone')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email">
+                                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Enter your email">
+                                    @error('email')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Description</label>
-                                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Enter your description"></textarea>
+                                    <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" rows="3" placeholder="Enter your description"></textarea>
+                                    @error('description')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <div class="text-center mb-mobile-3">
@@ -94,28 +127,53 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name</label>
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name">
+                                    <input type="text" name="wish_name" class="form-control @error('wish_name') is-invalid @enderror" id="name" placeholder="Enter your name">
+                                    @error('wish_name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-md-6 mb-mobile-3">
                                         <label for="line-id" class="form-label">Line ID</label>
-                                        <input type="text" name="lineID" class="form-control" id="line-id" placeholder="Enter your Line ID">
+                                        <input type="text" name="lineID" class="form-control @error('lineID') is-invalid @enderror" id="line-id" placeholder="Enter your Line ID">
+                                        @error('lineID')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="col-md-6">
                                         <label for="phone" class="form-label">Phone Number</label>
-                                        <input type="tel" name="phone" class="form-control" id="phone" placeholder="Enter your phone number">
+                                        <input type="tel" name="wish_phone" class="form-control @error('wish_phone') is-invalid @enderror" id="phone" placeholder="Enter your phone number">
+                                        @error('wish_phone')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email">
+                                    <input type="email" name="wish_email" class="form-control @error('wish_email') is-invalid @enderror" id="email" placeholder="Enter your email">
+                                    @error('wish_email')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Description</label>
-                                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Enter your description"></textarea>
+                                    <textarea class="form-control @error('wish_description') is-invalid @enderror" name="wish_description" id="description" rows="3" placeholder="Enter your description"></textarea>
+                                    @error('wish_description')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div class="text-center mb-mobile-3">
                                     <button type="submit" class="common-btn">Submit</button>

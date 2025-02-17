@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\FAQs;
 use App\Models\Users;
+use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -43,6 +45,51 @@ class AdminController extends Controller
         return view('admin.login');
     }
 
+    //settings
+
+    public function settings(){
+        // dd(Setting::where('key', 'contact_email'));
+        $settings = [
+            'contact_email' => Setting::where('key', 'contact_email')->value('value') ?? '',
+            'contact_phone' => Setting::where('key', 'contact_phone')->value('value') ?? '',
+            'contact_address' => Setting::where('key', 'contact_address')->value('value') ?? '',
+            'logo' => Setting::where('key', 'logo')->value('value') ?? '',
+        ];
+        return view('admin.settings',compact('settings'));
+    }
+
+    public function save(Request $request){
+
+        $request->validate([
+            'contact_email' => 'required|email',
+            'contact_phone' => 'required',
+            'contact_address' => 'required',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        $settings = [
+            'contact_email' => request('contact_email'),
+            'contact_phone' => request('contact_phone'),
+            'contact_address' => request('contact_address'),
+        ];
+        // dd("here");
+
+        foreach ($settings as $key => $value) {
+            Setting::updateOrCreate(['key' => $key], ['value' => $value]);
+        }
+
+        // Handle Logo Upload
+        if ($request->hasFile('logo')) {
+            // dd('hit');
+            $file = $request->file('logo');
+            $imageName = time() . '.' . $file->getClientOriginalExtension(); // Generate unique name
+            $file->storeAs('images', $imageName, 'public'); // Store in storage/app/public/logos
+
+            Setting::updateOrCreate(['key' => 'logo'], ['value' => $imageName]);
+        }
+
+        return back()->with('success', 'Settings updated successfully.');
+    }
+
     public function login_store(Request $request){
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
@@ -55,7 +102,7 @@ class AdminController extends Controller
             $user = Users::where('email', $request->email)->first();
 
             if($user && Hash::check($request->password, $user->password)){
-                session()->put('admin_user_id', $user->id);
+                Auth::login($user);
                 return response()->json(['status' => true, 'message' => 'Login success', 'errors'=> '']);
             }
 

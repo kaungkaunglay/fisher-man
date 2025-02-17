@@ -51,7 +51,7 @@ class Users extends Authenticatable implements CanResetPassword
 
     public function carts()
     {
-        return $this->hasMany(Cart::class);
+        return $this->hasMany(Cart::class, 'user_id' , 'id');
     }
 
 }

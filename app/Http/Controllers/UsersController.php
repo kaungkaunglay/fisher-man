@@ -256,24 +256,24 @@ class UsersController extends Controller
 
     Mail::to($request->email)->send(new ThankYouMail($contact));
 
-        return redirect()->back()->with('success', 'Your message has been sent successfully!');
+        return back()->with('success', 'Your message has been sent successfully!');
     }
     public function wishList(Request $request){
         $request->validate([
-            'name' => 'required',
+            'wish_name' => 'required',
             'lineID' => 'required',
-            'phone' => 'required',
-            'email' => 'required|email',
-            'description' => 'required'
+            'wish_phone' => 'required',
+            'wish_email' => 'required|email',
+            'wish_description' => 'required'
         ]);
-        
+
 
         $wishList = wishList::create([
-        'name' => $request->name,
-        'line_id' => $request->line_id,
-        'phone' => $request->phone,
-        'email' => $request->email,
-        'description' => $request->description,
+        'name' => $request->wish_name,
+        'line_id' => $request->lineID,
+        'phone' => $request->wish_phone,
+        'email' => $request->wish_email,
+        'description' => $request->wish_description,
     ]);
 
     Mail::to($request->email)->send(new ThankYouMailforWishList($wishList));

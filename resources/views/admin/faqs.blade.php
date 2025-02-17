@@ -14,6 +14,7 @@
 @endsection
 @section('contents')
 @include('messages.index')
+
 <!-- main-content-wrap -->
 <div class="main-content-inner">
     <!-- main-content-wrap -->
@@ -91,9 +92,9 @@
                 @foreach($faqs as $faq)
                 <ul class="flex flex-column">
                     <li class="product-item gap14">
-                    
+
                         <div class="flex items-center justify-between gap20 flex-grow">
-                    
+
                             <div class="body-text">{{ $faq->id }}</div>
                             <div class="body-text">{{ $faq->question }}</div>
                             <div class="body-text">{{ $faq->answer }}</div>
@@ -196,7 +197,7 @@
                         alert("Error deleting FAQ");
                     }
                 });
-          
+
         });
     });
 </script>
