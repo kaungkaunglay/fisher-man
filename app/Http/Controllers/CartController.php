@@ -35,7 +35,7 @@ class CartController extends Controller
 
         }
 
-        return view('cart_process',compact('carts'));
+        return view('cart',compact('carts'));
 
 
     }

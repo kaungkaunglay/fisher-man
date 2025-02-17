@@ -165,11 +165,11 @@
                         product_ids: selected_products
                     },
                     success: function(response) {
-                        if(response.status == "success"){
+                        if(response.status){
                             window.location.href = "{{ route('cart-process') }}";
                         }
 
-                        if(response.status == false){
+                        if(!response.status){
                             console.log(response.message);
                         }
                     }

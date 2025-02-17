@@ -49,10 +49,9 @@
                             </tr>
                         @endforeach
                     @else
-                    <tr>
-                        <td colspan="6" class="text-center">No product in the whitelist</td>
-                    </tr>
-
+                        <tr>
+                            <td colspan="6" class="text-center">No product in the whitelist</td>
+                        </tr>
                     @endif
                 </tbody>
                 <tfoot>
