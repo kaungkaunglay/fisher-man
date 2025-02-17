@@ -92,7 +92,7 @@
         </button>
       </li>
         @foreach($subcategories as $subcategory)
-          <li><a href="{{ route('sub_category') }}" class="menu-category">{{ $subcategory->name }}</a></li>
+          <li><a href="{{ route('sub-category.show', $subcategory->id) }}" class="menu-category">{{ $subcategory->name }}</a></li>
         @endforeach
     </ul>
   </div>

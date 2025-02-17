@@ -4,7 +4,6 @@
     <!-- <link rel="stylesheet" href="{{ asset('assets/css/category.css') }}"> -->
 @endsection
 
-
 @section('contents')
     <section class="hero mt-5 container-custom">
         <div class="row justify-content-between">
@@ -229,7 +228,6 @@
                     </div>
                 </div>
             </div>
-        </div>
 
             <div class="card-list" id="view-list">
                 @foreach ($products->filter(fn($product) => $product->discount > 0.0)->take(6) as $product)
@@ -255,7 +253,6 @@
                     </div>
                 @endforeach
             </div>
-
 
             <div class="row justify-content-center mx-0">
                 <div class="col-5 col-lg-3 text-center">

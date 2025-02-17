@@ -165,12 +165,12 @@
                         product_ids: selected_products
                     },
                     success: function(response) {
-                        if(response.status == "success"){
-                            location.href = "{{ route('cart-process') }}";
+                        if(response.status){
+                            window.location.href = "{{ route('cart') }}";
                         }
 
-                        if(response.status == false){
-                            alert(response.message);
+                        if(!response.status){
+                            console.log(response.message);
                         }
                     }
                 });
@@ -206,11 +206,11 @@
                     },
                     success: function(response) {
                         if(response.status){
-                            location.href = "{{ route('cart-process') }}";
+                            location.href = "{{ route('cart') }}";
                         }
 
                         if(response.status == false){
-                            alert(response.message);
+                            console.log(response.message);
                         }
                     }
                 });
