@@ -45,6 +45,9 @@ class CartController extends Controller
         $product_ids = $request->input('product_ids') ? array_unique($request->input('product_ids')) : null;
 
         if(!Auth::check()){
+
+            session()->forget('cart');
+
             $cart = session('cart',[]);
 
 
@@ -96,9 +99,9 @@ class CartController extends Controller
         ]);
     }
 
-    public function remove_cart($product_id)
+    public function delete($product_id)
     {
-
+        dd($product_id);
         if(!Product::where('id',$product_id)->exists()){
             return response()->json(['status' => false, 'message' => 'Product not found']);
         }

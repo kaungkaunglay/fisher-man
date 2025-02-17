@@ -170,7 +170,7 @@
                         }
 
                         if(response.status == false){
-                            alert(response.message);
+                            console.log(response.message);
                         }
                     }
                 });
@@ -210,7 +210,7 @@
                         }
 
                         if(response.status == false){
-                            alert(response.message);
+                            console.log(response.message);
                         }
                     }
                 });

@@ -134,9 +134,10 @@
             $('.dsk-del-btn').click(function(){
                 const getid = $(this).data('id');
 
+                // console.log("clicked me");
                 $.ajax({
-                    url: `/cart/delete/${getid}`,
-                    type: "DELETE",
+                    url: `cart/delete/${getid}`,
+                    type: "POST",
                     data: {
                         id: getid
                     },
@@ -151,8 +152,8 @@
                 const getid = $(this).data('id');
 
                 $.ajax({
-                    url: "cart/delete/"+getid,
-                    type: "DELETE",
+                    url: `cart/delete/${getid}`,
+                    type: "POST",
                     data: {
                         id: getid
                     },
@@ -161,10 +162,6 @@
                     }
                 });
             });
-
-
-
-
         });
     </script>
 @endsection

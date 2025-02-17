@@ -34,7 +34,7 @@ class AdminUserSeeder extends Seeder
 
         foreach ($users as $idx => $user) {
             $user = Users::create($user);
-            $user->roles()->attach(2);
+            $user->roles()->attach($idx+1);
         }
     }
 }
