@@ -58,6 +58,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 // guest
 Route::get('/', [ProductController::class, 'showallproducts'])->name('home');
 Route::get('/special-offer', [ProductController::class, 'discountProducts'])->name('special-offer');
+Route::get('/sub-category/{id}', [SubCategoriesController::class, 'show'])->name('sub-category.show');
 
 Route::post('/contact', [UsersController::class,'contact'])->name('contact');
 Route::post('/wishList', [UsersController::class,'wishList'])->name('wishList');
@@ -124,9 +125,6 @@ Route::get('/category', function () {
     return view('category');
 })->name('category');
 
-Route::get('/sub-category', function () {
-    return view('sub_category');
-})->name('sub_category');
 
 Route::get('/cart', function () {
     return view('cart');

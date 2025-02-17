@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sub_category;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,6 +19,18 @@ class SubCategoriesController extends Controller
     public function showsubcategory(){
         $sub_categories = Sub_category::all();
         return view('includes.aside', compact('sub_categories'));
+    }
+
+    public function show($id)
+    {
+        // Get sub-category details
+        $subCategory = Sub_category::findOrFail($id);
+
+        // Get products linked to this sub-category
+        $products = Product::where('sub_category_id', $id)->get();
+
+        // Return view with data
+        return view('sub_category', compact('subCategory', 'products'));
     }
 
     public function create()
