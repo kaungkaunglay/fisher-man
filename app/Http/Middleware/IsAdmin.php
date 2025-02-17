@@ -20,6 +20,7 @@ class IsAdmin
         {
             return redirect()->route('admin.login');
         }
+
         $user = Auth::user();
         if ($user->roles->first()->id != 1) {
             abort(403, 'Unauthorized Access');
