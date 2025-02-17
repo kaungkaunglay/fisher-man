@@ -18,7 +18,7 @@
         <!-- main-content-wrap -->
         <div class="main-content-wrap">
             <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-                <h3>Users Contact Request</h3>
+                <h3>Wish List Request</h3>
                 <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                     <li>
                         <a href="index.html"><div class="text-tiny">Dashboard</div></a>
@@ -33,7 +33,7 @@
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <div class="text-tiny">Contact Request</div>
+                        <div class="text-tiny">Wish List Request</div>
                     </li>
                 </ul>
             </div>
@@ -67,7 +67,7 @@
                             <div class="body-title">Action</div>
                         </li>
                     </ul>
-                  @foreach($contacts as $contact)
+                  @foreach($wishLists as $wishList)
                   <ul class="flex flex-column">
                     <li class="user-item gap14">
                         {{-- <div class="image">
@@ -75,11 +75,11 @@
                         </div> --}}
                         <div class="flex items-center justify-between gap20 flex-grow">
                             <div class="name">
-                                <a href="#" class="body-title-2">{{$contact->name}}</a>
+                                <a href="#" class="body-title-2">{{$wishList->name}}</a>
                                 
                             </div>
-                            <div class="body-text">{{$contact->email}}</div>
-                            <div class="body-text">{{$contact->description}}</div>
+                            <div class="body-text">{{$wishList->email}}</div>
+                            <div class="body-text">{{$wishList->description}}</div>
                             <div class="list-icon-function">
                                 <div class="item eye">
                                     <i class="icon-eye"></i>

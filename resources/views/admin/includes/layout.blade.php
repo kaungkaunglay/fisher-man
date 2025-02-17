@@ -165,12 +165,12 @@
                                         </a>
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
-                                                <a href="{{route('admin.users.contact')}}" class="{{request()->is('admin/users') ? 'active' : ''}}">
+                                                <a href="{{route('admin.users.contact')}}" class="{{request()->is('admin/users/request-contact') ? 'active' : ''}}">
                                                     <div class="text">Contact Form</div>
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
-                                                <a href="" class="{{request()->is('admin/user') ? 'active' : ''}}">
+                                                <a href="{{route('admin.users.wishList')}}" class="{{request()->is('admin/users/request-wishList') ? 'active' : ''}}">
                                                     <div class="text">Wish List Form</div>
                                                 </a>
                                             </li>
