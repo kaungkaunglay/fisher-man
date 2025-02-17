@@ -159,7 +159,6 @@ Route::get('/admin/categories/{category}/edit', [CategoriesController::class, 'e
 Route::put('/admin/categories/{category}', [CategoriesController::class, 'update'])->name('update_category');
 Route::delete('/admin/categories/{category}', [CategoriesController::class, 'destroy'])->name('admin.categories.destroy');
 
-
 Route::get('/login/line', function () {
     return Socialite::driver('line')->redirect();
 })->name('line.login');
