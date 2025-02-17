@@ -42,36 +42,28 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-        $product_ids = array_unique($request->input('product_ids'));
+        $product_ids = $request->input('product_ids') ? array_unique($request->input('product_ids')) : null;
 
         if(!Auth::check()){
             $cart = session('cart',[]);
 
-            // // logger(is_array($product_ids));
-            // // logger(is_array($cart));
-            // logger($product_ids);
-            // logger($cart);
-            // $cart = array_values($cart);
-            // logger($cart);
-            // // $new_product_ids = array_diff($product_ids,$cart);
 
-            // if (!empty($new_product_ids)) {
-            //     foreach ($new_product_ids as $product_id) {
-            //         session()->push('cart', $product_id);
-            //     }
-            // }
-
-            foreach($product_ids as $product_id)
-            {
-                session()->push('cart',$product_id);
+            if($product_ids === null){
+                return response()->json([
+                    'status' => true,
+                    'message' => "You doesn't choice any product"
+                ]);
             }
 
-
-
+            foreach($product_ids as $product_id){
+                if(!in_array($product_id,$cart)){
+                    session()->push('cart',$product_id);
+                }
+            }
 
             return response()->json([
                 'status' => true,
-                'message' => !empty($new_product_ids) ? 'Products added to cart' : 'All products are already in the cart'
+                'message' => 'Products added to cart'
             ]);
         }
 
@@ -104,7 +96,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function delete($product_id)
+    public function remove_cart($product_id)
     {
 
         if(!Product::where('id',$product_id)->exists()){
@@ -129,7 +121,8 @@ class CartController extends Controller
             return response()->json(['status' => false, 'message' => 'Product not found in cart']);
         }
 
-        $user->carts()->where('product_id',$product_id)->delete();
+        $user->carts->where('product_id',$product_id)->delete();
+
         session()->flash('status','error');
         session()->flash('message','Product removed from cart');
         return response()->json(['message' => 'Product removed from cart']);

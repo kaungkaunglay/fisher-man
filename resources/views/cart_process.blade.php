@@ -41,8 +41,10 @@
                                     </div>
                                 </td>
                                 <td class="cost"></td>
-                                <td class="col-remove"><a href="#" class="mx-auto"><i
-                                            class="fa-solid fa-trash-can"></i></a>
+                                <td class="col-remove">
+                                    <a href="javascript:void(0);" class="mx-auto dsk-del-btn" data-id="{{ $item->product->id }}">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -86,7 +88,7 @@
                                     <button class="btn increment">+</button>
                                 </div>
                             </div>
-                            <a href="#" class="btn del-btn">
+                            <a href="javascript:void(0);" class="btn mb-del-btn" data-id="{{ $item->product->id }}">
                                 <i class="fa-solid fa-trash-can"></i>
                             </a>
                         </div>
@@ -98,29 +100,6 @@
                 @endif
 
 
-
-                <div class="card">
-                    <div class="card-img align-content-center me-2">
-                        <img src="{{ asset('assets/images/account2.svg') }}" alt="product img">
-                    </div>
-                    <div class="card-body">
-                        <div class="table-row">
-                            <p class="card-name">Mark</p>
-                            <div class="card-text">
-                                <span class="cost">¥100</span>
-                                <span class="price">¥100</span>
-                            </div>
-                            <div class="quantity d-flex">
-                                <button class="btn decrement">-</button>
-                                <input type="text" value="1" class="quantity-value" readonly>
-                                <button class="btn increment">+</button>
-                            </div>
-                        </div>
-                        <a href="#" class="btn del-btn">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </a>
-                    </div>
-                </div>
                 <div class="d-flex justify-content-between bg-primary text-white p-2 mt-3">
                     <p>Total :</p>
                     <p>
@@ -142,4 +121,50 @@
 
 
     <script src="{{ asset('assets/js/cart.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            // for desktop
+            // desktop delete button
+            $('.dsk-del-btn').click(function(){
+                const getid = $(this).data('id');
+
+                $.ajax({
+                    url: `/cart/delete/${getid}`,
+                    type: "DELETE",
+                    data: {
+                        id: getid
+                    },
+                    success: function(response) {
+                        location.reload();
+                    }
+                });
+            });
+
+            // mobile delete button
+            $('.mb-del-btn').click(function(){
+                const getid = $(this).data('id');
+
+                $.ajax({
+                    url: "cart/delete/"+getid,
+                    type: "DELETE",
+                    data: {
+                        id: getid
+                    },
+                    success: function(response) {
+                        location.reload();
+                    }
+                });
+            });
+
+
+
+
+        });
+    </script>
 @endsection

@@ -166,7 +166,7 @@
                     },
                     success: function(response) {
                         if(response.status == "success"){
-                            location.href = "{{ route('cart-process') }}";
+                            window.location.href = "{{ route('cart-process') }}";
                         }
 
                         if(response.status == false){
