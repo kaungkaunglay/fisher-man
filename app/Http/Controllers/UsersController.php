@@ -276,16 +276,17 @@ class UsersController extends Controller
             'wish_description' => 'required'
         ], $messages);
 
-
+        
+        
         $wishList = wishList::create([
-        'name' => $request->wish_name,
-        'line_id' => $request->lineID,
-        'phone' => $request->wish_phone,
-        'email' => $request->wish_email,
-        'description' => $request->wish_description,
-    ]);
-
-    Mail::to($request->email)->send(new ThankYouMailforWishList($wishList));
+            'name' => $request->wish_name,
+            'line_id' => $request->lineID,
+            'phone' => $request->wish_phone,
+            'email' => $request->wish_email,
+            'description' => $request->wish_description,
+        ]);
+        
+        Mail::to($request->wish_email)->send(new ThankYouMailforWishList($wishList));
 
         return redirect()->back()->with('success', 'Your message has been sent successfully!');
     }

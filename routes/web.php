@@ -157,6 +157,7 @@ Route::post('/admin/mail', [MailController::class, 'sendmail'])->name('mail.rese
 
 //User Request
 Route::get('/admin/users/request-contact', [AdminController::class, 'contact'])->name('admin.users.contact');
+Route::get('/admin/users/wishList', [AdminController::class, 'wishList'])->name('admin.users.wishList');
 
 //admin settings
 Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');

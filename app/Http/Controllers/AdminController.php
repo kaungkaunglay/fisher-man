@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\FAQs;
 use App\Models\Users;
 use App\Models\Setting;
+use App\Models\wishList;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
@@ -114,7 +116,13 @@ class AdminController extends Controller
 
     //user request
     public function contact(){
-        return view('admin.contact-request');
+        $contacts = Contact::all();
+        return view('admin.contact-request',compact('contacts'));
+    }
+
+    public function wishList(){
+        $wishLists = wishList::all();
+        return view('admin.wishList-request',compact('wishLists'));
     }
 
     //faq
