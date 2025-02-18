@@ -334,12 +334,21 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
+        
 
             $('.white-list-btn').click(function(e) {
                 e.preventDefault();
                 const getid = $(this).data('id');
-
+                $.ajax({
+                        url: "{{ route('whitelist-count') }}",
+                        method: 'GET',
+                        success: function(response) {
+                            $('#white_list_count').text(response.white_lists_count);
+                        },
+                        error: function(xhr) {
+                            console.error(xhr);
+                        }
+                    });
                 $.ajax({
                     url: `/white-list/${getid}`,
                     type: "POST",
@@ -353,7 +362,10 @@
                         console.log(data.message);
                     }
                 });
+
             });
         });
+        
     </script>
+
 @endsection

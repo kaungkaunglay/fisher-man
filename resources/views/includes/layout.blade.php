@@ -78,15 +78,17 @@
                         </dd>
                       </dl>
                     </div>
+                    {{-- icon counts --}}
                     <div class="d-none d-md-flex gap-5  ms-3">
-                        <a id="cart-link" class="position-relative ">
+                        <a href="{{route('cart')}}" class="position-relative ">
                             <i class="fa-solid fa-cart-shopping icon"></i>
-                            <span class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
+                            <span id="cart_count" class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
                         </a>
-                        <a id="white-link" class="position-relative">
+                        <a href="{{route('white_list.index')}}" class="position-relative">
                             <i class="fa-solid fa-bookmark icon"></i>
-                            <span class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
+                            <span id="white_list_count" class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
                         </a>
+                        
                         <button class="btn-login position-relative">
                             <i class="fa-solid fa-user icon"></i>
                             <div class="dropdown position-absolute overflow-hidden bg-white">
@@ -247,41 +249,7 @@
             })
         })
     </script>
-    <script>
-        $(document).ready(function() {
-            $('#cart-link').on('click', function(event) {
-                event.preventDefault();
-                $.ajax({
-                    url: "{{ route('cart') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        // Handle the response here
-                        console.log(response);
-                    },
-                    error: function(xhr) {
-                        // Handle error here
-                        console.error(xhr);
-                    }
-                });
-            });
 
-            $('#white-link').on('click', function(event) {
-                event.preventDefault();
-                $.ajax({
-                    url: "{{ route('whitelist-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        // Handle the response here
-                        console.log(response);
-                    },
-                    error: function(xhr) {
-                        // Handle error here
-                        console.error(xhr);
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 
 </html>
