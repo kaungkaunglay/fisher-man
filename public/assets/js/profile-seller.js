@@ -13,4 +13,7 @@ $(document).ready(() => {
     if($('.sec-phone').val() == '') $('.cor').hide();
     else $('.cor').show();
   })
+
+  if($('.sec-phone').val() == '') $('.cor').hide();
+  else $('.cor').show();
 })

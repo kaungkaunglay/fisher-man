@@ -138,10 +138,10 @@
       <div class="row justify-content-around w-100 pb-3">
         <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white">
           @if(file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
-        <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
+        <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" class="logo"
         alt="logo">
       @else
-      <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
+      <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" class="logo"
       alt="logo">
     @endif
 
