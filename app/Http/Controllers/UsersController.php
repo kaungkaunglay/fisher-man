@@ -12,6 +12,7 @@ use App\Mail\ThankYouMailforWishList;
 use App\Models\Contact;
 use App\Models\FAQs;
 use App\Models\wishList;
+use App\Rules\ReCaptcha;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -237,24 +238,28 @@ class UsersController extends Controller
 
     public function contact(Request $request){
         $request->validate([
-            'name' => 'required',
-            'line_id' => 'required',
-            'phone' => 'required',
-            'email' => 'required|email',
-            'description' => 'required'
+            // 'name' => 'required',
+            // 'line_id' => 'required',
+            // 'phone' => 'required',
+            // 'email' => 'required|email',
+            // 'description' => 'required',
+            'g-recaptcha-response' => [new ReCaptcha()]
         ]);
 
         // dd($request->all());
 
-        $contact = Contact::create([
-        'name' => $request->name,
-        'line_id' => $request->line_id,
-        'phone' => $request->phone,
-        'email' => $request->email,
-        'description' => $request->description,
-    ]);
+    //     $contact = Contact::create([
+    //     'name' => $request->name,
+    //     'line_id' => $request->line_id,
+    //     'phone' => $request->phone,
+    //     'email' => $request->email,
+    //     'description' => $request->description,
+    // ]);
+    $input = $request->all();
 
-    Mail::to($request->email)->send(new ThankYouMail($contact));
+    dd($input);
+
+    // Mail::to($request->email)->send(new ThankYouMail($contact));
 
         return back()->with('success', 'Your message has been sent successfully!');
     }
