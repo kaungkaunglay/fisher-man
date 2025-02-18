@@ -75,7 +75,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(['is_buyer'])->group(function () {
-        Route::get('/profile/user', [ProfileController::class,'user_profile'])->name('profile_user');
+        Route::get('/profile/buyer', [ProfileController::class,'user_profile'])->name('profile_user');
     });
 
 

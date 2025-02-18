@@ -47,7 +47,7 @@
   </div> -->
   {{-- end preloader --}}
   <!-- header section start -->
-  <header style="display: none;" id="main-content">
+  <header id="main-content">
     <div class="container-custom">
       <div class="header">
         <div class="top-header">
