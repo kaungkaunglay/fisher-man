@@ -42,7 +42,6 @@ class OAuthController extends Controller
                 $user->save();
             }
             
-
             // save the informatoin to Oauth with user id 
             $oauth = OAuths::updateOrCreate(
                 [
