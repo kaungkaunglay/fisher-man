@@ -23,6 +23,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('assets/images/favicon/site.webmanifest') }}">
 
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+ 
+
 </head>
 
 <body>
@@ -237,18 +240,38 @@
     <script src="{{ asset('assets/js/password.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <script>
-        $(document).ready(() => {
-            $('.btn-login').click(() => {
-                $('.dropdown').toggleClass('active');
-            })
-            $(document).click(ev => {
+      $(document).ready(() => {
+          $('.btn-login').click(() => {
+              $('.dropdown').toggleClass('active');
+            
+          });
+
+          $(document).click(ev => {
               if (!document.querySelector('.btn-login').contains(ev.target)) {
 
                 $('.dropdown').removeClass('active');
               }
             })
-        })
-    </script>
+      
+          function updateWhiteListCount() {
+              $.ajax({
+                  url: "{{ route('whitelist-count') }}",
+                  method: 'GET',
+                  success: function(response) {
+                      // Assuming response contains the new count
+                      $('#white_list_count').text(response.white_lists_count);
+                  },
+                  error: function(xhr) {
+                      // Handle error here
+                      console.error(xhr);
+                  }
+              });
+          }
+      
+          // Update the count every 2 seconds
+          updateWhiteListCount();
+      });
+      </script>
 
 </body>
 

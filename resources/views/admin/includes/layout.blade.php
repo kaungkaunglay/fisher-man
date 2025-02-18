@@ -23,6 +23,7 @@
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="{{asset('assets/images/Logo only.png')}}">
     <link rel="apple-touch-icon-precomposed" href="{{asset('assets/images/Logo only.png')}}">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>
 
