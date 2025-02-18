@@ -14,6 +14,16 @@ class CategoriesController extends Controller
         return view('admin.categories', compact('categories'));
     }
 
+    public function  show($id) {
+        $category = Category::findOrFail($id);
+
+        $subcategories = $category->subcategories()->with(['products' => function ($query) {
+            $query->limit(6);
+        }])->get();
+
+        return view('category', compact('category', 'subcategories'));
+    }
+
     public function create()
     {
         return view('admin.category');
