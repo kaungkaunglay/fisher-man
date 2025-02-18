@@ -121,7 +121,7 @@ Route::middleware(['is_admin'])->group(function () {
     Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
     Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
     Route::post('/admin/mail', [MailController::class, 'sendmail'])->name('mail.reset');
-    
+
     //admin settings
     Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
     Route::post('/admin/settings/save', [AdminController::class, 'save'])->name('admin.settings.save');
@@ -134,7 +134,7 @@ Route::middleware(['is_admin'])->group(function () {
 
 
 // Product detail
-Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/product/{id}', [ProductController::class, 'show'])->middleware('track_visitor')->name('product.show');
 
 // Route::get('/cart', function () {
 //     return view('cart');
@@ -171,7 +171,7 @@ Route::get('/login/line', function () {
 
 Route::get('/login/line/callback', [OAuthController::class, 'handleLineCallback']);
 
-// Google Auth  
+// Google Auth
 Route::get('/auth/google', function () {
     return Socialite::driver('google')->redirect();
 })->name('google.login');
@@ -183,5 +183,5 @@ Route::get('/auth/facebook', function () {
     return Socialite::driver('facebook')->redirect();
 })->name('facebook.login');
 
-Route::get('/login/facebook/callback', [OAuthController::class, 'handleFacebookCallback']); 
+Route::get('/login/facebook/callback', [OAuthController::class, 'handleFacebookCallback']);
 
