@@ -22,8 +22,7 @@ class WhiteListController extends Controller
         } else {
             $count = count(session('white_lists',[]));
         }
-        logger($count); 
-        // return response()->json(['white_lists_count' => $count]);
+        return response()->json(['white_lists_count' => $count]);
     }
     public function store($product_id)
     {
