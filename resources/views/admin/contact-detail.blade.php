@@ -33,85 +33,39 @@
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <div class="text-tiny">Contact Request</div>
+                        <div class="text-tiny">Contact Detail</div>
                     </li>
                 </ul>
             </div>
             <!-- all-user -->
             <div class="wg-box">
-                <div class="flex items-center justify-between gap10 flex-wrap">
-                    <div class="wg-filter flex-grow">
-                        <form class="form-search">
-                            <fieldset class="name">
-                                <input type="text" placeholder="Search here..." class="" name="name" tabindex="2" value="" aria-required="true" required="">
-                            </fieldset>
-                            <div class="button-submit">
-                                <button class="" type="submit"><i class="icon-search"></i></button>
-                            </div>
-                        </form>
-                    </div>
-                    
+                <div class="mb-3">
+                    <strong>Name:</strong>
+                    <p>{{ $contact->name }}</p>
                 </div>
-                <div class="wg-table table-all-user">
-                    <ul class="table-title flex gap20 mb-14">
-                        <li>
-                            <div class="body-title">Name</div>
-                        </li>    
-                        <li>
-                            <div class="body-title">Email</div>
-                        </li>
-                        <li>
-                            <div class="body-title">Description</div>
-                        </li>
-                        <li>
-                            <div class="body-title">Action</div>
-                        </li>
-                    </ul>
-                  @foreach($contacts as $contact)
-                  <ul class="flex flex-column">
-                    <li class="user-item gap14">
-                        {{-- <div class="image">
-                            <img src="images/avatar/user-6.png" alt="">
-                        </div> --}}
-                        <div class="flex items-center justify-between gap20 flex-grow">
-                            <div class="name">
-                                <a href="#" class="body-title-2">{{$contact->name}}</a>
-                                
-                            </div>
-                            <div class="body-text">{{$contact->email}}</div>
-                            <div class="body-text">{{$contact->description}}</div>
-                            <div class="list-icon-function">
-                                <div class="item eye">
-                                   <a href="{{route('admin.contact.detail',$contact->id)}}"><i class="icon-eye"></i></a>
-                                </div>
-                           
-                             
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                  @endforeach
+        
+                <div class="mb-3">
+                    <strong>Email:</strong>
+                    <p>{{ $contact->email }}</p>
                 </div>
-                <div class="divider"></div>
-                <div class="flex items-center justify-between flex-wrap gap10">
-                    <div class="text-tiny">Showing 10 entries</div>
-                    <ul class="wg-pagination">
-                        <li>
-                            <a href="#"><i class="icon-chevron-left"></i></a>
-                        </li>
-                        <li>
-                            <a href="#">1</a>
-                        </li>
-                        <li class="active">
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon-chevron-right"></i></a>
-                        </li>
-                    </ul>
+        
+                <div class="mb-3">
+                    <strong>LineID:</strong>
+                    <p>{{ $contact->line_id }}</p>
+                </div>
+        
+                <div class="mb-3">
+                    <strong>Phone:</strong>
+                    <p>{{ $contact->phone }}</p>
+                </div>
+                <div class="mb-3">
+                    <strong>Description:</strong>
+                    <p>{{ $contact->description }}</p>
+                </div>
+        
+                <div class="mb-3">
+                    <strong>Submitted At:</strong>
+                    <p>{{ $contact->created_at->format('Y-m-d H:i') }}</p>
                 </div>
             </div>
             <!-- /all-user -->

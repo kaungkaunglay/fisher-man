@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}" />
 @endsection
 @section('contents')
+{{-- @dd(ITE_KEY')) --}}
     <div class="login-box d-flex flex-column">
 
         <div class="login-header">
@@ -29,6 +30,10 @@
                     <input name="password" placeholder="********" type="password" id="password" class="form-control">
                     <button class="btn password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
                 </div>
+                <span class="invalid-feedback"></span>
+            </div>
+            <div class="input-box d-flex flex-column">
+                <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
                 <span class="invalid-feedback"></span>
             </div>
             <div class="input-box d-flex flex-column">
@@ -97,7 +102,8 @@
 
                             var fields = [
                                 'username',
-                                'password'
+                                'password',
+                                'g-recaptcha-response'
                             ];
 
                             fields.forEach(function (field) {

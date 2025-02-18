@@ -12,6 +12,7 @@ use App\Mail\ThankYouMailforWishList;
 use App\Models\Contact;
 use App\Models\FAQs;
 use App\Models\wishList;
+use App\Rules\ReCaptcha;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -236,15 +237,30 @@ class UsersController extends Controller
     }
 
     public function contact(Request $request){
-        $request->validate([
+        $messages = [
+            'name.required' => 'The name field is required.',
+            'line_id.required' => 'The line ID field is required.',
+            'phone.required' => 'The phone field is required.',
+            'email.required' => 'The email field is required.',
+            'email.email' => 'The email must be a valid email address.',
+            'description.required' => 'The description field is required.',
+            'g-recaptcha-response.required' => 'The reCAPTCHA field is required.',
+            // 'g-recaptcha-response.recaptcha' => 'The reCAPTCHA verification failed.'
+        ];
+
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'line_id' => 'required',
             'phone' => 'required',
             'email' => 'required|email',
-            'description' => 'required'
-        ]);
+            'description' => 'required',
+            'g-recaptcha-response' => 'required'
+        ], $messages);
 
-        // dd($request->all());
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
 
         $contact = Contact::create([
         'name' => $request->name,
@@ -252,9 +268,10 @@ class UsersController extends Controller
         'phone' => $request->phone,
         'email' => $request->email,
         'description' => $request->description,
-    ]);
+        ]);
 
-    Mail::to($request->email)->send(new ThankYouMail($contact));
+
+        Mail::to($request->email)->send(new ThankYouMail($contact));
 
         return back()->with('success', 'Your message has been sent successfully!');
     }
@@ -265,18 +282,22 @@ class UsersController extends Controller
             'wish_phone.required' => 'The phone field is required.',
             'wish_email.required' => 'The email field is required.',
             'wish_email.email' => 'The email must be a valid email address.',
-            'wish_description.required' => 'The description field is required.'
+            'wish_description.required' => 'The description field is required.',
+            'g-recaptcha-response.required' => 'The reCAPTCHA field is required.',
         ];
 
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'wish_name' => 'required',
             'lineID' => 'required',
             'wish_phone' => 'required',
             'wish_email' => 'required|email',
-            'wish_description' => 'required'
+            'wish_description' => 'required',
+            'g-recaptcha-response' => 'required'
         ], $messages);
 
-        
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
         
         $wishList = wishList::create([
             'name' => $request->wish_name,

@@ -119,6 +119,11 @@ class AdminController extends Controller
         $contacts = Contact::all();
         return view('admin.contact-request',compact('contacts'));
     }
+    public function contactDetail($contactID){
+        $contact = Contact::findOrFail($contactID);
+        // dd($contact);
+        return view('admin.contact-detail',compact('contact'));
+    }
 
     public function wishList(){
         $wishLists = wishList::all();

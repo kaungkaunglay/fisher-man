@@ -109,6 +109,7 @@ Route::middleware(['is_admin'])->group(function () {
     Route::get('/admin/faqs/{faq}/edit', [AdminController::class, 'edit'])->name('admin.faqs.edit');
     Route::put('/admin/faqs/{faq}', [AdminController::class, 'update'])->name('update_faq');
     Route::delete('/admin/faqs/{faq}', [AdminController::class, 'destroy'])->name('admin.faqs.destroy');
+    
     // Admin Controller
     Route::get('/admin', [AdminController::class, 'home'])->name('admin.index');
     Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
@@ -123,6 +124,7 @@ Route::middleware(['is_admin'])->group(function () {
 
     //User Request
     Route::get('/admin/users/request-contact', [AdminController::class, 'contact'])->name('admin.users.contact');
+    Route::get('/admin/contact/detail/{contactID}',[AdminController::class,'contactDetail'])->name('admin.contact.detail');
     Route::get('/admin/users/wishList', [AdminController::class, 'wishList'])->name('admin.users.wishList');
 });
 
