@@ -226,12 +226,30 @@
     <script src="{{ asset('assets/js/password.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <script>
-        $(document).ready(() => {
-            $('.btn-login').click(() => {
-                $('.dropdown').toggleClass('active');
-            })
-        })
-    </script>
+      $(document).ready(() => {
+          $('.btn-login').click(() => {
+              $('.dropdown').toggleClass('active');
+          });
+      
+          function updateWhiteListCount() {
+              $.ajax({
+                  url: "{{ route('whitelist-count') }}",
+                  method: 'GET',
+                  success: function(response) {
+                      // Assuming response contains the new count
+                      $('#white_list_count').text(response.white_lists_count);
+                  },
+                  error: function(xhr) {
+                      // Handle error here
+                      console.error(xhr);
+                  }
+              });
+          }
+      
+          // Update the count every 2 seconds
+          setInterval(updateWhiteListCount, 500);
+      });
+      </script>
 
 </body>
 
