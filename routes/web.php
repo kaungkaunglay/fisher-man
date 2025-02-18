@@ -81,6 +81,15 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['is_admin'])->group(function () {
+    // Categories Controller
+
+    Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('admin.categories');
+    Route::get('/admin/categories/create', [CategoriesController::class, 'create'])->name('create_category');
+    Route::post('/admin/categories', [CategoriesController::class, 'store'])->name('add_category');
+    Route::get('/admin/categories/{category}/edit', [CategoriesController::class, 'edit'])->name('admin.categories.edit');
+    Route::put('/admin/categories/{category}', [CategoriesController::class, 'update'])->name('update_category');
+    Route::delete('/admin/categories/{category}', [CategoriesController::class, 'destroy'])->name('admin.categories.destroy');
+
     // sub categories
     Route::get('/admin/sub-categories', [SubCategoriesController::class, 'index'])->name('admin.sub_categories');
     Route::get('/admin/sub-categories/create', [SubCategoriesController::class, 'create'])->name('create_sub_category');
@@ -111,10 +120,14 @@ Route::middleware(['is_admin'])->group(function () {
     Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
     Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
     Route::post('/admin/mail', [MailController::class, 'sendmail'])->name('mail.reset');
-
+    
     //admin settings
     Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
     Route::post('/admin/settings/save', [AdminController::class, 'save'])->name('admin.settings.save');
+
+    //User Request
+    Route::get('/admin/users/request-contact', [AdminController::class, 'contact'])->name('admin.users.contact');
+    Route::get('/admin/users/wishList', [AdminController::class, 'wishList'])->name('admin.users.wishList');
 
 });
 
@@ -147,35 +160,13 @@ Route::post('/add-to-cart',[CartController::class, 'addToCart'])->name('add_to_c
 Route::delete('/cart/delete/{product_id}',[CartController::class, 'delete'])->name('cart.delete');
 
 
-// Admin Controller
-Route::get('/admin', [AdminController::class, 'home'])->name('admin.index');
-Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
-Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
-Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
-Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
-Route::post('/admin/mail', [MailController::class, 'sendmail'])->name('mail.reset');
 
-//User Request
-Route::get('/admin/users/request-contact', [AdminController::class, 'contact'])->name('admin.users.contact');
-Route::get('/admin/users/wishList', [AdminController::class, 'wishList'])->name('admin.users.wishList');
-
-//admin settings
-Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
-Route::post('/admin/settings/save', [AdminController::class, 'save'])->name('admin.settings.save');
 
 
 // Admin auth
 Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'login_store'])->name('admin.login_store');
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
-// Categories Controller
-
-Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('admin.categories');
-Route::get('/admin/categories/create', [CategoriesController::class, 'create'])->name('create_category');
-Route::post('/admin/categories', [CategoriesController::class, 'store'])->name('add_category');
-Route::get('/admin/categories/{category}/edit', [CategoriesController::class, 'edit'])->name('admin.categories.edit');
-Route::put('/admin/categories/{category}', [CategoriesController::class, 'update'])->name('update_category');
-Route::delete('/admin/categories/{category}', [CategoriesController::class, 'destroy'])->name('admin.categories.destroy');
 
 // Line Auth
 Route::get('/login/line', function () {

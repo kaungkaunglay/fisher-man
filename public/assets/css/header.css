@@ -77,33 +77,29 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
 }
 
 .dropdown {
-    max-width: 1990px;
-    padding-right: 20px;
-    top: 44px;
+    width: 250px;
     transition: height 1s ease-in-out;
+    z-index: 1;
     height: 0;
-    overflow: hidden;
-    z-index: -1;
+    right: 0;
 }
 
 .dropdown.active {
-    height: calc(60.08px * 2);
+    height: calc(58.8px * 2);
 }
 
-.dropdown ul {
-    border: 1px solid black;
-    width: 250px;
-    overflow: hidden;
-    z-index: 1;
+.dropdown a {
+    padding: 15px;
+}
+
+.dropdown li:hover {
+    background-color: #e2e2e2;
 }
 
 .bottom-header{
     position: absolute;
-    bottom: -20px;
-    background-color: #005B96;
+    bottom: -23px;
     width: 90%;
-    padding: 5px 20px;
-    border-radius: 50px;
     left: 50%;
     transform: translateX(-50%); 
 }
@@ -111,7 +107,10 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
 .bottom-header nav{
     display: flex;
     gap: 180px;
+    border-radius: 50px;
+    padding: 5px 20px;
     align-items: center;
+    background-color: #005B96;
 }
 
 .hambuger-menu i{
@@ -228,7 +227,7 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
 
     .bottom-header{
         padding: 0 10px;
-        bottom: -13px;
+        bottom: -66px;
     }
 
     .bottom-header nav{
