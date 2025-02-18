@@ -27,7 +27,7 @@
 
 <body>
   {{-- preloader --}}
-  <div class="preloader" id="preloader">
+  <!-- <div class="preloader" id="preloader">
     <div class="fishing-scene">
       <div class="fisherman"></div>
       <div class="fishing-rod">
@@ -44,10 +44,10 @@
     <div class="progress">
       <div class="progress-bar" id="progress-bar"></div>
     </div>
-  </div>
+  </div> -->
   {{-- end preloader --}}
   <!-- header section start -->
-  <header style="display: none;" id="main-content">
+  <header id="main-content">
     <div class="container-custom">
       <div class="header">
         <div class="top-header">
@@ -67,7 +67,7 @@
             <button class="bg-main text-white magnifying-glass"><i class="fa-solid fa-magnifying-glass"></i></button>
           </div>
           <div class="d-none d-md-flex gap-5  ms-3">
-            <a href="{{url('/cart')}}" class="position-relative">
+            <a href="{{route('cart')}}" class="position-relative">
               <i class="fa-solid fa-cart-shopping icon"></i>
               <span class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
             </a>
@@ -81,7 +81,7 @@
                 <ul class="border">
                   <li><a href="{{ url('/profile') }}" class="d-flex gap-2 text-black text-center"><i
                         class="fa-solid fa-address-card icon"></i>Profile</a></li>
-                  <li><a href="{{url('/login')}}" class="px-3 d-flex gap-2 text-black text-center"><i
+                  <li><a href="{{route('logout')}}" class="px-3 d-flex gap-2 text-black text-center"><i
                         class="fas fa-door-open icon"></i>Logout</a></li>
                 </ul>
               </div>

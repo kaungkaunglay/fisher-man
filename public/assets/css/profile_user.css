@@ -6,8 +6,24 @@ body {
   color: #005B96;
 }
 
-.detail-title {
-  justify-content: space-between;
+.profile-form:not(.active) input {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.profile-form:not(.active) .cancel,
+.profile-form:not(.active) .save {
+  display: none;
+}
+
+.profile-form.active .edit,
+.profile-form.active .cor {
+  display: none;
+}
+ 
+.profile-form.active .phone-no-container {
+  flex-direction: column;
 }
 
 /* history */
