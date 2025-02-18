@@ -3,9 +3,7 @@ footer {
 }
 
 footer .logo {
-  height: 100px; /* 8% of the viewport height */
-  max-height: 100px; /* Maximum height */
-  width: 100px; /* Maintain aspect ratio */
+  width: 80px; /* Maintain aspect ratio */
 }
 
 footer .col-12.col-lg-2 {

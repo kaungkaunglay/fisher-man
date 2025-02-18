@@ -62,10 +62,21 @@
                             @endif
                         </a>
                     </div>
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-second" placeholder="Search your Products">
-                        <button class="bg-main text-white magnifying-glass"><i
-                                class="fa-solid fa-magnifying-glass"></i></button>
+                    <div>
+                      <div class="input-group">
+                          <input type="text" class="form-control bg-second" placeholder="Search your Products">
+                          <button class="bg-main text-white magnifying-glass"><i
+                                  class="fa-solid fa-magnifying-glass"></i></button>
+                      </div>
+                      <dl class="search-result-list">
+                        <dt>
+                          Order List
+                        </dt>
+                        <dd>
+                          <img src="" alt="">
+                          <p>Name</p>
+                        </dd>
+                      </dl>
                     </div>
                     <div class="d-none d-md-flex gap-5  ms-3">
                         <a id="cart-link" class="position-relative ">
@@ -227,6 +238,12 @@
         $(document).ready(() => {
             $('.btn-login').click(() => {
                 $('.dropdown').toggleClass('active');
+            })
+            $(document).click(ev => {
+              if (!document.querySelector('.btn-login').contains(ev.target)) {
+
+                $('.dropdown').removeClass('active');
+              }
             })
         })
     </script>

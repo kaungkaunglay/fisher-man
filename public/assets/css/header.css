@@ -10,8 +10,6 @@ header{
 }
 
 header .logo {
-    height: 80px; /* 8% of the viewport height */
-    max-height: 80px; /* Maximum height */
     width: 80px; /* Maintain aspect ratio */
   }
 
