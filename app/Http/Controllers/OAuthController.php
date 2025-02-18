@@ -42,7 +42,6 @@ class OAuthController extends Controller
                 $user->save();
             }
             
-
             // save the informatoin to Oauth with user id 
             $oauth = OAuths::updateOrCreate(
                 [
@@ -67,4 +66,42 @@ class OAuthController extends Controller
             return redirect()->route('login')->with('error', 'Failed to authenticate with LINE.');
         }
     }
+    public function handleGoogleCallback(Request $request){
+        try {
+            $googleUser = Socialite::driver('google')->user();
+
+            $user = Users::updateOrCreate(
+                ['email' => $googleUser->getEmail()],
+                [
+                    'name' => $googleUser->getName(),
+                    'google_id' => $googleUser->getId(),
+                    'password' => bcrypt(Str::random(16)), // Dummy password for social login
+                ]
+            );
+
+            // Auth::login($user, true);
+            return redirect()->intended('/');
+        } catch (\Exception $e) {
+            return redirect('/login')->with('error', 'Something went wrong with Google login.');
+        }
+    }
+    public function handleFacebookCallback()
+    {
+        try {
+            $facebookUser = Socialite::driver('facebook')->user();
+
+            $user = Users::updateOrCreate(
+                ['email' => $facebookUser->getEmail()],
+                [
+                    'name' => $facebookUser->getName(),
+                    'facebook_id' => $facebookUser->getId(),
+                ]
+            );
+            // Auth::login($user, true);
+            return redirect()->intended('/');
+        } catch (\Exception $e) {
+            return redirect('/login')->with('error', 'Something went wrong with Facebook login.');
+        }
+    }
+
 }

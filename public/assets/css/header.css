@@ -77,14 +77,24 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
 }
 
 .dropdown {
-    border: 1px solid black;
-    width: 250px;
-    overflow: hidden;
+    max-width: 1990px;
+    padding-right: 20px;
+    top: 44px;
+    transition: height 1s ease-in-out;
     height: 0;
+    overflow: hidden;
+    z-index: -1;
 }
 
 .dropdown.active {
-    height: 100px;
+    height: calc(60.08px * 2);
+}
+
+.dropdown ul {
+    border: 1px solid black;
+    width: 250px;
+    overflow: hidden;
+    z-index: 1;
 }
 
 .bottom-header{

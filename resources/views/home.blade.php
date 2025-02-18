@@ -254,9 +254,9 @@
                 @endforeach
             </div>
 
-            <div class="row justify-content-center mx-0">
+            <div class="row justify-content-center mx-0 mt-5">
                 <div class="col-5 col-lg-3 text-center">
-                    <a class="common-btn see-more-btn mt-3" href="{{ route('special-offer') }}">
+                    <a class="common-btn see-more-btn" href="{{ route('special-offer') }}">
                         See More
                     </a>
                 </div>
@@ -308,7 +308,7 @@
                         </a>
                         <div class="d-flex card-btn m-t-10">
                             <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                            <a href="javascript:void(0);" class="product-btn w-100" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
+                            <a href="javascript:void(0);" class="product-btn w-100 common-btn" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
                         </div>
 
                     </div>
@@ -354,9 +354,6 @@
                     }
                 });
             });
-
-
-
         });
     </script>
 @endsection

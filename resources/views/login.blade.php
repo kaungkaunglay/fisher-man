@@ -60,9 +60,8 @@
                 </a>
             </div>
             <div class="icon-wpr">
-                <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/google.png') }}" alt="Google"></a>
-                <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/facebook.png') }}"
-                        alt="Facebook"></a>
+                <a href="{{route('google.login')}}"><img class="icon_social" src="{{ asset('assets/icons/custom/google.png') }}" alt="Google"></a>
+                <a href="{{route('facebook.login')}}"><img class="icon_social" src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Facebook"></a>
             </div>
 
         </form>
@@ -77,7 +76,7 @@
             });
 
             $("#login_form").submit(function (e) {
-                e.preventDefault();
+                // e.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
                     url: "{{ route('login_store') }}",

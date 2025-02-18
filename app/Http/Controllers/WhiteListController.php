@@ -43,6 +43,7 @@ class WhiteListController extends Controller
 
         if($user->whitelists()->where('product_id', $product_id)->exists()){
             session()->flash('error','Product is already in your whitelist');
+
             return response()->json(['status' => false, 'message' => 'Product is already in your whitelist']);
         }
 
