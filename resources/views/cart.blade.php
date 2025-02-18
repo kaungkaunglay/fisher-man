@@ -153,7 +153,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="text" id="name" class="p-1" value="{{ auth()->user()->username }}">
+                                <input type="text" id="name" class="p-1" value="{{ auth()->user()->username ?? '' }}">
                             </td>
                         </tr>
                         <tr>
@@ -162,7 +162,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="number" id="tel" class="p-1" value="{{ auth()->user()->first_phone }}">
+                                <input type="number" id="tel" class="p-1" value="{{ auth()->user()->first_phone ?? '' }}">
                             </td>
                         </tr>
                         <tr>
@@ -171,7 +171,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="text" id="line_id" class="p-1" value="{{ auth()->user()->line_id }}">
+                                <input type="text" id="line_id" class="p-1" value="{{ auth()->user()->line_id ?? '' }}">
                             </td>
                         </tr>
                         <tr>
@@ -201,7 +201,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="number" id="delivery" class="p-1" value="{{ auth()->user()->address }}">
+                                <input type="number" id="delivery" class="p-1" value="{{ auth()->user()->address ?? '' }}">
                             </td>
                         </tr>
                     </table>
@@ -223,7 +223,7 @@
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
-                            <p class="p-1">{{ auth()->user()->username }}</p>
+                            <p class="p-1">{{ auth()->user()->username ?? ''}}</p>
                         </td>
                     </tr>
                     <tr>
@@ -232,7 +232,7 @@
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
-                            <a class="p-1" href="tel:0988888888">{{ auth()->user()->first_phone }}</a>
+                            <a class="p-1" href="tel:0988888888">{{ auth()->user()->first_phone ?? '' }}</a>
                         </td>
                     </tr>
                     <tr>
@@ -241,7 +241,7 @@
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
-                            <a class="p-1" href="#">{{ auth()->user()->line_id }}</a>
+                            <a class="p-1" href="#">{{ auth()->user()->line_id ?? '' }}</a>
                         </td>
                     </tr>
                     <tr>
@@ -268,7 +268,7 @@
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
-                            <p class="p-1">{{ auth()->user()->address }}</p>
+                            <p class="p-1">{{ auth()->user()->address ?? '' }}</p>
                         </td>
                     </tr>
                 </table>
@@ -379,9 +379,9 @@
                         <th scope="col">Total</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="dsk-cart-body">
                     @foreach ($carts as  $item)
-                        <tr class="table-row">
+                        <tr class="table-row cart-{{ $item->product->id }}">
                             <td>
                                 <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
                                         alt="product img"></div>
@@ -395,20 +395,7 @@
                             </td>
                         </tr>
 
-                    @endforeach
-                    <tr class="table-row">
-                        <td>
-                            <div class="table-img"><img src="{{ asset('assets/images/account2.svg') }}"
-                                    alt="product img"></div>
-                        </td>
-                        <td class="col-name">Mark</td>
-                        <td class="price">¥100</td>
-                        <td class="cost">
-                            ¥100
-                            <input type="hidden" value="1" class="quantity-value">
-                        </td>
-                        </td>
-                    </tr>
+                    @endforeach>
                 </tbody>
                 <tfoot>
                     <tr>
@@ -423,42 +410,26 @@
             <!-- ./Desktop Style -->
 
             <!-- Mobile Style -->
-            <div class="mobile d-md-none d-flex flex-column gap-3 table-item .table-body">
-                <div class="card">
-                    <div class="card-img align-content-center me-2">
-                        <img src="{{ asset('assets/images/account1.svg') }}" alt="product img">
-                    </div>
-                    <div class="card-body">
-                        <div class="table-row">
-                            <p class="card-name">Mark</p>
-                            <div class="card-text">
-                                <span class="cost">
-                                    ¥100
-                                    <input type="hidden" value="1" class="quantity-value">
-                                </span>
-                                <span class="price">¥100</span>
+            <div class="mobile d-md-none d-flex flex-column gap-3 table-item mb-cart-body ">
+                @foreach ($carts as $item)
+                    <div class="card cart-{{ $item->product->id }}">
+                        <div class="card-img align-content-center me-2">
+                            <img src="{{ asset($item->product->product_image) }}" alt="product img">
+                        </div>
+                        <div class="card-body">
+                            <div class="table-row">
+                                <p class="card-name">{{ $item->product->name }}</p>
+                                <div class="card-text">
+                                    <span class="cost">
+                                        <input type="hidden" value="1" class="quantity-value">
+                                    </span>
+                                    <span class="price">{{ $item->product->product_price }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img align-content-center me-2">
-                        <img src="{{ asset('assets/images/account2.svg') }}" alt="product img">
-                    </div>
-                    <div class="card-body">
-                        <div class="table-row">
-                            <p class="card-name">Mark</p>
-                            <div class="card-text">
-                                <span class="cost">
-                                    ¥100
-                                    <input type="hidden" value="1" class="quantity-value">
-                                </span>
-                                <span class="price">¥100</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+                <div class="no-cart"></div>
 
                 <div class="d-flex justify-content-between bg-primary text-white p-2 mt-3">
                     <p>Total :</p>
@@ -480,15 +451,15 @@
             <ul class="list-group gap-3 py-3 px-3">
                 <li>
                     <span>Name </span>
-                    : Customer Name
+                    : <span id="name-result"></span>
                 </li>
                 <li>
                     <span>Phone Number </span>
-                    : 0988888888
+                    : <span id="tel-result"></span>
                 </li>
                 <li>
                     <span>Line ID </span>
-                    : Afasd-222
+                    : <span id="line_id-result"></span>
                 </li>
                 <li>
                     <span>Postal Code </span>
@@ -500,7 +471,7 @@
                 </li>
                 <li>
                     <span>Delivery Address </span>
-                    : Customer Address
+                    : <span id="delivery-result"></span>
                 </li>
             </ul>
             <div class="d-flex gap-3 my-4 justify-content-end">
@@ -610,9 +581,28 @@
 
             $('#next-btn').click(()=>{
                 @if (!Auth::check())
+
+                    
+
+
                     window.location.href ="{{ route('login')}}"
                 @endif
             });
+
+
+            // for address text input
+            $('#name').keyup(function(){
+                $('#name-result').html($(this).val());
+            });
+            $('#tel').keyup(function(){
+                $('#tel-result').html($(this).val());
+            })
+            $('#line_id').keyup(function(){
+                $('#line_id-result').html($(this).val());
+            })
+            $('#delivery').keyup(function(){
+                $('#delivery-result').html($(this).val());
+            })
 
         });
     </script>
