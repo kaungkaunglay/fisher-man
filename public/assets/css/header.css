@@ -76,34 +76,42 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
     text-shadow: 0px 0px .2rem #1c1c1c;
 }
 
-.dropdown {
-    max-width: 1990px;
-    padding-right: 20px;
-    top: 44px;
-    transition: height 1s ease-in-out;
-    height: 0;
-    overflow: hidden;
-    z-index: -1;
-}
-
-.dropdown.active {
-    height: calc(60.08px * 2);
-}
-
-.dropdown ul {
-    border: 1px solid black;
+header .dropdown {
     width: 250px;
-    overflow: hidden;
+    transition: height 1s ease-in-out;
     z-index: 1;
+    height: 0;
+    right: 0;
+}
+
+header .dropdown.active {
+    height: calc(58.8px * 2);
+}
+
+header .dropdown a {
+    padding: 15px;
+}
+
+header .dropdown li:hover {
+    background-color: #e2e2e2;
+}
+
+.cart-noti {
+    width: 20px;
+    font-size: 10px;
+    aspect-ratio: 1/1;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    padding: 2px;
+    top: -8px;
+    right: -13px;
 }
 
 .bottom-header{
     position: absolute;
-    bottom: -20px;
-    background-color: #005B96;
+    bottom: -23px;
     width: 90%;
-    padding: 5px 20px;
-    border-radius: 50px;
     left: 50%;
     transform: translateX(-50%); 
 }
@@ -111,7 +119,10 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
 .bottom-header nav{
     display: flex;
     gap: 180px;
+    border-radius: 50px;
+    padding: 5px 20px;
     align-items: center;
+    background-color: #005B96;
 }
 
 .hambuger-menu i{
@@ -135,51 +146,46 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
     display: none; /* Optional: hide the scrollbar for a cleaner look */
 }
 
-.bottom-nav {
-    display: none;
-}
-
 .menu-header:hover {
     color: #ffc107;
+}
+
+.bottom-nav {
+    position: sticky;
+    bottom: 0;
+    z-index: 1000;
+    background: #005B96;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-nav a{
+    text-align: center;
+}
+
+.bottom-nav div{
+    position: relative;
+    width: 83px;
+}
+
+.mobile-shopping-card{
+    position: absolute;
+    border-radius: 50px;
+    padding: 13px 10px;
+    background-color: #005B96;
+    top: -60px;
+}
+
+.shopping{
+    font-size: 30px !important;
 }
 
 @media screen and (max-width: 1100px) {
 
     .icon{
         display: none;
-    }
-
-    .bottom-nav {
-        position: sticky;
-        bottom: 0;
-        z-index: 1000;
-        background: #005B96;
-        padding: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .bottom-nav a{
-        text-align: center;
-    }
-
-    .bottom-nav div{
-        position: relative;
-        width: 83px;
-    }
-
-    .mobile-shopping-card{
-        position: absolute;
-        border-radius: 50px;
-        padding: 13px 10px;
-        background-color: #005B96;
-        top: -60px;
-    }
-
-    .shopping{
-        font-size: 30px !important;
     }
 
     .bottom-header{
@@ -220,15 +226,13 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
         width: 100px;
     }
 
-  
-
     .search input{
         padding: 5px 20px;
     }
 
     .bottom-header{
         padding: 0 10px;
-        bottom: -13px;
+        bottom: -22px;
     }
 
     .bottom-header nav{

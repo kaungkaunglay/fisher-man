@@ -1,0 +1,176 @@
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #87CEEB 0%, #1E90FF 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s;
+    overflow: hidden;
+  }
+  
+  .preloader.fade-out {
+    opacity: 0;
+  }
+  
+  .fishing-scene {
+    position: relative;
+    width: 300px;
+    height: 300px;
+  }
+  
+  .fisherman {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 100px;
+    background: #333;
+    clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+  }
+  
+  .fishing-rod {
+    position: absolute;
+    top: 60px;
+    left: 60%;
+    width: 100px;
+    height: 4px;
+    background: #8B4513;
+    transform-origin: left;
+    transform: rotate(-45deg);
+    animation: rod-movement 3s infinite;
+  }
+  
+  .fishing-line {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 120px;
+    background: #FFF;
+    transform-origin: top;
+    animation: line-movement 3s infinite;
+  }
+  
+  .hook {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #FFF;
+    border-radius: 50% 50% 50% 0;
+    animation: hook-movement 3s infinite;
+  }
+  
+  .fish {
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    background: #FF6B6B;
+    border-radius: 50%;
+    transform: rotate(-45deg);
+  }
+  
+  .fish::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 3px;
+    width: 12px;
+    height: 10px;
+    background: #FF6B6B;
+    clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  }
+  
+  .fish1 { 
+    bottom: 80px;
+    right: 40px;
+    animation: fish-catch1 3s infinite;
+  }
+  
+  .fish2 {
+    bottom: 120px;
+    right: 60px;
+    animation: fish-catch2 3s infinite;
+    animation-delay: 1s;
+  }
+  
+  .water {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(180deg, rgba(30,144,255,0.5) 0%, rgba(30,144,255,0.8) 100%);
+  }
+  
+  .wave {
+    position: absolute;
+    bottom: 95px;
+    width: 100%;
+    height: 10px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 4"><path d="M0 2 Q 2.5 0, 5 2 T 10 2 T 15 2 T 20 2" fill="none" stroke="rgba(255,255,255,0.3)"/></svg>');
+    background-size: 20px 4px;
+    animation: wave-movement 2s linear infinite;
+  }
+  
+  .loading-text {
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+    font-size: 18px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .progress {
+    width: 200px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    margin-top: 20px;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #fff;
+    transition: width 0.5s;
+  }
+  
+  /* Animations */
+  @keyframes rod-movement {
+    0%, 100% { transform: rotate(-45deg); }
+    50% { transform: rotate(-40deg); }
+  }
+  
+  @keyframes line-movement {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-5deg); }
+  }
+  
+  @keyframes hook-movement {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-10deg); }
+  }
+  
+  @keyframes fish-catch1 {
+    0%, 100% { transform: translate(0, 0) rotate(-45deg); }
+    50% { transform: translate(-20px, -30px) rotate(-45deg); }
+  }
+  
+  @keyframes fish-catch2 {
+    0%, 100% { transform: translate(0, 0) rotate(-45deg); }
+    50% { transform: translate(-30px, -40px) rotate(-45deg); }
+  }
+  
+  @keyframes wave-movement {
+    0% { background-position: 0 0; }
+    100% { background-position: 20px 0; }
+  }
