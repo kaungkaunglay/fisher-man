@@ -66,7 +66,7 @@
 
             <div class="text-end d-flex gap-3 justify-content-end">
                 <a href="/" class="common-btn">Shop more</a>
-                <a href="javascript:void(0);" class="common-btn" id="dsk-add-to-cart-btn">Add to Card</a>
+                <a href="javascript:void(0);" class="common-btn" id="dsk-add-to-cart-btn">Add to Cart</a>
             </div>
         </div>
         <!-- ./Desktop Style -->

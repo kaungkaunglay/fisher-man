@@ -247,7 +247,7 @@
                             </a>
                             <div class="d-flex card-btn m-t-10">
                                 <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                                <a href="#" class="product-btn w-100"><i class="fa-solid fa-bookmark"></i></a>
+                                <a href="#" class="w-100 py-1 common-btn"><i class="fa-solid fa-bookmark"></i></a>
                             </div>
                         </div>
                     </div>
@@ -255,8 +255,8 @@
             </div>
 
             <div class="row justify-content-center mx-0 mt-5">
-                <div class="col-5 col-lg-3 text-center">
-                    <a class="common-btn see-more-btn" href="{{ route('special-offer') }}">
+                <div class="col-5 col-lg-4 text-center">
+                    <a class="common-btn see-more-btn w-100" href="{{ route('special-offer') }}">
                         See More
                     </a>
                 </div>
@@ -308,7 +308,7 @@
                         </a>
                         <div class="d-flex card-btn m-t-10">
                             <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                            <a href="javascript:void(0);" class="product-btn w-100 common-btn" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
+                            <a href="javascript:void(0);" class="w-100 py-1 common-btn" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
                         </div>
 
                     </div>
