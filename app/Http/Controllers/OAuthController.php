@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\OAuths; 
 use App\Models\Users;
-use Illuminate\Support\Facades\Hash;
-use Laravel\Socialite\Facades\Socialite;
+use App\Models\OAuths;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Session; 
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Laravel\Socialite\Facades\Socialite;
 
 class OAuthController extends Controller
 {
@@ -17,9 +18,9 @@ class OAuthController extends Controller
         try {
             // Get the user information from LINE
             $line = Socialite::driver('line')->user();
-            //token encrypt 
-            $line_token = Hash::make($line->token); 
-            $refresh_token = Hash::make($line->refresh_token); 
+            //token encrypt
+            $line_token = Hash::make($line->token);
+            $refresh_token = Hash::make($line->refresh_token);
 
             // Log the user information from LINE
             Log::info('LINE User:', (array) $line);
@@ -40,9 +41,11 @@ class OAuthController extends Controller
                 $user->avatar = $line->getAvatar();
                 $user->line_id = $line->getId();
                 $user->save();
+
+                $user->assignRole(3);
             }
-            
-            // save the informatoin to Oauth with user id 
+
+            // save the informatoin to Oauth with user id
             $oauth = OAuths::updateOrCreate(
                 [
                     'user_id' => $user->id,

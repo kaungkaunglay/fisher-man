@@ -99,7 +99,7 @@ class AuthController extends Controller
 
             $user->save();
 
-            $this->is_seller($request) ? $user->roles()->attach(2) : $user->roles()->attach(3);
+            $this->is_seller($request) ? $user->assignRole(2) : $user->assignRole(3);
 
             return response()->json(['status' => true, 'message' => 'Register Success']);
         }

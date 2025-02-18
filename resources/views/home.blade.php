@@ -308,7 +308,7 @@
                         </a>
                         <div class="d-flex card-btn m-t-10">
                             <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                            <a href="javascript:void(0);" class="w-100 py-1 common-btn" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
+                            <a href="javascript:void(0);" class="w-100 py-1 common-btn white-list-btn" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
                         </div>
 
                     </div>
@@ -334,12 +334,21 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+        
 
-
-            $('.product-btn').click(function(e) {
+            $('.white-list-btn').click(function(e) {
                 e.preventDefault();
                 const getid = $(this).data('id');
-
+                $.ajax({
+                        url: "{{ route('whitelist-count') }}",
+                        method: 'GET',
+                        success: function(response) {
+                            $('#white_list_count').text(response.white_lists_count);
+                        },
+                        error: function(xhr) {
+                            console.error(xhr);
+                        }
+                    });
                 $.ajax({
                     url: `/white-list/${getid}`,
                     type: "POST",
@@ -353,7 +362,10 @@
                         console.log(data.message);
                     }
                 });
+
             });
         });
+        
     </script>
+
 @endsection
