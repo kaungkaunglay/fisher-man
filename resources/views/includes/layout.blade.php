@@ -250,7 +250,7 @@
           }
       
           // Update the count every 2 seconds
-          setInterval(updateWhiteListCount, 500);
+          updateWhiteListCount();
       });
       </script>
 
