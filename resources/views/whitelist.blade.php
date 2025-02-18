@@ -17,8 +17,6 @@
     <!-- Main Content -->
     <div class="container cart m-b-20">
 
-        @include('messages.index')
-
         <!-- Desktop Style -->
         <div class="desktop">
             <table class="table" id="table">
@@ -32,11 +30,10 @@
                         <th scope="col">Select</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @if(!$whitelist_products->isEmpty())
-                        @foreach ($whitelist_products as $index=>$product)
+                <tbody class="dsk-white-list-body">
+                    @foreach ($whitelist_products as $index=>$product)
 
-                            <tr id="row">
+                            <tr class="white-list-{{ $product->id }}" id="row">
                                 <th class="number" scope="row">
                                     {{ $index+1 }}
                                 </th>
@@ -56,11 +53,6 @@
                             </tr>
 
                         @endforeach
-                    @else
-                        <tr>
-                            <td colspan="6" class="text-center">No product in the whitelist</td>
-                        </tr>
-                    @endif
                 </tbody>
                 <tfoot>
                     <tr>
@@ -80,11 +72,10 @@
         <!-- ./Desktop Style -->
 
         <!-- Mobile Style -->
-        <div class="mobile" id="table">
+        <div class="mobile mb-white-list-body white-list-body" id="">
 
-            @if(!$whitelist_products->isEmpty())
-                @foreach ($whitelist_products as $idx=>$product)
-                    <div class="card d-flex flex-row">
+            @foreach ($whitelist_products as $idx=>$product)
+                    <div class="card d-flex flex-row white-list-{{ $product->id }}">
                         <img src="{{ asset( $product->product_image ) }}" alt="product img">
                         <div class="card-body d-flex flex-row justify-content-between align-items-center">
                             <div id="row">
@@ -103,11 +94,8 @@
                         </div>
                     </div>
                 @endforeach
-            @else
-                <div class="text-center my-3">No product in the whitelist</div>
-            @endif
 
-
+                <div class="no-cart"></div>
             <div class="total">
                 <p>Total :</p>
                 <p>
@@ -134,6 +122,28 @@
                 }
             });
 
+            function checkIfEmpty() {
+                var dskbody = $('.dsk-white-list-body');
+                if (dskbody.find('tr').length === 0) {
+                    dskbody.html('<tr><td colspan="6" class="text-center">No product in the white list</td></tr>');
+                }
+                var mbbody = $('.mb-white-list-body');
+                if (mbbody.find('.card').length === 0) {
+                    mbbody.find('.no-cart').html('<div class="text-center my-3">No product in the white list</div>')
+                }
+            }
+
+            checkIfEmpty();
+
+            function removeCart(id)
+            {
+                $('.mb-white-list-body').find(`.white-list-${id}`).remove();
+                $('.dsk-white-list-body').find(`.white-list-${id}`).remove();
+                checkIfEmpty();
+            }
+
+
+
             // for desktop
 
             // desktop delete button
@@ -147,7 +157,9 @@
                         id: getid
                     },
                     success: function(response) {
-                        location.reload();
+                        if (response.status) {
+                            removeCart(getid);
+                        }
                     }
                 });
             });
@@ -187,7 +199,9 @@
                         id: getid
                     },
                     success: function(response) {
-                        location.reload();
+                        if (response.status) {
+                            removeCart(getid);
+                        }
                     }
                 });
             });
