@@ -3,7 +3,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/cart.css') }}" />
 @endsection
 @section('contents')
-
     <div class="container-custom mt-2 cart">
 
         <!-- Step List -->
@@ -38,6 +37,7 @@
         </div>
         <!-- ./Step List -->
 
+
         <!-- Checkout -->
         <div class="page" id="checkout">
             <!-- Desktop Style -->
@@ -52,37 +52,31 @@
                         <th scope="col">Remove</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @if (!$carts->isEmpty())
-                        @foreach ($carts as $idx => $item)
-                            <tr class="table-row">
-                                <td>
-                                    <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
-                                            alt="{{ $item->product->name }}"></div>
-                                </td>
-                                <td class="col-name">{{ $item->product->name }}</td>
-                                <td class="price">{{ $item->product->product_price }}</td>
-                                <td>
-                                    <div class="quantity d-flex">
-                                        <button class="btn decrement">-</button>
-                                        <input type="text" value="{{ $item->quantity }}" class="quantity-value" readonly>
-                                        <button class="btn increment">+</button>
-                                    </div>
-                                </td>
-                                <td class="cost"></td>
-                                <td class="col-remove">
-                                    <a href="javascript:void(0);" class="mx-auto dsk-cart-del-btn"
-                                        data-id="{{ $item->product->id }}">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td colspan="6" class="text-center">No product in the whitelist</td>
+                <tbody class="dsk-cart-body">
+                    @foreach ($carts as  $item)
+                        <tr class="table-row cart-{{ $item->product->id }}">
+                            <td>
+                                <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
+                                        alt="{{ $item->product->name }}"></div>
+                            </td>
+                            <td class="col-name">{{ $item->product->name }}</td>
+                            <td class="price">¥{{ $item->product->product_price }}</td>
+                            <td>
+                                <div class="quantity d-flex">
+                                    <button class="btn decrement">-</button>
+                                    <input type="text" value="{{ $item->quantity }}" class="quantity-value" readonly>
+                                    <button class="btn increment">+</button>
+                                </div>
+                            </td>
+                            <td class="cost"></td>
+                            <td class="col-remove">
+                                <a href="javascript:void(0);" class="mx-auto dsk-cart-del-btn"
+                                    data-id="{{ $item->product->id }}">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </a>
+                            </td>
                         </tr>
-                    @endif
+                    @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
@@ -97,36 +91,32 @@
             <!-- ./Desktop Style -->
 
             <!-- Mobile Style -->
-            <div class="mobile d-md-none d-flex flex-column gap-3 table-item">
-                @if (!$carts->isEmpty())
-                    @foreach ($carts as $item)
-                        <div class="card">
-                            <div class="card-img align-content-center me-2">
-                                <img src="{{ asset($item->product->product_image) }}" alt="product img">
-                            </div>
-                            <div class="card-body">
-                                <div class="table-row">
-                                    <p class="card-name">{{ $item->product->name }}</p>
-                                    <div class="card-text">
-                                        <span class="cost"></span>
-                                        <span class="price">{{ $item->product->product_price }}</span>
-                                    </div>
-                                    <div class="quantity d-flex">
-                                        <button class="btn decrement">-</button>
-                                        <input type="text" value="{{ $item->quantity }}" class="quantity-value"
-                                            readonly>
-                                        <button class="btn increment">+</button>
-                                    </div>
-                                </div>
-                                <a href="javascript:void(0);" class="btn mb-dsk-del-btn" data-id="{{ $item->product->id }}">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </a>
-                            </div>
+            <div class="mobile d-md-none d-flex flex-column gap-3 table-item mb-cart-body">
+                @foreach ($carts as $item)
+                    <div class="card cart-{{ $item->product->id }}">
+                        <div class="card-img align-content-center me-2">
+                            <img src="{{ asset($item->product->product_image) }}" alt="product img">
                         </div>
-                    @endforeach
-                @else
-                    <div class="text-center my-3">No product in the cart</div>
-                @endif
+                        <div class="card-body">
+                            <div class="table-row">
+                                <p class="card-name">{{ $item->product->name }}</p>
+                                <div class="card-text">
+                                    <span class="cost"></span>
+                                    <span class="price">¥{{ $item->product->product_price }}</span>
+                                </div>
+                                <div class="quantity d-flex">
+                                    <button class="btn decrement">-</button>
+                                    <input type="text" value="{{ $item->quantity }}" class="quantity-value" readonly>
+                                    <button class="btn increment">+</button>
+                                </div>
+                            </div>
+                            <a href="javascript:void(0);" class="btn mb-cart-del-btn" data-id="{{ $item->product->id }}">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+                <div class="no-cart"></div>
                 <div class="d-flex justify-content-between bg-primary text-white p-2 mt-3">
                     <p>Total :</p>
                     <p>
@@ -137,7 +127,7 @@
             <!-- ./Mobile Style -->
 
             <div class="text-end my-4">
-                <a href="#address" class="common-btn btn-next">Next</a>
+                <a href="#address" id="next-btn" class="common-btn btn-next">Next</a>
             </div>
         </div>
         <!-- ./Checkout -->
@@ -163,7 +153,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="text" id="name" class="p-1">
+                                <input type="text" id="name" class="p-1" value="{{ auth()->user()->username }}">
                             </td>
                         </tr>
                         <tr>
@@ -172,7 +162,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="number" id="tel" class="p-1">
+                                <input type="number" id="tel" class="p-1" value="{{ auth()->user()->first_phone }}">
                             </td>
                         </tr>
                         <tr>
@@ -181,7 +171,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="text" id="line_id" class="p-1">
+                                <input type="text" id="line_id" class="p-1" value="{{ auth()->user()->line_id }}">
                             </td>
                         </tr>
                         <tr>
@@ -190,7 +180,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="number" id="zip" class="p-1">
+                                <input type="number" id="zip" class="p-1" >
                             </td>
                         </tr>
                         <tr>
@@ -211,7 +201,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="number" id="delivery" class="p-1">
+                                <input type="number" id="delivery" class="p-1" value="{{ auth()->user()->address }}">
                             </td>
                         </tr>
                     </table>
@@ -233,7 +223,7 @@
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
-                            <p class="p-1">Customer Name</p>
+                            <p class="p-1">{{ auth()->user()->username }}</p>
                         </td>
                     </tr>
                     <tr>
@@ -242,7 +232,7 @@
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
-                            <a class="p-1" href="tel:0988888888">0988888888</a>
+                            <a class="p-1" href="tel:0988888888">{{ auth()->user()->first_phone }}</a>
                         </td>
                     </tr>
                     <tr>
@@ -251,7 +241,7 @@
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
-                            <a class="p-1" href="#">Afasd-222</a>
+                            <a class="p-1" href="#">{{ auth()->user()->line_id }}</a>
                         </td>
                     </tr>
                     <tr>
@@ -278,7 +268,7 @@
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
-                            <p class="p-1">Customer Address</p>
+                            <p class="p-1">{{ auth()->user()->address }}</p>
                         </td>
                     </tr>
                 </table>
@@ -390,19 +380,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="table-row">
-                        <td>
-                            <div class="table-img"><img src="{{ asset('assets/images/account1.svg') }}"
-                                    alt="product img"></div>
-                        </td>
-                        <td clas="col-name">Mark</td>
-                        <td class="price">¥100</td>
-                        <td class="cost">
-                            ¥100
-                            <input type="hidden" value="1" class="quantity-value">
-                        </td>
-                        </td>
-                    </tr>
+                    @foreach ($carts as  $item)
+                        <tr class="table-row">
+                            <td>
+                                <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
+                                        alt="product img"></div>
+                            </td>
+                            <td clas="col-name">{{ $item->product->name}}</td>
+                            <td class="price">¥{{ $item->product->product_price }}</td>
+                            <td class="cost">
+                                ¥100
+                                <input type="hidden" value="1" class="quantity-value">
+                            </td>
+                            </td>
+                        </tr>
+
+                    @endforeach
                     <tr class="table-row">
                         <td>
                             <div class="table-img"><img src="{{ asset('assets/images/account2.svg') }}"
@@ -430,7 +423,7 @@
             <!-- ./Desktop Style -->
 
             <!-- Mobile Style -->
-            <div class="mobile d-md-none d-flex flex-column gap-3 table-item">
+            <div class="mobile d-md-none d-flex flex-column gap-3 table-item .table-body">
                 <div class="card">
                     <div class="card-img align-content-center me-2">
                         <img src="{{ asset('assets/images/account1.svg') }}" alt="product img">
@@ -536,6 +529,26 @@
     <script src="{{ asset('assets/js/cart.js') }}"></script>
     <script>
         $(document).ready(function() {
+
+            function checkIfEmpty() {
+                var dskbody = $('.dsk-cart-body');
+                if (dskbody.find('tr').length === 0) {
+                    dskbody.html('<tr><td colspan="6" class="text-center">No product in the cart</td></tr>');
+                }
+                var mbbody = $('.mb-cart-body');
+                if (mbbody.find('.card').length === 0) {
+                    mbbody.find('.no-cart').html('<div class="text-center my-3">No product in the cart</div>')
+                }
+            }
+
+            checkIfEmpty();
+
+            function removeCart(target,id)
+            {
+                $('.table-item').find(`.cart-${id}`).remove();
+                checkIfEmpty();
+            }
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -544,8 +557,14 @@
 
             // for desktop
             // desktop delete button
-            $('.dsk-cart-del-btn').click(function(){
+            $('.dsk-cart-del-btn').click(function(e) {
+                e.preventDefault();
+
                 const getid = $(this).data('id');
+
+                const cur = $(this);
+
+                console.log(`.cart-${getid}`)
 
                 $.ajax({
                     url: `/cart/delete/${getid}`,
@@ -554,14 +573,23 @@
                         id: getid
                     },
                     success: function(response) {
-                        location.reload();
+                        // location.reload();
+                        if (response.status) {
+                            console.log(response.product_id);
+                            removeCart(cur,response.product_id);
+                        }
                     }
                 });
             });
 
             // mobile delete button
-            $('.mb-cart-del-btn').click(function(){
+            $('.mb-cart-del-btn').click(function(e) {
+                e.preventDefault();
                 const getid = $(this).data('id');
+
+                const cur = $(this);
+
+                // console.log(`.cart-${getid}`)
 
                 $.ajax({
                     url: `cart/delete/${getid}`,
@@ -570,10 +598,22 @@
                         id: getid
                     },
                     success: function(response) {
-                        location.reload();
+                        // location.reload();
+                        if(response.status)
+                        {
+                            console.log(response.product_id);
+                            removeCart(cur,response.product_id);
+                        }
                     }
                 });
             });
+
+            $('#next-btn').click(()=>{
+                @if (!Auth::check())
+                    window.location.href ="{{ route('login')}}"
+                @endif
+            });
+
         });
     </script>
 @endsection

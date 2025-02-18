@@ -95,7 +95,7 @@ class AuthController extends Controller
                 $user->first_org_name = $request->first_org_name;
                 $user->trans_management = $request->trans_management;
             }
-                
+
             $user->save();
 
             $this->is_seller($request) ? $user->roles()->attach(2) : $user->roles()->attach(3);
@@ -143,8 +143,10 @@ class AuthController extends Controller
                 $remember = $request->has('remember') && $request->remember == 1;
 
                 Auth::login($user,$remember);
-                    
-                return response()->json(['status' => true, 'message' => 'Login success', 'errors'=> '']);
+
+                return redirect()->intended('/');
+
+                // return response()->json(['status' => true, 'message' => 'login successfull']);
             }
 
             return response()->json(['status' => false, 'message' => 'Username or Password is Incorrect']);

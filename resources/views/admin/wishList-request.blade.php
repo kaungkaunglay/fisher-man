@@ -27,7 +27,7 @@
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <a href="#"><div class="text-tiny">User</div></a>
+                        <a href="#"><div class="text-tiny">User Request</div></a>
                     </li>
                     <li>
                         <i class="icon-chevron-right"></i>
