@@ -77,30 +77,11 @@
               <li><a href="{{ url('/') }}" class="menu-header">Home</a></li>
               <li><a href="{{ url('/special-offer') }}" class="menu-header">Special Offer</a></li>
               @foreach($categories as $category)
-          <li><a href="{{ url('/category') }}" class="menu-header">{{ $category->category_name }}</a></li>
-        @endforeach
+                <li><a href="{{ url('/category') }}" class="menu-header">{{ $category->category_name }}</a></li>
+              @endforeach
               <li><a href="{{ url('/support') }}" class="menu-header">Support</a></li>
             </ul>
           </nav>
-          <div class="d-flex d-md-none gap-5 mt-3 ms-3">
-            <a href="{{url('/cart')}}">
-              <i class="fa-solid fa-cart-shopping icon"></i>
-            </a>
-            <a href="{{ route('white_list.index')}}">
-              <i class="fa-solid fa-bookmark icon"></i>
-            </a>
-            <button class="btn-login position-relative">
-              <i class="fa-solid fa-user icon"></i>
-              <div class="dropdown position-absolute overflow-hidden bg-white">
-                <ul class="border">
-                  <li><a href="{{ url('/profile') }}" class="d-flex gap-2 text-black text-center"><i
-                        class="fa-solid fa-address-card icon"></i>Profile</a></li>
-                  <li><a href="{{url('/login')}}" class="px-3 d-flex gap-2 text-black text-center"><i
-                        class="fas fa-door-open icon"></i>Logout</a></li>
-                </ul>
-              </div>
-            </button>
-          </div>
         </div>
       </div>
     </div>
@@ -188,7 +169,7 @@
   <!-- footer end -->
 
   <!-- mobile nav start -->
-  <div class="bottom-nav">
+  <div class="bottom-nav d-flex d-md-none">
     <a href="#" class="menu-header"><i class="fa-solid fa-home"></i><br>Home</a>
     <a href="#" class="menu-header"><i class="fa-solid fa-tags" id="category-link"></i><br>Category</a>
     <div class="">

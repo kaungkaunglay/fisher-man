@@ -766,7 +766,8 @@ li {
 }
 
 .product-btn {
-  width: 80%;
+  width: 100%;
+  max-width: 207px;
   font-size: 14px;
   min-width: max-content;
   color: #005B96;
@@ -814,6 +815,11 @@ li {
   gap: 20px;
 }
 
+.row-list .common-btn {
+  width: max-content !important;
+  margin-left: auto;
+}
+
 .forgotpass {
   height: 50vh;
 }
@@ -836,6 +842,7 @@ li {
     font-size: 15px;
     padding: 5px 25px;
   }
+
 }
 
 /* Card Design */
