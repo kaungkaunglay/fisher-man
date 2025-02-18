@@ -47,11 +47,13 @@
             <button class="bg-main text-white magnifying-glass"><i class="fa-solid fa-magnifying-glass"></i></button>
           </div>
           <div class="d-none d-md-flex gap-5  ms-3">
-            <a href="{{url('/cart')}}">
+            <a href="{{url('/cart')}}" class="position-relative">
               <i class="fa-solid fa-cart-shopping icon"></i>
+              <span class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
             </a>
-            <a href="{{ route('white_list.index')}}">
+            <a href="{{ route('white_list.index')}}" class="position-relative">
               <i class="fa-solid fa-bookmark icon"></i>
+              <span class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
             </a>
             <button class="btn-login position-relative">
               <i class="fa-solid fa-user icon"></i>

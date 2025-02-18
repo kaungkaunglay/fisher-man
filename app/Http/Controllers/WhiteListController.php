@@ -64,7 +64,7 @@ class WhiteListController extends Controller
 
             session()->flash('status','error');
             session()->flash('message','Product removed from whitelist');
-            return response()->json(['message' => 'Product removed from whitelist']);
+            return response()->json(['status' => true, 'message' => 'Product removed from whitelist']);
         }
 
         $user = Auth::user();
