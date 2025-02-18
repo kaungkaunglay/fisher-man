@@ -4,8 +4,7 @@ namespace App\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
-use Http;
-
+use Illuminate\Support\Facades\Http;
 
 class ReCaptcha implements ValidationRule
 {
@@ -17,10 +16,21 @@ class ReCaptcha implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $response = Http::get("https://www.google.com/recaptcha/api/siteverify",[
-            "secret" => env('GOOGLE_RECAPTCHA_SECRET'),
+            "secret" => env('RECAPTCHA_SECRET_KEY'),
             "response" => $value
         ])->json();
 
-        dd($response);
+      
+     
     }
+
+    // public function passes($attribute, $value)
+    // {
+    //     return $value === session('captcha');
+    // }
+
+    // public function message()
+    // {
+    //     return 'Invalid captcha.';
+    // }
 }

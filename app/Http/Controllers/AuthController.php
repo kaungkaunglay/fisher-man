@@ -130,6 +130,9 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'username' => 'required',
             'password' => 'required',
+            'g-recaptcha-response' => 'required',
+        ], [
+            'g-recaptcha-response.required' => 'The recaptcha field is required.'
         ]);
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
@@ -138,16 +141,14 @@ class AuthController extends Controller
             ->orWhere('email', $request->username)
             ->first();
 
-
-
             if($user && Hash::check($request->password, $user->password)){
                 $remember = $request->has('remember') && $request->remember == 1;
 
                 Auth::login($user,$remember);
 
-                return redirect()->intended('/');
+                // return redirect()->intended('/');
 
-                // return response()->json(['status' => true, 'message' => 'login successfull']);
+                return response()->json(['status' => true, 'message' => 'login successfull']);
             }
 
             return response()->json(['status' => false, 'message' => 'Username or Password is Incorrect']);

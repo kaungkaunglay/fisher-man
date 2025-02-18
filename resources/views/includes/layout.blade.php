@@ -22,13 +22,15 @@
   <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/images/favicon/favicon-32x32.png')}}">
   <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/favicon/favicon-16x16.png')}}">
   <link rel="manifest" href="{{asset('assets/images/favicon/site.webmanifest')}}">
+
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+ 
 
 </head>
 
 <body>
   {{-- preloader --}}
-  <div class="preloader" id="preloader">
+  {{-- <div class="preloader" id="preloader">
     <div class="fishing-scene">
       <div class="fisherman"></div>
       <div class="fishing-rod">
@@ -45,10 +47,10 @@
     <div class="progress">
       <div class="progress-bar" id="progress-bar"></div>
     </div>
-  </div>
+  </div> --}}
   {{-- end preloader --}}
   <!-- header section start -->
-  <header style="display: none;" id="main-content">
+  <header id="main-content">
     <div class="container-custom">
       <div class="header">
         <div class="top-header">
@@ -211,6 +213,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+  
   <script src="{{ asset('assets/js/popup.js') }}"></script>
   <script src="{{asset('assets/js/preloader.js')}}"></script>
   <script src="{{ asset('assets/js/moving-text.js') }}"></script>
