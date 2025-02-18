@@ -23,8 +23,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('assets/images/favicon/site.webmanifest') }}">
 
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
- 
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 
 </head>
 
@@ -49,6 +49,7 @@
     </div>
   </div> -->
     {{-- end preloader --}}
+
     <!-- header section start -->
     <header id="main-content">
         <div class="container-custom">
@@ -57,41 +58,81 @@
                     <div class="logo">
                         <a href="{{ url('/') }}">
                             @if (file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
-                                <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" class="logo"
-                                    alt="logo">
+                                <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
+                                    class="logo" alt="logo">
                             @else
-                                <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" class="logo"
-                                    alt="logo">
+                                <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
+                                    class="logo" alt="logo">
                             @endif
                         </a>
                     </div>
-                    <div class="position-relative">
-                      <div class="input-group">
-                          <input type="text" class="form-control bg-second" placeholder="Search your Products">
-                          <button class="bg-main text-white magnifying-glass"><i
-                                  class="fa-solid fa-magnifying-glass"></i></button>
-                      </div>
-                      <dl class="search-result-list">
-                        <dt>
-                          Order List
-                        </dt>
-                        <dd>
-                          <img src="{{ asset($product->product_image) }}" alt="...">
-                          <p>Name</p>
-                        </dd>
-                      </dl>
+                    <div class="ms-2 position-relative w-100">
+                        <div class="input-group w-100">
+                            <input type="text" class="form-control bg-second search-bar"
+                                placeholder="Search your Products">
+                            <button class="bg-main text-white magnifying-glass"><i
+                                    class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                        <!-- search-box -->
+                        <dl class="search-result-list position-absolute border p-2 rounded-3 shadow">
+                            <dt class="my-2 fw-bold">
+                                Order List
+                            </dt>
+                            <dd class="py-2 border-top border-2">
+                                <a href="#" class="d-flex rounded">
+                                    <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
+                                    <p class="align-self-center">Name</p>
+                                </a>
+                            </dd>
+                            <dt class="my-2 fw-bold">
+                                Order List
+                            </dt>
+                            <dd class="py-2 border-top border-2">
+                                <a href="#" class="d-flex rounded">
+                                    <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
+                                    <p class="align-self-center">Name</p>
+                                </a>
+                            </dd>
+                            <dd class="py-2 border-top border-2">
+                                <a href="#" class="d-flex rounded">
+                                    <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
+                                    <p class="align-self-center">Name</p>
+                                </a>
+                            </dd>
+                            <dd class="py-2 border-top border-2">
+                                <a href="#" class="d-flex rounded">
+                                    <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
+                                    <p class="align-self-center">Name</p>
+                                </a>
+                            </dd>
+                            <dd class="py-2 border-top border-2">
+                                <a href="#" class="d-flex rounded">
+                                    <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
+                                    <p class="align-self-center">Name</p>
+                                </a>
+                            </dd>
+                            <dd class="py-2 border-top border-2">
+                                <a href="#" class="d-flex rounded">
+                                    <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
+                                    <p class="align-self-center">Name</p>
+                                </a>
+                            </dd>
+                        </dl>
+                        <!-- /search-box -->
                     </div>
                     {{-- icon counts --}}
                     <div class="d-none d-md-flex gap-5  ms-3">
                         <a href="{{route('cart')}}" class="position-relative ">
                             <i class="fa-solid fa-cart-shopping icon"></i>
-                            <span id="cart_count" class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
+                            <span id="cart_count"
+                                class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
                         </a>
                         <a href="{{route('white_list.index')}}" class="position-relative">
                             <i class="fa-solid fa-bookmark icon"></i>
-                            <span id="white_list_count" class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
+                            <span id="white_list_count"
+                                class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
                         </a>
-                        
+
                         <button class="btn-login position-relative">
                             <i class="fa-solid fa-user icon"></i>
                             <div class="dropdown position-absolute overflow-hidden bg-white">
@@ -157,27 +198,25 @@
             <div class="row justify-content-around w-100 pb-3">
                 <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white">
                     @if (file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
-                        <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" class="logo"
-                            alt="logo">
+                        <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
+                            class="logo" alt="logo">
                     @else
-                        <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" class="logo"
-                            alt="logo">
+                        <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
+                            class="logo" alt="logo">
                     @endif
 
                     {{-- <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo"
-              alt=""></a> --}}
+                            alt=""></a> --}}
                     <p class="text-center txt-18">Who We Are: Your Trusted Source for Fresh Seafood.</p>
                     <div class="social-icons d-flex justify-content-center gap-4">
                         <a href="">
-                            <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}"
-                                alt="Line">
+                            <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}" alt="Line">
                         </a>
-                        <a href=""><img class="icon_social"
-                                src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Line"></a>
-                        <a href=""><img class="icon_social"
-                                src="{{ asset('assets/icons/custom/wechat.png') }}" alt="Line"></a>
-                        <a href=""><img class="icon_social"
-                                src="{{ asset('assets/icons/custom/xcom.png') }}"></a>
+                        <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/facebook.png') }}"
+                                alt="Line"></a>
+                        <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/wechat.png') }}"
+                                alt="Line"></a>
+                        <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/xcom.png') }}"></a>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 mt-3 d-flex flex-column justify-content-center">
@@ -233,45 +272,67 @@
     {{-- <!-- <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script> --> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="{{ asset('assets/js/popup.js') }}"></script>
-    {{-- <script src="{{asset('assets/js/preloader.js')}}"></script> --}}
+    {{--
+    <script src="{{asset('assets/js/preloader.js')}}"></script> --}}
     <script src="{{ asset('assets/js/moving-text.js') }}"></script>
     <script src="{{ asset('assets/js/password.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <script>
-      $(document).ready(() => {
-          $('.btn-login').click(() => {
-              $('.dropdown').toggleClass('active');
-            
-          });
+        $(document).ready(() => {
+            //dropdown trigger
+            $('.btn-login').click(() => {
+                $('.dropdown').toggleClass('active');
 
-          $(document).click(ev => {
-              if (!document.querySelector('.btn-login').contains(ev.target)) {
+            });
 
-                $('.dropdown').removeClass('active');
-              }
+            // close dropdown
+            $(document).click(ev => {
+                if (!document.querySelector('.btn-login').contains(ev.target)) {
+
+                    $('.dropdown').removeClass('active');
+                }
             })
-      
-          function updateWhiteListCount() {
-              $.ajax({
-                  url: "{{ route('whitelist-count') }}",
-                  method: 'GET',
-                  success: function(response) {
-                      // Assuming response contains the new count
-                      $('#white_list_count').text(response.white_lists_count);
-                  },
-                  error: function(xhr) {
-                      // Handle error here
-                      console.error(xhr);
-                  }
-              });
-          }
-      
-          // Update the count every 2 seconds
-          updateWhiteListCount();
-      });
-      </script>
+
+            //search-box open
+            $('.search-bar').on('input', () => searchResultShow())
+            $('.search-bar').click(() => searchResultShow())
+
+            function searchResultShow() {
+
+                if ($('.search-bar').val().length > 0) $('.search-result-list').addClass('d-block');
+                else $('.search-result-list').removeClass('d-block');
+            }
+
+
+            //close search-box
+            $(document).click(ev => {
+                if (!document.querySelector('.search-bar').contains(ev.target)) {
+
+                    $('.search-result-list').removeClass('d-block');
+                }
+            })
+
+            function updateWhiteListCount() {
+                $.ajax({
+                    url: "{{ route('whitelist-count') }}",
+                    method: 'GET',
+                    success: function (response) {
+                        // Assuming response contains the new count
+                        $('#white_list_count').text(response.white_lists_count);
+                    },
+                    error: function (xhr) {
+                        // Handle error here
+                        console.error(xhr);
+                    }
+                });
+            }
+
+            // Update the count every 2 seconds
+            updateWhiteListCount();
+        });
+    </script>
 
 </body>
 
