@@ -308,7 +308,7 @@
                         </a>
                         <div class="d-flex card-btn m-t-10">
                             <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                            <a href="javascript:void(0);" class="w-100 py-1 common-btn" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
+                            <a href="javascript:void(0);" class="w-100 py-1 common-btn white-list-btn" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
                         </div>
 
                     </div>
@@ -336,7 +336,7 @@
             });
 
 
-            $('.product-btn').click(function(e) {
+            $('.white-list-btn').click(function(e) {
                 e.preventDefault();
                 const getid = $(this).data('id');
 

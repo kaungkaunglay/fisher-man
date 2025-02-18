@@ -211,7 +211,7 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
   <script src="{{ asset('assets/js/popup.js') }}"></script>
-  <script src="{{asset('assets/js/preloader.js')}}"></script>
+  {{-- <script src="{{asset('assets/js/preloader.js')}}"></script> --}}
   <script src="{{ asset('assets/js/moving-text.js') }}"></script>
   <script src="{{ asset('assets/js/password.js') }}"></script>
   <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>

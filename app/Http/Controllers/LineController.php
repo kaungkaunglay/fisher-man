@@ -58,8 +58,7 @@ class LineController extends Controller
                 $user->avatar = $line->getAvatar();
                 $user->line_id = $line->getId();
                 $user->save();
-
-                $user->roles()->attach(3);
+                $user->assignRole(3);
             }
 
 
@@ -75,6 +74,12 @@ class LineController extends Controller
                     'expires_in' => $line->expiresIn
                 ]
             );
+
+            // set roles
+            logger($user);
+            logger($user->id);
+
+
             //save the token in session
             Session::put('line_token', $line_token );
             Session::put('user_id', $user->id );
