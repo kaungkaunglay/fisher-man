@@ -84,12 +84,8 @@
                                 <div class="item eye">
                                     <i class="icon-eye"></i>
                                 </div>
-                                <div class="item edit">
-                                    <i class="icon-edit-3"></i>
-                                </div>
-                                <div class="item trash">
-                                    <i class="icon-trash-2"></i>
-                                </div>
+                              
+                              
                             </div>
                         </div>
                     </li>
