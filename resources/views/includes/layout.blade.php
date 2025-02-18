@@ -62,7 +62,7 @@
                             @endif
                         </a>
                     </div>
-                    <div>
+                    <div class="position-relative">
                       <div class="input-group">
                           <input type="text" class="form-control bg-second" placeholder="Search your Products">
                           <button class="bg-main text-white magnifying-glass"><i
@@ -73,7 +73,7 @@
                           Order List
                         </dt>
                         <dd>
-                          <img src="" alt="">
+                          <img src="{{ asset($product->product_image) }}" alt="...">
                           <p>Name</p>
                         </dd>
                       </dl>

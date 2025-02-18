@@ -3,15 +3,12 @@ header{
     position: sticky;
     top: 0;
     z-index: 1000;
+    min-height: 97px;
 }
 
 .header{
     position: relative;
 }
-
-header .logo {
-    width: 80px; /* Maintain aspect ratio */
-  }
 
 .top-header{
     display: flex;
@@ -110,7 +107,7 @@ header .dropdown li:hover {
 
 .bottom-header{
     position: absolute;
-    bottom: -23px;
+    bottom: -47px;
     width: 90%;
     left: 50%;
     transform: translateX(-50%); 

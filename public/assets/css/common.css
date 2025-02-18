@@ -34,6 +34,20 @@ header .navbar-expand-lg .navbar-toggler {
   display: block !important;
 }
 
+.logo {
+  width: 120px; /* Maintain aspect ratio */
+  min-width: 120px;
+}
+
+.search-result-list {
+  width: 80%;
+  position: absolute;
+}
+
+.search-result-list dd img {
+  width: 50px;
+}
+
 .bg-second {
   background-color: var(--secondary-color) !important;
 }
