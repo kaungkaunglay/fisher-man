@@ -42,7 +42,7 @@ Route::post('/register', [AuthController::class, 'register_store'])->name('regis
 Route::get('/forgot_password', [AuthController::class, 'forgot_password'])->name('forgotpassword');
 // Handle Reset Link
 Route::post('/forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
-Route::get('/email_success/{email}',[AuthController::class, 'showEmailSuccess'])->name('email_success');
+Route::get('/email_success/{email}', [AuthController::class, 'showEmailSuccess'])->name('email_success');
 // Resent reset password link
 Route::post('/resend-email', [AuthController::class, 'resentResetLinkEmail'])->name('resend.email');
 // Password Reset Form
@@ -62,23 +62,18 @@ Route::get('/special-offer', [ProductController::class, 'discountProducts'])->na
 Route::get('/sub-category/{id}', [SubCategoriesController::class, 'show'])->name('sub-category.show');
 Route::get('/category/{id}', [CategoriesController::class, 'show'])->name('category');
 
-Route::post('/contact', [UsersController::class,'contact'])->name('contact');
-Route::post('/wishList', [UsersController::class,'wishList'])->name('wishList');
+Route::post('/contact', [UsersController::class, 'contact'])->name('contact');
+Route::post('/wishList', [UsersController::class, 'wishList'])->name('wishList');
 
 // auth
-Route::middleware(['auth'])->group(function () {
+Route::get('/profile')->middleware('check_role')->name('profile');
 
-    Route::get('/profile')->middleware('check_role')->name('profile');
+Route::middleware(['is_seller'])->group(function () {
+    Route::get('/profile/seller', [ProfileController::class, 'seller_profile'])->name('profile_seller');
+});
 
-    Route::middleware(['is_seller'])->group(function () {
-        Route::get('/profile/seller', [ProfileController::class,'seller_profile'])->name('profile_seller');
-    });
-
-    Route::middleware(['is_buyer'])->group(function () {
-        Route::get('/profile/buyer', [ProfileController::class,'user_profile'])->name('profile_user');
-    });
-
-
+Route::middleware(['is_buyer'])->group(function () {
+    Route::get('/profile/buyer', [ProfileController::class, 'user_profile'])->name('profile_user');
 });
 
 Route::middleware(['is_admin'])->group(function () {
@@ -129,7 +124,6 @@ Route::middleware(['is_admin'])->group(function () {
     //User Request
     Route::get('/admin/users/request-contact', [AdminController::class, 'contact'])->name('admin.users.contact');
     Route::get('/admin/users/wishList', [AdminController::class, 'wishList'])->name('admin.users.wishList');
-
 });
 
 
@@ -140,7 +134,7 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->middleware('tra
 //     return view('cart');
 // })->name('cart');
 
-Route::get('/support', [UsersController::class,'support'])->name('support');
+Route::get('/support', [UsersController::class, 'support'])->name('support');
 
 Route::get('/policy', function () {
     return view('terms_condition');
@@ -148,12 +142,12 @@ Route::get('/policy', function () {
 
 Route::get('/white-list', [WhiteListController::class, 'index'])->name('white_list.index');
 Route::post('/white-list/{product_id}', [WhiteListController::class, 'store'])->name('white_list.store');
-Route::delete('/white-list/delete/{product_id}',[WhiteListController::class, 'delete'])->name('white_list.delete');
+Route::delete('/white-list/delete/{product_id}', [WhiteListController::class, 'delete'])->name('white_list.delete');
 
 // cart
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
-Route::post('/add-to-cart',[CartController::class, 'addToCart'])->name('add_to_cart');
-Route::delete('/cart/delete/{product_id}',[CartController::class, 'delete'])->name('cart.delete');
+Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add_to_cart');
+Route::delete('/cart/delete/{product_id}', [CartController::class, 'delete'])->name('cart.delete');
 
 
 
@@ -184,4 +178,3 @@ Route::get('/auth/facebook', function () {
 })->name('facebook.login');
 
 Route::get('/login/facebook/callback', [OAuthController::class, 'handleFacebookCallback']);
-
