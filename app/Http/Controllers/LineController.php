@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\Users;
-use Illuminate\Support\Facades\Hash;
-use Laravel\Socialite\Facades\Socialite;
 use App\Models\OAuths;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Laravel\Socialite\Facades\Socialite;
 
 
 class LineController extends Controller
@@ -43,7 +44,7 @@ class LineController extends Controller
             Log::info('LINE User:', (array) $line);
             // check if the user is already registered
             $user = Users::where('line_id', $line->getId())->first();
-            logger($user);
+            // logger($user);
             if($user){
                 // Update the user's information
                 $user->username = $line->getName();
@@ -58,7 +59,7 @@ class LineController extends Controller
                 $user->avatar = $line->getAvatar();
                 $user->line_id = $line->getId();
                 $user->save();
-                $user->assignRole(3);
+
             }
 
 
@@ -75,10 +76,8 @@ class LineController extends Controller
                 ]
             );
 
-            // set roles
-            logger($user);
-            logger($user->id);
 
+            dd($user);
 
             //save the token in session
             Session::put('line_token', $line_token );
