@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/preloader.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}" />
   <!-- add jquery -->
   <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
@@ -25,9 +26,28 @@
 </head>
 
 <body>
-
+  {{-- preloader --}}
+  <div class="preloader" id="preloader">
+    <div class="fishing-scene">
+      <div class="fisherman"></div>
+      <div class="fishing-rod">
+        <div class="fishing-line">
+          <div class="hook"></div>
+        </div>
+      </div>
+      <div class="fish fish1"></div>
+      <div class="fish fish2"></div>
+      <div class="water"></div>
+      <div class="wave"></div>
+    </div>
+    <div class="loading-text">Catching some fish...</div>
+    <div class="progress">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+  </div>
+  {{-- end preloader --}}
   <!-- header section start -->
-  <header>
+  <header style="display: none;" id="main-content">
     <div class="container-custom">
       <div class="header">
         <div class="top-header">
@@ -191,6 +211,7 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
   <script src="{{ asset('assets/js/popup.js') }}"></script>
+  <script src="{{asset('assets/js/preloader.js')}}"></script>
   <script src="{{ asset('assets/js/moving-text.js') }}"></script>
   <script src="{{ asset('assets/js/password.js') }}"></script>
   <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
