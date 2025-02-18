@@ -13,12 +13,14 @@ body {
 }
 
 .profile-form:not(.active) .cancel,
-.profile-form:not(.active) .save {
+.profile-form:not(.active) .save,
+.profile-form:not(.active) .link-contain input {
   display: none;
 }
 
 .profile-form.active .edit,
-.profile-form.active .cor {
+.profile-form.active .cor,
+.profile-form.active .link-contain a {
   display: none;
 }
  

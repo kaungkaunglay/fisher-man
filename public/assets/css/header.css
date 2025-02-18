@@ -9,15 +9,17 @@ header{
     position: relative;
 }
 
-.logo{
-    width: 10%;
-}
+header .logo {
+    height: 80px; /* 8% of the viewport height */
+    max-height: 80px; /* Maximum height */
+    width: 80px; /* Maintain aspect ratio */
+  }
 
 .top-header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 30px;
+    padding-bottom: 5px;
     padding-top: 10px;
 }
 
@@ -78,14 +80,14 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
 
 header .dropdown {
     width: 250px;
-    transition: height 1s ease-in-out;
     z-index: 1;
-    height: 0;
+    height: max-content;
     right: 0;
+    display: none;
 }
 
 header .dropdown.active {
-    height: calc(58.8px * 2);
+    display: block;
 }
 
 header .dropdown a {
@@ -181,6 +183,29 @@ header .dropdown li:hover {
 .shopping{
     font-size: 30px !important;
 }
+
+/* search */
+.box-content-search.active {
+    top: 55px;
+    opacity: 1;
+    visibility: visible;
+}
+
+.box-content-search {
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    right: 0px;
+    background-color: var(--White);
+    box-shadow: rgba(20, 25, 38, 0.05) 0px 4px 24px 2px;
+    height: 538px;
+    overflow-y: scroll;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 14px;
+    padding: 16px;
+}
+
 
 @media screen and (max-width: 1100px) {
 

@@ -46,33 +46,29 @@
           </div>
 
           <!-- user name -->
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center mt-1">
             <label class="w-25" for="name">Name</label>:
-            <input type="text" class="p-1 mt-1 ms-1 rounded-1" id="name" value="{{ $user->username }}" readonly>
+            <input type="text" class="p-1 ms-1 rounded-1" id="name" value="{{ $user->username }}" readonly>
           </div>
 
           <!-- email link -->
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center link-contain mt-2">
             <label class="w-25" for="email">Email</label>:
-            <!-- <a href="mailto:{{ $user->email }}"> -->
-            <input type="email" class="p-1 mt-2 ms-1 rounded-1" id="email" value="{{ $user->email }}" readonly>
-            <!-- </a> -->
+            <a href="mailto:{{ $user->email }}" class="p-1">{{ $user->email }}</a>
+            <input type="email" class="p-1 ms-1 rounded-1" id="email" value="{{ $user->email }}" readonly>
           </div>
 
           <!-- line link -->
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center link-contain mt-2">
             <label class="w-25" for="line">Line</label>:
-            <!-- <a href="#"> -->
-            <input type="text" class="p-1 mt-2 ms-1 rounded-1" id="line" value="{{ $user->line_id}}" readonly>
-            <!-- </a> -->
+            <a href="#" class="p-1">{{ $user->line_id}}</a>
+            <input type="text" class="p-1 ms-1 rounded-1" id="line" value="{{ $user->line_id}}" readonly>
           </div>
 
           <!-- organization link -->
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center mt-2">
             <label class="w-25" for="organize">Organize</label>:
-            <!-- <a href="#"> -->
-            <input type="text" class="p-1 mt-2 ms-1 rounded-1" id="organize" value="Chat with name or Organization name" readonly>
-            <!-- </a> -->
+            <input type="text" class="p-1 ms-1 rounded-1" id="organize" value="Chat with name or Organization name" readonly>
           </div>
 
           <div>
@@ -101,22 +97,20 @@
           </h2>
     
           <!-- address -->
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center mt-2">
             <label class="w-25" for="address">Address</label>:
-            <input type="text" class="p-1 mt-2 ms-1 rounded-1" id="address" value="house no street,sue distict,city" readonly>
+            <input type="text" class="p-1 ms-1 rounded-1" id="address" value="house no street,sue distict,city" readonly>
           </div>
 
           <!-- phone-number link -->
-          <div class="d-flex align-items-start">
+          <div class="d-flex align-items-start link-contain">
             <label class="w-25" for="tel">Phone No.</label>:
             <div class="ms-1 d-flex phone-no-container">
-              <!-- <a href="tel:"> -->
+              <a href="tel:{{ $user->first_phone}}" class="p-1">{{ $user->first_phone}}</a>
               <input type="tel" class="p-1 mt-2 rounded-1" id="tel" value="{{ $user->first_phone}}" readonly>
-              <!-- </a> -->
                <b class="cor align-content-end">, </b>
-                <!-- <a href="tel:"> -->
-              <input type="tel" class="p-1 mt-2 rounded-1 sec-phone" value="{{ $user->secone_phone }}" readonly>
-              <!-- </a> -->
+              <a href="tel:{{ $user->second_phone }}" class="p-1">{{ $user->second_phone }}</a>
+              <input type="tel" class="p-1 mt-2 rounded-1 sec-phone" value="{{ $user->second_phone }}" readonly>
             </div>
           </div>
 

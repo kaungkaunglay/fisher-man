@@ -1,3 +1,7 @@
+footer {
+  min-height: 30vh;
+}
+
 footer .logo {
   height: 100px; /* 8% of the viewport height */
   max-height: 100px; /* Maximum height */
