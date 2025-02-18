@@ -514,7 +514,7 @@
 
             checkIfEmpty();
 
-            function removeCart(target,id)
+            function removeCart(id)
             {
                 $('.table-item').find(`.cart-${id}`).remove();
                 checkIfEmpty();
@@ -533,8 +533,6 @@
 
                 const getid = $(this).data('id');
 
-                const cur = $(this);
-
                 console.log(`.cart-${getid}`)
 
                 $.ajax({
@@ -547,7 +545,7 @@
                         // location.reload();
                         if (response.status) {
                             console.log(response.product_id);
-                            removeCart(cur,response.product_id);
+                            removeCart(response.product_id);
                         }
                     }
                 });
@@ -557,9 +555,6 @@
             $('.mb-cart-del-btn').click(function(e) {
                 e.preventDefault();
                 const getid = $(this).data('id');
-
-                const cur = $(this);
-
                 // console.log(`.cart-${getid}`)
 
                 $.ajax({
@@ -573,7 +568,7 @@
                         if(response.status)
                         {
                             console.log(response.product_id);
-                            removeCart(cur,response.product_id);
+                            removeCart(response.product_id);
                         }
                     }
                 });
@@ -582,7 +577,7 @@
             $('#next-btn').click(()=>{
                 @if (!Auth::check())
 
-                    
+
 
 
                     window.location.href ="{{ route('login')}}"

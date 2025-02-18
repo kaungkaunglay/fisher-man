@@ -99,7 +99,7 @@
               <li><a href="{{ url('/') }}" class="menu-header">Home</a></li>
               <li><a href="{{ url('/special-offer') }}" class="menu-header">Special Offer</a></li>
               @foreach($categories as $category)
-                <li><a href="{{ url('/category') }}" class="menu-header">{{ $category->category_name }}</a></li>
+                <li><a href="{{ route('category', $category->id) }}" class="menu-header">{{ $category->category_name }}</a></li>
               @endforeach
               <li><a href="{{ url('/support') }}" class="menu-header">Support</a></li>
             </ul>

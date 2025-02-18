@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Users;
+use App\Helpers\AuthHelper;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\ForgotPasswordMail;
@@ -291,7 +292,7 @@ class AuthController extends Controller
     }
 
     public function logout(){
-        Auth::logout();
+        AuthHelper::logout();
         return redirect()->route('login');
     }
 
