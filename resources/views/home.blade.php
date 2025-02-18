@@ -201,7 +201,7 @@
         </div>
     </section>
 
-
+    <div>{{ print_r(Cache::get('product:2:data'),true) }}</div>
     <section class="discount-products bg-second py-4">
         <div class="container-custom">
             <h6 class="txt-primary fw-bold mb-3">Discount Products</h6>
@@ -354,6 +354,9 @@
                     }
                 });
             });
+
+
         });
     </script>
+
 @endsection

@@ -47,6 +47,9 @@ class AppServiceProvider extends ServiceProvider
                 'visits' => 0,
                 'ips'    => []  // Will hold IP addresses that have visited
             ], );
+
+            //log
+            // logger(Cache::get("product:{$product->id}:data"));
         }
     }
 }
