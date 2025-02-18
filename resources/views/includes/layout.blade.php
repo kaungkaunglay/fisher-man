@@ -27,7 +27,7 @@
 
 <body>
   {{-- preloader --}}
-  <div class="preloader" id="preloader">
+  <!-- <div class="preloader" id="preloader">
     <div class="fishing-scene">
       <div class="fisherman"></div>
       <div class="fishing-rod">
@@ -44,7 +44,7 @@
     <div class="progress">
       <div class="progress-bar" id="progress-bar"></div>
     </div>
-  </div>
+  </div> -->
   {{-- end preloader --}}
   <!-- header section start -->
   <header style="display: none;" id="main-content">
