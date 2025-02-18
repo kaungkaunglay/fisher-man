@@ -178,3 +178,6 @@ Route::get('/auth/facebook', function () {
 })->name('facebook.login');
 
 Route::get('/login/facebook/callback', [OAuthController::class, 'handleFacebookCallback']);
+
+// count
+Route::get('/whitelist-count', [WhiteListController::class, 'WhiteListCount'])->name('whitelist-count');

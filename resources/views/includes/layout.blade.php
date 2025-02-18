@@ -71,7 +71,7 @@
               <i class="fa-solid fa-cart-shopping icon"></i>
               <span class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
             </a>
-            <a href="{{ route('white_list.index')}}" class="position-relative">
+            <a href="{{ route('whitelist-count')}}" class="position-relative">
               <i class="fa-solid fa-bookmark icon"></i>
               <span class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
             </a>
