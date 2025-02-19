@@ -534,7 +534,18 @@
                 const getid = $(this).data('id');
 
                 console.log(`.cart-${getid}`)
-
+                $.ajax({
+                    url: "{{ route('cart-count') }}",
+                    method: 'GET',
+                    success: function (response) {
+                        // Assuming response contains the new count
+                        $('#cart_count').text(response.cart_count);
+                    },
+                    error: function (xhr) {
+                        // Handle error here
+                        console.error(xhr);
+                    }
+                });
                 $.ajax({
                     url: `/cart/delete/${getid}`,
                     type: "DELETE",
