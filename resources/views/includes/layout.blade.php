@@ -75,48 +75,50 @@
                         </div>
                         <!-- search-box -->
                         <dl class="search-result-list position-absolute border p-2 rounded-3 shadow">
-                            <dt class="my-2 fw-bold">
-                                Order List
-                            </dt>
-                            <dd class="py-2 border-top border-2">
-                                <a href="#" class="d-flex rounded">
-                                    <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
-                                    <p class="align-self-center">Name</p>
-                                </a>
-                            </dd>
-                            <dt class="my-2 fw-bold">
-                                Order List
-                            </dt>
-                            <dd class="py-2 border-top border-2">
-                                <a href="#" class="d-flex rounded">
-                                    <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
-                                    <p class="align-self-center">Name</p>
-                                </a>
-                            </dd>
-                            <dd class="py-2 border-top border-2">
-                                <a href="#" class="d-flex rounded">
-                                    <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
-                                    <p class="align-self-center">Name</p>
-                                </a>
-                            </dd>
-                            <dd class="py-2 border-top border-2">
-                                <a href="#" class="d-flex rounded">
-                                    <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
-                                    <p class="align-self-center">Name</p>
-                                </a>
-                            </dd>
-                            <dd class="py-2 border-top border-2">
-                                <a href="#" class="d-flex rounded">
-                                    <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
-                                    <p class="align-self-center">Name</p>
-                                </a>
-                            </dd>
-                            <dd class="py-2 border-top border-2">
-                                <a href="#" class="d-flex rounded">
-                                    <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
-                                    <p class="align-self-center">Name</p>
-                                </a>
-                            </dd>
+                            @if (!empty($product))
+                                <dt class="my-2 fw-bold">
+                                    Order List
+                                </dt>
+                                <dd class="py-2 border-top border-2">
+                                    <a href="#" class="d-flex rounded">
+                                        <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
+                                        <p class="align-self-center">Name</p>
+                                    </a>
+                                </dd>
+                                <dt class="my-2 fw-bold">
+                                    Order List
+                                </dt>
+                                <dd class="py-2 border-top border-2">
+                                    <a href="#" class="d-flex rounded">
+                                        <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
+                                        <p class="align-self-center">Name</p>
+                                    </a>
+                                </dd>
+                                <dd class="py-2 border-top border-2">
+                                    <a href="#" class="d-flex rounded">
+                                        <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
+                                        <p class="align-self-center">Name</p>
+                                    </a>
+                                </dd>
+                                <dd class="py-2 border-top border-2">
+                                    <a href="#" class="d-flex rounded">
+                                        <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
+                                        <p class="align-self-center">Name</p>
+                                    </a>
+                                </dd>
+                                <dd class="py-2 border-top border-2">
+                                    <a href="#" class="d-flex rounded">
+                                        <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
+                                        <p class="align-self-center">Name</p>
+                                    </a>
+                                </dd>
+                                <dd class="py-2 border-top border-2">
+                                    <a href="#" class="d-flex rounded">
+                                        <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
+                                        <p class="align-self-center">Name</p>
+                                    </a>
+                                </dd>
+                            @endif
                         </dl>
                         <!-- /search-box -->
                     </div>
