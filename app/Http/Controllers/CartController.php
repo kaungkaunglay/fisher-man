@@ -42,15 +42,17 @@ class CartController extends Controller
 
 
     }
-    public function cartCount() {
+    public function CartCount() {
         // return cart count 
         if(Auth::check()){
-            $count = Auth::user()->carts()->count();
+            $cart = new Cart(); 
+            $count = $cart->where('user_id', Auth::id())->count();
         } else {
             $count = count(session('cart',[]));
         }
-        return response()->json(['count' => $count]);
+        return response()->json(['cart_count' => $count]);
     }
+
     public function addToCart(Request $request)
     {
         $product_ids = $request->input('product_ids') ? array_unique($request->input('product_ids')) : null;
