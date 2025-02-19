@@ -324,6 +324,7 @@
                                         <i
                                     class="fa-solid fa-magnifying-glass align-self-center me-2"></i>
                                         <p class="align-self-center">${product.name}</p>
+                                        <span class="align-self-center ms-auto">$${product.product_price}</span>
                                     </a>
                                 </div>
                         `);
