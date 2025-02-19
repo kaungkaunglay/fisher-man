@@ -152,22 +152,36 @@
         <div class="flex items-center justify-between flex-wrap gap10">
             <div class="text-tiny">Showing 10 entries</div>
             <ul class="wg-pagination">
-                <li>
-                    <a href="#"><i class="icon-chevron-left"></i></a>
-                </li>
-                <li>
-                    <a href="#">1</a>
-                </li>
-                <li class="active">
-                    <a href="#">2</a>
-                </li>
-                <li>
-                    <a href="#">3</a>
-                </li>
-                <li>
-                    <a href="#"><i class="icon-chevron-right"></i></a>
-                </li>
+                {{-- Previous Page Link --}}
+                @if ($products->onFirstPage())
+                    <li class="disabled">
+                        <span><i class="icon-chevron-left"></i></span>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ $products->previousPageUrl() }}"><i class="icon-chevron-left"></i></a>
+                    </li>
+                @endif
+
+                {{-- Pagination Elements --}}
+                @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
+                    <li class="{{ $products->currentPage() == $page ? 'active' : '' }}">
+                        <a href="{{ $url }}">{{ $page }}</a>
+                    </li>
+                @endforeach
+
+                {{-- Next Page Link --}}
+                @if ($products->hasMorePages())
+                    <li>
+                        <a href="{{ $products->nextPageUrl() }}"><i class="icon-chevron-right"></i></a>
+                    </li>
+                @else
+                    <li class="disabled">
+                        <span><i class="icon-chevron-right"></i></span>
+                    </li>
+                @endif
             </ul>
+
         </div>
     </div>
     <!-- /product-list -->
