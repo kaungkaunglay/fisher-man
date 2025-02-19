@@ -67,17 +67,17 @@
                         </a>
                     </div>
                     <div class="ms-2 position-relative w-50">
-                       <form action="{{ route('products.search') }}" method="get">
-                        <div class="input-group w-100">
-                            <input type="text" class="form-control bg-second search-bar" id="search"
-                                placeholder="Search your Products" name="search_key">
-                            <button type="submit" class="bg-main text-white magnifying-glass"><i
-                                    class="fa-solid fa-magnifying-glass"></i></button>
-                        </div>
-                       </form>
+                        <form action="{{ route('products.search') }}" method="get">
+                            <div class="input-group w-100">
+                                <input type="text" class="form-control bg-second search-bar" id="search"
+                                    placeholder="Search your Products" name="search_key">
+                                <button type="submit" class="bg-main text-white magnifying-glass"><i
+                                        class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
+                        </form>
                         <!-- search-box -->
                         <div class="search-result-list position-absolute border p-2 rounded-3 shadow" id="product-list">
-                        
+
                         </div>
                         <!-- /search-box -->
                     </div>
@@ -88,7 +88,7 @@
                             <span id="cart_count"
                                 class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
                         </a>
-                        <a href="{{route('white_list.index')}}" class="position-relative">
+                        <a href="{{ route('white_list.index') }}" class="position-relative">
                             <i class="fa-solid fa-bookmark icon" id="bookmark_btn"></i>
                             <span id="white_list_count"
                                 class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
@@ -98,8 +98,7 @@
                             <i class="fa-solid fa-user icon"></i>
                             <div class="dropdown position-absolute overflow-hidden bg-white">
                                 <ul class="border">
-                                    <li><a href="{{ url('/profile') }}"
-                                            class="d-flex gap-2 text-black text-center"><i
+                                    <li><a href="{{ url('/profile') }}" class="d-flex gap-2 text-black text-center"><i
                                                 class="fa-solid fa-address-card icon"></i>Profile</a></li>
                                     <li><a href="{{ route('logout') }}"
                                             class="px-3 d-flex gap-2 text-black text-center"><i
@@ -275,15 +274,16 @@
                     $('.search-result-list').removeClass('d-block');
                 }
             })
+
             function updateCartCount() {
                 $.ajax({
                     url: "{{ route('cart-count') }}",
                     method: 'GET',
-                    success: function (response) {
+                    success: function(response) {
                         // Assuming response contains the new count
                         $('#cart_count').text(response.cart_count);
                     },
-                    error: function (xhr) {
+                    error: function(xhr) {
                         // Handle error here
                         console.error(xhr);
                     }
@@ -294,11 +294,11 @@
                 $.ajax({
                     url: "{{ route('whitelist-count') }}",
                     method: 'GET',
-                    success: function (response) {
+                    success: function(response) {
                         // Assuming response contains the new count
                         $('#white_list_count').text(response.white_lists_count);
                     },
-                    error: function (xhr) {
+                    error: function(xhr) {
                         // Handle error here
                         console.error(xhr);
                     }
@@ -307,18 +307,20 @@
             updateWhiteListCount();
             updateCartCount();
 
-            $('#search').on('keyup', function() {
-        let query = $(this).val();
-
-        $.ajax({
-            url: "{{ route('products.ajaxSearch') }}",
-            type: "GET",
-            data: { query: query },
-            success: function(response) {
-                $('#product-list').html('');
-                if(response.length > 0) {
-                    $.each(response, function(index, product) {
-                        $('#product-list').append(`
+            $('#search').on('input', function() {
+                let query = $(this).val();
+                if(query.length > 0){
+                    $.ajax({
+                    url: "{{ route('products.ajaxSearch') }}",
+                    type: "GET",
+                    data: {
+                        query: query
+                    },
+                    success: function(response) {
+                        $('#product-list').html('');
+                        if (response.length > 0) {
+                            $.each(response, function(index, product) {
+                                $('#product-list').append(`
                              <div class="py-2">
                                     <a href="/product/${product.id}" class="d-flex rounded">
                                         <i
@@ -328,13 +330,17 @@
                                     </a>
                                 </div>
                         `);
-                    });
-                } else {
-                    $('#product-list').html('<p>No products found.</p>');
+                            });
+                        } else {
+                            $('#product-list').html('<p>No products found.</p>');
+                        }
+                    }
+                });
+                }else{
+                    $('#product-list').html('');
                 }
-            }
-        });
-    });
+                
+            });
         });
     </script>
 
