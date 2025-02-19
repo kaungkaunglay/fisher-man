@@ -26,7 +26,6 @@ class OAuthController extends Controller
             Log::info('LINE User:', (array) $line);
             // check if the user is already registered
             $user = Users::where('line_id', $line->getId())->first();
-            logger($user);
             if($user){
                 // Update the user's information
                 $user->username = $line->getName();
@@ -72,7 +71,7 @@ class OAuthController extends Controller
     public function handleGoogleCallback(Request $request){
         try {
             $googleUser = Socialite::driver('google')->user();
-
+            logger($googleUser);
             $user = Users::updateOrCreate(
                 ['email' => $googleUser->getEmail()],
                 [
@@ -92,16 +91,50 @@ class OAuthController extends Controller
     {
         try {
             $facebookUser = Socialite::driver('facebook')->user();
+            //token encrypt
+            $line_token = Hash::make($facebookUser->token);
+            $refresh_token = Hash::make($facebookUser->refresh_token);
 
-            $user = Users::updateOrCreate(
-                ['email' => $facebookUser->getEmail()],
+            // Log the user information from LINE
+            Log::info('Facebook User:', (array) $facebookUser);
+            // check if the user is already registered
+            $user = Users::where('facebook_id', $facebookUser->getId())->first();
+            if($user){
+                // Update the user's information
+                $user->username = $facebookUser->getName();
+                $user->email = $facebookUser->getEmail();
+                $user->avatar = $facebookUser->getAvatar();
+                $user->save();
+            }else{
+                // Save the user information to the Users model
+                $user = new Users();
+                $user->username = $facebookUser->getName();
+                $user->email = $facebookUser->getEmail();
+                $user->avatar = $facebookUser->getAvatar();
+                $user->facebook_id = $facebookUser->getId();
+                $user->save();
+
+                $user->assignRole(3);
+            }
+
+            // save the informatoin to Oauth with user id
+            $oauth = OAuths::updateOrCreate(
                 [
-                    'name' => $facebookUser->getName(),
-                    'facebook_id' => $facebookUser->getId(),
+                    'user_id' => $user->id,
+                    'provider' => 'facebook'
+                ],
+                [
+                    'token' => $line_token,
+                    'refresh_token' => $refresh_token,
+                    'expires_in' => $facebookUser->expiresIn
                 ]
             );
-            // Auth::login($user, true);
-            return redirect()->intended('/');
+            //save the token in session
+            Session::put('facebook_token', $line_token );
+            Session::put('user_id', $user->id );
+            Session::put('facebook_refresh_token', $refresh_token );
+             // Redirect the user to the dashboard or home page
+             return redirect()->route('home');
         } catch (\Exception $e) {
             return redirect('/login')->with('error', 'Something went wrong with Facebook login.');
         }
