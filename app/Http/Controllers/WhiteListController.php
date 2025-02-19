@@ -45,6 +45,7 @@ class WhiteListController extends Controller
             }
 
             // Add to whitelist
+            session()->push('white_lists', $product_id);
             return response()->json(['status' => true, 'message' => 'Product added to whitelist']);
         }
 
