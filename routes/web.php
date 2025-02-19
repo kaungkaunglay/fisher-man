@@ -65,6 +65,12 @@ Route::get('/category/{id}', [CategoriesController::class, 'show'])->name('categ
 Route::post('/contact', [UsersController::class, 'contact'])->name('contact');
 Route::post('/wishList', [UsersController::class, 'wishList'])->name('wishList');
 
+//search-product-ajax
+Route::get('/products/ajax-search', [ProductController::class, 'ajaxSearch'])->name('products.ajaxSearch');
+
+//search-product using button
+Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
+
 // auth
 Route::get('/profile')->middleware('check_role')->name('profile');
 

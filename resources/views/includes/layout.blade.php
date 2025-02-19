@@ -66,65 +66,24 @@
                             @endif
                         </a>
                     </div>
-                    <div class="ms-2 position-relative w-100">
+                    <div class="ms-2 position-relative w-50">
+                       <form action="{{ route('products.search') }}" method="get">
                         <div class="input-group w-100">
-                            <input type="text" class="form-control bg-second search-bar"
-                                placeholder="Search your Products">
-                            <button class="bg-main text-white magnifying-glass"><i
+                            <input type="text" class="form-control bg-second search-bar" id="search"
+                                placeholder="Search your Products" name="search_key">
+                            <button type="submit" class="bg-main text-white magnifying-glass"><i
                                     class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
+                       </form>
                         <!-- search-box -->
-                        <dl class="search-result-list position-absolute border p-2 rounded-3 shadow">
-                            @if (!empty($product))
-                                <dt class="my-2 fw-bold">
-                                    Order List
-                                </dt>
-                                <dd class="py-2 border-top border-2">
-                                    <a href="#" class="d-flex rounded">
-                                        <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
-                                        <p class="align-self-center">Name</p>
-                                    </a>
-                                </dd>
-                                <dt class="my-2 fw-bold">
-                                    Order List
-                                </dt>
-                                <dd class="py-2 border-top border-2">
-                                    <a href="#" class="d-flex rounded">
-                                        <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
-                                        <p class="align-self-center">Name</p>
-                                    </a>
-                                </dd>
-                                <dd class="py-2 border-top border-2">
-                                    <a href="#" class="d-flex rounded">
-                                        <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
-                                        <p class="align-self-center">Name</p>
-                                    </a>
-                                </dd>
-                                <dd class="py-2 border-top border-2">
-                                    <a href="#" class="d-flex rounded">
-                                        <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
-                                        <p class="align-self-center">Name</p>
-                                    </a>
-                                </dd>
-                                <dd class="py-2 border-top border-2">
-                                    <a href="#" class="d-flex rounded">
-                                        <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
-                                        <p class="align-self-center">Name</p>
-                                    </a>
-                                </dd>
-                                <dd class="py-2 border-top border-2">
-                                    <a href="#" class="d-flex rounded">
-                                        <img src="{{ asset($product->product_image) }}" class="py-1 ms-2 me-3" alt="...">
-                                        <p class="align-self-center">Name</p>
-                                    </a>
-                                </dd>
-                            @endif
-                        </dl>
+                        <div class="search-result-list position-absolute border p-2 rounded-3 shadow" id="product-list">
+                        
+                        </div>
                         <!-- /search-box -->
                     </div>
                     {{-- icon counts --}}
                     <div class="d-none d-md-flex gap-5  ms-3">
-                        <a href="{{route('cart')}}" class="position-relative ">
+                        <a href="{{ route('cart') }}" class="position-relative ">
                             <i class="fa-solid fa-cart-shopping icon"></i>
                             <span id="cart_count"
                                 class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
@@ -139,7 +98,8 @@
                             <i class="fa-solid fa-user icon"></i>
                             <div class="dropdown position-absolute overflow-hidden bg-white">
                                 <ul class="border">
-                                    <li><a href="{{ url('/profile') }}" class="d-flex gap-2 text-black text-center"><i
+                                    <li><a href="{{ url('/profile') }}"
+                                            class="d-flex gap-2 text-black text-center"><i
                                                 class="fa-solid fa-address-card icon"></i>Profile</a></li>
                                     <li><a href="{{ route('logout') }}"
                                             class="px-3 d-flex gap-2 text-black text-center"><i
@@ -212,13 +172,15 @@
                     <p class="text-center txt-18">Who We Are: Your Trusted Source for Fresh Seafood.</p>
                     <div class="social-icons d-flex justify-content-center gap-4">
                         <a href="">
-                            <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}" alt="Line">
+                            <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}"
+                                alt="Line">
                         </a>
-                        <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/facebook.png') }}"
-                                alt="Line"></a>
-                        <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/wechat.png') }}"
-                                alt="Line"></a>
-                        <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/xcom.png') }}"></a>
+                        <a href=""><img class="icon_social"
+                                src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Line"></a>
+                        <a href=""><img class="icon_social"
+                                src="{{ asset('assets/icons/custom/wechat.png') }}" alt="Line"></a>
+                        <a href=""><img class="icon_social"
+                                src="{{ asset('assets/icons/custom/xcom.png') }}"></a>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 mt-3 d-flex flex-column justify-content-center">
@@ -274,7 +236,7 @@
     {{-- <!-- <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script> --> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="{{ asset('assets/js/popup.js') }}"></script>
     {{--
     <script src="{{asset('assets/js/preloader.js')}}"></script> --}}
@@ -286,7 +248,6 @@
             //dropdown trigger
             $('.btn-login').click(() => {
                 $('.dropdown').toggleClass('active');
-
             });
 
             // close dropdown
@@ -302,7 +263,6 @@
             $('.search-bar').click(() => searchResultShow())
 
             function searchResultShow() {
-
                 if ($('.search-bar').val().length > 0) $('.search-result-list').addClass('d-block');
                 else $('.search-result-list').removeClass('d-block');
             }
@@ -332,11 +292,11 @@
 
             function updateWhiteListCount() {
                 $.ajax({
-                    url: "{{ route('whitelist-count') }}",
+                    url: "{{ route('cart-count') }}",
                     method: 'GET',
                     success: function (response) {
                         // Assuming response contains the new count
-                        $('#white_list_count').text(response.white_lists_count);
+                        $('#cart_count').text(response.cart_count);
                     },
                     error: function (xhr) {
                         // Handle error here
