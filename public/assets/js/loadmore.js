@@ -25,7 +25,7 @@ const showItems = () => {
     loadMoreBtn.querySelector('i').classList.replace('fa-chevron-down', 'fa-chevron-up');
     load = 'less';
   }
-  if(currentVisible <= 0) {
+  if(currentVisible <= 24) {
     loadMoreBtn.querySelector('i').classList.replace('fa-chevron-up', 'fa-chevron-down');
     load = 'more';
   }

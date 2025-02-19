@@ -25,7 +25,6 @@
                     <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
                 </div>
             </div>
-
             <div class="card-list" id="view-list">
                 <div class="item-card">
                     <a href="{{ url('/product') }}" class="right">
@@ -364,7 +363,12 @@
 
             });
 
-
+            // disable btn
+            $('.white-list-btn').click((ev)=> {
+                ev.preventDefault();
+                const target = ev.currentTarget;
+                $(target).addClass('disable');
+            })
         });
 
     </script>
