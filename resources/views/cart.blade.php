@@ -389,7 +389,6 @@
                             <td clas="col-name">{{ $item->product->name}}</td>
                             <td class="price">¥{{ $item->product->product_price }}</td>
                             <td class="cost">
-                                ¥100
                                 <input type="hidden" value="1" class="quantity-value">
                             </td>
                             </td>
@@ -410,7 +409,7 @@
             <!-- ./Desktop Style -->
 
             <!-- Mobile Style -->
-            <div class="mobile d-md-none d-flex flex-column gap-3 table-item mb-cart-body ">
+            <div class="mobile d-md-none d-flex flex-column gap-3 table-item mb-cart-body">
                 @foreach ($carts as $item)
                     <div class="card cart-{{ $item->product->id }}">
                         <div class="card-img align-content-center me-2">
@@ -544,8 +543,8 @@
                     success: function(response) {
                         // location.reload();
                         if (response.status) {
-                            console.log(response.product_id);
                             removeCart(response.product_id);
+                            netTotal();
                         }
                     }
                 });
@@ -569,6 +568,7 @@
                         {
                             console.log(response.product_id);
                             removeCart(response.product_id);
+                            netTotal();
                         }
                     }
                 });

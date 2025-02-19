@@ -56,6 +56,8 @@ $(document).ready(() => {
   netTotal(true);
   netTotal();
 
+  // remove Item 
+
   // for testing
   skipStepTester();
 })
@@ -215,8 +217,4 @@ function change_step(trigger, point) {
       scrollTop: $('main').offset().top - header
     }, 500);
   })
-}
-
-function progress() {
-  
 }
