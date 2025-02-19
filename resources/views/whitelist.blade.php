@@ -177,7 +177,7 @@
                 $('.desktop-check-product:checked').each(function() {
                     selected_products.push($(this).val());
                 });
-
+               
                 $.ajax({
                     url: "{{ route('add_to_cart') }}",
                     type: "POST",
@@ -192,6 +192,18 @@
                         if (!response.status) {
                             console.log(response.message);
                         }
+                    }
+                });
+                $.ajax({
+                    url: "{{ route('cart-count') }}",
+                    method: 'GET',
+                    success: function (response) {
+                        // Assuming response contains the new count
+                        $('#cart_count').text(response.cart_count);
+                    },
+                    error: function (xhr) {
+                        // Handle error here
+                        console.error(xhr);
                     }
                 });
             });
