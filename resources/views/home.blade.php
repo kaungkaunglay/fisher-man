@@ -352,7 +352,7 @@
                                 {{ $product->description }}
                             </a>
                             <div class="d-flex card-btn m-t-10">
-                                <a href="javascript:void(0);" class="w-100 py-1 common-btn white-list-btn" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
+                                <a href="javascript:void(0);" class="w-100 py-1 common-btn white-list-btn @if($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
                             </div>
                         </div>
                     </div>
@@ -424,9 +424,9 @@
                 //     $(target).toggleClass('active');
 
                 //     if (!$('#bookmark_btn').hasClass('active')) {
-                        
+
                 //         $('#bookmark_btn').addClass('active');
-                        
+
                 //         setTimeout(() => {
                 //             $('#bookmark_btn').removeClass('active');
                 //         }, 1000);
