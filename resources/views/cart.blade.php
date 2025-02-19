@@ -53,7 +53,7 @@
                     </tr>
                 </thead>
                 <tbody class="dsk-cart-body">
-                    @foreach ($carts as  $item)
+                    @foreach ($carts as $item)
                         <tr class="table-row cart-{{ $item->product->id }}">
                             <td>
                                 <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
@@ -153,7 +153,8 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="text" id="name" class="p-1" value="{{ auth()->user()->username ?? '' }}">
+                                <input type="text" id="name" class="p-1"
+                                    value="{{ auth()->user()->username ?? '' }}">
                             </td>
                         </tr>
                         <tr>
@@ -162,7 +163,8 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="number" id="tel" class="p-1" value="{{ auth()->user()->first_phone ?? '' }}">
+                                <input type="number" id="tel" class="p-1"
+                                    value="{{ auth()->user()->first_phone ?? '' }}">
                             </td>
                         </tr>
                         <tr>
@@ -171,7 +173,8 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="text" id="line_id" class="p-1" value="{{ auth()->user()->line_id ?? '' }}">
+                                <input type="text" id="line_id" class="p-1"
+                                    value="{{ auth()->user()->line_id ?? '' }}">
                             </td>
                         </tr>
                         <tr>
@@ -180,7 +183,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="number" id="zip" class="p-1" >
+                                <input type="number" id="zip" class="p-1">
                             </td>
                         </tr>
                         <tr>
@@ -201,7 +204,8 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="number" id="delivery" class="p-1" value="{{ auth()->user()->address ?? '' }}">
+                                <input type="number" id="delivery" class="p-1"
+                                    value="{{ auth()->user()->address ?? '' }}">
                             </td>
                         </tr>
                     </table>
@@ -223,7 +227,7 @@
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
-                            <p class="p-1">{{ auth()->user()->username ?? ''}}</p>
+                            <p class="p-1">{{ auth()->user()->username ?? '' }}</p>
                         </td>
                     </tr>
                     <tr>
@@ -380,13 +384,13 @@
                     </tr>
                 </thead>
                 <tbody class="dsk-cart-body">
-                    @foreach ($carts as  $item)
+                    @foreach ($carts as $item)
                         <tr class="table-row cart-{{ $item->product->id }}">
                             <td>
                                 <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
                                         alt="product img"></div>
                             </td>
-                            <td clas="col-name">{{ $item->product->name}}</td>
+                            <td clas="col-name">{{ $item->product->name }}</td>
                             <td class="price">¥{{ $item->product->product_price }}</td>
                             <td class="cost">
                                 ¥100
@@ -394,7 +398,6 @@
                             </td>
                             </td>
                         </tr>
-
                     @endforeach>
                 </tbody>
                 <tfoot>
@@ -514,8 +517,7 @@
 
             checkIfEmpty();
 
-            function removeCart(id)
-            {
+            function removeCart(id) {
                 $('.table-item').find(`.cart-${id}`).remove();
                 checkIfEmpty();
             }
@@ -525,7 +527,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-       
+
             // for desktop
             // desktop delete button
             $('.dsk-cart-del-btn').click(function(e) {
@@ -549,6 +551,19 @@
                         }
                     }
                 });
+
+                $.ajax({
+                    url: "{{ route('cart-count') }}",
+                    method: 'GET',
+                    success: function(response) {
+                        // Assuming response contains the new count
+                        $('#cart_count').text(response.cart_count);
+                    },
+                    error: function(xhr) {
+                        // Handle error here
+                        console.error(xhr);
+                    }
+                });
             });
 
             // mobile delete button
@@ -565,33 +580,45 @@
                     },
                     success: function(response) {
                         // location.reload();
-                        if(response.status)
-                        {
+                        if (response.status) {
                             console.log(response.product_id);
                             removeCart(response.product_id);
                         }
                     }
                 });
+
+                $.ajax({
+                    url: "{{ route('cart-count') }}",
+                    method: 'GET',
+                    success: function(response) {
+                        // Assuming response contains the new count
+                        $('#cart_count').text(response.cart_count);
+                    },
+                    error: function(xhr) {
+                        // Handle error here
+                        console.error(xhr);
+                    }
+                });
             });
 
-            $('#next-btn').click(()=>{
+            $('#next-btn').click(() => {
                 @if (!Auth::check())
-                    window.location.href ="{{ route('login')}}"
+                    window.location.href = "{{ route('login') }}"
                 @endif
             });
 
 
             // for address text input
-            $('#name').keyup(function(){
+            $('#name').keyup(function() {
                 $('#name-result').html($(this).val());
             });
-            $('#tel').keyup(function(){
+            $('#tel').keyup(function() {
                 $('#tel-result').html($(this).val());
             })
-            $('#line_id').keyup(function(){
+            $('#line_id').keyup(function() {
                 $('#line_id-result').html($(this).val());
             })
-            $('#delivery').keyup(function(){
+            $('#delivery').keyup(function() {
                 $('#delivery-result').html($(this).val());
             })
 

@@ -148,15 +148,15 @@
             $('.desktop-del-btn').click(function() {
                 const getid = $(this).data('id');
                 $.ajax({
-                        url: "{{ route('whitelist-count') }}",
-                        method: 'GET',
-                        success: function(response) {
-                            $('#white_list_count').text(response.white_lists_count);
-                        },
-                        error: function(xhr) {
-                            console.error(xhr);
-                        }
-                    });
+                    url: "{{ route('whitelist-count') }}",
+                    method: 'GET',
+                    success: function(response) {
+                        $('#white_list_count').text(response.white_lists_count);
+                    },
+                    error: function(xhr) {
+                        console.error(xhr);
+                    }
+                });
 
                 $.ajax({
                     url: `/white-list/delete/${getid}`,
@@ -205,12 +205,22 @@
                 $.ajax({
                     url: "{{ route('cart-count') }}",
                     method: 'GET',
-                    success: function (response) {
+                    success: function(response) {
                         // Assuming response contains the new count
                         $('#cart_count').text(response.cart_count);
                     },
-                    error: function (xhr) {
+                    error: function(xhr) {
                         // Handle error here
+                        console.error(xhr);
+                    }
+                });
+                $.ajax({
+                    url: "{{ route('whitelist-count') }}",
+                    method: 'GET',
+                    success: function(response) {
+                        $('#white_list_count').text(response.white_lists_count);
+                    },
+                    error: function(xhr) {
                         console.error(xhr);
                     }
                 });
@@ -230,6 +240,17 @@
                         if (response.status) {
                             removeCart(getid);
                         }
+                    }
+                });
+
+                $.ajax({
+                    url: "{{ route('whitelist-count') }}",
+                    method: 'GET',
+                    success: function(response) {
+                        $('#white_list_count').text(response.white_lists_count);
+                    },
+                    error: function(xhr) {
+                        console.error(xhr);
                     }
                 });
             });
@@ -259,6 +280,17 @@
                         if (response.status == false) {
                             console.log(response.message);
                         }
+                    }
+                });
+
+                $.ajax({
+                    url: "{{ route('whitelist-count') }}",
+                    method: 'GET',
+                    success: function(response) {
+                        $('#white_list_count').text(response.white_lists_count);
+                    },
+                    error: function(xhr) {
+                        console.error(xhr);
                     }
                 });
             });

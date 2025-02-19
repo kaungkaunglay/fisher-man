@@ -213,12 +213,12 @@ class CartController extends Controller
         if(!AuthHelper::check()){
 
             $cart = session('cart', []);
-            $cart = array_diff($cart, [$product_id]);
-            $cart = array_values($cart);
+            $cart = array_filter($cart, function ($item) use ($product_id) {
+                return $item['id'] != $product_id;
+            });
+
             session(['cart' => $cart]);
 
-            session()->flash('status','error');
-            session()->flash('message','Product removed from cart');
             return response()->json(['status'=> true,'product_id' => $product_id,'message' => 'Product removed from cart']);
         }
 
@@ -230,8 +230,6 @@ class CartController extends Controller
 
         $user->carts()->where('product_id',$product_id)->delete();
 
-        session()->flash('status','error');
-        session()->flash('message','Product removed from cart');
         return response()->json(['status' => true, 'product_id' => $product_id,'message' => 'Product removed from cart']);
 
     }
