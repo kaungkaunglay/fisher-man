@@ -181,6 +181,30 @@
                                 </ul>
                             </div>
                             <div class="center-item">
+                                <div class="center-heading">Manage Shop</div>
+                                <ul class="menu-list">
+                                    <li class="menu-item has-children {{ request()->is('admin/faq*') ? 'active' : '' }}">
+                                        <a href="javascript:void(0);" class="menu-item-button">
+                                            <div class="icon"><i class="icon-user"></i></div>
+                                            <div class="text">Shop List</div>
+                                        </a>
+                                        <ul class="sub-menu" style="display: block;">
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('admin.faqs')}}" class="{{request()->is('admin/faqs') ? 'active' : ''}}">
+                                                    <div class="text">All FAQs</div>
+                                                </a>
+                                            </li>
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('create_faq')}}" class="{{ request()->is('admin/faq') ? 'active' : '' }}">
+                                                    <div class="text">Add new FAQ</div>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="center-item">
                                 <div class="center-heading">Manage FAQs</div>
                                 <ul class="menu-list">
                                     <li class="menu-item has-children {{ request()->is('admin/faq*') ? 'active' : '' }}">

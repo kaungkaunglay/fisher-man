@@ -62,4 +62,9 @@ class Users extends Authenticatable implements CanResetPassword
         $this->roles()->sync([$role_id]);
     }
 
+    public function shop() {
+        return $this->hasOne(Shop::class);
+    }
+
+
 }
