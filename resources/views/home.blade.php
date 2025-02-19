@@ -4,13 +4,12 @@
 @endsection
 
 @section('contents')
-
     <!-- Hero Section -->
     <section class="hero mt-5">
         <div class="container-custom">
             <div class="row justify-content-between">
                 <div class="col-lg-4 d-none d-lg-block">
-                    @include('includes.aside')  <!-- Aside Layout -->
+                    @include('includes.aside') <!-- Aside Layout -->
                 </div>
                 <div class="col-lg-8 col-md-12">
                     @include('includes.slider') <!-- Slider Layout -->
@@ -25,15 +24,15 @@
         <div class="container-custom">
 
             <!-- Recomnand HeadLine -->
-             <div>
-                 <h6 class="txt-primary fw-bold mb-3">Recommand Products</h6>
-                 <div class="filter d-flex justify-content-between align-items-center mb-3">
-                     <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
-                         <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
-                         <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
-                     </div>
-                 </div>
-             </div>
+            <div>
+                <h6 class="txt-primary fw-bold mb-3">Recommand Products</h6>
+                <div class="filter d-flex justify-content-between align-items-center mb-3">
+                    <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
+                        <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
+                        <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
+                    </div>
+                </div>
+            </div>
             <!-- /Recomnand HeadLine -->
 
             <!-- Card List -->
@@ -186,7 +185,8 @@
 
                 <div class="col-6 col-md-6 col-lg-3 mb-3">
                     <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
-                        <img src="{{ asset('assets/images/fishes/Rectangle 92 (3).png') }}" class="card-img-top" alt="..." />
+                        <img src="{{ asset('assets/images/fishes/Rectangle 92 (3).png') }}" class="card-img-top"
+                            alt="..." />
                         <div class="card-body bg-main">
                             <p class="card-text text-center text-white">Shop Name</p>
                         </div>
@@ -195,7 +195,8 @@
 
                 <div class="col-6 col-md-6 col-lg-3 mb-3">
                     <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
-                        <img src="{{ asset('assets/images/fishes/Rectangle 92 (2).png') }}" class="card-img-top" alt="..." />
+                        <img src="{{ asset('assets/images/fishes/Rectangle 92 (2).png') }}" class="card-img-top"
+                            alt="..." />
                         <div class="card-body bg-main">
                             <p class="card-text text-center text-white">Shop Name</p>
                         </div>
@@ -251,7 +252,8 @@
                             <button><i class="fa-solid fa-caret-down"></i></button>
                         </div>
                         <div class="dropdown">
-                            <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Sort by</button>
+                            <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">Sort by</button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
                                 <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -269,7 +271,8 @@
                 @foreach ($products->filter(fn($product) => $product->discount > 0.0)->take(6) as $product)
                     <div class="item-card">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
-                            <img src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
+                            <img src="{{ asset($product->product_image) }}" class="card-img-top"
+                                alt="{{ $product->name }}">
                         </a>
                         <div class="left">
                             <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
@@ -281,7 +284,8 @@
                                 {{ $product->description }}
                             </a>
                             <div class="d-flex card-btn m-t-10">
-                                <a href="#" class="w-100 py-1 common-btn"><i class="fa-solid fa-bookmark"></i></a>
+                                <a href="#" class="w-100 py-1 common-btn white-list-btn @if ($product->inWhiteLists()) active @endif"
+                                    data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
                             </div>
                         </div>
                     </div>
@@ -323,7 +327,8 @@
                             <button><i class="fa-solid fa-caret-down"></i></button>
                         </div>
                         <div class="dropdown">
-                            <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Sort by</button>
+                            <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">Sort by</button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
                                 <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -340,7 +345,8 @@
                 @foreach ($products as $product)
                     <div class="item-card">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
-                            <img src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
+                            <img src="{{ asset($product->product_image) }}" class="card-img-top"
+                                alt="{{ $product->name }}">
                         </a>
                         <div class="left">
                             <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
@@ -352,7 +358,9 @@
                                 {{ $product->description }}
                             </a>
                             <div class="d-flex card-btn m-t-10">
-                                <a href="javascript:void(0);" class="w-100 py-1 common-btn white-list-btn @if($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
+                                <a href="javascript:void(0);"
+                                    class="w-100 py-1 common-btn white-list-btn @if ($product->inWhiteLists()) active @endif"
+                                    data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
                             </div>
                         </div>
                     </div>
@@ -387,11 +395,11 @@
                 });
 
 
-            $('.white-list-btn').click(function(e) {
-                e.preventDefault();
-                const getid = $(this).data('id');
-                const cur = $(this);
-                $.ajax({
+                $('.white-list-btn').click(function(e) {
+                    e.preventDefault();
+                    const getid = $(this).data('id');
+                    const cur = $(`.white-list-btn[data-id="${getid}"]`);
+                    $.ajax({
                         url: "{{ route('whitelist-count') }}",
                         method: 'GET',
                         success: function(response) {
@@ -401,19 +409,19 @@
                             console.error(xhr);
                         }
                     });
-                $.ajax({
-                    url: `/white-list/${getid}`,
-                    type: "POST",
-                    data: {
-                        id: getid
-                    },
-                    success: function(data) {
-                        if (data.status) {
-                            cur.toggleClass('active');
+                    $.ajax({
+                        url: `/white-list/${getid}`,
+                        type: "POST",
+                        data: {
+                            id: getid
+                        },
+                        success: function(data) {
+                            if (data.status) {
+                                cur.toggleClass('active');
+                            }
+                            console.log(data.message);
                         }
-                        console.log(data.message);
-                    }
-                });
+                    });
 
                 });
 
@@ -433,12 +441,10 @@
                 //     }
                 // });
             });
-
         </script>
     </div>
     <!-- /All Scripts -->
 
     <!-- Testing Scripts -->
     <!-- /Testing Scripts -->
-
 @endsection

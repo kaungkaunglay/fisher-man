@@ -135,6 +135,10 @@
             checkIfEmpty();
 
             function removeCart(id) {
+
+                const dsk_white_list = $('.mb-white-list-body').find(`.white-list-${id}`);
+                const mb_white_list = $('.dsk-white-list-body').find(`.white-list-${id}`);
+
                 $('.mb-white-list-body').find(`.white-list-${id}`).remove();
                 $('.dsk-white-list-body').find(`.white-list-${id}`).remove();
                 checkIfEmpty();
@@ -173,6 +177,7 @@
             });
 
             $('#dsk-add-to-cart-btn').click(function() {
+
                 var selected_products = [];
                 $('.desktop-check-product:checked').each(function() {
                     selected_products.push({
@@ -198,7 +203,12 @@
                         }
 
                         if (!response.status) {
-                            console.log(response.message);
+                            if(!response.isLogin){
+                                window.location.href = "{{ route('login') }}";
+                            } else {
+                                console.log(response.message);
+                            }
+
                         }
                     }
                 });
@@ -230,6 +240,7 @@
             $('.mobile-del-btn').click(function() {
                 const getid = $(this).data('id');
 
+
                 $.ajax({
                     url: `/white-list/delete/${getid}`,
                     type: "DELETE",
@@ -256,6 +267,9 @@
             });
 
             $('#mb-add-to-cart-btn').click(function() {
+
+
+
                 var selected_products = [];
                 $('.mobile-check-product:checked').each(function() {
                     selected_products.push({
@@ -277,8 +291,12 @@
                             });
                         }
 
-                        if (response.status == false) {
-                            console.log(response.message);
+                        if (!response.status) {
+                            if(!response.isLogin){
+                                window.location.href = "{{ route('login') }}";
+                            } else {
+                                console.log(response.message);
+                            }
                         }
                     }
                 });

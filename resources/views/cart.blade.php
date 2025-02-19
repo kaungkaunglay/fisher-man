@@ -535,7 +535,6 @@
 
                 const getid = $(this).data('id');
 
-                console.log(`.cart-${getid}`)
                 $.ajax({
                     url: "{{ route('cart-count') }}",
                     method: 'GET',

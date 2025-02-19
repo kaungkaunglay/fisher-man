@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'is_buyer' => \App\Http\Middleware\IsBuyer::class,
         'check_role' => \App\Http\Middleware\CheckRole::class,
         'track_visitor' =>  \App\Http\Middleware\TrackVisitor::class,
+        'auth_custom' => \App\Http\Middleware\AuthCustom::class,
     ];
 }

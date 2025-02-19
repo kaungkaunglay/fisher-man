@@ -11,19 +11,23 @@ class WhiteListController extends Controller
 {
     public function index()
     {
-        $whitelist_products = AuthHelper::check() ? AuthHelper::user()->whitelists : Product::whereIn('id', session('white_lists', []))->get();
-        $total = 0;
+        // $auth = AuthHelper::check();
+        // $whitelist_products = $auth ? AuthHelper::user()->whitelists : Product::whereIn('id', session('white_lists', []))->get();
+        // $total = $whitelist_products->sum('product_price');
+
+        $whitelist_products = AuthHelper::user()->whitelists ;
         $total = $whitelist_products->sum('product_price');
 
-        return view('whitelist', compact('whitelist_products', 'total'));
+        return view('whitelist', compact('whitelist_products', 'total' ));
     }
     public function WhiteListCount()
     {
-        if (AuthHelper::check()) {
-            $count = AuthHelper::user()->whitelists()->count();
-        } else {
-            $count = count(session('white_lists', []));
-        }
+        // if (AuthHelper::check()) {
+        //     $count = AuthHelper::user()->whitelists()->count();
+        // } else {
+        //     $count = count(session('white_lists', []));
+        // }
+        $count = AuthHelper::user()->whitelists()->count();
         return response()->json(['white_lists_count' => $count]);
     }
     public function store($product_id)
@@ -32,22 +36,22 @@ class WhiteListController extends Controller
             return response()->json(['status' => false, 'message' => 'Product not found']);
         }
 
-        if (!AuthHelper::check()) {
-            $white_lists = session('white_lists', []);
+        // if (!AuthHelper::check()) {
+        //     $white_lists = session('white_lists', []);
 
-            if (in_array($product_id, $white_lists)) {
-                // Remove from whitelist
-                $white_lists = array_filter($white_lists, function ($item) use ($product_id) {
-                    return $item != $product_id;
-                });
-                session(['white_lists' => $white_lists]);
-                return response()->json(['status' => true, 'message' => 'Product removed from whitelist']);
-            }
+        //     if (in_array($product_id, $white_lists)) {
+        //         // Remove from whitelist
+        //         $white_lists = array_filter($white_lists, function ($item) use ($product_id) {
+        //             return $item != $product_id;
+        //         });
+        //         session(['white_lists' => $white_lists]);
+        //         return response()->json(['status' => true, 'message' => 'Product removed from whitelist']);
+        //     }
 
-            // Add to whitelist
-            session()->push('white_lists', $product_id);
-            return response()->json(['status' => true, 'message' => 'Product added to whitelist']);
-        }
+        //     // Add to whitelist
+        //     session()->push('white_lists', $product_id);
+        //     return response()->json(['status' => true, 'message' => 'Product added to whitelist']);
+        // }
 
         $user = AuthHelper::user();
 
@@ -65,15 +69,15 @@ class WhiteListController extends Controller
 
     public function delete($product_id)
     {
-        if (!AuthHelper::check()) {
+        // if (!AuthHelper::check()) {
 
-            $white_lists = session('white_lists', []);
-            $white_lists = array_diff($white_lists, [$product_id]);
-            $white_lists = array_values($white_lists);
-            session(['white_lists' => $white_lists]);
+        //     $white_lists = session('white_lists', []);
+        //     $white_lists = array_diff($white_lists, [$product_id]);
+        //     $white_lists = array_values($white_lists);
+        //     session(['white_lists' => $white_lists]);
 
-            return response()->json(['status' => true, 'message' => 'Product removed from whitelist']);
-        }
+        //     return response()->json(['status' => true, 'message' => 'Product removed from whitelist']);
+        // }
 
         $user = AuthHelper::user();
 
