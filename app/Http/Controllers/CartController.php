@@ -43,9 +43,9 @@ class CartController extends Controller
 
     }
     public function CartCount() {
-        // return cart count 
+        // return cart count
         if(Auth::check()){
-            $cart = new Cart(); 
+            $cart = new Cart();
             $count = $cart->where('user_id', Auth::id())->count();
         } else {
             $count = count(session('cart',[]));
@@ -55,7 +55,8 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-        $product_ids = $request->input('product_ids') ? array_unique($request->input('product_ids')) : null;
+
+        $product_ids = $request->input('product_ids') ?? (is_array($request->input('product_ids')) ? array_unique($request->input('product_ids')) : null ) ;
 
         if($product_ids === null){
             return response()->json([
@@ -117,7 +118,7 @@ class CartController extends Controller
             return response()->json(['status' => false, 'message' => 'Product not found']);
         }
 
-        if(!Auth::check()){
+        if(!AuthHelper::check()){
 
             $cart = session('cart', []);
             $cart = array_diff($cart, [$product_id]);
@@ -129,7 +130,7 @@ class CartController extends Controller
             return response()->json(['status'=> true,'product_id' => $product_id,'message' => 'Product removed from cart']);
         }
 
-        $user = Auth::user();
+        $user = AuthHelper::user();
 
         if(!$user->carts()->where('product_id',$product_id)->exists()){
             return response()->json(['status' => false, 'message' => 'Product not found in cart']);

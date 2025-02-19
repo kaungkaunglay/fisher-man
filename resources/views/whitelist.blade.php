@@ -157,7 +157,7 @@
                             console.error(xhr);
                         }
                     });
-                    
+
                 $.ajax({
                     url: `/white-list/delete/${getid}`,
                     type: "DELETE",
@@ -177,7 +177,7 @@
                 $('.desktop-check-product:checked').each(function() {
                     selected_products.push($(this).val());
                 });
-               
+
                 $.ajax({
                     url: "{{ route('add_to_cart') }}",
                     type: "POST",
@@ -240,7 +240,7 @@
                     },
                     success: function(response) {
                         if (response.status) {
-                            location.href = "{{ route('cart') }}";
+                            
                         }
 
                         if (response.status == false) {
