@@ -387,50 +387,51 @@
                 });
 
 
-                $('.white-list-btn').click(function(e) {
-                    e.preventDefault();
-                    const getid = $(this).data('id');
-                    $.ajax({
-                            url: "{{ route('whitelist-count') }}",
-                            method: 'GET',
-                            success: function(response) {
-                                $('#white_list_count').text(response.white_lists_count);
-                            },
-                            error: function(xhr) {
-                                console.error(xhr);
-                            }
-                        });
-                    $.ajax({
-                        url: `/white-list/${getid}`,
-                        type: "POST",
-                        data: {
-                            id: getid
+            $('.white-list-btn').click(function(e) {
+                e.preventDefault();
+                const getid = $(this).data('id');
+                const cur = $(this);
+                $.ajax({
+                        url: "{{ route('whitelist-count') }}",
+                        method: 'GET',
+                        success: function(response) {
+                            $('#white_list_count').text(response.white_lists_count);
                         },
-                        success: function(data) {
-                            if (data.status) {
-
-                            }
-                            console.log(data.message);
+                        error: function(xhr) {
+                            console.error(xhr);
                         }
                     });
-
-                });
-
-                $('.white-list-btn').click((ev) => {
-                    ev.preventDefault();
-                    const target = ev.currentTarget;
-
-                    $(target).toggleClass('active');
-
-                    if (!$('#bookmark_btn').hasClass('active')) {
-                        
-                        $('#bookmark_btn').addClass('active');
-                        
-                        setTimeout(() => {
-                            $('#bookmark_btn').removeClass('active');
-                        }, 1000);
+                $.ajax({
+                    url: `/white-list/${getid}`,
+                    type: "POST",
+                    data: {
+                        id: getid
+                    },
+                    success: function(data) {
+                        if (data.status) {
+                            cur.toggleClass('active');
+                        }
+                        console.log(data.message);
                     }
                 });
+
+                });
+
+                // $('.white-list-btn').click((ev) => {
+                //     ev.preventDefault();
+                //     const target = ev.currentTarget;
+
+                //     $(target).toggleClass('active');
+
+                //     if (!$('#bookmark_btn').hasClass('active')) {
+                        
+                //         $('#bookmark_btn').addClass('active');
+                        
+                //         setTimeout(() => {
+                //             $('#bookmark_btn').removeClass('active');
+                //         }, 1000);
+                //     }
+                // });
             });
 
         </script>

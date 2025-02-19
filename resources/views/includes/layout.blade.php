@@ -127,12 +127,12 @@
                         <a href="{{route('cart')}}" class="position-relative ">
                             <i class="fa-solid fa-cart-shopping icon"></i>
                             <span id="cart_count"
-                                class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
+                                class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
                         </a>
                         <a href="{{route('white_list.index')}}" class="position-relative">
                             <i class="fa-solid fa-bookmark icon" id="bookmark_btn"></i>
                             <span id="white_list_count"
-                                class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
+                                class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
                         </a>
 
                         <button class="btn-login position-relative">
@@ -315,6 +315,20 @@
                     $('.search-result-list').removeClass('d-block');
                 }
             })
+            function updateCartCount() {
+                $.ajax({
+                    url: "{{ route('cart-count') }}",
+                    method: 'GET',
+                    success: function (response) {
+                        // Assuming response contains the new count
+                        $('#cart_count').text(response.cart_count);
+                    },
+                    error: function (xhr) {
+                        // Handle error here
+                        console.error(xhr);
+                    }
+                });
+            }
 
             function updateWhiteListCount() {
                 $.ajax({
@@ -330,9 +344,8 @@
                     }
                 });
             }
-
-            // Update the count every 2 seconds
             updateWhiteListCount();
+            updateCartCount();
         });
     </script>
 

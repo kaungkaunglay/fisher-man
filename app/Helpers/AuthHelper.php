@@ -25,6 +25,18 @@ class AuthHelper
         return self::getUserFromSession();
     }
 
+
+    public static function user(): ?Users
+    {
+        // First, check the standard Laravel Auth system
+        if (Auth::check()) {
+            return Auth::user();
+        }
+
+        // If not authenticated via Auth, try to retrieve user from session
+        return self::getUserFromSession();
+    }
+
     /**
      * Check if the user is authenticated.
      *
