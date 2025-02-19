@@ -306,6 +306,34 @@
             }
             updateWhiteListCount();
             updateCartCount();
+
+            $('#search').on('keyup', function() {
+        let query = $(this).val();
+
+        $.ajax({
+            url: "{{ route('products.ajaxSearch') }}",
+            type: "GET",
+            data: { query: query },
+            success: function(response) {
+                $('#product-list').html('');
+                if(response.length > 0) {
+                    $.each(response, function(index, product) {
+                        $('#product-list').append(`
+                             <div class="py-2">
+                                    <a href="/product/${product.id}" class="d-flex rounded">
+                                        <i
+                                    class="fa-solid fa-magnifying-glass align-self-center me-2"></i>
+                                        <p class="align-self-center">${product.name}</p>
+                                    </a>
+                                </div>
+                        `);
+                    });
+                } else {
+                    $('#product-list').html('<p>No products found.</p>');
+                }
+            }
+        });
+    });
         });
     </script>
 
