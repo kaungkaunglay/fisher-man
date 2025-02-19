@@ -30,9 +30,10 @@
         <img src="{{ asset('assets/images/account1.svg') }}" class="w-100" alt="">
         </div>
 
-        <!-- profile info -->
+        <!-- shop info -->
         <form action="#" class="col-12 col-lg-6 mt-2 mt-lg-0 profile-form">
-
+          <h2 class="fw-bold d-flex justify-content-between">
+            Shop Info
           <div class="d-flex justify-content-end gap-4">
             <button type="submit" class="save">
               <i class="fa-solid fa-save fs-5 text-danger"></i>
@@ -44,32 +45,28 @@
               <i class="fa-solid fa-x fs-5 text-danger"></i>
             </button>
           </div>
-
+          </h2>
           <!-- user name -->
           <div class="d-flex align-items-center">
-            <label class="w-25" for="name">Name</label>:
+            <label class="w-25" for="name">Shop Name</label>:
             <input type="text" class="p-1 mt-1 ms-1 rounded-1" id="name" value="{{ $user->username }}" readonly>
           </div>
 
           <!-- email link -->
           <div class="d-flex align-items-center">
-            <label class="w-25" for="email">Email</label>:
-            <!-- <a href="mailto:{{ $user->email }}"> -->
+            <label class="w-25" for="email">Shop Email</label>:
             <input type="email" class="p-1 mt-2 ms-1 rounded-1" id="email" value="{{ $user->email }}" readonly>
             <!-- </a> -->
           </div>
 
-          <!-- organization link -->
           <div class="d-flex align-items-center">
-            <label class="w-25" for="organize">Organize</label>:
-            <!-- <a href="#"> -->
-            <input type="text" class="p-1 mt-2 ms-1 rounded-1" id="organize" value="Chat with name or Organization name" readonly>
+            <label class="w-25" for="phone_number">Phone No</label>:
+            <input type="phone_number" class="p-1 mt-2 ms-1 rounded-1" id="phone_number" value="09674293052" readonly>
             <!-- </a> -->
           </div>
-
-          <div>
+          {{-- <div>
             <i class="fa-brands fa-line fs-2 mt-1"></i>
-          </div>
+          </div> --}}
 
         </form>
         <!-- /profile info -->

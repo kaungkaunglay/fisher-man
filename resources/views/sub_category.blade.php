@@ -76,11 +76,9 @@
                         <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
                             {{ $product->description }}
                         </a>
-                        <div class="d-flex card-btn m-t-10">
-                            <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                            <a href="javascript:void(0);" class="product-btn w-100" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
+                    <div class="d-flex card-btn m-t-10">
+                            <a href="javascript:void(0);" class="w-100 py-1 common-btn white-list-btn @if($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
                         </div>
-
                     </div>
                 </div>
                 @endforeach
@@ -162,5 +160,40 @@
 </script>
 
 <script src="{{ asset('assets/js/view-list.js') }}"></script>
-
+<script>
+     $(document).ready(function() {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+        $('.white-list-btn').click(function(e) {
+                e.preventDefault();
+                const getid = $(this).data('id');
+                const cur = $(this);
+                $.ajax({
+                        url: "{{ route('whitelist-count') }}",
+                        method: 'GET',
+                        success: function(response) {
+                            $('#white_list_count').text(response.white_lists_count);
+                        },
+                        error: function(xhr) {
+                            console.error(xhr);
+                        }
+                    });
+                $.ajax({
+                    url: `/white-list/${getid}`,
+                    type: "POST",
+                    data: {
+                        id: getid
+                    },
+                    success: function(data) {
+                        if (data.status) {
+                            cur.toggleClass('active');
+                        }
+                        console.log(data.message);
+                    }
+                });
+            });
+</script>
 @endsection
