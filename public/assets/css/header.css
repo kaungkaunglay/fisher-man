@@ -92,6 +92,33 @@ header .dropdown li:hover {
     background-color: #e2e2e2;
 }
 
+header .input-group {
+    justify-content: center !important;
+  }
+  
+header .navbar-expand-lg .navbar-toggler {
+display: block !important;
+}
+
+.search-result-list {
+    width: 100%;
+    z-index: 1;
+    background-color: #ECF5FB;
+    top: 40px;
+    color: #005B96;
+    display: none;
+    overflow-y: scroll;
+    max-height: 90vh;
+  }
+  
+  .search-result-list dd img {
+    width: 80px;
+  }
+  
+  .search-result-list a:hover {
+    background-color: color-mix(in srgb, #ECF5FB 95%, #000 5%);
+  }
+
 .cart-noti {
     width: 20px;
     font-size: 10px;
@@ -149,7 +176,7 @@ header .dropdown li:hover {
 .bottom-nav {
     position: sticky;
     bottom: 0;
-    z-index: 1000;
+    z-index: 900;
     background: #005B96;
     padding: 10px;
     justify-content: space-between;
