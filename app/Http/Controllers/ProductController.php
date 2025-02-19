@@ -83,7 +83,7 @@ class ProductController extends Controller
     public function discountProducts()
     {
         $products = Product::where('discount', '>', 0.00)
-            ->latest() 
+            ->latest()
             ->get();
 
         return view('special-offer', compact('products'));
@@ -149,4 +149,31 @@ class ProductController extends Controller
         return redirect()->route('admin.products')->with('success', 'Product deleted successfully.');
     }
 
+    //product-search-ajax
+    public function ajaxSearch(Request $request)
+    {
+        $query = $request->input('query');
+
+        $products = Product::where('name', 'LIKE', "{$query}%")
+        ->orderBy('name', 'asc')
+        ->get();
+
+        logger($products);
+
+        return response()->json($products);
+    }
+
+    //product-search using button
+    public function search(Request $request)
+    {
+        $query = $request->search_key;
+
+        // Fetch products that match the query
+        $products = Product::where('name', 'LIKE', "{$query}%")
+        ->orderBy('name', 'asc')
+        ->get();
+
+
+        return view('product-search-results', compact('products', 'query'));
+    }
 }
