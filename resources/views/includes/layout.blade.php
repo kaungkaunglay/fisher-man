@@ -248,7 +248,6 @@
                   }
               });
           }
-      
           // Update the count every 2 seconds
           updateWhiteListCount();
       });
