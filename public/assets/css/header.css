@@ -3,17 +3,12 @@ header{
     position: sticky;
     top: 0;
     z-index: 1000;
+    min-height: 97px;
 }
 
 .header{
     position: relative;
 }
-
-header .logo {
-    height: 80px; /* 8% of the viewport height */
-    max-height: 80px; /* Maximum height */
-    width: 80px; /* Maintain aspect ratio */
-  }
 
 .top-header{
     display: flex;
@@ -24,7 +19,6 @@ header .logo {
 }
 
 header .input-group {
-    width: 506px !important;
     height: 32px;
     justify-content: center !important;
     box-shadow: none;
@@ -112,7 +106,7 @@ header .dropdown li:hover {
 
 .bottom-header{
     position: absolute;
-    bottom: -23px;
+    bottom: -47px;
     width: 90%;
     left: 50%;
     transform: translateX(-50%); 
@@ -120,7 +114,7 @@ header .dropdown li:hover {
 
 .bottom-header nav{
     display: flex;
-    gap: 180px;
+    gap: 5%;
     border-radius: 50px;
     padding: 5px 20px;
     align-items: center;
@@ -136,7 +130,7 @@ header .dropdown li:hover {
 
 .bottom-header nav ul {
     display: flex;
-    gap: 50px;
+    gap: 5%;
     padding: 3px 20px;
     overflow-x: auto; /* Enable horizontal scrolling */
     white-space: nowrap; /* Prevent wrapping */
@@ -206,6 +200,10 @@ header .dropdown li:hover {
     padding: 16px;
 }
 
+.search-bar {
+    max-width: 600px;
+}
+
 
 @media screen and (max-width: 1100px) {
 
@@ -223,6 +221,10 @@ header .dropdown li:hover {
         padding-top: 10px;
         padding-bottom: 35px;
     }
+
+    .bottom-header{
+        bottom: -22px;
+    }
 }
 
 @media screen and (max-width: 850px) {
@@ -231,9 +233,9 @@ header .dropdown li:hover {
         padding: 5px 22px;
     }
 
-    .bottom-header nav{
+    /* .bottom-header nav{
         gap: 100px;
-    }
+    } */
 
     .bottom-header nav ul {
         gap: 30px;
@@ -257,20 +259,13 @@ header .dropdown li:hover {
 
     .bottom-header{
         padding: 0 10px;
-        bottom: -22px;
     }
 
-    .bottom-header nav{
+    /* .bottom-header nav{
         gap: 50px;
-    }
+    } */
 
     
-}
-
-@media screen and (max-width: 584px) {
-    .header .input-group {
-        width: 250px !important;
-    }
 }
 
 
