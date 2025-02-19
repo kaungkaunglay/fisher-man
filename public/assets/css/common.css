@@ -163,13 +163,15 @@ main {
 }
 
 .common-btn:hover,
-.white-list-btn.disable {
+.white-list-btn  {
   background: #005B96;
   color: #fff;
 }
 
-.white-list-btn.disable {
-  pointer-events: none;
+.white-list-btn:hover,
+.white-list-btn.active {
+  color: #005B96;
+  background-color: #fff;
 }
 
 .icon img {

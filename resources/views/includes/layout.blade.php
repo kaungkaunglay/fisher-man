@@ -130,7 +130,7 @@
                                 class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
                         </a>
                         <a href="{{route('white_list.index')}}" class="position-relative">
-                            <i class="fa-solid fa-bookmark icon"></i>
+                            <i class="fa-solid fa-bookmark icon" id="bookmark_btn"></i>
                             <span id="white_list_count"
                                 class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
                         </a>
