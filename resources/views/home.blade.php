@@ -337,6 +337,7 @@
             $('.white-list-btn').click(function(e) {
                 e.preventDefault();
                 const getid = $(this).data('id');
+                const cur = $(this);
                 $.ajax({
                         url: "{{ route('whitelist-count') }}",
                         method: 'GET',
@@ -355,7 +356,7 @@
                     },
                     success: function(data) {
                         if (data.status) {
-
+                            cur.toggleClass('');
                         }
                         console.log(data.message);
                     }
@@ -363,12 +364,7 @@
 
             });
 
-            // disable btn
-            $('.white-list-btn').click((ev)=> {
-                ev.preventDefault();
-                const target = ev.currentTarget;
-                $(target).addClass('disable');
-            })
+
         });
 
     </script>
