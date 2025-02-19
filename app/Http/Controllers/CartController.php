@@ -26,12 +26,12 @@ class CartController extends Controller
             $products = session('cart', []);
 
 
-            $carts = $products->map(function($product) {
+            $carts = array_map(function($product) {
                 $cart = new Cart();
                 $cart->product = Product::find($product['id']);
                 $cart->quantity = $product['quantity'];
                 return $cart;
-            });
+            }, $products);
 
         }
 
