@@ -42,7 +42,7 @@ Route::post('/register', [AuthController::class, 'register_store'])->name('regis
 Route::get('/forgot_password', [AuthController::class, 'forgot_password'])->name('forgotpassword');
 // Handle Reset Link
 Route::post('/forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
-Route::get('/email_success/{email}',[AuthController::class, 'showEmailSuccess'])->name('email_success');
+Route::get('/email_success/{email}', [AuthController::class, 'showEmailSuccess'])->name('email_success');
 // Resent reset password link
 Route::post('/resend-email', [AuthController::class, 'resentResetLinkEmail'])->name('resend.email');
 // Password Reset Form
@@ -62,23 +62,18 @@ Route::get('/special-offer', [ProductController::class, 'discountProducts'])->na
 Route::get('/sub-category/{id}', [SubCategoriesController::class, 'show'])->name('sub-category.show');
 Route::get('/category/{id}', [CategoriesController::class, 'show'])->name('category');
 
-Route::post('/contact', [UsersController::class,'contact'])->name('contact');
-Route::post('/wishList', [UsersController::class,'wishList'])->name('wishList');
+Route::post('/contact', [UsersController::class, 'contact'])->name('contact');
+Route::post('/wishList', [UsersController::class, 'wishList'])->name('wishList');
 
 // auth
-Route::middleware(['auth'])->group(function () {
+Route::get('/profile')->middleware('check_role')->name('profile');
 
-    Route::get('/profile')->middleware('check_role')->name('profile');
+Route::middleware(['is_seller'])->group(function () {
+    Route::get('/profile/seller', [ProfileController::class, 'seller_profile'])->name('profile_seller');
+});
 
-    Route::middleware(['is_seller'])->group(function () {
-        Route::get('/profile/seller', [ProfileController::class,'seller_profile'])->name('profile_seller');
-    });
-
-    Route::middleware(['is_buyer'])->group(function () {
-        Route::get('/profile/user', [ProfileController::class,'user_profile'])->name('profile_user');
-    });
-
-
+Route::middleware(['is_buyer'])->group(function () {
+    Route::get('/profile/buyer', [ProfileController::class, 'user_profile'])->name('profile_user');
 });
 
 Route::middleware(['is_admin'])->group(function () {
@@ -114,6 +109,7 @@ Route::middleware(['is_admin'])->group(function () {
     Route::get('/admin/faqs/{faq}/edit', [AdminController::class, 'edit'])->name('admin.faqs.edit');
     Route::put('/admin/faqs/{faq}', [AdminController::class, 'update'])->name('update_faq');
     Route::delete('/admin/faqs/{faq}', [AdminController::class, 'destroy'])->name('admin.faqs.destroy');
+    
     // Admin Controller
     Route::get('/admin', [AdminController::class, 'home'])->name('admin.index');
     Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
@@ -121,26 +117,26 @@ Route::middleware(['is_admin'])->group(function () {
     Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
     Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
     Route::post('/admin/mail', [MailController::class, 'sendmail'])->name('mail.reset');
-    
+
     //admin settings
     Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
     Route::post('/admin/settings/save', [AdminController::class, 'save'])->name('admin.settings.save');
 
     //User Request
     Route::get('/admin/users/request-contact', [AdminController::class, 'contact'])->name('admin.users.contact');
+    Route::get('/admin/contact/detail/{contactID}',[AdminController::class,'contactDetail'])->name('admin.contact.detail');
     Route::get('/admin/users/wishList', [AdminController::class, 'wishList'])->name('admin.users.wishList');
-
 });
 
 
 // Product detail
-Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/product/{id}', [ProductController::class, 'show'])->middleware('track_visitor')->name('product.show');
 
 // Route::get('/cart', function () {
 //     return view('cart');
 // })->name('cart');
 
-Route::get('/support', [UsersController::class,'support'])->name('support');
+Route::get('/support', [UsersController::class, 'support'])->name('support');
 
 Route::get('/policy', function () {
     return view('terms_condition');
@@ -148,12 +144,12 @@ Route::get('/policy', function () {
 
 Route::get('/white-list', [WhiteListController::class, 'index'])->name('white_list.index');
 Route::post('/white-list/{product_id}', [WhiteListController::class, 'store'])->name('white_list.store');
-Route::delete('/white-list/delete/{product_id}',[WhiteListController::class, 'delete'])->name('white_list.delete');
+Route::delete('/white-list/delete/{product_id}', [WhiteListController::class, 'delete'])->name('white_list.delete');
 
 // cart
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
-Route::post('/add-to-cart',[CartController::class, 'addToCart'])->name('add_to_cart');
-Route::delete('/cart/delete/{product_id}',[CartController::class, 'delete'])->name('cart.delete');
+Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add_to_cart');
+Route::delete('/cart/delete/{product_id}', [CartController::class, 'delete'])->name('cart.delete');
 
 
 
@@ -171,7 +167,7 @@ Route::get('/login/line', function () {
 
 Route::get('/login/line/callback', [OAuthController::class, 'handleLineCallback']);
 
-// Google Auth  
+// Google Auth
 Route::get('/auth/google', function () {
     return Socialite::driver('google')->redirect();
 })->name('google.login');
@@ -183,5 +179,7 @@ Route::get('/auth/facebook', function () {
     return Socialite::driver('facebook')->redirect();
 })->name('facebook.login');
 
-Route::get('/login/facebook/callback', [OAuthController::class, 'handleFacebookCallback']); 
+Route::get('/login/facebook/callback', [OAuthController::class, 'handleFacebookCallback']);
 
+// count
+Route::get('/whitelist-count', [WhiteListController::class, 'WhiteListCount'])->name('whitelist-count');

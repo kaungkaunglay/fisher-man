@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Helpers\AuthHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,12 +17,12 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!auth()->check())
+        if(!AuthHelper::check())
         {
             return redirect()->route('login');
         }
 
-        $user = Auth::user();
+        $user = AuthHelper::auth();
 
         if ($user->roles->first()->id == 2) {
             return to_route('profile_seller');

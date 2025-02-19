@@ -1,7 +1,5 @@
-footer .logo {
-  height: 100px; /* 8% of the viewport height */
-  max-height: 100px; /* Maximum height */
-  width: 100px; /* Maintain aspect ratio */
+footer {
+  min-height: 30vh;
 }
 
 footer .col-12.col-lg-2 {

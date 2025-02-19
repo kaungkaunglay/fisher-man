@@ -25,7 +25,6 @@
                     <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
                 </div>
             </div>
-
             <div class="card-list" id="view-list">
                 <div class="item-card">
                     <a href="{{ url('/product') }}" class="right">
@@ -201,7 +200,6 @@
         </div>
     </section>
 
-
     <section class="discount-products bg-second py-4">
         <div class="container-custom">
             <h6 class="txt-primary fw-bold mb-3">Discount Products</h6>
@@ -308,7 +306,7 @@
                         </a>
                         <div class="d-flex card-btn m-t-10">
                             <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                            <a href="javascript:void(0);" class="w-100 py-1 common-btn" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
+                            <a href="javascript:void(0);" class="w-100 py-1 common-btn white-list-btn" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
                         </div>
 
                     </div>
@@ -336,10 +334,19 @@
             });
 
 
-            $('.product-btn').click(function(e) {
+            $('.white-list-btn').click(function(e) {
                 e.preventDefault();
                 const getid = $(this).data('id');
-
+                $.ajax({
+                        url: "{{ route('whitelist-count') }}",
+                        method: 'GET',
+                        success: function(response) {
+                            $('#white_list_count').text(response.white_lists_count);
+                        },
+                        error: function(xhr) {
+                            console.error(xhr);
+                        }
+                    });
                 $.ajax({
                     url: `/white-list/${getid}`,
                     type: "POST",
@@ -353,7 +360,17 @@
                         console.log(data.message);
                     }
                 });
+
             });
+
+            // disable btn
+            $('.white-list-btn').click((ev)=> {
+                ev.preventDefault();
+                const target = ev.currentTarget;
+                $(target).addClass('disable');
+            })
         });
+
     </script>
+
 @endsection

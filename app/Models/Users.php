@@ -20,12 +20,12 @@ class Users extends Authenticatable implements CanResetPassword
         'first_phone',
         'second_phone',
         'line_id',
-        'facebook_id', 
-        'google_id', 
+        'facebook_id',
+        'google_id',
         'remember_token',
         'ship_name',
         'first_org_name',
-        'trans_management', 
+        'trans_management',
         'avatar',
         'location',
         'address'
@@ -46,6 +46,7 @@ class Users extends Authenticatable implements CanResetPassword
         return null !== $this->roles()->where('name', $role)->first();
     }
 
+
     public function whitelists()
     {
         return $this->belongsToMany(Product::class, 'white_lists', 'user_id', 'product_id');
@@ -54,6 +55,11 @@ class Users extends Authenticatable implements CanResetPassword
     public function carts()
     {
         return $this->hasMany(Cart::class, 'user_id' , 'id');
+    }
+
+    public function assignRole($role_id)
+    {
+        $this->roles()->sync([$role_id]);
     }
 
 }

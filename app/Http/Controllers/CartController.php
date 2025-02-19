@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\AuthHelper;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -12,8 +13,8 @@ class CartController extends Controller
 {
     public function index()
     {
-        if(Auth::check()){
-            $carts = auth()->user()->carts;
+        if(AuthHelper::check()){
+            $carts = AuthHelper::auth()->carts;
 
             $carts = $carts->transform(function ($cart) {
                 $cart->product = Product::find($cart->product_id);
@@ -21,7 +22,7 @@ class CartController extends Controller
             });
         } else {
 
-            
+
             $productIds = session('cart', []);
 
 
@@ -41,7 +42,15 @@ class CartController extends Controller
 
 
     }
-
+    public function cartCount() {
+        // return cart count 
+        if(Auth::check()){
+            $count = Auth::user()->carts()->count();
+        } else {
+            $count = count(session('cart',[]));
+        }
+        return response()->json(['count' => $count]);
+    }
     public function addToCart(Request $request)
     {
         $product_ids = $request->input('product_ids') ? array_unique($request->input('product_ids')) : null;

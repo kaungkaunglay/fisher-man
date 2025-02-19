@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Users;
+use App\Helpers\AuthHelper;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\ForgotPasswordMail;
@@ -98,7 +99,7 @@ class AuthController extends Controller
 
             $user->save();
 
-            $this->is_seller($request) ? $user->roles()->attach(2) : $user->roles()->attach(3);
+            $this->is_seller($request) ? $user->assignRole(2) : $user->assignRole(3);
 
             return response()->json(['status' => true, 'message' => 'Register Success']);
         }
@@ -129,6 +130,9 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'username' => 'required',
             'password' => 'required',
+            'g-recaptcha-response' => 'required',
+        ], [
+            'g-recaptcha-response.required' => 'The recaptcha field is required.'
         ]);
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
@@ -137,16 +141,14 @@ class AuthController extends Controller
             ->orWhere('email', $request->username)
             ->first();
 
-
-
             if($user && Hash::check($request->password, $user->password)){
                 $remember = $request->has('remember') && $request->remember == 1;
 
                 Auth::login($user,$remember);
 
-                return redirect()->intended('/');
+                // return redirect()->intended('/');
 
-                // return response()->json(['status' => true, 'message' => 'login successfull']);
+                return response()->json(['status' => true, 'message' => 'login successfull']);
             }
 
             return response()->json(['status' => false, 'message' => 'Username or Password is Incorrect']);
@@ -291,7 +293,7 @@ class AuthController extends Controller
     }
 
     public function logout(){
-        Auth::logout();
+        AuthHelper::logout();
         return redirect()->route('login');
     }
 
