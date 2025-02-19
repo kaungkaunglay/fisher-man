@@ -119,21 +119,34 @@
             <div class="flex items-center justify-between flex-wrap gap10">
                 <div class="text-tiny">Showing 10 entries</div>
                 <ul class="wg-pagination">
-                    <li>
-                        <a href="#"><i class="icon-chevron-left"></i></a>
-                    </li>
-                    <li>
-                        <a href="#">1</a>
-                    </li>
-                    <li class="active">
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="icon-chevron-right"></i></a>
-                    </li>
+                    {{-- Previous Page Link --}}
+                    @if ($sub_categories->onFirstPage())
+                        <li class="disabled">
+                            <span><i class="icon-chevron-left"></i></span>
+                        </li>
+                    @else
+                        <li>
+                            <a href="{{ $sub_categories->previousPageUrl() }}"><i class="icon-chevron-left"></i></a>
+                        </li>
+                    @endif
+
+                    {{-- Pagination Elements --}}
+                    @foreach ($sub_categories->getUrlRange(1, $sub_categories->lastPage()) as $page => $url)
+                        <li class="{{ $sub_categories->currentPage() == $page ? 'active' : '' }}">
+                            <a href="{{ $url }}">{{ $page }}</a>
+                        </li>
+                    @endforeach
+
+                    {{-- Next Page Link --}}
+                    @if ($sub_categories->hasMorePages())
+                        <li>
+                            <a href="{{ $sub_categories->nextPageUrl() }}"><i class="icon-chevron-right"></i></a>
+                        </li>
+                    @else
+                        <li class="disabled">
+                            <span><i class="icon-chevron-right"></i></span>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
