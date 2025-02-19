@@ -54,13 +54,13 @@ class TrackVisitor
             $data['visits']++;
 
             // After modifying, update the cache with the new visit count
-            $ttl = Setting::getValue('cache_time_out') ?? '1 week';
-            $expirationTime = now()->add(\Carbon\CarbonInterval::createFromDateString($ttl));
+            $ttl = Setting::getValue('cache_time_out') ?? 3600;
+            $expirationTime = now()->addSecond($ttl);
 
             Cache::put($cacheKey, $data, $expirationTime);
         }
 
-
+        // dd($data,$productId,$cacheKey);
 
         return $next($request);
     }

@@ -200,7 +200,6 @@
         </div>
     </section>
 
-
     <section class="discount-products bg-second py-4">
         <div class="container-custom">
             <h6 class="txt-primary fw-bold mb-3">Discount Products</h6>
@@ -333,7 +332,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-        
+
 
             $('.white-list-btn').click(function(e) {
                 e.preventDefault();
@@ -371,7 +370,7 @@
                 $(target).addClass('disable');
             })
         });
-        
+
     </script>
 
 @endsection

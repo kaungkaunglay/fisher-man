@@ -525,7 +525,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
+       
             // for desktop
             // desktop delete button
             $('.dsk-cart-del-btn').click(function(e) {
@@ -576,10 +576,6 @@
 
             $('#next-btn').click(()=>{
                 @if (!Auth::check())
-
-
-
-
                     window.location.href ="{{ route('login')}}"
                 @endif
             });

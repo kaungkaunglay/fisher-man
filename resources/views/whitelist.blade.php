@@ -31,28 +31,27 @@
                     </tr>
                 </thead>
                 <tbody class="dsk-white-list-body">
-                    @foreach ($whitelist_products as $index=>$product)
+                    @foreach ($whitelist_products as $index => $product)
+                        <tr class="white-list-{{ $product->id }}" id="row">
+                            <th class="number" scope="row">
+                                {{ $index + 1 }}
+                            </th>
+                            <th>
+                                <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
+                            </th>
+                            <td>{{ $product->name }}</td>
+                            <td id="cost">{{ $product->product_price }}</td>
+                            <td>
+                                <a href="javascript:void(0);" class="desktop-del-btn" data-id="{{ $product->id }}"><i
+                                        class="fa-solid fa-trash-can"></i></a>
+                                {{-- for delete --}}
 
-                            <tr class="white-list-{{ $product->id }}" id="row">
-                                <th class="number" scope="row">
-                                    {{ $index+1 }}
-                                </th>
-                                <th>
-                                    <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
-                                </th>
-                                <td>{{ $product->name }}</td>
-                                <td id="cost">{{ $product->product_price }}</td>
-                                <td>
-                                    <a href="javascript:void(0);" class="desktop-del-btn" data-id="{{ $product->id }}"><i class="fa-solid fa-trash-can"></i></a>
-                                    {{-- for delete --}}
-
-                                </td>
-                                <td>
-                                    <input type="checkbox" class="desktop-check-product" value="{{ $product->id }}"  />
-                                </td>
-                            </tr>
-
-                        @endforeach
+                            </td>
+                            <td>
+                                <input type="checkbox" class="desktop-check-product" value="{{ $product->id }}" />
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
@@ -74,28 +73,28 @@
         <!-- Mobile Style -->
         <div class="mobile mb-white-list-body white-list-body" id="">
 
-            @foreach ($whitelist_products as $idx=>$product)
-                    <div class="card d-flex flex-row white-list-{{ $product->id }}">
-                        <img src="{{ asset( $product->product_image ) }}" alt="product img">
-                        <div class="card-body d-flex flex-row justify-content-between align-items-center">
-                            <div id="row">
-                                <h5 class="card-title">{{ $product->name }}</h5>
-                                <p class="card-text">
-                                    <span id="cost">{{ $product->product_price }}</span>
-                                </p>
-                            </div>
-                            <div class="d-flex gap-3">
-                                <a href="javascript:void(0);" class="btn mobile-del-btn"  data-id="{{ $product->id }}">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </a>
+            @foreach ($whitelist_products as $idx => $product)
+                <div class="card d-flex flex-row white-list-{{ $product->id }}">
+                    <img src="{{ asset($product->product_image) }}" alt="product img">
+                    <div class="card-body d-flex flex-row justify-content-between align-items-center">
+                        <div id="row">
+                            <h5 class="card-title">{{ $product->name }}</h5>
+                            <p class="card-text">
+                                <span id="cost">{{ $product->product_price }}</span>
+                            </p>
+                        </div>
+                        <div class="d-flex gap-3">
+                            <a href="javascript:void(0);" class="btn mobile-del-btn" data-id="{{ $product->id }}">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </a>
 
-                                <input type="checkbox" class="mobile-select mobile-check-product">
-                            </div>
+                            <input type="checkbox" class="mobile-select mobile-check-product">
                         </div>
                     </div>
-                @endforeach
+                </div>
+            @endforeach
 
-                <div class="no-cart"></div>
+            <div class="no-cart"></div>
             <div class="total">
                 <p>Total :</p>
                 <p>
@@ -135,8 +134,7 @@
 
             checkIfEmpty();
 
-            function removeCart(id)
-            {
+            function removeCart(id) {
                 $('.mb-white-list-body').find(`.white-list-${id}`).remove();
                 $('.dsk-white-list-body').find(`.white-list-${id}`).remove();
                 checkIfEmpty();
@@ -147,9 +145,19 @@
             // for desktop
 
             // desktop delete button
-            $('.desktop-del-btn').click(function(){
+            $('.desktop-del-btn').click(function() {
                 const getid = $(this).data('id');
-
+                $.ajax({
+                        url: "{{ route('whitelist-count') }}",
+                        method: 'GET',
+                        success: function(response) {
+                            $('#white_list_count').text(response.white_lists_count);
+                        },
+                        error: function(xhr) {
+                            console.error(xhr);
+                        }
+                    });
+                    
                 $.ajax({
                     url: `/white-list/delete/${getid}`,
                     type: "DELETE",
@@ -164,24 +172,24 @@
                 });
             });
 
-            $('#dsk-add-to-cart-btn').click(function(){
+            $('#dsk-add-to-cart-btn').click(function() {
                 const selected_products = [];
-                $('.desktop-check-product:checked').each(function(){
+                $('.desktop-check-product:checked').each(function() {
                     selected_products.push($(this).val());
                 });
 
                 $.ajax({
-                    url: "{{ route('add_to_cart')}}",
+                    url: "{{ route('add_to_cart') }}",
                     type: "POST",
                     data: {
                         product_ids: selected_products
                     },
                     success: function(response) {
-                        if(response.status){
+                        if (response.status) {
                             window.location.href = "{{ route('cart') }}";
                         }
 
-                        if(!response.status){
+                        if (!response.status) {
                             console.log(response.message);
                         }
                     }
@@ -189,7 +197,7 @@
             });
 
             // mobile delete button
-            $('.mobile-del-btn').click(function(){
+            $('.mobile-del-btn').click(function() {
                 const getid = $(this).data('id');
 
                 $.ajax({
@@ -206,24 +214,24 @@
                 });
             });
 
-            $('#mb-add-to-cart-btn').click(function(){
+            $('#mb-add-to-cart-btn').click(function() {
                 const selected_products = [];
-                $('.mobile-check-product:checked').each(function(){
+                $('.mobile-check-product:checked').each(function() {
                     selected_products.push($(this).val());
                 });
 
                 $.ajax({
-                    url: "{{ route('add_to_cart')}}",
+                    url: "{{ route('add_to_cart') }}",
                     type: "POST",
                     data: {
                         product_ids: selected_products
                     },
                     success: function(response) {
-                        if(response.status){
+                        if (response.status) {
                             location.href = "{{ route('cart') }}";
                         }
 
-                        if(response.status == false){
+                        if (response.status == false) {
                             console.log(response.message);
                         }
                     }
@@ -233,5 +241,4 @@
 
         });
     </script>
-
 @endsection
