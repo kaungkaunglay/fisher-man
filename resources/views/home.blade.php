@@ -301,12 +301,12 @@
                             <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                             <h3 class="title m-t-b-10">{{ $product->name }}</h3>
                         </div>
-                        <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
+                        <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description ">
                             {{ $product->description }}
                         </a>
                         <div class="d-flex card-btn m-t-10">
                             <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                            <a href="javascript:void(0);" class="w-100 py-1 common-btn white-list-btn" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
+                            <a href="javascript:void(0);" class="w-100 py-1 common-btn white-list-btn @if ($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
                         </div>
 
                     </div>
@@ -337,6 +337,7 @@
             $('.white-list-btn').click(function(e) {
                 e.preventDefault();
                 const getid = $(this).data('id');
+                const cur = $(this);
                 $.ajax({
                         url: "{{ route('whitelist-count') }}",
                         method: 'GET',
@@ -355,7 +356,7 @@
                     },
                     success: function(data) {
                         if (data.status) {
-
+                            cur.toggleClass('active');
                         }
                         console.log(data.message);
                     }
@@ -363,12 +364,7 @@
 
             });
 
-            // disable btn
-            $('.white-list-btn').click((ev)=> {
-                ev.preventDefault();
-                const target = ev.currentTarget;
-                $(target).addClass('disable');
-            })
+
         });
 
     </script>

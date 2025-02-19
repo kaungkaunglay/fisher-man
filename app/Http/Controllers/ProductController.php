@@ -18,6 +18,10 @@ class ProductController extends Controller
     public function showallproducts()
     {
         $products = Product::all();
+        // $products = $products->map(function($product){
+        //     $product->in_white_list = $product->inWhiteLists();
+        //     r
+        // });
         return view('home', compact('products'));
     }
 
@@ -83,7 +87,7 @@ class ProductController extends Controller
     public function discountProducts()
     {
         $products = Product::where('discount', '>', 0.00)
-            ->latest() 
+            ->latest()
             ->get();
 
         return view('special-offer', compact('products'));
