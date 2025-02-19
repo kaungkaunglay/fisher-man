@@ -292,11 +292,11 @@
 
             function updateWhiteListCount() {
                 $.ajax({
-                    url: "{{ route('cart-count') }}",
+                    url: "{{ route('whitelist-count') }}",
                     method: 'GET',
                     success: function (response) {
                         // Assuming response contains the new count
-                        $('#cart_count').text(response.cart_count);
+                        $('#white_list_count').text(response.white_lists_count);
                     },
                     error: function (xhr) {
                         // Handle error here
