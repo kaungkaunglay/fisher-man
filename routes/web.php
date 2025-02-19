@@ -130,7 +130,7 @@ Route::middleware(['is_admin'])->group(function () {
 
     //User Request
     Route::get('/admin/users/request-contact', [AdminController::class, 'contact'])->name('admin.users.contact');
-    Route::get('/admin/contact/detail/{contactID}',[AdminController::class,'contactDetail'])->name('admin.contact.detail');
+    Route::get('/admin/contact/detail/{contactID}', [AdminController::class, 'contactDetail'])->name('admin.contact.detail');
     Route::get('/admin/users/wishList', [AdminController::class, 'wishList'])->name('admin.users.wishList');
 });
 
@@ -148,18 +148,20 @@ Route::get('/policy', function () {
     return view('terms_condition');
 })->name('policy');
 
-Route::get('/white-list', [WhiteListController::class, 'index'])->name('white_list.index');
-Route::post('/white-list/{product_id}', [WhiteListController::class, 'store'])->name('white_list.store');
-Route::delete('/white-list/delete/{product_id}', [WhiteListController::class, 'delete'])->name('white_list.delete');
+
 
 // cart
+Route::middleware(['auth_custom'])->group(function () {
+
+    Route::get('/white-list', [WhiteListController::class, 'index'])->name('white_list.index');
+    Route::post('/white-list/{product_id}', [WhiteListController::class, 'store'])->name('white_list.store');
+    Route::delete('/white-list/delete/{product_id}', [WhiteListController::class, 'delete'])->name('white_list.delete');
+
+});
+
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
-Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add_to_cart');
-Route::post('/cart/add',[CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::delete('/cart/delete/{product_id}', [CartController::class, 'delete'])->name('cart.delete');
-
-
-
 
 
 // Admin auth

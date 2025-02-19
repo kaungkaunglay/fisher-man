@@ -135,6 +135,10 @@
             checkIfEmpty();
 
             function removeCart(id) {
+
+                const dsk_white_list = $('.mb-white-list-body').find(`.white-list-${id}`);
+                const mb_white_list = $('.dsk-white-list-body').find(`.white-list-${id}`);
+
                 $('.mb-white-list-body').find(`.white-list-${id}`).remove();
                 $('.dsk-white-list-body').find(`.white-list-${id}`).remove();
                 checkIfEmpty();
@@ -148,15 +152,15 @@
             $('.desktop-del-btn').click(function() {
                 const getid = $(this).data('id');
                 $.ajax({
-                        url: "{{ route('whitelist-count') }}",
-                        method: 'GET',
-                        success: function(response) {
-                            $('#white_list_count').text(response.white_lists_count);
-                        },
-                        error: function(xhr) {
-                            console.error(xhr);
-                        }
-                    });
+                    url: "{{ route('whitelist-count') }}",
+                    method: 'GET',
+                    success: function(response) {
+                        $('#white_list_count').text(response.white_lists_count);
+                    },
+                    error: function(xhr) {
+                        console.error(xhr);
+                    }
+                });
 
                 $.ajax({
                     url: `/white-list/delete/${getid}`,
@@ -173,6 +177,7 @@
             });
 
             $('#dsk-add-to-cart-btn').click(function() {
+
                 var selected_products = [];
                 $('.desktop-check-product:checked').each(function() {
                     selected_products.push({
@@ -198,19 +203,34 @@
                         }
 
                         if (!response.status) {
-                            console.log(response.message);
+                            if(!response.isLogin){
+                                window.location.href = "{{ route('login') }}";
+                            } else {
+                                console.log(response.message);
+                            }
+
                         }
                     }
                 });
                 $.ajax({
                     url: "{{ route('cart-count') }}",
                     method: 'GET',
-                    success: function (response) {
+                    success: function(response) {
                         // Assuming response contains the new count
                         $('#cart_count').text(response.cart_count);
                     },
-                    error: function (xhr) {
+                    error: function(xhr) {
                         // Handle error here
+                        console.error(xhr);
+                    }
+                });
+                $.ajax({
+                    url: "{{ route('whitelist-count') }}",
+                    method: 'GET',
+                    success: function(response) {
+                        $('#white_list_count').text(response.white_lists_count);
+                    },
+                    error: function(xhr) {
                         console.error(xhr);
                     }
                 });
@@ -219,6 +239,7 @@
             // mobile delete button
             $('.mobile-del-btn').click(function() {
                 const getid = $(this).data('id');
+
 
                 $.ajax({
                     url: `/white-list/delete/${getid}`,
@@ -232,9 +253,23 @@
                         }
                     }
                 });
+
+                $.ajax({
+                    url: "{{ route('whitelist-count') }}",
+                    method: 'GET',
+                    success: function(response) {
+                        $('#white_list_count').text(response.white_lists_count);
+                    },
+                    error: function(xhr) {
+                        console.error(xhr);
+                    }
+                });
             });
 
             $('#mb-add-to-cart-btn').click(function() {
+
+
+
                 var selected_products = [];
                 $('.mobile-check-product:checked').each(function() {
                     selected_products.push({
@@ -256,9 +291,24 @@
                             });
                         }
 
-                        if (response.status == false) {
-                            console.log(response.message);
+                        if (!response.status) {
+                            if(!response.isLogin){
+                                window.location.href = "{{ route('login') }}";
+                            } else {
+                                console.log(response.message);
+                            }
                         }
+                    }
+                });
+
+                $.ajax({
+                    url: "{{ route('whitelist-count') }}",
+                    method: 'GET',
+                    success: function(response) {
+                        $('#white_list_count').text(response.white_lists_count);
+                    },
+                    error: function(xhr) {
+                        console.error(xhr);
                     }
                 });
             });

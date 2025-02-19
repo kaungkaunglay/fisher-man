@@ -3,11 +3,11 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Helpers\AuthHelper;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserCheck
+class AuthCustom
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,8 @@ class UserCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Auth::guard('user')->check()){
-            return redirect()->route('login');
+        if(!AuthHelper::check()){
+            return to_route('login');
         }
         return $next($request);
     }

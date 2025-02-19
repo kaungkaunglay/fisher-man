@@ -26,19 +26,56 @@ class Product extends Model
 
     public function inWhiteLists()
     {
-        if(!AuthHelper::check()){
-            $white_lists = session('white_lists', []);
+        // if(!AuthHelper::check()){
+        //     $white_lists = session('white_lists', []);
 
-            if (in_array($this->id, $white_lists)) {
-                return true;
-            }
-        }
+        //     if (in_array($this->id, $white_lists)) {
+        //         return true;
+        //     }
+        // }
 
         $user = AuthHelper::user();
 
-        if ($user && $user->whitelists()->where('product_id', $this->id)->exists()) {
-            return true;
-        }
-        return false;
+
+        return $user && $user->whitelists()->where('product_id', $this->id)->exists();
+    }
+
+    public function inCart()
+    {
+        // if(!AuthHelper::check()){
+        //     $cart = session('cart', []);
+
+        //     if (in_array($this->id, array_column($cart,'id'))) {
+        //         return true;
+        //     }
+        // }
+
+        $user = AuthHelper::user();
+
+
+        return $user && $user->carts()->where('product_id', $this->id)->exists();
+    }
+
+    public function getCart()
+    {
+        // if(!AuthHelper::check())
+        // {
+        //     $carts = session('cart', []);
+
+        //     foreach ($carts as $product)
+        //     {
+        //         if($product['id'] == $this->id)
+        //         {
+        //             $cart = new Cart();
+        //             $cart->product = Product::find($product['id']);
+        //             $cart->quantity = $product['quantity'];
+        //             return $cart;
+        //         }
+        //     }
+        // }
+
+        $user = AuthHelper::user();
+
+        return $user && $user->carts()->where('product_id', $this->id)->first();
     }
 }
