@@ -88,7 +88,7 @@
                                 <i class="fa-solid fa-trash-can"></i>
                             </a>
 
-                            <input type="checkbox" class="mobile-select mobile-check-product">
+                            <input type="checkbox" class="mobile-select mobile-check-product" value="{{ $product->id }}">
                         </div>
                     </div>
                 </div>
@@ -173,20 +173,28 @@
             });
 
             $('#dsk-add-to-cart-btn').click(function() {
-                const selected_products = [];
+                var selected_products = [];
                 $('.desktop-check-product:checked').each(function() {
-                    selected_products.push($(this).val());
+                    selected_products.push({
+                        id: $(this).val(),
+                        quantity: 1
+                    });
                 });
 
+
                 $.ajax({
-                    url: "{{ route('add_to_cart') }}",
+                    url: "{{ route('cart.add') }}",
                     type: "POST",
                     data: {
-                        product_ids: selected_products
+                        products: selected_products
                     },
                     success: function(response) {
                         if (response.status) {
-                            window.location.href = "{{ route('cart') }}";
+                            $('.desktop-check-product:checked').each(function() {
+                                // console.log($(this).val())
+                                removeCart($(this).val())
+                            });
+                            console.log(response.message);
                         }
 
                         if (!response.status) {
@@ -227,20 +235,25 @@
             });
 
             $('#mb-add-to-cart-btn').click(function() {
-                const selected_products = [];
+                var selected_products = [];
                 $('.mobile-check-product:checked').each(function() {
-                    selected_products.push($(this).val());
+                    selected_products.push({
+                        id: $(this).val(),
+                        quantity: 1
+                    });
                 });
 
                 $.ajax({
-                    url: "{{ route('add_to_cart') }}",
+                    url: "{{ route('cart.add') }}",
                     type: "POST",
                     data: {
-                        product_ids: selected_products
+                        products: selected_products
                     },
                     success: function(response) {
                         if (response.status) {
-                            
+                            $('.mobile-check-product:checked').each(function() {
+                                removeCart($(this).val())
+                            });
                         }
 
                         if (response.status == false) {
