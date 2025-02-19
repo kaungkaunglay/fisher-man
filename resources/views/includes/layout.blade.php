@@ -86,12 +86,12 @@
                         <a href="{{ route('cart') }}" class="position-relative ">
                             <i class="fa-solid fa-cart-shopping icon"></i>
                             <span id="cart_count"
-                                class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
+                                class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
                         </a>
-                        <a href="{{ route('white_list.index') }}" class="position-relative">
-                            <i class="fa-solid fa-bookmark icon"></i>
+                        <a href="{{route('white_list.index')}}" class="position-relative">
+                            <i class="fa-solid fa-bookmark icon" id="bookmark_btn"></i>
                             <span id="white_list_count"
-                                class="cart-noti position-absolute bg-danger text-white rounded-circle">1</span>
+                                class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
                         </a>
 
                         <button class="btn-login position-relative">
@@ -275,57 +275,37 @@
                     $('.search-result-list').removeClass('d-block');
                 }
             })
-
-            function updateWhiteListCount() {
+            function updateCartCount() {
                 $.ajax({
-                    url: "{{ route('whitelist-count') }}",
+                    url: "{{ route('cart-count') }}",
                     method: 'GET',
-                    success: function(response) {
+                    success: function (response) {
                         // Assuming response contains the new count
-                        $('#white_list_count').text(response.white_lists_count);
+                        $('#cart_count').text(response.cart_count);
                     },
-                    error: function(xhr) {
+                    error: function (xhr) {
                         // Handle error here
                         console.error(xhr);
                     }
                 });
             }
 
-            // Update the count every 2 seconds
-            updateWhiteListCount();
-
-
-            //product_search ajax
-            $('#search').on('keyup', function() {
-                let query = $(this).val();
-
+            function updateWhiteListCount() {
                 $.ajax({
-                    url: "{{ route('products.ajaxSearch') }}",
-                    type: "GET",
-                    data: {
-                        query: query
+                    url: "{{ route('cart-count') }}",
+                    method: 'GET',
+                    success: function (response) {
+                        // Assuming response contains the new count
+                        $('#cart_count').text(response.cart_count);
                     },
-                    success: function(response) {
-                        $('#product-list').html('');
-                        if (response.length > 0) {
-                            $.each(response, function(index, product) {
-                                
-                                $('#product-list').append(`
-                                <dd class="py-2">
-                                    <a href="/product/${product.id}" class="d-flex rounded">
-                                        <i
-                                    class="fa-solid fa-magnifying-glass align-self-center me-2"></i>
-                                        <p class="align-self-center">${product.name}</p>
-                                    </a>
-                                </dd>
-                        `);
-                            });
-                        } else {
-                            $('#product-list').html('<p>No products found.</p>');
-                        }
+                    error: function (xhr) {
+                        // Handle error here
+                        console.error(xhr);
                     }
                 });
-            });
+            }
+            updateWhiteListCount();
+            updateCartCount();
         });
     </script>
 

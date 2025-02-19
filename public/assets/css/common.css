@@ -11,10 +11,6 @@
   box-sizing: border-box;
 }
 
-main {
-  min-height: 100vh;
-}
-
 @font-face {
   font-family: 'BlinkMacSystemFont' !important;
   src: url('../fonts/BlinkMacSystemFont/blinkmacsystemfont-regular.ttf') format('truetype') !important;
@@ -25,36 +21,13 @@ body {
   font-family: 'BlinkMacSystemFont', sans-serif !important;
 }
 
-header .input-group {
-  justify-content: center !important;
-}
-
-header .navbar-expand-lg .navbar-toggler {
-  display: block !important;
+main {
+  min-height: 100vh;
 }
 
 .logo {
-  width: 120px; /* Maintain aspect ratio */
+  width: 120px; 
   min-width: 120px;
-}
-
-.search-result-list {
-  width: 100%;
-  z-index: 1;
-  background-color: #ECF5FB;
-  top: 40px;
-  color: #005B96;
-  display: none;
-  overflow-y: scroll;
-  max-height: 90vh;
-}
-
-.search-result-list dd img {
-  width: 80px;
-}
-
-.search-result-list a:hover {
-  background-color: color-mix(in srgb, #ECF5FB 95%, #000 5%);
 }
 
 .bg-second {
@@ -190,13 +163,15 @@ header .navbar-expand-lg .navbar-toggler {
 }
 
 .common-btn:hover,
-.white-list-btn.disable {
+.white-list-btn  {
   background: #005B96;
   color: #fff;
 }
 
-.white-list-btn.disable {
-  pointer-events: none;
+.white-list-btn:hover,
+.white-list-btn.active {
+  color: #005B96;
+  background-color: #fff;
 }
 
 .icon img {

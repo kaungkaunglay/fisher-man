@@ -189,3 +189,4 @@ Route::get('/login/facebook/callback', [OAuthController::class, 'handleFacebookC
 
 // count
 Route::get('/whitelist-count', [WhiteListController::class, 'WhiteListCount'])->name('whitelist-count');
+Route::get('/cart-count', [CartController::class, 'CartCount'])->name('cart-count');

@@ -157,7 +157,7 @@
                             console.error(xhr);
                         }
                     });
-                    
+
                 $.ajax({
                     url: `/white-list/delete/${getid}`,
                     type: "DELETE",
@@ -194,6 +194,18 @@
                         }
                     }
                 });
+                $.ajax({
+                    url: "{{ route('cart-count') }}",
+                    method: 'GET',
+                    success: function (response) {
+                        // Assuming response contains the new count
+                        $('#cart_count').text(response.cart_count);
+                    },
+                    error: function (xhr) {
+                        // Handle error here
+                        console.error(xhr);
+                    }
+                });
             });
 
             // mobile delete button
@@ -228,7 +240,7 @@
                     },
                     success: function(response) {
                         if (response.status) {
-                            location.href = "{{ route('cart') }}";
+                            
                         }
 
                         if (response.status == false) {

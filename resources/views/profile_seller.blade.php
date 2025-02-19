@@ -59,14 +59,6 @@
             <!-- </a> -->
           </div>
 
-          <!-- line link -->
-          <div class="d-flex align-items-center">
-            <label class="w-25" for="line">Line</label>:
-            <!-- <a href="#"> -->
-            <input type="text" class="p-1 mt-2 ms-1 rounded-1" id="line" value="{{ $user->line_id}}" readonly>
-            <!-- </a> -->
-          </div>
-
           <!-- organization link -->
           <div class="d-flex align-items-center">
             <label class="w-25" for="organize">Organize</label>:
@@ -128,15 +120,13 @@
           <button class="common-btn">Upload product</button>
           <button class="common-btn">Check Order Status</button>
         </div>
-
       </div>
-
       </div>
       <!-- /Profile Side -->
 
       <!-- Map Side -->
       <div class="col-12 col-lg-5 mt-3 mt-lg-0">
-      <h6 class="fw-bold">Selection Your Location</h6>
+      <h6 class="fw-bold">Shop Location</h6>
       <iframe class="w-100"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d250151.16276620553!2d104.72537013378734!3d11.579654014369655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109513dc76a6be3%3A0x9c010ee85ab525bb!2sPhnom%20Penh%2C%20Cambodia!5e0!3m2!1sen!2ssg!4v1736774811619!5m2!1sen!2ssg"
         height="330" style="border:0;" allowfullscreen="" loading="lazy"
