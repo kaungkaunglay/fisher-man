@@ -6,8 +6,8 @@
 
 @section('contents')
 
-    <section class="all-products container-custom my-3">
-        <h6 class="txt-primary fw-bold mb-3">All Products</h6>
+    <section class="all-products container-custom mb-3 mt-5">
+        <h6 class="txt-primary fw-bold mb-3">Searched Products</h6>
         <div class="filter d-flex justify-content-between align-items-center mb-3">
             <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
                 <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
