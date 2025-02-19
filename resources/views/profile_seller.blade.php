@@ -20,65 +20,75 @@
   
   <!-- Profile Section -->
   <section>
-    <div class="profile_seller container-custom">
+    <div class="profile_seller container-custom mb-5">
   
       <div class="row">
 
         <!-- Profile Side -->
-        <div class="col-12 col-lg-7">
-          <div class="row">
+        <div class="col-12 col-lg-7 profile-side">
+          <div class="d-md-flex gap-3">
       
             <!-- profile img -->
-            <div class="col-12 col-lg-6">
+            <div class="w-100">
               <img src="{{ asset('assets/images/account1.svg') }}" class="w-100" alt="">
             </div>
       
             <!-- Profile Info -->
-            <form action="#" class="col-12 col-lg-6 mt-2 mt-lg-0 profile-form">
+            <form action="#" class="w-100 mt-2 mt-lg-0 profile-form">
       
-              <div class="d-flex justify-content-end gap-4">
-                <button type="submit" class="save">
-                  <i class="fa-solid fa-save fs-5 text-danger"></i>
-                </button>
-                <button class="edit">
-                  <i class="fa-solid fa-pen-to-square fs-5 text-danger"></i>
-                </button>
-                <button class="cancel">
-                  <i class="fa-solid fa-x fs-5 text-danger"></i>
-                </button>
+              <!-- Form Headline -->
+              <div class="bg-primary text-white p-2">
+                <h2 class="fw-bold d-flex justify-content-between">Shop Info
+                  <div class="d-flex justify-content-end gap-4">
+                    <button type="submit" class="save">
+                      <i class="fa-solid fa-save fs-5 text-white"></i>
+                    </button>
+                    <button class="edit">
+                      <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
+                    </button>
+                    <button class="cancel">
+                      <i class="fa-solid fa-x fs-5 text-white"></i>
+                    </button>
+                  </div>
+                </h2>
               </div>
+              <!-- /Form Headline -->
       
-              <!-- user name -->
-              <div class="d-flex align-items-center">
-                <label class="w-25" for="name">Name</label>:
-                <input type="text" class="p-1 mt-1 ms-1 rounded-1" id="name" value="{{ $user->username }}" readonly>
+              <!-- /Form Content -->
+              <div class="px-2">
+                <!-- user name -->
+                <div class="d-flex align-items-center">
+                  <label class="w-25" for="name">Shop Name</label>:
+                  <input type="text" class="p-1 mt-1 ms-1 rounded-1" id="name" value="{{ $user->username }}" readonly>
+                </div>
+        
+                <!-- email link -->
+                <div class="d-flex align-items-center">
+                  <label class="w-25" for="email">Shop Email</label>:
+                  <!-- <a href="mailto:{{ $user->email }}"> -->
+                  <input type="email" class="p-1 mt-2 ms-1 rounded-1" id="email" value="{{ $user->email }}" readonly>
+                  <!-- </a> -->
+                </div>
+        
+                <!-- organization link -->
+                <div class="d-flex align-items-center">
+                  <label class="w-25" for="organize">Phone No</label>:
+                  <!-- <a href="#"> -->
+                  <input type="text" class="p-1 mt-2 ms-1 rounded-1" id="organize" value="Chat with name or Organization name" readonly>
+                  <!-- </a> -->
+                </div>
+        
+                <div>
+                  <i class="fa-brands fa-line fs-2 mt-1"></i>
+                </div>
               </div>
-      
-              <!-- email link -->
-              <div class="d-flex align-items-center">
-                <label class="w-25" for="email">Email</label>:
-                <!-- <a href="mailto:{{ $user->email }}"> -->
-                <input type="email" class="p-1 mt-2 ms-1 rounded-1" id="email" value="{{ $user->email }}" readonly>
-                <!-- </a> -->
-              </div>
-      
-              <!-- organization link -->
-              <div class="d-flex align-items-center">
-                <label class="w-25" for="organize">Organize</label>:
-                <!-- <a href="#"> -->
-                <input type="text" class="p-1 mt-2 ms-1 rounded-1" id="organize" value="Chat with name or Organization name" readonly>
-                <!-- </a> -->
-              </div>
-      
-              <div>
-                <i class="fa-brands fa-line fs-2 mt-1"></i>
-              </div>
+              <!-- /Form Content -->
 
               <!-- alert box -->
               <button data-bs-toggle="modal" data-bs-target="#modal_dialog" onclick="event.preventDefault()">
                 <div class="alert alert-warning d-flex mt-5" role="alert">
-                  <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img" aria-label="Danger:"></i>
-                  <div>
+                  <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img" aria-label="Warning:"></i>
+                  <div class="text-start"> 
                     Your account has not been verified. Please complete the verification process.
                   </div>
                 </div>
@@ -89,78 +99,163 @@
             
             <!-- Form Modal -->
             <section class="modal fade" id="modal_dialog">
-              <div class="modal-dialog w-80">
-                <form action="#">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-white">
+                  <div class="modal-header text-white bg-primary p-3">
+                    <h2>Verify Your Account</h2>
+                  </div>
+                  <div class="row modal-body p-3">
 
-                </form>
+                    <!-- Modal Body -->
+                    <div class="col-12 col-md-6">
+                      <form action="#">
+
+                        <div class="mb-2 row align-items-center">
+                          <div class="col-lg-5 col-12">
+                            <label for="exampleFormControlInput1" class="col-form-label">Shop Name</label>
+                          </div>
+                          <div class="col-lg-7 col-12">
+                            <input type="text" class="form-control" id="exampleFormControlInput1">
+                          </div>
+                        </div>
+
+                        <div class="mb-2 row align-items-center">
+                          <div class="col-lg-5 col-12">
+                            <label for="exampleFormControlInput1" class="col-form-label">Trans Management</label>
+                          </div>
+                          <div class="col-lg-7 col-12">
+                            <input type="text" class="form-control" id="exampleFormControlInput1">
+                          </div>
+                        </div>
+
+                        <div class="mb-2 row align-items-center">
+                          <div class="col-lg-5 col-12">
+                            <label for="exampleFormControlInput1" class="col-form-label">Email</label>
+                          </div>
+                          <div class="col-lg-7 col-12">
+                            <input type="email" class="form-control" id="exampleFormControlInput1">
+                          </div>
+                        </div>
+
+                        <div class="mb-2 row align-items-center">
+                          <div class="col-lg-5 col-12">
+                            <label for="exampleFormControlInput1" class="col-form-label">Phone Number</label>
+                          </div>
+                          <div class="col-lg-7 col-12">
+                            <input type="tel" class="form-control" id="exampleFormControlInput1">
+                          </div>
+                        </div>
+
+                        <div class="mb-2 row align-items-center">
+                          <div class="col-lg-5 col-12">
+                            <label for="exampleFormControlInput1" class="col-form-label">Upload Your Shop</label>
+                          </div>
+                          <div class="col-lg-7 col-12">
+                            <input type="file" class="form-control" id="exampleFormControlInput1">
+                          </div>
+                        </div>
+                        
+                      </form>
+                      <!-- /Form -->
+  
+                      <!-- QR Box -->
+                      <div class="border col-12 col-md-6">
+                        <div class="w-100">
+                          <img src="{{ asset('assets/images/QR.svg') }}" alt="">
+                        </div>
+                        <p class="w-100">
+                          Scan QR Code.
+                        </p>
+                      </div>
+                      <!-- /QR Box -->
+                    </div>
+                    <!-- /Modal Body -->
+
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button class="btn btn-primary">Request</button>
+                      </div>
+                    </div>
+                    <!-- /Modal Footer -->
+
+                  </div>
+                </div>
               </div> 
             </section>
             <!-- /Form Modal -->
-      
-            <!-- Detail Info -->
-            <form action="#" class="col-12 col-lg-12 mt-4 profile-form">
-      
-              <!-- Form Headline -->
-              <div>
-                <h2 class="fw-bold d-flex justify-content-between">
-                  Detail Personal Info
-
-                  <!-- button group -->
-                  <div class="d-flex justify-content-end gap-4">
-                    <button type="submit" class="save">
-                      <i class="fa-solid fa-save fs-5 text-danger"></i>
-                    </button>
-                    <button class="edit">
-                      <i class="fa-solid fa-pen-to-square fs-5 text-danger"></i>
-                    </button>
-                    <button class="cancel">
-                      <i class="fa-solid fa-x fs-5 text-danger"></i>
-                    </button>
-                  </div>
-                </h2>
-              </div>
-              <!-- /Form Headline -->
-        
-              <!-- address -->
-              <div class="d-flex align-items-center">
-                <label class="w-25" for="address">Address</label>:
-                <input type="text" class="p-1 mt-2 ms-1 rounded-1" id="address" value="house no street,sue distict,city" readonly>
-              </div>
-      
-              <!-- phone-number link -->
-              <div class="d-flex align-items-start">
-                <label class="w-25" for="tel">Phone No.</label>:
-                <div class="ms-1 d-flex phone-no-container">
-                  <!-- <a href="tel:"> -->
-                  <input type="tel" class="p-1 mt-2 rounded-1" id="tel" value="{{ $user->first_phone}}" readonly>
-                  <!-- </a> -->
-                    <b class="cor align-content-end">, </b>
-                    <!-- <a href="tel:"> -->
-                  <input type="tel" class="p-1 mt-2 rounded-1" value="{{ $user->secone_phone }}" readonly>
-                  <!-- </a> -->
-                </div>
-              </div>
-      
-            </form>
-            <!-- /Detail Info -->
-      
-            <!-- button group -->
-            <div class="buttons d-flex gap-2 mt-3">
-              <button class="common-btn">Upload product</button>
-              <button class="common-btn">Check Order Status</button>
-            </div>
 
           </div>
+      
+          <!-- Detail Info -->
+          <form action="#" class="w-100 mt-4 profile-form">
+    
+            <!-- Form Headline -->
+            <div>
+              <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2">
+                Detail Personal Info
+
+                <!-- button group -->
+                <div class="d-flex justify-content-end gap-4">
+                  <button type="submit" class="save">
+                    <i class="fa-solid fa-save fs-5 text-white"></i>
+                  </button>
+                  <button class="edit">
+                    <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
+                  </button>
+                  <button class="cancel">
+                    <i class="fa-solid fa-x fs-5 text-white"></i>
+                  </button>
+                </div>
+              </h2>
+            </div>
+            <!-- /Form Headline -->
+      
+            <!-- address -->
+            <div class="d-flex align-items-center">
+              <label class="w-25" for="address">Address</label>:
+              <input type="text" class="p-1 mt-2 ms-1 rounded-1" id="address" value="house no street,sue distict,city" readonly>
+            </div>
+    
+            <!-- phone-number link -->
+            <div class="d-flex align-items-start">
+              <label class="w-25" for="tel">Phone No.</label>:
+              <div class="ms-1 d-flex phone-no-container">
+                <!-- <a href="tel:"> -->
+                <input type="tel" class="p-1 mt-2 rounded-1" id="tel" value="{{ $user->first_phone}}" readonly>
+                <!-- </a> -->
+                  <b class="cor align-content-end">, </b>
+                  <!-- <a href="tel:"> -->
+                <input type="tel" class="p-1 mt-2 rounded-1" value="{{ $user->secone_phone }}" readonly>
+                <!-- </a> -->
+              </div>
+            </div>
+    
+          </form>
+          <!-- /Detail Info -->
+    
+          <!-- button group -->
+          <div class="buttons d-flex gap-2 mt-3">
+            <button class="common-btn">Upload product</button>
+            <button class="common-btn">Check Order Status</button>
+          </div>
+
         </div>
         <!-- /Profile Side -->
     
         <!-- Map Side -->
-        <div class="col-12 col-lg-5 mt-3 mt-lg-0">
-        <h6 class="fw-bold">Shop Location</h6>
-        <iframe class="w-100"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d250151.16276620553!2d104.72537013378734!3d11.579654014369655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109513dc76a6be3%3A0x9c010ee85ab525bb!2sPhnom%20Penh%2C%20Cambodia!5e0!3m2!1sen!2ssg!4v1736774811619!5m2!1sen!2ssg"
-          height="330" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="col-12 col-lg-5 mt-3 mt-lg-0 mb-4 map-side">
+
+          <!-- Map Side -->
+          <div class="h-100">
+            <h2 class="fw-bold bg-primary text-white p-2">Shop Location</h2>
+            <iframe class="w-100 border-0 h-100 mt-3"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d250151.16276620553!2d104.72537013378734!3d11.579654014369655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109513dc76a6be3%3A0x9c010ee85ab525bb!2sPhnom%20Penh%2C%20Cambodia!5e0!3m2!1sen!2ssg!4v1736774811619!5m2!1sen!2ssg"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <!-- /Map-->
+
         </div>
         <!-- /Map Side -->
 
@@ -171,7 +266,7 @@
   <!-- /Profile Section -->
   
   <!-- Product Section -->
-  <section class="discount-products bg-second py-4 mt-3">
+  <section class="discount-products bg-second py-4">
     <div class="container-custom">
       <div >
 

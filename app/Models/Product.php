@@ -36,7 +36,7 @@ class Product extends Model
 
         $user = AuthHelper::user();
 
-        if ($user->whitelists()->where('product_id', $this->id)->exists()) {
+        if ($user && $user->whitelists()->where('product_id', $this->id)->exists()) {
             return true;
         }
         return false;

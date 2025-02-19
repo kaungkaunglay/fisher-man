@@ -65,6 +65,12 @@ Route::get('/category/{id}', [CategoriesController::class, 'show'])->name('categ
 Route::post('/contact', [UsersController::class, 'contact'])->name('contact');
 Route::post('/wishList', [UsersController::class, 'wishList'])->name('wishList');
 
+//search-product-ajax
+Route::get('/products/ajax-search', [ProductController::class, 'ajaxSearch'])->name('products.ajaxSearch');
+
+//search-product using button
+Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
+
 // auth
 Route::get('/profile')->middleware('check_role')->name('profile');
 
@@ -109,7 +115,7 @@ Route::middleware(['is_admin'])->group(function () {
     Route::get('/admin/faqs/{faq}/edit', [AdminController::class, 'edit'])->name('admin.faqs.edit');
     Route::put('/admin/faqs/{faq}', [AdminController::class, 'update'])->name('update_faq');
     Route::delete('/admin/faqs/{faq}', [AdminController::class, 'destroy'])->name('admin.faqs.destroy');
-    
+
     // Admin Controller
     Route::get('/admin', [AdminController::class, 'home'])->name('admin.index');
     Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
@@ -149,6 +155,7 @@ Route::delete('/white-list/delete/{product_id}', [WhiteListController::class, 'd
 // cart
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add_to_cart');
+Route::post('/cart/add',[CartController::class, 'add'])->name('cart.add');
 Route::delete('/cart/delete/{product_id}', [CartController::class, 'delete'])->name('cart.delete');
 
 

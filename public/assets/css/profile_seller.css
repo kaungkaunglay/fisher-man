@@ -105,5 +105,18 @@ body {
   color:#00CCFF;
 }
 
+/* new break point for top section responsive */
+@media  screen and (max-width: 1120px) {
 
+  .profile_seller .profile-side {
+
+    width: 100%;
+  }
+
+  .profile_seller .map-side {
+
+    margin-top: 1.5rem !important;
+    width: 100%;
+  }
+}
 
