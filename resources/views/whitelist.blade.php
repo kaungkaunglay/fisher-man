@@ -195,10 +195,10 @@
                     },
                     success: function(response) {
                         if (response.status) {
-                            $('.desktop-check-product:checked').each(function() {
-                                // console.log($(this).val())
-                                removeCart($(this).val())
-                            });
+                            // $('.desktop-check-product:checked').each(function() {
+                            //     // console.log($(this).val())
+                            //     removeCart($(this).val())
+                            // });
                             console.log(response.message);
                         }
 
@@ -286,9 +286,9 @@
                     },
                     success: function(response) {
                         if (response.status) {
-                            $('.mobile-check-product:checked').each(function() {
-                                removeCart($(this).val())
-                            });
+                            // $('.mobile-check-product:checked').each(function() {
+                            //     removeCart($(this).val())
+                            // });
                         }
 
                         if (!response.status) {
