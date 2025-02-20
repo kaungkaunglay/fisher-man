@@ -120,36 +120,7 @@
             <div class="divider"></div>
             <div class="flex items-center justify-between flex-wrap gap10">
                 <div class="text-tiny">Showing 10 entries</div>
-                <ul class="wg-pagination">
-                    {{-- Previous Page Link --}}
-                    @if ($categories->onFirstPage())
-                        <li class="disabled">
-                            <span><i class="icon-chevron-left"></i></span>
-                        </li>
-                    @else
-                        <li>
-                            <a href="{{ $categories->previousPageUrl() }}"><i class="icon-chevron-left"></i></a>
-                        </li>
-                    @endif
-
-                    {{-- Pagination Elements --}}
-                    @foreach ($categories->getUrlRange(1, $categories->lastPage()) as $page => $url)
-                        <li class="{{ $categories->currentPage() == $page ? 'active' : '' }}">
-                            <a href="{{ $url }}">{{ $page }}</a>
-                        </li>
-                    @endforeach
-
-                    {{-- Next Page Link --}}
-                    @if ($categories->hasMorePages())
-                        <li>
-                            <a href="{{ $categories->nextPageUrl() }}"><i class="icon-chevron-right"></i></a>
-                        </li>
-                    @else
-                        <li class="disabled">
-                            <span><i class="icon-chevron-right"></i></span>
-                        </li>
-                    @endif
-                </ul>
+                
 
             </div>
         </div>

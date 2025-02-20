@@ -15,15 +15,33 @@ class ProductController extends Controller
         return view('admin.products', compact('products'));
     }
 
-    public function showallproducts()
+    public function showallproducts(Request $request)
     {
-        $products = Product::all();
-        // $products = $products->map(function($product){
-        //     $product->in_white_list = $product->inWhiteLists();
-        //     r
-        // });
+        // Retrieve the sort option from the query string
+        $sortBy = $request->get('sort_by', 'latest'); // default to 'latest'
+
+        // Build the query based on the sort option
+        $query = Product::query();
+
+        if ($sortBy === 'price_asc') {
+            $query->orderBy('product_price', 'asc');
+        } elseif ($sortBy === 'price_desc') {
+            $query->orderBy('product_price', 'desc');
+        } elseif ($sortBy === 'name_asc') {
+            $query->orderBy('name', 'asc');
+        } elseif ($sortBy === 'name_desc') {
+            $query->orderBy('name', 'desc');
+        } else {
+            $query->latest(); // Default sorting by latest
+        }
+
+        // Get the sorted products with pagination (10 products per page)
+        $products = $query->get();
+
+        // Return view with data
         return view('home', compact('products'));
     }
+
 
     public function create()
     {
@@ -84,14 +102,29 @@ class ProductController extends Controller
         return view('product_detail', compact('product'));
     }
 
-    public function discountProducts()
+    public function discountProducts(Request $request)
     {
-        $products = Product::where('discount', '>', 0.00)
-            ->latest()
-            ->get();
+        $sortBy = $request->get('sort_by', 'latest'); 
+
+        $query = Product::where('discount', '>', 0.00);
+
+        if ($sortBy === 'price_asc') {
+            $query->orderBy('product_price', 'asc');
+        } elseif ($sortBy === 'price_desc') {
+            $query->orderBy('product_price', 'desc');
+        } elseif ($sortBy === 'name_asc') {
+            $query->orderBy('name', 'asc');
+        } elseif ($sortBy === 'name_desc') {
+            $query->orderBy('name', 'desc');
+        } else {
+            $query->latest(); 
+        }
+
+        $products = $query->get();
 
         return view('special-offer', compact('products'));
     }
+
 
 
     public function edit(Product $product)
