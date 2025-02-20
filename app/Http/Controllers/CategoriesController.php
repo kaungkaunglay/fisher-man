@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Sub_category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,15 +15,14 @@ class CategoriesController extends Controller
         return view('admin.categories', compact('categories'));
     }
 
-    public function  show($id) {
-        $category = Category::findOrFail($id);
-
-        $subcategories = $category->subcategories()->with(['products' => function ($query) {
-            $query->limit(6);
-        }])->get();
-
-        return view('category', compact('category', 'subcategories'));
+    public function show($id) {
+        $category = Category::with(['subCategories.products' => function ($query) {
+            $query->get();
+        }])->findOrFail($id);
+    
+        return view('category', compact('category'));
     }
+    
 
     public function create()
     {

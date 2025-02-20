@@ -21,13 +21,31 @@ class SubCategoriesController extends Controller
         return view('includes.aside', compact('sub_categories'));
     }
 
-    public function show($id)
+    public function show($id, Request $request)
     {
+        // Retrieve the sort option from the query string
+        $sortBy = $request->get('sort_by', 'latest'); // default to 'latest'
+
+        // Build the query based on the sort option
+        $query = Product::where('sub_category_id', $id);
+
+        if ($sortBy === 'price_asc') {
+            $query->orderBy('product_price', 'asc');
+        } elseif ($sortBy === 'price_desc') {
+            $query->orderBy('product_price', 'desc');
+        } elseif ($sortBy === 'name_asc') {
+            $query->orderBy('name', 'asc');
+        } elseif ($sortBy === 'name_desc') {
+            $query->orderBy('name', 'desc');
+        } else {
+            $query->latest(); // Default sorting by latest
+        }
+
+        // Get the sorted products
+        $products = $query->get();
+
         // Get sub-category details
         $subCategory = Sub_category::findOrFail($id);
-
-        // Get products linked to this sub-category
-        $products = Product::where('sub_category_id', $id)->get();
 
         // Return view with data
         return view('sub_category', compact('subCategory', 'products'));

@@ -19,10 +19,28 @@
         </div>
         <!-- aside end -->
 
-        <!-- category list start -->
-        <div class="category col-8">
-            <ul class="list-group category-list">
-                @foreach ($subcategories as $subcategory)
+<div class="container-custom row">
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb" class="py-4">
+        <ol class="breadcrumb mb-0 bg-transparent">
+            <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $category->category_name }}</li>
+        </ol>
+    </nav>
+    <!-- ./Breadcrumbs -->
+    <!-- aside start -->
+    <div class="side-menu col-4">
+        @include('includes.aside')
+    </div>
+    <!-- aside end -->
+
+    <!-- category list start -->
+    <div class="category col-8">
+        <ul class="list-group category-list">
+            @if($category->subCategories->isEmpty())
+                <h6 class="txt-primary fw-bold mb-3">There is no Product in this categroy</h6>
+            @else
+                @foreach ($category->subCategories as $subcategory)
                     <li class="d-flex flex-column">
                         <div class="card-head">
                             <h2 class="title">{{ $subcategory->name }}</h2>
@@ -31,29 +49,12 @@
                                     <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
                                     <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
                                 </div>
-                                <div class="sort-container">
-                                    <div class="arrows">
-                                        <button><i class="fa-solid fa-caret-up"></i></button>
-                                        <button><i class="fa-solid fa-caret-down"></i></button>
-                                    </div>
-                                    <div class="dropdown">
-                                        <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            Sort by
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Action</a></li>
-                                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
                         <!-- card itmes list start -->
                         <div class="card-list" id="view-list">
-                            @foreach ($subcategory->products as $product)
+                            @foreach ($subcategory->products->take(4) as $product)
                                 <div class="item-card">
                                     <a href="{{ route('product.show', $product->id) }}" class="right">
                                         <img src="{{ asset($product->product_image) }}" class="card-img-top"
@@ -69,15 +70,12 @@
                                             {{ $product->description }}
                                         </a>
                                         <div class="d-flex card-btn m-t-10">
-                                            <a href="javascript:void(0);"
-                                                class="me-2 py-1 common-btn cart-btn @if ($product->inCart()) active @endif"
-                                                data-id="{{ $product->id }}"><i class="fa-solid fa-cart-shopping"></i></a>
-                                            <a href="#"
-                                                class=" py-1 common-btn white-list-btn @if ($product->inWhiteLists()) active @endif"
-                                                data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
-
+                                            <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
+                                            <a href="javascript:void(0);" class="w-100 py-1 common-btn" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
                                         </div>
+
                                     </div>
+                                </div>
                             @endforeach
                         </div>
                         <!-- card items list end -->
@@ -86,9 +84,8 @@
                         </div>
                     </li>
                 @endforeach
-            </ul>
-        </div>
-        <!-- category list end -->
+            @endif
+        </ul>
     </div>
 
     <script src="{{ asset('assets/js/view-list.js') }}"></script>
