@@ -26,7 +26,7 @@ main {
 }
 
 .logo {
-  width: 120px; 
+  width: 120px;
   min-width: 120px;
 }
 
@@ -162,16 +162,17 @@ main {
   text-align: center;
 }
 
+
+
 .common-btn:hover,
-.white-list-btn  {
-  background: #005B96;
-  color: #fff;
+.cart-btn {
+    background: #005B96;
+    color: #fff;
 }
 
-.white-list-btn:hover,
-.white-list-btn.active {
-  color: #005B96;
-  background-color: #fff;
+.cart-btn:hover{
+    background: #fff;
+    color: #005B96;
 }
 
 .icon img {
@@ -337,7 +338,7 @@ li {
 
 .sidebar-menu #see-more-link:hover {
   color: #ffc107 !important;
-} 
+}
 
 .sidebar-menu #see-more-link:hover:before {
   animation: dir_left 1s steps(5) infinite;
@@ -530,7 +531,7 @@ li {
 }
 
 @media screen and (max-width: 768px) {
-  
+
   #view-list {
     grid-template-columns: 1fr 1fr;
   }

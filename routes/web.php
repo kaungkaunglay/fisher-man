@@ -154,10 +154,17 @@ Route::get('/policy', function () {
 Route::middleware(['auth_custom'])->group(function () {
 
     Route::get('/white-list', [WhiteListController::class, 'index'])->name('white_list.index');
-    Route::post('/white-list/{product_id}', [WhiteListController::class, 'store'])->name('white_list.store');
-    Route::delete('/white-list/delete/{product_id}', [WhiteListController::class, 'delete'])->name('white_list.delete');
 
 });
+
+
+Route::middleware(['auth_custom_api'])->group(function () {
+
+    Route::delete('/white-list/delete/{product_id}', [WhiteListController::class, 'delete'])->name('white_list.delete');
+    Route::post('/white-list/{product_id}', [WhiteListController::class, 'store'])->name('white_list.store');
+
+});
+
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');

@@ -17,8 +17,18 @@ class CategoryFactory extends Factory
     protected $model = \App\Models\Category::class;
     public function definition(): array
     {
+        $category_name = [
+            'Fresh Fish',
+            'Frozen Fish',
+            'Shellfish',
+            'Sushi',
+            'Sashimi',
+            'Canned Fish',
+            'Seafood',
+            'Aquarium Fish'
+        ];
         return [
-            'category_name' => $this->faker->name,
+            'category_name' => $this->faker->unique()->randomElement($category_name),
             'image' => $this->faker->imageUrl(640, 480, 'animals', true)
         ];
     }
