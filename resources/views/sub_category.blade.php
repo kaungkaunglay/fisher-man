@@ -1,4 +1,5 @@
 @extends('includes.layout')
+@section('title','sub category')
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/sub_category.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" />

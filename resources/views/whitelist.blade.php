@@ -1,4 +1,5 @@
 @extends('includes.layout')
+@section('title','white list')
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/whitelist.css') }}">
 @endsection

@@ -1,4 +1,5 @@
 @extends('includes.layout')
+@section('title','Special Offer')
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/category.css') }}" />
 @endsection
