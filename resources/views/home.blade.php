@@ -151,25 +151,23 @@
             <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
           </div>
 
-                <!-- sorting -->
-                <div class="sort-container">
-                    <div class="arrows">
-                        <button><i class="fa-solid fa-caret-up"></i></button>
-                        <button><i class="fa-solid fa-caret-down"></i></button>
-                    </div>
-                    <div class="dropdown">
-                        <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Sort by
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_asc']) }}">Price: Low to High</a></li>
-                            <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_desc']) }}">Price: High to Low</a></li>
-                            <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">Name: A to Z</a></li>
-                            <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">Name: Z to A</a></li>
-                            <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'latest']) }}">Latest</a></li>
-                        </ul>
-                    </div>
-                </div>
+          <!-- sorting -->
+          <div class="sort-container">
+            <div class="arrows">
+              <button><i class="fa-solid fa-caret-up"></i></button>
+              <button><i class="fa-solid fa-caret-down"></i></button>
+            </div>
+            <div class="dropdown">
+              <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Sort by</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_asc']) }}">Price: Low to High</a></li>
+                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_desc']) }}">Price: High to Low</a></li>
+                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">Name: A to Z</a></li>
+                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">Name: Z to A</a></li>
+                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'latest']) }}">Latest</a></li>
+              </ul>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -234,28 +232,26 @@
             <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
           </div>
 
-                <!-- sorting -->
-                <div class="sort-container">
-                    <div class="arrows">
-                        <button><i class="fa-solid fa-caret-up"></i></button>
-                        <button><i class="fa-solid fa-caret-down"></i></button>
-                    </div>
-                    <div class="dropdown">
-                        <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Sort by
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_asc']) }}">Price: Low to High</a></li>
-                            <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_desc']) }}">Price: High to Low</a></li>
-                            <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">Name: A to Z</a></li>
-                            <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">Name: Z to A</a></li>
-                            <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'latest']) }}">Latest</a></li>
-                        </ul>
-                    </div>
-                </div>
+          <!-- sorting -->
+          <div class="sort-container">
+            <div class="arrows">
+              <button><i class="fa-solid fa-caret-up"></i></button>
+              <button><i class="fa-solid fa-caret-down"></i></button>
             </div>
+            <div class="dropdown">
+              <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Sort by</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_asc']) }}">Price: Low to High</a></li>
+                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_desc']) }}">Price: High to Low</a></li>
+                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">Name: A to Z</a></li>
+                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">Name: Z to A</a></li>
+                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'latest']) }}">Latest</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <!-- /All Product Headline -->
+      </div>
+      <!-- /All Product Headline -->
 
       <!-- Products List -->
       <div class="card-list" id="view-list">
