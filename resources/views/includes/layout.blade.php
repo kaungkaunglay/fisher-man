@@ -2,26 +2,26 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ trans("hello")}}</title>
-  <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
-  <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}" />
-  @yield('style')
-  <link rel="icon" href="demo_icon.gif" type="image/gif" sizes="16x16">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" />
-  <link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}" />
-  <!-- add jquery -->
-  <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
-  <!-- {{-- favicon --}} -->
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png') }}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon/favicon-32x32.png') }}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon/favicon-16x16.png') }}">
-  <link rel="manifest" href="{{ asset('assets/images/favicon/site.webmanifest') }}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@yield('title', 'Fisher Man')</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}" />
+    @yield('style')
+    <link rel="icon" href="demo_icon.gif" type="image/gif" sizes="16x16">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}" />
+    <!-- add jquery -->
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <!-- {{-- favicon --}} -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('assets/images/favicon/site.webmanifest') }}">
 
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>

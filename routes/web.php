@@ -134,9 +134,18 @@ Route::middleware(['is_admin'])->group(function () {
     Route::post('/admin/settings/save', [AdminController::class, 'save'])->name('admin.settings.save');
 
     //User Request
-    Route::get('/admin/users/request-contact', [AdminController::class, 'contact'])->name('admin.users.contact');
+    Route::get('/admin/request-contact', [AdminController::class, 'contact'])->name('admin.users.contact');
     Route::get('/admin/contact/detail/{contactID}', [AdminController::class, 'contactDetail'])->name('admin.contact.detail');
-    Route::get('/admin/users/wishList', [AdminController::class, 'wishList'])->name('admin.users.wishList');
+    Route::get('/admin/request-wishList', [AdminController::class, 'wishList'])->name('admin.users.wishList');
+
+    //Manage Shop
+    Route::get('/admin/shops/approved-shops', [AdminController::class, 'approvedShopList'])->name('admin.shops.approved');
+    Route::get('/admin/shops/pending-shops', [AdminController::class, 'pendingShopList'])->name('admin.shops.pending');
+    Route::get('/admin/shops/rejected-shops', [AdminController::class, 'rejectedShopList'])->name('admin.shops.rejected');
+    Route::post('/admin/shops/update-status', [AdminController::class, 'updateStatus'])->name('admin.shops.updateStatus');
+    Route::get('/admin/shop-detail/{shopID}', [AdminController::class, 'shopDetail'])->name('admin.seller.shop.detail');
+    Route::post('/admin/shops/delete', [AdminController::class, 'deleteShop'])->name('admin.shops.delete');
+
 });
 
 

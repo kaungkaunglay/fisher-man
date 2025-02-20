@@ -1,4 +1,5 @@
 @extends('includes.layout')
+@section('title','support')
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/support.css') }}" />
 @endsection

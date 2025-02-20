@@ -17,20 +17,16 @@ class LanguageMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $host = $request->getHost();
+        $parts = explode('.', $host);
+        $subdomain = count($parts) >= 3 ? $parts[0] : 'en'; // Default to 'en'
 
-        $host = $request->getHost(); // Get full domain (e.g., en.r-mekiki.com)
-        $subdomain = explode('.', $host)[0]; // Get first part (en or jp)
+        // Determine language based on subdomain
+        $locale = ($subdomain === 'jp') ? 'jp' : 'en';
 
-        // Define allowed languages
-        $languages = ['en', 'jp'];
-
-        // Check if subdomain matches a language
-        if (in_array($subdomain, $languages)) {
-            App::setLocale($subdomain);
-            Session::put('locale', $subdomain);
-        } else {
-            App::setLocale(config('app.fallback_locale')); // Default language
-        }
+        // Set Laravel's locale
+        App::setLocale($locale);
+        Session::put('locale', $locale);
         return $next($request);
     }
 }

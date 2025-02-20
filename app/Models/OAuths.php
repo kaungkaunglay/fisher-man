@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Users;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class OAuths extends Model
 {
@@ -13,6 +14,11 @@ class OAuths extends Model
         'token',
         'refresh_token',
         'expires_in',
-        'user_id'
+        'user_id',
+        'status'
     ];
+
+    public function user(){
+        return $this->belongsTo(Users::class);
+    }
 }

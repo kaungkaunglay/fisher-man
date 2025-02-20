@@ -30,15 +30,17 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        },
-        "files": [
-            "app/Helpers/TranslationHelper.php"
-        ]
+        }
+
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "app/Helpers/TranslationHelper.php",
+            "app/Helpers/translation.php"
+        ]
     },
     "scripts": {
         "post-autoload-dump": [

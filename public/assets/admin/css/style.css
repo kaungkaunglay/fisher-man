@@ -1443,7 +1443,7 @@ a:hover, a:focus {
   padding: 2px 8px;
   gap: 10px;
   border-radius: 4px;
-  background: #F0FDF4;
+  background: #e9fbee;
   color: var(--22-c-55-e);
   font-size: 12px;
   font-weight: 500;
@@ -1462,7 +1462,7 @@ a:hover, a:focus {
   padding: 2px 8px;
   gap: 10px;
   border-radius: 4px;
-  background: #F8FAFC;
+  background: #ededed;
   color: #95989D;
   font-size: 12px;
   font-weight: 500;
