@@ -3,6 +3,14 @@ body {
   color: #005B96;
 }
 
+.shop-location {
+  min-height: 300px;
+}
+
+.form-check-input:checked {
+  background-color: #005B96;
+}
+
 .profile-form:not(.active) input {
   border: none;
   outline: none;
@@ -10,17 +18,23 @@ body {
 }
 
 .profile-form:not(.active) .cancel,
-.profile-form:not(.active) .save {
-  display: none;
+.profile-form:not(.active) .save,
+.profile-form:not(.active) .checkbox-list-on {
+  display: none !important;
 }
 
 .profile-form.active .edit,
-.profile-form.active .cor {
-  display: none;
+.profile-form.active .cor,
+.profile-form.active .checkbox-list-off {
+  display: none !important;
 }
  
 .profile-form.active .phone-no-container {
   flex-direction: column;
+}
+
+.qr-box {
+  max-width: 200px;
 }
 
 /* sortBy button start*/
@@ -119,4 +133,3 @@ body {
     width: 100%;
   }
 }
-

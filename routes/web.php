@@ -27,37 +27,42 @@ use App\Http\Controllers\SubCategoriesController;
 |
 */
 
-// login for Customer and Seller
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'login_store'])->name('login_store');
-// Route::post('/login_s', [SellersController::class, 'login_store'])->name('login_store_seller');
+Route::middleware(['guest_custom'])->group(function(){
+    // login for Customer and Seller
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'login_store'])->name('login_store');
+    // Route::post('/login_s', [SellersController::class, 'login_store'])->name('login_store_seller');
 
-// Registration for Customer and Seller
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::get('/register_s', [AuthController::class, 'register_seller'])->name('register_seller');
-Route::post('/register', [AuthController::class, 'register_store'])->name('register_store');
+    // Registration for Customer and Seller
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::get('/register_s', [AuthController::class, 'register_seller'])->name('register_seller');
+    Route::post('/register', [AuthController::class, 'register_store'])->name('register_store');
 
 
-// Forgot_password for customer and seller
-Route::get('/forgot_password', [AuthController::class, 'forgot_password'])->name('forgotpassword');
-// Handle Reset Link
-Route::post('/forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
-Route::get('/email_success/{email}', [AuthController::class, 'showEmailSuccess'])->name('email_success');
-// Resent reset password link
-Route::post('/resend-email', [AuthController::class, 'resentResetLinkEmail'])->name('resend.email');
-// Password Reset Form
-Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
-// Route::get('/reset-password/{token}', [UsersController::class, 'showResetForm'])->name('password.reset');
-// Handle Password Reset
-Route::post('/reset-password', [AuthController::class, 'reset'])->name('reset');
+    // Forgot_password for customer and seller
+    Route::get('/forgot_password', [AuthController::class, 'forgot_password'])->name('forgotpassword');
+    // Handle Reset Link
+    Route::post('/forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('/email_success/{email}', [AuthController::class, 'showEmailSuccess'])->name('email_success');
+    // Resent reset password link
+    Route::post('/resend-email', [AuthController::class, 'resentResetLinkEmail'])->name('resend.email');
+    // Password Reset Form
+    Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
+    // Route::get('/reset-password/{token}', [UsersController::class, 'showResetForm'])->name('password.reset');
+    // Handle Password Reset
+    Route::post('/reset-password', [AuthController::class, 'reset'])->name('reset');
 
-Route::post('/update-password', [AuthController::class, 'update_password'])->name('password.update');
+    Route::post('/update-password', [AuthController::class, 'update_password'])->name('password.update');
+
+});
+
+
 
 // Logout
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // guest
-Route::get('/', [ProductController::class, 'showallproducts'])->name('home');
+
 Route::get('/special-offer', [ProductController::class, 'discountProducts'])->name('special-offer');
 Route::get('/sub-category/{id}', [SubCategoriesController::class, 'show'])->name('sub-category.show');
 Route::get('/category/{id}', [CategoriesController::class, 'show'])->name('category');
@@ -160,13 +165,22 @@ Route::get('/policy', function () {
 
 
 // cart
-Route::middleware(['auth_custom'])->group(function () {
+Route::middleware(['auth_custom','restore_cart'])->group(function () {
+
+    Route::get('/', [ProductController::class, 'showallproducts'])->withoutMiddleware('auth_custom')->name('home');
 
     Route::get('/white-list', [WhiteListController::class, 'index'])->name('white_list.index');
-    Route::post('/white-list/{product_id}', [WhiteListController::class, 'store'])->name('white_list.store');
-    Route::delete('/white-list/delete/{product_id}', [WhiteListController::class, 'delete'])->name('white_list.delete');
 
 });
+
+
+Route::middleware(['auth_custom_api','restore_cart'])->group(function () {
+
+    Route::delete('/white-list/delete/{product_id}', [WhiteListController::class, 'delete'])->name('white_list.delete');
+    Route::post('/white-list/{product_id}', [WhiteListController::class, 'store'])->name('white_list.store');
+
+});
+
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');

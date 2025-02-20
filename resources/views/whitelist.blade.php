@@ -1,4 +1,5 @@
 @extends('includes.layout')
+@section('title','white list')
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/whitelist.css') }}">
 @endsection
@@ -195,10 +196,10 @@
                     },
                     success: function(response) {
                         if (response.status) {
-                            $('.desktop-check-product:checked').each(function() {
-                                // console.log($(this).val())
-                                removeCart($(this).val())
-                            });
+                            // $('.desktop-check-product:checked').each(function() {
+                            //     // console.log($(this).val())
+                            //     removeCart($(this).val())
+                            // });
                             console.log(response.message);
                         }
 
@@ -286,9 +287,9 @@
                     },
                     success: function(response) {
                         if (response.status) {
-                            $('.mobile-check-product:checked').each(function() {
-                                removeCart($(this).val())
-                            });
+                            // $('.mobile-check-product:checked').each(function() {
+                            //     removeCart($(this).val())
+                            // });
                         }
 
                         if (!response.status) {

@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('o_auths', function (Blueprint $table) {
+        Schema::create('translations', function (Blueprint $table) {
             $table->id();
-            $table->string('provider');
-            $table->string('token');
-            $table->string('refresh_token')->nullable();
-            $table->string('expires_in')->nullable();
-            $table->foreignId('user_id')->constrained('users');
-            $table->boolean('status')->default(true);
+            $table->string('key')->unique(); 
+            $table->string('en')->nullable();
+            $table->string('jp')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('o_auths');
+        Schema::dropIfExists('translations');
     }
 };

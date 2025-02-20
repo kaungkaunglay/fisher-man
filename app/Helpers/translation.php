@@ -1,0 +1,14 @@
+<?php
+
+use App\Models\Translations;
+
+if(!function_exists('trans_lang')){
+    function trans_lang($key)
+    {
+        $lang = app()->getLocale() ?? 'en';
+        $translation = Translations::where('key', $key)->first();
+
+        return $translation ? $translation->$lang : $key;
+    }
+}
+

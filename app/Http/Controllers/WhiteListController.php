@@ -27,11 +27,12 @@ class WhiteListController extends Controller
         // } else {
         //     $count = count(session('white_lists', []));
         // }
-        $count = AuthHelper::user()->whitelists()->count();
+        $count = AuthHelper::check() ? AuthHelper::user()->whitelists()->count() : 0;
         return response()->json(['white_lists_count' => $count]);
     }
     public function store($product_id)
     {
+
         if (!Product::where('id', $product_id)->exists()) {
             return response()->json(['status' => false, 'message' => 'Product not found']);
         }

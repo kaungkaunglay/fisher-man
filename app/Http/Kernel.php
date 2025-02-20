@@ -30,6 +30,7 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
+            \App\Http\Middleware\LanguageMiddleware::class,
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
@@ -68,5 +69,8 @@ class Kernel extends HttpKernel
         'check_role' => \App\Http\Middleware\CheckRole::class,
         'track_visitor' =>  \App\Http\Middleware\TrackVisitor::class,
         'auth_custom' => \App\Http\Middleware\AuthCustom::class,
+        'auth_custom_api' => \App\Http\Middleware\AuthCustomApi::class,
+        'restore_cart' => \App\Http\Middleware\RestoreCart::class,
+        'guest_custom' => \App\Http\Middleware\GuestCustom::class,
     ];
 }

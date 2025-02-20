@@ -1,4 +1,5 @@
 @extends('includes.layout')
+@section('title','profile')
 @section('style')
 <link rel="stylesheet" href="{{ asset('assets/css/profile_user.css') }}" />
 @endsection
@@ -95,7 +96,7 @@
               </button>
             </div>
           </h2>
-    
+
           <!-- address -->
           <div class="d-flex align-items-center mt-2">
             <label class="w-25" for="address">Address</label>:

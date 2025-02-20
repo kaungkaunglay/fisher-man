@@ -31,11 +31,16 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
+
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "app/Helpers/TranslationHelper.php",
+            "app/Helpers/translation.php"
+        ]
     },
     "scripts": {
         "post-autoload-dump": [

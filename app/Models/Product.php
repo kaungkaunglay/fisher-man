@@ -42,13 +42,13 @@ class Product extends Model
 
     public function inCart()
     {
-        // if(!AuthHelper::check()){
-        //     $cart = session('cart', []);
+        if(!AuthHelper::check()){
+            $cart = session('cart', []);
 
-        //     if (in_array($this->id, array_column($cart,'id'))) {
-        //         return true;
-        //     }
-        // }
+            if (in_array($this->id, array_column($cart,'id'))) {
+                return true;
+            }
+        }
 
         $user = AuthHelper::user();
 

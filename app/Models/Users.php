@@ -66,5 +66,16 @@ class Users extends Authenticatable implements CanResetPassword
         return $this->hasOne(Shop::class);
     }
 
+    public function oAuths(){
+        return $this->hasMany(OAuths::class,"user_id",'id');
+    }
+
+    public function checkProvider($provider_name){
+        return $this->oAuths()
+            ->where('provider',$provider_name)
+            ->where('status',true)
+            ->exists();
+    }
+
 
 }
