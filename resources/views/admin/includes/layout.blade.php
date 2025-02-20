@@ -17,8 +17,14 @@
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+    <!-- Bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <!-- Theme Style -->
     @yield('style')
+
+    <!-- custom-css -->
+    <link rel="stylesheet" href="{{asset('assets/admin/css/custom.css')}}">
 
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="{{asset('assets/images/Logo only.png')}}">
@@ -159,19 +165,19 @@
                                     </li>
                                 </ul>
                                 <ul class="menu-list">
-                                    <li class="menu-item has-children {{ request()->is('admin/userRequest*') ? 'active' : '' }}">
+                                    <li class="menu-item has-children {{ request()->is('admin/request*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-user"></i></div>
                                             <div class="text">User Request</div>
                                         </a>
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
-                                                <a href="{{route('admin.users.contact')}}" class="{{request()->is('admin/users/request-contact') ? 'active' : ''}}">
+                                                <a href="{{route('admin.users.contact')}}" class="{{request()->is('admin/request-contact') ? 'active' : ''}}">
                                                     <div class="text">Contact Form</div>
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
-                                                <a href="{{route('admin.users.wishList')}}" class="{{request()->is('admin/users/request-wishList') ? 'active' : ''}}">
+                                                <a href="{{route('admin.users.wishList')}}" class="{{request()->is('admin/request-wishList') ? 'active' : ''}}">
                                                     <div class="text">Wish List Form</div>
                                                 </a>
                                             </li>
@@ -183,23 +189,27 @@
                             <div class="center-item">
                                 <div class="center-heading">Manage Shop</div>
                                 <ul class="menu-list">
-                                    <li class="menu-item has-children {{ request()->is('admin/faq*') ? 'active' : '' }}">
+                                    <li class="menu-item has-children {{ request()->is('admin/shop*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-user"></i></div>
                                             <div class="text">Shop List</div>
                                         </a>
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
-                                                <a href="{{route('admin.faqs')}}" class="{{request()->is('admin/faqs') ? 'active' : ''}}">
-                                                    <div class="text">All FAQs</div>
+                                                <a href="{{route('admin.shops.approved')}}" class="{{request()->is('admin/shops/approved-shops') ? 'active' : ''}}">
+                                                    <div class="text">Shops</div>
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
-                                                <a href="{{route('create_faq')}}" class="{{ request()->is('admin/faq') ? 'active' : '' }}">
-                                                    <div class="text">Add new FAQ</div>
+                                                <a href="{{route('admin.shops.pending')}}" class="{{ request()->is('admin/shops/pending-shops') ? 'active' : '' }}">
+                                                    <div class="text">Requested Shops</div>
                                                 </a>
                                             </li>
-
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('admin.shops.rejected')}}" class="{{ request()->is('admin/shops/rejected-shops') ? 'active' : '' }}">
+                                                    <div class="text">Rejected Shops</div>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -209,7 +219,7 @@
                                 <ul class="menu-list">
                                     <li class="menu-item has-children {{ request()->is('admin/faq*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
-                                            <div class="icon"><i class="icon-user"></i></div>
+                                            <i class="bi bi-headset fs-3"></i>
                                             <div class="text">FAQs</div>
                                         </a>
                                         <ul class="sub-menu" style="display: block;">
@@ -219,7 +229,7 @@
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
-                                                <a href="{{route('create_faq')}}" class="{{ request()->is('admin/faq') ? 'active' : '' }}">
+                                                <a href="{{route('create_faq')}}" class="{{ request()->is('admin/faq/create') ? 'active' : '' }}">
                                                     <div class="text">Add new FAQ</div>
                                                 </a>
                                             </li>
@@ -233,7 +243,7 @@
                                 <ul class="menu-list">
                                     <li class="menu-item has-children {{ request()->is('admin/setting*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
-                                            <div class="icon"><i class="icon-user"></i></div>
+                                            <div class="icon"><i class="icon-settings"></i></div>
                                             <div class="text">System Data</div>
                                         </a>
                                         <ul class="sub-menu" style="display: block;">
@@ -624,6 +634,8 @@
         var logoDark = '{{ asset('assets/admin/images/logo.png') }}';
         var logoLight = '{{ asset('assets/admin/images/logo.png') }}';
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Javascript -->
     @yield('script')
 
