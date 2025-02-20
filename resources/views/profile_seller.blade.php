@@ -1,5 +1,5 @@
 @extends('includes.layout')
-@section('title','profile')
+@section('title', 'profile')
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/profile_seller.css') }}" />
 @endsection
@@ -35,8 +35,8 @@
                         </div>
 
                         <!-- Profile Info -->
-                        <form action="#" class="w-100 profile-form d-flex flex-column">
-
+                        <form action="#" id="update_basic_profile" method="POST" class="w-100 profile-form d-flex flex-column">
+                            @csrf
                             <!-- Form Headline -->
                             <div class="bg-primary text-white p-2">
                                 <h2 class="fw-bold d-flex justify-content-between">Shop Info
@@ -59,17 +59,19 @@
                             <div class="px-2 py-3">
                                 <!-- user name -->
                                 <div class="d-flex align-items-center">
-                                    <label class="w-25" for="name">Name</label>:
-                                    <input type="text" class="p-1 mt-1 ms-1 rounded-1" id="name"
+                                    <label class="w-25" for="username">Name</label>:
+                                    <input type="text" name="username" class="p-1 mt-1 ms-1 rounded-1" id="username"
                                         value="{{ $user->username }}" readonly>
+                                    <span class="invalid-feedback"></span>
                                 </div>
 
                                 <!-- email link -->
                                 <div class="d-flex align-items-center">
                                     <label class="w-25" for="email">Email</label>:
                                     <!-- <a href="mailto:{{ $user->email }}"> -->
-                                    <input type="email" class="p-1 mt-2 ms-1 rounded-1" id="email"
+                                    <input type="email" name="email" class="p-1 mt-2 ms-1 rounded-1" id="email"
                                         value="{{ $user->email }}" readonly>
+                                    <span class="invalid-feedback"></span>
                                     <!-- </a> -->
                                 </div>
 
@@ -77,8 +79,9 @@
                                 <div class="d-flex align-items-center">
                                     <label class="w-25" for="organize">Organize</label>:
                                     <!-- <a href="#"> -->
-                                    <input type="text" class="p-1 mt-2 ms-1 rounded-1" id="organize"
-                                        value="Chat with name or Organization name" readonly>
+                                    <input type="text" name="first_org_name" class="p-1 mt-2 ms-1 rounded-1"
+                                        id="first_org_name" value="{{ $user->first_org_name }}" readonly>
+                                    <span class="invalid-feedback"></span>
                                     <!-- </a> -->
                                 </div>
 
@@ -106,7 +109,8 @@
                                                     <i class="fa-brands fa-line fs-2 mt-1"></i>
                                                 </label>
                                                 <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" class="border form-check-input" role="switch" @if ($user->checkProvider('line')) checked @endif />
+                                                    <input type="checkbox" class="border form-check-input" role="switch"
+                                                        @if ($user->checkProvider('line')) checked @endif />
                                                 </div>
                                             </div>
                                         </li>
@@ -117,7 +121,8 @@
                                                     <i class="fa-brands fa-facebook fs-2 mt-1"></i>
                                                 </label>
                                                 <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" class="border form-check-input" role="switch"  @if ($user->checkProvider('facebook')) checked @endif/>
+                                                    <input type="checkbox" class="border form-check-input" role="switch"
+                                                        @if ($user->checkProvider('facebook')) checked @endif />
                                                 </div>
                                             </div>
                                         </li>
@@ -128,13 +133,17 @@
                                                     <i class="fa-brands fa-google fs-2 mt-1"></i>
                                                 </label>
                                                 <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" class="border form-check-input" role="switch"  @if ($user->checkProvider('google')) checked @endif/>
+                                                    <input type="checkbox" class="border form-check-input" role="switch"
+                                                        @if ($user->checkProvider('google')) checked @endif />
                                                 </div>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
 
+                            </div>
+                            <div class="input-box d-flex flex-column">
+                                <span class="mb-3 text-danger" id="message"></span>
                             </div>
                             <!-- /Form Content -->
 
@@ -258,7 +267,7 @@
                     </div>
 
                     <!-- Detail Info -->
-                    <form action="#" class="w-100 mt-3 profile-form">
+                    <form action="" id="update_contact_details" method="POST" class="w-100 mt-3 profile-form">
 
                         <!-- Form Headline -->
                         <div>
@@ -289,6 +298,7 @@
                                 <label class="w-25" for="address">Address</label>:
                                 <input type="text" class="p-1 mt-2 ms-1 rounded-1" id="address"
                                     value="house no street,sue distict,city" readonly>
+                                <span class="invalid-feedback"></span>
                             </div>
 
                             <!-- phone-number link -->
@@ -296,13 +306,15 @@
                                 <label class="w-25" for="tel">Phone No.</label>:
                                 <div class="ms-1 d-flex phone-no-container">
                                     <!-- <a href="tel:"> -->
-                                    <input type="tel" class="p-1 mt-2 rounded-1" id="tel"
+                                    <input type="tel" class="p-1 mt-2 rounded-1" id="first_phone"
                                         value="{{ $user->first_phone }}" readonly>
+
                                     <!-- </a> -->
                                     <b class="cor align-content-end">, </b>
                                     <!-- <a href="tel:"> -->
-                                    <input type="tel" class="p-1 mt-2 rounded-1" value="{{ $user->secone_phone }}"
-                                        readonly>
+                                    <input type="tel" class="p-1 mt-2 rounded-1" value="{{ $user->second_phone }}"
+                                        id="second_phone" readonly>
+                                    <span class="invalid-feedback"></span>
                                     <!-- </a> -->
                                 </div>
                             </div>
@@ -627,6 +639,104 @@
     <script src="{{ asset('assets/js/view-list.js') }}"></script>
     <script src="{{ asset('assets/js/words-limit.js') }}"></script>
     <script src="{{ asset('assets/js/profile-seller.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $("#update_basic_profile_form").submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: "{{ route('update_basic_profile') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        if (response.status == true) {
+                            // Show success message
+                            alert(response.message);
+                            console.log(response.message);
+                        } else {
+                            // Display the error messages
+                            $('#message').html(response.message ?? '');
+
+                            var errors = response.errors ?? {};
+
+                            var fields = ['username', 'email', 'first_org_name'];
+
+                            fields.forEach(function(field) {
+                                if (errors[field]) {
+                                    $('#' + field)
+                                        .closest('.input-box')
+                                        .find('span.invalid-feedback')
+                                        .addClass('d-block')
+                                        .html(errors[field]);
+                                } else {
+                                    $('#' + field)
+                                        .closest('.input-box')
+                                        .find('span.invalid-feedback')
+                                        .removeClass('d-block')
+                                        .html('');
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+
+            $("#update_contact_form").submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: "{{ route('update_contact_details') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        if (response.status == true) {
+                            // Show success message
+                            alert(response.message);
+                            console.log(response.message);
+                        } else {
+                            // Display the error messages
+                            $('#message').html(response.message ?? '');
+
+                            var errors = response.errors ?? {};
+
+                            var fields = ['address', 'first_phone', 'second_phone'];
+
+                            fields.forEach(function(field) {
+                                if (errors[field]) {
+                                    $('#' + field)
+                                        .closest('.input-box')
+                                        .find('span.invalid-feedback')
+                                        .addClass('d-block')
+                                        .html(errors[field]);
+                                } else {
+                                    $('#' + field)
+                                        .closest('.input-box')
+                                        .find('span.invalid-feedback')
+                                        .removeClass('d-block')
+                                        .html('');
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
     <!-- /All Scripts -->
 
     <!-- Testing Scripts -->

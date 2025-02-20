@@ -81,6 +81,10 @@ Route::get('/profile')->middleware('check_role')->name('profile');
 
 Route::middleware(['is_seller'])->group(function () {
     Route::get('/profile/seller', [ProfileController::class, 'seller_profile'])->name('profile_seller');
+
+    Route::post('/profile/seller/update_basic', [ProfileController::class, 'update_basic_profile'])->name('update_basic_profile');
+    Route::post('/profile/seller/update_contact', [ProfileController::class, 'update_contact_details'])->name('update_contact_details');
+
 });
 
 Route::middleware(['is_buyer'])->group(function () {

@@ -14,18 +14,19 @@ class ProfileController extends Controller
         $user = AuthHelper::auth();
 
 
-        return view('profile_seller',compact('user'));
+        return view('profile_seller', compact('user'));
     }
 
 
     public function user_profile()
     {
         $user = AuthHelper::auth();
-        return view('profile_user',compact('user'));
+        return view('profile_user', compact('user'));
     }
 
-    public function update_profile(Request $request)
+    public function update_basic_profile(Request $request)
     {
+        // Define custom error messages
         $messages = [
             'username.required' => 'The username field is required.',
             'username.min' => 'The username must be at least 4 characters.',
@@ -36,9 +37,82 @@ class ProfileController extends Controller
             'email.unique' => 'The email has already been taken.',
         ];
 
+        // Validate incoming request data
         $validator = Validator::make($request->all(), [
-            'username' => 'required|min:4|max:12|unique:users,username',
-            'email' => 'required|email|unique:users,email',
+            'username' => 'required|min:4|max:20|unique:users,username,' . AuthHelper::id(),
+            'email' => 'required|email|unique:users,email' . AuthHelper::id(),
+            'first_org_name' => 'required|min:4|max:20',
         ], $messages);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors(),
+            ]);
+        }
+
+        // Retrieve the authenticated user
+        $user = AuthHelper::user();
+
+        // Update user profile
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->first_org_name = $request->first_org_name;
+        $user->save();
+
+        // Return success response
+        return response()->json([
+            'status' => true,
+            'message' => 'Profile updated successfully.',
+        ]);
+    }
+
+    public function update_contact_details(Request $request)
+    {
+        // Define custom error messages for the new fields
+        $messages = [
+            'address.required' => 'The address field is required.',
+            'first_phone.required' => 'The first phone number is required.',
+            'first_phone.regex' => 'The first phone number must be a valid phone number.',
+            'second_phone.required' => 'The second phone number is required.',
+            'second_phone.regex' => 'The second phone number must be a valid phone number.',
+        ];
+
+        // Validate incoming request data for address and phone numbers
+        $validator = Validator::make($request->all(), [
+            'address' => 'required|string|max:255',
+            'first_phone' => [
+                'required',
+                'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'
+            ],
+            'second_phone' => [
+                'required',
+                'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'
+            ],
+        ], $messages);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors(),
+            ]);
+        }
+
+        // Retrieve the authenticated user
+        $user = AuthHelper::user();
+
+        // Update address and phone numbers
+        $user->address = $request->address;
+        $user->first_phone = $request->first_phone;
+        $user->second_phone = $request->second_phone;
+        $user->save();
+
+        // Return success response
+        return response()->json([
+            'status' => true,
+            'message' => 'Address and phone numbers updated successfully.',
+        ]);
     }
 }
