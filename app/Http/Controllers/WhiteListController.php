@@ -20,16 +20,16 @@ class WhiteListController extends Controller
 
         return view('whitelist', compact('whitelist_products', 'total' ));
     }
-    public function WhiteListCount()
-    {
-        // if (AuthHelper::check()) {
-        //     $count = AuthHelper::user()->whitelists()->count();
-        // } else {
-        //     $count = count(session('white_lists', []));
-        // }
-        $count = AuthHelper::user()->whitelists()->count();
-        return response()->json(['white_lists_count' => $count]);
-    }
+    // public function WhiteListCount()
+    // {
+    //     // if (AuthHelper::check()) {
+    //     //     $count = AuthHelper::user()->whitelists()->count();
+    //     // } else {
+    //     //     $count = count(session('white_lists', []));
+    //     // }
+    //     $count = AuthHelper::user()->whitelists()->count();
+    //     return response()->json(['white_lists_count' => $count]);
+    // }
     public function store($product_id)
     {
         if (!Product::where('id', $product_id)->exists()) {

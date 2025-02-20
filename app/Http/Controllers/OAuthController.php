@@ -13,131 +13,116 @@ use Laravel\Socialite\Facades\Socialite;
 
 class OAuthController extends Controller
 {
-    public function handleLineCallback(Request $request)
+    protected $providerMap = [
+        'line' => 'line_id',
+        'google' => 'google_id',
+        'facebook' => 'facebook_id'
+    ];
+
+    public function handleCallback(Request $request, string $provider)
     {
         try {
-            // Get the user information from LINE
-            $line = Socialite::driver('line')->user();
-            //token encrypt
-            $line_token = Hash::make($line->token);
-            $refresh_token = Hash::make($line->refresh_token);
+            // Get user from provider
+            $providerUser = Socialite::driver($provider)->user();
+            
+            // Encrypt tokens
+            $token = Hash::make($providerUser->token);
+            $refreshToken = Hash::make($providerUser->refresh_token);
 
-            // Log the user information from LINE
-            Log::info('LINE User:', (array) $line);
-            // check if the user is already registered
-            $user = Users::where('line_id', $line->getId())->first();
-            if($user){
-                // Update the user's information
-                $user->username = $line->getName();
-                $user->email = $line->getEmail();
-                $user->avatar = $line->getAvatar();
-                $user->save();
-            }else{
-                // Save the user information to the Users model
-                $user = new Users();
-                $user->username = $line->getName();
-                $user->email = $line->getEmail();
-                $user->avatar = $line->getAvatar();
-                $user->line_id = $line->getId();
-                $user->save();
+            // Log the user information if needed
+            Log::info(ucfirst($provider) . ' User:', (array) $providerUser);
 
-                $user->assignRole(3);
-            }
+            // Get the correct ID field for this provider
+            $providerIdField = $this->providerMap[$provider];
 
-            // save the informatoin to Oauth with user id
-            $oauth = OAuths::updateOrCreate(
-                [
-                    'user_id' => $user->id,
-                    'provider' => 'line'
-                ],
-                [
-                    'token' => $line_token,
-                    'refresh_token' => $refresh_token,
-                    'expires_in' => $line->expiresIn
-                ]
-            );
-            //save the token in session
-            Session::put('line_token', $line_token );
-            Session::put('user_id', $user->id );
-            Session::put('line_refresh_token', $refresh_token );
-            // Redirect the user to the dashboard or home page
+            // Find or create user
+            $user = $this->findOrCreateUser($providerUser, $provider, $providerIdField);
+
+            // Save OAuth information
+            $this->saveOAuthData($user, $provider, $token, $refreshToken, $providerUser->expiresIn);
+
+            // Store session data
+            $this->storeSessionData($provider, $token, $refreshToken, $user->id);
+
             return redirect()->route('home');
         } catch (\Exception $e) {
-            // Log the exception message
-            Log::error('Error in handleLineCallback: ' . $e->getMessage(), context: ['exception' => $e]);
-            return redirect()->route('login')->with('error', 'Failed to authenticate with LINE.');
+            Log::error("Error in handle{$provider}Callback: " . $e->getMessage(), ['exception' => $e]);
+            return redirect()->route('login')->with('error', "Failed to authenticate with " . ucfirst($provider));
         }
     }
-    public function handleGoogleCallback(Request $request){
-        try {
-            $googleUser = Socialite::driver('google')->user();
-            logger($googleUser);
-            $user = Users::updateOrCreate(
-                ['email' => $googleUser->getEmail()],
-                [
-                    'name' => $googleUser->getName(),
-                    'google_id' => $googleUser->getId(),
-                    'password' => bcrypt(Str::random(16)), // Dummy password for social login
-                ]
-            );
 
-            // Auth::login($user, true);
-            return redirect()->intended('/');
-        } catch (\Exception $e) {
-            return redirect('/login')->with('error', 'Something went wrong with Google login.');
-        }
-    }
-    public function handleFacebookCallback()
+    protected function findOrCreateUser($providerUser, $provider, $providerIdField)
     {
-        try {
-            $facebookUser = Socialite::driver('facebook')->user();
-            //token encrypt
-            $line_token = Hash::make($facebookUser->token);
-            $refresh_token = Hash::make($facebookUser->refresh_token);
+        $user = Users::where($providerIdField, $providerUser->getId())->first();
 
-            // Log the user information from LINE
-            Log::info('Facebook User:', (array) $facebookUser);
-            // check if the user is already registered
-            $user = Users::where('facebook_id', $facebookUser->getId())->first();
-            if($user){
-                // Update the user's information
-                $user->username = $facebookUser->getName();
-                $user->email = $facebookUser->getEmail();
-                $user->avatar = $facebookUser->getAvatar();
-                $user->save();
-            }else{
-                // Save the user information to the Users model
-                $user = new Users();
-                $user->username = $facebookUser->getName();
-                $user->email = $facebookUser->getEmail();
-                $user->avatar = $facebookUser->getAvatar();
-                $user->facebook_id = $facebookUser->getId();
-                $user->save();
-
-                $user->assignRole(3);
-            }
-
-            // save the informatoin to Oauth with user id
-            $oauth = OAuths::updateOrCreate(
-                [
-                    'user_id' => $user->id,
-                    'provider' => 'facebook'
-                ],
-                [
-                    'token' => $line_token,
-                    'refresh_token' => $refresh_token,
-                    'expires_in' => $facebookUser->expiresIn
-                ]
-            );
-            //save the token in session
-            Session::put('facebook_token', $line_token );
-            Session::put('user_id', $user->id );
-            Session::put('facebook_refresh_token', $refresh_token );
-             // Redirect the user to the dashboard or home page
-             return redirect()->route('home');
-        } catch (\Exception $e) {
-            return redirect('/login')->with('error', 'Something went wrong with Facebook login.');
+        if ($user) {
+            $this->updateUserInfo($user, $providerUser);
+        } else {
+            $user = $this->createNewUser($providerUser, $providerIdField);
         }
+
+        return $user;
     }
 
+    protected function updateUserInfo($user, $providerUser)
+    {
+        $user->update([
+            'username' => $providerUser->getName(),
+            'email' => $providerUser->getEmail(),
+            'avatar' => $providerUser->getAvatar()
+        ]);
+    }
+
+    protected function createNewUser($providerUser, $providerIdField)
+    {
+        $user = Users::create([
+            'username' => $providerUser->getName(),
+            'email' => $providerUser->getEmail(),
+            'avatar' => $providerUser->getAvatar(),
+            $providerIdField => $providerUser->getId()
+        ]);
+
+        $user->assignRole(3);
+        return $user;
+    }
+
+    protected function saveOAuthData($user, $provider, $token, $refreshToken, $expiresIn)
+    {
+        OAuths::updateOrCreate(
+            [
+                'user_id' => $user->id,
+                'provider' => $provider
+            ],
+            [
+                'token' => $token,
+                'refresh_token' => $refreshToken,
+                'expires_in' => $expiresIn
+            ]
+        );
+    }
+
+    protected function storeSessionData($provider, $token, $refreshToken, $userId)
+    {
+        Session::put([
+            "{$provider}_token" => $token,
+            'user_id' => $userId,
+            "{$provider}_refresh_token" => $refreshToken
+        ]);
+    }
+
+    // Provider-specific routes that use the generic handler
+    public function handleLineCallback(Request $request)
+    {
+        return $this->handleCallback($request, 'line');
+    }
+
+    public function handleGoogleCallback(Request $request)
+    {
+        return $this->handleCallback($request, 'google');
+    }
+
+    public function handleFacebookCallback(Request $request)
+    {
+        return $this->handleCallback($request, 'facebook');
+    }
 }

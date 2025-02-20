@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('first_phone')->nullable();
             $table->string('second_phone')->nullable();
             $table->string('line_id')->nullable();
+            $table->string('google_id')->nullable();
             $table->string('facebook_id')->nullable();
             $table->string('ship_name')->nullable();
             $table->string('first_org_name')->nullable();
