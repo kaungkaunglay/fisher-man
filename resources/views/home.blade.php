@@ -284,7 +284,11 @@
                                 {{ $product->description }}
                             </a>
                             <div class="d-flex card-btn m-t-10">
-                                <a href="#" class="w-100 py-1 common-btn white-list-btn @if ($product->inWhiteLists()) active @endif"
+                                <a href="javascript:void(0);"
+                                    class="me-2 py-1 common-btn cart-btn @if ($product->inCart()) active @endif"
+                                    data-id="{{ $product->id }}"><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="#"
+                                    class=" py-1 common-btn white-list-btn @if ($product->inWhiteLists()) active @endif"
                                     data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
                             </div>
                         </div>
@@ -359,7 +363,11 @@
                             </a>
                             <div class="d-flex card-btn m-t-10">
                                 <a href="javascript:void(0);"
-                                    class="w-100 py-1 common-btn white-list-btn @if ($product->inWhiteLists()) active @endif"
+                                    class="me-2 py-1 common-btn cart-btn @if ($product->inCart()) active @endif"
+                                    data-id="{{ $product->id }}"><i class="fa-solid fa-cart-shopping"></i></a>
+
+                                <a href="javascript:void(0);"
+                                    class="py-1 common-btn white-list-btn @if ($product->inWhiteLists()) active @endif"
                                     data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
                             </div>
                         </div>
@@ -399,6 +407,26 @@
                     e.preventDefault();
                     const getid = $(this).data('id');
                     const cur = $(`.white-list-btn[data-id="${getid}"]`);
+
+
+
+                    $.ajax({
+                        url: `/white-list/${getid}`,
+                        type: "POST",
+                        data: {
+                            id: getid
+                        },
+                        success: function(response) {
+                            if(response.status == "redirect"){
+                                window.location.href = response.url;
+                            }
+                            else if (response.status) {
+                                // cur.toggleClass('active');
+                            }
+                            console.log(response.message);
+                        }
+                    });
+
                     $.ajax({
                         url: "{{ route('whitelist-count') }}",
                         method: 'GET',
@@ -409,17 +437,45 @@
                             console.error(xhr);
                         }
                     });
+
+                });
+
+                $('.cart-btn').click(function(e) {
+                    e.preventDefault();
+                    const getid = $(this).data('id');
+                    const cur = $(`.cart-btn[data-id="${getid}"]`);
+
+                    var products = [{
+                        id: getid,
+                        quantity: 1
+                    }];
+
                     $.ajax({
-                        url: `/white-list/${getid}`,
+                        url: "{{ route('cart.add') }}",
                         type: "POST",
                         data: {
-                            id: getid
+                            products: products
                         },
-                        success: function(data) {
-                            if (data.status) {
-                                cur.toggleClass('active');
+                        success: function(response) {
+
+                            if (response.status) {
+                                // cur.toggleClass('active');
+
                             }
-                            console.log(data.message);
+                            console.log(response.message);
+                        }
+                    });
+
+                    $.ajax({
+                        url: "{{ route('cart-count') }}",
+                        method: 'GET',
+                        success: function(response) {
+                            // Assuming response contains the new count
+                            $('#cart_count').text(response.cart_count);
+                        },
+                        error: function(xhr) {
+                            // Handle error here
+                            console.error(xhr);
                         }
                     });
 
