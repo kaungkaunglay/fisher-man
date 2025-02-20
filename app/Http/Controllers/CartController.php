@@ -84,7 +84,7 @@ class CartController extends Controller
         $this->addToUserCart($newProducts, $user);
 
         // remove from user white lists
-        $this->removeFromUserWhiteLists($newProducts, $user);
+        // $this->removeFromUserWhiteLists($newProducts, $user);
 
 
         return response()->json([
@@ -138,15 +138,15 @@ class CartController extends Controller
     }
 
 
-    private function removeFromUserWhiteLists($products, $user)
-    {
-        foreach ($products as $product) {
-            if ($user->whitelists && $user->whitelists()->where('product_id', $product['id'])->exists()) {
-                // Remove from user's whitelist
-                $user->whitelists()->detach($product['id']);
-            }
-        }
-    }
+    // private function removeFromUserWhiteLists($products, $user)
+    // {
+    //     foreach ($products as $product) {
+    //         if ($user->whitelists && $user->whitelists()->where('product_id', $product['id'])->exists()) {
+    //             // Remove from user's whitelist
+    //             $user->whitelists()->detach($product['id']);
+    //         }
+    //     }
+    // }
 
     public function delete($product_id)
     {

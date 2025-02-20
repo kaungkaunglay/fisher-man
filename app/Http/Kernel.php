@@ -69,5 +69,7 @@ class Kernel extends HttpKernel
         'track_visitor' =>  \App\Http\Middleware\TrackVisitor::class,
         'auth_custom' => \App\Http\Middleware\AuthCustom::class,
         'auth_custom_api' => \App\Http\Middleware\AuthCustomApi::class,
+        'restore_cart' => \App\Http\Middleware\RestoreCart::class,
+        'guest_custom' => \App\Http\Middleware\GuestCustom::class,
     ];
 }
