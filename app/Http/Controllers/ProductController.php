@@ -18,10 +18,7 @@ class ProductController extends Controller
     public function showallproducts()
     {
         $products = Product::all();
-        // $products = $products->map(function($product){
-        //     $product->in_white_list = $product->inWhiteLists();
-        //     r
-        // });
+        // dd(trans("hello"));
         return view('home', compact('products'));
     }
 
