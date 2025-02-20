@@ -148,31 +148,42 @@ main {
   margin-bottom: 10px !important;
 }
 
-.common-btn {
+.common-btn,
+.common-btn2 {
   background: transparent;
   border: 1px solid #005B96;
   color: #005B96;
-  /* font-family: Roboto; */
   font-size: 18px;
   font-weight: bold;
-  color: #005B96;
   padding: 10px 72px;
   border-radius: 10px;
   transition: 0.3s;
   text-align: center;
 }
 
-
+.common-btn2 {
+  width: 50%;
+  padding: 0;
+}
 
 .common-btn:hover,
-.cart-btn {
-    background: #005B96;
+.common-btn2:hover {
+    background-color: #005B96;
     color: #fff;
 }
 
-.cart-btn:hover{
-    background: #fff;
-    color: #005B96;
+.-solid {
+  background-color: #005B96;
+  color: #fff;
+}
+
+.-solid:hover {
+  background-color: #005B96;
+  color: #fff;
+}
+
+.-solid:active {
+  opacity: 0.8;
 }
 
 .icon img {
