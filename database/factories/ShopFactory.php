@@ -19,8 +19,8 @@ class ShopFactory extends Factory
     public function definition(): array
     {
         $images = [
-            "assets/products/product1.png",
-            "assets/products/product2.png"
+            "assets/images/shop.jpg",
+            "assets/images/shop.jpg"
         ];
         return [
             'user_id' => "2", // Creates a user if not provided

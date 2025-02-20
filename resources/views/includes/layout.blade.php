@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fisherman</title>
+    <title>@yield('title', 'Fisher Man')</title>
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}" />
     @yield('style')
@@ -186,7 +186,7 @@
                     <h6 class="text-center text-warning mb-2">Useful Links</h6>
                     <ul class="list-unstyled link-list txt-15 useful-link">
                         <li><a href="{{ route('home') }}">Home</a></li>
-                        <li><a href="#">Product</a></li>
+                        <li><a href="#">Products</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="{{ route('policy') }}">Terms & Privacy</a></li>
                         <li><a href="#">Customer Review</a></li>
@@ -339,7 +339,7 @@
                 }else{
                     $('#product-list').html('');
                 }
-                
+
             });
         });
     </script>

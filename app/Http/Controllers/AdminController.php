@@ -6,6 +6,7 @@ use App\Models\Contact;
 use App\Models\FAQs;
 use App\Models\Users;
 use App\Models\Setting;
+use App\Models\Shop;
 use App\Models\wishList;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -173,6 +174,57 @@ class AdminController extends Controller
         $faq->delete();
         return response()->json(['success' => true, 'message' => 'FAQ deleted successfully']);
         // return redirect()->route('admin.faqs')->with('success', 'FAQ deleted successfully.');
+    }
+
+
+    //Manage Shop
+    public function approvedShopList(){
+        $approvedShops = Shop::select('shops.*', 'users.username')
+        ->join('users', 'shops.user_id', '=', 'users.id')
+        ->where('status', 'approved')
+        ->get();
+        return view('admin.approved-shops',compact('approvedShops'));
+    }
+    public function pendingShopList(){
+           $pendingShops = Shop::select('shops.*', 'users.username')
+                    ->join('users', 'shops.user_id', '=', 'users.id')
+                    ->where('status', 'pending')
+                    ->get();
+        return view('admin.pending-shops', compact('pendingShops'));
+    }
+    public function rejectedShopList(){
+           $rejectedShops = Shop::select('shops.*', 'users.username')
+                    ->join('users', 'shops.user_id', '=', 'users.id')
+                    ->where('status', 'rejected')
+                    ->get();
+        return view('admin.rejected-shops', compact('rejectedShops'));
+    }
+
+    public function updateStatus(Request $request)
+    {
+        logger($request);
+        $shop = Shop::findOrFail($request->shop_id);
+        $shop->status = $request->status;
+        $shop->save();
+
+        return response()->json(['success' => true, 'message' => 'Shop status updated successfully']);
+    }
+
+    public function shopDetail($shopID){
+        $shop = Shop::select('shops.*', 'users.username','users.email')
+            ->join('users', 'shops.user_id', '=', 'users.id')
+            ->where('shops.id', $shopID)
+            ->firstOrFail();
+
+        return view('admin.seller-shop-detail', compact('shop'));
+    }
+
+    public function deleteShop(Request $request)
+    {
+        $shop = Shop::find($request->shop_id);
+        $shop->delete();
+        
+        return response()->json(['success' => true, 'message' => 'Shop deleted successfully.']);
     }
 
 
