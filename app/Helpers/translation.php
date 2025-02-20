@@ -1,13 +1,9 @@
 <?php
 
-namespace App\Helpers;
-
 use App\Models\Translations;
 
-
-class TranslationHelper{
-
-    public static function translate($key)
+if(!function_exists('trans_lang')){
+    function trans_lang($key)
     {
         $lang = app()->getLocale() ?? 'en';
         $translation = Translations::where('key', $key)->first();
@@ -15,5 +11,4 @@ class TranslationHelper{
         return $translation ? $translation->$lang : $key;
     }
 }
-
 

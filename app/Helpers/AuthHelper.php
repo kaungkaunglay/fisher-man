@@ -2,8 +2,8 @@
 
 namespace App\Helpers;
 
-use App\Models\OAuths;
 use App\Models\Users;
+use App\Models\OAuths;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
@@ -120,7 +120,7 @@ class AuthHelper
 
         // Cache the OAuth token lookup to avoid frequent DB hits
         $cacheKey = "oauth_token_{$userId}_{$provider}";
-        
+
         return Cache::remember($cacheKey, 60, function () use ($userId, $provider, $token) {
             $oauth = OAuths::where('user_id', $userId)
                          ->where('provider', $provider)
