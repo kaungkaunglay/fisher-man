@@ -24,6 +24,7 @@ class OAuthController extends Controller
         try {
             // Get user from provider
             $providerUser = Socialite::driver($provider)->user();
+            logger(print_r($providerUser, true));
             
             // Encrypt tokens
             $token = Hash::make($providerUser->token);
@@ -35,8 +36,26 @@ class OAuthController extends Controller
             // Get the correct ID field for this provider
             $providerIdField = $this->providerMap[$provider];
 
-            // Find or create user
-            $user = $this->findOrCreateUser($providerUser, $provider, $providerIdField);
+            // First try to find user by provider ID
+            $user = Users::where($providerIdField, $providerUser->getId())->first();
+
+            // If no user found by provider ID, check by email
+            if (!$user && $providerUser->getEmail()) {
+                $user = Users::where('email', $providerUser->getEmail())->first();
+                
+                if ($user) {
+                    // Update the provider ID for the existing user
+                    $user->update([
+                        $providerIdField => $providerUser->getId(),
+                        'avatar' => $providerUser->getAvatar() ?? $user->avatar // Keep existing avatar if new one is null
+                    ]);
+                }
+            }
+
+            // If still no user, create new one
+            if (!$user) {
+                $user = $this->createNewUser($providerUser, $providerIdField);
+            }
 
             // Save OAuth information
             $this->saveOAuthData($user, $provider, $token, $refreshToken, $providerUser->expiresIn);
@@ -51,37 +70,23 @@ class OAuthController extends Controller
         }
     }
 
-    protected function findOrCreateUser($providerUser, $provider, $providerIdField)
-    {
-        $user = Users::where($providerIdField, $providerUser->getId())->first();
-
-        if ($user) {
-            $this->updateUserInfo($user, $providerUser);
-        } else {
-            $user = $this->createNewUser($providerUser, $providerIdField);
-        }
-
-        return $user;
-    }
-
-    protected function updateUserInfo($user, $providerUser)
-    {
-        $user->update([
-            'username' => $providerUser->getName(),
-            'email' => $providerUser->getEmail(),
-            'avatar' => $providerUser->getAvatar()
-        ]);
-    }
-
     protected function createNewUser($providerUser, $providerIdField)
     {
-        $user = Users::create([
+        $userData = [
             'username' => $providerUser->getName(),
-            'email' => $providerUser->getEmail(),
             'avatar' => $providerUser->getAvatar(),
             $providerIdField => $providerUser->getId()
-        ]);
+        ];
 
+        // Add email only if it's available
+        if ($providerUser->getEmail()) {
+            $userData['email'] = $providerUser->getEmail();
+        } else {
+            // Generate a placeholder email or handle no-email case
+            $userData['email'] = $providerUser->getId() . '@placeholder.com';
+        }
+
+        $user = Users::create($userData);
         $user->assignRole(3);
         return $user;
     }
