@@ -35,6 +35,15 @@
                 </li>
             </ul>
         </div>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
 
         <div class="wg-box">
             <form class="form-new-product form-style-1" action="{{ isset($subcategory) ? route('update_sub_category', $subcategory->id) : route('add_sub_category') }}" method="POST" enctype="multipart/form-data">
@@ -45,7 +54,7 @@
                 
                 <fieldset>
                     <div class="body-title">Select Category <span class="tf-color-1">*</span></div>
-                    <select name="category_id" class="" required>
+                    <select name="category_id" class="" >
                         <option value="">Select Category</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}" {{ isset($subcategory) && $subcategory->category_id == $category->id ? 'selected' : '' }}>
@@ -57,7 +66,7 @@
 
                 <fieldset class="name">
                     <div class="body-title">Sub-Category Name <span class="tf-color-1">*</span></div>
-                    <input class="flex-grow" type="text" placeholder="Sub-Category name" name="name" value="{{ old('name', isset($subcategory) ? $subcategory->name : '') }}" required>
+                    <input class="flex-grow" type="text" placeholder="Sub-Category name" name="name" value="{{ old('name', isset($subcategory) ? $subcategory->name : '') }}" >
                 </fieldset>
                 
                 <fieldset>
@@ -71,12 +80,17 @@
                                 <span class="body-text">Drop your image here or select <span class="tf-color">click to browse</span></span>
                                 <input type="file" id="image" name="image" accept="image/*">
                             </label>
+                            <p id="file-name" class="mt-2"></p> <!-- Displays selected file name -->
                         </div>
-                        @if(isset($subcategory) && $subcategory->image)
-                            <div class="mt-2">
-                                <img src="{{ asset($subcategory->image) }}" alt="{{ $subcategory->name }}" width="100" height="100">
-                            </div>
-                        @endif
+
+                        <!-- Existing Image -->
+                        <div class="mt-2">
+                            @if(isset($subcategory) && $subcategory->image)
+                                <img id="preview" src="{{ asset($subcategory->image) }}" alt="{{ $subcategory->name }}" width="100" height="100">
+                            @else
+                                <img id="preview" src="" alt="Image Preview" width="100" height="100" style="display: none;">
+                            @endif
+                        </div>
                     </div>
                 </fieldset>
                 
@@ -105,4 +119,26 @@
     <script src="{{ asset('assets/admin/js/switcher.js') }}"></script>
     <script src="{{ asset('assets/admin/js/theme-settings.js') }}"></script>
     <script src="{{ asset('assets/admin/js/main.js') }}"></script>
+
+    <script>
+    document.getElementById('image').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const preview = document.getElementById('preview');
+        const fileNameDisplay = document.getElementById('file-name');
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+
+            fileNameDisplay.textContent = "Selected file: " + file.name;
+        } else {
+            preview.style.display = "none";
+            fileNameDisplay.textContent = "";
+        }
+    });
+    </script>
 @endsection

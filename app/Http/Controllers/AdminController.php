@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use App\Models\FAQs;
+use App\Models\Product;
 use App\Models\Users;
 use App\Models\Setting;
 use App\Models\Shop;
@@ -17,7 +18,9 @@ use Illuminate\Support\Facades\Validator;
 class AdminController extends Controller
 {
     public function home(){
-        return view('admin.index');
+        $top_products = Product::inRandomOrder()->take(5)->get();
+        dd($top_products);
+        return view('admin.index',compact('top_products'));
     }
     public function categoreis(){
         return view('admin.categories');
@@ -57,6 +60,8 @@ class AdminController extends Controller
             'contact_email' => Setting::where('key', 'contact_email')->value('value') ?? '',
             'contact_phone' => Setting::where('key', 'contact_phone')->value('value') ?? '',
             'contact_address' => Setting::where('key', 'contact_address')->value('value') ?? '',
+            'slogan' => Setting::where('key', 'slogan')->value('value') ?? '',
+            'policy' => Setting::where('key', 'policy')->value('value') ?? '',
             'logo' => Setting::where('key', 'logo')->value('value') ?? '',
         ];
         return view('admin.settings',compact('settings'));
@@ -68,12 +73,16 @@ class AdminController extends Controller
             'contact_email' => 'required|email',
             'contact_phone' => 'required',
             'contact_address' => 'required',
+            'slogan' => 'required',
+            'policy' => 'required',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $settings = [
             'contact_email' => request('contact_email'),
             'contact_phone' => request('contact_phone'),
             'contact_address' => request('contact_address'),
+            'slogan' => request('slogan'),
+            'policy' => request('policy'),
         ];
         // dd("here");
 

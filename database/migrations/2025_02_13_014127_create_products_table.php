@@ -24,6 +24,7 @@ return new class extends Migration
             $table->decimal('discount', 8, 2)->default(0);
             $table->foreignId('sub_category_id')->constrained('sub_categories')->onDelete('cascade');
             $table->text('description')->nullable();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

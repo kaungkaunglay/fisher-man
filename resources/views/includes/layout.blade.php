@@ -176,6 +176,10 @@
   </main>
   <!-- /Main Section -->
 
+  @php
+    $socialLinks = \App\Models\Setting::getValue('social_links', []);
+  @endphp
+
   <!-- Footer Section -->
   <!-- filepath: /C:/fisherman/laravel/fisherman/resources/views/includes/layout.blade.php -->
   <footer class="bg-main w-100 d-flex flex-column justify-content-between">
@@ -189,38 +193,38 @@
       class="logo" alt="logo">
       @endif
 
-        {{-- <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo"
-            alt=""></a> --}}
-        <p class="text-center txt-18">Who We Are: Your Trusted Source for Fresh Seafood.</p>
-        <div class="social-icons d-flex justify-content-between gap-1">
-          <a href="">
-            <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}" alt="Line">
-          </a>
-          <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Line"></a>
-          <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/wechat.png') }}" alt="Line"></a>
-          <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/xcom.png') }}"></a>
+          {{-- <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo"
+              alt=""></a> --}}
+          <p class="text-center txt-18">{{ App\Models\Setting::getValue('slogan') }}</p>
+          <div class="social-icons d-flex justify-content-between gap-1">
+            <a href="">
+              <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}" alt="Line">
+            </a>
+            <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Line"></a>
+            <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/wechat.png') }}" alt="Line"></a>
+            <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/xcom.png') }}"></a>
+          </div>
+        </div>
+        <div class="col-12 col-lg-3 mt-3 d-flex flex-column justify-content-center">
+          <h6 class="text-center text-warning mb-2">Useful Links</h6>
+          <ul class="list-unstyled link-list txt-15 useful-link">
+            <li><a href="{{ route('home') }}">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="{{ route('policy') }}">Terms & Privacy</a></li>
+            <li><a href="#">Customer Review</a></li>
+            <li><a href="#">Blogs</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-lg-2 mt-3 ">
+          <h6 class="text-center text-warning mb-2">Contact Us</h6>
+          <ul class="list-unstyled text-white txt-15 text-center">
+            <li><a href="#">Address : {{ App\Models\Setting::getValue('contact_address') }}</a></li>
+            <li><a href="#">Phone : {{ App\Models\Setting::getValue('contact_phone') }}</a></li>
+            <li><a href="#">Email : {{ App\Models\Setting::getValue('contact_email') }}</a></li>
         </div>
       </div>
-      <div class="col-12 col-lg-3 mt-3 d-flex flex-column justify-content-center">
-        <h6 class="text-center text-warning mb-2">Useful Links</h6>
-        <ul class="list-unstyled link-list txt-15 useful-link">
-          <li><a href="{{ route('home') }}">Home</a></li>
-          <li><a href="#">Products</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="{{ route('policy') }}">Terms & Privacy</a></li>
-          <li><a href="#">Customer Review</a></li>
-          <li><a href="#">Blogs</a></li>
-        </ul>
-      </div>
-      <div class="col-12 col-lg-2 mt-3 ">
-        <h6 class="text-center text-warning mb-2">Contact Us</h6>
-        <ul class="list-unstyled text-white txt-15 text-center">
-          <li><a href="#">Address : {{ App\Models\Setting::getValue('contact_address') }}</a></li>
-          <li><a href="#">Phone : {{ App\Models\Setting::getValue('contact_phone') }}</a></li>
-          <li><a href="#">Email : {{ App\Models\Setting::getValue('contact_email') }}</a></li>
-      </div>
     </div>
-  </div>
 
   <div class="bg-dark m-0 pb-4 pb-md-0">
     <div class="row justify-content-around container-custom">
@@ -346,7 +350,6 @@
                                         <i
                                     class="fa-solid fa-magnifying-glass align-self-center me-2"></i>
                                         <p class="align-self-center">${product.name}</p>
-                                        <span class="align-self-center ms-auto">$${product.product_price}</span>
                                     </a>
                                 </div>
                         `);

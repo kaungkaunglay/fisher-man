@@ -120,7 +120,7 @@
                             <div class="body-text">{{ $product->stock }}</div>
                             @endif
                         </div>
-                        <div class="body-text">${{ number_format($product->discount, 2) }}</div>
+                        <div class="body-text">{{  $product->created_at->format('d M Y') }}</div>
                         <div class="list-icon-function">
                             <div class="item eye">
                                 <a href="{{ route('admin.products', $product->id) }}">

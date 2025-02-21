@@ -4,20 +4,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/category.css') }}" />
 @endsection
 @section('contents')
-    <div class="container-custom row">
-        <!-- Breadcrumbs -->
-        <nav aria-label="breadcrumb" class="py-4">
-            <ol class="breadcrumb mb-0 bg-transparent">
-                <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ $category->category_name }}</li>
-            </ol>
-        </nav>
-        <!-- ./Breadcrumbs -->
-        <!-- aside start -->
-        <div class="side-menu col-4">
-            @include('includes.aside')
-        </div>
-        <!-- aside end -->
 
 <div class="container-custom row">
     <!-- Breadcrumbs -->
