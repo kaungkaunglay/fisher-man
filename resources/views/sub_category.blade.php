@@ -78,40 +78,39 @@
                 </div>
             </div>
 
-            <div class="sub-category-item">
-                <div class="card-list" id="view-list">
-                    @foreach ($products as $product)
-                        <div class="item-card">
-                            <a href="{{ route('product.show', $product->id) }}" class="right">
-                                <img src="{{ asset($product->product_image) }}" class="card-img-top"
-                                    alt="{{ $product->name }}">
-                            </a>
-                            <div class="left">
-                                <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
-                                <div class="title-category">
-                                    <a href="" class="menu-category ">鮮魚 | 白身魚</a>
-                                    <h3 class="title m-t-b-10">{{ $product->name }}</h3>
-                                </div>
-                                <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
-                                    {{ $product->description }}
-                                </a>
-                                <div class="d-flex card-btn m-t-10">
-                                    <a href="javascript:void(0);"
-                                        class="py-1 common-btn2 me-2 -solid cart-btn @if ($product->inCart()) active @endif"
-                                        data-id="{{ $product->id }}">
-                                        <i class="fa-solid fa-cart-shopping"></i>
-                                    </a>
-                                    <a href="javascript:void(0);"
-                                        class=" py-1 common-btn white-list-btn @if ($product->inWhiteLists()) active @endif"
-                                        data-id="{{ $product->id }}">
-                                        <i class="fa-solid fa-bookmark"></i>
-                                    </a>
-                                </div>
-                            </div>
+        <div class="sub-category-item">
+            <div class="card-list" id="view-list">
+                @foreach ($products as $product)
+                <div class="item-card">
+                    <a href="{{ route('product.show', $product->id) }}" class="right">
+                        <img src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
+                    </a>
+                    <div class="left">
+                        <p class="price m-t-b-10">
+            @if ($product->discount > 0)
+            ¥{{ number_format($product->product_price - $product->discount, 2) }}
+            <span class="original-price">¥{{ number_format($product->product_price, 2) }}</span>
+            @else
+            <span class="">¥{{ number_format($product->product_price, 2) }}</span>
+            @endif
+          </p>
+                        <div class="title-category">
+                            <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                            <h3 class="title m-t-b-10">{{ $product->name }}</h3>
                         </div>
-                    @endforeach
+                        <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
+                            {{ $product->description }}
+                        </a>
+                        <div class="d-flex card-btn m-t-10">
+                            <a href="javascript:void(0);" class="w-100 py-1 common-btn white-list-btn @if($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}">
+                                <i class="fa-solid fa-bookmark"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
+                @endforeach
             </div>
+        </div>
 
             <!-- Pagination -->
             <div class="pagination mt-2" id="pagination"></div>

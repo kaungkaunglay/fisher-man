@@ -81,6 +81,11 @@ main {
   color: #005B96 !important;
 }
 
+.original-price{
+  text-decoration: line-through;
+  color: #ff000062;
+}
+
 .txt {
   /* font-family: Roboto; */
   font-size: 15px;
