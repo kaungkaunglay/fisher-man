@@ -3,16 +3,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/forgot_password.css') }}" />
 @endsection
 @section('contents')
-    @include('messages.index')
-
     <div class="forgotpass mx-auto rounded-3 overflow-hidden shadow">
         <h3 class="bg-primary py-2 text-white text-center">Forgot Password</h3>
         <div class="bg-white px-4 py-lg-4 py-3">
-            <p>Already send password reset links. </p>
-            <p>Please check your email box.</p>
-            <p>If you did not receive the email, please check your spam folder.</p>
-            <p>If you still have not received the email, please click the button below to resend the email.</p>
-
+            @include('messages.index')
             <form method="POST" name="resent_form" id="resent_form">
                 @csrf
                 <div class="d-flex flex-column align-items-center">

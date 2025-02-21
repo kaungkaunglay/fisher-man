@@ -213,6 +213,8 @@ class AuthController extends Controller
     }
 
     public function showEmailSuccess($email){
+        session()->flash('status', 'success'); 
+        session()->flash('message', 'We sent you an email to reset your password. Please check your email.');
         return view('email_success', ['email' => $email]);
     }
 
