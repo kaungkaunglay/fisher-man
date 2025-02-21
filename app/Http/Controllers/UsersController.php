@@ -24,6 +24,9 @@ class UsersController extends Controller
     public function register() {
         return view('register');
     }
+    public function shop() {
+        return view('shop');
+    }
     public function register_seller(){
         return view('sellers.register');
     }
