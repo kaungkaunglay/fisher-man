@@ -1,3 +1,6 @@
 .avatar{
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
+.remove-link{
+    border-radius: 0px 10px 10px 0px;
+}

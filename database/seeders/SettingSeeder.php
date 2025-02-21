@@ -18,6 +18,16 @@ class SettingSeeder extends Seeder
         Setting::updateOrCreate(['key' => 'contact_phone', 'value' => '+959796593367']);
         Setting::updateOrCreate(['key' => 'contact_address', 'value' => 'Cambodia']);
         Setting::updateOrCreate(['key' => 'logo', 'value' => 'logo.png']);
+        Setting::updateOrCreate(['key' => 'slogan', 'value' => 'Who We Are: Your Trusted Source for Fresh Seafood.']);
+        Setting::updateOrCreate(['key' => 'policy', 'value' => 'This is our policy.']);
         Setting::updateOrCreate(['key' => 'cache_time_out', 'value' => '3600']);
+        Setting::updateOrCreate(
+            ['key' => 'social_links'],
+            ['value' => json_encode([
+                ['platform' => 'Facebook', 'url' => 'https://facebook.com', 'icon' => 'fa-facebook'],
+                ['platform' => 'Twitter', 'url' => 'https://twitter.com', 'icon' => 'fa-twitter'],
+                ['platform' => 'Instagram', 'url' => 'https://instagram.com', 'icon' => 'fa-instagram'],
+            ])]
+        );
     }
 }
