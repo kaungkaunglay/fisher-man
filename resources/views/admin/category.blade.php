@@ -36,6 +36,15 @@
                 </li>
             </ul>
         </div>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
 
         <!-- new-category -->
         <div class="wg-box">
@@ -46,7 +55,7 @@
                 @endif
                 <fieldset class="name">
                     <div class="body-title">Category Name <span class="tf-color-1">*</span></div>
-                    <input class="flex-grow" type="text" placeholder="Category name" name="category_name" value="{{ old('category_name', isset($category) ? $category->category_name : '') }}" required>
+                    <input class="flex-grow" type="text" placeholder="Category name" name="category_name" value="{{ old('category_name', isset($category) ? $category->category_name : '') }}" >
                 </fieldset>
                 <fieldset>
                     <div class="body-title">Upload Image <span class="tf-color-1">*</span></div>
