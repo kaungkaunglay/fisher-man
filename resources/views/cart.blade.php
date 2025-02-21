@@ -50,7 +50,7 @@
         <div class="container-custom">
 
             <!-- Desktop Style -->
-            <div class="scroller">
+            <div class="scroller d-none d-md-block">
                 <table class="table desktop text-center d-md-table d-none table-item">
                     <thead>
                         <tr>

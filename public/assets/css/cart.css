@@ -83,7 +83,7 @@ body {
 }
 
 .scroller {
-    height: 70vh;
+    min-height: 70vh;
     border: 1px solid black;
     overflow: hidden;
     overflow-y: scroll;
