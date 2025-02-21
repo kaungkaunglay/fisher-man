@@ -20,9 +20,9 @@
 <div class="container-custom">
     <nav aria-label="breadcrumb" class="py-4">
         <ol class="breadcrumb mb-0 bg-transparent">
-            <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
             <li class="breadcrumb-item" aria-current="page"><a href="">Categories</a></li>
-            <li class="breadcrumb-item" aria-current="page"><a href="">イカ</a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="">{{ $subCategory->name }}</a></li>
         </ol>
     </nav>
 
@@ -42,14 +42,14 @@
                 </div>
                 <div class="dropdown">
                     <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Sort by
+                        並べ替え
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_asc']) }}">Price: Low to High</a></li>
-                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_desc']) }}">Price: High to Low</a></li>
-                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_asc']) }}">Name: A to Z</a></li>
-                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_desc']) }}">Name: Z to A</a></li>
-                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'latest']) }}">Latest</a></li>
+                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_asc']) }}">価格：安い順</a></li>
+                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_desc']) }}">価格：高い順</a></li>
+                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_asc']) }}">名前：AからZ順</a></li>
+                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_desc']) }}">名前：ZからA順</a></li>
+                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'latest']) }}">最新</a></li>
 
                     </ul>
                 </div>

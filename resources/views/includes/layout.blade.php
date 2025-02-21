@@ -73,7 +73,7 @@
           <div class="ms-2 position-relative w-50">
             <form action="{{ route('products.search') }}" method="get">
               <div class="input-group w-100">
-                <input type="text" class="form-control bg-second search-bar" id="search" placeholder="Search your Products" name="search_key">
+                <input type="text" class="form-control bg-second search-bar" id="search" placeholder="商品を検索" name="search_key">
                 <button type="submit" class="bg-main text-white magnifying-glass">
                   <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
@@ -109,12 +109,12 @@
                 <ul class="border">
                   <li>
                     <a href="{{ url('/profile') }}" class="d-flex gap-2 text-black text-center">
-                      <i class="fa-solid fa-address-card icon"></i>Profile
+                      <i class="fa-solid fa-address-card icon"></i>プロフィール
                     </a>
                   </li>
                   <li>
                     <a href="{{ route('logout') }}" class="px-3 d-flex gap-2 text-black text-center">
-                      <i class="fas fa-door-open icon"></i>Logout
+                      <i class="fas fa-door-open icon"></i>ログアウト
                     </a>
                   </li>
                 </ul>
@@ -135,13 +135,13 @@
               </a>
             </div>
             <ul>
-              <li><a href="{{ url('/') }}" class="menu-header">Home</a></li>
-              <li><a href="{{ url('/special-offer') }}" class="menu-header">Special Offer</a></li>
+              <li><a href="{{ url('/') }}" class="menu-header">ホーム</a></li>
+              <li><a href="{{ url('/special-offer') }}" class="menu-header">セール</a></li>
               @foreach ($categories as $category)
           <li><a href="{{ route('category', $category->id) }}"
             class="menu-header">{{ $category->category_name }}</a></li>
         @endforeach
-              <li><a href="{{ url('/support') }}" class="menu-header">Support</a></li>
+              <li><a href="{{ url('/support') }}" class="menu-header">サポート</a></li>
             </ul>
           </nav>
         </div>
@@ -206,22 +206,22 @@
           </div>
         </div>
         <div class="col-12 col-lg-3 mt-3 d-flex flex-column justify-content-center">
-          <h6 class="text-center text-warning mb-2">Useful Links</h6>
+          <h6 class="text-center text-warning mb-2">便利なリンク</h6>
           <ul class="list-unstyled link-list txt-15 useful-link">
-            <li><a href="{{ route('home') }}">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="{{ route('policy') }}">Terms & Privacy</a></li>
-            <li><a href="#">Customer Review</a></li>
-            <li><a href="#">Blogs</a></li>
+            <li><a href="{{ route('home') }}">ホーム</a></li>
+            <li><a href="#">商品</a></li>
+            <li><a href="#">よくある質問</a></li>
+            <li><a href="{{ route('policy') }}">利用規約とプライバシー</a></li>
+            <li><a href="#">お客様の声</a></li>
+            <li><a href="#">ブログ</a></li>
           </ul>
         </div>
         <div class="col-12 col-lg-2 mt-3 ">
-          <h6 class="text-center text-warning mb-2">Contact Us</h6>
+          <h6 class="text-center text-warning mb-2">お問い合わせ</h6>
           <ul class="list-unstyled text-white txt-15 text-center">
-            <li><a href="#">Address : {{ App\Models\Setting::getValue('contact_address') }}</a></li>
-            <li><a href="#">Phone : {{ App\Models\Setting::getValue('contact_phone') }}</a></li>
-            <li><a href="#">Email : {{ App\Models\Setting::getValue('contact_email') }}</a></li>
+            <li><a href="#">住所 : {{ App\Models\Setting::getValue('contact_address') }}</a></li>
+            <li><a href="#">電話番号 : {{ App\Models\Setting::getValue('contact_phone') }}</a></li>
+            <li><a href="#">メールアドレス : {{ App\Models\Setting::getValue('contact_email') }}</a></li>
         </div>
       </div>
     </div>

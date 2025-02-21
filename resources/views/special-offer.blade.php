@@ -1,5 +1,5 @@
 @extends('includes.layout')
-@section('title','Special Offer')
+@section('title','セール')
 @section('style')
 <link rel="stylesheet" href="{{ asset('assets/css/category.css') }}" />
 @endsection
@@ -8,8 +8,8 @@
     <!-- Breadcrumbs -->
     <nav aria-label="breadcrumb" class="py-4">
         <ol class="breadcrumb mb-0 bg-transparent">
-            <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Special Offer</li>
+            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">セール</li>
         </ol>
     </nav>
     <!-- ./Breadcrumbs -->
@@ -24,7 +24,7 @@
         <ul class="list-group category-list">
             <li class="d-flex flex-column">
                 <div class="card-head">
-                    <h2 class="title">Special Offer</h2>
+                    <h2 class="title">セール</h2>
                     <div class="filter d-flex justify-content-between align-items-center">
                         <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
                             <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
@@ -37,14 +37,14 @@
                             </div>
                             <div class="dropdown">
                                 <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Sort by
+                                    並べ替え
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('special-offer', ['sort_by' => 'price_asc']) }}">Price: Low to High</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('special-offer', ['sort_by' => 'price_desc']) }}">Price: High to Low</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('special-offer', ['sort_by' => 'name_asc']) }}">Name: A to Z</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('special-offer', ['sort_by' => 'name_desc']) }}">Name: Z to A</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('special-offer', ['sort_by' => 'latest']) }}">Latest</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('special-offer', ['sort_by' => 'price_asc']) }}">価格：安い順</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('special-offer', ['sort_by' => 'price_desc']) }}">価格：高い順</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('special-offer', ['sort_by' => 'name_asc']) }}">名前：AからZ順</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('special-offer', ['sort_by' => 'name_desc']) }}">名前：ZからA順</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('special-offer', ['sort_by' => 'latest']) }}">最新</a></li>
                                 </ul>
                             </div>
                         </div>

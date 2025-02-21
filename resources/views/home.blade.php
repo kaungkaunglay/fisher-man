@@ -25,7 +25,7 @@
   <div class="container-custom">
     <!-- Recomnand HeadLine -->
     <div>
-      <h6 class="txt-primary fw-bold mb-3">Recommand Products</h6>
+      <h6 class="txt-primary fw-bold mb-3">おすすめ商品</h6>
       <div class="filter d-flex justify-content-between align-items-center mb-3">
         <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
           <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
@@ -78,11 +78,11 @@
 <!-- Animation Bar -->
 <section class="m-t-b-20 moving-discount">
   <div id="moving-text">
-    <p class="title">Discount Products</p>
-    <p class="title">Discount Products</p>
-    <p class="title">Discount Products</p>
-    <p class="title">Discount Products</p>
-    <p class="title">Discount Products</p>
+    <p class="title">セール</p>
+    <p class="title">セール</p>
+    <p class="title">セール</p>
+    <p class="title">セール</p>
+    <p class="title">セール</p>
   </div>
 </section>
 <!-- /Animation Bar -->
@@ -93,7 +93,7 @@
 
     <!-- Porpular Headline -->
     <div>
-      <h6 class="txt-primary fw-bold mb-3">Popular & Top Rating Shop</h6>
+      <h6 class="txt-primary fw-bold mb-3">人気 & 高評価のショップ</h6>
     </div>
     <!-- /Porpular Headline -->
 
@@ -143,13 +143,13 @@
 </section>
 <!-- /Porpular Shop -->
 
-<!-- Discount Products -->
+<!-- セール -->
 <section class="discount-products bg-second py-4">
   <div class="container-custom">
 
     <!-- Discount Headline -->
     <div>
-      <h6 class="txt-primary fw-bold mb-3">Discount Products</h6>
+      <h6 class="txt-primary fw-bold mb-3">セール</h6>
       <div class="filter d-flex justify-content-between align-items-center mb-3">
 
         <!-- display -->
@@ -165,13 +165,13 @@
             <button><i class="fa-solid fa-caret-down"></i></button>
           </div>
           <div class="dropdown">
-            <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Sort by</button>
+            <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">並べ替え</button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_asc']) }}">Price: Low to High</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_desc']) }}">Price: High to Low</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">Name: A to Z</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">Name: Z to A</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'latest']) }}">Latest</a></li>
+              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_asc']) }}">価格：安い順</a></li>
+              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_desc']) }}">価格：高い順</a></li>
+              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">名前：AからZ順</a></li>
+              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">名前：ZからA順</a></li>
+              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'latest']) }}">最新</a></li>
             </ul>
           </div>
         </div>
@@ -222,14 +222,14 @@
     <!-- Discount Footline -->
     <div class="row justify-content-center mx-0 mt-5">
       <div class="col-5 col-lg-4 text-center">
-        <a class="common-btn see-more-btn w-100" href="{{ route('special-offer') }}">See More</a>
+        <a class="common-btn see-more-btn w-100" href="{{ route('special-offer') }}">さらに見る</a>
       </div>
     </div>
     <!-- /Discount Footline -->
 
   </div>
 </section>
-<!-- /Discount Products -->
+<!-- /セール -->
 
 <!-- All Products -->
 <section class="all-products my-3">
@@ -237,7 +237,7 @@
 
     <!-- All Products Headline -->
     <div>
-      <h6 class="txt-primary fw-bold mb-3">All Products</h6>
+      <h6 class="txt-primary fw-bold mb-3">割引商品</h6>
       <div class="filter d-flex justify-content-between align-items-center mb-3">
 
         <!-- display -->
@@ -253,13 +253,13 @@
             <button><i class="fa-solid fa-caret-down"></i></button>
           </div>
           <div class="dropdown">
-            <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Sort by</button>
+            <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">並べ替え</button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_asc']) }}">Price: Low to High</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_desc']) }}">Price: High to Low</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">Name: A to Z</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">Name: Z to A</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'latest']) }}">Latest</a></li>
+              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_asc']) }}">価格：安い順</a></li>
+              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_desc']) }}">価格：高い順</a></li>
+              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">名前：AからZ順</a></li>
+              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">名前：ZからA順</a></li>
+              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'latest']) }}">最新</a></li>
             </ul>
           </div>
         </div>

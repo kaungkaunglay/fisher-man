@@ -73,7 +73,7 @@
                         </div>
                         <!-- card items list end -->
                         <div class="see-more-box d-flex m-t-b-20 justify-content-center justify-content-lg-end">
-                            <a href="{{ route('sub-category.show', $subcategory->id) }}" class="common-btn">See More</a>
+                            <a href="{{ route('sub-category.show', $subcategory->id) }}" class="common-btn">さらに見る</a>
                         </div>
                     </li>
                 @endforeach
