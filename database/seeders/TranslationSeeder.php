@@ -33,6 +33,11 @@ class TranslationSeeder extends Seeder
                 'key' => 'home',
                 'en' => 'Home',
                 'jp' => 'ホーム',
+            ],
+            [
+                'key' => 'add_product', 
+                'en' => 'Add Product',
+                'jp' => '商品を追加',
             ]
         ];
         foreach($translations as $translation) {

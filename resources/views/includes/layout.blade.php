@@ -118,7 +118,7 @@
                         </div>
                         <ul>
                             <li><a href="{{ url('/') }}" class="menu-header">{{trans_lang('hello')}}</a></li>
-                            <li><a href="{{ url('/special-offer') }}" class="menu-header">{{trans_lang('special_offer')}}</a></li>
+                            <li><a href="{{ url('/special-offer') }}" class="menu-header">{{trans_lang('home')}}</a></li>
                             @foreach ($categories as $category)
                                 <li><a href="{{ route('category', $category->id) }}"
                                         class="menu-header">{{ $category->category_name }}</a></li>
