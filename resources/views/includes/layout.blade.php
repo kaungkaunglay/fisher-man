@@ -176,6 +176,10 @@
   </main>
   <!-- /Main Section -->
 
+  @php
+    $socialLinks = \App\Models\Setting::getValue('social_links', []);
+  @endphp
+
   <!-- Footer Section -->
   <!-- filepath: /C:/fisherman/laravel/fisherman/resources/views/includes/layout.blade.php -->
   <footer class="bg-main w-100 d-flex flex-column justify-content-between">
@@ -192,7 +196,7 @@
 
           {{-- <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo"
               alt=""></a> --}}
-          <p class="text-center txt-18">Who We Are: Your Trusted Source for Fresh Seafood.</p>
+          <p class="text-center txt-18">{{ App\Models\Setting::getValue('slogan') }}</p>
           <div class="social-icons d-flex justify-content-between gap-1">
             <a href="">
               <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}" alt="Line">
@@ -348,7 +352,6 @@
                                         <i
                                     class="fa-solid fa-magnifying-glass align-self-center me-2"></i>
                                         <p class="align-self-center">${product.name}</p>
-                                        <span class="align-self-center ms-auto">$${product.product_price}</span>
                                     </a>
                                 </div>
                         `);
