@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use App\Models\FAQs;
-use App\Models\Product;
 use App\Models\Users;
 use App\Models\Setting;
 use App\Models\Shop;
@@ -17,17 +16,8 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
-    public function home(Request $request){
-        // dd(auth()->user)
-        $top_products = Product::select('products.*','users.username')
-                ->join('users','products.user_id','=','users.id')
-                ->inRandomOrder()->take(5)->get();
-        $all_products = Product::select('products.*','users.username')
-        ->join('users','products.user_id','=','users.id')
-        ->paginate(10);
-
-        $total_products = Product::get();
-        return view('admin.index',compact('top_products','all_products','total_products'));
+    public function home(){
+        return view('admin.index');
     }
     public function categoreis(){
         return view('admin.categories');

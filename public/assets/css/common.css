@@ -11,6 +11,9 @@
   box-sizing: border-box;
 }
 
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance: none;margin: 0;}
+input[type=number] {-moz-appearance: textfield;}
+
 @font-face {
   font-family: 'BlinkMacSystemFont' !important;
   src: url('../fonts/BlinkMacSystemFont/blinkmacsystemfont-regular.ttf') format('truetype') !important;
@@ -76,6 +79,11 @@ main {
   font-size: 18px !important;
   font-weight: bold;
   color: #005B96 !important;
+}
+
+.original-price{
+  text-decoration: line-through;
+  color: #ff000062;
 }
 
 .txt {
@@ -148,31 +156,42 @@ main {
   margin-bottom: 10px !important;
 }
 
-.common-btn {
+.common-btn,
+.common-btn2 {
   background: transparent;
   border: 1px solid #005B96;
   color: #005B96;
-  /* font-family: Roboto; */
   font-size: 18px;
   font-weight: bold;
-  color: #005B96;
   padding: 10px 72px;
   border-radius: 10px;
   transition: 0.3s;
   text-align: center;
 }
 
-
+.common-btn2 {
+  width: 50%;
+  padding: 0;
+}
 
 .common-btn:hover,
-.cart-btn {
-    background: #005B96;
+.common-btn2:hover {
+    background-color: #005B96;
     color: #fff;
 }
 
-.cart-btn:hover{
-    background: #fff;
-    color: #005B96;
+.-solid {
+  background-color: #005B96;
+  color: #fff;
+}
+
+.-solid:hover {
+  background-color: #005B96;
+  color: #fff;
+}
+
+.-solid:active {
+  opacity: 0.8;
 }
 
 .icon img {
@@ -259,6 +278,17 @@ main {
 /* product card animation */
 .card-border-animate {
   transition: .5s;
+}
+
+.item-card .title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.row-list .item-card .title {
+  max-width: 80%;
+  margin-right: 10px;
 }
 
 
@@ -501,6 +531,7 @@ li {
 .dot.active {
   background-color: #333;
 }
+
 
 #view-list {
   /* display: grid;
