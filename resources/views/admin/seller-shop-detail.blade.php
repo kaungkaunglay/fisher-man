@@ -68,7 +68,7 @@
                 
                         <div class="mb-3">
                             <label class="fs-4 fw-bold mb-8">Submitted At:</label>
-                            <p>{{ $shop->created_at->format('Y-m-d H:i') }}</p>
+                            <p>{{ $shop->created_at->format('Y-m-d') }}</p>
                         </div>
                     </div>
                     <div class="col-lg-6">

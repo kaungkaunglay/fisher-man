@@ -8,6 +8,7 @@ use App\Models\Sub_category;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 use App\Http\ViewComposers\SubCategoryComposer;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,6 +34,8 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('includes.aside', SubCategoryComposer::class);
 
         $this->preloadProductsToCache();
+
+        Paginator::useBootstrap();
     }
 
     // preload cache for recomended products
