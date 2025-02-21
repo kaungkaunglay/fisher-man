@@ -68,6 +68,10 @@
                     <span class="invalid-feedback"></span>
                 </div>
             </div>
+            <div class="input-box d-flex flex-column mx-auto">
+                <div class="g-recaptcha" data-sitekey="{{env('RECAPTCHA_SITE_KEY')}}"></div>
+                <span class="invalid-feedback"></span>
+            </div>
 
             <!-- Qr section -->
             <!-- <div class="d-flex mt-2">
@@ -83,9 +87,6 @@
             <div class="register">
                 <p>Already have an account?
                     <a href="{{ route('login') }}" class="ms-1">Login</a>
-                </p>
-                <p class="mt-2">Are you a seller?
-                    <a href="{{ route('register_seller') }}" class="ms-1">Register as seller</a>
                 </p>
             </div>
         </form>
@@ -135,6 +136,7 @@
                                 'password',
                                 'confirm_password',
                                 'first_phone',
+                                'g-recaptcha-response',
                                 'second_phone',
                                 'line_id'
                             ];

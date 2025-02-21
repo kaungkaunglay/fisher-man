@@ -1,10 +1,11 @@
-<?php
+<?php 
 
 namespace Database\Seeders;
 
 use App\Models\Product;
+use App\Models\User;
+use App\Models\Users;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ProductSeeder extends Seeder
 {
@@ -13,6 +14,19 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory()->count(50)->create();
+        // Fetch all users
+        $users = Users::all();
+
+        // Ensure there are users to assign
+        if ($users->isEmpty()) {
+            $this->command->info('No users found. Please create users before seeding products.');
+            return;
+        }
+
+        // Create 50 products with a random user_id
+        Product::factory()->count(50)->make()->each(function ($product) use ($users) {
+            $product->user_id = $users->random()->id; // Assign a random user to each product
+            $product->save(); // Save the product with the assigned user_id
+        });
     }
 }

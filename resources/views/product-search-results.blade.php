@@ -7,28 +7,11 @@
 @section('contents')
 
     <section class="all-products container-custom mb-3 mt-5">
-        <h6 class="txt-primary fw-bold mb-3">Searched Products</h6>
+        <h6 class="txt-primary fw-bold mb-3">検索された商品</h6>
         <div class="filter d-flex justify-content-between align-items-center mb-3">
             <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
                 <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
                 <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
-            </div>
-            <div class="sort-container">
-                <div class="arrows">
-                    <button><i class="fa-solid fa-caret-up"></i></button>
-                    <button><i class="fa-solid fa-caret-down"></i></button>
-                </div>
-                <div class="dropdown">
-                    <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Sort by
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
         <div class="card-list" id="view-list">
@@ -39,7 +22,14 @@
                             alt="{{ $product->name }}">
                     </a>
                     <div class="left">
-                        <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
+                        <p class="price m-t-b-10">
+            @if ($product->discount > 0)
+            ¥{{ number_format($product->product_price - $product->discount, 2) }}
+            <span class="original-price">¥{{ number_format($product->product_price, 2) }}</span>
+            @else
+            <span class="">¥{{ number_format($product->product_price, 2) }}</span>
+            @endif
+          </p>
                         <div class="title-category">
                             <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                             <h3 class="title m-t-b-10">{{ $product->name }}</h3>

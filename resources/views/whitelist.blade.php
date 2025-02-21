@@ -8,8 +8,8 @@
     <nav aria-label="breadcrumb" class="py-4">
         <div class="container">
             <ol class="breadcrumb mb-0 bg-transparent">
-                <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">White List</li>
+                <li class="breadcrumb-item"><a href="./home.html">ホーム</a></li>
+                <li class="breadcrumb-item active" aria-current="page">ウオッチリスト</li>
             </ol>
         </div>
     </nav>
@@ -24,11 +24,11 @@
                 <thead class="">
                     <tr>
                         <th scope="col">No.</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Product address</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Remove</th>
-                        <th scope="col">Select</th>
+                        <th scope="col">画像</th>
+                        <th scope="col">商品名</th>
+                        <th scope="col">価格</th>
+                        <th scope="col">削除</th>
+                        <th scope="col">選択</th>
                     </tr>
                 </thead>
                 <tbody class="dsk-white-list-body">
@@ -56,7 +56,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="5">Total</td>
+                        <td colspan="5">合計</td>
                         <td>
                             <span id="total">{{ $total }}</span>
                         </td>
@@ -125,11 +125,11 @@
             function checkIfEmpty() {
                 var dskbody = $('.dsk-white-list-body');
                 if (dskbody.find('tr').length === 0) {
-                    dskbody.html('<tr><td colspan="6" class="text-center">No product in the white list</td></tr>');
+                    dskbody.html('<tr><td colspan="6" class="text-center">ウオッチリストに商品はありません</td></tr>');
                 }
                 var mbbody = $('.mb-white-list-body');
                 if (mbbody.find('.card').length === 0) {
-                    mbbody.find('.no-cart').html('<div class="text-center my-3">No product in the white list</div>')
+                    mbbody.find('.no-cart').html('<div class="text-center my-3">ウオッチリストに商品はありません</div>')
                 }
             }
 
@@ -148,7 +148,6 @@
 
 
             // for desktop
-
             // desktop delete button
             $('.desktop-del-btn').click(function() {
                 const getid = $(this).data('id');
@@ -290,6 +289,7 @@
                             // $('.mobile-check-product:checked').each(function() {
                             //     removeCart($(this).val())
                             // });
+
                         }
 
                         if (!response.status) {

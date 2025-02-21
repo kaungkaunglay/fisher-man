@@ -18,9 +18,9 @@ class AuthController extends Controller
     public function register() {
         return view('register');
     }
-    public function register_seller(){
-        return view('sellers.register');
-    }
+    // public function register_seller(){
+    //     return view('sellers.register');
+    // }
 
     public function login(){
         return view('login');
@@ -33,7 +33,8 @@ class AuthController extends Controller
             'username.unique' => 'The username has already been taken.',
             'email.required' => 'The email field is required.',
             'email.email' => 'The email must be a valid email address.',
-            'email.unique' => 'The email has already been taken.',
+            'email.unique' => 'The email has already been taken.',      
+            'g-recaptcha-response.required' => 'The recaptcha field is required.',
             'password.required' => 'The password field is required.',
             'password.min' => 'The password must be at least 6 characters.',
             'password.max' => 'The password may not be greater than 16 characters.',
@@ -43,17 +44,18 @@ class AuthController extends Controller
             'first_phone.required' => 'The first phone field is required.',
             'first_phone.regex' => 'The first phone format is invalid.',
             'second_phone.regex' => 'The second phone format is invalid.',
-            'line_id.min' => 'The line ID must be at least 4 characters.',
-            'line_id.max' => 'The line ID may not be greater than 20 characters.',
-            'ship_name.required' => 'The ship name field is required.',
-            'ship_name.min' => 'The ship name must be at least 4 characters.',
-            'ship_name.max' => 'The ship name may not be greater than 20 characters.',
-            'first_org_name.required' => 'The first organization name field is required',
-            'first_org_name.min' => 'The first organization name must be at least 4 characters.',
-            'first_org_name.max' => 'The first organization name may not be greater than 20 characters.',
-            'trans_management.required' => 'The transportation management field is required.',
-            'trans_management.min' => 'The transportation management must be at least 4 characters',
-            'trans_management.max' => 'The transportation management may not be greater than 20 characters.'
+
+            // 'line_id.min' => 'The line ID must be at least 4 characters.',
+            // 'line_id.max' => 'The line ID may not be greater than 20 characters.',
+            // 'ship_name.required' => 'The ship name field is required.',
+            // 'ship_name.min' => 'The ship name must be at least 4 characters.',
+            // 'ship_name.max' => 'The ship name may not be greater than 20 characters.',
+            // 'first_org_name.required' => 'The first organization name field is required',
+            // 'first_org_name.min' => 'The first organization name must be at least 4 characters.',
+            // 'first_org_name.max' => 'The first organization name may not be greater than 20 characters.',
+            // 'trans_management.required' => 'The transportation management field is required.',
+            // 'trans_management.min' => 'The transportation management must be at least 4 characters',
+            // 'trans_management.max' => 'The transportation management may not be greater than 20 characters.'
         ];
         $validator = Validator::make($request->all(), [
             'username' => 'required|min:4|max:12|unique:users,username',
@@ -65,6 +67,7 @@ class AuthController extends Controller
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,16}$/'
             ],
             'confirm_password' => 'required|same:password',
+            'g-recaptcha-response' => 'required',
             'first_phone' => 'required',
             'second_phone' => 'nullable'
         ], $messages);
@@ -78,14 +81,14 @@ class AuthController extends Controller
         }
 
         // Define regex patterns for phone numbers
-      
+
         if($request->input('first_phone') != null ){
             $request->merge([
                 'first_phone' => $request->input('first_phone_extension') . $request->input('first_phone'),
                 'second_phone' => $request->input('second_phone_extension') . $request->input('second_phone')
             ]);
 
-            $phoneRegexJapan = '^\+81\s?[1-9]\d{0,4}\s?\d{1,4}\s?\d{4}$';
+            $phoneRegexJapan = '/^\+81[789]0\d{4}\d{4}$/';
             $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
                 // Validate first phone number
             if ($request->input('first_phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('first_phone'))) {
@@ -98,9 +101,9 @@ class AuthController extends Controller
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
-           
-            // need to start checking first phone number is valid for myanmar and japan. 
-        
+
+            // need to start checking first phone number is valid for myanmar and japan.
+
 
             $user = new Users();
             $user->username = $request->username;
@@ -108,18 +111,19 @@ class AuthController extends Controller
             $user->password = Hash::make($request->password);
             $user->first_phone = $request->first_phone;
             $user->second_phone = $request->second_phone;
-            $user->line_id = $request->line_id;
+            // $user->line_id = $request->line_id;
 
-            if($this->is_seller($request))
-            {
-                $user->ship_name = $request->ship_name;
-                $user->first_org_name = $request->first_org_name;
-                $user->trans_management = $request->trans_management;
-            }
+            // if($this->is_seller($request))
+            // {
+            //     $user->ship_name = $request->ship_name;
+            //     $user->first_org_name = $request->first_org_name;
+            //     $user->trans_management = $request->trans_management;
+            // }
 
             $user->save();
 
-            $this->is_seller($request) ? $user->assignRole(2) : $user->assignRole(3);
+            // $this->is_seller($request) ? $user->assignRole(2) : $user->assignRole(3);
+            $user->assignRole(3);
 
             return response()->json(['status' => true, 'message' => 'Register Success']);
         }
@@ -213,6 +217,8 @@ class AuthController extends Controller
     }
 
     public function showEmailSuccess($email){
+        session()->flash('status', 'success'); 
+        session()->flash('message', 'We sent you an email to reset your password. Please check your email.');
         return view('email_success', ['email' => $email]);
     }
 

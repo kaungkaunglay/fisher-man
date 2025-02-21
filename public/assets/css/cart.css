@@ -82,8 +82,9 @@ body {
     vertical-align: middle;
 }
 
-.table tbody td[colspan="6"] {
-    height: 30vh;
+.table tbody {
+    max-height: 50vh;
+    overflow-y: scroll;
 }
 
 .table tbody td {
