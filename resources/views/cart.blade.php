@@ -134,7 +134,8 @@
             <!-- ./Mobile Style -->
 
             <div class="text-end my-4">
-                <a href="{{ auth_helper()->check() ? '#address' : '#login' }}" id="next-btn" class="common-btn btn-next">Next</a>
+                <a href="{{ auth_helper()->check() ? '#address' : '#login' }}" id="next-btn"
+                    class="common-btn btn-next">Next</a>
             </div>
 
         </div>
@@ -147,31 +148,38 @@
 
             <div class="border w-75 mx-auto px-5 py-3 rounded shadow login-box">
                 <h2 class="text-center mb-3">ログイン</h2>
-                <form action="#">
+                <form action="#" method="POST" id="login_form" name="login_form">
+                    @csrf
+
                     <div class="d-flex flex-column">
                         <div class="form-group row mt-3 align-items-center">
-                            <label for="" class="col-12 col-md-4">ユーザー名</label>
+                            <label for="username" class="col-12 col-md-4">ユーザー名</label>
                             <div class="col-12 col-md-8 mt-2">
                                 <div class="input-group border border-2 rounded px-0">
-                                    <input type="text" class="form-control border-0" placeholder="ユーザー名またはメールアドレス">
+                                    <input type="text" id="username" name="username" class="form-control border-0" placeholder="ユーザー名またはメールアドレス">
                                     <button class="btn" tabindex="-1">
                                         <i class="fa-solid fa-user"></i>
                                     </button>
                                 </div>
                             </div>
+                            <span class="invalid-feedback"></span>
                         </div>
                         <div class="form-group row mt-3 align-item-center">
-                            <label for="" class="col-12 col-md-4">パスワード</label>
+                            <label for="password" class="col-12 col-md-4">パスワード</label>
                             <div class="col-12 col-md-8 mt-2">
                                 <div class="input-group border border-2 rounded px-0">
-                                    <input type="text" class="form-control border-0" placeholder="********">
+                                    <input type="text" id="password" name="password" class="form-control border-0" placeholder="********">
                                     <button class="btn" tabindex="-1">
                                         <i class="fa-solid fa-eye"></i>
                                     </button>
                                 </div>
                             </div>
+                            <span class="invalid-feedback"></span>
                         </div>
-                        <button class="common-btn -solid mx-auto mt-5 rounded-pill w-100">ログイン</button>
+                        <div class="input-box d-flex flex-column">
+                            <span class="mb-3 text-danger" id="message"></span>
+                        </div>
+                        <button type="submit" class="common-btn -solid mx-auto mt-5 rounded-pill w-100">ログイン</button>
                     </div>
                 </form>
             </div>
@@ -260,8 +268,7 @@
                         </tr>
                     </table>
                     <div class="d-flex gap-3 my-4 justify-content-end">
-                        <a href="#checkout" class="btn btn-outline-primary common-btn"
-                            id="cancel">Cancel</a>
+                        <a href="#checkout" class="btn btn-outline-primary common-btn" id="cancel">Cancel</a>
                         <button type="submit" href="#payment" class="btn btn-outline-primary common-btn">Save</button>
                     </div>
                 </form>
@@ -477,7 +484,7 @@
                                     <span class="cost">
                                         <input type="hidden" value="1" class="quantity-value">
                                     </span>
-                                    <span class="price">¥{{ $item->product->product_price }}</span>
+                                    <span class="price">{{ $item->product->product_price }}</span>
                                 </div>
                             </div>
                         </div>
@@ -533,81 +540,36 @@
                 <button class="btn btn-outline-primary common-btn btn-payment">Check Out</button>
             </div>
 
-    </div>
-</section>
-<!-- /Payment Step -->
+        </div>
+    </section>
+    <!-- /Payment Step -->
 
-  <!-- Complete Step -->
-  <section class="page mt-4" id="complete">
-    <div class="container-custom">
-      <p class="text-center">お支払いが成功しました。請求書はメールとLINE IDに送信されますので、ご確認ください。</p>
-      <div class="d-flex gap-3 py-5 justify-content-center">
-        <a href="{{ url(path: '/') }}" class="btn btn-outline-primary common-btn">お問い合わせ</a>
-        <a href="{{ url('/') }}" class="btn btn-outline-primary common-btn">ホーム</a>
-      </div>
-    </div>
-  </section>
-  <!-- /Complete Step -->
+    <!-- Complete Step -->
+    <section class="page mt-4" id="complete">
+        <div class="container-custom">
+            <p class="text-center">お支払いが成功しました。請求書はメールとLINE IDに送信されますので、ご確認ください。</p>
+            <div class="d-flex gap-3 py-5 justify-content-center">
+                <a href="{{ url(path: '/') }}" class="btn btn-outline-primary common-btn">お問い合わせ</a>
+                <a href="{{ url('/') }}" class="btn btn-outline-primary common-btn">ホーム</a>
+            </div>
+        </div>
+    </section>
+    <!-- /Complete Step -->
 
-  <!-- All Scripts -->
-  <script src="{{ asset('assets/js/cart.js') }}"></script>
-  <script>
-    $(document).ready(function () {
+    <!-- All Scripts -->
+    <script src="{{ asset('assets/js/cart.js') }}"></script>
+    <script>
+        $(document).ready(function() {
 
-      function checkIfEmpty() {
-        var dskbody = $('.dsk-cart-body');
-        if (dskbody.find('tr').length === 0) {
-          dskbody.html('<tr><td colspan="6" class="text-center">No product in the cart</td></tr>');
-        }
-        var mbbody = $('.mb-cart-body');
-        if (mbbody.find('.card').length === 0) {
-          mbbody.find('.no-cart').html('<div class="text-center my-3">No product in the cart</div>')
-        }
-      }
-
-      checkIfEmpty();
-
-      function removeCart(id) {
-        $('.table-item').find(`.cart-${id}`).remove();
-        checkIfEmpty();
-      }
-
-      $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-      });
-
-      // for desktop
-      // desktop delete button
-      $('.dsk-cart-del-btn').click(function (e) {
-        e.preventDefault();
-
-        const getid = $(this).data('id');
-
-        $.ajax({
-          url: "{{ route('cart-count') }}",
-          method: 'GET',
-          success: function (response) {
-            // Assuming response contains the new count
-            $('#cart_count').text(response.cart_count);
-          },
-          error: function (xhr) {
-            // Handle error here
-            console.error(xhr);
-          }
-        });
-        $.ajax({
-          url: `/cart/delete/${getid}`,
-          type: "DELETE",
-          data: {
-            id: getid
-          },
-          success: function (response) {
-            // location.reload();
-            if (response.status) {
-              removeCart(response.product_id);
-              netTotal();
+            function checkIfEmpty() {
+                var dskbody = $('.dsk-cart-body');
+                if (dskbody.find('tr').length === 0) {
+                    dskbody.html('<tr><td colspan="6" class="text-center">No product in the cart</td></tr>');
+                }
+                var mbbody = $('.mb-cart-body');
+                if (mbbody.find('.card').length === 0) {
+                    mbbody.find('.no-cart').html('<div class="text-center my-3">No product in the cart</div>')
+                }
             }
 
             checkIfEmpty();
@@ -623,8 +585,7 @@
                 }
             });
 
-            function deleteCart(product_id)
-            {
+            function deleteCart(product_id) {
                 $.ajax({
                     url: `/cart/delete/${product_id}`,
                     type: "DELETE",
@@ -644,8 +605,7 @@
                 });
             }
 
-            function handleDeleteBtn(class_name)
-            {
+            function handleDeleteBtn(class_name) {
                 $(`.${class_name}`).click(function(e) {
                     e.preventDefault();
                     const getid = $(this).data('id');
@@ -671,8 +631,58 @@
                 $(resultId).html($(this).val());
             });
 
-
             // for login
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $("#login_form").submit(function (e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: "{{ route('login_store') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response.status == true) {
+                            window.location.href = "#address";
+                        } else {
+
+                            // if response has message, show the message , if not empty the message, clear the error messages
+                            $('#message').html(response.message ?? '');
+
+                            var errors = response.errors ?? {};
+
+                            var fields = [
+                                'username',
+                                'password'
+                            ];
+
+                            fields.forEach(function (field) {
+                                if (errors[field]) {
+                                    $('#' + field)
+                                        .closest('.input-box')
+                                        .find('span.invalid-feedback')
+                                        .addClass('d-block')
+                                        .html(errors[field]);
+                                } else {
+                                    $('#' + field)
+                                        .closest('.input-box')
+                                        .find('span.invalid-feedback')
+                                        .removeClass('d-block')
+                                        .html('');
+                                }
+                            });
+
+                        }
+                    }
+                });
+            });
 
 
         });

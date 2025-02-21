@@ -14,7 +14,7 @@
         </div>
 
         <!-- form start -->
-        <form method="POST" id="update_basic" name="login_form" class="input-container d-flex flex-column">
+        <form method="POST" id="login_form" name="login_form" class="input-container d-flex flex-column">
             @csrf
             <div class="input-box d-flex flex-column">
                 <label for="username">Username</label>
@@ -82,7 +82,7 @@
                 }
             });
 
-            $("#update_basic").submit(function (e) {
+            $("#login_form").submit(function (e) {
                 e.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
