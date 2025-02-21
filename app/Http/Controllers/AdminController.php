@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use App\Models\FAQs;
+use App\Models\Product;
 use App\Models\Users;
 use App\Models\Setting;
 use App\Models\Shop;
@@ -17,7 +18,9 @@ use Illuminate\Support\Facades\Validator;
 class AdminController extends Controller
 {
     public function home(){
-        return view('admin.index');
+        $top_products = Product::inRandomOrder()->take(5)->get();
+        dd($top_products);
+        return view('admin.index',compact('top_products'));
     }
     public function categoreis(){
         return view('admin.categories');
