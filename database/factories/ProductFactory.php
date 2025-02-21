@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Users;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,6 +18,8 @@ class ProductFactory extends Factory
     protected $model = \App\Models\Product::class;
     public function definition(): array
     {
+        $user = Users::inRandomOrder()->first();
+
         $images = [
             "assets/products/product1.png",
             "assets/products/product2.png"
@@ -32,7 +35,8 @@ class ProductFactory extends Factory
             'discount' => $this->faker->randomFloat(2,1,10),
             'expiration_date' => $this->faker->date(),
             'sub_category_id' => $this->faker->numberBetween(1, 10),
-            'description' => $this->faker->text
+            'description' => $this->faker->text,
+            'user_id' => $user ? $user->id : null,
         ];
     }
 

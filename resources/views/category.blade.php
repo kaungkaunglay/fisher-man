@@ -47,7 +47,14 @@
                                             alt="{{ $product->name }}">
                                     </a>
                                     <div class="left">
-                                        <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
+                                        <p class="price m-t-b-10">
+            @if ($product->discount > 0)
+            ¥{{ number_format($product->product_price - $product->discount, 2) }}
+            <span class="original-price">¥{{ number_format($product->product_price, 2) }}</span>
+            @else
+            <span class="">¥{{ number_format($product->product_price, 2) }}</span>
+            @endif
+          </p>
                                         <div class="title-category">
                                             <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                                             <h3 class="title m-t-b-10">{{ $product->name }}</h3>
