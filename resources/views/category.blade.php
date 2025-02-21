@@ -56,8 +56,16 @@
                                             {{ $product->description }}
                                         </a>
                                         <div class="d-flex card-btn m-t-10">
-                                            <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                                            <a href="javascript:void(0);" class="w-100 py-1 common-btn" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
+                                            <a href="javascript:void(0);"
+                                                class="py-1 common-btn2 me-2 -solid cart-btn @if ($product->inCart()) active @endif"
+                                                data-id="{{ $product->id }}">
+                                                <i class="fa-solid fa-cart-shopping"></i>
+                                            </a>
+                                            <a href="javascript:void(0);"
+                                                class=" py-1 common-btn2 white-list-btn @if ($product->inWhiteLists()) active @endif"
+                                                data-id="{{ $product->id }}">
+                                                <i class="fa-solid fa-bookmark"></i>
+                                            </a>
                                         </div>
 
                                     </div>

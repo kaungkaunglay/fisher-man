@@ -148,7 +148,6 @@
 
 
             // for desktop
-
             // desktop delete button
             $('.desktop-del-btn').click(function() {
                 const getid = $(this).data('id');
@@ -290,7 +289,7 @@
                             // $('.mobile-check-product:checked').each(function() {
                             //     removeCart($(this).val())
                             // });
-                            
+
                         }
 
                         if (!response.status) {
