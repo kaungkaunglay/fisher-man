@@ -55,7 +55,6 @@ class AuthController extends Controller
             // 'trans_management.min' => 'The transportation management must be at least 4 characters',
             // 'trans_management.max' => 'The transportation management may not be greater than 20 characters.'
         ];
-
         $validator = Validator::make($request->all(), [
             'username' => 'required|min:4|max:12|unique:users,username',
             'email' => 'required|email|unique:users,email',
@@ -66,22 +65,43 @@ class AuthController extends Controller
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,16}$/'
             ],
             'confirm_password' => 'required|same:password',
-            'first_phone' => ['required', 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'],
-            'second_phone' => ['nullable', 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/']
+            'first_phone' => 'required',
+            'second_phone' => 'nullable'
         ], $messages);
+        if($this->is_seller($request))
+        {
+            $validator->addRules([
+                'ship_name' => 'required|min:4|max:20',
+                'first_org_name' => 'required|min:4|max:20',
+                'trans_management' => 'required|min:4|max:20'
+            ]);
+        }
 
-        // if($this->is_seller($request))
-        // {
-        //     $validator->addRules([
-        //         'ship_name' => 'required|min:4|max:20',
-        //         'first_org_name' => 'required|min:4|max:20',
-        //         'trans_management' => 'required|min:4|max:20'
-        //     ]);
-        // }
+        // Define regex patterns for phone numbers
+
+        if($request->input('first_phone') != null ){
+            $request->merge([
+                'first_phone' => $request->input('first_phone_extension') . $request->input('first_phone'),
+                'second_phone' => $request->input('second_phone_extension') . $request->input('second_phone')
+            ]);
+
+            $phoneRegexJapan = '^\+81\s?[1-9]\d{0,4}\s?\d{1,4}\s?\d{4}$';
+            $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
+                // Validate first phone number
+            if ($request->input('first_phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('first_phone'))) {
+                    return response()->json(['status' => false, 'errors' => ['first_phone' => 'Invalid phone number.']]);
+             } elseif ($request->input('first_phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('first_phone'))) {
+                    return response()->json(['status' => false, 'errors' => ['first_phone' => 'Invalid phone number.']]);
+            }
+        }
 
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
+
+            // need to start checking first phone number is valid for myanmar and japan.
+
+
             $user = new Users();
             $user->username = $request->username;
             $user->email = $request->email;

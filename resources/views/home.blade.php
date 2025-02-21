@@ -20,54 +20,53 @@
     </section>
     <!-- /Hero Section -->
 
-    <!-- Recommand Products -->
-    <section class=" bg-second my-3 py-3">
+  <!-- Recommand Products -->
+  <section class="bg-second my-3 py-3">
         <div class="container-custom">
-
-            <!-- Recomnand HeadLine -->
-            <div>
-                <h6 class="txt-primary fw-bold mb-3">Recommand Products</h6>
-                <div class="filter d-flex justify-content-between align-items-center mb-3">
-                    <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
-                        <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
-                        <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
+              <!-- Recomnand HeadLine -->
+              <div>
+                    <h6 class="txt-primary fw-bold mb-3">Recommand Products</h6>
+                    <div class="filter d-flex justify-content-between align-items-center mb-3">
+                          <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
+                                <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
+                                <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
+                          </div>
                     </div>
-                </div>
-            </div>
-            <!-- /Recomnand HeadLine -->
+              </div>
+              <!-- /Recomnand HeadLine -->
 
-            <!-- Card List -->
-            <div class="card-list" id="view-list" data-list="fish-list-1">
-
-                <!-- Template for Clone Items of Testing used by cloneNode.test.js -->
-                <template data-clone="6" data-target="fish-list-1">
+        <!-- Card List -->
+        <div class="card-list" id="view-list" data-list="fish-list-1">
+                @foreach ($products->take(6) as $product)
                     <div class="item-card">
-                        <a href="{{ url('/product') }}" class="right">
-                            <img src="../../assets/images/fishes/Red_sea_bream.svg" class="card-img-top"
-                                alt="Red_sea_bream">
+                        <a href="{{ route('product.show', $product->id) }}" class="right">
+                            <img src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
                         </a>
                         <div class="left">
-                            <p class="price m-t-b-10">¥1000</p>
+                            <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
                             <div class="title-category">
-                                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
-                                <h3 class="title m-t-b-10">真鯛</h3>
+                                <a href="" class="menu-category">鮮魚 | 白身魚</a>
+                                <h3 class="title m-t-b-10">{{ $product->name }}</h3>
                             </div>
-                            <a href="{{ url('/product') }}" class="txt m-b-10 description ">
-                                たい科の代表的な魚。大形、桜色で緑色の斑点(はんてん)がある.....
+                            <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
+                                {{ $product->description }}
                             </a>
-                            <div class="d-flex card-btn m-t-10">
-                                <a href="#" class="product-btn p-2 w-100"><i class="fa-solid fa-bookmark"></i></a>
+                            <div class="d-flex gap-2 card-btn m-t-10">
+                                <a href="javascript:void(0);" class="py-1 common-btn2 -solid cart-btn @if ($product->inCart()) active @endif" data-id="{{ $product->id }}">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </a>
+                                <a href="javascript:void(0);" class="py-1 common-btn2 white-list-btn @if ($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}">
+                                    <i class="fa-solid fa-bookmark"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
-                </template>
-
-            </div>
-            <!-- /Card List -->
-
+                @endforeach
         </div>
-    </section>
-    <!-- /Recommand Products -->
+        <!-- /Card List -->
+    </div>
+</section>
+  <!-- /Recommand Products -->
 
     <!-- Animation Bar -->
     <section class="m-t-b-20 moving-discount">

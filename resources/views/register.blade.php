@@ -50,7 +50,7 @@
                             <option value="+81">+81</option>
                             <option value="+95">+95</option>
                         </select>
-                        <input id="first_phone" name="first_phone" placeholder="90-1234-5678" type="number"
+                        <input maxlength="10" id="first_phone" name="first_phone" placeholder="90-1234-5678" type="tel"
                             class="form-control bg-second" autocomplete="off">
                     </div>
                     <span class="invalid-feedback"></span>
@@ -62,7 +62,7 @@
                             <option value="+81">+81</option>
                             <option value="+95">+95</option>
                         </select>
-                        <input id="second_phone" name="second_phone" placeholder="90-1234-5678" type="number"
+                        <input maxlength="10" id="second_phone" name="second_phone" placeholder="90-1234-5678" type="tel"
                             class="form-control bg-second" autocomplete="off">
                     </div>
                     <span class="invalid-feedback"></span>
@@ -102,7 +102,6 @@
                 // first phone number with extension
                 var firstPhoneExtension = $('select[name="first_phone_extension"]').val();
                 var firstPhoneNumber = $('#first_phone').val();
-                formData.set('first_phone', firstPhoneExtension + firstPhoneNumber);
                 //second phone number with extension
                 var secondPhoneExtension = $('select[name="second_phone_extension"]').val();
                 var secondPhoneNumber = $('#second_phone').val();

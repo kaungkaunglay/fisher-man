@@ -36,6 +36,15 @@
                 </li>
             </ul>
         </div>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
 
         <!-- new-category -->
         <div class="wg-box">
@@ -46,7 +55,7 @@
                 @endif
                 <fieldset class="name">
                     <div class="body-title">Category Name <span class="tf-color-1">*</span></div>
-                    <input class="flex-grow" type="text" placeholder="Category name" name="category_name" value="{{ old('category_name', isset($category) ? $category->category_name : '') }}" required>
+                    <input class="flex-grow" type="text" placeholder="Category name" name="category_name" value="{{ old('category_name', isset($category) ? $category->category_name : '') }}" >
                 </fieldset>
                 <fieldset>
                     <div class="body-title">Upload Image <span class="tf-color-1">*</span></div>
@@ -59,12 +68,17 @@
                                 <span class="body-text">Drop your image here or select <span class="tf-color">click to browse</span></span>
                                 <input type="file" id="image" name="image" accept="image/*">
                             </label>
+                            <p id="file-name" class="mt-2"></p> <!-- Displays file name -->
                         </div>
-                        @if(isset($category) && $category->image)
-                            <div class="mt-2">
-                            <img src="{{ asset($category->image) }}" alt="{{ $category->category_name }}" width="100" height="100">
-                            </div>
-                        @endif
+
+                        <!-- Existing Image -->
+                        <div class="mt-2">
+                            @if(isset($category) && $category->image)
+                                <img id="preview" src="{{ asset($category->image) }}" alt="{{ $category->category_name }}" width="100" height="100">
+                            @else
+                                <img id="preview" src="" alt="Image Preview" width="100" height="100" style="display: none;">
+                            @endif
+                        </div>
                     </div>
                 </fieldset>
                 <div class="bot">
@@ -103,4 +117,25 @@
     <script src="{{ asset('assets/admin/js/switcher.js') }}"></script>
     <script src="{{ asset('assets/admin/js/theme-settings.js') }}"></script>
     <script src="{{ asset('assets/admin/js/main.js') }}"></script>
+    <script>
+    document.getElementById('image').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const preview = document.getElementById('preview');
+        const fileNameDisplay = document.getElementById('file-name');
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+
+            fileNameDisplay.textContent = "Selected file: " + file.name;
+        } else {
+            preview.style.display = "none";
+            fileNameDisplay.textContent = "";
+        }
+    });
+    </script>
 @endsection

@@ -57,6 +57,8 @@ class AdminController extends Controller
             'contact_email' => Setting::where('key', 'contact_email')->value('value') ?? '',
             'contact_phone' => Setting::where('key', 'contact_phone')->value('value') ?? '',
             'contact_address' => Setting::where('key', 'contact_address')->value('value') ?? '',
+            'slogan' => Setting::where('key', 'slogan')->value('value') ?? '',
+            'policy' => Setting::where('key', 'policy')->value('value') ?? '',
             'logo' => Setting::where('key', 'logo')->value('value') ?? '',
         ];
         return view('admin.settings',compact('settings'));
@@ -68,12 +70,16 @@ class AdminController extends Controller
             'contact_email' => 'required|email',
             'contact_phone' => 'required',
             'contact_address' => 'required',
+            'slogan' => 'required',
+            'policy' => 'required',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $settings = [
             'contact_email' => request('contact_email'),
             'contact_phone' => request('contact_phone'),
             'contact_address' => request('contact_address'),
+            'slogan' => request('slogan'),
+            'policy' => request('policy'),
         ];
         // dd("here");
 
