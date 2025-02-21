@@ -83,8 +83,7 @@ body {
 }
 
 .scroller {
-    min-height: 70vh;
-    border: 1px solid black;
+    max-height: 70vh;
     overflow: hidden;
     overflow-y: scroll;
     scrollbar-width: none;

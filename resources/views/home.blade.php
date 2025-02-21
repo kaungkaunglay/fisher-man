@@ -1,6 +1,5 @@
 @extends('includes.layout')
 @section('title', 'home')
-@section('title', 'home')
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" />
 @endsection
