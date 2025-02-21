@@ -4,3 +4,10 @@
 .remove-link{
     border-radius: 0px 10px 10px 0px;
 }
+
+.wg-table.table-top-product .product-item .seller-name{
+    width: 140px !important;
+}
+.wg-table.table-top-product .product-item .stock{
+    width: 160px !important;
+}

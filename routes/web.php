@@ -69,7 +69,7 @@ Route::get('/category/{id}', [CategoriesController::class, 'show'])->name('categ
 
 Route::post('/contact', [UsersController::class, 'contact'])->name('contact');
 Route::post('/wishList', [UsersController::class, 'wishList'])->name('wishList');
-
+Route::get('/shop/{id}', [UsersController::class, 'shop'])->name('shop');
 //search-product-ajax
 Route::get('/products/ajax-search', [ProductController::class, 'ajaxSearch'])->name('products.ajaxSearch');
 

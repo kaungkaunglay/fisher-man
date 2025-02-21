@@ -183,16 +183,15 @@
   <!-- Footer Section -->
   <!-- filepath: /C:/fisherman/laravel/fisherman/resources/views/includes/layout.blade.php -->
   <footer class="bg-main w-100 d-flex flex-column justify-content-between">
-    <div class="container-custom">
-      <div class="row justify-content-around w-100 pb-3">
-        <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white">
-          @if (file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
-        <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
-        class="logo" alt="logo">
+    <div class="row justify-content-between w-100 pb-3 container-custom">
+      <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white mt-3">
+        @if (file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
+      <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
+      class="logo" alt="logo">
       @else
       <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
       class="logo" alt="logo">
-    @endif
+      @endif
 
           {{-- <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo"
               alt=""></a> --}}
@@ -227,14 +226,13 @@
       </div>
     </div>
 
-    <div class="bg-dark m-0">
-      <div class="row justify-content-around container-custom">
-        <div class="col-lg-5 text-white text-center text-lg-start">
-          <p class="my-2 txt-13">&copy; Copyright 2024-fisherman Designed by Andfun</p>
-        </div>
-        <div class="col-lg-5 text-white text-lg-end text-center">
-          <p class="my-2 txt-13"><a href="{{ route('policy') }}">Privacy | Terms</a></p>
-        </div>
+  <div class="bg-dark m-0 pb-4 pb-md-0">
+    <div class="row justify-content-around container-custom">
+      <div class="col-lg-5 text-white text-center text-lg-start">
+        <p class="my-2 txt-13">&copy; Copyright 2024-fisherman Designed by Andfun</p>
+      </div>
+      <div class="col-lg-5 text-white text-lg-end text-center">
+        <p class="my-2 txt-13"><a href="{{ route('policy') }}">Privacy | Terms</a></p>
       </div>
     </div>
 

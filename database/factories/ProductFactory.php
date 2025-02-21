@@ -36,7 +36,7 @@ class ProductFactory extends Factory
             'expiration_date' => $this->faker->date(),
             'sub_category_id' => $this->faker->numberBetween(1, 10),
             'description' => $this->faker->text,
-            'user_id' => $user ? $user->id : null,
+            'user_id' => "2"
         ];
     }
 

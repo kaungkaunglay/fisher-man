@@ -33,7 +33,8 @@
                 </div>
                 <span class="invalid-feedback"></span>
             </div>
-            <div class="input-box d-flex flex-column">
+
+            <div class="input-box d-flex flex-column mx-auto">
                 <div class="g-recaptcha" data-sitekey="6LfCvtoqAAAAAP_U1Pm-7x4IFB-avJ8O_SxjNQZ8"></div>
                 <span class="invalid-feedback"></span>
             </div>

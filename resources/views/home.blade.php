@@ -1,5 +1,5 @@
 @extends('includes.layout')
-@section('title','home')
+@section('title', 'home')
 @section('style')
 <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" />
 @endsection
@@ -367,7 +367,7 @@
         }
       });
 
-    });
+            });
 
     $('.cart-btn').click(function(e) {
       e.preventDefault();
@@ -408,8 +408,8 @@
         }
       });
 
-    });
-  });
+            });
+        });
 
   // $('.white-list-btn').click((ev) => {
   //     ev.preventDefault();

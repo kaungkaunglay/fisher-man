@@ -11,6 +11,9 @@
   box-sizing: border-box;
 }
 
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance: none;margin: 0;}
+input[type=number] {-moz-appearance: textfield;}
+
 @font-face {
   font-family: 'BlinkMacSystemFont' !important;
   src: url('../fonts/BlinkMacSystemFont/blinkmacsystemfont-regular.ttf') format('truetype') !important;
@@ -277,6 +280,17 @@ main {
   transition: .5s;
 }
 
+.item-card .title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.row-list .item-card .title {
+  max-width: 80%;
+  margin-right: 10px;
+}
+
 
 .card-border-animate:hover {
   border: 1px solid black;
@@ -517,6 +531,7 @@ li {
 .dot.active {
   background-color: #333;
 }
+
 
 #view-list {
   /* display: grid;
