@@ -130,6 +130,8 @@
                 </fieldset>
             </div>
 
+            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+
             <div class="cols gap10">
                 <button class="tf-button w-full" type="submit">{{ isset($product) ? 'Update Product' : 'Add Product' }}</button>
                 <a href="{{ route('admin.products') }}" class="tf-button style-2 w-full">Cancel</a>
