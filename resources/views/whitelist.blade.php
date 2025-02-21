@@ -290,6 +290,7 @@
                             // $('.mobile-check-product:checked').each(function() {
                             //     removeCart($(this).val())
                             // });
+                            
                         }
 
                         if (!response.status) {

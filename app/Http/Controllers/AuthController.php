@@ -18,9 +18,9 @@ class AuthController extends Controller
     public function register() {
         return view('register');
     }
-    public function register_seller(){
-        return view('sellers.register');
-    }
+    // public function register_seller(){
+    //     return view('sellers.register');
+    // }
 
     public function login(){
         return view('login');
@@ -43,17 +43,17 @@ class AuthController extends Controller
             'first_phone.required' => 'The first phone field is required.',
             'first_phone.regex' => 'The first phone format is invalid.',
             'second_phone.regex' => 'The second phone format is invalid.',
-            'line_id.min' => 'The line ID must be at least 4 characters.',
-            'line_id.max' => 'The line ID may not be greater than 20 characters.',
-            'ship_name.required' => 'The ship name field is required.',
-            'ship_name.min' => 'The ship name must be at least 4 characters.',
-            'ship_name.max' => 'The ship name may not be greater than 20 characters.',
-            'first_org_name.required' => 'The first organization name field is required',
-            'first_org_name.min' => 'The first organization name must be at least 4 characters.',
-            'first_org_name.max' => 'The first organization name may not be greater than 20 characters.',
-            'trans_management.required' => 'The transportation management field is required.',
-            'trans_management.min' => 'The transportation management must be at least 4 characters',
-            'trans_management.max' => 'The transportation management may not be greater than 20 characters.'
+            // 'line_id.min' => 'The line ID must be at least 4 characters.',
+            // 'line_id.max' => 'The line ID may not be greater than 20 characters.',
+            // 'ship_name.required' => 'The ship name field is required.',
+            // 'ship_name.min' => 'The ship name must be at least 4 characters.',
+            // 'ship_name.max' => 'The ship name may not be greater than 20 characters.',
+            // 'first_org_name.required' => 'The first organization name field is required',
+            // 'first_org_name.min' => 'The first organization name must be at least 4 characters.',
+            // 'first_org_name.max' => 'The first organization name may not be greater than 20 characters.',
+            // 'trans_management.required' => 'The transportation management field is required.',
+            // 'trans_management.min' => 'The transportation management must be at least 4 characters',
+            // 'trans_management.max' => 'The transportation management may not be greater than 20 characters.'
         ];
 
         $validator = Validator::make($request->all(), [
@@ -70,14 +70,14 @@ class AuthController extends Controller
             'second_phone' => ['nullable', 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/']
         ], $messages);
 
-        if($this->is_seller($request))
-        {
-            $validator->addRules([
-                'ship_name' => 'required|min:4|max:20',
-                'first_org_name' => 'required|min:4|max:20',
-                'trans_management' => 'required|min:4|max:20'
-            ]);
-        }
+        // if($this->is_seller($request))
+        // {
+        //     $validator->addRules([
+        //         'ship_name' => 'required|min:4|max:20',
+        //         'first_org_name' => 'required|min:4|max:20',
+        //         'trans_management' => 'required|min:4|max:20'
+        //     ]);
+        // }
 
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
@@ -88,18 +88,19 @@ class AuthController extends Controller
             $user->password = Hash::make($request->password);
             $user->first_phone = $request->first_phone;
             $user->second_phone = $request->second_phone;
-            $user->line_id = $request->line_id;
+            // $user->line_id = $request->line_id;
 
-            if($this->is_seller($request))
-            {
-                $user->ship_name = $request->ship_name;
-                $user->first_org_name = $request->first_org_name;
-                $user->trans_management = $request->trans_management;
-            }
+            // if($this->is_seller($request))
+            // {
+            //     $user->ship_name = $request->ship_name;
+            //     $user->first_org_name = $request->first_org_name;
+            //     $user->trans_management = $request->trans_management;
+            // }
 
             $user->save();
 
-            $this->is_seller($request) ? $user->assignRole(2) : $user->assignRole(3);
+            // $this->is_seller($request) ? $user->assignRole(2) : $user->assignRole(3);
+            $user->assignRole(3);
 
             return response()->json(['status' => true, 'message' => 'Register Success']);
         }
