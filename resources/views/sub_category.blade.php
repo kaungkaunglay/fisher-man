@@ -6,10 +6,34 @@
 @endsection
 
 @section('contents')
-    <section class="hero mt-5 container-custom">
-        <div class="row justify-content-between">
-            <div class="col-lg-4 col-md-6 d-none d-lg-block">
-                @include('includes.aside')
+
+<section class="hero mt-5 container-custom">
+    <div class="row justify-content-between">
+        <div class="col-lg-4 col-md-6 d-none d-lg-block">
+            @include('includes.aside')
+        </div>
+        <div class="col-lg-8 col-md-12">
+            @include('includes.slider')
+        </div>
+    </div>
+</section>
+
+<div class="container-custom">
+    <nav aria-label="breadcrumb" class="py-4">
+        <ol class="breadcrumb mb-0 bg-transparent">
+            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="">Categories</a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="">{{ $subCategory->name }}</a></li>
+        </ol>
+    </nav>
+
+    <div class="sub-category mb-3">
+        <h3 class="title text-center m-b-20">{{ $subCategory->name }}</h3>
+
+        <div class="filter d-flex justify-content-between align-items-center mb-3">
+            <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
+                <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
+                <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
             </div>
             <div class="col-lg-8 col-md-12">
                 @include('includes.slider')
@@ -34,6 +58,16 @@
                     <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
                     <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
                 </div>
+                <div class="dropdown">
+                    <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        並べ替え
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_asc']) }}">価格：安い順</a></li>
+                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_desc']) }}">価格：高い順</a></li>
+                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_asc']) }}">名前：AからZ順</a></li>
+                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_desc']) }}">名前：ZからA順</a></li>
+                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'latest']) }}">最新</a></li>
 
                 <div class="sort-container">
                     <div class="arrows">
