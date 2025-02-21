@@ -71,107 +71,85 @@
                     <!-- /Head Logo -->
 
 
-                    <!-- Search Bar -->
-                    <div class="ms-2 position-relative w-50">
-                        <form action="{{ route('products.search') }}" method="get">
-                            <div class="input-group w-100">
-                                <input type="text" class="form-control bg-second search-bar" id="search"
-                                    placeholder="Search your Products" name="search_key">
-                                <button type="submit" class="bg-main text-white magnifying-glass">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </button>
-                            </div>
-                        </form>
+          <!-- Search Bar -->
+          <div class="ms-2 position-relative w-50">
+            <form action="{{ route('products.search') }}" method="get">
+              <div class="input-group w-100">
+                <input type="text" class="form-control bg-second search-bar" id="search" placeholder="商品を検索" name="search_key">
+                <button type="submit" class="bg-main text-white magnifying-glass">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </div>
+            </form>
 
-                        <!-- Search Box -->
-                        <div class="search-result-list position-absolute border p-2 rounded-3 shadow" id="product-list">
-
-                        </div>
-                        <!-- /Search Box -->
-
-                    </div>
-                    <!-- /Search Bar -->
-
-
-                    {{-- icon counts --}}
-
-                    <!-- Main Nav -->
-                    <div class="d-none d-md-flex gap-5  ms-3">
-                        <a href="{{ route('cart') }}" class="position-relative ">
-                            <i class="fa-solid fa-cart-shopping icon"></i>
-                            <span id="cart_count"
-                                class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
-                        </a>
-                        <a href="{{ route('white_list.index') }}" class="position-relative">
-                            <i class="fa-solid fa-bookmark icon" id="bookmark_btn"></i>
-                            <span id="white_list_count"
-                                class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
-                        </a>
-
-                        <button class="btn-login position-relative">
-                            <i class="fa-solid fa-user icon"></i>
-                            <div class="dropdown position-absolute overflow-hidden bg-white">
-                                <ul class="border">
-                                    <li>
-                                        <a href="{{ url('/profile') }}" class="d-flex gap-2 text-black text-center">
-                                            <i class="fa-solid fa-address-card icon"></i>Profile
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            class="px-3 d-flex gap-2 text-black text-center">
-                                            <i class="fas fa-door-open icon"></i>Logout
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </button>
-                    </div>
-                    <!-- /Main Nav -->
-
-                </div>
-                <!-- /Top Header -->
-
-                <!-- Bottom Header -->
-                <div class="bottom-header">
-                    <nav>
-                        <div class="hambuger-menu">
-                            <a href="#" id="hamburger-menu">
-                                <i class="fa-solid fa-bars"></i>
-                            </a>
-                        </div>
-                        <ul>
-                            <li><a href="{{ url('/') }}" class="menu-header">Home</a></li>
-                            <li><a href="{{ url('/special-offer') }}" class="menu-header">Special Offer</a></li>
-                            @foreach ($categories as $category)
-                                <li><a href="{{ route('category', $category->id) }}"
-                                        class="menu-header">{{ $category->category_name }}</a></li>
-                            @endforeach
-                            <li><a href="{{ url('/support') }}" class="menu-header">Support</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <!-- /Bottom Header -->
+            <!-- Search Box -->
+            <div class="search-result-list position-absolute border p-2 rounded-3 shadow" id="product-list">
 
             </div>
-        </div>
-    </header>
+            <!-- /Search Box -->
 
-    <!-- /Search Menu -->
-    <div class="category-popup" id="category-popup">
-        <ul>
-            <li class="close-popup">
-                <button id="close-popup">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </li>
-            @foreach ($subcategories as $subcategory)
-                <li>
-                    <a href="{{ route('sub-category.show', $subcategory->id) }}"
-                        class="menu-category">{{ $subcategory->name }}</a>
-                </li>
-            @endforeach
-        </ul>
+          </div>
+          <!-- /Search Bar -->
+
+
+          {{-- icon counts --}}
+
+          <!-- Main Nav -->
+          <div class="d-none d-md-flex gap-5  ms-3">
+            <a href="{{ route('cart') }}" class="position-relative ">
+              <i class="fa-solid fa-cart-shopping icon"></i>
+              <span id="cart_count" class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
+            </a>
+            <a href="{{ route('white_list.index') }}" class="position-relative">
+              <i class="fa-solid fa-bookmark icon" id="bookmark_btn"></i>
+              <span id="white_list_count" class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
+            </a>
+
+            <button class="btn-login position-relative">
+              <i class="fa-solid fa-user icon"></i>
+              <div class="dropdown position-absolute overflow-hidden bg-white">
+                <ul class="border">
+                  <li>
+                    <a href="{{ url('/profile') }}" class="d-flex gap-2 text-black text-center">
+                      <i class="fa-solid fa-address-card icon"></i>プロフィール
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ route('logout') }}" class="px-3 d-flex gap-2 text-black text-center">
+                      <i class="fas fa-door-open icon"></i>ログアウト
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </button>
+          </div>
+          <!-- /Main Nav -->
+
+        </div>
+        <!-- /Top Header -->
+
+        <!-- Bottom Header -->
+        <div class="bottom-header">
+          <nav>
+            <div class="hambuger-menu">
+              <a href="#" id="hamburger-menu">
+                <i class="fa-solid fa-bars"></i>
+              </a>
+            </div>
+            <ul>
+              <li><a href="{{ url('/') }}" class="menu-header">ホーム</a></li>
+              <li><a href="{{ url('/special-offer') }}" class="menu-header">セール</a></li>
+              @foreach ($categories as $category)
+          <li><a href="{{ route('category', $category->id) }}"
+            class="menu-header">{{ $category->category_name }}</a></li>
+        @endforeach
+              <li><a href="{{ url('/support') }}" class="menu-header">サポート</a></li>
+            </ul>
+          </nav>
+        </div>
+        <!-- /Bottom Header -->
+
+      </div>
     </div>
     <!-- /Search Menu -->
     <!-- /Header Section -->
@@ -259,8 +237,25 @@
                 <span class="price">2</span> )
             </a>
         </div>
-        <a href="#" class="menu-header"><i class="fa-solid fa-tags"></i><br>Offers</a>
-        <a href="#" class="menu-header"><i class="fa-solid fa-user"></i><br>Profile</a>
+        <div class="col-12 col-lg-3 mt-3 d-flex flex-column justify-content-center">
+          <h6 class="text-center text-warning mb-2">便利なリンク</h6>
+          <ul class="list-unstyled link-list txt-15 useful-link">
+            <li><a href="{{ route('home') }}">ホーム</a></li>
+            <li><a href="#">商品</a></li>
+            <li><a href="#">よくある質問</a></li>
+            <li><a href="{{ route('policy') }}">利用規約とプライバシー</a></li>
+            <li><a href="#">お客様の声</a></li>
+            <li><a href="#">ブログ</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-lg-2 mt-3 ">
+          <h6 class="text-center text-warning mb-2">お問い合わせ</h6>
+          <ul class="list-unstyled text-white txt-15 text-center">
+            <li><a href="#">住所 : {{ App\Models\Setting::getValue('contact_address') }}</a></li>
+            <li><a href="#">電話番号 : {{ App\Models\Setting::getValue('contact_phone') }}</a></li>
+            <li><a href="#">メールアドレス : {{ App\Models\Setting::getValue('contact_email') }}</a></li>
+        </div>
+      </div>
     </div>
 
     <!-- mobile nav end -->

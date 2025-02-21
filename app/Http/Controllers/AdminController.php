@@ -19,7 +19,6 @@ class AdminController extends Controller
 {
     public function home(){
         $top_products = Product::inRandomOrder()->take(5)->get();
-        dd($top_products);
         return view('admin.index',compact('top_products'));
     }
     public function categoreis(){

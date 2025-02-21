@@ -18,7 +18,7 @@
         <input type="email" name="email" id="email" class="form-control border-2" placeholder="email@gmail.com" autofocus>
         <span class="invalid-feedback"></span>
         <div class="input-box d-flex flex-column">
-            <span class="mb-3 text-danger" id="message"></span>
+            <span class="mb-2 pt-2 text-danger" id="message"></span>
         </div>
       </div>
 
