@@ -177,71 +177,74 @@
     <!-- /Header Section -->
 
 
-  <!-- Main Section -->
-  <main>
-    @yield('contents')
-  </main>
-  <!-- /Main Section -->
+    <!-- Main Section -->
+    <main>
+        @yield('contents')
+    </main>
+    <!-- /Main Section -->
 
-  @php
-    $socialLinks = \App\Models\Setting::getValue('social_links', []);
-  @endphp
+    @php
+        $socialLinks = \App\Models\Setting::getValue('social_links', []);
+    @endphp
 
-  <!-- Footer Section -->
-  <!-- filepath: /C:/fisherman/laravel/fisherman/resources/views/includes/layout.blade.php -->
-  <footer class="bg-main w-100 d-flex flex-column justify-content-between">
-    <div class="row justify-content-between w-100 pb-3 container-custom">
-      <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white mt-3">
-        @if (file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
-      <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
-      class="logo" alt="logo">
-      @else
-      <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
-      class="logo" alt="logo">
-      @endif
+    <!-- Footer Section -->
+    <!-- filepath: /C:/fisherman/laravel/fisherman/resources/views/includes/layout.blade.php -->
+    <footer class="bg-main w-100 d-flex flex-column justify-content-between">
+        <div class="row justify-content-between w-100 pb-3 container-custom">
+            <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white mt-3">
+                @if (file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
+                    <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
+                        class="logo" alt="logo">
+                @else
+                    <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
+                        class="logo" alt="logo">
+                @endif
 
-                    {{-- <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo"
+                {{-- <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo"
               alt=""></a> --}}
-          <p class="text-center txt-18">{{ App\Models\Setting::getValue('slogan') }}</p>
-          <div class="social-icons d-flex justify-content-between gap-1">
-            <a href="">
-              <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}" alt="Line">
-            </a>
-            <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Line"></a>
-            <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/wechat.png') }}" alt="Line"></a>
-            <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/xcom.png') }}"></a>
-          </div>
+                <p class="text-center txt-18">{{ App\Models\Setting::getValue('slogan') }}</p>
+                <div class="social-icons d-flex justify-content-between gap-1">
+                    <a href="">
+                        <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}" alt="Line">
+                    </a>
+                    <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/facebook.png') }}"
+                            alt="Line"></a>
+                    <a href=""><img class="icon_social" src="{{ asset('assets/icons/custom/wechat.png') }}"
+                            alt="Line"></a>
+                    <a href=""><img class="icon_social"
+                            src="{{ asset('assets/icons/custom/xcom.png') }}"></a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 mt-3 d-flex flex-column justify-content-center">
+                <h6 class="text-center text-warning mb-2">Useful Links</h6>
+                <ul class="list-unstyled link-list txt-15 useful-link">
+                    <li><a href="{{ route('home') }}">Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="{{ route('policy') }}">Terms & Privacy</a></li>
+                    <li><a href="#">Customer Review</a></li>
+                    <li><a href="#">Blogs</a></li>
+                </ul>
+            </div>
+            <div class="col-12 col-lg-2 mt-3 ">
+                <h6 class="text-center text-warning mb-2">Contact Us</h6>
+                <ul class="list-unstyled text-white txt-15 text-center">
+                    <li><a href="#">Address : {{ App\Models\Setting::getValue('contact_address') }}</a></li>
+                    <li><a href="#">Phone : {{ App\Models\Setting::getValue('contact_phone') }}</a></li>
+                    <li><a href="#">Email : {{ App\Models\Setting::getValue('contact_email') }}</a></li>
+            </div>
         </div>
-        <div class="col-12 col-lg-3 mt-3 d-flex flex-column justify-content-center">
-          <h6 class="text-center text-warning mb-2">Useful Links</h6>
-          <ul class="list-unstyled link-list txt-15 useful-link">
-            <li><a href="{{ route('home') }}">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="{{ route('policy') }}">Terms & Privacy</a></li>
-            <li><a href="#">Customer Review</a></li>
-            <li><a href="#">Blogs</a></li>
-          </ul>
         </div>
-        <div class="col-12 col-lg-2 mt-3 ">
-          <h6 class="text-center text-warning mb-2">Contact Us</h6>
-          <ul class="list-unstyled text-white txt-15 text-center">
-            <li><a href="#">Address : {{ App\Models\Setting::getValue('contact_address') }}</a></li>
-            <li><a href="#">Phone : {{ App\Models\Setting::getValue('contact_phone') }}</a></li>
-            <li><a href="#">Email : {{ App\Models\Setting::getValue('contact_email') }}</a></li>
-        </div>
-      </div>
-    </div>
 
-  <div class="bg-dark m-0 pb-4 pb-md-0">
-    <div class="row justify-content-around container-custom">
-      <div class="col-lg-5 text-white text-center text-lg-start">
-        <p class="my-2 txt-13">&copy; Copyright 2024-fisherman Designed by Andfun</p>
-      </div>
-      <div class="col-lg-5 text-white text-lg-end text-center">
-        <p class="my-2 txt-13"><a href="{{ route('policy') }}">Privacy | Terms</a></p>
-      </div>
-    </div>
+        <div class="bg-dark m-0 pb-4 pb-md-0">
+            <div class="row justify-content-around container-custom">
+                <div class="col-lg-5 text-white text-center text-lg-start">
+                    <p class="my-2 txt-13">&copy; Copyright 2024-fisherman Designed by Andfun</p>
+                </div>
+                <div class="col-lg-5 text-white text-lg-end text-center">
+                    <p class="my-2 txt-13"><a href="{{ route('policy') }}">Privacy | Terms</a></p>
+                </div>
+            </div>
 
     </footer>
     <!-- /Footer Section -->
@@ -323,14 +326,13 @@
                             if (response.length > 0) {
                                 $.each(response, function(index, product) {
                                     $('#product-list').append(`
-                             <div class="py-2">
-                                    <a href="/product/${product.id}" class="d-flex rounded">
-                                        <i
-                                    class="fa-solid fa-magnifying-glass align-self-center me-2"></i>
-                                        <p class="align-self-center">${product.name}</p>
-                                    </a>
-                                </div>
-                        `);
+                                        <div class="py-2">
+                                            <a href="/product/${product.id}" class="d-flex rounded">
+                                                <i class="fa-solid fa-magnifying-glass align-self-center me-2"></i>
+                                                <p class="align-self-center">${product.name}</p>
+                                            </a>
+                                        </div>
+                                    `);
                                 });
                             } else {
                                 $('#product-list').html('<p>No products found.</p>');
@@ -401,6 +403,7 @@
                         window.location.href = response.url;
                     } else if (response.status) {
                         // btn.toggleClass('active');
+                        updateWhiteListCount();
                     }
                     console.log(response.message);
                 }
@@ -416,8 +419,6 @@
 
                 addToWhiteList(getid, cur_btn);
 
-                updateWhiteListCount();
-
             });
         }
 
@@ -432,6 +433,7 @@
                 success: function(response) {
                     if (response.status) {
                         // btn.toggleClass('active');
+                        updateCartCount();
                     }
                     console.log(response.message);
                 }
@@ -451,9 +453,6 @@
                 }];
 
                 addToCart(products, cur_btn);
-
-                updateCartCount();
-
             });
         }
     </script>
