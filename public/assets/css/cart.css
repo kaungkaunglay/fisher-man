@@ -82,14 +82,44 @@ body {
     vertical-align: middle;
 }
 
-.table tbody {
-    max-height: 50vh;
+.scroller {
+    max-height: 70vh;
+    overflow: hidden;
     overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.table {
+    height: 100%;
+    table-layout: auto;
+}
+
+.table thead, .table tfoot {
+    position: sticky;
+}
+
+.table thead {
+    top: 0;
+}
+
+.table tfoot {
+    bottom: 0;
+}
+
+.table thead th,
+.table tfoot td {
+    height: 20px;
 }
 
 .table tbody td {
+    max-height: max-content;
     color: #005B96;
     background-color: #ECF5FB;
+}
+
+.table tbody tr,
+.table tbody tr {
+    height: max-content;
 }
 
 .cart thead th:nth-child(2),

@@ -67,22 +67,34 @@
                             @endif
                         </a>
                     </div>
+                    <!-- /Head Logo -->
+
+
+                    <!-- Search Bar -->
                     <div class="ms-2 position-relative w-50">
                         <form action="{{ route('products.search') }}" method="get">
                             <div class="input-group w-100">
                                 <input type="text" class="form-control bg-second search-bar" id="search"
-                                    placeholder="Search your Products" name="search_key">
-                                <button type="submit" class="bg-main text-white magnifying-glass"><i
-                                        class="fa-solid fa-magnifying-glass"></i></button>
+                                    placeholder="商品を検索" name="search_key">
+                                <button type="submit" class="bg-main text-white magnifying-glass">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
                             </div>
                         </form>
-                        <!-- search-box -->
+
+                        <!-- Search Box -->
                         <div class="search-result-list position-absolute border p-2 rounded-3 shadow" id="product-list">
 
                         </div>
-                        <!-- /search-box -->
+                        <!-- /Search Box -->
+
                     </div>
+                    <!-- /Search Bar -->
+
+
                     {{-- icon counts --}}
+
+                    <!-- Main Nav -->
                     <div class="d-none d-md-flex gap-5  ms-3">
                         <a href="{{ route('cart') }}" class="position-relative ">
                             <i class="fa-solid fa-cart-shopping icon"></i>
@@ -96,19 +108,30 @@
                         </a>
 
                         <button class="btn-login position-relative">
-                            <i class="fa-solid fa-user icon"></i>
+                            <i class="fa-solid fa-sign-out icon"></i>
                             <div class="dropdown position-absolute overflow-hidden bg-white">
                                 <ul class="border">
-                                    <li><a href="{{ url('/profile') }}" class="d-flex gap-2 text-black text-center"><i
-                                                class="fa-solid fa-address-card icon"></i>Profile</a></li>
-                                    <li><a href="{{ route('logout') }}"
-                                            class="px-3 d-flex gap-2 text-black text-center"><i
-                                                class="fas fa-door-open icon"></i>Logout</a></li>
+                                    <li>
+                                        <a href="{{ url('/profile') }}" class="d-flex gap-2 text-black text-center">
+                                            <i class="fa-solid fa-address-card icon"></i>プロフィール
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            class="px-3 d-flex gap-2 text-black text-center">
+                                            <i class="fas fa-door-open icon"></i>ログアウト
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </button>
                     </div>
+                    <!-- /Main Nav -->
+
                 </div>
+                <!-- /Top Header -->
+
+                <!-- Bottom Header -->
                 <div class="bottom-header">
                     <nav>
                         <div class="hambuger-menu">
@@ -117,34 +140,23 @@
                             </a>
                         </div>
                         <ul>
-                            <li><a href="{{ url('/') }}" class="menu-header">{{trans_lang('hello')}}</a></li>
-                            <li><a href="{{ url('/special-offer') }}" class="menu-header">{{trans_lang('special_offer')}}</a></li>
+                            <li><a href="{{ url('/') }}" class="menu-header">ホーム</a></li>
+                            <li><a href="{{ url('/special-offer') }}" class="menu-header">セール</a></li>
                             @foreach ($categories as $category)
                                 <li><a href="{{ route('category', $category->id) }}"
                                         class="menu-header">{{ $category->category_name }}</a></li>
                             @endforeach
-                            <li><a href="{{ url('/support') }}" class="menu-header">Support</a></li>
+                            <li><a href="{{ url('/support') }}" class="menu-header">サポート</a></li>
                         </ul>
                     </nav>
                 </div>
+                <!-- /Bottom Header -->
+
             </div>
         </div>
     </header>
-
-    <div class="category-popup" id="category-popup">
-        <ul>
-            <li class="close-popup">
-                <button id="close-popup">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </li>
-            @foreach ($subcategories as $subcategory)
-                <li><a href="{{ route('sub-category.show', $subcategory->id) }}"
-                        class="menu-category">{{ $subcategory->name }}</a></li>
-            @endforeach
-        </ul>
-    </div>
-    <!-- header section end -->
+    <!-- /Search Menu -->
+    <!-- /Header Section -->
 
 
     <!-- main section start -->
@@ -226,14 +238,31 @@
                 <span class="price">2</span> )
             </a>
         </div>
-        <a href="#" class="menu-header"><i class="fa-solid fa-tags"></i><br>Offers</a>
-        <a href="#" class="menu-header"><i class="fa-solid fa-user"></i><br>Profile</a>
+        <div class="col-12 col-lg-3 mt-3 d-flex flex-column justify-content-center">
+            <h6 class="text-center text-warning mb-2">便利なリンク</h6>
+            <ul class="list-unstyled link-list txt-15 useful-link">
+                <li><a href="{{ route('home') }}">ホーム</a></li>
+                <li><a href="#">商品</a></li>
+                <li><a href="#">よくある質問</a></li>
+                <li><a href="{{ route('policy') }}">利用規約とプライバシー</a></li>
+                <li><a href="#">お客様の声</a></li>
+                <li><a href="#">ブログ</a></li>
+            </ul>
+        </div>
+        <div class="col-12 col-lg-2 mt-3 ">
+            <h6 class="text-center text-warning mb-2">お問い合わせ</h6>
+            <ul class="list-unstyled text-white txt-15 text-center">
+                <li><a href="#">住所 : {{ App\Models\Setting::getValue('contact_address') }}</a></li>
+                <li><a href="#">電話番号 : {{ App\Models\Setting::getValue('contact_phone') }}</a></li>
+                <li><a href="#">メールアドレス : {{ App\Models\Setting::getValue('contact_email') }}</a></li>
+        </div>
+    </div>
     </div>
 
     <!-- mobile nav end -->
 
     <!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
-    {{-- <!-- <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script> --> --}}
+    {{-- <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>  --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
