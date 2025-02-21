@@ -107,9 +107,9 @@
                             <span id="white_list_count"
                                 class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
                         </a>
-
+                        
                         <button class="btn-login position-relative">
-                            <i class="fa-solid fa-user icon"></i>
+                            <i class="fa-solid fa-sign-out icon"></i>
                             <div class="dropdown position-absolute overflow-hidden bg-white">
                                 <ul class="border">
                                     <li>
