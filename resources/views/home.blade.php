@@ -1,6 +1,8 @@
 @extends('includes.layout')
 @section('title', 'home')
+@section('title', 'home')
 @section('style')
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" />
 @endsection
 
@@ -19,21 +21,36 @@
         </div>
     </section>
     <!-- /Hero Section -->
-
-  <!-- Recommand Products -->
-  <section class="bg-second my-3 py-3">
+    <!-- Hero Section -->
+    <section class="hero mt-5">
         <div class="container-custom">
-              <!-- Recomnand HeadLine -->
-              <div>
-                    <h6 class="txt-primary fw-bold mb-3">Recommand Products</h6>
-                    <div class="filter d-flex justify-content-between align-items-center mb-3">
-                          <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
-                                <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
-                                <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
-                          </div>
+            <div class="row justify-content-between">
+                <div class="col-lg-4 d-none d-lg-block">
+                    @include('includes.aside') <!-- Aside Layout -->
+                </div>
+                <div class="col-lg-8 col-md-12">
+                    @include('includes.slider') <!-- Slider Layout -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Hero Section -->
+
+    <!-- Recommand Products -->
+    <section class=" bg-second my-3 py-3">
+        <div class="container-custom">
+
+            <!-- Recomnand HeadLine -->
+            <div>
+                <h6 class="txt-primary fw-bold mb-3">Recommand Products</h6>
+                <div class="filter d-flex justify-content-between align-items-center mb-3">
+                    <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
+                        <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
+                        <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
                     </div>
-              </div>
-              <!-- /Recomnand HeadLine -->
+                </div>
+            </div>
+            <!-- /Recomnand HeadLine -->
 
         <!-- Card List -->
         <div class="card-list" id="view-list" data-list="fish-list-1">
@@ -183,42 +200,37 @@
             </div>
             <!-- /Discount Headline -->
 
-            <!-- Products List -->
-            <div class="card-list" id="view-list">
-                @foreach ($products->filter(fn($product) => $product->discount > 0.0)->take(6) as $product)
-                    <div class="item-card">
-                        <a href="{{ route('product.show', $product->id) }}" class="right">
-                            <img src="{{ asset($product->product_image) }}" class="card-img-top"
-                                alt="{{ $product->name }}">
-                        </a>
-                        <div class="left">
-                            <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
-                            <div class="title-category">
-                                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
-                                <h3 class="title m-t-b-10">{{ $product->name }}</h3>
-                            </div>
-                            <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
-                                {{ $product->description }}
-                            </a>
-                            <div class="d-flex gap-2 card-btn m-t-10">
-                                <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 -solid cart-btn
-                  @if ($product->inCart()) active @endif"
-                                    data-id="{{ $product->id }}">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </a>
-                                <a href="#"
-                                    class="py-1 common-btn2 white-list-btn
-                  @if ($product->inWhiteLists()) active @endif"
-                                    data-id="{{ $product->id }}">
-                                    <i class="fa-solid fa-bookmark"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+      <!-- Products List -->
+      <div class="card-list" id="view-list">
+        @foreach ($products->filter(fn($product) => $product->discount > 0.0)->take(6) as $product)
+          <div class="item-card">
+            <a href="{{ route('product.show', $product->id) }}" class="right">
+              <img src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">{{ $product->name }}</h3>
+              </div>
+              <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
+                {{ $product->description }}
+              </a>
+              <div class="d-flex gap-2 card-btn m-t-10">
+                <a href="javascript:void(0);" class="py-1 common-btn2 -solid cart-btn
+                  @if ($product->inCart()) active @endif" data-id="{{ $product->id }}">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+                <a href="#" class="py-1 common-btn2 white-list-btn
+                  @if ($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}">
+                  <i class="fa-solid fa-bookmark"></i>
+                </a>
+              </div>
             </div>
-            <!-- /Products List -->
+          </div>
+        @endforeach
+      </div>
+      <!-- /Products List -->
 
             <!-- Discount Footline -->
             <div class="row justify-content-center mx-0 mt-5">
@@ -275,40 +287,37 @@
             </div>
             <!-- /All Product Headline -->
 
-            <!-- Products List -->
-            <div class="card-list" id="view-list">
-                @foreach ($products as $product)
-                    <div class="item-card">
-                        <a href="{{ route('product.show', $product->id) }}" class="right">
-                            <img src="{{ asset($product->product_image) }}" class="card-img-top"
-                                alt="{{ $product->name }}">
-                        </a>
-                        <div class="left">
-                            <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
-                            <div class="title-category">
-                                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
-                                <h3 class="title m-t-b-10">{{ $product->name }}</h3>
-                            </div>
-                            <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
-                                {{ $product->description }}
-                            </a>
-                            <div class="d-flex gap-2 card-btn m-t-10">
-                                <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 -solid cart-btn @if ($product->inCart()) active @endif"
-                                    data-id="{{ $product->id }}">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </a>
-                                <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 white-list-btn @if ($product->inWhiteLists()) active @endif"
-                                    data-id="{{ $product->id }}">
-                                    <i class="fa-solid fa-bookmark"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+      <!-- Products List -->
+      <div class="card-list" id="view-list">
+        @foreach ($products as $product)
+          <div class="item-card">
+            <a href="{{ route('product.show', $product->id) }}" class="right">
+              <img src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
+            </a>
+            <div class="left">
+              <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
+              <div class="title-category">
+                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <h3 class="title m-t-b-10">{{ $product->name }}</h3>
+              </div>
+              <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
+                {{ $product->description }}
+              </a>
+              <div class="d-flex gap-2 card-btn m-t-10">
+                <a href="javascript:void(0);" class="py-1 common-btn2 -solid cart-btn
+                  @if ($product->inCart()) active @endif" data-id="{{ $product->id }}">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+                <a href="javascript:void(0);" class="py-1 common-btn2 white-list-btn
+                  @if ($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}">
+                  <i class="fa-solid fa-bookmark"></i>
+                </a>
+              </div>
             </div>
-            <!-- /Products List -->
+          </div>
+        @endforeach
+      </div>
+      <!-- /Products List -->
 
             <!-- All Products Footline -->
             <div class="row justify-content-center">
@@ -324,17 +333,122 @@
     </section>
     <!-- /All Products -->
 
-    <!-- All Scripts -->
-    <script src="{{ asset('assets/js/loadmore.js') }}"></script>
-    <script src="{{ asset('assets/js/view-list.js') }}"></script>
-    <script src="{{ asset('assets/js/words-limit.js') }}"></script>
-    <script src="{{ asset('assets/js/handle-button.js') }}"></script>
-    <!-- /All Scripts -->
+  <!-- All Scripts -->
+  <script src="{{ asset('assets/js/loadmore.js') }}"></script>
+  <script src="{{ asset('assets/js/view-list.js') }}"></script>
+  <script src="{{ asset('assets/js/words-limit.js') }}"></script>
+  <script>
+  $(document).ready(function () {
+    $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+    });
+
+
+    $('.white-list-btn').click(function (e) {
+    e.preventDefault();
+    const getid = $(this).data('id');
+    const cur = $(`.white-list-btn[data-id="${getid}"]`);
+
+
+
+    $.ajax({
+      url: `/white-list/${getid}`,
+      type: "POST",
+      data: {
+      id: getid
+      },
+      success: function (response) {
+      if (response.status == "redirect") {
+        window.location.href = response.url;
+      }
+      else if (response.status) {
+        // cur.toggleClass('active');
+      }
+      console.log(response.message);
+      }
+    });
+
+    $.ajax({
+      url: "{{ route('whitelist-count') }}",
+      method: 'GET',
+      success: function (response) {
+      $('#white_list_count').text(response.white_lists_count);
+      },
+      error: function (xhr) {
+      console.error(xhr);
+      }
+    });
+
+    });
+
+    $('.cart-btn').click(function (e) {
+    e.preventDefault();
+    const getid = $(this).data('id');
+    const cur = $(`.cart-btn[data-id="${getid}"]`);
+
+    var products = [{
+      id: getid,
+      quantity: 1
+    }];
+
+    $.ajax({
+      url: "{{ route('cart.add') }}",
+      type: "POST",
+      data: {
+      products: products
+      },
+      success: function (response) {
+
+      if (response.status) {
+        // cur.toggleClass('active');
+
+      }
+      console.log(response.message);
+      }
+    });
+
+    $.ajax({
+      url: "{{ route('cart-count') }}",
+      method: 'GET',
+      success: function (response) {
+      // Assuming response contains the new count
+      $('#cart_count').text(response.cart_count);
+      },
+      error: function (xhr) {
+      // Handle error here
+      console.error(xhr);
+      }
+    });
+
+    });
+  });
+
+    // $('.white-list-btn').click((ev) => {
+    //     ev.preventDefault();
+    //     const target = ev.currentTarget;
+
+    //     $(target).toggleClass('active');
+
+    //     if (!$('#bookmark_btn').hasClass('active')) {
+
+    //         $('#bookmark_btn').addClass('active');
+
+    //         setTimeout(() => {
+    //             $('#bookmark_btn').removeClass('active');
+    //         }, 1000);
+    //     }
+    // });
+  </script>
+
+  <!-- /All Scripts -->
 
     <!-- Testing Scripts -->
 
     <!-- /Testing Scripts -->
 @endsection
+
 
 @section('script')
     <script>
