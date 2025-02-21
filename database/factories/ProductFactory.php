@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Users;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -32,7 +33,8 @@ class ProductFactory extends Factory
             'discount' => $this->faker->randomFloat(2,1,10),
             'expiration_date' => $this->faker->date(),
             'sub_category_id' => $this->faker->numberBetween(1, 10),
-            'description' => $this->faker->text
+            'description' => $this->faker->text,
+            'user_id' => "2"
         ];
     }
 

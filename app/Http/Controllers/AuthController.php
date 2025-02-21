@@ -85,7 +85,7 @@ class AuthController extends Controller
                 'second_phone' => $request->input('second_phone_extension') . $request->input('second_phone')
             ]);
 
-            $phoneRegexJapan = '^\+81\s?[1-9]\d{0,4}\s?\d{1,4}\s?\d{4}$';
+            $phoneRegexJapan = '/^\+81[789]0\d{4}\d{4}$/';
             $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
                 // Validate first phone number
             if ($request->input('first_phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('first_phone'))) {
