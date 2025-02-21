@@ -11,9 +11,11 @@ $(document).ready(() => {
     else showPage('#checkout');
 
     // forward
+
     change_step('#checkout .btn-next', 2);
-    change_step('#address .btn-next', 3);
-    change_step('#payment .btn-next', 4);
+    change_step('#login .btn-next', 3);
+    change_step('#address .btn-next', 4);
+    change_step('#payment .btn-next', 5);
 
     //backward
     change_step('#payment .btn-back', 2);
@@ -144,6 +146,10 @@ function netTotal(addtion) {
 
     const table = $('.table-item');
 
+    console.log(Array.from(table).length);
+
+
+
     Array.from(table).forEach((i) => {
 
         const cost = $(i).find('.cost');
@@ -167,7 +173,6 @@ function netTotal(addtion) {
 }
 
 function currencyUnit() {
-
     return $('.price').first().text()[0];
 }
 
@@ -199,7 +204,7 @@ function change_step(trigger, point) {
 
         //
         if (dir) {
-            for (i = 1; i <= index + 2; i++) {
+            for (i = 1; i <= index + 1; i++) {
                 $($('.step')[i]).addClass('active');
             }
         } else {

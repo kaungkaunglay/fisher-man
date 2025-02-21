@@ -10,7 +10,6 @@
     <!-- Step List -->
     <section class="py-4 mt-3">
         <div class="container-custom px-0">
-
             <div class="position-relative">
                 <div class="progress-box w-100 h-100 position-absolute d-flex">
                     <span class="progress-bar m-auto">
@@ -40,7 +39,6 @@
                     </li>
                 </ul>
             </div>
-
         </div>
     </section>
     <!-- /Step List -->
@@ -136,7 +134,7 @@
             <!-- ./Mobile Style -->
 
             <div class="text-end my-4">
-                <a href="#address" id="next-btn" class="common-btn btn-next">Next</a>
+                <a href="{{ auth_helper()->check() ? '#address' : '#login' }}" id="next-btn" class="common-btn btn-next">Next</a>
             </div>
 
         </div>
@@ -262,8 +260,8 @@
                         </tr>
                     </table>
                     <div class="d-flex gap-3 my-4 justify-content-end">
-                        <button href="#checkout" class="btn btn-outline-primary common-btn"
-                            id="cancel">Cancel</button>
+                        <a href="#checkout" class="btn btn-outline-primary common-btn"
+                            id="cancel">Cancel</a>
                         <button type="submit" href="#payment" class="btn btn-outline-primary common-btn">Save</button>
                     </div>
                 </form>
@@ -479,7 +477,7 @@
                                     <span class="cost">
                                         <input type="hidden" value="1" class="quantity-value">
                                     </span>
-                                    <span class="price">{{ $item->product->product_price }}</span>
+                                    <span class="price">¥{{ $item->product->product_price }}</span>
                                 </div>
                             </div>
                         </div>
@@ -568,6 +566,7 @@
                 var dskbody = $('.dsk-cart-body');
                 if (dskbody.find('tr').length === 0) {
                     dskbody.html('<tr><td colspan="6" class="text-center">No product in the cart</td></tr>');
+                    $('#next-btn')
                 }
                 var mbbody = $('.mb-cart-body');
                 if (mbbody.find('.card').length === 0) {
@@ -630,31 +629,15 @@
             handleDeleteBtn('mb-cart-del-btn');
 
             // for address text input
-            $('#name').keyup(function() {
-                $('#name-result').html($(this).val());
+            $('.address-input').keyup(function() {
+                var fieldId = $(this).attr('id');
+                var resultId = '#' + fieldId + '-result';
+                $(resultId).html($(this).val());
             });
-            $('#tel').keyup(function() {
-                $('#tel-result').html($(this).val());
-            })
-            $('#line_id').keyup(function() {
-                $('#line_id-result').html($(this).val());
-            })
-            $('#delivery').keyup(function() {
-                $('#delivery-result').html($(this).val());
-            })
-            // for address text input
-            $('#name').keyup(function() {
-                $('#name-result').html($(this).val());
-            });
-            $('#tel').keyup(function() {
-                $('#tel-result').html($(this).val());
-            })
-            $('#line_id').keyup(function() {
-                $('#line_id-result').html($(this).val());
-            })
-            $('#delivery').keyup(function() {
-                $('#delivery-result').html($(this).val());
-            })
+
+
+            // for login
+
 
         });
     </script>
