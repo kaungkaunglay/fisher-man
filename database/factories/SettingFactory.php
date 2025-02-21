@@ -18,7 +18,7 @@ class SettingFactory extends Factory
     public function definition(): array
     {
         return [
-            'key' => $this->faker->unique()->randomElement(['contact_email', 'contact_phone', 'contact_address', 'logo']),
+            'key' => $this->faker->unique()->randomElement(['contact_email', 'contact_phone', 'contact_address', 'logo','policy']),
             'value' => $this->faker->word,
         ];
     }

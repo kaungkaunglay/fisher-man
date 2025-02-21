@@ -173,12 +173,12 @@
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.users.contact')}}" class="{{request()->is('admin/request-contact') ? 'active' : ''}}">
-                                                    <div class="text">Contact Form</div>
+                                                    <div class="text">Contact</div>
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.users.wishList')}}" class="{{request()->is('admin/request-wishList') ? 'active' : ''}}">
-                                                    <div class="text">Wish List Form</div>
+                                                    <div class="text">Wish List</div>
                                                 </a>
                                             </li>
 

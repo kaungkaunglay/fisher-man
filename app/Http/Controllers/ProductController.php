@@ -49,7 +49,7 @@ class ProductController extends Controller
             'sub_category_id' => 'required|exists:sub_categories,id',
             'name' => 'required|string|max:255',
             'product_price' => 'required|numeric',
-            'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'product_image' => 'required|nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'stock' => 'required|integer',
             'weight' => 'required|numeric',
             'size' => 'nullable|string|max:255',
