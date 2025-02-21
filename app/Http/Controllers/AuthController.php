@@ -33,7 +33,8 @@ class AuthController extends Controller
             'username.unique' => 'The username has already been taken.',
             'email.required' => 'The email field is required.',
             'email.email' => 'The email must be a valid email address.',
-            'email.unique' => 'The email has already been taken.',
+            'email.unique' => 'The email has already been taken.',      
+            'g-recaptcha-response.required' => 'The recaptcha field is required.',
             'password.required' => 'The password field is required.',
             'password.min' => 'The password must be at least 6 characters.',
             'password.max' => 'The password may not be greater than 16 characters.',
@@ -43,6 +44,7 @@ class AuthController extends Controller
             'first_phone.required' => 'The first phone field is required.',
             'first_phone.regex' => 'The first phone format is invalid.',
             'second_phone.regex' => 'The second phone format is invalid.',
+
             // 'line_id.min' => 'The line ID must be at least 4 characters.',
             // 'line_id.max' => 'The line ID may not be greater than 20 characters.',
             // 'ship_name.required' => 'The ship name field is required.',
@@ -65,6 +67,7 @@ class AuthController extends Controller
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,16}$/'
             ],
             'confirm_password' => 'required|same:password',
+            'g-recaptcha-response' => 'required',
             'first_phone' => 'required',
             'second_phone' => 'nullable'
         ], $messages);
@@ -214,6 +217,8 @@ class AuthController extends Controller
     }
 
     public function showEmailSuccess($email){
+        session()->flash('status', 'success'); 
+        session()->flash('message', 'We sent you an email to reset your password. Please check your email.');
         return view('email_success', ['email' => $email]);
     }
 

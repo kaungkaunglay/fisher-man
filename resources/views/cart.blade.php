@@ -10,7 +10,6 @@
     <!-- Step List -->
     <section class="py-4 mt-3">
         <div class="container-custom px-0">
-
             <div class="position-relative">
                 <div class="progress-box w-100 h-100 position-absolute d-flex">
                     <span class="progress-bar m-auto">
@@ -20,27 +19,26 @@
                 <ul class="step-list d-flex text-center">
                     <li class="step active d-flex flex-column align-items-center">
                         <span class="me-2">1</span>
-                        <p class="d-none d-md-block">Order details</p>
+                        <p class="d-none d-md-block">注文詳細</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">2</span>
-                        <p class="d-none d-md-block">Login</p>
+                        <p class="d-none d-md-block">ログイン</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">3</span>
-                        <p class="d-none d-md-block">Shopping address</p>
+                        <p class="d-none d-md-block">配送先住所</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">4</span>
-                        <p class="d-none d-md-block">Payment</p>
+                        <p class="d-none d-md-block">支払い</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">5</span>
-                        <p class="d-none d-md-block">Complete</p>
+                        <p class="d-none d-md-block">完了</p>
                     </li>
                 </ul>
             </div>
-
         </div>
     </section>
     <!-- /Step List -->
@@ -129,7 +127,7 @@
                 @endforeach
                 <div class="no-cart"></div>
                 <div class="d-flex justify-content-between bg-primary text-white p-2 mt-3">
-                    <p>Total :</p>
+                    <p>合計 :</p>
                     <p>
                         <span class="total"></span>
                     </p>
@@ -138,7 +136,8 @@
             <!-- ./Mobile Style -->
 
             <div class="text-end my-4">
-                <a href="#login" class="common-btn btn-next">Next</a>
+                <a href="{{ auth_helper()->check() ? '#address' : '#login' }}" id="next-btn"
+                    class="common-btn btn-next">Next</a>
             </div>
 
         </div>
@@ -150,32 +149,39 @@
         <div class="container-custom">
 
             <div class="border w-75 mx-auto px-5 py-3 rounded shadow login-box">
-                <h2 class="text-center mb-3">Login</h2>
-                <form action="#">
+                <h2 class="text-center mb-3">ログイン</h2>
+                <form action="#" method="POST" id="login_form" name="login_form">
+                    @csrf
+
                     <div class="d-flex flex-column">
                         <div class="form-group row mt-3 align-items-center">
-                            <label for="" class="col-12 col-md-4">User Name</label>
+                            <label for="username" class="col-12 col-md-4">ユーザー名</label>
                             <div class="col-12 col-md-8 mt-2">
                                 <div class="input-group border border-2 rounded px-0">
-                                    <input type="text" class="form-control border-0" placeholder="Username or Email">
+                                    <input type="text" id="username" name="username" class="form-control border-0" placeholder="ユーザー名またはメールアドレス">
                                     <button class="btn" tabindex="-1">
                                         <i class="fa-solid fa-user"></i>
                                     </button>
                                 </div>
                             </div>
+                            <span class="invalid-feedback"></span>
                         </div>
                         <div class="form-group row mt-3 align-item-center">
-                            <label for="" class="col-12 col-md-4">Password</label>
+                            <label for="password" class="col-12 col-md-4">パスワード</label>
                             <div class="col-12 col-md-8 mt-2">
                                 <div class="input-group border border-2 rounded px-0">
-                                    <input type="text" class="form-control border-0" placeholder="********">
+                                    <input type="text" id="password" name="password" class="form-control border-0" placeholder="********">
                                     <button class="btn" tabindex="-1">
                                         <i class="fa-solid fa-eye"></i>
                                     </button>
                                 </div>
                             </div>
+                            <span class="invalid-feedback"></span>
                         </div>
-                        <a href="#address" class="common-btn -solid mx-auto mt-5 rounded-pill w-100 btn-next">Login</a>
+                        <div class="input-box d-flex flex-column">
+                            <span class="mb-3 text-danger" id="message"></span>
+                        </div>
+                        <button type="submit" class="common-btn -solid mx-auto mt-5 rounded-pill w-100">ログイン</button>
                     </div>
                 </form>
             </div>
@@ -543,12 +549,10 @@
     <!-- Complete Step -->
     <section class="page mt-4" id="complete">
         <div class="container-custom">
-            <p class="text-center">Your Payment is Successful. We will sent the invoice to your mail and Line ID Please
-                check.
-            </p>
+            <p class="text-center">お支払いが成功しました。請求書はメールとLINE IDに送信されますので、ご確認ください。</p>
             <div class="d-flex gap-3 py-5 justify-content-center">
-                <a href="{{ url(path: '/') }}" class="btn btn-outline-primary common-btn">Contact Us</a>
-                <a href="{{ url('/') }}" class="btn btn-outline-primary common-btn">Home Page</a>
+                <a href="{{ url(path: '/') }}" class="btn btn-outline-primary common-btn">お問い合わせ</a>
+                <a href="{{ url('/') }}" class="btn btn-outline-primary common-btn">ホーム</a>
             </div>
         </div>
     </section>
@@ -556,12 +560,6 @@
 
     <!-- All Scripts -->
     <script src="{{ asset('assets/js/cart.js') }}"></script>
-
-    <!-- /All Scripts -->
-
-@endsection
-
-@section('script')
     <script>
         $(document).ready(function() {
 
@@ -589,8 +587,7 @@
                 }
             });
 
-            function deleteCart(product_id)
-            {
+            function deleteCart(product_id) {
                 $.ajax({
                     url: `/cart/delete/${product_id}`,
                     type: "DELETE",
@@ -611,8 +608,7 @@
 
             }
 
-            function handleDeleteBtn(class_name)
-            {
+            function handleDeleteBtn(class_name) {
                 $(`.${class_name}`).click(function(e) {
                     e.preventDefault();
                     const getid = $(this).data('id');
@@ -632,31 +628,65 @@
             handleDeleteBtn('mb-cart-del-btn');
 
             // for address text input
-            $('#name').keyup(function() {
-                $('#name-result').html($(this).val());
+            $('.address-input').keyup(function() {
+                var fieldId = $(this).attr('id');
+                var resultId = '#' + fieldId + '-result';
+                $(resultId).html($(this).val());
             });
-            $('#tel').keyup(function() {
-                $('#tel-result').html($(this).val());
-            })
-            $('#line_id').keyup(function() {
-                $('#line_id-result').html($(this).val());
-            })
-            $('#delivery').keyup(function() {
-                $('#delivery-result').html($(this).val());
-            })
-            // for address text input
-            $('#name').keyup(function() {
-                $('#name-result').html($(this).val());
+
+            // for login
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
             });
-            $('#tel').keyup(function() {
-                $('#tel-result').html($(this).val());
-            })
-            $('#line_id').keyup(function() {
-                $('#line_id-result').html($(this).val());
-            })
-            $('#delivery').keyup(function() {
-                $('#delivery-result').html($(this).val());
-            })
+
+            $("#login_form").submit(function (e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: "{{ route('login_store') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response.status == true) {
+                            window.location.href = "#address";
+                        } else {
+
+                            // if response has message, show the message , if not empty the message, clear the error messages
+                            $('#message').html(response.message ?? '');
+
+                            var errors = response.errors ?? {};
+
+                            var fields = [
+                                'username',
+                                'password'
+                            ];
+
+                            fields.forEach(function (field) {
+                                if (errors[field]) {
+                                    $('#' + field)
+                                        .closest('.input-box')
+                                        .find('span.invalid-feedback')
+                                        .addClass('d-block')
+                                        .html(errors[field]);
+                                } else {
+                                    $('#' + field)
+                                        .closest('.input-box')
+                                        .find('span.invalid-feedback')
+                                        .removeClass('d-block')
+                                        .html('');
+                                }
+                            });
+
+                        }
+                    }
+                });
+            });
+
 
         });
     </script>

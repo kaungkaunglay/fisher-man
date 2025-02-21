@@ -14,7 +14,7 @@
         </div>
 
         <!-- form start -->
-        <form method="POST" id="update_basic" name="login_form" class="input-container d-flex flex-column">
+        <form method="POST" id="login_form" name="login_form" class="input-container d-flex flex-column">
             @csrf
             <div class="input-box d-flex flex-column">
                 <label for="username">Username</label>
@@ -35,7 +35,7 @@
             </div>
 
             <div class="input-box d-flex flex-column mx-auto">
-                <div class="g-recaptcha" data-sitekey="6LfCvtoqAAAAAP_U1Pm-7x4IFB-avJ8O_SxjNQZ8"></div>
+                <div class="g-recaptcha" data-sitekey="{{env('RECAPTCHA_SITE_KEY')}}"></div>
                 <span class="invalid-feedback"></span>
             </div>
             <div class="input-box d-flex flex-column">
@@ -82,7 +82,7 @@
                 }
             });
 
-            $("#update_basic").submit(function (e) {
+            $("#login_form").submit(function (e) {
                 e.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({

@@ -12,6 +12,7 @@ $(document).ready(() => {
     else showPage('#checkout');
 
     // forward
+
     change_step('#checkout .btn-next', 2);
     change_step('#login .btn-next', 2);
     change_step('#address .btn-next', 3);
@@ -147,6 +148,10 @@ function netTotal(addtion) {
 
     const table = $('.table-item');
 
+    console.log(Array.from(table).length);
+
+
+
     Array.from(table).forEach((i) => {
 
         const cost = $(i).find('.cost');
@@ -192,40 +197,41 @@ function skipStepTester() {
 }
 
 // step chaging function
-function change_step(trigger, point) {
+// function change_step(trigger, point) {
 
-    $(trigger).click((ev) => {
-        ev.preventDefault();
+//     $(trigger).click((ev) => {
+//         ev.preventDefault();
 
-        const header = $('header').outerHeight() || 0;
-        const dir = ev.currentTarget.classList.contains('btn-next') ? true : false; //true for forward dir & false for backward dir
-        const index = ($('.page').index(ev.currentTarget.closest('.page')));
-        const progress = document.querySelector('.progress');
+//         const header = $('header').outerHeight() || 0;
+//         const dir = ev.currentTarget.classList.contains('btn-next') ? true : false; //true for forward dir & false for backward dir
+//         const index = ($('.page').index(ev.currentTarget.closest('.page')));
+//         const progress = document.querySelector('.progress');
 
-        //
-        if (dir) {
-            for (i = 1; i <= index + 1; i++) {
-                $($('.step')[i]).addClass('active');
-            }
-        } else {
-            for (i = 4; i > index - (index == '1' ? 1 : 0); i--) {
-                $($('.step')[i]).removeClass('active');
-            }
-        }
+//         //
+//         if (dir) {
+//             for (i = 1; i <= index + 1; i++) {
+//             for (i = 1; i <= index + 1; i++) {
+//                 $($('.step')[i]).addClass('active');
+//             }
+//         }else {
+//             for (i = 4; i > index - (index == '1' ? 1 : 0); i--) {
+//                 $($('.step')[i]).removeClass('active');
+//             }
+//         }
 
-        console.log($(trigger).attr('href'));
+//         console.log($(trigger).attr('href'));
 
-        progress.style.width = `calc((100% / 4) * ${point}`
+//         progress.style.width = `calc((100% / 4) * ${point}`
 
-        $($(trigger).closest('.page')).hide();
-        $($(trigger).attr('href')).fadeIn();
+//         $($(trigger).closest('.page')).hide();
+//         $($(trigger).attr('href')).fadeIn();
 
-        $('html, body').animate({
+//         $('html, body').animate({
 
-            scrollTop: $('main').offset().top - header
-        }, 500);
-    })
-}
+//             scrollTop: $('main').offset().top - header
+//         }, 500);
+//     })
+// }
 
 function cleartotalPrice() {
    if($('.cost').length <= 0 ) $('.total').text(0);

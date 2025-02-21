@@ -7,28 +7,11 @@
 @section('contents')
 
     <section class="all-products container-custom mb-3 mt-5">
-        <h6 class="txt-primary fw-bold mb-3">Searched Products</h6>
+        <h6 class="txt-primary fw-bold mb-3">検索された商品</h6>
         <div class="filter d-flex justify-content-between align-items-center mb-3">
             <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
                 <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
                 <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
-            </div>
-            <div class="sort-container">
-                <div class="arrows">
-                    <button><i class="fa-solid fa-caret-up"></i></button>
-                    <button><i class="fa-solid fa-caret-down"></i></button>
-                </div>
-                <div class="dropdown">
-                    <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Sort by
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
         <div class="card-list" id="view-list">
