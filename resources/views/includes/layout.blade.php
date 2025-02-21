@@ -106,7 +106,7 @@
             </a>
 
             <button class="btn-login position-relative">
-              <i class="fa-solid fa-user icon"></i>
+              <i class="fa-solid fa-sign-out icon"></i>
               <div class="dropdown position-absolute overflow-hidden bg-white">
                 <ul class="border">
                   <li>
