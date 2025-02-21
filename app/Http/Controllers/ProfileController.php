@@ -35,13 +35,14 @@ class ProfileController extends Controller
             'email.required' => 'The email field is required.',
             'email.email' => 'The email must be a valid email address.',
             'email.unique' => 'The email has already been taken.',
+            'first_org_name' => 'The organize field is required.',
         ];
 
         // Validate incoming request data
         $validator = Validator::make($request->all(), [
             'username' => 'required|min:4|max:20|unique:users,username,' . AuthHelper::id(),
             'email' => 'required|email|unique:users,email' . AuthHelper::id(),
-            'first_org_name' => 'required|min:4|max:20',
+            'first_org_name' => 'min:4|max:20',
         ], $messages);
 
         // Check if validation fails
@@ -73,21 +74,19 @@ class ProfileController extends Controller
         // Define custom error messages for the new fields
         $messages = [
             'address.required' => 'The address field is required.',
-            'first_phone.required' => 'The first phone number is required.',
+            'address.max' => 'The address may not be greater than 3]255 characters.',
+            'address.string' => 'The address must be text.',
             'first_phone.regex' => 'The first phone number must be a valid phone number.',
-            'second_phone.required' => 'The second phone number is required.',
             'second_phone.regex' => 'The second phone number must be a valid phone number.',
         ];
 
         // Validate incoming request data for address and phone numbers
         $validator = Validator::make($request->all(), [
-            'address' => 'required|string|max:255',
+            'address' => 'require|string|max:255',
             'first_phone' => [
-                'required',
                 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'
             ],
             'second_phone' => [
-                'required',
                 'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'
             ],
         ], $messages);

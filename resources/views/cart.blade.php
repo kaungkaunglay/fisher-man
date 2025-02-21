@@ -3,6 +3,7 @@
 @section('title', 'cart')
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/cart.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/cart.css') }}" />
 @endsection
 @section('contents')
 
@@ -462,97 +463,60 @@
                 }
             });
 
+            function deleteCart(product_id)
+            {
+                $.ajax({
+                    url: `/cart/delete/${product_id}`,
+                    type: "DELETE",
+                    data: {
+                        id: product_id
+                    },
+                    success: function(response) {
+                        // location.reload();
+                        if (response.status) {
+                            removeCart(product_id);
+                            netTotal();
+                            updateCartCount();
+                        }
+
+                        console.log(response.message);
+                    }
+                });
+            }
+
+            function handleDeleteBtn(class_name)
+            {
+                $(`.${class_name}`).click(function(e) {
+                    e.preventDefault();
+                    const getid = $(this).data('id');
+
+                    // delete cart
+                    deleteCart(getid);
+
+                });
+            }
+
             // for desktop
             // desktop delete button
-            $('.dsk-cart-del-btn').click(function(e) {
-                e.preventDefault();
+            handleDeleteBtn('dsk-cart-del-btn');
 
-                const getid = $(this).data('id');
-
-                $.ajax({
-                    url: "{{ route('cart-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        // Assuming response contains the new count
-                        $('#cart_count').text(response.cart_count);
-                    },
-                    error: function(xhr) {
-                        // Handle error here
-                        console.error(xhr);
-                    }
-                });
-                $.ajax({
-                    url: `/cart/delete/${getid}`,
-                    type: "DELETE",
-                    data: {
-                        id: getid
-                    },
-                    success: function(response) {
-                        // location.reload();
-                        if (response.status) {
-                            removeCart(response.product_id);
-                            netTotal();
-                        }
-                    }
-                });
-
-                $.ajax({
-                    url: "{{ route('cart-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        // Assuming response contains the new count
-                        $('#cart_count').text(response.cart_count);
-                    },
-                    error: function(xhr) {
-                        // Handle error here
-                        console.error(xhr);
-                    }
-                });
-            });
 
             // mobile delete button
-            $('.mb-cart-del-btn').click(function(e) {
-                e.preventDefault();
-                const getid = $(this).data('id');
-                // console.log(`.cart-${getid}`)
+            handleDeleteBtn('mb-cart-del-btn');
 
-                $.ajax({
-                    url: `cart/delete/${getid}`,
-                    type: "DELETE",
-                    data: {
-                        id: getid
-                    },
-                    success: function(response) {
-                        // location.reload();
-                        if (response.status) {
-                            console.log(response.product_id);
-                            removeCart(response.product_id);
-                            netTotal();
-                        }
-                    }
-                });
-
-                $.ajax({
-                    url: "{{ route('cart-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        // Assuming response contains the new count
-                        $('#cart_count').text(response.cart_count);
-                    },
-                    error: function(xhr) {
-                        // Handle error here
-                        console.error(xhr);
-                    }
-                });
+            // for address text input
+            $('#name').keyup(function() {
+                $('#name-result').html($(this).val());
             });
-
-            $('#next-btn').click(() => {
-                @if (!Auth::check())
-                    window.location.href = "{{ route('login') }}"
-                @endif
-            });
-
-
+            $('#tel').keyup(function() {
+                $('#tel-result').html($(this).val());
+            })
+            $('#line_id').keyup(function() {
+                $('#line_id-result').html($(this).val());
+            })
+            $('#delivery').keyup(function() {
+                $('#delivery-result').html($(this).val());
+            })
             // for address text input
             $('#name').keyup(function() {
                 $('#name-result').html($(this).val());
@@ -569,6 +533,4 @@
 
         });
     </script>
-    <!-- /All Scripts -->
-
 @endsection
