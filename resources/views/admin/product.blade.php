@@ -102,24 +102,27 @@
             </div>
 
             <div class="wg-box">
-                <fieldset>
-                    <div class="body-title mb-10">Upload Image</div>
-                    <div class="upload-image mb-16">
-                        <div class="item">
-                            @if(isset($product) && $product->product_image)
-                            <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
-                            @endif
-                        </div>
-                        <div class="item up-load">
-                            <label class="uploadfile" for="product_image">
-                                <span class="icon"><i class="icon-upload-cloud"></i></span>
-                                <span class="text-tiny">Drop your image here or select <span class="tf-color">click to browse</span></span>
-                                <input type="file" id="product_image" name="product_image" required>
-                            </label>
-                        </div>
+            <fieldset>
+                <div class="body-title mb-10">Upload Image</div>
+                <div class="upload-image mb-16">
+                    <div class="item">
+                        @if(isset($product) && $product->product_image)
+                            <img id="preview" src="{{ asset($product->product_image) }}" alt="{{ $product->name }}" style="display: block;">
+                        @else
+                            <img id="preview" src="" alt="Image Preview" style="display: none;">
+                        @endif
                     </div>
-                    <div class="body-text">Add a product image. The quality and background standards should be maintained.</div>
-                </fieldset>
+                    <div class="item up-load">
+                        <label class="uploadfile" for="product_image">
+                            <span class="icon"><i class="icon-upload-cloud"></i></span>
+                            <span class="text-tiny">Drop your image here or select <span class="tf-color">click to browse</span></span>
+                            <input type="file" id="product_image" name="product_image" required accept="image/*">
+                        </label>
+                        <p id="file-name"></p> <!-- To show the file name -->
+                    </div>
+                </div>
+                <div class="body-text">Add a product image. The quality and background standards should be maintained.</div>
+            </fieldset>
                 <fieldset class="date">
                     <div class="body-title mb-10">Day of Caught <span class="tf-color-1">*</span></div>
                     <input class="mb-10" type="date" name="day_of_caught" step="0.01" value="{{ old('day_of_caught', $product->day_of_caught ?? '') }}" required>
@@ -129,6 +132,8 @@
                     <input class="mb-10" type="date" name="expiration_date" step="0.01" value="{{ old('expiration_date', $product->expiration_date ?? '') }}" required>
                 </fieldset>
             </div>
+
+            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
             <div class="cols gap10">
                 <button class="tf-button w-full" type="submit">{{ isset($product) ? 'Update Product' : 'Add Product' }}</button>
@@ -154,4 +159,25 @@
 <script src="{{ asset('assets/admin/js/switcher.js') }}"></script>
 <script src="{{ asset('assets/admin/js/theme-settings.js') }}"></script>
 <script src="{{ asset('assets/admin/js/main.js') }}"></script>
+<script>
+document.getElementById('product_image').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    const preview = document.getElementById('preview');
+    const fileNameDisplay = document.getElementById('file-name');
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+
+        fileNameDisplay.textContent = "Selected file: " + file.name;
+    } else {
+        preview.style.display = "none";
+        fileNameDisplay.textContent = "";
+    }
+});
+</script>
 @endsection

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'product_price', 'product_image', 'stock', 'weight', 'size', 'day_of_caught', 'expiration_date', 'discount', 'sub_category_id','description'];
+    protected $fillable = ['name', 'product_price', 'product_image', 'stock', 'weight', 'size', 'day_of_caught', 'expiration_date', 'discount', 'sub_category_id','description','user_id'];
 
     public function subCategory() {
         return $this->belongsTo(Sub_category::class);
@@ -22,6 +22,10 @@ class Product extends Model
     public function carts()
     {
         return $this->hasMany(Cart::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(Users::class);
     }
 
     public function inWhiteLists()
