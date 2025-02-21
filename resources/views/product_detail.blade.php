@@ -55,7 +55,7 @@
                             <div class="d-flex">
                                 <div class="quantity d-flex">
                                     <button class="btn decrement" @if($product->inCart()) disabled @endif>-</button>
-                                    <input type="text" class="quantity-value" value="{{ $product->getCart()->quantity ?? 1 }}" readonly>
+                                    <input type="number" class="quantity-value" value="{{ $product->getCart()->quantity ?? 1 }}">
                                     <button class="btn increment" @if($product->inCart()) disabled @endif>+</button>
                                 </div>
                                 <button class="common-btn ms-5 add-to-cart-btn" data-id="{{$product->id}}"> @if($product->inCart()) Added @else Add @endif  to Cart</button>
