@@ -18,6 +18,8 @@ class ProductFactory extends Factory
     protected $model = \App\Models\Product::class;
     public function definition(): array
     {
+        $user = Users::inRandomOrder()->first();
+
         $images = [
             "assets/products/product1.png",
             "assets/products/product2.png"
