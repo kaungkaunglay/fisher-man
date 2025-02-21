@@ -47,7 +47,14 @@
                                             alt="{{ $product->name }}">
                                     </a>
                                     <div class="left">
-                                        <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
+                                        <p class="price m-t-b-10">
+            @if ($product->discount > 0)
+            ¥{{ number_format($product->product_price - $product->discount, 2) }}
+            <span class="original-price">¥{{ number_format($product->product_price, 2) }}</span>
+            @else
+            <span class="">¥{{ number_format($product->product_price, 2) }}</span>
+            @endif
+          </p>
                                         <div class="title-category">
                                             <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                                             <h3 class="title m-t-b-10">{{ $product->name }}</h3>
@@ -56,8 +63,16 @@
                                             {{ $product->description }}
                                         </a>
                                         <div class="d-flex card-btn m-t-10">
-                                            <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                                            <a href="javascript:void(0);" class="w-100 py-1 common-btn" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
+                                            <a href="javascript:void(0);"
+                                                class="py-1 common-btn2 me-2 -solid cart-btn @if ($product->inCart()) active @endif"
+                                                data-id="{{ $product->id }}">
+                                                <i class="fa-solid fa-cart-shopping"></i>
+                                            </a>
+                                            <a href="javascript:void(0);"
+                                                class=" py-1 common-btn2 white-list-btn @if ($product->inWhiteLists()) active @endif"
+                                                data-id="{{ $product->id }}">
+                                                <i class="fa-solid fa-bookmark"></i>
+                                            </a>
                                         </div>
 
                                     </div>
@@ -76,93 +91,12 @@
 
     <script src="{{ asset('assets/js/view-list.js') }}"></script>
     <script src="{{ asset('assets/js/words-limit.js') }}"></script>
+@endsection
+@section('script')
     <script>
-        $(document).ready(function() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-
-            $('.white-list-btn').click(function(e) {
-                e.preventDefault();
-                const getid = $(this).data('id');
-                const cur = $(`.white-list-btn[data-id="${getid}"]`);
-
-
-
-                $.ajax({
-                    url: `/white-list/${getid}`,
-                    type: "POST",
-                    data: {
-                        id: getid
-                    },
-                    success: function(response) {
-                        if (response.status == "redirect") {
-                            window.location.href = response.url;
-                        } else if (response.status) {
-                            // cur.toggleClass('active');
-                        }
-                        console.log(response.message);
-                    }
-                });
-
-                $.ajax({
-                    url: "{{ route('whitelist-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        $('#white_list_count').text(response.white_lists_count);
-                    },
-                    error: function(xhr) {
-                        console.error(xhr);
-                    }
-                });
-
-            });
-
-            $('.cart-btn').click(function(e) {
-                e.preventDefault();
-                const getid = $(this).data('id');
-                const cur = $(`.cart-btn[data-id="${getid}"]`);
-
-                var products = [{
-                    id: getid,
-                    quantity: 1
-                }];
-
-                $.ajax({
-                    url: "{{ route('cart.add') }}",
-                    type: "POST",
-                    data: {
-                        products: products
-                    },
-                    success: function(response) {
-
-                        if (response.status) {
-                            // cur.toggleClass('active');
-
-                        }
-                        console.log(response.message);
-                    }
-                });
-
-                $.ajax({
-                    url: "{{ route('cart-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        // Assuming response contains the new count
-                        $('#cart_count').text(response.cart_count);
-                    },
-                    error: function(xhr) {
-                        // Handle error here
-                        console.error(xhr);
-                    }
-                });
-
-            });
-
-
-        });
+        $(document).ready(()=>{
+            handleAddToCartBtn('cart-btn');
+            handleAddToWhiteListBtn('white-list-btn');
+        })
     </script>
 @endsection

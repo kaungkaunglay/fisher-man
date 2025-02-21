@@ -58,8 +58,8 @@ class WhiteListController extends Controller
 
         if ($user->whitelists()->where('product_id', $product_id)->exists()) {
             // Remove from user's whitelist
-            $user->whitelists()->detach($product_id);
-            return response()->json(['status' => true, 'message' => 'Product removed from whitelist']);
+            // $user->whitelists()->detach($product_id);
+            return response()->json(['status' => true, 'message' => 'Product already added to whitelist']);
         }
 
         // Add to user's whitelist

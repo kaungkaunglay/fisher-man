@@ -84,9 +84,6 @@
                 <p>Already have an account?
                     <a href="{{ route('login') }}" class="ms-1">Login</a>
                 </p>
-                <p class="mt-2">Are you a seller?
-                    <a href="{{ route('register_seller') }}" class="ms-1">Register as seller</a>
-                </p>
             </div>
         </form>
         <!-- form end -->
