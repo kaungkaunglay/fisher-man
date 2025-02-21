@@ -35,6 +35,15 @@
                 </li>
             </ul>
         </div>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
 
         <div class="wg-box">
             <form class="form-new-product form-style-1" action="{{ isset($subcategory) ? route('update_sub_category', $subcategory->id) : route('add_sub_category') }}" method="POST" enctype="multipart/form-data">
@@ -45,7 +54,7 @@
                 
                 <fieldset>
                     <div class="body-title">Select Category <span class="tf-color-1">*</span></div>
-                    <select name="category_id" class="" required>
+                    <select name="category_id" class="" >
                         <option value="">Select Category</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}" {{ isset($subcategory) && $subcategory->category_id == $category->id ? 'selected' : '' }}>
@@ -57,7 +66,7 @@
 
                 <fieldset class="name">
                     <div class="body-title">Sub-Category Name <span class="tf-color-1">*</span></div>
-                    <input class="flex-grow" type="text" placeholder="Sub-Category name" name="name" value="{{ old('name', isset($subcategory) ? $subcategory->name : '') }}" required>
+                    <input class="flex-grow" type="text" placeholder="Sub-Category name" name="name" value="{{ old('name', isset($subcategory) ? $subcategory->name : '') }}" >
                 </fieldset>
                 
                 <fieldset>
