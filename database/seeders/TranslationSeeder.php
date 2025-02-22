@@ -140,6 +140,12 @@ class TranslationSeeder extends Seeder
                 'jp' => '価格',
             ],
             [
+                'key' => 'price_range',
+                'en' => 'Price Range',
+                'jp' => '価格範囲',
+            ],
+            
+            [
                 'key' => 'quanity',
                 'en' => 'Quanity',
                 'jp' => '数量', 

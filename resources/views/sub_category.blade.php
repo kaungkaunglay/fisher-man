@@ -42,14 +42,14 @@
               </div>
               <div class="dropdown">
                 <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Sort by
+                  {{trans_lang('sortby')}}
                 </button>
                 <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_asc']) }}">Price: Low to High</a></li>
-                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_desc']) }}">Price: High to Low</a></li>
-                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_asc']) }}">Name: A to Z</a></li>
-                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_desc']) }}">Name: Z to A</a></li>
-                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'latest']) }}">Latest</a></li>
+                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_asc']) }}">{{trans_lang('price_l_h')}}</a></li>
+                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_desc']) }}">{{trans_lang('price_h_l')}}</a></li>
+                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_asc']) }}">{{trans_lang('name_a_z')}}</a></li>
+                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_desc']) }}">{{trans_lang('name_z_a')}}</a></li>
+                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'latest']) }}">{{trans_lang('latest')}}</a></li>
 
                 </ul>
               </div>
@@ -58,7 +58,7 @@
 
         <div class="range-slider mx-auto">
             <input type="number" class="min-price" value="1" min="1" max="100">
-            <h3 class="txt">Price Range</h3>
+            <h3 class="txt">{{trans_lang('price_range')}}</h3>
             <input type="number" class="max-price" value="25" min="1" max="100">
             <div class="range-container position-relative mt-3 w-100">
                 <div class="slider-track"></div>
