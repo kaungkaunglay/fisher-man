@@ -5,7 +5,7 @@
         <li><a href="{{ route('sub-category.show', $subcategory->id) }}">{{ $subcategory->name }}</a></li>
     @endforeach
     <div class="d-flex">
-        <a href="{{ route('sub-category.show', $subcategory->id) }}" id="see-more-link" class="txt-primary d-inline-block mt-3 mx-auto"> See more Product </a>
+        <a href="{{ route('sub-category.show', $subcategory->id) }}" id="see-more-link" class="txt-primary d-inline-block mt-3 mx-auto"> {{trans_lang('see_more_product')}} </a>
     </div>
 </ul>
 

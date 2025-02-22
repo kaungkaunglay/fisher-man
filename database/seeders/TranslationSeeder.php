@@ -110,6 +110,16 @@ class TranslationSeeder extends Seeder
                 'jp' => 'ログイン',
             ],
             [
+                'key' => 'logout',
+                'en' => 'Logout',
+                'jp' => 'ログアウト',
+            ],
+            [
+                'key' => 'search_products',
+                'en' => 'Search your Products',
+                'jp' => '製品を検索',
+            ],
+            [
                 'key' => 'quantity',
                 'en' => 'Quantity',
                 'jp' => '数量',
@@ -227,6 +237,16 @@ class TranslationSeeder extends Seeder
                 'jp' => '商品が選択されていません',
             ],
             [
+                'key' => 'product',
+                'en' => 'Product',
+                'jp' => '製品',
+            ],
+            [
+                'key' => 'profile',
+                'en' => 'Profile',
+                'jp' => 'プロフィール',
+            ],
+            [
                 'key' => 'select',
                 'en' => 'Select',
                 'jp' => '選択',
@@ -240,6 +260,16 @@ class TranslationSeeder extends Seeder
                 'key' => 'add_cart',
                 'en' => 'Add to Cart',
                 'jp' => 'カートに追加',
+            ],
+            [
+                'key' => 'offer', 
+                'en' => 'Offer', 
+                'jp' => 'オファー',
+            ],
+            [
+                'key' => 'cart',
+                'en' => 'Cart',
+                'jp' => 'カート',
             ],
             [
                 'key' => 'info',
@@ -342,6 +372,11 @@ class TranslationSeeder extends Seeder
                 'jp' => 'アカウント登録して商品を購入',
             ],
             [
+                'key' => 'address',
+                'en' => 'Address',
+                'jp' => '住所',
+            ],
+            [
                 'key' => 'email',
                 'en' => 'Email',
                 'jp' => 'メールアドレス',
@@ -392,6 +427,11 @@ class TranslationSeeder extends Seeder
                 'jp' => 'お問い合わせ',
             ],
             [
+                'key' => 'useful_links',
+                'en' => 'Useful Links',
+                'jp' => '便利なリンク',
+            ],
+            [
                 'key' => 'wishlist',
                 'en' => 'Wishlist form',
                 'jp' => 'ウィッシュリスト',
@@ -415,6 +455,21 @@ class TranslationSeeder extends Seeder
                 'key' => 'faqs',
                 'en' => 'FAQs',
                 'jp' => 'よくある質問',
+            ],
+            [
+                'key' => 'customer_review',
+                'en' => 'Customer Review',
+                'jp' => '顧客レビュー',
+            ],
+            [
+                'key' => 'blogs',
+                'en' => 'Blogs',
+                'jp' => 'ブログ',
+            ],
+            [
+                'key' => 'terms_privacy',
+                'en' => 'Terms & Privacy',
+                'jp' => '利用規約とプライバシー',
             ],
             [
                 'key' => 'all_faqs',
