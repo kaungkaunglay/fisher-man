@@ -1,3 +1,4 @@
+{{-- @dd(check_role(1)) --}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +56,7 @@
 
         <!-- Top Header -->
         <div class="top-header">
-          
+
           <!-- Head Logo -->
           <div class="logo">
             <a href="{{ url('/') }}">

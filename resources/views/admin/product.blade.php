@@ -47,9 +47,6 @@
             @csrf
             @if(isset($product)) @method('PUT') @endif
 
-
-
-
             <div class="wg-box">
                 <fieldset class="name">
                     <div class="body-title mb-10">Product Name <span class="tf-color-1">*</span></div>

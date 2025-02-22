@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/style.css') }}">
     <!-- Font -->
     <link rel="stylesheet" href="{{ asset('assets/admin/font/fonts.css') }}">
-    
+
     <!-- Icon -->
     <link rel="stylesheet" href="{{ asset('assets/admin/icon/style.css') }}">
 @endsection
@@ -50,13 +50,13 @@
                             </div>
                         </form>
                     </div>
-                    
+
                 </div>
                 <div class="wg-table table-all-user">
                     <ul class="table-title flex gap20 mb-14">
                         <li>
                             <div class="body-title">Name</div>
-                        </li>    
+                        </li>
                         <li>
                             <div class="body-title">Email</div>
                         </li>
@@ -76,7 +76,7 @@
                         <div class="flex items-center justify-between gap20 flex-grow">
                             <div class="name">
                                 <a href="#" class="body-title-2">{{$contact->name}}</a>
-                                
+
                             </div>
                             <div class="body-text">{{$contact->email}}</div>
                             <div class="body-text">{{$contact->description}}</div>
@@ -84,8 +84,8 @@
                                 <div class="item eye">
                                    <a href="{{route('admin.contact.detail',$contact->id)}}"><i class="icon-eye"></i></a>
                                 </div>
-                           
-                             
+
+
                             </div>
                         </div>
                     </li>
@@ -93,26 +93,36 @@
                   @endforeach
                 </div>
                 <div class="divider"></div>
+                {{-- pagination --}}
+                @if ($contacts->hasPages())
                 <div class="flex items-center justify-between flex-wrap gap10">
-                    <div class="text-tiny">Showing 10 entries</div>
+                    <div class="text-tiny">
+                        Showing {{ $contacts->firstItem() }} to {{ $contacts->lastItem() }} of {{ $contacts->total() }} entries
+                    </div>
                     <ul class="wg-pagination">
-                        <li>
-                            <a href="#"><i class="icon-chevron-left"></i></a>
+                        <!-- Previous Page -->
+                        <li class="{{ $contacts->onFirstPage() ? 'disabled' : '' }}">
+                            <a href="{{ $contacts->previousPageUrl() }}">
+                                <i class="icon-chevron-left"></i>
+                            </a>
                         </li>
-                        <li>
-                            <a href="#">1</a>
-                        </li>
-                        <li class="active">
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon-chevron-right"></i></a>
+
+                        <!-- Page Numbers -->
+                        @foreach ($contacts->links()->elements[0] as $page => $url)
+                            <li class="{{ $page == $contacts->currentPage() ? 'active' : '' }}">
+                                <a href="{{ $url }}">{{ $page }}</a>
+                            </li>
+                        @endforeach
+
+                        <!-- Next Page -->
+                        <li class="{{ $contacts->hasMorePages() ? '' : 'disabled' }}">
+                            <a href="{{ $contacts->nextPageUrl() }}">
+                                <i class="icon-chevron-right"></i>
+                            </a>
                         </li>
                     </ul>
                 </div>
+                @endif
             </div>
             <!-- /all-user -->
         </div>
