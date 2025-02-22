@@ -67,7 +67,7 @@
                             @endif
                         </p> 
                         <div class="title-category">
-                            <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                            <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                             <h3 class="title m-t-b-10">{{ $product->name }}</h3>
                         </div>
                         <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">

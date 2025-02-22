@@ -12,7 +12,7 @@ class Product extends Model
     protected $fillable = ['name', 'product_price', 'product_image', 'stock', 'weight', 'size', 'day_of_caught', 'expiration_date', 'discount', 'sub_category_id','description','user_id'];
 
     public function subCategory() {
-        return $this->belongsTo(Sub_category::class);
+        return $this->belongsTo(Sub_category::class,'sub_category_id');
     }
 
     public function whitelists() {
