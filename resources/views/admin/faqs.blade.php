@@ -39,7 +39,7 @@
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">{{trans_lang('faqs')}}f</div>
+                    <div class="text-tiny">{{trans_lang('faqs')}}</div>
                 </li>
             </ul>
         </div>

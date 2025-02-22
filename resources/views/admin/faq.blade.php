@@ -76,9 +76,8 @@
             </div>
 
             <div class="cols gap10">
-                <button class="tf-button w-full" type="submit">{{ isset($faq) ? 'FAQを更新' : 'FAQを追加' }}</button>
-                <!-- {{ isset($product) ? 'Update Product' : 'Add Product' }} -->
-                <a href="{{ route('admin.products') }}" class="tf-button style-2 w-full">{{trans_lang('cancle')}}</a>
+                <button class="tf-button" type="submit">{{ isset($faq) ? 'FAQを更新' : 'FAQを追加' }}</button>
+
             </div>
         </form>
     </div>

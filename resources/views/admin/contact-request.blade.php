@@ -61,9 +61,6 @@
                             <div class="body-title">{{trans_lang('email')}}</div>
                         </li>
                         <li>
-                            <div class="body-title">{{trans_lang('description')}}</div>
-                        </li>
-                        <li>
                             <div class="body-title">{{trans_lang('action')}}</div>
                         </li>
                     </ul>
@@ -79,7 +76,6 @@
 
                             </div>
                             <div class="body-text">{{$contact->email}}</div>
-                            <div class="body-text">{{$contact->description}}</div>
                             <div class="list-icon-function">
                                 <div class="item eye">
                                    <a href="{{route('admin.contact.detail',$contact->id)}}"><i class="icon-eye"></i></a>

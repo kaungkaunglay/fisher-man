@@ -184,7 +184,7 @@
                                 <ul class="menu-list">
                                     <li class="menu-item has-children {{ request()->is('admin/shop*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
-                                            <div class="icon"><i class="icon-user"></i></div>
+                                            <div class="icon"><i class="bi bi-shop"></i></div>
                                             <div class="text">{{trans_lang('shop_list')}}</div>
                                         </a>
                                         <ul class="sub-menu" style="display: block;">

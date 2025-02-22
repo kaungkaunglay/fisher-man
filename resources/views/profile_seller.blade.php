@@ -934,7 +934,7 @@
                     processData: false,
                     success: function (response) {
                         if (response.status == true) {
-                            window.location.href = "{{ route('home') }}";
+                            window.location.href = "{{ route('profile_seller') }}";
                         } else {
                         }
                     }
