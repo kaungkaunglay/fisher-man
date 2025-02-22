@@ -323,9 +323,6 @@
                     $('.search-result-list').removeClass('d-block');
                 }
             })
-
-
-
             $('#search').on('input', function() {
                 let query = $(this).val();
                 if (query.length > 0) {
@@ -356,20 +353,12 @@
                 } else {
                     $('#product-list').html('');
                 }
-
             });
-
-
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
-
-
-
-
         });
 
         function updateCartCount() {
