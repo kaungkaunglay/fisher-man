@@ -63,7 +63,7 @@
                     </thead>
                     <tbody class="dsk-cart-body">
                         @foreach ($carts as $item)
-                            <tr class="table-row cart-{{ $item->product->id }}">
+                            <tr class="table-row cart-{{ $item->product->id }}" data-id="{{ $item->product->id }}">
                                 <td>
                                     <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
                                             alt="{{ $item->product->name }}"></div>
@@ -150,31 +150,37 @@
 
             <div class="border w-75 mx-auto px-5 py-3 rounded shadow login-box">
                 <h2 class="text-center mb-3">Login</h2>
-                <form action="#">
+                <form action="#" id="login_form" method="POST">
+                    @csrf
                     <div class="d-flex flex-column">
                         <div class="form-group row mt-3 align-items-center">
-                            <label for="" class="col-12 col-md-4">User Name</label>
+                            <label for="username" class="col-12 col-md-4">User Name</label>
                             <div class="col-12 col-md-8 mt-2">
                                 <div class="input-group border border-2 rounded px-0">
-                                    <input type="text" class="form-control border-0" placeholder="Username or Email">
+                                    <input  type="text" name="username" id="username" class="form-control border-0" placeholder="Username or Email">
                                     <button class="btn" tabindex="-1">
                                         <i class="fa-solid fa-user"></i>
                                     </button>
                                 </div>
+                                <span class="invalid-feedback"></span>
                             </div>
                         </div>
                         <div class="form-group row mt-3 align-item-center">
-                            <label for="" class="col-12 col-md-4">Password</label>
+                            <label for="password" class="col-12 col-md-4">Password</label>
                             <div class="col-12 col-md-8 mt-2">
                                 <div class="input-group border border-2 rounded px-0">
-                                    <input type="text" class="form-control border-0" placeholder="********">
+                                    <input type="text" name="password" id="password" class="form-control border-0" placeholder="********">
                                     <button class="btn" tabindex="-1">
                                         <i class="fa-solid fa-eye"></i>
                                     </button>
                                 </div>
+                                <span class="invalid-feedback"></span>
                             </div>
                         </div>
-                        <button class="common-btn -solid mx-auto mt-5 rounded-pill w-100">Login</button>
+                        <div class="input-box text-center">
+                            <span class="mb-3 text-danger" id="message"></span>
+                        </div>
+                        <button type="submit" class="common-btn -solid mx-auto mt-5 rounded-pill w-100">Login</button>
                     </div>
                 </form>
             </div>
@@ -585,110 +591,105 @@
                 }
             });
 
+            function deleteCart(product_id) {
+                $.ajax({
+                    url: `/cart/delete/${product_id}`,
+                    type: "DELETE",
+                    data: {
+                        id: product_id
+                    },
+                    success: function(response) {
+                        // location.reload();
+                        if (response.status) {
+                            removeCart(product_id);
+                            netTotal();
+                            updateCartCount();
+                        }
+
+                        console.log(response.message);
+                    }
+                });
+            }
+
+            function handleDeleteBtn(class_name) {
+                $(`.${class_name}`).click(function(e) {
+                    e.preventDefault();
+                    const getid = $(this).data('id');
+
+                    // delete cart
+                    deleteCart(getid);
+
+                });
+            }
+
             // for desktop
             // desktop delete button
-            $('.dsk-cart-del-btn').click(function(e) {
-                e.preventDefault();
+            handleDeleteBtn('dsk-cart-del-btn');
 
-                const getid = $(this).data('id');
-
-                $.ajax({
-                    url: "{{ route('cart-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        // Assuming response contains the new count
-                        $('#cart_count').text(response.cart_count);
-                    },
-                    error: function(xhr) {
-                        // Handle error here
-                        console.error(xhr);
-                    }
-                });
-                $.ajax({
-                    url: `/cart/delete/${getid}`,
-                    type: "DELETE",
-                    data: {
-                        id: getid
-                    },
-                    success: function(response) {
-                        // location.reload();
-                        if (response.status) {
-                            removeCart(response.product_id);
-                            netTotal();
-                        }
-                    }
-                });
-
-                $.ajax({
-                    url: "{{ route('cart-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        // Assuming response contains the new count
-                        $('#cart_count').text(response.cart_count);
-                    },
-                    error: function(xhr) {
-                        // Handle error here
-                        console.error(xhr);
-                    }
-                });
-            });
 
             // mobile delete button
-            $('.mb-cart-del-btn').click(function(e) {
-                e.preventDefault();
-                const getid = $(this).data('id');
-                // console.log(`.cart-${getid}`)
+            handleDeleteBtn('mb-cart-del-btn');
 
+            // for address text input
+            $('.address-input').keyup(function() {
+                var fieldId = $(this).attr('id');
+                var resultId = '#' + fieldId + '-result';
+                $(resultId).html($(this).val());
+            });
+
+            // for login
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $("#login_form").submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
                 $.ajax({
-                    url: `cart/delete/${getid}`,
-                    type: "DELETE",
-                    data: {
-                        id: getid
-                    },
+                    url: "{{ route('login_store') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
                     success: function(response) {
-                        // location.reload();
-                        if (response.status) {
-                            console.log(response.product_id);
-                            removeCart(response.product_id);
-                            netTotal();
+                        if (response.status == true) {
+                            window.location.href = "#address";
+                        } else {
+
+                            // if response has message, show the message , if not empty the message, clear the error messages
+                            $('#message').html(response.message ?? '');
+
+                            var errors = response.errors ?? {};
+
+                            var fields = [
+                                'username',
+                                'password'
+                            ];
+
+                            fields.forEach(function(field) {
+                                if (errors[field]) {
+                                    $('#' + field)
+                                        .closest('.input-box')
+                                        .find('span.invalid-feedback')
+                                        .addClass('d-block')
+                                        .html(errors[field]);
+                                } else {
+                                    $('#' + field)
+                                        .closest('.input-box')
+                                        .find('span.invalid-feedback')
+                                        .removeClass('d-block')
+                                        .html('');
+                                }
+                            });
+
                         }
                     }
                 });
-
-                $.ajax({
-                    url: "{{ route('cart-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        // Assuming response contains the new count
-                        $('#cart_count').text(response.cart_count);
-                    },
-                    error: function(xhr) {
-                        // Handle error here
-                        console.error(xhr);
-                    }
-                });
             });
 
-            $('#next-btn').click(() => {
-                @if (!Auth::check())
-                    window.location.href = "{{ route('login') }}"
-                @endif
-            });
-
-
-            // for address text input
-            $('#name').keyup(function() {
-                $('#name-result').html($(this).val());
-            });
-            $('#tel').keyup(function() {
-                $('#tel-result').html($(this).val());
-            })
-            $('#line_id').keyup(function() {
-                $('#line_id-result').html($(this).val());
-            })
-            $('#delivery').keyup(function() {
-                $('#delivery-result').html($(this).val());
-            })
 
         });
     </script>

@@ -324,37 +324,7 @@
                 }
             })
 
-            function updateCartCount() {
-                $.ajax({
-                    url: "{{ route('cart-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        // Assuming response contains the new count
-                        $('#cart_count').text(response.cart_count);
-                    },
-                    error: function(xhr) {
-                        // Handle error here
-                        console.error(xhr);
-                    }
-                });
-            }
 
-            function updateWhiteListCount() {
-                $.ajax({
-                    url: "{{ route('whitelist-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        // Assuming response contains the new count
-                        $('#white_list_count').text(response.white_lists_count);
-                    },
-                    error: function(xhr) {
-                        // Handle error here
-                        console.error(xhr);
-                    }
-                });
-            }
-            updateWhiteListCount();
-            updateCartCount();
 
             $('#search').on('input', function() {
                 let query = $(this).val();
@@ -370,14 +340,13 @@
                             if (response.length > 0) {
                                 $.each(response, function(index, product) {
                                     $('#product-list').append(`
-                             <div class="py-2">
-                                    <a href="/product/${product.id}" class="d-flex rounded">
-                                        <i
-                                    class="fa-solid fa-magnifying-glass align-self-center me-2"></i>
-                                        <p class="align-self-center">${product.name}</p>
-                                    </a>
-                                </div>
-                        `);
+                                        <div class="py-2">
+                                            <a href="/product/${product.id}" class="d-flex rounded">
+                                                <i class="fa-solid fa-magnifying-glass align-self-center me-2"></i>
+                                                <p class="align-self-center">${product.name}</p>
+                                            </a>
+                                        </div>
+                                    `);
                                 });
                             } else {
                                 $('#product-list').html('<p>No products found.</p>');
@@ -389,9 +358,121 @@
                 }
 
             });
+
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+
+
+
+
         });
+
+        function updateCartCount() {
+            $.ajax({
+                url: "{{ route('cart-count') }}",
+                method: 'GET',
+                success: function(response) {
+                    // Assuming response contains the new count
+                    $('#cart_count').text(response.cart_count);
+                },
+                error: function(xhr) {
+                    // Handle error here
+                    console.error(xhr);
+                }
+            });
+        }
+
+        function updateWhiteListCount() {
+            $.ajax({
+                url: "{{ route('whitelist-count') }}",
+                method: 'GET',
+                success: function(response) {
+                    // Assuming response contains the new count
+                    $('#white_list_count').text(response.white_lists_count);
+                },
+                error: function(xhr) {
+                    // Handle error here
+                    console.error(xhr);
+                }
+            });
+        }
+        updateWhiteListCount();
+        updateCartCount();
+
+        // add to whitelist
+        function addToWhiteList(product_id, btn) {
+            $.ajax({
+                url: `/white-list/${product_id}`,
+                type: "POST",
+                data: {
+                    id: product_id
+                },
+                success: function(response) {
+                    if (response.status == "redirect") {
+                        window.location.href = response.url;
+                    } else if (response.status) {
+                        // btn.toggleClass('active');
+                        updateWhiteListCount();
+                    }
+                    console.log(response.message);
+                }
+            });
+        }
+
+        // handle add to whtite button
+        function handleAddToWhiteListBtn(class_name) {
+            $(`.${class_name}`).click(function(e) {
+                e.preventDefault();
+                const getid = $(this).data('id');
+                const cur_btn = $(`.${class_name}[data-id="${getid}"]`);
+
+                addToWhiteList(getid, cur_btn);
+
+            });
+        }
+
+        // add to cart
+        function addToCart(products, btn) {
+            $.ajax({
+                url: "{{ route('cart.add') }}",
+                type: "POST",
+                data: {
+                    products: products
+                },
+                success: function(response) {
+                    if (response.status) {
+                        // btn.toggleClass('active');
+                        updateCartCount();
+                    }
+                    console.log(response.message);
+                }
+            });
+        }
+
+        // handle add to cart button
+        function handleAddToCartBtn(class_name) {
+            $(`.${class_name}`).click(function(e) {
+                e.preventDefault();
+                const getid = $(this).data('id');
+                const cur_btn = $(`.${class_name}[data-id="${getid}"]`);
+
+                var products = [{
+                    id: getid,
+                    quantity: 1
+                }];
+
+                addToCart(products, cur_btn);
+            });
+        }
     </script>
     <!-- /All Scripts -->
+    @yield('script')
+
 
     <!-- Testing Scripts -->
     <script src="{{ asset('assets/js/cloneNode.test.js') }}"></script>
