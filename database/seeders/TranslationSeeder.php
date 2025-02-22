@@ -203,7 +203,7 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'price_range',
                 'en' => 'Price Range',
-                'jp' => '価格範囲',
+                'jp' => '価格範囲を設定',
             ],
             [
                 'key' => 'weight',
@@ -445,7 +445,7 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'forget_password',
                 'en' => 'Forget Password',
-                'jp' => 'パスワードを忘れた',
+                'jp' => 'パスワードを忘れた場合',
             ],
             [
                 'key' => 'no_have_account_msg',
@@ -485,12 +485,12 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'first_ph',
                 'en' => 'First Phone Number',
-                'jp' => '第一電話番号',
+                'jp' => '最初の電話番号',
             ],
             [
                 'key' => 'second_ph',
                 'en' => 'Second Phone Number',
-                'jp' => '第二電話番号',
+                'jp' => '次の電話番号',
             ],
             [
                 'key' => 'have_account',
@@ -540,7 +540,7 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'wishlist',
                 'en' => 'Wishlist form',
-                'jp' => 'ウィッシュリスト',
+                'jp' => 'タグ付けされた商品',
             ],
             [
                 'key' => 'shop_list',
@@ -555,7 +555,7 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'request_shops',
                 'en' => 'Request Shops',
-                'jp' => 'ショップリクエスト',
+                'jp' => 'ショップへのリクエスト',
             ],
             [
                 'key' => 'faqs',
@@ -586,12 +586,12 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'all_faqs',
                 'en' => 'All FAQs',
-                'jp' => 'すべてのFAQ',
+                'jp' => '全ての質問と回答',
             ],
             [
                 'key' => 'add_faq',
                 'en' => 'Add FAQ',
-                'jp' => 'FAQを追加',
+                'jp' => '質問と回答を追加',
             ],
             [
                 'key' => 'all_system_data',
@@ -626,7 +626,7 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'add_product_image',
                 'en' => 'Add a product image. The quality and background standards should be maintained.',
-                'jp' => '商品画像を追加してください。品質と背景の基準を維持してください。',
+                'jp' => '商品画像を追加してください。',
             ],
             [
                 'key' => 'limit',
@@ -701,12 +701,12 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'send_link',
                 'en' => 'Send Reset a Link',
-                'jp' => 'リセットリンクを送信',
+                'jp' => 'リセット用リンクを送信',
             ],
             [
                 'key' => 'back_to_login',
                 'en' => 'Back to Login',
-                'jp' => 'ログインに戻る',
+                'jp' => 'ログインページに戻る',
             ],
             [
                 'key' => 'add_setting',
