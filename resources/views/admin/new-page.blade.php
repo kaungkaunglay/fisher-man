@@ -424,7 +424,7 @@
                                 </div>
                                 <form class="form-search flex-grow">
                                     <fieldset class="name">
-                                        <input type="text" placeholder="Search here..." class="show-search" name="name" tabindex="2" value="" aria-required="true" required="">
+                                        <input type="text" placeholder="ここで検索。。。" class="show-search" name="name" tabindex="2" value="" aria-required="true" required="">
                                     </fieldset>
                                     <div class="button-submit">
                                         <button class="" type="submit"><i class="icon-search"></i></button>

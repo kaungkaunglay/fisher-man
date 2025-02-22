@@ -45,6 +45,11 @@ class TranslationSeeder extends Seeder
                 'jp' => 'サポート',
             ],
             [
+                'key' => 'product_management',
+                'en' => 'Product Management',
+                'jp' => '商品管理',
+            ],
+            [
                 'key' => 'see_more_product',
                 'en' => 'See More Product',
                 'jp' => 'もっと商品を見る',
@@ -58,6 +63,16 @@ class TranslationSeeder extends Seeder
                 'key' => 'popular_shop',
                 'en' => 'Popular & Top Rating Shop',
                 'jp' => '人気 & 高評価のショップ',
+            ],
+            [
+                'key' => 'manage_faqs',
+                'en' => 'Manage FAQs',
+                'jp' => 'FAQの管理',
+            ],
+            [
+                'key' => 'rejected_shops',
+                'en' => 'Rejected Shops',
+                'jp' => '拒否されたショップ',
             ],
             [
                 'key' => 'all_products',
@@ -85,6 +100,11 @@ class TranslationSeeder extends Seeder
                 'jp' => '価格: 高い順',
             ],
             [
+                'key' => 'name',
+                'en' => 'Name',
+                'jp' => '名前',
+            ],
+            [
                 'key' => 'name_a_z',
                 'en' => 'Name : A to Z',
                 'jp' => '名前: 昇順',
@@ -105,6 +125,16 @@ class TranslationSeeder extends Seeder
                 'jp' => '注文詳細',
             ],
             [
+                'key' => 'order',
+                'en' => 'Order',
+                'jp' => '注文',
+            ],
+            [
+                'key' => 'order_list',
+                'en' => 'Order List',
+                'jp' => '注文リスト',
+            ],
+            [
                 'key' => 'login',
                 'en' => 'Login',
                 'jp' => 'ログイン',
@@ -118,6 +148,11 @@ class TranslationSeeder extends Seeder
                 'key' => 'search_products',
                 'en' => 'Search your Products',
                 'jp' => '製品を検索',
+            ],
+            [
+                'key' => 'showing_10_entries',
+                'en' => 'Showing 10 entries',
+                'jp' => '10件を表示',
             ],
             [
                 'key' => 'quantity',
@@ -165,6 +200,16 @@ class TranslationSeeder extends Seeder
                 'en' => 'Price Range',
                 'jp' => '価格範囲',
             ],
+            [
+                'key' => 'weight',
+                'en' => 'Weight',
+                'jp' => '重量',
+            ],
+            [
+                'key' => 'length',
+                'en' => 'Length',
+                'jp' => '長さ',
+            ],
             
             [
                 'key' => 'quanity',
@@ -192,14 +237,14 @@ class TranslationSeeder extends Seeder
                 'jp' => '戻る',
             ],
             [
-                'key' => 'name',
-                'en' => 'Name',
-                'jp' => '名前',
-            ],
-            [
                 'key' => 'phone_number',
                 'en' => 'Phone Number',
                 'jp' => '電話番号',
+            ],
+            [
+                'key' => 'ecommerce',
+                'en' => 'Ecommerce',
+                'jp' => '電子商取引',
             ],
             [
                 'key' => 'line_id',
@@ -292,6 +337,26 @@ class TranslationSeeder extends Seeder
                 'jp' => 'アカウントを確認する',
             ],
             [
+                'key' => 'day_of_caught',
+                'en' => 'Day of Caught',
+                'jp' => '捕獲日',
+            ],
+            [
+                'key' => 'uploaded_date',
+                'en' => 'Uploaded Date',
+                'jp' => 'アップロード日',
+            ],
+            [
+                'key' => 'sale',
+                'en' => 'Sale',
+                'jp' => 'セール',
+            ],
+            [
+                'key' => 'expire_date',
+                'en' => 'Expire Date',
+                'jp' => '有効期限',
+            ],
+            [
                 'key' => 'upload_img',
                 'en' => 'Upload Img',
                 'jp' => '画像をアップロード',
@@ -325,6 +390,11 @@ class TranslationSeeder extends Seeder
                 'key' => 'payment_method_used_card_last_no',
                 'en' => 'Payment method & used card last no.',
                 'jp' => '支払い方法と使用されたカードの最後の番号',
+            ],
+            [
+                'key' => 'searched_products',
+                'en' => 'Searched Products',
+                'jp' => '検索された商品',
             ],
             [
                 'key' => 'history',
@@ -433,6 +503,11 @@ class TranslationSeeder extends Seeder
                 'jp' => 'ユーザーリクエスト',
             ],
             [
+                'key' => 'user_management',
+                'en' => 'User Management',
+                'jp' => 'ユーザー管理',
+            ],
+            [
                 'key' => 'contact',
                 'en' => 'Contact form',
                 'jp' => 'お問い合わせフォーム',
@@ -446,6 +521,11 @@ class TranslationSeeder extends Seeder
                 'key' => 'useful_links',
                 'en' => 'Useful Links',
                 'jp' => '便利なリンク',
+            ],
+            [
+                'key' => 'manage_shop',
+                'en' => 'Manage Shop',
+                'jp' => 'ショップ管理',
             ],
             [
                 'key' => 'wishlist',
@@ -488,6 +568,12 @@ class TranslationSeeder extends Seeder
                 'jp' => '利用規約とプライバシー',
             ],
             [
+                'key' => 'manage_system_data',
+                'en' => 'Manage System Data',
+                'jp' => 'システムデータの管理',
+            ],
+            
+            [
                 'key' => 'all_faqs',
                 'en' => 'All FAQs',
                 'jp' => 'すべてのFAQ',
@@ -498,14 +584,14 @@ class TranslationSeeder extends Seeder
                 'jp' => 'FAQを追加',
             ],
             [
-                'key' => 'system_data',
-                'en' => 'System Data',
-                'jp' => 'システムデータ',
-            ],
-            [
                 'key' => 'all_system_data',
                 'en' => 'All System Data',
                 'jp' => 'すべてのシステムデータ',
+            ],
+            [
+                'key' => 'system_data',
+                'en' => 'System Data',
+                'jp' => 'システムデータ',
             ],
             [
                 'key' => 'description',
@@ -516,6 +602,26 @@ class TranslationSeeder extends Seeder
                 'key' => 'status',
                 'en' => 'Status',
                 'jp' => 'ステータス',
+            ],
+            [
+                'key' => 'drop_image',
+                'en' => 'Drop your image here or select',
+                'jp' => '画像をここにドロップするか、選択してください',
+            ],
+            [
+                'key' => 'click_browse',
+                'en' => 'Click to browse',
+                'jp' => '参照するにはクリックしてください',
+            ],
+            [
+                'key' => 'add_product_image',
+                'en' => 'Add a product image. The quality and background standards should be maintained.',
+                'jp' => '商品画像を追加してください。品質と背景の基準を維持してください。',
+            ],
+            [
+                'key' => 'limit',
+                'en' => 'Do not exceed 255 characters when entering.',
+                'jp' => '255文字を超えないでください。',
             ],
             [
                 'key' => 'action',
