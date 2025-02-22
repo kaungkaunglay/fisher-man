@@ -141,6 +141,7 @@ Route::middleware(['is_admin'])->group(function () {
     Route::get('/admin/request-contact', [AdminController::class, 'contact'])->name('admin.users.contact');
     Route::get('/admin/contact/detail/{contactID}', [AdminController::class, 'contactDetail'])->name('admin.contact.detail');
     Route::get('/admin/request-wishList', [AdminController::class, 'wishList'])->name('admin.users.wishList');
+    Route::get('/admin/wishList/detail/{wishListID}', [AdminController::class, 'wishListDetail'])->name('admin.wishList.detail');
 
     //Manage Shop
     Route::get('/admin/shops/approved-shops', [AdminController::class, 'approvedShopList'])->name('admin.shops.approved');

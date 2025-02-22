@@ -3,13 +3,13 @@
 @section('title', 'cart')
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/cart.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/cart.css') }}" />
 @endsection
 @section('contents')
 
     <!-- Step List -->
     <section class="py-4 mt-3">
         <div class="container-custom px-0">
+
             <div class="position-relative">
                 <div class="progress-box w-100 h-100 position-absolute d-flex">
                     <span class="progress-bar m-auto">
@@ -19,26 +19,27 @@
                 <ul class="step-list d-flex text-center">
                     <li class="step active d-flex flex-column align-items-center">
                         <span class="me-2">1</span>
-                        <p class="d-none d-md-block">注文詳細</p>
+                        <p class="d-none d-md-block">Order details</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">2</span>
-                        <p class="d-none d-md-block">ログイン</p>
+                        <p class="d-none d-md-block">Login</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">3</span>
-                        <p class="d-none d-md-block">配送先住所</p>
+                        <p class="d-none d-md-block">Shopping address</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">4</span>
-                        <p class="d-none d-md-block">支払い</p>
+                        <p class="d-none d-md-block">Payment</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">5</span>
-                        <p class="d-none d-md-block">完了</p>
+                        <p class="d-none d-md-block">Complete</p>
                     </li>
                 </ul>
             </div>
+
         </div>
     </section>
     <!-- /Step List -->
@@ -48,53 +49,55 @@
         <div class="container-custom">
 
             <!-- Desktop Style -->
-            <table class="table desktop text-center d-md-table d-none table-item">
-                <thead>
-                    <tr>
-                        <th scope="col">画像</th>
-                        <th scope="col">商品名</th>
-                        <th scope="col">価格</th>
-                        <th scope="col">数量</th>
-                        <th scope="col">合計</th>
-                        <th scope="col">削除</th>
-                    </tr>
-                </thead>
-                <tbody class="dsk-cart-body">
-                    @foreach ($carts as $item)
-                        <tr class="table-row cart-{{ $item->product->id }}">
+            <div class="scroller">
+                <table class="table desktop text-center d-md-table d-none table-item">
+                    <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Product address</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody class="dsk-cart-body">
+                        @foreach ($carts as $item)
+                            <tr class="table-row cart-{{ $item->product->id }}">
+                                <td>
+                                    <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
+                                            alt="{{ $item->product->name }}"></div>
+                                </td>
+                                <td class="col-name">{{ $item->product->name }}</td>
+                                <td class="price">¥{{ $item->product->product_price }}</td>
+                                <td>
+                                    <div class="quantity d-flex">
+                                        <button class="btn decrement">-</button>
+                                        <input type="number" value="{{ $item->quantity }}" class="quantity-value">
+                                        <button class="btn increment">+</button>
+                                    </div>
+                                </td>
+                                <td class="cost"></td>
+                                <td class="col-remove">
+                                    <a href="javascript:void(0);" class="mx-auto dsk-cart-del-btn"
+                                        data-id="{{ $item->product->id }}">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4"></td>
+                            <td>Total</td>
                             <td>
-                                <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
-                                        alt="{{ $item->product->name }}"></div>
-                            </td>
-                            <td class="col-name">{{ $item->product->name }}</td>
-                            <td class="price">¥{{ $item->product->product_price }}</td>
-                            <td>
-                                <div class="quantity d-flex">
-                                    <button class="btn decrement">-</button>
-                                    <input type="text" value="{{ $item->quantity }}" class="quantity-value" readonly>
-                                    <button class="btn increment">+</button>
-                                </div>
-                            </td>
-                            <td class="cost"></td>
-                            <td class="col-remove">
-                                <a href="javascript:void(0);" class="mx-auto dsk-cart-del-btn"
-                                    data-id="{{ $item->product->id }}">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </a>
+                                <span class="total"></span>
                             </td>
                         </tr>
-                    @endforeach
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="4"></td>
-                        <td>合計</td>
-                        <td>
-                            <span class="total"></span>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
+                    </tfoot>
+                </table>
+            </div>
             <!-- ./Desktop Style -->
 
             <!-- Mobile Style -->
@@ -113,7 +116,7 @@
                                 </div>
                                 <div class="quantity d-flex">
                                     <button class="btn decrement">-</button>
-                                    <input type="text" value="{{ $item->quantity }}" class="quantity-value" readonly>
+                                    <input type="number" value="{{ $item->quantity }}" class="quantity-value">
                                     <button class="btn increment">+</button>
                                 </div>
                             </div>
@@ -125,7 +128,7 @@
                 @endforeach
                 <div class="no-cart"></div>
                 <div class="d-flex justify-content-between bg-primary text-white p-2 mt-3">
-                    <p>合計 :</p>
+                    <p>Total :</p>
                     <p>
                         <span class="total"></span>
                     </p>
@@ -134,8 +137,7 @@
             <!-- ./Mobile Style -->
 
             <div class="text-end my-4">
-                <a href="{{ auth_helper()->check() ? '#address' : '#login' }}" id="next-btn"
-                    class="common-btn btn-next">Next</a>
+                <a href="#address" class="common-btn btn-next">Next</a>
             </div>
 
         </div>
@@ -147,39 +149,32 @@
         <div class="container-custom">
 
             <div class="border w-75 mx-auto px-5 py-3 rounded shadow login-box">
-                <h2 class="text-center mb-3">ログイン</h2>
-                <form action="#" method="POST" id="login_form" name="login_form">
-                    @csrf
-
+                <h2 class="text-center mb-3">Login</h2>
+                <form action="#">
                     <div class="d-flex flex-column">
                         <div class="form-group row mt-3 align-items-center">
-                            <label for="username" class="col-12 col-md-4">ユーザー名</label>
+                            <label for="" class="col-12 col-md-4">User Name</label>
                             <div class="col-12 col-md-8 mt-2">
                                 <div class="input-group border border-2 rounded px-0">
-                                    <input type="text" id="username" name="username" class="form-control border-0" placeholder="ユーザー名またはメールアドレス">
+                                    <input type="text" class="form-control border-0" placeholder="Username or Email">
                                     <button class="btn" tabindex="-1">
                                         <i class="fa-solid fa-user"></i>
                                     </button>
                                 </div>
                             </div>
-                            <span class="invalid-feedback"></span>
                         </div>
                         <div class="form-group row mt-3 align-item-center">
-                            <label for="password" class="col-12 col-md-4">パスワード</label>
+                            <label for="" class="col-12 col-md-4">Password</label>
                             <div class="col-12 col-md-8 mt-2">
                                 <div class="input-group border border-2 rounded px-0">
-                                    <input type="text" id="password" name="password" class="form-control border-0" placeholder="********">
+                                    <input type="text" class="form-control border-0" placeholder="********">
                                     <button class="btn" tabindex="-1">
                                         <i class="fa-solid fa-eye"></i>
                                     </button>
                                 </div>
                             </div>
-                            <span class="invalid-feedback"></span>
                         </div>
-                        <div class="input-box d-flex flex-column">
-                            <span class="mb-3 text-danger" id="message"></span>
-                        </div>
-                        <button type="submit" class="common-btn -solid mx-auto mt-5 rounded-pill w-100">ログイン</button>
+                        <button class="common-btn -solid mx-auto mt-5 rounded-pill w-100">Login</button>
                     </div>
                 </form>
             </div>
@@ -268,7 +263,8 @@
                         </tr>
                     </table>
                     <div class="d-flex gap-3 my-4 justify-content-end">
-                        <a href="#checkout" class="btn btn-outline-primary common-btn" id="cancel">Cancel</a>
+                        <button href="#checkout" class="btn btn-outline-primary common-btn"
+                            id="cancel">Cancel</button>
                         <button type="submit" href="#payment" class="btn btn-outline-primary common-btn">Save</button>
                     </div>
                 </form>
@@ -433,41 +429,43 @@
             <!-- ./Payment Method Form -->
 
             <!-- Desktop Style -->
-            <table class="table desktop text-center d-md-table d-none table-item pannel pannel-default ">
-                <thead>
-                    <tr>
-                        <th scope="col">Image</th>
-                        <th scope="col">Product address</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Total</th>
-                    </tr>
-                </thead>
-                <tbody class="dsk-cart-body">
-                    @foreach ($carts as $item)
-                        <tr class="table-row cart-{{ $item->product->id }}">
+            <div class="scroller">
+                <table class="table desktop text-center d-md-table d-none table-item pannel pannel-default ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Product address</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody class="dsk-cart-body">
+                        @foreach ($carts as $item)
+                            <tr class="table-row cart-{{ $item->product->id }}">
+                                <td>
+                                    <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
+                                            alt="product img"></div>
+                                </td>
+                                <td clas="col-name">{{ $item->product->name }}</td>
+                                <td class="price">¥{{ $item->product->product_price }}</td>
+                                <td class="cost">
+                                    <input type="hidden" value="1" class="quantity-value">
+                                </td>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td>Total</td>
                             <td>
-                                <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
-                                        alt="product img"></div>
-                            </td>
-                            <td clas="col-name">{{ $item->product->name }}</td>
-                            <td class="price">¥{{ $item->product->product_price }}</td>
-                            <td class="cost">
-                                <input type="hidden" value="1" class="quantity-value">
-                            </td>
+                                <span class="total"></span>
                             </td>
                         </tr>
-                    @endforeach
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>Total</td>
-                        <td>
-                            <span class="total"></span>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
+                    </tfoot>
+                </table>
+            </div>
             <!-- ./Desktop Style -->
 
             <!-- Mobile Style -->
@@ -547,10 +545,12 @@
     <!-- Complete Step -->
     <section class="page mt-4" id="complete">
         <div class="container-custom">
-            <p class="text-center">お支払いが成功しました。請求書はメールとLINE IDに送信されますので、ご確認ください。</p>
+            <p class="text-center">Your Payment is Successful. We will sent the invoice to your mail and Line ID Please
+                check.
+            </p>
             <div class="d-flex gap-3 py-5 justify-content-center">
-                <a href="{{ url(path: '/') }}" class="btn btn-outline-primary common-btn">お問い合わせ</a>
-                <a href="{{ url('/') }}" class="btn btn-outline-primary common-btn">ホーム</a>
+                <a href="{{ url(path: '/') }}" class="btn btn-outline-primary common-btn">Contact Us</a>
+                <a href="{{ url('/') }}" class="btn btn-outline-primary common-btn">Home Page</a>
             </div>
         </div>
     </section>
@@ -585,106 +585,113 @@
                 }
             });
 
-            function deleteCart(product_id) {
+            // for desktop
+            // desktop delete button
+            $('.dsk-cart-del-btn').click(function(e) {
+                e.preventDefault();
+
+                const getid = $(this).data('id');
+
                 $.ajax({
-                    url: `/cart/delete/${product_id}`,
+                    url: "{{ route('cart-count') }}",
+                    method: 'GET',
+                    success: function(response) {
+                        // Assuming response contains the new count
+                        $('#cart_count').text(response.cart_count);
+                    },
+                    error: function(xhr) {
+                        // Handle error here
+                        console.error(xhr);
+                    }
+                });
+                $.ajax({
+                    url: `/cart/delete/${getid}`,
                     type: "DELETE",
                     data: {
-                        id: product_id
+                        id: getid
                     },
                     success: function(response) {
                         // location.reload();
                         if (response.status) {
-                            removeCart(product_id);
+                            removeCart(response.product_id);
                             netTotal();
-                            updateCartCount();
                         }
-
-                        console.log(response.message);
                     }
                 });
-            }
 
-            function handleDeleteBtn(class_name) {
-                $(`.${class_name}`).click(function(e) {
-                    e.preventDefault();
-                    const getid = $(this).data('id');
-
-                    // delete cart
-                    deleteCart(getid);
-
+                $.ajax({
+                    url: "{{ route('cart-count') }}",
+                    method: 'GET',
+                    success: function(response) {
+                        // Assuming response contains the new count
+                        $('#cart_count').text(response.cart_count);
+                    },
+                    error: function(xhr) {
+                        // Handle error here
+                        console.error(xhr);
+                    }
                 });
-            }
-
-            // for desktop
-            // desktop delete button
-            handleDeleteBtn('dsk-cart-del-btn');
-
+            });
 
             // mobile delete button
-            handleDeleteBtn('mb-cart-del-btn');
-
-            // for address text input
-            $('.address-input').keyup(function() {
-                var fieldId = $(this).attr('id');
-                var resultId = '#' + fieldId + '-result';
-                $(resultId).html($(this).val());
-            });
-
-            // for login
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $("#login_form").submit(function (e) {
+            $('.mb-cart-del-btn').click(function(e) {
                 e.preventDefault();
-                var formData = new FormData(this);
+                const getid = $(this).data('id');
+                // console.log(`.cart-${getid}`)
+
                 $.ajax({
-                    url: "{{ route('login_store') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function (response) {
-                        if (response.status == true) {
-                            window.location.href = "#address";
-                        } else {
-
-                            // if response has message, show the message , if not empty the message, clear the error messages
-                            $('#message').html(response.message ?? '');
-
-                            var errors = response.errors ?? {};
-
-                            var fields = [
-                                'username',
-                                'password'
-                            ];
-
-                            fields.forEach(function (field) {
-                                if (errors[field]) {
-                                    $('#' + field)
-                                        .closest('.input-box')
-                                        .find('span.invalid-feedback')
-                                        .addClass('d-block')
-                                        .html(errors[field]);
-                                } else {
-                                    $('#' + field)
-                                        .closest('.input-box')
-                                        .find('span.invalid-feedback')
-                                        .removeClass('d-block')
-                                        .html('');
-                                }
-                            });
-
+                    url: `cart/delete/${getid}`,
+                    type: "DELETE",
+                    data: {
+                        id: getid
+                    },
+                    success: function(response) {
+                        // location.reload();
+                        if (response.status) {
+                            console.log(response.product_id);
+                            removeCart(response.product_id);
+                            netTotal();
                         }
+                    }
+                });
+
+                $.ajax({
+                    url: "{{ route('cart-count') }}",
+                    method: 'GET',
+                    success: function(response) {
+                        // Assuming response contains the new count
+                        $('#cart_count').text(response.cart_count);
+                    },
+                    error: function(xhr) {
+                        // Handle error here
+                        console.error(xhr);
                     }
                 });
             });
 
+            $('#next-btn').click(() => {
+                @if (!Auth::check())
+                    window.location.href = "{{ route('login') }}"
+                @endif
+            });
+
+
+            // for address text input
+            $('#name').keyup(function() {
+                $('#name-result').html($(this).val());
+            });
+            $('#tel').keyup(function() {
+                $('#tel-result').html($(this).val());
+            })
+            $('#line_id').keyup(function() {
+                $('#line_id-result').html($(this).val());
+            })
+            $('#delivery').keyup(function() {
+                $('#delivery-result').html($(this).val());
+            })
 
         });
     </script>
+    <!-- /All Scripts -->
+
 @endsection

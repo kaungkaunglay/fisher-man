@@ -20,20 +20,21 @@
     </section>
     <!-- /Hero Section -->
 
-<!-- Recommand Products -->
-<section class="bg-second my-3 py-3">
-  <div class="container-custom">
-    <!-- Recomnand HeadLine -->
-    <div>
-      <h6 class="txt-primary fw-bold mb-3">おすすめ商品</h6>
-      <div class="filter d-flex justify-content-between align-items-center mb-3">
-        <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
-          <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
-          <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
-        </div>
-      </div>
-    </div>
-    <!-- /Recomnand HeadLine -->
+    <!-- Recommand Products -->
+    <section class="bg-second my-3 py-3">
+        <div class="container-custom">
+
+            <!-- Recomnand HeadLine -->
+            <div>
+                <h6 class="txt-primary fw-bold mb-3">{{trans_lang('welcome')}}</h6>
+                <div class="filter d-flex justify-content-between align-items-center mb-3">
+                    <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
+                        <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
+                        <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- /Recomnand HeadLine -->
 
             <!-- Card List -->
             <div class="card-list" id="view-list" data-list="fish-list-1">
@@ -75,31 +76,32 @@
                 @endforeach
             </div>
             <!-- /Card List -->
+
         </div>
     </section>
     <!-- /Recommand Products -->
 
-<!-- Animation Bar -->
-<section class="m-t-b-20 moving-discount">
-  <div id="moving-text">
-    <p class="title">セール</p>
-    <p class="title">セール</p>
-    <p class="title">セール</p>
-    <p class="title">セール</p>
-    <p class="title">セール</p>
-  </div>
-</section>
-<!-- /Animation Bar -->
+    <!-- Animation Bar -->
+    <section class="m-t-b-20 moving-discount">
+        <div id="moving-text">
+            <p class="title">Discount Products</p>
+            <p class="title">Discount Products</p>
+            <p class="title">Discount Products</p>
+            <p class="title">Discount Products</p>
+            <p class="title">Discount Products</p>
+        </div>
+    </section>
+    <!-- /Animation Bar -->
 
     <!-- Porpular Shop -->
     <section class="popular_top_rate_shop_section mt-3">
         <div class="container-custom">
 
-    <!-- Porpular Headline -->
-    <div>
-      <h6 class="txt-primary fw-bold mb-3">人気 & 高評価のショップ</h6>
-    </div>
-    <!-- /Porpular Headline -->
+            <!-- Porpular Headline -->
+            <div>
+                <h6 class="txt-primary fw-bold mb-3">Popular & Top Rating Shop</h6>
+            </div>
+            <!-- /Porpular Headline -->
 
             <!-- Shop List  -->
             <div class="row shop-carts">
@@ -151,14 +153,14 @@
     </section>
     <!-- /Porpular Shop -->
 
-<!-- セール -->
-<section class="discount-products bg-second py-4">
-  <div class="container-custom">
+    <!-- Discount Products -->
+    <section class="discount-products bg-second py-4">
+        <div class="container-custom">
 
-    <!-- Discount Headline -->
-    <div>
-      <h6 class="txt-primary fw-bold mb-3">セール</h6>
-      <div class="filter d-flex justify-content-between align-items-center mb-3">
+            <!-- Discount Headline -->
+            <div>
+                <h6 class="txt-primary fw-bold mb-3">Discount Products</h6>
+                <div class="filter d-flex justify-content-between align-items-center mb-3">
 
                     <!-- display -->
                     <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
@@ -166,23 +168,30 @@
                         <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
                     </div>
 
-        <!-- sorting -->
-        <div class="sort-container">
-          <div class="arrows">
-            <button><i class="fa-solid fa-caret-up"></i></button>
-            <button><i class="fa-solid fa-caret-down"></i></button>
-          </div>
-          <div class="dropdown">
-            <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">並べ替え</button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_asc']) }}">価格：安い順</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_desc']) }}">価格：高い順</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">名前：AからZ順</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">名前：ZからA順</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'latest']) }}">最新</a></li>
-            </ul>
-          </div>
-        </div>
+                    <!-- sorting -->
+                    <div class="sort-container">
+                        <div class="arrows">
+                            <button><i class="fa-solid fa-caret-up"></i></button>
+                            <button><i class="fa-solid fa-caret-down"></i></button>
+                        </div>
+                        <div class="dropdown">
+                            <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">Sort by</button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item"
+                                        href="{{ route('home', ['sort_by' => 'price_asc']) }}">Price: Low to High</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('home', ['sort_by' => 'price_desc']) }}">Price: High to Low</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">Name:
+                                        A to Z</a></li>
+                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">Name:
+                                        Z to A</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('home', ['sort_by' => 'latest']) }}">Latest</a></li>
+                            </ul>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -197,8 +206,15 @@
                                 alt="{{ $product->name }}">
                         </a>
                         <div class="left">
-                            <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
-                            <div class="title-category">
+                            <p class="price m-t-b-10">
+                                @if ($product->discount > 0)
+                                    ¥{{ number_format($product->product_price - $product->discount, 2) }}
+                                    <span class="original-price">¥{{ number_format($product->product_price, 2) }}</span>
+                                @else
+                                    <span class="">¥{{ number_format($product->product_price, 2) }}</span>
+                                @endif
+                            </p>
+                            <div class="title-category flex-column flex-sm-row align-items-start">
                                 <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                                 <h3 class="title m-t-b-10">{{ $product->name }}</h3>
                             </div>
@@ -207,13 +223,13 @@
                             </a>
                             <div class="d-flex gap-2 card-btn m-t-10">
                                 <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 -solid cart-btn
+                                    class="py-1 common-btn2 -solid cart-btn 
                   @if ($product->inCart()) active @endif"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </a>
                                 <a href="#"
-                                    class="py-1 common-btn2 white-list-btn
+                                    class="py-1 common-btn2 white-list-btn 
                   @if ($product->inWhiteLists()) active @endif"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-bookmark"></i>
@@ -225,26 +241,26 @@
             </div>
             <!-- /Products List -->
 
-    <!-- Discount Footline -->
-    <div class="row justify-content-center mx-0 mt-5">
-      <div class="col-5 col-lg-4 text-center">
-        <a class="common-btn see-more-btn w-100" href="{{ route('special-offer') }}">さらに見る</a>
-      </div>
-    </div>
-    <!-- /Discount Footline -->
+            <!-- Discount Footline -->
+            <div class="row justify-content-center mx-0 mt-5">
+                <div class="col-5 col-lg-4 text-center">
+                    <a class="common-btn see-more-btn w-100" href="{{ route('special-offer') }}">See More</a>
+                </div>
+            </div>
+            <!-- /Discount Footline -->
 
-  </div>
-</section>
-<!-- /セール -->
+        </div>
+    </section>
+    <!-- /Discount Products -->
 
     <!-- All Products -->
     <section class="all-products my-3">
         <div class="container-custom">
 
-    <!-- All Products Headline -->
-    <div>
-      <h6 class="txt-primary fw-bold mb-3">割引商品</h6>
-      <div class="filter d-flex justify-content-between align-items-center mb-3">
+            <!-- All Products Headline -->
+            <div>
+                <h6 class="txt-primary fw-bold mb-3">All Products</h6>
+                <div class="filter d-flex justify-content-between align-items-center mb-3">
 
                     <!-- display -->
                     <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
@@ -252,26 +268,33 @@
                         <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
                     </div>
 
-        <!-- sorting -->
-        <div class="sort-container">
-          <div class="arrows">
-            <button><i class="fa-solid fa-caret-up"></i></button>
-            <button><i class="fa-solid fa-caret-down"></i></button>
-          </div>
-          <div class="dropdown">
-            <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">並べ替え</button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_asc']) }}">価格：安い順</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_desc']) }}">価格：高い順</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">名前：AからZ順</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">名前：ZからA順</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'latest']) }}">最新</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /All Product Headline -->
+                    <!-- sorting -->
+                    <div class="sort-container">
+                        <div class="arrows">
+                            <button><i class="fa-solid fa-caret-up"></i></button>
+                            <button><i class="fa-solid fa-caret-down"></i></button>
+                        </div>
+                        <div class="dropdown">
+                            <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">Sort by</button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item"
+                                        href="{{ route('home', ['sort_by' => 'price_asc']) }}">Price: Low to High</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('home', ['sort_by' => 'price_desc']) }}">Price: High to Low</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">Name:
+                                        A to Z</a></li>
+                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">Name:
+                                        Z to A</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('home', ['sort_by' => 'latest']) }}">Latest</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /All Product Headline -->
 
             <!-- Products List -->
             <div class="card-list" id="view-list">
@@ -282,7 +305,14 @@
                                 alt="{{ $product->name }}">
                         </a>
                         <div class="left">
-                            <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
+                            <p class="price m-t-b-10">
+                                @if ($product->discount > 0)
+                                    ¥{{ number_format($product->product_price - $product->discount, 2) }}
+                                    <span class="original-price">¥{{ number_format($product->product_price, 2) }}</span>
+                                @else
+                                    <span class="">¥{{ number_format($product->product_price, 2) }}</span>
+                                @endif
+                            </p>
                             <div class="title-category">
                                 <a href="" class="menu-category ">鮮魚 | 白身魚</a>
                                 <h3 class="title m-t-b-10">{{ $product->name }}</h3>
@@ -292,12 +322,14 @@
                             </a>
                             <div class="d-flex gap-2 card-btn m-t-10">
                                 <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 -solid cart-btn"
+                                    class="py-1 common-btn2 -solid cart-btn 
+                  @if ($product->inCart()) active @endif"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </a>
                                 <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 white-list-btn"
+                                    class="py-1 common-btn2 white-list-btn 
+                  @if ($product->inWhiteLists()) active @endif"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-bookmark"></i>
                                 </a>
@@ -326,21 +358,113 @@
     <script src="{{ asset('assets/js/loadmore.js') }}"></script>
     <script src="{{ asset('assets/js/view-list.js') }}"></script>
     <script src="{{ asset('assets/js/words-limit.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
+
+            $('.white-list-btn').click(function(e) {
+                e.preventDefault();
+                const getid = $(this).data('id');
+                const cur = $(`.white-list-btn[data-id="${getid}"]`);
+
+
+
+                $.ajax({
+                    url: `/white-list/${getid}`,
+                    type: "POST",
+                    data: {
+                        id: getid
+                    },
+                    success: function(response) {
+                        if (response.status == "redirect") {
+                            window.location.href = response.url;
+                        } else if (response.status) {
+                            // cur.toggleClass('active');
+                        }
+                        console.log(response.message);
+                    }
+                });
+
+                $.ajax({
+                    url: "{{ route('whitelist-count') }}",
+                    method: 'GET',
+                    success: function(response) {
+                        $('#white_list_count').text(response.white_lists_count);
+                    },
+                    error: function(xhr) {
+                        console.error(xhr);
+                    }
+                });
+
+            });
+
+            $('.cart-btn').click(function(e) {
+                e.preventDefault();
+                const getid = $(this).data('id');
+                const cur = $(`.cart-btn[data-id="${getid}"]`);
+
+                var products = [{
+                    id: getid,
+                    quantity: 1
+                }];
+
+                $.ajax({
+                    url: "{{ route('cart.add') }}",
+                    type: "POST",
+                    data: {
+                        products: products
+                    },
+                    success: function(response) {
+
+                        if (response.status) {
+                            // cur.toggleClass('active');
+
+                        }
+                        console.log(response.message);
+                    }
+                });
+
+                $.ajax({
+                    url: "{{ route('cart-count') }}",
+                    method: 'GET',
+                    success: function(response) {
+                        // Assuming response contains the new count
+                        $('#cart_count').text(response.cart_count);
+                    },
+                    error: function(xhr) {
+                        // Handle error here
+                        console.error(xhr);
+                    }
+                });
+
+            });
+        });
+
+        // $('.white-list-btn').click((ev) => {
+        //     ev.preventDefault();
+        //     const target = ev.currentTarget;
+
+        //     $(target).toggleClass('active');
+
+        //     if (!$('#bookmark_btn').hasClass('active')) {
+
+        //         $('#bookmark_btn').addClass('active');
+
+        //         setTimeout(() => {
+        //             $('#bookmark_btn').removeClass('active');
+        //         }, 1000);
+        //     }
+        // });
+    </script>
 
     <!-- /All Scripts -->
 
     <!-- Testing Scripts -->
 
     <!-- /Testing Scripts -->
-@endsection
-
-
-@section('script')
-    <script>
-        $(document).ready(() => {
-            handleAddToCartBtn('cart-btn');
-            handleAddToWhiteListBtn('white-list-btn');
-        })
-    </script>
 @endsection

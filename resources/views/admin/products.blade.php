@@ -69,7 +69,9 @@
                         </div>
                     </form>
                 </div>
+                @if (check_role(2))
                 <a class="tf-button style-1 w208" href="/admin/products/create"><i class="icon-plus"></i>Add new</a>
+                @endif
             </div>
             <div class="wg-table table-product-list">
                 <ul class="table-title flex gap20 mb-14">

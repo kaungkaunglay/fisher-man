@@ -134,12 +134,6 @@
 
 .all-products .item-card{display: none;}
 .row-list .item-card{display: flex !important;}
-.row-list .item-card .common-btn2 {
-  max-width: 200px;
-}
-.row-list .item-card .card-btn {
-  justify-content: end;
-}
 
 @media screen and (max-width: 584px) {
     .product-btn{padding: 4px 30px !important;}

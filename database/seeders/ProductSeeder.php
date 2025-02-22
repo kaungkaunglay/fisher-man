@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Database\Seeders;
 
@@ -15,7 +15,10 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         // Fetch all users
-        $users = Users::all();
+        $users = Users::select('users.*')
+                    ->join('user_roles', 'users.id', '=','user_roles.user_id')
+                    ->where('user_roles.role_id', 2)
+                    ->get();
 
         // Ensure there are users to assign
         if ($users->isEmpty()) {

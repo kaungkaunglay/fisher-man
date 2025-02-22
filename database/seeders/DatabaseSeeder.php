@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\RolePermission;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,6 +23,10 @@ class DatabaseSeeder extends Seeder
             SettingSeeder::class,
             ShopSeeder::class,
             TranslationSeeder::class,
+            PermissionSeeder::class,
+            RolePermissionSeeder::class,
+            ContactSeeder::class,
+            WishListSeeder::class,
         ]);
     }
 }

@@ -107,10 +107,10 @@
                                     @if($pendingShop->status == 'accepted') block-available
                                     @elseif($pendingShop->status == 'pending') block-pending
                                     @else block-not-available @endif
-                                    dropdown-toggle" 
-                                    type="button" 
-                                    id="statusDropdown{{ $pendingShop->id }}" 
-                                    data-bs-toggle="dropdown" 
+                                    dropdown-toggle"
+                                    type="button"
+                                    id="statusDropdown{{ $pendingShop->id }}"
+                                    data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     {{ ucfirst($pendingShop->status) }}
                                 </button>
@@ -127,13 +127,8 @@
                                     <i class="icon-eye"></i>
                                 </a>
                             </div>
-                            <div class="item trash">
-                                    {{-- <form id="delete-form-{{ $faq->id }}" action="{{ route('admin.faqs.destroy', $faq->id) }}" method="POST" style="display: none;">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form> --}}
-                                    {{-- onclick="event.preventDefault(); document.getElementById('delete-form-{{ $faq->id }}').submit();" --}}
-                                    <a href="#" class="btn-trash delete-faq" data-id="">
+                            <div class="item">
+                                    <a href="#" class="btn-trash delete-shop text-danger" data-id="{{$pendingShop->id}}">
                                         <i class="icon-trash-2"></i>
                                     </a>
                             </div>
@@ -144,27 +139,37 @@
             </div>
         </div>
 
-        <div class="divider"></div>
+        <div class="divider mb-20"></div>
+        {{-- pagination --}}
+        @if ($pendingShops->hasPages())
         <div class="flex items-center justify-between flex-wrap gap10">
-            <div class="text-tiny">Showing 10 entries</div>
-            {{-- <ul class="wg-pagination">
-                <li>
-                    <a href="#"><i class="icon-chevron-left"></i></a>
+            <div class="text-tiny">
+                Showing {{ $pendingShops->firstItem() }} to {{ $pendingShops->lastItem() }} of {{ $pendingShops->total() }} entries
+            </div>
+            <ul class="wg-pagination">
+                <!-- Previous Page -->
+                <li class="{{ $pendingShops->onFirstPage() ? 'disabled' : '' }}">
+                    <a href="{{ $pendingShops->previousPageUrl() }}">
+                        <i class="icon-chevron-left"></i>
+                    </a>
                 </li>
-                <li>
-                    <a href="#">1</a>
+
+                <!-- Page Numbers -->
+                @foreach ($pendingShops->links()->elements[0] as $page => $url)
+                    <li class="{{ $page == $pendingShops->currentPage() ? 'active' : '' }}">
+                        <a href="{{ $url }}">{{ $page }}</a>
+                    </li>
+                @endforeach
+
+                <!-- Next Page -->
+                <li class="{{ $pendingShops->hasMorePages() ? '' : 'disabled' }}">
+                    <a href="{{ $pendingShops->nextPageUrl() }}">
+                        <i class="icon-chevron-right"></i>
+                    </a>
                 </li>
-                <li class="active">
-                    <a href="#">2</a>
-                </li>
-                <li>
-                    <a href="#">3</a>
-                </li>
-                <li>
-                    <a href="#"><i class="icon-chevron-right"></i></a>
-                </li>
-            </ul> --}}
+            </ul>
         </div>
+        @endif
     </div>
     <!-- /product-list -->
 </div>
@@ -200,7 +205,7 @@
     $(document).ready(function () {
         $('.change-status').click(function (e) {
             e.preventDefault();
-            
+
             let shop_id = $(this).data('id');
             let status = $(this).data('status');
 
@@ -224,6 +229,45 @@
                 },
                 error: function () {
                     alert('Something went wrong!');
+                }
+            });
+        });
+
+        $('.delete-shop').click(function (e) {
+            e.preventDefault();
+
+            let shop_id = $(this).data('id');
+
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('admin.shops.delete') }}",
+                        type: "POST",
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            shop_id: shop_id
+                        },
+                        success: function (response) {
+                            if(response.success) {
+                                Swal.fire('Deleted!', response.message, 'success')
+                                    .then(() => location.reload());
+                            } else {
+                                Swal.fire('Error!', response.message, 'error');
+                            }
+                        },
+                        error: function () {
+                            Swal.fire('Error!', 'Something went wrong!', 'error');
+                        }
+                    });
                 }
             });
         });

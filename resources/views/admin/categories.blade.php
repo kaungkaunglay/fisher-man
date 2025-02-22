@@ -65,7 +65,9 @@
                         </div>
                     </form>
                 </div>
+                @if (check_role(2))
                 <a class="tf-button style-1 w208" href="/admin/categories/create"><i class="icon-plus"></i>Add new</a>
+                @endif
             </div>
             <div class="wg-table table-all-category">
                 <ul class="table-title flex gap20 mb-14">
@@ -120,7 +122,7 @@
             <div class="divider"></div>
             <div class="flex items-center justify-between flex-wrap gap10">
                 <div class="text-tiny">Showing 10 entries</div>
-                
+
 
             </div>
         </div>

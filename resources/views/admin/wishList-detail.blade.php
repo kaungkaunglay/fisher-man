@@ -6,10 +6,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/bootstrap-select.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/style.css') }}">
-
     <!-- Font -->
     <link rel="stylesheet" href="{{ asset('assets/admin/font/fonts.css') }}">
-    
+
     <!-- Icon -->
     <link rel="stylesheet" href="{{ asset('assets/admin/icon/style.css') }}">
 @endsection
@@ -19,7 +18,7 @@
         <!-- main-content-wrap -->
         <div class="main-content-wrap">
             <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-                <h3>Shop Detail</h3>
+                <h3>Users WishList Request</h3>
                 <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                     <li>
                         <a href="index.html"><div class="text-tiny">Dashboard</div></a>
@@ -28,13 +27,13 @@
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <a href="#"><div class="text-tiny">Manage Shops</div></a>
+                        <a href="#"><div class="text-tiny">User Request</div></a>
                     </li>
                     <li>
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <div class="text-tiny">Shop Detail</div>
+                        <div class="text-tiny">WishList Detail</div>
                     </li>
                 </ul>
             </div>
@@ -43,37 +42,32 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="mb-20">
-                            <label class="fs-4 fw-bold mb-8">Owner Name:</label>
-                            <p>{{ $shop->username }}</p>
+                            <label class="fs-4 fw-bold mb-8">Name:</label>
+                            <p>{{ $wishList->name }}</p>
                         </div>
-                
-                        <div class="mb-20">
-                            <label class="fs-4 fw-bold mb-8">Shop Name:</label>
-                            <p>{{ $shop->shop_name }}</p>
-                        </div>
-                
-                        <div class="mb-20">
-                            <label class="fs-4 fw-bold mb-8">Trans_management:</label>
-                            <p>{{ $shop->trans_management }}</p>
-                        </div>
+
                         <div class="mb-20">
                             <label class="fs-4 fw-bold mb-8">Email:</label>
-                            <p>{{ $shop->email }}</p>
+                            <p>{{ $wishList->email }}</p>
                         </div>
-                
+
+                        <div class="mb-20">
+                            <label class="fs-4 fw-bold mb-8">LineID:</label>
+                            <p>{{ $wishList->line_id }}</p>
+                        </div>
                         <div class="mb-20">
                             <label class="fs-4 fw-bold mb-8">Phone:</label>
-                            <p>{{ $shop->phone_number }}</p>
+                            <p>{{ $wishList->phone }}</p>
                         </div>
-                
+
+                        <div class="mb-20">
+                            <label class="fs-4 fw-bold mb-8">Description:</label>
+                            <p>{{ $wishList->description }}</p>
+                        </div>
+
                         <div class="mb-3">
                             <label class="fs-4 fw-bold mb-8">Submitted At:</label>
-                            <p>{{ $shop->created_at->format('Y-m-d') }}</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                            <div class="image rounded">
-                                <img src="{{asset($shop->avatar)}}" class="rounded-2 avatar" alt="">
+                            <p>{{ $wishList->created_at->format('Y-m-d') }}</p>
                         </div>
                     </div>
                 </div>
