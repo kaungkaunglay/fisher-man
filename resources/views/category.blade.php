@@ -10,7 +10,7 @@
     <!-- Breadcrumbs -->
     <nav aria-label="breadcrumb" class="py-4">
         <ol class="breadcrumb mb-0 bg-transparent">
-            <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="./home.html">{{trans_lang('home')}}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ $category->category_name }}</li>
         </ol>
     </nav>
@@ -25,7 +25,7 @@
     <div class="category col-8">
         <ul class="list-group category-list">
             @if($category->subCategories->isEmpty())
-                <h6 class="txt-primary fw-bold mb-3">There is no Product in this categroy</h6>
+                <h6 class="txt-primary fw-bold mb-3">このカテゴリには商品がありません</h6>
             @else
                 @foreach ($category->subCategories as $subcategory)
                     <li class="d-flex flex-column">
@@ -50,7 +50,7 @@
                                     <div class="left">
                                         <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
                                         <div class="title-category">
-                                            <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                                            <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                                             <h3 class="title m-t-b-10">{{ $product->name }}</h3>
                                         </div>
                                         <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
@@ -67,7 +67,7 @@
                         </div>
                         <!-- card items list end -->
                         <div class="see-more-box d-flex m-t-b-20 justify-content-center justify-content-lg-end">
-                            <a href="{{ route('sub-category.show', $subcategory->id) }}" class="common-btn">See More</a>
+                            <a href="{{ route('sub-category.show', $subcategory->id) }}" class="common-btn">{{trans_lang('seemore')}}</a>
                         </div>
                     </li>
                 @endforeach

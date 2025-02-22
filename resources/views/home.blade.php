@@ -26,7 +26,7 @@
 
             <!-- Recomnand HeadLine -->
             <div>
-                <h6 class="txt-primary fw-bold mb-3">Recommand Products</h6>
+                <h6 class="txt-primary fw-bold mb-3">{{trans_lang('recomended_product')}}</h6>
                 <div class="filter d-flex justify-content-between align-items-center mb-3">
                     <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
                         <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
@@ -53,7 +53,7 @@
                                 @endif
                             </p>
                             <div class="title-category">
-                                <a href="" class="menu-category">鮮魚 | 白身魚</a>
+                                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                                 <h3 class="title m-t-b-10">{{ $product->name }}</h3>
                             </div>
                             <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
@@ -84,11 +84,11 @@
     <!-- Animation Bar -->
     <section class="m-t-b-20 moving-discount">
         <div id="moving-text">
-            <p class="title">Discount Products</p>
-            <p class="title">Discount Products</p>
-            <p class="title">Discount Products</p>
-            <p class="title">Discount Products</p>
-            <p class="title">Discount Products</p>
+            <p class="title">{{trans_lang('special_offer')}}</p>
+            <p class="title">{{trans_lang('special_offer')}}</p>
+            <p class="title">{{trans_lang('special_offer')}}</p>
+            <p class="title">{{trans_lang('special_offer')}}</p>
+            <p class="title">{{trans_lang('special_offer')}}</p>
         </div>
     </section>
     <!-- /Animation Bar -->
@@ -99,7 +99,7 @@
 
             <!-- Porpular Headline -->
             <div>
-                <h6 class="txt-primary fw-bold mb-3">Popular & Top Rating Shop</h6>
+                <h6 class="txt-primary fw-bold mb-3">{{trans_lang('popular_shop')}}</h6>
             </div>
             <!-- /Porpular Headline -->
 
@@ -159,7 +159,7 @@
 
             <!-- Discount Headline -->
             <div>
-                <h6 class="txt-primary fw-bold mb-3">Discount Products</h6>
+                <h6 class="txt-primary fw-bold mb-3">{{trans_lang('special_offer')}}</h6>
                 <div class="filter d-flex justify-content-between align-items-center mb-3">
 
                     <!-- display -->
@@ -176,19 +176,17 @@
                         </div>
                         <div class="dropdown">
                             <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">Sort by</button>
+                                aria-expanded="false">{{trans_lang('sortby')}}</button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item"
-                                        href="{{ route('home', ['sort_by' => 'price_asc']) }}">Price: Low to High</a></li>
+                                        href="{{ route('home', ['sort_by' => 'price_asc']) }}">{{trans_lang('price_l_h')}}</a></li>
                                 <li><a class="dropdown-item"
-                                        href="{{ route('home', ['sort_by' => 'price_desc']) }}">Price: High to Low</a>
+                                        href="{{ route('home', ['sort_by' => 'price_desc']) }}">{{trans_lang('price_h_l')}}</a>
                                 </li>
-                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">Name:
-                                        A to Z</a></li>
-                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">Name:
-                                        Z to A</a></li>
+                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">{{trans_lang('name_a_z')}}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">{{trans_lang('name_z_a')}}</a></li>
                                 <li><a class="dropdown-item"
-                                        href="{{ route('home', ['sort_by' => 'latest']) }}">Latest</a></li>
+                                        href="{{ route('home', ['sort_by' => 'latest']) }}">{{trans_lang('latest')}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -215,7 +213,7 @@
                                 @endif
                             </p>
                             <div class="title-category flex-column flex-sm-row align-items-start">
-                                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                                 <h3 class="title m-t-b-10">{{ $product->name }}</h3>
                             </div>
                             <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
@@ -244,7 +242,7 @@
             <!-- Discount Footline -->
             <div class="row justify-content-center mx-0 mt-5">
                 <div class="col-5 col-lg-4 text-center">
-                    <a class="common-btn see-more-btn w-100" href="{{ route('special-offer') }}">See More</a>
+                    <a class="common-btn see-more-btn w-100" href="{{ route('special-offer') }}">{{trans_lang('seemore')}}</a>
                 </div>
             </div>
             <!-- /Discount Footline -->
@@ -259,7 +257,7 @@
 
             <!-- All Products Headline -->
             <div>
-                <h6 class="txt-primary fw-bold mb-3">All Products</h6>
+                <h6 class="txt-primary fw-bold mb-3">{{trans_lang('all_products')}}</h6>
                 <div class="filter d-flex justify-content-between align-items-center mb-3">
 
                     <!-- display -->
@@ -276,19 +274,17 @@
                         </div>
                         <div class="dropdown">
                             <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">Sort by</button>
+                                aria-expanded="false">{{trans_lang('sortby')}}</button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item"
-                                        href="{{ route('home', ['sort_by' => 'price_asc']) }}">Price: Low to High</a></li>
+                                        href="{{ route('home', ['sort_by' => 'price_asc']) }}">{{trans_lang('price_l_h')}}</a></li>
                                 <li><a class="dropdown-item"
-                                        href="{{ route('home', ['sort_by' => 'price_desc']) }}">Price: High to Low</a>
+                                        href="{{ route('home', ['sort_by' => 'price_desc']) }}">{{trans_lang('price_h_l')}}</a>
                                 </li>
-                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">Name:
-                                        A to Z</a></li>
-                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">Name:
-                                        Z to A</a></li>
+                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">{{trans_lang('name_a_z')}}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">{{trans_lang('name_z_a')}}</a></li>
                                 <li><a class="dropdown-item"
-                                        href="{{ route('home', ['sort_by' => 'latest']) }}">Latest</a></li>
+                                        href="{{ route('home', ['sort_by' => 'latest']) }}">{{trans_lang('latest')}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -314,7 +310,7 @@
                                 @endif
                             </p>
                             <div class="title-category">
-                                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                                 <h3 class="title m-t-b-10">{{ $product->name }}</h3>
                             </div>
                             <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">

@@ -197,7 +197,7 @@ class AuthController extends Controller
             if($user){
 
                 if( DB::table('password_reset_tokens')->where('email', $user->email)->first() ){
-                    return response()->json(['status' => false, 'message' => 'Reset Link Already Sent']);
+                    return response()->json(['status' => false, 'message' => 'リセットリンクはすでに送信されています']);
                 }
 
 
@@ -212,13 +212,13 @@ class AuthController extends Controller
                 Mail::to($user->email)->send(new ForgotPasswordMail($user,$token));
                 return response()->json(['status' => true, 'message' => 'Reset Link Sent', 'email' => $user->email]);
             }
-            return response()->json(['status' => false, 'message' => 'Email is not found']);
+            return response()->json(['status' => false, 'message' => 'メールが見つかりません']);
         }
     }
 
     public function showEmailSuccess($email){
         session()->flash('status', 'success'); 
-        session()->flash('message', 'We sent you an email to reset your password. Please check your email.');
+        session()->flash('message', 'パスワードリセットのためのメールを送信しました。メールをご確認ください。');
         return view('email_success', ['email' => $email]);
     }
 
@@ -249,7 +249,7 @@ class AuthController extends Controller
                 Mail::to($user->email)->send(new ForgotPasswordMail($user,$token));
                 return response()->json(['status' => true, 'message' => 'Reset Link Sent', 'email' => $user->email]);
             }
-            return response()->json(['status' => false, 'message' => 'Email is not found']);
+            return response()->json(['status' => false, 'message' => 'メールが見つかりません']);
         }
     }
 

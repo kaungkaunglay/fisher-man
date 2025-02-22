@@ -75,7 +75,7 @@
                         <form action="{{ route('products.search') }}" method="get">
                             <div class="input-group w-100">
                                 <input type="text" class="form-control bg-second search-bar" id="search"
-                                    placeholder="Search your Products" name="search_key">
+                                    placeholder="{{trans_lang('search_products')}}" name="search_key">
                                 <button type="submit" class="bg-main text-white magnifying-glass">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
@@ -113,13 +113,13 @@
                                 <ul class="border">
                                     <li>
                                         <a href="{{ url('/profile') }}" class="d-flex gap-2 text-black text-center">
-                                            <i class="fa-solid fa-address-card icon"></i>Profile
+                                            <i class="fa-solid fa-address-card icon"></i>{{trans_lang('profile')}}
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             class="px-3 d-flex gap-2 text-black text-center">
-                                            <i class="fas fa-door-open icon"></i>Logout
+                                            <i class="fas fa-door-open icon"></i>{{trans_lang('logout')}}
                                         </a>
                                     </li>
                                 </ul>
@@ -140,13 +140,13 @@
                             </a>
                         </div>
                         <ul class="w-100">
-                            <li><a href="{{ url('/') }}" class="menu-header">Home</a></li>
-                            <li><a href="{{ url('/special-offer') }}" class="menu-header">Special Offer</a></li>
+                            <li><a href="{{ url('/') }}" class="menu-header">{{trans_lang('home')}}</a></li>
+                            <li><a href="{{ url('/special-offer') }}" class="menu-header">{{trans_lang('special_offer')}}</a></li>
                             @foreach ($categories as $category)
                                 <li><a href="{{ route('category', $category->id) }}"
                                         class="menu-header">{{ $category->category_name }}</a></li>
                             @endforeach
-                            <li><a href="{{ url('/support') }}" class="menu-header">Support</a></li>
+                            <li><a href="{{ url('/support') }}" class="menu-header">{{trans_lang('support')}}</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -222,25 +222,25 @@
 
                 {{-- Useful Link --}}
                 <div class="col-12 col-lg-3 mt-3 d-flex flex-column justify-content-center">
-                    <h6 class="text-center text-warning mb-2">Useful Links</h6>
+                    <h6 class="text-center text-warning mb-2">{{trans_lang('useful_links')}}</h6>
                     <ul class="list-unstyled link-list txt-15 useful-link">
-                        <li><a href="{{ route('home') }}">Home</a></li>
-                        <li><a href="#">Products</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="{{ route('policy') }}">Terms & Privacy</a></li>
-                        <li><a href="#">Customer Review</a></li>
-                        <li><a href="#">Blogs</a></li>
+                        <li><a href="{{ route('home') }}">{{trans_lang('home')}}</a></li>
+                        <li><a href="#">{{trans_lang('product')}}</a></li>
+                        <li><a href="#">{{trans_lang('faqs')}}</a></li>
+                        <li><a href="{{ route('policy') }}">{{trans_lang('terms_privacy')}}</a></li>
+                        <li><a href="#">{{trans_lang('customer_review')}}</a></li>
+                        <li><a href="#">{{trans_lang('blogs')}}</a></li>
                     </ul>
                 </div>
                 {{-- /Useful Link --}}
 
                 {{-- Contact Us --}}
                 <div class="col-12 col-lg-2 mt-3 ">
-                    <h6 class="text-center text-warning mb-2">Contact Us</h6>
+                    <h6 class="text-center text-warning mb-2">{{trans_lang('contact_us')}}</h6>
                     <ul class="list-unstyled text-white txt-15 text-center">
-                        <li><a href="#">Address : {{ App\Models\Setting::getValue('contact_address') }}</a></li>
-                        <li><a href="#">Phone : {{ App\Models\Setting::getValue('contact_phone') }}</a></li>
-                        <li><a href="#">Email : {{ App\Models\Setting::getValue('contact_email') }}</a></li>
+                        <li><a href="#">{{trans_lang('address')}} : {{ App\Models\Setting::getValue('contact_address') }}</a></li>
+                        <li><a href="#">{{trans_lang('phone_number')}} :  {{ App\Models\Setting::getValue('contact_phone') }}</a></li>
+                        <li><a href="#">{{trans_lang('email')}} : {{ App\Models\Setting::getValue('contact_email') }}</a></li>
                     </ul>
                 </div>
                 {{-- /Contact Us --}}
@@ -266,16 +266,16 @@
 
     <!-- Mobile Bottom Nav -->
     <div class="bottom-nav d-flex d-md-none">
-        <a href="#" class="menu-header"><i class="fa-solid fa-home"></i><br>Home</a>
-        <a href="#" class="menu-header"><i class="fa-solid fa-tags" id="category-link"></i><br>Category</a>
+        <a href="#" class="menu-header"><i class="fa-solid fa-home"></i><br>{{trans_lang('home')}}</a>
+        <a href="#" class="menu-header"><i class="fa-solid fa-tags" id="category-link"></i><br>{{trans_lang('category')}}</a>
         <div class="">
             <a href="#" class="menu-header mobile-shopping-card"><i
-                    class="fa-solid fa-cart-shopping shopping"></i><br>Cart (
+                    class="fa-solid fa-cart-shopping shopping"></i><br>{{trans_lang('cart')}}(
                 <span class="price">2</span> )
             </a>
         </div>
-        <a href="#" class="menu-header"><i class="fa-solid fa-tags"></i><br>Offers</a>
-        <a href="#" class="menu-header"><i class="fa-solid fa-user"></i><br>Profile</a>
+        <a href="#" class="menu-header"><i class="fa-solid fa-tags"></i><br>{{trans_lang('offer')}}</a>
+        <a href="#" class="menu-header"><i class="fa-solid fa-user"></i><br>{{trans_lang('profile')}}</a>
     </div>
     <!-- /Mobile Bottom Nav -->
 
@@ -288,15 +288,16 @@
     <script src="{{ asset('assets/js/popup.js') }}"></script>
     {{--
   <script src="{{asset('assets/js/preloader.js')}}"></script> --}}
-    <script src="{{ asset('assets/js/moving-text.js') }}"></script>
-    <script src="{{ asset('assets/js/password.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
-    <script>
-        $(document).ready(() => {
-            //dropdown trigger
-            $('.btn-login').click(() => {
-                $('.dropdown').toggleClass('active');
-            });
+  <script src="{{ asset('assets/js/moving-text.js') }}"></script>
+  <script src="{{ asset('assets/js/password.js') }}"></script>
+  {{-- <script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script> --}}
+  {{-- <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script> --}}
+  <script>
+    $(document).ready(() => {
+      //dropdown trigger
+      $('.btn-login').click(() => {
+        $('.dropdown').toggleClass('active');
+      });
 
             // close dropdown
             $(document).click(ev => {
