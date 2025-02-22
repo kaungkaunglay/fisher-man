@@ -479,16 +479,15 @@ class TranslationSeeder extends Seeder
                 'en' => 'Add Sub Category',
                 'jp' => 'サブカテゴリーを追加',
             ],
-
             [
                 'key' => 'send_link',
                 'en' => 'Send Reset a Link',
-                'jp' => '',
+                'jp' => 'リセットリンクを送信',
             ],
             [
                 'key' => 'back_to_login',
                 'en' => 'Back to Login',
-                'jp' => '',
+                'jp' => 'ログインに戻る',
             ],
         ];
         foreach($translations as $translation) {

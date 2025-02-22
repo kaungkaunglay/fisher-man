@@ -26,7 +26,7 @@
 
             <!-- Recomnand HeadLine -->
             <div>
-                <h6 class="txt-primary fw-bold mb-3">Recommand Products</h6>
+                <h6 class="txt-primary fw-bold mb-3">{{trans_lang('welcome')}}</h6>
                 <div class="filter d-flex justify-content-between align-items-center mb-3">
                     <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
                         <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
