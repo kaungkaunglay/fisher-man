@@ -139,7 +139,7 @@
                                 <i class="fa-solid fa-bars"></i>
                             </a>
                         </div>
-                        <ul>
+                        <ul class="w-100">
                             <li><a href="{{ url('/') }}" class="menu-header">Home</a></li>
                             <li><a href="{{ url('/special-offer') }}" class="menu-header">Special Offer</a></li>
                             @foreach ($categories as $category)

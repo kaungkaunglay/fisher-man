@@ -38,7 +38,7 @@
                         @csrf
                         <!-- Form Headline -->
                         <div class="bg-primary text-white p-2">
-                            <h2 class="fw-bold d-flex justify-content-between">Shop Info
+                            <h2 class="fw-bold d-flex justify-content-between">Personal Info
                                 <div class="d-flex justify-content-end gap-4">
                                     <button type="submit" class="save">
                                         <i class="fa-solid fa-save fs-5 text-white"></i>
@@ -329,9 +329,114 @@
             </div>
             <!-- /Profile Side -->
 
+            <!-- Map Side -->
+            <div class="col-12 col-lg-5 mt-3 mt-lg-0 map-side">
+
+                <!-- Map Side -->
+                <div class="h-100 d-flex flex-column gap-4">
+                    <h2 class="fw-bold bg-primary text-white p-2">Shop Location</h2>
+                    <iframe class="w-100 border-0 h-100 shop-location"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d250151.16276620553!2d104.72537013378734!3d11.579654014369655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109513dc76a6be3%3A0x9c010ee85ab525bb!2sPhnom%20Penh%2C%20Cambodia!5e0!3m2!1sen!2ssg!4v1736774811619!5m2!1sen!2ssg"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <!-- /Map-->
+
+            </div>
+            <!-- /Map Side -->
+
         </div>
     </section>
     <!-- /Profile Section -->
+
+    <!-- History Table -->
+    <section>
+        <div class="container-custom">
+
+            <div class="history rounded-2">
+                <h2 class="title">History</h2>
+                <ol class="history-list">
+                    <li>
+                        <div class="history-item row">
+                            <div class="col-md-8 col-sm-12">
+                                <h3 class="shop-name">Shop Name</h3>
+                                <p class="payment">Payment method & used card last no.</p>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <span class="date">15/06/2024</span>
+                                <a class="download" download="">
+                                    <i class="fa-solid fa-download"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="history-item row">
+                            <div class="col-md-8 col-sm-12">
+                                <h3 class="shop-name">Shop Name</h3>
+                                <p class="payment">Payment method & used card last no.</p>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <span class="date">15/06/2024</span>
+                                <a class="download" download="">
+                                    <i class="fa-solid fa-download"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="history-item row">
+                            <div class="col-md-8 col-sm-12">
+                                <h3 class="shop-name">Shop Name</h3>
+                                <p class="payment">Payment method & used card last no.</p>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <span class="date">15/06/2024</span>
+                                <a class="download" download="">
+                                    <i class="fa-solid fa-download"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="history-item row">
+                            <div class="col-md-8 col-sm-12">
+                                <h3 class="shop-name">Shop Name</h3>
+                                <p class="payment">Payment method & used card last no.</p>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <span class="date">15/06/2024</span>
+                                <a class="download" download="">
+                                    <i class="fa-solid fa-download"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="history-item row">
+                            <div class="col-md-8 col-sm-12">
+                                <h3 class="shop-name">Shop Name</h3>
+                                <p class="payment">Payment method & used card last no.</p>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <span class="date">15/06/2024</span>
+                                <a class="download" download="">
+                                    <i class="fa-solid fa-download"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+        </div>
+
+    </section>
+    <!-- ./History Table -->
 
     <!-- Main Content => disable -->
     <div class="container-custom mt-2 d-none">
@@ -561,6 +666,8 @@
             </ol>
         </div>
         <!-- ./History Table -->
+
+
     </div>
     <!-- ./Main Content -->
 

@@ -1,27 +1,6 @@
 
 $(document).ready(() => {
 
-    document.body.getClientRects()
-
-    // track id code to show page
-    const page = $(location).attr('href');
-    if (page.includes('#address')) showPage('#address');
-    else if (page.includes('#payment')) showPage('#payment');
-    else if (page.includes('#complete')) showPage('#complete');
-    else showPage('#checkout');
-
-    // forward
-
-    change_step('#checkout .btn-next', 2);
-    change_step('#login .btn-next', 3);
-    change_step('#address .btn-next', 4);
-    change_step('#payment .btn-next', 5);
-
-    //backward
-    change_step('#payment .btn-back', 2);
-    change_step('#address .btn-back', 0);
-    change_step('#checkout .btn-back');
-
     // for popup
     $(document).on('click', '#payment:has(#select-payment:checked) .btn-payment', () => {
         $('#warning-msg').hide();
@@ -59,9 +38,6 @@ $(document).ready(() => {
     netTotal();
 
     // remove Item
-
-    // for testing
-    skipStepTester();
 })
 
 function showPage(target) {
@@ -172,51 +148,3 @@ function netTotal(addtion) {
     })
 }
 
-// func for testing
-function skipStepTester() {
-
-    $('.step:nth-child(1)').click(() => goStep('#checkout'));
-    $('.step:nth-child(2)').click(() => goStep('#login'));
-    $('.step:nth-child(3)').click(() => goStep('#address'));
-    $('.step:nth-child(4)').click(() => goStep('#payment'));
-    $('.step:nth-child(5)').click(() => goStep('#complete'));
-
-    function goStep($target) {
-        $('.page').hide();
-        $($target).show();
-    }
-}
-
-// step chaging function
-function change_step(trigger, point) {
-
-    $(trigger).click((ev) => {
-        ev.preventDefault();
-
-        const header = $('header').outerHeight() || 0;
-        const dir = ev.currentTarget.classList.contains('btn-next') ? true : false; //true for forward dir & false for backward dir
-        const index = ($('.page').index(ev.currentTarget.closest('.page')));
-        const progress = document.querySelector('.progress');
-
-        //
-        if (dir) {
-            for (i = 1; i <= index + 1; i++) {
-                $($('.step')[i]).addClass('active');
-            }
-        } else {
-            for (i = 4; i > index - (index == '1' ? 1 : 0); i--) {
-                $($('.step')[i]).removeClass('active');
-            }
-        }
-
-        progress.style.width = `calc((100% / 4) * ${point}`
-
-        $($(trigger).closest('.page')).hide();
-        $($(trigger).attr('href')).fadeIn();
-
-        $('html, body').animate({
-
-            scrollTop: $('main').offset().top - header
-        }, 500);
-    })
-}

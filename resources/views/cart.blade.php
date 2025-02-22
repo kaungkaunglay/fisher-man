@@ -137,7 +137,7 @@
             <!-- ./Mobile Style -->
 
             <div class="text-end my-4">
-                <a href="#address" class="common-btn btn-next">Next</a>
+                <button class="common-btn btn-next" data-page="#login">Next</button>
             </div>
 
         </div>
@@ -145,7 +145,7 @@
     <!-- /Checkout Step -->
 
     <!-- Login Step -->
-    <section class="page" id="login">
+    <section class="page mt-5" id="login" data-step="2">
         <div class="container-custom">
 
             <div class="border w-75 mx-auto px-5 py-3 rounded shadow login-box">
@@ -174,7 +174,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="common-btn -solid mx-auto mt-5 rounded-pill w-100">Login</button>
+                        <button class="common-btn -solid mx-auto mt-5 rounded-pill w-100" data-page="#address">Login</button>
                     </div>
                 </form>
             </div>
@@ -184,7 +184,7 @@
     <!-- /Login Step -->
 
     <!-- Address Step -->
-    <section class="page" id="address">
+    <section class="page mt-3" id="address" data-step="3">
         <div class="container-custom">
 
             <div class="p-3 bg-primary d-flex text-white">
@@ -263,9 +263,8 @@
                         </tr>
                     </table>
                     <div class="d-flex gap-3 my-4 justify-content-end">
-                        <button href="#checkout" class="btn btn-outline-primary common-btn"
-                            id="cancel">Cancel</button>
-                        <button type="submit" href="#payment" class="btn btn-outline-primary common-btn">Save</button>
+                        <button class="btn btn-outline-primary common-btn" id="cancel">Cancel</button>
+                        <button type="submit" class="btn btn-outline-primary common-btn">Save</button>
                     </div>
                 </form>
             </div>
@@ -330,8 +329,8 @@
                     </tr>
                 </table>
                 <div class="d-flex gap-3 my-4 justify-content-end">
-                    <a href="#checkout" class="btn btn-outline-primary common-btn btn-back">Go Back</a>
-                    <a href="#payment" class="btn btn-outline-primary common-btn btn-next">Next</a>
+                    <button class="btn btn-outline-primary common-btn btn-back" data-page="#login">Go Back</button>
+                    <button class="btn btn-outline-primary common-btn btn-next" data-page="#payment">Next</button>
                 </div>
             </div>
             <!-- /output -->
@@ -341,7 +340,7 @@
     <!-- /Address Step -->
 
     <!-- Payment Step -->
-    <section class="page" id="payment">
+    <section class="page mt-3" id="payment" data-step="4">
         <div class="container-custom">
 
             <!-- Payment Method Form -->
@@ -421,7 +420,7 @@
 
                         <div class="d-flex gap-3 text-center justify-content-center">
                             <button class="common-btn btn btn-outline-primary" id="cancel">Cancel</button>
-                            <a href="#complete" class="common-btn btn btn-outline-primary btn-next">Save</a>
+                            <button class="common-btn btn btn-outline-primary btn-next" data-page="#complete">Save</button>
                         </div>
                     </form>
                 </div>
@@ -534,7 +533,7 @@
                 </li>
             </ul>
             <div class="d-flex gap-3 my-4 justify-content-end">
-                <a href="#address" class="btn btn-outline-primary common-btn btn-back">Go Back</a>
+                <button class="btn btn-outline-primary common-btn btn-back" data-page="#address">Go Back</button>
                 <button class="btn btn-outline-primary common-btn btn-payment">Check Out</button>
             </div>
 
@@ -543,7 +542,7 @@
     <!-- /Payment Step -->
 
     <!-- Complete Step -->
-    <section class="page mt-4" id="complete">
+    <section class="page mt-5" id="complete" data-step="5">
         <div class="container-custom">
             <p class="text-center">Your Payment is Successful. We will sent the invoice to your mail and Line ID Please
                 check.
@@ -558,6 +557,7 @@
 
     <!-- All Scripts -->
     <script src="{{ asset('assets/js/cart.js') }}"></script>
+    <script src="{{ asset('assets/js/pageChange.js') }}"></script>
     <script>
         $(document).ready(function() {
 
@@ -693,5 +693,9 @@
         });
     </script>
     <!-- /All Scripts -->
+
+    {{-- Test Scripts --}}
+    <script src="{{asset('assets/js/skipTester.test.js')}}"></script>
+    {{-- /Test Scripts --}}
 
 @endsection

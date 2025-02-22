@@ -73,11 +73,11 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
 }
 
 #bookmark_btn {
-    transition: text-shadow 0.8s ease-out;
+    transition: color 1s ease-in-out;
 }
 
 #bookmark_btn.active {
-    text-shadow: 0px 0px .7rem #ffc107;
+    color: #ffc107;
 }
 
 header .dropdown {
