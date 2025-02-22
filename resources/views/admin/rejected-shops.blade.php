@@ -20,11 +20,11 @@
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>Rejected Shops</h3>
+            <h3>{{trans_lang('rejected_shops')}}</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
                     <a href="index.html">
-                        <div class="text-tiny">Dashboard</div>
+                        <div class="text-tiny">{{trans_lang('home')}}</div>
                     </a>
                 </li>
                 <li>
@@ -32,14 +32,14 @@
                 </li>
                 <li>
                     <a href="#">
-                        <div class="text-tiny">Shop Lists</div>
+                        <div class="text-tiny">{{trans_lang('shop_list')}}</div>
                     </a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">Rejected Shops</div>
+                    <div class="text-tiny">{{trans_lang('rejected_shops')}}</div>
                 </li>
             </ul>
         </div>
@@ -51,7 +51,7 @@
             </div> -->
             <div class="flex items-center justify-between gap10 flex-wrap">
                 <div class="wg-filter flex-grow">
-                    <div class="show">
+                    <!-- <div class="show">
                         <div class="text-tiny">Showing</div>
                         <div class="select">
                             <select class="">
@@ -61,7 +61,7 @@
                             </select>
                         </div>
                         <div class="text-tiny">entries</div>
-                    </div>
+                    </div> -->
                     <form class="form-search">
                         <fieldset class="name">
                             <input type="text" placeholder="ここで検索。。。" class="" name="name" tabindex="2" value="" aria-required="true" required="">
@@ -76,19 +76,19 @@
             <div class="wg-table table-product-list">
                 <ul class="table-title flex gap20 mb-14">
                     <li>
-                        <div class="body-title">User Name</div>
+                        <div class="body-title">{{trans_lang('username')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Shop Name</div>
+                        <div class="body-title">{{trans_lang('shop_name')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Email</div>
+                        <div class="body-title">{{trans_lang('email')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Status</div>
+                        <div class="body-title">{{trans_lang('status')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Action</div>
+                        <div class="body-title">{{trans_lang('action')}}</div>
                     </li>
                 </ul>
 
@@ -148,9 +148,9 @@
         {{-- pagination --}}
         @if ($rejectedShops->hasPages())
         <div class="flex items-center justify-between flex-wrap gap10">
-            <div class="text-tiny">
+            <!-- <div class="text-tiny">
                 Showing {{ $rejectedShops->firstItem() }} to {{ $rejectedShops->lastItem() }} of {{ $rejectedShops->total() }} entries
-            </div>
+            </div> -->
             <ul class="wg-pagination">
                 <!-- Previous Page -->
                 <li class="{{ $rejectedShops->onFirstPage() ? 'disabled' : '' }}">

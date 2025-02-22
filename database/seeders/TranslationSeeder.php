@@ -80,6 +80,11 @@ class TranslationSeeder extends Seeder
                 'jp' => 'すべての商品',
             ],
             [
+                'key' => 'top_products',
+                'en' => 'Top Products',
+                'jp' => 'トップ製品',
+            ],
+            [
                 'key' => 'seemore',
                 'en' => 'See More',
                 'jp' => 'さらに見る',
@@ -305,6 +310,11 @@ class TranslationSeeder extends Seeder
                 'key' => 'add_cart',
                 'en' => 'Add to Cart',
                 'jp' => 'カートに追加',
+            ],
+            [
+                'key' => 'added_to_cart',
+                'en' => 'Added to Cart',
+                'jp' => 'カートに追加されました',
             ],
             [
                 'key' => 'offer', 
@@ -649,6 +659,16 @@ class TranslationSeeder extends Seeder
                 'jp' => 'ポリシー',
             ],
             [
+                'key' => 'slogan',
+                'en' => 'Slogan',
+                'jp' => 'スローガン',
+            ],
+            [
+                'key' => 'logo',
+                'en' => 'Logo',
+                'jp' => 'ロゴ',
+            ],
+            [
                 'key' => 'category',
                 'en' => 'Category',
                 'jp' => 'カテゴリー',
@@ -687,6 +707,11 @@ class TranslationSeeder extends Seeder
                 'key' => 'back_to_login',
                 'en' => 'Back to Login',
                 'jp' => 'ログインに戻る',
+            ],
+            [
+                'key' => 'add_setting',
+                'en' => 'Add Setting',
+                'jp' => '設定を追加',
             ],
         ];
         foreach($translations as $translation) {

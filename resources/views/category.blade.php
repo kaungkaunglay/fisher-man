@@ -10,7 +10,7 @@
     <!-- Breadcrumbs -->
     <nav aria-label="breadcrumb" class="py-4">
         <ol class="breadcrumb mb-0 bg-transparent">
-            <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="./home.html">{{trans_lang('home')}}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ $category->category_name }}</li>
         </ol>
     </nav>
@@ -25,7 +25,7 @@
     <div class="category col-8">
         <ul class="list-group category-list">
             @if($category->subCategories->isEmpty())
-                <h6 class="txt-primary fw-bold mb-3">There is no Product in this categroy</h6>
+                <h6 class="txt-primary fw-bold mb-3">このカテゴリには商品がありません</h6>
             @else
                 @foreach ($category->subCategories as $subcategory)
                     <li class="d-flex flex-column">

@@ -18,22 +18,22 @@
         <!-- main-content-wrap -->
         <div class="main-content-wrap">
             <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-                <h3>Wish List Request</h3>
+                <h3>{{trans_lang('wishlist')}}{{trans_lang('request')}}</h3>
                 <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                     <li>
-                        <a href="index.html"><div class="text-tiny">Dashboard</div></a>
+                        <a href="index.html"><div class="text-tiny">{{trans_lang('home')}}</div></a>
                     </li>
                     <li>
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <a href="#"><div class="text-tiny">User Request</div></a>
+                        <a href="#"><div class="text-tiny">{{trans_lang('request')}}</div></a>
                     </li>
                     <li>
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <div class="text-tiny">Wish List Request</div>
+                        <div class="text-tiny">{{trans_lang('wishlist')}}{{trans_lang('request')}}</div>
                     </li>
                 </ul>
             </div>
@@ -55,16 +55,16 @@
                 <div class="wg-table table-all-user">
                     <ul class="table-title flex gap20 mb-14">
                         <li>
-                            <div class="body-title">Name</div>
+                            <div class="body-title">{{trans_lang('name')}}</div>
                         </li>
                         <li>
-                            <div class="body-title">Email</div>
+                            <div class="body-title">{{trans_lang('email')}}</div>
                         </li>
                         <li>
-                            <div class="body-title">Description</div>
+                            <div class="body-title">{{trans_lang('description')}}</div>
                         </li>
                         <li>
-                            <div class="body-title">Action</div>
+                            <div class="body-title">{{trans_lang('action')}}</div>
                         </li>
                     </ul>
                   @foreach($wishLists as $wishList)
@@ -97,9 +97,9 @@
                  {{-- pagination --}}
                  @if ($wishLists->hasPages())
                  <div class="flex items-center justify-between flex-wrap gap10">
-                     <div class="text-tiny">
+                     <!-- <div class="text-tiny">
                          Showing {{ $wishLists->firstItem() }} to {{ $wishLists->lastItem() }} of {{ $wishLists->total() }} entries
-                     </div>
+                     </div> -->
                      <ul class="wg-pagination">
                          <!-- Previous Page -->
                          <li class="{{ $wishLists->onFirstPage() ? 'disabled' : '' }}">
