@@ -65,7 +65,9 @@
                         </div>
                     </form>
                 </div>
-                <a class="tf-button style-1 w208" href="/admin/sub-categories/create"><i class="icon-plus"></i>Add new</a>
+               @if (check_role(2))
+               <a class="tf-button style-1 w208" href="/admin/sub-categories/create"><i class="icon-plus"></i>Add new</a>
+               @endif
             </div>
             <div class="wg-table table-all-sub-category">
                 <ul class="table-title flex gap20 mb-14">

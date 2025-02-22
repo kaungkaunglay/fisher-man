@@ -52,7 +52,11 @@
                 <div class="section-menu-left">
                     <div class="box-logo">
                         <a href="{{route('admin.index')}}" id="site-logo-inner">
-                            <img class="" id="logo_header" alt="" src="{{asset('assets/admin/images/logo.png')}}" data-light="{{asset('assets/admin/images/logo.png')}}" data-dark="{{asset('assets/admin/images/logo.png')}}" >
+                            @if (file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
+              <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" id="logo_header" class="logo" alt="logo" style="width: 120px">
+              @else
+              <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" id="logo_header" class="logo" alt="logo" style="width: 120px">
+              @endif
                         </a>
                         <div class="button-show-hide">
                             <i class="icon-menu-left"></i>
@@ -69,6 +73,7 @@
                                     </a>
                                 </li>
                             </div>
+                            @if (check_role(2))
                             <div class="center-item">
                                 <div class="center-heading">Product Management</div>
                                 <ul class="menu-list">
@@ -83,6 +88,7 @@
                                                     <div class="text">Add Product</div>
                                                 </a>
                                             </li>
+
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.products')}}" class="{{ request()->is('admin/products') ? 'active' : '' }}">
                                                     <div class="text">Product List</div>
@@ -101,11 +107,12 @@
                                                     <div class="text">Category list</div>
                                                 </a>
                                             </li>
-                                            <li class="sub-menu-item">
-                                                <a href="{{route('create_category')}}" class="{{request()->is('admin/categories/create') ? 'active' : ''}}">
-                                                    <div class="text">New category</div>
-                                                </a>
-                                            </li>
+                                                <li class="sub-menu-item">
+                                                    <a href="{{route('create_category')}}" class="{{request()->is('admin/categories/create') ? 'active' : ''}}">
+                                                        <div class="text">New category</div>
+                                                    </a>
+                                                </li>
+
                                         </ul>
                                     </li>
                                     <li class="menu-item has-children {{ request()->is('admin/sub_categ*') ? 'active' : '' }}">
@@ -119,14 +126,16 @@
                                                     <div class="text">Sub Category list</div>
                                                 </a>
                                             </li>
+
                                             <li class="sub-menu-item">
                                                 <a href="{{route('create_sub_category')}}" class="{{request()->is('admin/sub-categories/create') ? 'active' : ''}}">
                                                     <div class="text">New sub category</div>
                                                 </a>
                                             </li>
+
                                         </ul>
                                     </li>
-                                    <li class="menu-item has-children {{ request()->is('admin/order*') ? 'active' : '' }}">
+                                    {{-- <li class="menu-item has-children {{ request()->is('admin/order*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-file-plus"></i></div>
                                             <div class="text">Order</div>
@@ -138,32 +147,16 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
+                            @endif
+
+
+                            @if (check_role(1))
                             <div class="center-item">
                                 <div class="center-heading">User Management</div>
-                                <ul class="menu-list">
-                                    <li class="menu-item has-children {{ request()->is('admin/user*') ? 'active' : '' }}">
-                                        <a href="javascript:void(0);" class="menu-item-button">
-                                            <div class="icon"><i class="icon-user"></i></div>
-                                            <div class="text">User</div>
-                                        </a>
-                                        <ul class="sub-menu" style="display: block;">
-                                            <li class="sub-menu-item">
-                                                <a href="{{route('admin.users')}}" class="{{request()->is('admin/users') ? 'active' : ''}}">
-                                                    <div class="text">All user</div>
-                                                </a>
-                                            </li>
-                                            <li class="sub-menu-item">
-                                                <a href="{{route('admin.user')}}" class="{{request()->is('admin/user') ? 'active' : ''}}">
-                                                    <div class="text">Add new user</div>
-                                                </a>
-                                            </li>
 
-                                        </ul>
-                                    </li>
-                                </ul>
                                 <ul class="menu-list">
                                     <li class="menu-item has-children {{ request()->is('admin/request*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
@@ -262,6 +255,9 @@
                                     </li>
                                 </ul>
                             </div>
+
+                            @endif
+
 
                         </div>
 

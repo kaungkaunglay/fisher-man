@@ -1,3 +1,4 @@
+{{-- @dd(check_role(1)) --}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,22 +54,20 @@
         <div class="container-custom">
             <div class="header">
 
-                <!-- Top Header -->
-                <div class="top-header">
+        <!-- Top Header -->
+        <div class="top-header">
 
-                    <!-- Head Logo -->
-                    <div class="logo">
-                        <a href="{{ url('/') }}">
-                            @if (file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
-                                <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
-                                    class="logo" alt="logo">
-                            @else
-                                <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
-                                    class="logo" alt="logo">
-                            @endif
-                        </a>
-                    </div>
-                    <!-- /Head Logo -->
+          <!-- Head Logo -->
+          <div class="logo">
+            <a href="{{ url('/') }}">
+              @if (file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
+              <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" class="logo" alt="logo">
+              @else
+              <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" class="logo" alt="logo">
+              @endif
+            </a>
+          </div>
+          <!-- /Head Logo -->
 
 
                     <!-- Search Bar -->

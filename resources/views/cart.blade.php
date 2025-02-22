@@ -49,53 +49,55 @@
         <div class="container-custom">
 
             <!-- Desktop Style -->
-            <table class="table desktop text-center d-md-table d-none table-item">
-                <thead>
-                    <tr>
-                        <th scope="col">Image</th>
-                        <th scope="col">Product address</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Remove</th>
-                    </tr>
-                </thead>
-                <tbody class="dsk-cart-body">
-                    @foreach ($carts as $item)
-                        <tr class="table-row cart-{{ $item->product->id }}">
+            <div class="scroller">
+                <table class="table desktop text-center d-md-table d-none table-item">
+                    <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Product address</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody class="dsk-cart-body">
+                        @foreach ($carts as $item)
+                            <tr class="table-row cart-{{ $item->product->id }}">
+                                <td>
+                                    <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
+                                            alt="{{ $item->product->name }}"></div>
+                                </td>
+                                <td class="col-name">{{ $item->product->name }}</td>
+                                <td class="price">¥{{ $item->product->product_price }}</td>
+                                <td>
+                                    <div class="quantity d-flex">
+                                        <button class="btn decrement">-</button>
+                                        <input type="number" value="{{ $item->quantity }}" class="quantity-value">
+                                        <button class="btn increment">+</button>
+                                    </div>
+                                </td>
+                                <td class="cost"></td>
+                                <td class="col-remove">
+                                    <a href="javascript:void(0);" class="mx-auto dsk-cart-del-btn"
+                                        data-id="{{ $item->product->id }}">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4"></td>
+                            <td>Total</td>
                             <td>
-                                <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
-                                        alt="{{ $item->product->name }}"></div>
-                            </td>
-                            <td class="col-name">{{ $item->product->name }}</td>
-                            <td class="price">¥{{ $item->product->product_price }}</td>
-                            <td>
-                                <div class="quantity d-flex">
-                                    <button class="btn decrement">-</button>
-                                    <input type="text" value="{{ $item->quantity }}" class="quantity-value" readonly>
-                                    <button class="btn increment">+</button>
-                                </div>
-                            </td>
-                            <td class="cost"></td>
-                            <td class="col-remove">
-                                <a href="javascript:void(0);" class="mx-auto dsk-cart-del-btn"
-                                    data-id="{{ $item->product->id }}">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </a>
+                                <span class="total"></span>
                             </td>
                         </tr>
-                    @endforeach
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="4"></td>
-                        <td>Total</td>
-                        <td>
-                            <span class="total"></span>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
+                    </tfoot>
+                </table>
+            </div>
             <!-- ./Desktop Style -->
 
             <!-- Mobile Style -->
@@ -114,7 +116,7 @@
                                 </div>
                                 <div class="quantity d-flex">
                                     <button class="btn decrement">-</button>
-                                    <input type="text" value="{{ $item->quantity }}" class="quantity-value" readonly>
+                                    <input type="number" value="{{ $item->quantity }}" class="quantity-value">
                                     <button class="btn increment">+</button>
                                 </div>
                             </div>
@@ -135,7 +137,7 @@
             <!-- ./Mobile Style -->
 
             <div class="text-end my-4">
-                <a href="#address" id="next-btn" class="common-btn btn-next">Next</a>
+                <a href="#address" class="common-btn btn-next">Next</a>
             </div>
 
         </div>
@@ -427,41 +429,43 @@
             <!-- ./Payment Method Form -->
 
             <!-- Desktop Style -->
-            <table class="table desktop text-center d-md-table d-none table-item pannel pannel-default ">
-                <thead>
-                    <tr>
-                        <th scope="col">Image</th>
-                        <th scope="col">Product address</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Total</th>
-                    </tr>
-                </thead>
-                <tbody class="dsk-cart-body">
-                    @foreach ($carts as $item)
-                        <tr class="table-row cart-{{ $item->product->id }}">
+            <div class="scroller">
+                <table class="table desktop text-center d-md-table d-none table-item pannel pannel-default ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Product address</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody class="dsk-cart-body">
+                        @foreach ($carts as $item)
+                            <tr class="table-row cart-{{ $item->product->id }}">
+                                <td>
+                                    <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
+                                            alt="product img"></div>
+                                </td>
+                                <td clas="col-name">{{ $item->product->name }}</td>
+                                <td class="price">¥{{ $item->product->product_price }}</td>
+                                <td class="cost">
+                                    <input type="hidden" value="1" class="quantity-value">
+                                </td>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td>Total</td>
                             <td>
-                                <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
-                                        alt="product img"></div>
-                            </td>
-                            <td clas="col-name">{{ $item->product->name }}</td>
-                            <td class="price">¥{{ $item->product->product_price }}</td>
-                            <td class="cost">
-                                <input type="hidden" value="1" class="quantity-value">
-                            </td>
+                                <span class="total"></span>
                             </td>
                         </tr>
-                    @endforeach
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>Total</td>
-                        <td>
-                            <span class="total"></span>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
+                    </tfoot>
+                </table>
+            </div>
             <!-- ./Desktop Style -->
 
             <!-- Mobile Style -->

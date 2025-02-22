@@ -110,8 +110,8 @@
                                             <i class="icon-eye"></i>
                                         </a>
                                     </div>
-                                    <div class="item trash">
-                                        <a href="#" class="btn-trash delete-shop" data-id="{{ $approvedShop->id }}">
+                                    <div class="item">
+                                        <a href="#" class="btn-trash delete-shop text-danger" data-id="{{ $approvedShop->id }}">
                                             <i class="icon-trash-2"></i>
                                         </a>
                                     </div>
@@ -122,27 +122,37 @@
                 </div>
             </div>
 
-            <div class="divider"></div>
+            <div class="divider mb-20"></div>
+            {{-- pagination --}}
+            @if ($approvedShops->hasPages())
             <div class="flex items-center justify-between flex-wrap gap10">
-                <div class="text-tiny">Showing 10 entries</div>
-                {{-- <ul class="wg-pagination">
-                <li>
-                    <a href="#"><i class="icon-chevron-left"></i></a>
-                </li>
-                <li>
-                    <a href="#">1</a>
-                </li>
-                <li class="active">
-                    <a href="#">2</a>
-                </li>
-                <li>
-                    <a href="#">3</a>
-                </li>
-                <li>
-                    <a href="#"><i class="icon-chevron-right"></i></a>
-                </li>
-            </ul> --}}
+                <div class="text-tiny">
+                    Showing {{ $approvedShops->firstItem() }} to {{ $approvedShops->lastItem() }} of {{ $approvedShops->total() }} entries
+                </div>
+                <ul class="wg-pagination">
+                    <!-- Previous Page -->
+                    <li class="{{ $approvedShops->onFirstPage() ? 'disabled' : '' }}">
+                        <a href="{{ $approvedShops->previousPageUrl() }}">
+                            <i class="icon-chevron-left"></i>
+                        </a>
+                    </li>
+
+                    <!-- Page Numbers -->
+                    @foreach ($approvedShops->links()->elements[0] as $page => $url)
+                        <li class="{{ $page == $approvedShops->currentPage() ? 'active' : '' }}">
+                            <a href="{{ $url }}">{{ $page }}</a>
+                        </li>
+                    @endforeach
+
+                    <!-- Next Page -->
+                    <li class="{{ $approvedShops->hasMorePages() ? '' : 'disabled' }}">
+                        <a href="{{ $approvedShops->nextPageUrl() }}">
+                            <i class="icon-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
+            @endif
         </div>
         <!-- /product-list -->
     </div>
@@ -182,23 +192,6 @@
 
             let shop_id = $(this).data('id');
 
-//             Swal.fire({
-//   title: "Are you sure?",
-//   text: "You won't be able to revert this!",
-//   icon: "warning",
-//   showCancelButton: true,
-//   confirmButtonColor: "#3085d6",
-//   cancelButtonColor: "#d33",
-//   confirmButtonText: "Yes, delete it!"
-// }).then((result) => {
-//   if (result.isConfirmed) {
-//     Swal.fire({
-//       title: "Deleted!",
-//       text: "Your file has been deleted.",
-//       icon: "success"
-//     });
-//   }
-// });
 
             Swal.fire({
                 title: 'Are you sure?',
