@@ -322,6 +322,22 @@ class TranslationSeeder extends Seeder
                 'jp' => '注文状況を確認',
             ],
             [
+                'key' => 'payment_method_used_card_last_no',
+                'en' => 'Payment method & used card last no.',
+                'jp' => '支払い方法と使用されたカードの最後の番号',
+            ],
+            [
+                'key' => 'history',
+                'en' => 'History',
+                'jp' => '履歴',
+            ],
+            
+            [
+                'key' => 'select_location',
+                'en' => 'Select Your Location',
+                'jp' => 'あなたの場所を選択してください',
+            ],
+            [
                 'key' => 'organize',
                 'en' => 'Organize',
                 'jp' => '整理する',
@@ -398,7 +414,7 @@ class TranslationSeeder extends Seeder
             ],
             [
                 'key' => 'have_account',
-                'en' => 'Already have an account',
+                'en' => 'Already have an account?',
                 'jp' => 'すでにアカウントをお持ちですか？',
             ],
             [
