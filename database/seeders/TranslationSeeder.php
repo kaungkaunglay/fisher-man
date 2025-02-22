@@ -713,6 +713,11 @@ class TranslationSeeder extends Seeder
                 'en' => 'Add Setting',
                 'jp' => '設定を追加',
             ],
+            [
+                'key'=> 'dashboard',
+                'en' => 'Dashboard',
+                'jp' => 'ダッシュボード',
+            ]
         ];
         foreach($translations as $translation) {
             \App\Models\Translations::create($translation);

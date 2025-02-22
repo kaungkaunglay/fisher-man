@@ -83,8 +83,11 @@
                         <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
                             {{ $product->description }}
                         </a>
-                        <div class="d-flex card-btn m-t-10">
-                            <a href="javascript:void(0);" class="w-100 py-1 common-btn white-list-btn @if($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}">
+                        <div class="d-flex gap-2 card-btn m-t-10">
+                            <a href="javascript:void(0);" class="py-1 common-btn2 -solid cart-btn @if($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}">
+                                <i class="fa-solid fa-bookmark"></i>
+                            </a>
+                            <a href="javascript:void(0);" class="py-1 common-btn2 white-list-btn @if($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}">
                                 <i class="fa-solid fa-bookmark"></i>
                             </a>
                         </div>

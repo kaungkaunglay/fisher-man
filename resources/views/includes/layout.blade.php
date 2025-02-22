@@ -106,7 +106,8 @@
                             <span id="white_list_count"
                                 class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
                         </a>
-
+                        
+                        @if(Auth::check())
                         <button class="btn-login position-relative">
                             <i class="fa-solid fa-user icon"></i>
                             <div class="dropdown position-absolute overflow-hidden bg-white">
@@ -116,6 +117,13 @@
                                             <i class="fa-solid fa-address-card icon"></i>{{trans_lang('profile')}}
                                         </a>
                                     </li>
+                                    @if(check_role(2))
+                                    <li>
+                                        <a href="{{ url('/admin') }}" class="d-flex gap-2 text-black text-center">
+                                            <i class="fa-solid fa-tachometer-alt icon"></i>{{ trans_lang('dashboard') }}
+                                        </a>
+                                    </li>
+                                    @endif
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             class="px-3 d-flex gap-2 text-black text-center">
@@ -125,6 +133,11 @@
                                 </ul>
                             </div>
                         </button>
+                        @else
+                            <a href="{{ route('login') }}" class="btn-login position-relative">
+                                <i class="fa-solid fa-sign-in-alt icon"></i>
+                            </a>
+                        @endif
                     </div>
                     <!-- /Main Nav -->
 
@@ -139,7 +152,7 @@
                                 <i class="fa-solid fa-bars"></i>
                             </a>
                         </div>
-                        <ul>
+                        <ul class="w-100">
                             <li><a href="{{ url('/') }}" class="menu-header">{{trans_lang('home')}}</a></li>
                             <li><a href="{{ url('/special-offer') }}" class="menu-header">{{trans_lang('special_offer')}}</a></li>
                             @foreach ($categories as $category)

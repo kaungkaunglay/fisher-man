@@ -41,7 +41,6 @@ class SettingServiceProvider extends ServiceProvider
             }, array_keys($settings)),
             $settings
         );
-        logger($settings);  
         config()->set('settings', $settings);
     }
 }

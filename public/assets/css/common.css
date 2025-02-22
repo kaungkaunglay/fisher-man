@@ -156,6 +156,10 @@ main {
   margin-bottom: 10px !important;
 }
 
+.item-card:not(.row-list .item-card) .description {
+  display: none;
+}
+
 .common-btn,
 .common-btn2 {
   background: transparent;
@@ -175,7 +179,8 @@ main {
 }
 
 .common-btn:hover,
-.common-btn2:hover {
+.common-btn2:hover,
+.white-list-btn.active {
     background-color: #005B96;
     color: #fff;
 }
@@ -190,9 +195,10 @@ main {
   color: #fff;
 }
 
-.-solid:active {
-  opacity: 0.8;
+.common-btn2:active {
+  background-color: color-mix(in srgb, #005B96 50%, #000 50%);
 }
+
 
 .icon img {
   width: 46px;
