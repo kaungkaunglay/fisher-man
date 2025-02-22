@@ -9,9 +9,9 @@
             <!-- Breadcrumbs -->
             <nav aria-label="breadcrumb" class="py-4">
                 <ol class="breadcrumb mb-0 bg-transparent">
-                    <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="./">Products</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Product Name</li>
+                    <li class="breadcrumb-item"><a href="./home.html">{{trans_lang('home')}}</a></li>
+                    <li class="breadcrumb-item"><a href="./">{{trans_lang('product')}}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ $product->name }}</li>
                 </ol>
             </nav>
             <!-- ./Breadcrumbs -->
@@ -49,7 +49,7 @@
                         </div>
                         <div class="product-price">
                             <p class="m-b-10 price ">¥ {{ $product->product_price }}</p>
-                            <p class="m-0 category-txt"><a href="#">鮮魚</a> | <a href="#">白身魚</a></p>
+                            <p class="m-0 category-txt"><a href="{{ route('sub-category.show', $product->subCategory->id) }}">{{$product->subCategory->name}}</a></p>
                         </div>
                         <div class="m-b-20 m-t-10">
                             <div class="d-flex">
@@ -58,19 +58,19 @@
                                     <input type="number" class="quantity-value" value="{{ $product->getCart()->quantity ?? 1 }}">
                                     <button class="btn increment" @if($product->inCart()) disabled @endif>+</button>
                                 </div>
-                                <button class="common-btn ms-5 add-to-cart-btn" data-id="{{$product->id}}"> @if($product->inCart()) Added @else Add @endif  to Cart</button>
+                                <button class="common-btn ms-5 add-to-cart-btn" data-id="{{$product->id}}"> @if($product->inCart()) {{trans_lang('added_cart')}} @else {{trans_lang('add_cart')}} @endif</button>
                             </div>
                         </div>
                         <div class="detail">
-                            <h3 class="m-b-20 title">Detail</h3>
+                            <h3 class="m-b-20 title">{{trans_lang('detail')}}</h3>
                             <ul>
-                                <li class="txt mb-1">Stock : {{ $product->stock }}</li>
-                                <li class="txt mb-1">Weight : {{ $product->weight }}</li>
-                                <li class="txt mb-1">Size : {{ $product->size }}cm</li>
-                                <li class="txt mb-1">Day of Caught : {{ $product->day_of_caught }}</li>
-                                <li class="txt mb-1">Expiration Date : {{ $product->expiration_date }}</li>
-                                <li class="txt mb-1">Delivery Fee : ¥ {{ $product->product_price }} (by buyer)</li>
-                                <li class="txt mb-1">Descraption : {{ $product->description }}</li>
+                                <li class="txt mb-1">{{trans_lang('quanity')}} : {{ $product->stock }}</li>
+                                <li class="txt mb-1">{{trans_lang('weight')}} : {{ $product->weight }}</li>
+                                <li class="txt mb-1">{{trans_lang('length')}} : {{ $product->size }}cm</li>
+                                <li class="txt mb-1">{{trans_lang('day_of_caught')}} : {{ $product->day_of_caught }}</li>
+                                <li class="txt mb-1">{{trans_lang('expire_date')}} : {{ $product->expiration_date }}</li>
+                                <!-- <li class="txt mb-1">Delivery Fee : ¥ {{ $product->product_price }} (by buyer)</li> -->
+                                <li class="txt mb-1">{{trans_lang('description')}} : {{ $product->description }}</li>
                             </ul>
                         </div>
                     </div>

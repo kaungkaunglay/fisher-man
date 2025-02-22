@@ -17,22 +17,22 @@
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>{{ isset($category) ? 'Edit Category' : 'New Category' }}</h3>
+            <h3>{{ isset($category) ? 'カテゴリーの編集' : 'カテゴリーを追加' }}</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="{{ route('admin.index') }}"><div class="text-tiny">Dashboard</div></a>
+                    <a href="{{ route('admin.index') }}"><div class="text-tiny">{{trans_lang('home')}}</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <a href="{{ route('admin.categories') }}"><div class="text-tiny">Category</div></a>
+                    <a href="{{ route('admin.categories') }}"><div class="text-tiny">{{trans_lang('category')}}</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">{{ isset($category) ? 'Edit Category' : 'New Category' }}</div>
+                    <div class="text-tiny">{{ isset($category) ? 'カテゴリーの編集' : 'カテゴリーを追加' }}</div>
                 </li>
             </ul>
         </div>
@@ -54,18 +54,18 @@
                     @method('PUT')
                 @endif
                 <fieldset class="name">
-                    <div class="body-title">Category Name <span class="tf-color-1">*</span></div>
-                    <input class="flex-grow" type="text" placeholder="Category name" name="category_name" value="{{ old('category_name', isset($category) ? $category->category_name : '') }}" >
+                    <div class="body-title">{{trans_lang('category')}}{{trans_lang('name')}} <span class="tf-color-1">*</span></div>
+                    <input class="flex-grow" type="text" placeholder="カテゴリー名前" name="category_name" value="{{ old('category_name', isset($category) ? $category->category_name : '') }}" >
                 </fieldset>
                 <fieldset>
-                    <div class="body-title">Upload Image <span class="tf-color-1">*</span></div>
+                    <div class="body-title">{{trans_lang('uploade_img')}} <span class="tf-color-1">*</span></div>
                     <div class="upload-image flex-grow">
                         <div class="item up-load">
                             <label class="uploadfile" for="image">
                                 <span class="icon">
                                     <i class="icon-upload-cloud"></i>
                                 </span>
-                                <span class="body-text">Drop your image here or select <span class="tf-color">click to browse</span></span>
+                                <span class="body-text">{{trans_lang('drop_image')}} <span class="tf-color">{{trans_lang('click_browse')}}</span></span>
                                 <input type="file" id="image" name="image" accept="image/*">
                             </label>
                             <p id="file-name" class="mt-2"></p> <!-- Displays file name -->
@@ -83,7 +83,7 @@
                 </fieldset>
                 <div class="bot">
                     <div></div>
-                    <button class="tf-button w208" type="submit">{{ isset($category) ? 'Update' : 'Save' }}</button>
+                    <button class="tf-button w208" type="submit">{{ isset($category) ? '更新する' : '保存する' }}</button>
                 </div>
             </form>
         </div>

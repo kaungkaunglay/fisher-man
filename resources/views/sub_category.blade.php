@@ -20,9 +20,9 @@
 <div class="container-custom">
     <nav aria-label="breadcrumb" class="py-4">
         <ol class="breadcrumb mb-0 bg-transparent">
-            <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
-            <li class="breadcrumb-item" aria-current="page"><a href="">Categories</a></li>
-            <li class="breadcrumb-item" aria-current="page"><a href="">イカ</a></li>
+            <li class="breadcrumb-item"><a href="./home.html">{{trans_lang('home')}}</a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="">{{ $subCategory->category->category_name }}</a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="">{{ $subCategory->name }}</a></li>
         </ol>
     </nav>
 
@@ -42,14 +42,14 @@
               </div>
               <div class="dropdown">
                 <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Sort by
+                  {{trans_lang('sortby')}}
                 </button>
                 <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_asc']) }}">Price: Low to High</a></li>
-                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_desc']) }}">Price: High to Low</a></li>
-                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_asc']) }}">Name: A to Z</a></li>
-                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_desc']) }}">Name: Z to A</a></li>
-                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'latest']) }}">Latest</a></li>
+                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_asc']) }}">{{trans_lang('price_l_h')}}</a></li>
+                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_desc']) }}">{{trans_lang('price_h_l')}}</a></li>
+                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_asc']) }}">{{trans_lang('name_a_z')}}</a></li>
+                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_desc']) }}">{{trans_lang('name_z_a')}}</a></li>
+                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'latest']) }}">{{trans_lang('latest')}}</a></li>
 
                 </ul>
               </div>
@@ -58,7 +58,7 @@
 
         <div class="range-slider mx-auto">
             <input type="number" class="min-price" value="1" min="1" max="100">
-            <h3 class="txt">Price Range</h3>
+            <h3 class="txt">{{trans_lang('price_range')}}</h3>
             <input type="number" class="max-price" value="25" min="1" max="100">
             <div class="range-container position-relative mt-3 w-100">
                 <div class="slider-track"></div>
@@ -77,14 +77,17 @@
                     <div class="left">
                         <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
                         <div class="title-category">
-                            <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                            <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                             <h3 class="title m-t-b-10">{{ $product->name }}</h3>
                         </div>
                         <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
                             {{ $product->description }}
                         </a>
-                        <div class="d-flex card-btn m-t-10">
-                            <a href="javascript:void(0);" class="w-100 py-1 common-btn white-list-btn @if($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}">
+                        <div class="d-flex gap-2 card-btn m-t-10">
+                            <a href="javascript:void(0);" class="py-1 common-btn2 -solid cart-btn @if($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}">
+                                <i class="fa-solid fa-bookmark"></i>
+                            </a>
+                            <a href="javascript:void(0);" class="py-1 common-btn2 white-list-btn @if($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}">
                                 <i class="fa-solid fa-bookmark"></i>
                             </a>
                         </div>

@@ -8,7 +8,7 @@
     <nav aria-label="breadcrumb" class="py-4">
         <div class="container">
             <ol class="breadcrumb mb-0 bg-transparent">
-                <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="/">{{trans_lang('home')}}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">White List</li>
             </ol>
         </div>
@@ -24,11 +24,11 @@
                 <thead class="">
                     <tr>
                         <th scope="col">No.</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Product address</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Remove</th>
-                        <th scope="col">Select</th>
+                        <th scope="col">{{trans_lang('image')}}</th>
+                        <th scope="col">{{trans_lang('shipping_address')}}</th>
+                        <th scope="col">{{trans_lang('price')}}</th>
+                        <th scope="col">{{trans_lang('remove')}}</th>
+                        <th scope="col">{{trans_lang('select')}}/th>
                     </tr>
                 </thead>
                 <tbody class="dsk-white-list-body">
@@ -56,7 +56,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="5">Total</td>
+                        <td colspan="5">{{trans_lang('total')}}</td>
                         <td>
                             <span id="total">{{ $total }}</span>
                         </td>
@@ -65,8 +65,8 @@
             </table>
 
             <div class="text-end d-flex gap-3 justify-content-end">
-                <a href="/" class="common-btn">Shop more</a>
-                <a href="javascript:void(0);" class="common-btn" id="dsk-add-to-cart-btn">Add to Cart</a>
+                <a href="/" class="common-btn">{{trans_lang('shop_more')}}</a>
+                <a href="javascript:void(0);" class="common-btn" id="dsk-add-to-cart-btn">{{trans_lang('add_cart')}}</a>
             </div>
         </div>
         <!-- ./Desktop Style -->
@@ -104,8 +104,8 @@
             </div>
 
             <div class="text-end d-flex flex-column gap-3 mt-3">
-                <a href="/" class="common-btn">Shop more</a>
-                <a href="javascript:void(0);" class="common-btn" id="mb-add-to-cart-btn">Add to Card</a>
+                <a href="/" class="common-btn">{{trans_lang('shop_more')}}</a>
+                <a href="javascript:void(0);" class="common-btn" id="mb-add-to-cart-btn">{{trans_lang('add_cart')}}</a>
             </div>
         </div>
         <!-- ./Mobile Style -->
@@ -125,11 +125,11 @@
             function checkIfEmpty() {
                 var dskbody = $('.dsk-white-list-body');
                 if (dskbody.find('tr').length === 0) {
-                    dskbody.html('<tr><td colspan="6" class="text-center">No product in the white list</td></tr>');
+                    dskbody.html(`<tr><td colspan="6" class="text-center">{{trans_lang('no_product')}}</td></tr>`);
                 }
                 var mbbody = $('.mb-white-list-body');
                 if (mbbody.find('.card').length === 0) {
-                    mbbody.find('.no-cart').html('<div class="text-center my-3">No product in the white list</div>')
+                    mbbody.find('.no-cart').html(`<div class="text-center my-3">{{trans_lang('no_product')}}</div>`)
                 }
             }
 

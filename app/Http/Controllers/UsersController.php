@@ -183,7 +183,7 @@ class UsersController extends Controller
                 Mail::to($user->email)->send(new ForgotPasswordMail($user));
                 return response()->json(['status' => true, 'message' => 'Reset Link Sent']);
             }
-            return response()->json(['status' => false, 'message' => 'Email is not found']);
+            return response()->json(['status' => false, 'message' => 'メールが見つかりません']);
         }
     }
 
