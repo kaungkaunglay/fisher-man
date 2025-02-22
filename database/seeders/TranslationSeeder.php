@@ -287,28 +287,209 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'username',
                 'en' => 'User Name',
-                'jp' => '',
+                'jp' => 'ユーザー名',
             ],
             [
                 'key' => 'password',
                 'en' => 'Password',
-                'jp' => '',
+                'jp' => 'パスワード',
             ],
             [
                 'key' => 'remember',
                 'en' => 'Remember me',
-                'jp' => '',
+                'jp' => 'ログイン情報を保存',
             ],
             [
                 'key' => 'forget_password',
                 'en' => 'Forget Password',
-                'jp' => '',
+                'jp' => 'パスワードを忘れた',
             ],
             [
                 'key' => 'no_have_account_msg',
-                'en' => 'Password',
+                'en' => 'Do not have an account?',
+                'jp' => 'アカウントをお持ちではありませんか？',
+            ],
+            [
+                'key' => 'register',
+                'en' => 'Register',
+                'jp' => '登録',
+            ],
+            [
+                'key' => 'login_line',
+                'en' => 'Login with Line',
+                'jp' => 'LINEでログイン',
+            ],
+            [
+                'key' => 'register_msg',
+                'en' => 'Register Account & Buy Our Products',
+                'jp' => 'アカウント登録して商品を購入',
+            ],
+            [
+                'key' => 'email',
+                'en' => 'Email',
+                'jp' => 'メールアドレス',
+            ],
+            [
+                'key' => 'confirm_psw',
+                'en' => 'Confirm Password',
+                'jp' => 'パスワード確認',
+            ],
+            [
+                'key' => 'first_ph',
+                'en' => 'First Phone Number',
+                'jp' => '第一電話番号',
+            ],
+            [
+                'key' => 'second_ph',
+                'en' => 'Second Phone Number',
+                'jp' => '第二電話番号',
+            ],
+            [
+                'key' => 'have_account',
+                'en' => 'Already have an account',
+                'jp' => 'すでにアカウントをお持ちですか？',
+            ],
+            [
+                'key' => 'admin_login',
+                'en' => 'Login to account',
+                'jp' => 'アカウントにログイン',
+            ],
+            [
+                'key' => 'admin_login_msg',
+                'en' => 'Enter your email & password to login',
+                'jp' => 'メールアドレスとパスワードを入力してログイン',
+            ],
+            [
+                'key' => 'user_request',
+                'en' => 'User Request',
+                'jp' => 'ユーザーリクエスト',
+            ],
+            [
+                'key' => 'contact',
+                'en' => 'Contact form',
+                'jp' => 'お問い合わせフォーム',
+            ],
+            [
+                'key' => 'wishlist',
+                'en' => 'Wishlist form',
+                'jp' => 'ウィッシュリスト',
+            ],
+            [
+                'key' => 'shop_list',
+                'en' => 'Shop List',
+                'jp' => 'ショップリスト',
+            ],
+            [
+                'key' => 'shops',
+                'en' => 'Shops',
+                'jp' => 'ショップ',
+            ],
+            [
+                'key' => 'request_shops',
+                'en' => 'Request Shops',
+                'jp' => 'ショップリクエスト',
+            ],
+            [
+                'key' => 'faqs',
+                'en' => 'FAQs',
+                'jp' => 'よくある質問',
+            ],
+            [
+                'key' => 'all_faqs',
+                'en' => 'All FAQs',
+                'jp' => 'すべてのFAQ',
+            ],
+            [
+                'key' => 'add_faq',
+                'en' => 'Add FAQ',
+                'jp' => 'FAQを追加',
+            ],
+            [
+                'key' => 'system_data',
+                'en' => 'System Data',
+                'jp' => 'システムデータ',
+            ],
+            [
+                'key' => 'all_system_data',
+                'en' => 'All System Data',
+                'jp' => 'すべてのシステムデータ',
+            ],
+            [
+                'key' => 'description',
+                'en' => 'Description',
+                'jp' => '説明',
+            ],
+            [
+                'key' => 'status',
+                'en' => 'Status',
+                'jp' => 'ステータス',
+            ],
+            [
+                'key' => 'action',
+                'en' => 'Action',
+                'jp' => '操作',
+            ],
+            [
+                'key' => 'shop_name',
+                'en' => 'Shop Name',
+                'jp' => 'ショップ名',
+            ],
+            [
+                'key' => 'question',
+                'en' => 'Question',
+                'jp' => '質問',
+            ],
+            [
+                'key' => 'answer',
+                'en' => 'Answer',
+                'jp' => '回答',
+            ],
+            [
+                'key' => 'policy',
+                'en' => 'Policy',
+                'jp' => 'ポリシー',
+            ],
+            [
+                'key' => 'category',
+                'en' => 'Category',
+                'jp' => 'カテゴリー',
+            ],
+            [
+                'key' => 'all_category',
+                'en' => 'All Category',
+                'jp' => 'すべてのカテゴリー',
+            ],
+            [
+                'key' => 'add_category',
+                'en' => 'Add Category',
+                'jp' => 'カテゴリーを追加',
+            ],
+            [
+                'key' => 'sub_category',
+                'en' => 'Sub Category',
+                'jp' => 'サブカテゴリー',
+            ],
+            [
+                'key' => 'all_sub_category',
+                'en' => 'All Sub Category',
+                'jp' => 'すべてのサブカテゴリー',
+            ],
+            [
+                'key' => 'add_sub_category',
+                'en' => 'Add Sub Category',
+                'jp' => 'サブカテゴリーを追加',
+            ],
+
+            [
+                'key' => 'send_link',
+                'en' => 'Send Reset a Link',
                 'jp' => '',
-            ]
+            ],
+            [
+                'key' => 'back_to_login',
+                'en' => 'Back to Login',
+                'jp' => '',
+            ],
         ];
         foreach($translations as $translation) {
             \App\Models\Translations::create($translation);
