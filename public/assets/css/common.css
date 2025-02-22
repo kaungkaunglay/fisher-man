@@ -804,6 +804,15 @@ li {
   justify-content: space-between;
 }
 
+.row-list .card-btn {
+  justify-content: end;
+}
+
+.row-list .card-btn .common-btn,
+.row-list .card-btn .common-btn2 {
+  max-width: 200px;
+}
+
 .product-btn {
   width: 100%;
   max-width: 207px;
