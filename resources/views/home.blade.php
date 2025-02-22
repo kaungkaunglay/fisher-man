@@ -37,7 +37,7 @@
             <!-- /Recomnand HeadLine -->
 
             <!-- Card List -->
-            <div class="card-list" id="view-list" data-list="fish-list-1">
+            <div class="card-list" id="view-list">
                 @foreach ($products->take(6) as $product)
                     <div class="item-card">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
@@ -295,7 +295,7 @@
             <!-- Products List -->
             <div class="card-list" id="view-list">
                 @foreach ($products as $product)
-                    <div class="item-card">
+                    <div class="item-card mb-5">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
                             <img src="{{ asset($product->product_image) }}" class="card-img-top"
                                 alt="{{ $product->name }}">
@@ -441,23 +441,22 @@
             });
         });
 
-        // $('.white-list-btn').click((ev) => {
-        //     ev.preventDefault();
-        //     const target = ev.currentTarget;
+        $('.white-list-btn').click((ev) => {
+            ev.preventDefault();
+            const target = ev.currentTarget;
 
-        //     $(target).toggleClass('active');
+            $(target).toggleClass('active');
 
-        //     if (!$('#bookmark_btn').hasClass('active')) {
+            if (!$('#bookmark_btn').hasClass('active')) {
 
-        //         $('#bookmark_btn').addClass('active');
+                $('#bookmark_btn').addClass('active');
 
-        //         setTimeout(() => {
-        //             $('#bookmark_btn').removeClass('active');
-        //         }, 1000);
-        //     }
-        // });
+                setTimeout(() => {
+                    $('#bookmark_btn').removeClass('active');
+                }, 1000);
+            }
+        });
     </script>
-
     <!-- /All Scripts -->
 
     <!-- Testing Scripts -->

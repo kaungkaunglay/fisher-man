@@ -150,7 +150,7 @@
                                 <i class="fa-solid fa-bars"></i>
                             </a>
                         </div>
-                        <ul>
+                        <ul class="w-100">
                             <li><a href="{{ url('/') }}" class="menu-header">{{trans_lang('home')}}</a></li>
                             <li><a href="{{ url('/special-offer') }}" class="menu-header">{{trans_lang('special_offer')}}</a></li>
                             @foreach ($categories as $category)
