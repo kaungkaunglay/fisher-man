@@ -117,11 +117,13 @@
                                             <i class="fa-solid fa-address-card icon"></i>{{trans_lang('profile')}}
                                         </a>
                                     </li>
+                                    @if(check_role(2))
                                     <li>
                                         <a href="{{ url('/admin') }}" class="d-flex gap-2 text-black text-center">
                                             <i class="fa-solid fa-tachometer-alt icon"></i>{{ trans_lang('dashboard') }}
                                         </a>
                                     </li>
+                                    @endif
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             class="px-3 d-flex gap-2 text-black text-center">
