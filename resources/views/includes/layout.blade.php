@@ -290,8 +290,7 @@
   <script src="{{asset('assets/js/preloader.js')}}"></script> --}}
   <script src="{{ asset('assets/js/moving-text.js') }}"></script>
   <script src="{{ asset('assets/js/password.js') }}"></script>
-  {{-- <script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script> --}}
-  {{-- <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script> --}}
+  <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
   <script>
     $(document).ready(() => {
       //dropdown trigger
