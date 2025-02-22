@@ -34,7 +34,7 @@ $(document).ready(() => {
             scrollTop: $('#payment-check-sec').offset().top - (header + 30)
         }, 1000)
     });
-    $('#cancel').click((ev) => {
+    $('#payment #cancel').click((ev) => {
         ev.preventDefault();
         $('.popup').fadeOut();
     });
@@ -135,11 +135,11 @@ function setPrice(target) {
 function caculating(target) {
 
     const container = target.closest('.table-row');
-    const price = $(container).find('.price').text().replace(currencyUnit(), '');
+    const price = $(container).find('.price').text().replace('¥', '');
     const quantity = $(container).find('.quantity-value').val();
     const cost = $(container).find('.cost');
 
-    cost.text(currencyUnit() + Number(price) * Number(quantity));
+    cost.text('¥' + Number(price) * Number(quantity));
 }
 
 function netTotal(addtion) {
@@ -160,20 +160,16 @@ function netTotal(addtion) {
 
         for (i = 0; i < cost.length; i++) {
 
-            const priceVal = $(price[i]).text().replace(currencyUnit(), '');
+            const priceVal = $(price[i]).text().replace('¥', '');
             const quantityVal = $(quantity[i]).val();
 
-            if (addtion) $(cost[i]).text(currencyUnit() + Number(priceVal) * Number(quantityVal));
+            if (addtion) $(cost[i]).text('¥' + Number(priceVal) * Number(quantityVal));
 
-            result += Number($(cost[i]).text().replace(currencyUnit(), ''));
+            result += Number($(cost[i]).text().replace('¥', ''));
         };
 
-        total.text(currencyUnit() + result);
+        total.text('¥' + result);
     })
-}
-
-function currencyUnit() {
-    return $('.price').first().text()[0];
 }
 
 // func for testing

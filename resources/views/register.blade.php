@@ -6,26 +6,26 @@
 @section('contents')
     <div class="login-box d-flex flex-column">
         <div class="login-header mx-auto">
-            <h2> Customer Registeration
+            <h2> {{trans_lang('register')}}
             </h2>
-            <p>Register Account & Buy Our Products</p>
+            <p>{{trans_lang('register_msg')}}</p>
         </div>
 
         <!-- form start -->
         <form id="register_form" name="register_seller_form" method="POST" class="input-container d-flex flex-column">
             @csrf
             <div class="input-box d-flex flex-column">
-                <label for="username">Username</label>
+                <label for="username">{{trans_lang('username')}}</label>
                 <input id="username" name="username" placeholder="John Doe" type="text" spellcheck="false" autofocus>
                 <span class="invalid-feedback"></span>
             </div>
             <div class="input-box d-flex flex-column">
-                <label for="email">Email</label>
+                <label for="email">{{trans_lang('email')}}</label>
                 <input id="email" name="email" placeholder="example@domain.com" type="text" spellcheck="false">
                 <span class="invalid-feedback"></span>
             </div>
             <div class="input-box d-flex flex-column">
-                <label for="password">Password</label>
+                <label for="password">{{trans_lang('password')}}</label>
                 <div class="input-group">
                     <input name="password" placeholder="********" type="password" id="password"
                         class="form-control bg-second">
@@ -34,7 +34,7 @@
                 <span class="invalid-feedback"></span>
             </div>
             <div class="input-box d-flex flex-column">
-                <label for="confirm_password">Confirm Password</label>
+                <label for="confirm_password">{{trans_lang('confirm_psw')}}</label>
                 <div class="input-group">
                     <input id="confirm_password" name="confirm_password" placeholder="********" type="password"
                         class="form-control bg-second">
@@ -44,7 +44,7 @@
             </div>
             <div class="row ph-no">
                 <div class="input-box col-md-6 col-xs-12 d-flex flex-column">
-                    <label for="first_phone">First Phone No</label>
+                    <label for="first_phone">{{trans_lang('first_ph')}}</label>
                     <div class="input-group">
                         <select name="first_phone_extension">
                             <option value="+81">+81</option>
@@ -56,7 +56,7 @@
                     <span class="invalid-feedback"></span>
                 </div>
                 <div class="input-box col-md-6 col-xs-12 d-flex flex-column">
-                    <label for="second_phone">Second Phone No</label>
+                    <label for="second_phone">{{trans_lang('second_ph')}}</label>
                     <div class="input-group">
                         <select name="second_phone_extension">
                             <option value="+81">+81</option>
@@ -83,10 +83,10 @@
                 <button class="bg-primary ps-3 py-2 pe-2 mt-auto mb-4 qr-btn qr-text">Scan Your Line ID Here</button>
             </div> -->
 
-            <button name="submit" id="submit" type="submit" class="input-submit">Register</button>
+            <button name="submit" id="submit" type="submit" class="input-submit">{{trans_lang('register')}}</button>
             <div class="register">
-                <p>Already have an account?
-                    <a href="{{ route('login') }}" class="ms-1">Login</a>
+                <p>{{trans_lang('have_account')}}
+                    <a href="{{ route('login') }}" class="ms-1">{{trans_lang('login')}}</a>
                 </p>
             </div>
         </form>

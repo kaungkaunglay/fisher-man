@@ -424,7 +424,7 @@
                                 </div>
                                 <form class="form-search flex-grow">
                                     <fieldset class="name">
-                                        <input type="text" placeholder="Search here..." class="show-search" name="name" tabindex="2" value="" aria-required="true" required="">
+                                        <input type="text" placeholder="ここで検索。。。" class="show-search" name="name" tabindex="2" value="" aria-required="true" required="">
                                     </fieldset>
                                     <div class="button-submit">
                                         <button class="" type="submit"><i class="icon-search"></i></button>
@@ -1286,7 +1286,7 @@
                                                             <h5 class="mb-16">Form search</h5>
                                                             <form class="form-search">
                                                                 <fieldset class="name">
-                                                                    <input type="text" placeholder="Search here..." class="" name="name" tabindex="2" value="" aria-required="true" required="">
+                                                                    <input type="text" placeholder="ここで検索。。。" class="" name="name" tabindex="2" value="" aria-required="true" required="">
                                                                 </fieldset>
                                                                 <div class="button-submit">
                                                                     <button class="" type="submit"><i class="icon-search"></i></button>

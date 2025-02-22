@@ -58,7 +58,26 @@ main {
     color: white;
 }
 
-/* table */
+.scroller {
+    position: relative;
+    max-height: 60vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.table thead,
+.table tfoot {
+    height: 20px;
+    position: sticky;
+}
+
+.table tbody {
+    min-height: 200px;
+}
+
+.table thead {top: 0;}
+.table tfoot {bottom: 0;}
+
 .table-img {
     width: 75px;
     padding: 0;
@@ -78,13 +97,13 @@ main {
     vertical-align: middle;
 }
 
-.cart tbody td {
+.table tbody td {
     color: #005B96;
     background-color: #ECF5FB;
 }
 
-.cart thead th:nth-child(2),
-.cart tbody td:nth-child(2) {
+.table thead th:nth-child(2),
+.table tbody td:nth-child(2) {
     text-align: start;
 }
 
@@ -98,6 +117,10 @@ main {
     top: 0;
     left: 0;
     transition: padding 0.5s linear;
+}
+
+.login-box {
+    max-width: 450px;
 }
 
 #payment-form {

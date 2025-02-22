@@ -597,7 +597,7 @@
                 var formData = new FormData(this);
                 console.log(formData);
 
-             
+
 
                 $.ajax({
                     url: "{{ route('seller.request-shop') }}",
