@@ -172,42 +172,14 @@
 </script>
 
 <script src="{{ asset('assets/js/view-list.js') }}"></script>
-<script>
-    $(document).ready(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
-        $('.white-list-btn').click(function(e) {
-            e.preventDefault();
-            const getid = $(this).data('id');
-            const cur = $(this);
-            $.ajax({
-                url: "{{ route('whitelist-count') }}",
-                method: 'GET',
-                success: function(response) {
-                    $('#white_list_count').text(response.white_lists_count);
-                },
-                error: function(xhr) {
-                    console.error(xhr);
-                }
-            });
 
-            $.ajax({
-                url: `/white-list/${getid}`,
-                type: "POST",
-                data: { id: getid },
-                success: function(data) {
-                    if (data.status) {
-                        cur.toggleClass('active');
-                    }
-                    console.log(data.message);
-                }
-            });
-        });
-    });
-</script>
-
+@endsection
+@section('script')
+    <script>
+        $(document).ready(() => {
+            handleAddToCartBtn('cart-btn');
+            handleAddToWhiteListBtn('white-list-btn');
+        })
+    </script>
 @endsection

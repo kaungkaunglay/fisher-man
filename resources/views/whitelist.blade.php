@@ -28,7 +28,7 @@
                         <th scope="col">{{trans_lang('shipping_address')}}</th>
                         <th scope="col">{{trans_lang('price')}}</th>
                         <th scope="col">{{trans_lang('remove')}}</th>
-                        <th scope="col">{{trans_lang('select')}}/th>
+                        <th scope="col">{{trans_lang('select')}}</th>
                     </tr>
                 </thead>
                 <tbody class="dsk-white-list-body">
@@ -145,37 +145,64 @@
                 checkIfEmpty();
             }
 
-
-
-            // for desktop
-
-            // desktop delete button
-            $('.desktop-del-btn').click(function() {
-                const getid = $(this).data('id');
+            //delet cart
+            function deleteWhiteList(product_id)
+            {
                 $.ajax({
-                    url: "{{ route('whitelist-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        $('#white_list_count').text(response.white_lists_count);
-                    },
-                    error: function(xhr) {
-                        console.error(xhr);
-                    }
-                });
-
-                $.ajax({
-                    url: `/white-list/delete/${getid}`,
+                    url: `/white-list/delete/${product_id}`,
                     type: "DELETE",
                     data: {
-                        id: getid
+                        id: product_id
                     },
                     success: function(response) {
                         if (response.status) {
-                            removeCart(getid);
+                            removeCart(product_id);
                         }
                     }
                 });
-            });
+            }
+
+            function handleDeleteBtn(class_name)
+            {
+                $(`.${class_name}`).click(function() {
+                    const getid = $(this).data('id');
+                    deleteWhiteList(getid);
+                    updateWhiteListCount();
+                });
+            }
+
+            // for desktop delete
+            handleDeleteBtn('desktop-del-btn');
+
+            // for mobile delete
+            handleDeleteBtn('mobile-del-btn')
+
+            function addToCart(products)
+            {
+                $.ajax({
+                    url: "{{ route('cart.add') }}",
+                    type: "POST",
+                    data: {
+                        products: products
+                    },
+                    success: function(response) {
+                        if (response.status) {
+                            // $('.desktop-check-product:checked').each(function() {
+                            //     // console.log($(this).val())
+                            //     removeCart($(this).val())
+                            // });
+                            console.log(response.message);
+                        }
+
+                        if (!response.status) {
+                            console.log(response.message);
+
+                        }
+                    }
+                });
+            }
+
+
 
             $('#dsk-add-to-cart-btn').click(function() {
 
@@ -188,88 +215,13 @@
                 });
 
 
-                $.ajax({
-                    url: "{{ route('cart.add') }}",
-                    type: "POST",
-                    data: {
-                        products: selected_products
-                    },
-                    success: function(response) {
-                        if (response.status) {
-                            // $('.desktop-check-product:checked').each(function() {
-                            //     // console.log($(this).val())
-                            //     removeCart($(this).val())
-                            // });
-                            console.log(response.message);
-                        }
-
-                        if (!response.status) {
-                            if(!response.isLogin){
-                                window.location.href = "{{ route('login') }}";
-                            } else {
-                                console.log(response.message);
-                            }
-
-                        }
-                    }
-                });
-                $.ajax({
-                    url: "{{ route('cart-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        // Assuming response contains the new count
-                        $('#cart_count').text(response.cart_count);
-                    },
-                    error: function(xhr) {
-                        // Handle error here
-                        console.error(xhr);
-                    }
-                });
-                $.ajax({
-                    url: "{{ route('whitelist-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        $('#white_list_count').text(response.white_lists_count);
-                    },
-                    error: function(xhr) {
-                        console.error(xhr);
-                    }
-                });
+                addToCart(selected_products);
+                updateCartCount();
             });
 
-            // mobile delete button
-            $('.mobile-del-btn').click(function() {
-                const getid = $(this).data('id');
 
-
-                $.ajax({
-                    url: `/white-list/delete/${getid}`,
-                    type: "DELETE",
-                    data: {
-                        id: getid
-                    },
-                    success: function(response) {
-                        if (response.status) {
-                            removeCart(getid);
-                        }
-                    }
-                });
-
-                $.ajax({
-                    url: "{{ route('whitelist-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        $('#white_list_count').text(response.white_lists_count);
-                    },
-                    error: function(xhr) {
-                        console.error(xhr);
-                    }
-                });
-            });
 
             $('#mb-add-to-cart-btn').click(function() {
-
-
 
                 var selected_products = [];
                 $('.mobile-check-product:checked').each(function() {
@@ -279,41 +231,10 @@
                     });
                 });
 
-                $.ajax({
-                    url: "{{ route('cart.add') }}",
-                    type: "POST",
-                    data: {
-                        products: selected_products
-                    },
-                    success: function(response) {
-                        if (response.status) {
-                            // $('.mobile-check-product:checked').each(function() {
-                            //     removeCart($(this).val())
-                            // });
-                        }
+                addToCart(selected_products);
+                updateCartCount();
 
-                        if (!response.status) {
-                            if(!response.isLogin){
-                                window.location.href = "{{ route('login') }}";
-                            } else {
-                                console.log(response.message);
-                            }
-                        }
-                    }
-                });
-
-                $.ajax({
-                    url: "{{ route('whitelist-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        $('#white_list_count').text(response.white_lists_count);
-                    },
-                    error: function(xhr) {
-                        console.error(xhr);
-                    }
-                });
             });
-
 
         });
     </script>

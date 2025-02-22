@@ -192,6 +192,7 @@ Route::middleware(['auth_custom_api','restore_cart'])->group(function () {
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/add/login',[CartController::class,'addToCartWithLogin'])->name('cart.add.login');
 Route::delete('/cart/delete/{product_id}', [CartController::class, 'delete'])->name('cart.delete');
 
 

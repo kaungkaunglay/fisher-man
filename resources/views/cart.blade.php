@@ -137,7 +137,7 @@
             <!-- ./Mobile Style -->
 
             <div class="text-end my-4">
-                <button class="common-btn btn-next" data-page="#login">{{trans_lang('next')}}</button>
+                <button class="common-btn btn-next" data-page="{{ auth_helper()->check() ? "#address" : "#login"}}">{{trans_lang('next')}}</button>
             </div>
 
         </div>
@@ -149,12 +149,12 @@
         <div class="container-custom">
 
             <div class="border w-75 mx-auto px-5 py-3 rounded shadow login-box">
-                <h2 class="text-center mb-3">Login</h2>
+                <h2 class="text-center mb-3">{{trans_lang('login')}}</h2>
                 <form action="#" id="login_form" method="POST">
                     @csrf
                     <div class="d-flex flex-column">
                         <div class="form-group row mt-3 align-items-center">
-                            <label for="" class="col-12 col-md-4">{{trans_lang('name')}}</label>
+                            <label for="username" class="col-12 col-md-4">{{trans_lang('name')}}</label>
                             <div class="col-12 col-md-8 mt-2">
                                 <div class="input-group border border-2 rounded px-0">
                                     <input  type="text" name="username" id="username" class="form-control border-0" placeholder="Username or Email">
@@ -166,7 +166,7 @@
                             </div>
                         </div>
                         <div class="form-group row mt-3 align-item-center">
-                            <label for="" class="col-12 col-md-4">{{trans_lang('password')}}<</label>
+                            <label for="password" class="col-12 col-md-4">{{trans_lang('password')}}<</label>
                             <div class="col-12 col-md-8 mt-2">
                                 <div class="input-group border border-2 rounded px-0">
                                     <input type="text" name="password" id="password" class="form-control border-0" placeholder="********">
@@ -179,6 +179,10 @@
                         </div>
                         <div class="input-box text-center">
                             <span class="mb-3 text-danger" id="message"></span>
+                        </div>
+                        <div class="input-box d-flex flex-column mt-2 mx-auto">
+                            <div class="g-recaptcha" data-sitekey="6LfCvtoqAAAAAP_U1Pm-7x4IFB-avJ8O_SxjNQZ8"></div>
+                            <span class="invalid-feedback"></span>
                         </div>
                         <button type="submit" class="common-btn -solid mx-auto mt-5 rounded-pill w-100">Login</button>
                     </div>
@@ -212,8 +216,8 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="text" id="name" class="p-1"
-                                    value="{{ auth()->user()->username ?? '' }}">
+                                <input type="text" id="name" class="p-1 address_input"
+                                    value="{{ auth_helper()->user()->username ?? '' }}">
                             </td>
                         </tr>
                         <tr>
@@ -222,8 +226,8 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="number" id="tel" class="p-1"
-                                    value="{{ auth()->user()->first_phone ?? '' }}">
+                                <input type="number" id="tel" class="p-1 address_input"
+                                    value="{{ auth_helper()->user()->first_phone ?? '' }}">
                             </td>
                         </tr>
                         <tr>
@@ -232,8 +236,8 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="text" id="line_id" class="p-1"
-                                    value="{{ auth()->user()->line_id ?? '' }}">
+                                <input type="text" id="line_id" class="p-1 address_input"
+                                    value="{{ auth_helper()->user()->line_id ?? '' }}">
                             </td>
                         </tr>
                         <tr>
@@ -242,7 +246,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="number" id="zip" class="p-1">
+                                <input type="text" id="zip" class="p-1 address_input">
                             </td>
                         </tr>
                         <tr>
@@ -251,7 +255,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <select id="country" class="p-1">
+                                <select id="country" class="p-1 address_input">
                                     <option value="Japan" selected>Japan</option>
                                     <option value="America" selected>America</option>
                                 </select>
@@ -263,15 +267,15 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="number" id="delivery" class="p-1"
+                                <input type="number" id="delivery" class="p-1 address_input"
                                     value="{{ auth()->user()->address ?? '' }}">
                             </td>
                         </tr>
                     </table>
                     <div class="d-flex gap-3 my-4 justify-content-end">
-                        <button href="#checkout" class="btn btn-outline-primary common-btn"
+                        <button data-page="#checkout" class="btn btn-outline-primary common-btn"
                             id="cancel">{{trans_lang('cancle')}}</button>
-                        <button type="submit" href="#payment" class="btn btn-outline-primary common-btn">{{trans_lang('save')}}</button>
+                        <button type="button" data-page="#payment" class="btn btn-outline-primary common-btn">{{trans_lang('save')}}</button>
                     </div>
                 </form>
             </div>
@@ -571,11 +575,11 @@
             function checkIfEmpty() {
                 var dskbody = $('.dsk-cart-body');
                 if (dskbody.find('tr').length === 0) {
-                    dskbody.html(`<tr><td colspan="6" class="text-center">{{trans_lang('no_product')}}</td></tr>`);
+                    dskbody.html('<tr><td colspan="6" class="text-center">No product in the cart</td></tr>');
                 }
                 var mbbody = $('.mb-cart-body');
                 if (mbbody.find('.card').length === 0) {
-                    mbbody.find('.no-cart').html(`<div class="text-center my-3">{{trans_lang('no_product')}}</div>`)
+                    mbbody.find('.no-cart').html('<div class="text-center my-3">No product in the cart</div>')
                 }
             }
 
@@ -592,7 +596,9 @@
                 }
             });
 
-            function deleteCart(product_id) {
+            // for desktop
+
+            function deleteCart(product_id){
                 $.ajax({
                     url: `/cart/delete/${product_id}`,
                     type: "DELETE",
@@ -606,48 +612,46 @@
                             netTotal();
                             updateCartCount();
                         }
-
-                        console.log(response.message);
                     }
                 });
             }
 
-            function handleDeleteBtn(class_name) {
+            //dsk-cart-del-btn
+            function handelDeleteCartBtn(class_name){
                 $(`.${class_name}`).click(function(e) {
                     e.preventDefault();
+
                     const getid = $(this).data('id');
 
-                    // delete cart
                     deleteCart(getid);
 
                 });
             }
-
-            // for desktop
             // desktop delete button
-            handleDeleteBtn('dsk-cart-del-btn');
-
+            handelDeleteCartBtn('dsk-cart-del-btn');
 
             // mobile delete button
-            handleDeleteBtn('mb-cart-del-btn');
+            handelDeleteCartBtn('mb-cart-del-btn');
 
-            // for address text input
-            $('.address-input').keyup(function() {
-                var fieldId = $(this).attr('id');
-                var resultId = '#' + fieldId + '-result';
-                $(resultId).html($(this).val());
-            });
-
-            // for login
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $("#login_form").submit(function(e) {
+            $('#login_form').submit(function(e){
                 e.preventDefault();
+
+                var products = [];
+                $('.table-row').each(function() {
+
+                    if($(this).data('id'))
+                    {
+                        var productId = $(this).data('id');
+                        var quantity = $(this).find('.quantity-value').val();
+                        products.push({ id: productId, quantity: quantity });
+                    }
+
+
+                });
+                console.log(products);
+
                 var formData = new FormData(this);
+
                 $.ajax({
                     url: "{{ route('login_store') }}",
                     type: 'POST',
@@ -655,9 +659,15 @@
                     data: formData,
                     contentType: false,
                     processData: false,
-                    success: function(response) {
+                    success: function (response) {
                         if (response.status == true) {
-                            window.location.href = "#address";
+                            console.log('login successfully');
+
+                            $('#login').closest('.page').hide();
+                            $('#address').fadeIn();
+
+                            addCart(products);
+
                         } else {
 
                             // if response has message, show the message , if not empty the message, clear the error messages
@@ -667,19 +677,20 @@
 
                             var fields = [
                                 'username',
-                                'password'
+                                'password',
+                                'g-recaptcha-response'
                             ];
 
-                            fields.forEach(function(field) {
+                            fields.forEach(function (field) {
                                 if (errors[field]) {
                                     $('#' + field)
-                                        .closest('.input-box')
+                                        .closest('.form-group')
                                         .find('span.invalid-feedback')
                                         .addClass('d-block')
                                         .html(errors[field]);
                                 } else {
                                     $('#' + field)
-                                        .closest('.input-box')
+                                        .closest('.form-group')
                                         .find('span.invalid-feedback')
                                         .removeClass('d-block')
                                         .html('');
@@ -689,6 +700,28 @@
                         }
                     }
                 });
+
+            });
+
+            function addCart(products)
+            {
+                $.ajax({
+                    url: '{{route("cart.add.login")}}',
+                    type: "POST",
+                    data: {
+                        products: products
+                    },
+                    success: function(response) {
+                        console.log(response.message);
+                        // return response.status;
+                    }
+                });
+            }
+
+
+            $(document).on('keyup', '.address_input', function() {
+                var resultId = '#' + $(this).attr('id') + '-result';
+                $(resultId).html($(this).val());
             });
 
 
