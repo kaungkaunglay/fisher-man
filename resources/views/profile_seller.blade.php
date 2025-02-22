@@ -131,7 +131,7 @@
                                     <!-- Modal Body -->
                                     <div class="row modal-body p-3">
                                         <div class="col-12 col-md-6">
-                                            <form method="POST" name="shopRequestForm" id="shopRequestForm" enctype="multipart/form-data">
+                                            <form method="post" name="shopRequestForm" id="shopRequestForm" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="mb-2 row align-items-center">
                                                     <div class="col-lg-5 col-12">
@@ -203,7 +203,7 @@
                                     <!-- Modal Footer -->
                                     <div class="modal-footer">
                                         <button class="common-btn" data-bs-dismiss="modal">Close</button>
-                                        <button class="common-btn">Request</button>
+                                        <button name="submit" id="submit" type="submit" class="common-btn">Request</button>
                                     </div>
                                 </form>
                                     <!-- /Modal Footer -->
@@ -591,35 +591,26 @@
 
     <script>
         $(document).ready(function () {
-            $('#shopRequestForm').on('submit', function (e) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $("#shopRequestForm").submit(function (e) {
                 e.preventDefault();
-
                 var formData = new FormData(this);
-                console.log(formData);
                 $.ajax({
-                    url: "{{ route('seller.request-shop') }}",
-                    type: "POST",
+                    url: "{{ route('seller.request_shop') }}",
+                    type: 'POST',
+                    dataType: 'json',
                     data: formData,
-                    // processData: false,
-                    // contentType: false,
-                    // beforeSend: function () {
-                    //     $('.common-btn[type="submit"]').text('Submitting...').prop('disabled', true);
-                    // },
+                    contentType: false,
+                    processData: false,
                     success: function (response) {
-                        // alert(response.message);
-                        // $('#shopRequestForm')[0].reset(); // Reset form after successful submission
-                        // $('.common-btn[type="submit"]').text('Request').prop('disabled', false);
-                    },
-                    error: function (xhr) {
-                        var errors = xhr.responseJSON.errors;
-                        var errorMessage = '';
-
-                        $.each(errors, function (key, value) {
-                            errorMessage += value[0] + '\n';
-                        });
-
-                        alert(errorMessage);
-                        // $('.common-btn[type="submit"]').text('Request').prop('disabled', false);
+                        if (response.status == true) {
+                            window.location.href = "{{ route('home') }}";
+                        } else {
+                        }
                     }
                 });
             });
