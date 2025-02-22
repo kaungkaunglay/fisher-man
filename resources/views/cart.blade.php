@@ -19,23 +19,23 @@
                 <ul class="step-list d-flex text-center">
                     <li class="step active d-flex flex-column align-items-center">
                         <span class="me-2">1</span>
-                        <p class="d-none d-md-block">Order details</p>
+                        <p class="d-none d-md-block">{{trans_lang('order_detail')}}s</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">2</span>
-                        <p class="d-none d-md-block">Login</p>
+                        <p class="d-none d-md-block">{{trans_lang('login')}}</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">3</span>
-                        <p class="d-none d-md-block">Shopping address</p>
+                        <p class="d-none d-md-block">{{trans_lang('shipping_address')}}</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">4</span>
-                        <p class="d-none d-md-block">Payment</p>
+                        <p class="d-none d-md-block">{{trans_lang('payment')}}</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">5</span>
-                        <p class="d-none d-md-block">Complete</p>
+                        <p class="d-none d-md-block">{{trans_lang('complete')}}</p>
                     </li>
                 </ul>
             </div>
@@ -53,12 +53,12 @@
                 <table class="table desktop text-center d-md-table d-none table-item">
                     <thead>
                         <tr>
-                            <th scope="col">Image</th>
-                            <th scope="col">Product address</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">Remove</th>
+                            <th scope="col">{{trans_lang('image')}}</th>
+                            <th scope="col">{{trans_lang('product_name')}}</th>
+                            <th scope="col">{{trans_lang('price')}}</th>
+                            <th scope="col">{{trans_lang('quantity')}}</th>
+                            <th scope="col">{{trans_lang('total')}}</th>
+                            <th scope="col">{{trans_lang('remove')}}</th>
                         </tr>
                     </thead>
                     <tbody class="dsk-cart-body">
@@ -90,7 +90,7 @@
                     <tfoot>
                         <tr>
                             <td colspan="4"></td>
-                            <td>Total</td>
+                            <td>{{trans_lang('total')}}</td>
                             <td>
                                 <span class="total"></span>
                             </td>
@@ -137,7 +137,7 @@
             <!-- ./Mobile Style -->
 
             <div class="text-end my-4">
-                <a href="#address" class="common-btn btn-next">Next</a>
+                <a href="#address" class="common-btn btn-next">{{trans_lang('next')}}</a>
             </div>
 
         </div>
@@ -149,11 +149,11 @@
         <div class="container-custom">
 
             <div class="border w-75 mx-auto px-5 py-3 rounded shadow login-box">
-                <h2 class="text-center mb-3">Login</h2>
+                <h2 class="text-center mb-3">{{trans_lang('login')}}</h2>
                 <form action="#">
                     <div class="d-flex flex-column">
                         <div class="form-group row mt-3 align-items-center">
-                            <label for="" class="col-12 col-md-4">User Name</label>
+                            <label for="" class="col-12 col-md-4">{{trans_lang('name')}}</label>
                             <div class="col-12 col-md-8 mt-2">
                                 <div class="input-group border border-2 rounded px-0">
                                     <input type="text" class="form-control border-0" placeholder="Username or Email">
@@ -164,7 +164,7 @@
                             </div>
                         </div>
                         <div class="form-group row mt-3 align-item-center">
-                            <label for="" class="col-12 col-md-4">Password</label>
+                            <label for="" class="col-12 col-md-4">{{trans_lang('password')}}<</label>
                             <div class="col-12 col-md-8 mt-2">
                                 <div class="input-group border border-2 rounded px-0">
                                     <input type="text" class="form-control border-0" placeholder="********">
@@ -174,7 +174,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="common-btn -solid mx-auto mt-5 rounded-pill w-100">Login</button>
+                        <button class="common-btn -solid mx-auto mt-5 rounded-pill w-100">{{trans_lang('login')}}</button>
                     </div>
                 </form>
             </div>
@@ -189,7 +189,7 @@
 
             <div class="p-3 bg-primary d-flex text-white">
                 <div class="d-flex justify-content-between align-items-center w-100">
-                    <h2>Address</h2>
+                    <h2>{{trans_lang('detail')}}</h2>
                     <button id="edit">
                         <i class="fas fa-square-pen text-white"></i>
                     </button>
@@ -202,7 +202,7 @@
                     <table>
                         <tr>
                             <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                                <label for="name">Name</label>
+                                <label for="name">{{trans_lang('name')}}</label>
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
@@ -212,7 +212,7 @@
                         </tr>
                         <tr>
                             <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                                <label for="tel">Phone Number</label>
+                                <label for="tel">{{trans_lang('phone_number')}}</label>
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
@@ -222,7 +222,7 @@
                         </tr>
                         <tr>
                             <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                                <label for="line_id">Line ID</label>
+                                <label for="line_id">{{trans_lang('line_id')}}</label>
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
@@ -232,7 +232,7 @@
                         </tr>
                         <tr>
                             <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                                <label for="zip">Postal Code</label>
+                                <label for="zip">{{trans_lang('postal')}}</label>
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
@@ -241,7 +241,7 @@
                         </tr>
                         <tr>
                             <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                                <label for="country">Country</label>
+                                <label for="country">{{trans_lang('country')}}</label>
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
@@ -253,7 +253,7 @@
                         </tr>
                         <tr>
                             <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                                <label for="delivery">Delivery Address</label>
+                                <label for="delivery">{{trans_lang('shipping_address')}}</label>
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
@@ -264,8 +264,8 @@
                     </table>
                     <div class="d-flex gap-3 my-4 justify-content-end">
                         <button href="#checkout" class="btn btn-outline-primary common-btn"
-                            id="cancel">Cancel</button>
-                        <button type="submit" href="#payment" class="btn btn-outline-primary common-btn">Save</button>
+                            id="cancel">{{trans_lang('cancle')}}</button>
+                        <button type="submit" href="#payment" class="btn btn-outline-primary common-btn">{{trans_lang('save')}}</button>
                     </div>
                 </form>
             </div>
@@ -276,7 +276,7 @@
                 <table>
                     <tr>
                         <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                            <p>Name</p>
+                            <p>{{trans_lang('name')}}</p>
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
@@ -285,7 +285,7 @@
                     </tr>
                     <tr>
                         <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                            <p>Phone Number</p>
+                            <p>{{trans_lang('phone_number')}}</p>
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
@@ -294,7 +294,7 @@
                     </tr>
                     <tr>
                         <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                            <p>Line ID</p>
+                            <p>{{trans_lang('line_id')}}</p>
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
@@ -303,7 +303,7 @@
                     </tr>
                     <tr>
                         <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                            <p>Postal Code</p>
+                            <p>{{trans_lang('postal')}}</p>
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
@@ -312,7 +312,7 @@
                     </tr>
                     <tr>
                         <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                            <p>Country</p>
+                            <p>{{trans_lang('country')}}</p>
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
@@ -321,7 +321,7 @@
                     </tr>
                     <tr>
                         <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                            <p>Delivery Address</p>
+                            <p>{{trans_lang('shipping_address')}}</p>
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
@@ -330,8 +330,8 @@
                     </tr>
                 </table>
                 <div class="d-flex gap-3 my-4 justify-content-end">
-                    <a href="#checkout" class="btn btn-outline-primary common-btn btn-back">Go Back</a>
-                    <a href="#payment" class="btn btn-outline-primary common-btn btn-next">Next</a>
+                    <a href="#checkout" class="btn btn-outline-primary common-btn btn-back">{{trans_lang('go_back')}}</a>
+                    <a href="#payment" class="btn btn-outline-primary common-btn btn-next">{{trans_lang('next')}}</a>
                 </div>
             </div>
             <!-- /output -->
@@ -347,7 +347,7 @@
             <!-- Payment Method Form -->
             <div class="popup">
                 <div class="bg-white rounded-3 border text-black mx-auto" id="payment-form">
-                    <h2 class="title">Add Payment Method</h2>
+                    <h2 class="title">{{trans_lang('payment')}}</h2>
                     <form class="d-flex flex-column" action="">
                         <div>
                             <label for="card-number">Card number</label>
@@ -393,13 +393,13 @@
 
                         <div class="d-flex flex-column flex-sm-row input-wpr">
                             <div class="w-100">
-                                <label for="count">Country</label>
+                                <label for="count">{{trans_lang('country')}}</label>
                                 <select id="count" class="w-100 p-2 border rounded">
                                     <option value="jpn" selected>Japan</option>
                                 </select>
                             </div>
                             <div class="w-100">
-                                <label for="zp">ZIP</label>
+                                <label for="zp">{{trans_lang('postal')}}</label>
                                 <input name="" type="number" id="zp" class="w-100 p-2 border rounded"
                                     placeholder="104-0044">
                             </div>
@@ -420,8 +420,8 @@
                         </div>
 
                         <div class="d-flex gap-3 text-center justify-content-center">
-                            <button class="common-btn btn btn-outline-primary" id="cancel">Cancel</button>
-                            <a href="#complete" class="common-btn btn btn-outline-primary btn-next">Save</a>
+                            <button class="common-btn btn btn-outline-primary" id="cancel">{{trans_lang('cancle')}}</button>
+                            <a href="#complete" class="common-btn btn btn-outline-primary btn-next">{{trans_lang('save')}}</a>
                         </div>
                     </form>
                 </div>
@@ -433,10 +433,10 @@
                 <table class="table desktop text-center d-md-table d-none table-item pannel pannel-default ">
                     <thead>
                         <tr>
-                            <th scope="col">Image</th>
-                            <th scope="col">Product address</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Total</th>
+                            <th scope="col">{{trans_lang('image')}}</th>
+                            <th scope="col">{{trans_lang('product_name')}}</th>
+                            <th scope="col">{{trans_lang('price')}}</th>
+                            <th scope="col">{{trans_lang('total')}}</th>
                         </tr>
                     </thead>
                     <tbody class="dsk-cart-body">
@@ -458,7 +458,7 @@
                     <tfoot>
                         <tr>
                             <td colspan="2"></td>
-                            <td>Total</td>
+                            <td>{{trans_lang('total')}}</td>
                             <td>
                                 <span class="total"></span>
                             </td>
@@ -499,43 +499,43 @@
             </div>
             <!-- ./Mobile Style -->
 
-            <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">Select Payment</h2>
+            <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">{{trans_lang('selet_payment')}}</h2>
             <div class="d-flex gap-3 py-3 px-3">
                 <input type="checkbox" id="select-payment">
                 <label for="select-payment">Credit Card</label>
-                <div class="ms-auto text-danger" id="warning-msg">Please Check the mark</div>
+                <div class="ms-auto text-danger" id="warning-msg">{{trans_lang('check_mark')}}<</div>
             </div>
 
-            <h2 class="py-3 px-3 bg-primary text-white">Address</h2>
+            <h2 class="py-3 px-3 bg-primary text-white">{{trans_lang('detail')}}</h2>
             <ul class="list-group gap-3 py-3 px-3">
                 <li>
-                    <span>Name </span>
+                    <span>{{trans_lang('name')}}</span>
                     : <span id="name-result"></span>
                 </li>
                 <li>
-                    <span>Phone Number </span>
+                    <span>{{trans_lang('phone_number')}}</span>
                     : <span id="tel-result"></span>
                 </li>
                 <li>
-                    <span>Line ID </span>
+                    <span>{{trans_lang('line_id')}}</span>
                     : <span id="line_id-result"></span>
                 </li>
                 <li>
-                    <span>Postal Code </span>
+                    <span>{{trans_lang('postal')}}</span>
                     : 110001
                 </li>
                 <li>
-                    <span>Country </span>
+                    <span>{{trans_lang('country')}}</span>
                     : Japan
                 </li>
                 <li>
-                    <span>Delivery Address </span>
+                    <span>{{trans_lang('shipping_address')}}</span>
                     : <span id="delivery-result"></span>
                 </li>
             </ul>
             <div class="d-flex gap-3 my-4 justify-content-end">
-                <a href="#address" class="btn btn-outline-primary common-btn btn-back">Go Back</a>
-                <button class="btn btn-outline-primary common-btn btn-payment">Check Out</button>
+                <a href="#address" class="btn btn-outline-primary common-btn btn-back">{{trans_lang('go_back')}}</a>
+                <button class="btn btn-outline-primary common-btn btn-payment">{{trans_lang('check_out')}}</button>
             </div>
 
         </div>
@@ -545,12 +545,12 @@
     <!-- Complete Step -->
     <section class="page mt-4" id="complete">
         <div class="container-custom">
-            <p class="text-center">Your Payment is Successful. We will sent the invoice to your mail and Line ID Please
-                check.
+            <p class="text-center">
+                {{trans_lang('paymnet_success_msg')}}
             </p>
             <div class="d-flex gap-3 py-5 justify-content-center">
-                <a href="{{ url(path: '/') }}" class="btn btn-outline-primary common-btn">Contact Us</a>
-                <a href="{{ url('/') }}" class="btn btn-outline-primary common-btn">Home Page</a>
+                <a href="{{ url(path: '/') }}" class="btn btn-outline-primary common-btn">{{trans_lang('contact_us')}}</a>
+                <a href="{{ url('/') }}" class="btn btn-outline-primary common-btn">{{trans_lang('home')}}</a>
             </div>
         </div>
     </section>
@@ -564,11 +564,11 @@
             function checkIfEmpty() {
                 var dskbody = $('.dsk-cart-body');
                 if (dskbody.find('tr').length === 0) {
-                    dskbody.html('<tr><td colspan="6" class="text-center">No product in the cart</td></tr>');
+                    dskbody.html(`<tr><td colspan="6" class="text-center">{{trans_lang('no_product')}}</td></tr>`);
                 }
                 var mbbody = $('.mb-cart-body');
                 if (mbbody.find('.card').length === 0) {
-                    mbbody.find('.no-cart').html('<div class="text-center my-3">No product in the cart</div>')
+                    mbbody.find('.no-cart').html(`<div class="text-center my-3">{{trans_lang('no_product')}}</div>`)
                 }
             }
 

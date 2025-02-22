@@ -110,6 +110,11 @@ class TranslationSeeder extends Seeder
                 'jp' => 'ログイン',
             ],
             [
+                'key' => 'quantity',
+                'en' => 'Quantity',
+                'jp' => '数量',
+            ],
+            [
                 'key' => 'shipping_address',
                 'en' => 'Shipping Address',
                 'jp' => '配送先住所',
@@ -119,6 +124,12 @@ class TranslationSeeder extends Seeder
                 'en' => 'Payment',
                 'jp' => '支払い',
             ],
+            [
+                'key' => 'check_mark',
+                'en' => 'Please choose Payment',
+                'jp' => 'お支払い方法を選択してください',
+            ],
+            
             [
                 'key' => 'complete',
                 'en' => 'Complete',
@@ -374,6 +385,11 @@ class TranslationSeeder extends Seeder
                 'key' => 'contact',
                 'en' => 'Contact form',
                 'jp' => 'お問い合わせフォーム',
+            ],
+            [
+                'key' => 'contact_us',
+                'en' => 'Contact Us',
+                'jp' => 'お問い合わせ',
             ],
             [
                 'key' => 'wishlist',
