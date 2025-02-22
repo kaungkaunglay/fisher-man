@@ -7,14 +7,14 @@
 @include('messages.index')
 
 <div class="forgotpass mx-auto rounded-3 overflow-hidden shadow">
-  <h3 class="bg-primary py-2 text-white text-center">Forgot Password</h3>
+  <h3 class="bg-primary py-2 text-white text-center">{{trans_lang('forget_password')}}<</h3>
   <div class="bg-white px-4 py-lg-4 py-3">
     <form method="POST" name="forgot_password" id="forgot_password">
       @csrf
 
       <!-- Forgot -->
       <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
+        <label for="email" class="form-label">{{trans_lang('email')}}</label>
         <input type="email" name="email" id="email" class="form-control border-2" placeholder="email@gmail.com" autofocus>
         <span class="invalid-feedback"></span>
         <div class="input-box d-flex flex-column">
@@ -23,8 +23,8 @@
       </div>
 
       <div class="d-flex flex-column align-items-center">
-        <button id="submit" name="submit" type="submit" class="common-btn btn btn-primar rounded-pill">Send Reset a Link</button>
-        <a href="{{url('/login')}}" class="mt-3">Back to Login</a>
+        <button id="submit" name="submit" type="submit" class="common-btn btn btn-primar rounded-pill">{{trans_lang('send_link')}}</button>
+        <a href="{{url('/login')}}" class="mt-3">{{trans_lang('back_to_login')}}</a>
       </div>
       <!-- /Forgot -->
 

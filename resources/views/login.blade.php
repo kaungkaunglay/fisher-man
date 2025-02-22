@@ -4,12 +4,12 @@
     <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}" />
 @endsection
 @section('contents')
-{{-- @dd(ITE_KEY')) --}}
+{{-- @dd(ITE_KEY') --}}
     <div class="login-box d-flex flex-column">
 
         <div class="login-header">
-            <h2> Login
-                <p> Welcome to Fisherman Login Page</p>
+            <h2> {{trans_lang('login')}}
+                <p> {{trans_lang('welcome')}}</p>
             </h2>
         </div>
 
@@ -17,16 +17,16 @@
         <form method="POST" id="login_form" name="login_form" class="input-container d-flex flex-column">
             @csrf
             <div class="input-box d-flex flex-column">
-                <label for="username">Username</label>
+                <label for="username">{{trans_lang('username')}}</label>
                 <div class="input-group">
-                    <input id="username" name="username" placeholder="Username or Email" type="text" class="form-control">
+                    <input id="username" name="username" placeholder="{{trans_lang('username')}} or {{trans_lang('email')}}" type="text" class="form-control">
                     <button class="btn" tabindex="-1"><i class="fa-solid fa-user"></i></button>
                 </div>
                 <span class="invalid-feedback"></span>
             </div>
 
             <div class="input-box d-flex flex-column">
-                <label for="password">Password</label>
+                <label for="password">{{trans_lang('password')}}</label>
                 <div class="input-group">
                     <input name="password" placeholder="********" type="password" id="password" class="form-control">
                     <button class="btn password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
@@ -44,26 +44,26 @@
             <div class="pw-setting d-flex">
                 <div class="remember">
                     <input type="checkbox" name="remember" id="remember" value="1">
-                    <label for="remember">Remember me</label>
+                    <label for="remember">{{trans_lang('remember')}}</label>
                 </div>
 
                 <div class="forgot-pw">
-                    <a href="{{ route('forgotpassword') }}">Forgot password</a>
+                    <a href="{{ route('forgotpassword') }}">{{trans_lang('forget_password')}}</a>
                 </div>
             </div>
 
-            <button name="submit" id="submit" type="submit" class="input-submit">Login</button>
+            <button name="submit" id="submit" type="submit" class="input-submit">{{trans_lang('login')}}</button>
 
             <div class="register">
-                <span>Don't have an account?
-                    <a href="{{ route('register') }}" class="ms-1">Register</a>
+                <span>{{trans_lang('no_have_account_msg')}}
+                    <a href="{{ route('register') }}" class="ms-1">{{trans_lang('register')}}</a>
                 </span>
                 <p class="">(or)</p>
             </div>
             <div class="line-wpr green-bg">
                 <a href="{{route('line.login')}}">
                     <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}" alt="Line">
-                    Login with Line
+                    {{trans_lang('login_line')}}
                 </a>
             </div>
             <div class="icon-wpr">
