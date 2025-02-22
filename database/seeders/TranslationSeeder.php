@@ -87,22 +87,227 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'name_a_z',
                 'en' => 'Name : A to Z',
-                'jp' => '名前: A → Z',
+                'jp' => '名前: 昇順',
             ],
             [
                 'key' => 'name_z_a',
                 'en' => 'Name : Z to A',
-                'jp' => '名前: Z → A',
+                'jp' => '名前: 降順',
             ],
             [
                 'key' => 'latest',
                 'en' => 'Latest',
-                'jp' => '最新順',
+                'jp' => '新着順',
+            ],
+            [
+                'key' => 'order_detail',
+                'en' => 'Order Detail',
+                'jp' => '注文詳細',
+            ],
+            [
+                'key' => 'login',
+                'en' => 'Login',
+                'jp' => 'ログイン',
+            ],
+            [
+                'key' => 'shipping_address',
+                'en' => 'Shipping Address',
+                'jp' => '配送先住所',
+            ],
+            [
+                'key' => 'payment',
+                'en' => 'Payment',
+                'jp' => '支払い',
+            ],
+            [
+                'key' => 'complete',
+                'en' => 'Complete',
+                'jp' => '完了',
+            ],
+            [
+                'key' => 'Image',
+                'en' => 'image',
+                'jp' => '画像',
+            ],
+            [
+                'key' => 'product_name',
+                'en' => 'Product Name',
+                'jp' => '商品名',
+            ],
+            [
+                'key' => 'price',
+                'en' => 'Price',
+                'jp' => '価格',
+            ],
+            [
+                'key' => 'quanity',
+                'en' => 'Quanity',
+                'jp' => '数量', 
+            ],
+            [
+                'key' => 'total',
+                'en' => 'Total',
+                'jp' => '合計',
+            ],
+            [
+                'key' => 'remove',
+                'en' => 'Remove',
+                'jp' => '削除',
+            ],
+            [
+                'key' => 'next',
+                'en' => 'Next',
+                'jp' => '次へ',
+            ],
+            [
+                'key' => 'go_back',
+                'en' => 'Go Back',
+                'jp' => '戻る',
+            ],
+            [
+                'key' => 'name',
+                'en' => 'Name',
+                'jp' => '名前',
+            ],
+            [
+                'key' => 'phone_number',
+                'en' => 'Phone Number',
+                'jp' => '電話番号',
+            ],
+            [
+                'key' => 'line_id',
+                'en' => 'Line ID',
+                'jp' => 'LINE ID',
+            ],
+            [
+                'key' => 'postal',
+                'en' => 'Postal Code',
+                'jp' => '郵便番号',
+            ],
+            [
+                'key' => 'country',
+                'en' => 'Country',
+                'jp' => '国',
+            ],
+            [
+                'key' => 'selet_payment',
+                'en' => 'Select Payment',
+                'jp' => '支払い方法を選択',
+            ],
+            [
+                'key' => 'check_out',
+                'en' => 'Check Out',
+                'jp' => 'チェックアウト',
+            ],
+            [
+                'key' => 'paymnet_success_msg',
+                'en' => 'Your Payment is Successful. We will send the invoice to your mail and Line ID. Please check.',
+                'jp' => 'お支払いが完了いたしました。請求書をメールとLINEに送信しますので、ご確認ください。',
+            ],
+            [
+                'key' => 'no_product',
+                'en' => 'No Product is selected',
+                'jp' => '商品が選択されていません',
+            ],
+            [
+                'key' => 'select',
+                'en' => 'Select',
+                'jp' => '選択',
+            ],
+            [
+                'key' => 'shop_more',
+                'en' => 'Shop More',
+                'jp' => 'さらに購入',
+            ],
+            [
+                'key' => 'add_cart',
+                'en' => 'Add to Cart',
+                'jp' => 'カートに追加',
+            ],
+            [
+                'key' => 'info',
+                'en' => 'Info',
+                'jp' => '情報',
+            ],
+            [
+                'key' => 'detail',
+                'en' => 'Detail',
+                'jp' => '詳細',
+            ],
+            [
+                'key' => 'verify_msg',
+                'en' => 'Your account has not been verified. Please complete the verification process.',
+                'jp' => 'アカウントが確認できません。再度入力ください。',
+            ],
+            [
+                'key' => 'verify',
+                'en' => 'Verify Your Account',
+                'jp' => 'アカウントを確認する',
+            ],
+            [
+                'key' => 'upload_img',
+                'en' => 'Upload Img',
+                'jp' => '画像をアップロード',
+            ],
+            [
+                'key' => 'scan_qr',
+                'en' => 'Scan Your QR code',
+                'jp' => 'QRコードをスキャンする',
+            ],
+            [
+                'key' => 'request',
+                'en' => 'Request',
+                'jp' => 'リクエスト',
+            ],
+            [
+                'key' => 'cancle',
+                'en' => 'Cancel',
+                'jp' => 'キャンセル',
+            ],
+            [
+                'key' => 'upload_product',
+                'en' => 'Upload Product',
+                'jp' => '商品をアップロード',
+            ],
+            [
+                'key' => 'check_order',
+                'en' => 'Check Order Status',
+                'jp' => '注文状況を確認',
+            ],
+            [
+                'key' => 'organize',
+                'en' => 'Organize',
+                'jp' => '整理する',
             ],
             [
                 'key' => 'add_product', 
                 'en' => 'Add Product',
                 'jp' => '商品を追加',
+            ],
+            [
+                'key' => 'username',
+                'en' => 'User Name',
+                'jp' => '',
+            ],
+            [
+                'key' => 'password',
+                'en' => 'Password',
+                'jp' => '',
+            ],
+            [
+                'key' => 'remember',
+                'en' => 'Remember me',
+                'jp' => '',
+            ],
+            [
+                'key' => 'forget_password',
+                'en' => 'Forget Password',
+                'jp' => '',
+            ],
+            [
+                'key' => 'no_have_account_msg',
+                'en' => 'Password',
+                'jp' => '',
             ]
         ];
         foreach($translations as $translation) {
