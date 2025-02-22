@@ -73,6 +73,7 @@
                                     </a>
                                 </li>
                             </div>
+                            @if (check_role(2))
                             <div class="center-item">
                                 <div class="center-heading">Product Management</div>
                                 <ul class="menu-list">
@@ -82,13 +83,11 @@
                                             <div class="text">Products</div>
                                         </a>
                                         <ul class="sub-menu">
-                                            @if (check_role(2))
                                             <li class="sub-menu-item">
                                                 <a href="{{route('create_product')}}" class="{{ request()->is('admin/product') ? 'active' : '' }}">
                                                     <div class="text">Add Product</div>
                                                 </a>
                                             </li>
-                                            @endif
 
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.products')}}" class="{{ request()->is('admin/products') ? 'active' : '' }}">
@@ -108,13 +107,11 @@
                                                     <div class="text">Category list</div>
                                                 </a>
                                             </li>
-                                            @if (check_role(2))
                                                 <li class="sub-menu-item">
                                                     <a href="{{route('create_category')}}" class="{{request()->is('admin/categories/create') ? 'active' : ''}}">
                                                         <div class="text">New category</div>
                                                     </a>
                                                 </li>
-                                            @endif
 
                                         </ul>
                                     </li>
@@ -129,17 +126,16 @@
                                                     <div class="text">Sub Category list</div>
                                                 </a>
                                             </li>
-                                            @if (check_role(2))
+
                                             <li class="sub-menu-item">
                                                 <a href="{{route('create_sub_category')}}" class="{{request()->is('admin/sub-categories/create') ? 'active' : ''}}">
                                                     <div class="text">New sub category</div>
                                                 </a>
                                             </li>
-                                            @endif
 
                                         </ul>
                                     </li>
-                                    <li class="menu-item has-children {{ request()->is('admin/order*') ? 'active' : '' }}">
+                                    {{-- <li class="menu-item has-children {{ request()->is('admin/order*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-file-plus"></i></div>
                                             <div class="text">Order</div>
@@ -151,9 +147,11 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
+                            @endif
+
 
                             @if (check_role(1))
                             <div class="center-item">

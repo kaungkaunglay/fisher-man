@@ -39,33 +39,37 @@
             </div>
             <!-- all-user -->
             <div class="wg-box">
-                <div class="mb-3">
-                    <strong>Name:</strong>
-                    <p>{{ $wishList->name }}</p>
-                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="mb-20">
+                            <label class="fs-4 fw-bold mb-8">Name:</label>
+                            <p>{{ $wishList->name }}</p>
+                        </div>
 
-                <div class="mb-3">
-                    <strong>Email:</strong>
-                    <p>{{ $wishList->email }}</p>
-                </div>
+                        <div class="mb-20">
+                            <label class="fs-4 fw-bold mb-8">Email:</label>
+                            <p>{{ $wishList->email }}</p>
+                        </div>
 
-                <div class="mb-3">
-                    <strong>LineID:</strong>
-                    <p>{{ $wishList->line_id }}</p>
-                </div>
+                        <div class="mb-20">
+                            <label class="fs-4 fw-bold mb-8">LineID:</label>
+                            <p>{{ $wishList->line_id }}</p>
+                        </div>
+                        <div class="mb-20">
+                            <label class="fs-4 fw-bold mb-8">Phone:</label>
+                            <p>{{ $wishList->phone }}</p>
+                        </div>
 
-                <div class="mb-3">
-                    <strong>Phone:</strong>
-                    <p>{{ $wishList->phone }}</p>
-                </div>
-                <div class="mb-3">
-                    <strong>Description:</strong>
-                    <p>{{ $wishList->description }}</p>
-                </div>
+                        <div class="mb-20">
+                            <label class="fs-4 fw-bold mb-8">Description:</label>
+                            <p>{{ $wishList->description }}</p>
+                        </div>
 
-                <div class="mb-3">
-                    <strong>Submitted At:</strong>
-                    <p>{{ $wishList->created_at->format('Y-m-d H:i') }}</p>
+                        <div class="mb-3">
+                            <label class="fs-4 fw-bold mb-8">Submitted At:</label>
+                            <p>{{ $wishList->created_at->format('Y-m-d') }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- /all-user -->
