@@ -72,30 +72,15 @@
                                 <span class="invalid-feedback"></span>
                             </div>
 
-                            <!-- organization link -->
                             <div class="d-flex align-items-center">
-                                <label class="w-25" for="organize">{{trans_lang('organize')}}</label>:
-                                <input type="text" name="first_org_name" class="p-1 mt-2 ms-1 rounded-1"
-                                    id="first_org_name" value="{{ $user->first_org_name }}" readonly>
+                                <label class="w-25" for="phone_number">{{trans_lang('phone_number')}}</label>:
+
+                                <input type="tel" name="phone_number" class="p-1 mt-2 ms-1 rounded-1" id="phone_number"
+                                    value="{{ $user->first_phone }}" readonly>
                                 <span class="invalid-feedback"></span>
                             </div>
-
                             <!-- account checkbox -->
                             <div class="mt-2">
-
-                                <!-- form off state -->
-                                <ul class="d-flex gap-4 checkbox-list-off">
-                                    <li>
-                                        <i class="fa-brands fa-line fs-2 mt-1"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa-brands fa-facebook fs-2 mt-1"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa-brands fa-google fs-2 mt-1"></i>
-                                    </li>
-                                </ul>
-
                                 <!-- form on state -->
                                 <ul class="d-flex gap-4 checkbox-list-on">
                                     <li>

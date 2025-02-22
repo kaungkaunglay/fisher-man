@@ -107,7 +107,7 @@
                                 class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
                         </a>
                         
-                        @if(Auth::check())
+                        @if(Auth::check() || session('user_id'))
                         <button class="btn-login position-relative">
                             <i class="fa-solid fa-user icon"></i>
                             <div class="dropdown position-absolute overflow-hidden bg-white">
