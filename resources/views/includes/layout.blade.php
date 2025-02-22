@@ -106,7 +106,7 @@
                             <span id="white_list_count"
                                 class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
                         </a>
-
+                        @if(Auth::check())
                         <button class="btn-login position-relative">
                             <i class="fa-solid fa-user icon"></i>
                             <div class="dropdown position-absolute overflow-hidden bg-white">
@@ -125,6 +125,11 @@
                                 </ul>
                             </div>
                         </button>
+                        @else
+                            <a href="{{ route('login') }}" class="btn-login position-relative">
+                                <i class="fa-solid fa-sign-in-alt icon"></i>
+                            </a>
+                        @endif
                     </div>
                     <!-- /Main Nav -->
 
