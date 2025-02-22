@@ -86,7 +86,7 @@ Route::middleware(['is_seller'])->group(function () {
     Route::post('/profile/seller/update_basic', [ProfileController::class, 'update_basic_profile'])->name('update_basic_profile');
     Route::post('/profile/seller/update_contact', [ProfileController::class, 'update_contact_details'])->name('update_contact_details');
 
-    Route::post('/seller/request-shop', [ShopController::class, 'requestShop'])->name('seller.request-shop');
+    Route::post('/seller/request-shop', [ShopController::class, 'requestShop'])->name('seller.request_shop');
 
 });
 
