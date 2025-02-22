@@ -106,6 +106,7 @@
                             <span id="white_list_count"
                                 class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
                         </a>
+                        
                         @if(Auth::check())
                         <button class="btn-login position-relative">
                             <i class="fa-solid fa-user icon"></i>
@@ -114,6 +115,11 @@
                                     <li>
                                         <a href="{{ url('/profile') }}" class="d-flex gap-2 text-black text-center">
                                             <i class="fa-solid fa-address-card icon"></i>{{trans_lang('profile')}}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/admin') }}" class="d-flex gap-2 text-black text-center">
+                                            <i class="fa-solid fa-tachometer-alt icon"></i>{{ trans_lang('dashboard') }}
                                         </a>
                                     </li>
                                     <li>
