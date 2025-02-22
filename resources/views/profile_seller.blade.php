@@ -131,7 +131,7 @@
                                     <!-- Modal Body -->
                                     <div class="row modal-body p-3">
                                         <div class="col-12 col-md-6">
-                                            <form id="shopRequestForm" enctype="multipart/form-data">
+                                            <form method="POST" name="shopRequestForm" id="shopRequestForm" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="mb-2 row align-items-center">
                                                     <div class="col-lg-5 col-12">
@@ -596,9 +596,6 @@
 
                 var formData = new FormData(this);
                 console.log(formData);
-
-
-
                 $.ajax({
                     url: "{{ route('seller.request-shop') }}",
                     type: "POST",
