@@ -16,17 +16,15 @@ class ShopController extends Controller
         $validator = Validator::make($request->all(), [
             'shopName' => 'required|string|max:255',
             'transManagement' => 'required|string',
-            'email' => 'required|email|unique:shops,email',
+            'transEmail' => 'required|email|unique:shops,email',
             'phoneNumber' => 'required|string|min:10',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+            return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }
-
-
 
 
         // Upload Avatar if exists
@@ -42,7 +40,7 @@ class ShopController extends Controller
             'user_id' => auth_helper()->id(),
             'shop_name' => $request->shopName,
             'trans_management' => $request->transManagement,
-            'email' => $request->email,
+            'email' => $request->transEmail,
             'phone_number' => $request->phoneNumber,
             'avatar' => $imageName,
             'status' => 'pending', // Default status as pending
