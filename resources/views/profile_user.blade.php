@@ -72,13 +72,7 @@
                                 <span class="invalid-feedback"></span>
                             </div>
 
-                            <div class="d-flex align-items-center">
-                                <label class="w-25" for="phone_number">{{trans_lang('phone_number')}}</label>:
-
-                                <input type="tel" name="phone_number" class="p-1 mt-2 ms-1 rounded-1" id="phone_number"
-                                    value="{{ $user->first_phone }}" readonly>
-                                <span class="invalid-feedback"></span>
-                            </div>
+            
                             <!-- account checkbox -->
                             <div class="mt-2">
                                 <!-- form on state -->
@@ -134,7 +128,7 @@
                                 <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
                                     aria-label="Warning:"></i>
                                 <div class="text-start">
-                                    {{trans_lang('payment_method_used_card_last_no')}}
+                                    {{trans_lang('Need to sell? Create Your Seller Account here')}}
                                 </div>
                             </div>
                         </button>
@@ -304,7 +298,6 @@
 
                 <!-- button group -->
                 <div class="buttons d-flex gap-2 mt-3">
-                    <button class="common-btn">{{trans_lang('upload_product')}}</button>
                     <button class="common-btn">{{trans_lang('check_order')}}</button>
                 </div>
 
@@ -561,7 +554,7 @@
                     <div class="history-item row">
                         <div class="col-md-8 col-sm-12">
                             <h3 class="shop-name">{{trans_lang('shop_name')}}</h3>
-                            <p class="payment">{{trans_lang('payment_method_used_card_last_no')}}</p>
+                            <p class="payment">{{trans_lang('Need to sell? Create Your Seller Account here')}}</p>
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <span class="date">15/06/2024</span>
