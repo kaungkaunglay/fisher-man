@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LineController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\LineApisController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UsersController;
@@ -209,7 +210,7 @@ Route::get('/login/line', function () {
 Route::get('/login/line/callback', [OAuthController::class, 'handleLineCallback']);
 
 // Google Auth
-Route::get('/auth/google', function () {
+Route::get('/auth/google', function ()                  {
     return Socialite::driver('google')->redirect();
 })->name('google.login');
 
@@ -225,3 +226,4 @@ Route::get('/login/facebook/callback', [OAuthController::class, 'handleFacebookC
 // count
 Route::get('/whitelist-count', [WhiteListController::class, 'WhiteListCount'])->name('whitelist-count');
 Route::get('/cart-count', [CartController::class, 'CartCount'])->name('cart-count');
+
