@@ -685,7 +685,9 @@
                     success: function(response) {
                         console.log(response.status);
                         if (response.status == true) {
-                            window.location.href = "{{ route('profile_seller') }}";
+                            window.location.href = "{{ route('profile_user') }}";
+                            // console.log('success');
+                            // window.location.reload();
                         } else {
                             var errors = response.errors ?? {};
 
@@ -696,6 +698,7 @@
                                 'transManagement',
                                 'transEmail',
                                 'phoneNumber',
+                                'avatar'
                             ];
 
                             fields.forEach(function(field) {

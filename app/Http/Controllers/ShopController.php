@@ -46,6 +46,6 @@ class ShopController extends Controller
             'status' => 'pending', // Default status as pending
         ]);
 
-        return response()->json(['success' => true, 'message' => 'Shop request submitted successfully!']);
+        return response()->json(['status' => true, 'message' => 'Shop request submitted successfully!']);
     }
 }
