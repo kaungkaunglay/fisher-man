@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Users;
 use App\Models\OAuths;
+use App\Helpers\AuthHelper;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -46,6 +47,7 @@ class OAuthController extends Controller
                 if ($user) {
                     // Update the provider ID for the existing user
                     $user->update([
+                        $user->usernmae => $providerUser->getName(),
                         $providerIdField => $providerUser->getId(),
                         'avatar' => $providerUser->getAvatar() ?? $user->avatar // Keep existing avatar if new one is null
                     ]);
@@ -132,5 +134,17 @@ class OAuthController extends Controller
     public function handleFacebookCallback(Request $request)
     {
         return $this->handleCallback($request, 'facebook');
+    }
+
+    public function removeProvider($provider)
+    {
+        $user = AuthHelper::user();
+
+        $user->oAuths()->where('provider',$provider)->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => `{$provider} OAuth removed successfully`
+        ]);
     }
 }

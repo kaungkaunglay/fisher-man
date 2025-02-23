@@ -33,7 +33,7 @@
 
                     <!-- profile img -->
                     <div class="w-100">
-                        <img src="{{ asset('assets/images/account1.svg') }}" class="w-100" alt="">
+                        <img src="{{ $user->avatar ?? asset('assets/images/account1.svg') }}" class="w-100" alt="">
                     </div>
 
                     <!-- Profile Info -->
@@ -93,7 +93,7 @@
                                                 <i class="fa-brands fa-line fs-2 mt-1"></i>
                                             </label>
                                             <div class="form-check form-switch align-self-center">
-                                                <input type="checkbox" class="border form-check-input" role="switch"
+                                                <input type="checkbox" id="line_login" class="border form-check-input" role="switch"
                                                     @if ($user->checkProvider('line')) checked @endif />
                                             </div>
                                         </div>
@@ -105,7 +105,7 @@
                                                 <i class="fa-brands fa-facebook fs-2 mt-1"></i>
                                             </label>
                                             <div class="form-check form-switch align-self-center">
-                                                <input type="checkbox" class="border form-check-input" role="switch"
+                                                <input type="checkbox" id="facebook_login" class="border form-check-input" role="switch"
                                                     @if ($user->checkProvider('facebook')) checked @endif />
                                             </div>
                                         </div>
@@ -117,7 +117,7 @@
                                                 <i class="fa-brands fa-google fs-2 mt-1"></i>
                                             </label>
                                             <div class="form-check form-switch align-self-center">
-                                                <input type="checkbox" class="border form-check-input" role="switch"
+                                                <input type="checkbox" id="google_login" class="border form-check-input" role="switch"
                                                     @if ($user->checkProvider('google')) checked @endif />
                                             </div>
                                         </div>
@@ -765,9 +765,9 @@
                 });
             }
 
-            function sendUpdateBasicData(formData) {
+            function sendUpdateBasicData(formData,cur) {
                 $.ajax({
-                    url: "{{ route('user.update_basic_profile') }}",
+                    url: "{{ route('update_basic_profile') }}",
                     type: 'POST',
                     dataType: 'json',
                     data: formData,
@@ -779,6 +779,7 @@
 
                             console.log(response.message);
 
+                            unactiveForm(cur);
                         } else {
                             var fields = ['username', 'email'];
                             handleErrorMessages(fields, response.errors, response.message);
@@ -789,9 +790,9 @@
 
 
 
-            function sendUpdateDetailData(formData) {
+            function sendUpdateDetailData(formData,cur) {
                 $.ajax({
-                    url: "{{ route('user.update_contact_details') }}",
+                    url: "{{ route('update_contact_details') }}",
                     type: 'POST',
                     dataType: 'json',
                     data: formData,
@@ -802,6 +803,8 @@
                         if (response.status) {
 
                             console.log(response.message);
+
+                            unactiveForm(cur);
 
                         } else {
                             var fields = ['address', 'first_phone','second_phone'];
@@ -816,7 +819,9 @@
 
                 var formData = new FormData(this);
 
-                sendUpdateBasicData(formData);
+                var cur = $(this);
+
+                sendUpdateBasicData(formData,cur);
             });
 
             $("#update_contact_details").submit(function(e) {
@@ -824,9 +829,47 @@
 
                 var formData = new FormData(this);
 
-                sendUpdateDetailData(formData);
+                var cur = $(this);
+
+                sendUpdateDetailData(formData,cur);
             });
 
+            // Function to handle login/logout for OAuth providers
+            function handleOAuthLogin(provider) {
+                if ($('#' + provider + '_login').prop('checked')) {
+                    window.open("/login/" + provider , "_blank");
+                } else {
+                    remove_oauth(provider);
+                }
+            }
+
+            // Function to remove OAuth provider association
+            function remove_oauth(provider) {
+                $.ajax({
+                    url: `/oauth/remove/${provider}`,
+                    method: 'POST',
+                    data: { provider: provider },  // Pass the provider info in the data
+                    success: function(response) {
+                        console.log(response.message);
+                    },
+                    error: function(xhr) {
+                        console.error(xhr);
+                    }
+                });
+            }
+
+            // Attach click event handlers to each OAuth provider login button
+            $('#line_login').click(function() {
+                handleOAuthLogin('line');
+            });
+
+            $('#facebook_login').click(function() {
+                handleOAuthLogin('facebook');
+            });
+
+            $('#google_login').click(function() {
+                handleOAuthLogin('google');
+            });
 
         });
     </script>

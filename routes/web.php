@@ -61,7 +61,11 @@ Route::middleware(['guest_custom'])->group(function(){
 
 
 // Logout
+// Logout
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::post('/oauth/remove/{provider}',[OAuthController::class,'removeProvider'])->name('oauth.remove');
+
 
 // guest
 
@@ -119,9 +123,11 @@ Route::middleware(['is_buyer'])->group(function () {
     Route::post('/buyer/request-shop', [ShopController::class, 'requestShop'])->name('buyer.request_shop');
     Route::get('/profile/buyer', [ProfileController::class, 'user_profile'])->name('profile_user');
 
-    Route::post('/profile/user/update_basic', [ProfileController::class, 'update_basic_profile'])->name('user.update_basic_profile');
-    Route::post('/profile/user/update_contact', [ProfileController::class, 'update_contact_details'])->name('user.update_contact_details');
+    
 });
+
+Route::post('/profile/update_basic', [ProfileController::class, 'update_basic_profile'])->name('update_basic_profile');
+Route::post('/profile/update_contact', [ProfileController::class, 'update_contact_details'])->name('update_contact_details');
 
 Route::middleware(['is_admin'])->group(function () {
 
@@ -213,14 +219,14 @@ Route::get('/login/line', function () {
 Route::get('/login/line/callback', [OAuthController::class, 'handleLineCallback']);
 
 // Google Auth
-Route::get('/auth/google', function ()                  {
+Route::get('/login/google', function ()                  {
     return Socialite::driver('google')->redirect();
 })->name('google.login');
 
 Route::get('/login/google/callback', [OAuthController::class, 'handleGoogleCallback']);
 
 // Facebook Auth
-Route::get('/auth/facebook', function () {
+Route::get('/login/facebook', function () {
     return Socialite::driver('facebook')->redirect();
 })->name('facebook.login');
 

@@ -318,6 +318,7 @@ class AuthController extends Controller
         }
     }
 
+
     public function logout(){
         AuthHelper::logout();
         return redirect()->route('login');

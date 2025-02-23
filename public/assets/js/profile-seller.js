@@ -8,12 +8,20 @@ $(document).ready(() => {
 
   $('.cancel').click((ev) => {
     ev.preventDefault();
-    $($(ev.currentTarget.closest('.profile-form'))).removeClass('active');
-    $('.profile-form input').attr('readonly', true);
-    if($('.sec-phone').val() == '') $('.cor').hide();
-    else $('.cor').show();
+    unactiveForm(ev.currentTarget);
   })
 
   if($('.sec-phone').val() == '') $('.cor').hide();
   else $('.cor').show();
-})
+
+  
+});
+
+function unactiveForm(cur)
+{
+    
+    $($(cur.closest('.profile-form'))).removeClass('active');
+    $('.profile-form input').attr('readonly', true);
+    if($('.sec-phone').val() == '') $('.cor').hide();
+    else $('.cor').show();
+}
