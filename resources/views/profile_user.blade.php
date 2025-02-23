@@ -3,7 +3,11 @@
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/profile_user.css') }}" />
 @endsection
+
 @section('contents')
+    @php
+        $hasShopRequest = \App\Models\Shop::where('user_id', auth_helper()->id())->exists();
+    @endphp
     <!-- Breadcrumbs -->
     <section class="mt-2">
         <div class="container-custom">
@@ -127,17 +131,33 @@
                         </div>
                         <!-- /Form Content -->
 
-                        <!-- alert box -->
+                        @if (!$hasShopRequest)
+                            <!-- alert box -->
                         <button class="mt-auto" data-bs-toggle="modal" data-bs-target="#modal_dialog"
-                            onclick="event.preventDefault()">
-                            <div class="alert alert-warning d-flex mb-0" role="alert">
-                                <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
-                                    aria-label="Warning:"></i>
-                                <div class="text-start">
-                                    {{ trans_lang('payment_method_used_card_last_no') }}
-                                </div>
+                        onclick="event.preventDefault()">
+                        <div class="alert alert-warning d-flex mb-0" role="alert">
+                            <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
+                                aria-label="Warning:"></i>
+                            <div class="text-start">
+                                {{ trans_lang('payment_method_used_card_last_no') }}
                             </div>
-                        </button>
+                        </div>
+                    </button>
+                        @else
+                            <!-- alert box -->
+
+                        <div class="alert alert-warning d-flex mb-0" role="alert">
+                            <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
+                                aria-label="Warning:"></i>
+                            <div class="text-start">
+                                You have been requested
+                                {{-- {{ trans_lang('payment_method_used_card_last_no') }} --}}
+                            </div>
+                        </div>
+                    {{-- </button> --}}
+                        @endif
+
+
 
                     </form>
                     <!-- /Profile Info -->
