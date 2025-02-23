@@ -18,9 +18,9 @@ class ShopFactory extends Factory
 
     public function definition(): array
     {
-      
+
         return [
-            'user_id' => "2", // Creates a user if not provided
+            'user_id' => "3", // Creates a user if not provided
             'shop_name' => $this->faker->company,
             'trans_management' => $this->faker->randomElement(['Cash', 'PayPal', 'Bank Transfer']),
             'email' => $this->faker->unique()->safeEmail,
