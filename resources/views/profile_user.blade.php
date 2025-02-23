@@ -684,3 +684,7 @@
     <!-- /All Scripts -->
 
 @endsection
+
+@section('script')
+    
+@endsection
