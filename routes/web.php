@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LineController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\LineApisController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UsersController;
@@ -83,15 +84,18 @@ Route::get('/profile')->middleware('check_role')->name('profile');
 Route::middleware(['is_seller'])->group(function () {
     Route::get('/profile/seller', [ProfileController::class, 'seller_profile'])->name('profile_seller');
 
-    Route::post('/profile/seller/update_basic', [ProfileController::class, 'update_basic_profile'])->name('update_basic_profile');
-    Route::post('/profile/seller/update_contact', [ProfileController::class, 'update_contact_details'])->name('update_contact_details');
+    Route::post('/profile/seller/update_basic', [ProfileController::class, 'update_basic_profile'])->name('seller.update_basic_profile');
+    Route::post('/profile/seller/update_contact', [ProfileController::class, 'update_contact_details'])->name('seller.update_contact_details');
 
-
+    
 });
 
 Route::middleware(['is_buyer'])->group(function () {
     Route::get('/profile/buyer', [ProfileController::class, 'user_profile'])->name('profile_user');
     Route::post('/buyer/request-shop', [ShopController::class, 'requestShop'])->name('buyer.request_shop');
+
+    Route::post('/profile/user/update_basic', [ProfileController::class, 'update_basic_profile'])->name('user.update_basic_profile');
+    Route::post('/profile/user/update_contact', [ProfileController::class, 'update_contact_details'])->name('user.update_contact_details');
 });
 
 Route::middleware(['is_admin'])->group(function () {
@@ -209,7 +213,7 @@ Route::get('/login/line', function () {
 Route::get('/login/line/callback', [OAuthController::class, 'handleLineCallback']);
 
 // Google Auth
-Route::get('/auth/google', function () {
+Route::get('/auth/google', function ()                  {
     return Socialite::driver('google')->redirect();
 })->name('google.login');
 
@@ -225,3 +229,4 @@ Route::get('/login/facebook/callback', [OAuthController::class, 'handleFacebookC
 // count
 Route::get('/whitelist-count', [WhiteListController::class, 'WhiteListCount'])->name('whitelist-count');
 Route::get('/cart-count', [CartController::class, 'CartCount'])->name('cart-count');
+

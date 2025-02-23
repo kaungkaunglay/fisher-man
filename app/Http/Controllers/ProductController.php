@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Shop;
 use App\Models\Sub_category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,10 @@ class ProductController extends Controller
         }
 
         $products = $query->get();
-        return view('home', compact('products'));
+
+        $popular_shops = Shop::inRandomOrder()->take(4)->get();
+        
+        return view('home', compact('products','popular_shops'));
     }
 
     public function create()

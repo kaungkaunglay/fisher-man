@@ -221,7 +221,7 @@
                     status: status
                 },
                 success: function (response) {
-                    if(response.success) {
+                    if(response.status) {
                         location.reload(); // Refresh the page to update UI
                     } else {
                         alert('Failed to update status');
