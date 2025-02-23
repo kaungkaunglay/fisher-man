@@ -11,21 +11,23 @@ class ShopController extends Controller
 {
     public function requestShop(Request $request)
     {
-        logger($request->all());
+
         // Validate request
         $validator = Validator::make($request->all(), [
-            'shop_name' => 'required|string|max:255',
-            'trans_management' => 'required|string',
+            'shopName' => 'required|string|max:255',
+            'transManagement' => 'required|string',
             'email' => 'required|email|unique:shops,email',
-            'phone' => 'required|string|min:10',
+            'phoneNumber' => 'required|string|min:10',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
+
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        logger('hitting');
+
+
 
         // Upload Avatar if exists
         if ($request->hasFile('avatar')) {
@@ -34,13 +36,14 @@ class ShopController extends Controller
             $file->move(public_path('assets/images/avatars'),$imageName);
         }
 
+
         // Store shop data
         $shop = Shop::create([
             'user_id' => auth_helper()->id(),
-            'shop_name' => $request->shop_name,
-            'trans_management' => $request->trans_management,
+            'shop_name' => $request->shopName,
+            'trans_management' => $request->transManagement,
             'email' => $request->email,
-            'phone_number' => $request->phone,
+            'phone_number' => $request->phoneNumber,
             'avatar' => $imageName,
             'status' => 'pending', // Default status as pending
         ]);
