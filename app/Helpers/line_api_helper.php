@@ -10,7 +10,6 @@ use LINE\Constants\MessageType;
 if (!function_exists('send_push_notification')) {
     function send_push_notification($userId, $message)
     {
-        
         try {
             $channelAccessToken = env('LINE_CHANNEL_ACCESS_TOKEN');
 
