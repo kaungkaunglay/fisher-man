@@ -223,11 +223,18 @@ class AdminController extends Controller
 
     public function updateStatus(Request $request)
     {
+        logger($request);
         $shop = Shop::findOrFail($request->shop_id);
         $shop->status = $request->status;
         $shop->save();
 
-        return response()->json(['success' => true, 'message' => 'Shop status updated successfully']);
+        $user = Users::select('users.*')
+                ->join('shops','users.id','=','shops.user_id')
+                ->where('shops.id',$request->shop_id)
+                ->first();
+
+        $user->assignRole(2);
+        return response()->json(['status' => true, 'message' => 'Shop status updated successfully']);
     }
 
     public function shopDetail($shopID){
