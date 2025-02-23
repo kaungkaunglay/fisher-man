@@ -76,7 +76,6 @@ class Users extends Authenticatable implements CanResetPassword
     public function checkProvider($provider_name){
         return $this->oAuths()
             ->where('provider',$provider_name)
-            ->where('status',true)
             ->exists();
     }
 

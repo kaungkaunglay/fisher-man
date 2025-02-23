@@ -43,7 +43,8 @@
                         </div>
 
                         <!-- Profile Info -->
-                        <form action="#" class="w-100 profile-form d-flex flex-column">
+                        <form method="POST" id="update_basic_profile" class="w-100 profile-form d-flex flex-column">
+                            @csrf
                             <!-- Form Headline -->
                             <div class="bg-primary text-white p-2">
                                 <h2 class="fw-bold d-flex justify-content-between">Shop Info
@@ -66,37 +67,27 @@
                             <div class="px-2 py-3">
                                 <!-- user name -->
                                 <div class="d-flex align-items-center">
-                                    <label class="w-25" for="name">Name</label>:
-                                    <input type="text" class="p-1 mt-1 ms-1 rounded-1" id="name"
+                                    <label class="w-25" for="username">Name</label>:
+                                    <input type="text" name="username"  class="p-1 mt-1 ms-1 rounded-1" id="username"
                                         value="{{ $user->username }}" readonly>
+                                        <span class="invalid-feedback"></span>
                                 </div>
-                            <!-- Form Content -->
-                            <div class="px-2 py-3">
-                                <!-- user name -->
-                                <div class="d-flex align-items-center">
-                                    <label class="w-25" for="name">Name</label>:
-                                    <input type="text" class="p-1 mt-1 ms-1 rounded-1" id="name"
-                                        value="{{ $user->username }}" readonly>
-                                </div>
+                        
 
                                 <!-- email link -->
                                 <div class="d-flex align-items-center">
                                     <label class="w-25" for="email">Email</label>:
-                                    <input type="email" class="p-1 mt-2 ms-1 rounded-1" id="email"
+                                    <input type="email" name="email" class="p-1 mt-2 ms-1 rounded-1" id="email"
                                         value="{{ $user->email }}" readonly>
-                                </div>
-                                <!-- email link -->
-                                <div class="d-flex align-items-center">
-                                    <label class="w-25" for="email">Email</label>:
-                                    <input type="email" class="p-1 mt-2 ms-1 rounded-1" id="email"
-                                        value="{{ $user->email }}" readonly>
+                                        <span class="invalid-feedback"></span>
                                 </div>
 
                                 <!-- organization link -->
                                 <div class="d-flex align-items-center">
-                                    <label class="w-25" for="organize">Organize</label>:
-                                    <input type="text" class="p-1 mt-2 ms-1 rounded-1" id="organize"
+                                    <label class="w-25" for="first_org_name">Organize</label>:
+                                    <input type="text" name="first_org_name" class="p-1 mt-2 ms-1 rounded-1" id="first_org_name"
                                         value="Organization" readonly>
+                                        <span class="invalid-feedback"></span>
                                 </div>
 
                                 <!-- account checkbox -->
@@ -108,7 +99,7 @@
                                                     <i class="fa-brands fa-line fs-2 mt-1"></i>
                                                 </label>
                                                 <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" class="border form-check-input" role="switch" />
+                                                    <input type="checkbox" id="line_login" class="border form-check-input" role="switch"  @if ($user->checkProvider('line')) checked @endif />
                                                 </div>
                                             </div>
                                         </li>
@@ -118,7 +109,7 @@
                                                     <i class="fa-brands fa-facebook fs-2 mt-1"></i>
                                                 </label>
                                                 <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" class="border form-check-input" role="switch" />
+                                                    <input type="checkbox" id="facebook_login" class="border form-check-input" role="switch"  @if ($user->checkProvider('facebook')) checked @endif />
                                                 </div>
                                             </div>
                                         </li>
@@ -128,50 +119,14 @@
                                                     <i class="fa-brands fa-google fs-2 mt-1"></i>
                                                 </label>
                                                 <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" class="border form-check-input" role="switch" />
+                                                    <input type="checkbox" id="google_login" class="border form-check-input" role="switch"  @if ($user->checkProvider('google')) checked @endif  />
                                                 </div>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                            <!-- /Form Content -->
-                                <!-- account checkbox -->
-                                <div class="mt-2">
-                                    <ul class="d-flex gap-4 checkbox-list-on">
-                                        <li>
-                                            <div class="form-group d-flex flex-column gap-1">
-                                                <label for="">
-                                                    <i class="fa-brands fa-line fs-2 mt-1"></i>
-                                                </label>
-                                                <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" class="border form-check-input" role="switch" />
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-group d-flex flex-column gap-1">
-                                                <label for="">
-                                                    <i class="fa-brands fa-facebook fs-2 mt-1"></i>
-                                                </label>
-                                                <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" class="border form-check-input" role="switch" />
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-group d-flex flex-column gap-1">
-                                                <label for="">
-                                                    <i class="fa-brands fa-google fs-2 mt-1"></i>
-                                                </label>
-                                                <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" class="border form-check-input" role="switch" />
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            
                             <!-- /Form Content -->
 
                             <!-- alert box -->
@@ -284,28 +239,8 @@
                     </div>
 
                     <!-- Detail Info -->
-                    <form action="#" class="w-100 mt-3 profile-form">
-                        <!-- Form Headline -->
-                        <div>
-                            <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2">
-                                Detail Personal Info
-                                <!-- button group -->
-                                <div class="d-flex justify-content-end gap-4">
-                                    <button type="submit" class="save">
-                                        <i class="fa-solid fa-save fs-5 text-white"></i>
-                                    </button>
-                                    <button class="edit">
-                                        <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
-                                    </button>
-                                    <button class="cancel">
-                                        <i class="fa-solid fa-x fs-5 text-white"></i>
-                                    </button>
-                                </div>
-                            </h2>
-                        </div>
-                        <!-- /Form Headline -->
-                    <!-- Detail Info -->
-                    <form action="#" class="w-100 mt-3 profile-form">
+                    <form method="POST" id="update_contact_details" class="w-100 mt-3 profile-form">
+                        @csrf
                         <!-- Form Headline -->
                         <div>
                             <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2">
@@ -332,7 +267,7 @@
                             <!-- address -->
                             <div class="d-flex align-items-center">
                                 <label class="w-25" for="address">Address</label>:
-                                <input type="text" class="p-1 mt-2 ms-1 rounded-1" id="address"
+                                <input type="text" name="address" class="p-1 mt-2 ms-1 rounded-1" id="address"
                                     value="house no street,sue distict,city" readonly>
                                 <span class="invalid-feedback"></span>
                             </div>
@@ -342,13 +277,14 @@
                                 <label class="w-25" for="tel">Phone No.</label>:
                                 <div class="ms-1 d-flex phone-no-container">
                                     <!-- <a href="tel:"> -->
-                                    <input type="tel" class="p-1 mt-2 rounded-1" id="first_phone"
+                                    <input type="tel" name="first_phone" class="p-1 mt-2 rounded-1" id="first_phone"
                                         value="{{ $user->first_phone }}" readonly>
+                                        <span class="invalid-feedback"></span>
 
                                     <!-- </a> -->
                                     <b class="cor align-content-end">, </b>
                                     <!-- <a href="tel:"> -->
-                                    <input type="tel" class="p-1 mt-2 rounded-1" value="{{ $user->second_phone }}"
+                                    <input type="tel" name="second_phone" class="p-1 mt-2 rounded-1" value="{{ $user->second_phone }}"
                                         id="second_phone" readonly>
                                     <span class="invalid-feedback"></span>
                                     <!-- </a> -->
@@ -947,4 +883,134 @@
     {{-- Testing --}}
     <script src="{{ asset('assets/js/cloneNode.test.js') }}"></script>
     {{-- /Testing --}}
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+
+            function handleErrorMessages(fields, errors, message) {
+                $('#message').html(message ?? '');
+
+                fields.forEach(function(field) {
+                    var fieldGroup = $('#' + field).closest('.form-group');
+                    var errorSpan = fieldGroup.find('span.invalid-feedback');
+
+                    if (errors[field]) {
+                        errorSpan.addClass('d-block').html(errors[field]);
+                    } else {
+                        errorSpan.removeClass('d-block').html('');
+                    }
+                });
+            }
+
+            function sendUpdateBasicData(formData,cur) {
+                $.ajax({
+                    url: "{{ route('update_basic_profile') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        console.log(response.status);
+                        if (response.status) {
+
+                            console.log(response.message);
+
+                            unactiveForm(cur);
+                        } else {
+                            var fields = ['username', 'email'];
+                            handleErrorMessages(fields, response.errors, response.message);
+                        }
+                    }
+                });
+            }
+
+
+
+            function sendUpdateDetailData(formData,cur) {
+                $.ajax({
+                    url: "{{ route('update_contact_details') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        console.log(response.status);
+                        if (response.status) {
+
+                            console.log(response.message);
+
+                            unactiveForm(cur);
+
+                        } else {
+                            var fields = ['address', 'first_phone','second_phone'];
+                            handleErrorMessages(fields, response.errors, response.message);
+                        }
+                    }
+                });
+            }
+
+            $("#update_basic_profile").submit(function(e) {
+                e.preventDefault();
+
+                var formData = new FormData(this);
+
+                var cur = $(this);
+
+                sendUpdateBasicData(formData,cur);
+            });
+
+            $("#update_contact_details").submit(function(e) {
+                e.preventDefault();
+
+                var formData = new FormData(this);
+
+                var cur = $(this);
+
+                sendUpdateDetailData(formData,cur);
+            });
+
+            // Function to handle login/logout for OAuth providers
+            function handleOAuthLogin(provider) {
+                if ($('#' + provider + '_login').prop('checked')) {
+                    window.open("/login/" + provider , "_blank");
+                } else {
+                    remove_oauth(provider);
+                }
+            }
+
+            // Function to remove OAuth provider association
+            function remove_oauth(provider) {
+                $.ajax({
+                    url: `/oauth/remove/${provider}`,
+                    method: 'POST',
+                    data: { provider: provider },  // Pass the provider info in the data
+                    success: function(response) {
+                        console.log(response.message);
+                    },
+                    error: function(xhr) {
+                        console.error(xhr);
+                    }
+                });
+            }
+
+            // Attach click event handlers to each OAuth provider login button
+            $('#line_login').click(function() {
+                handleOAuthLogin('line');
+            });
+
+            $('#facebook_login').click(function() {
+                handleOAuthLogin('facebook');
+            });
+
+            $('#google_login').click(function() {
+                handleOAuthLogin('google');
+            });
+
+        });
+    </script>
+
 @endsection

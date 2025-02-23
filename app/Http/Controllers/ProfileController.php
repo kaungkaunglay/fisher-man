@@ -57,6 +57,9 @@ class ProfileController extends Controller
         // Update user profile
         $user->username = $request->username;
         $user->email = $request->email;
+        if($request->has('first_org_name')){
+            $user->first_org_name = $request->first_org_name;
+        }
         $user->save();
 
         // Return success response
@@ -80,12 +83,12 @@ class ProfileController extends Controller
         // Validate incoming request data for address and phone numbers
         $validator = Validator::make($request->all(), [
             'address' => 'required|string|max:255',
-            'first_phone' => [
-                'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'
-            ],
-            'second_phone' => [
-                'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'
-            ],
+            // 'first_phone' => [
+            //     'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'
+            // ],
+            // 'second_phone' => [
+            //     'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'
+            // ],
         ], $messages);
 
         // Check if validation fails
@@ -110,5 +113,6 @@ class ProfileController extends Controller
             'status' => true,
             'message' => 'Address and phone numbers updated successfully.',
         ]);
+
     }
 }
