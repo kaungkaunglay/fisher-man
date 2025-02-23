@@ -33,7 +33,7 @@ class AuthController extends Controller
             'username.unique' => 'The username has already been taken.',
             'email.required' => 'The email field is required.',
             'email.email' => 'The email must be a valid email address.',
-            'email.unique' => 'The email has already been taken.',      
+            'email.unique' => 'The email has already been taken.',
             'g-recaptcha-response.required' => 'The recaptcha field is required.',
             'password.required' => 'The password field is required.',
             'password.min' => 'The password must be at least 6 characters.',
@@ -172,7 +172,7 @@ class AuthController extends Controller
 
                 // return redirect()->intended('/');
 
-                return response()->json(['status' => true, 'message' => 'login successfull']);
+                return response()->json(['status' => true, 'message' => 'login successfull', 'user' => $user ]);
             }
 
             return response()->json(['status' => false, 'message' => 'Username or Password is Incorrect']);
@@ -217,7 +217,7 @@ class AuthController extends Controller
     }
 
     public function showEmailSuccess($email){
-        session()->flash('status', 'success'); 
+        session()->flash('status', 'success');
         session()->flash('message', 'パスワードリセットのためのメールを送信しました。メールをご確認ください。');
         return view('email_success', ['email' => $email]);
     }
