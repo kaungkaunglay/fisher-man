@@ -61,7 +61,7 @@
                                             <label for="name" class="form-label">{{trans_lang('name')}}</label>
                                             <input type="text" name="name"
                                                 class="form-control @error('name') is-invalid @enderror" id="name"
-                                                placeholder="Enter your name">
+                                                placeholder="{{trans_lang('name')}}">
                                             @error('name')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -74,7 +74,7 @@
                                                 <label for="line-id" class="form-label">{{trans_lang('line_id')}}</label>
                                                 <input type="text" name="line_id"
                                                     class="form-control @error('line_id') is-invalid @enderror"
-                                                    id="line-id" placeholder="Enter your Line ID">
+                                                    id="line-id" placeholder="{{trans_lang('line_id')}}">
                                                 @error('line_id')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
@@ -85,7 +85,7 @@
                                                 <label for="phone" class="form-label">{{trans_lang('phone_number')}}</label>
                                                 <input type="tel" name="phone"
                                                     class="form-control @error('phone') is-invalid @enderror" id="phone"
-                                                    placeholder="Enter your phone number">
+                                                    placeholder="{{trans_lang('phone_number')}}">
                                                 @error('phone')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
@@ -98,7 +98,7 @@
                                             <label for="email" class="form-label">{{trans_lang('email')}}</label>
                                             <input type="email" name="email"
                                                 class="form-control @error('email') is-invalid @enderror" id="email"
-                                                placeholder="Enter your email">
+                                                placeholder="{{trans_lang('email')}}">
                                             @error('email')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -109,7 +109,7 @@
                                         <div class="mb-3">
                                             <label for="description" class="form-label">{{trans_lang('description')}}</label>
                                             <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
-                                                rows="3" placeholder="Enter your description"></textarea>
+                                                rows="3" placeholder="{{trans_lang('description')}}"></textarea>
                                             @error('description')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -127,7 +127,7 @@
                                         </div>
 
                                         <div class="text-center mb-mobile-3">
-                                            <button type="submit" class="common-btn">Submit</button>
+                                            <button type="submit" class="common-btn">{{trans_lang('submit')}}</button>
                                         </div>
                                     </form>
                                 </div>
@@ -147,7 +147,7 @@
                                             <label for="name" class="form-label">{{trans_lang('name')}}</label>
                                             <input type="text" name="wish_name"
                                                 class="form-control @error('wish_name') is-invalid @enderror"
-                                                id="name" placeholder="Enter your name">
+                                                id="name" placeholder="{{trans_lang('name')}}">
                                             @error('wish_name')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -160,7 +160,7 @@
                                                 <label for="line-id" class="form-label">{{trans_lang('line_id')}}</label>
                                                 <input type="text" name="lineID"
                                                     class="form-control @error('lineID') is-invalid @enderror"
-                                                    id="line-id" placeholder="Enter your Line ID">
+                                                    id="line-id" placeholder="{{trans_lang('line_id')}}">
                                                 @error('lineID')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
@@ -171,7 +171,7 @@
                                                 <label for="phone" class="form-label">{{trans_lang('phone_number')}}</label>
                                                 <input type="tel" name="wish_phone"
                                                     class="form-control @error('wish_phone') is-invalid @enderror"
-                                                    id="phone" placeholder="Enter your phone number">
+                                                    id="phone" placeholder="{{trans_lang('phone_number')}}">
                                                 @error('wish_phone')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
@@ -184,7 +184,7 @@
                                             <label for="email" class="form-label">{{trans_lang('email')}}</label>
                                             <input type="email" name="wish_email"
                                                 class="form-control @error('wish_email') is-invalid @enderror"
-                                                id="email" placeholder="Enter your email">
+                                                id="email" placeholder="{{trans_lang('email')}}">
                                             @error('wish_email')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -195,7 +195,7 @@
                                         <div class="mb-3">
                                             <label for="description" class="form-label">{{trans_lang('description')}}</label>
                                             <textarea class="form-control @error('wish_description') is-invalid @enderror" name="wish_description"
-                                                id="description" rows="3" placeholder="Enter your description"></textarea>
+                                                id="description" rows="3" placeholder="{{trans_lang('description')}}"></textarea>
                                             @error('wish_description')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -212,7 +212,7 @@
                                             @enderror
                                         </div>
                                         <div class="text-center mb-mobile-3">
-                                            <button type="submit" class="common-btn">Submit</button>
+                                            <button type="submit" class="common-btn">{{trans_lang('submit')}}</button>
                                         </div>
 
                                     </form>
