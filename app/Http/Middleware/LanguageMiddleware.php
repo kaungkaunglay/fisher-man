@@ -23,7 +23,6 @@ class LanguageMiddleware
 
         // Determine language based on subdomain
         $locale = ($subdomain === 'jp') ? 'jp' : 'en';
-        logger($locale);
         // Set Laravel's locale
         App::setLocale($locale);
         Session::put('locale', $locale);

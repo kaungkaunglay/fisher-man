@@ -65,6 +65,9 @@ class OAuthController extends Controller
             // Store session data
             $this->storeSessionData($provider, $token, $refreshToken, $user->id);
 
+            if($provider == 'line'){
+                send_push_notification($user->id, 'Welcome! You have successfully logged in with LINE.');
+            }
             return redirect()->route('home');
         } catch (\Exception $e) {
             Log::error("Error in handle{$provider}Callback: " . $e->getMessage(), ['exception' => $e]);
