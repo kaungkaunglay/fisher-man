@@ -9,7 +9,7 @@
         <div class="container">
             <ol class="breadcrumb mb-0 bg-transparent">
                 <li class="breadcrumb-item"><a href="/">{{trans_lang('home')}}</a></li>
-                <li class="breadcrumb-item active" aria-current="page">White List</li>
+                <li class="breadcrumb-item active" aria-current="page">タグ付けされた商品</li>
             </ol>
         </div>
     </nav>

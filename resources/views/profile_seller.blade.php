@@ -17,7 +17,7 @@
     </section>
     <!-- /Breadcrumbs -->
     <!-- Breadcrumbs -->
-    <section class="mt-2">
+    {{-- <section class="mt-2">
         <div class="container-custom">
             <nav aria-label="breadcrumb" class="py-4">
                 <ol class="breadcrumb mb-0 bg-transparent">
@@ -26,7 +26,7 @@
                 </ol>
             </nav>
         </div>
-    </section>
+    </section> --}}
     <!-- /Breadcrumbs -->
 
     <!-- Profile Section -->

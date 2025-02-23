@@ -54,28 +54,30 @@
         <div class="container-custom">
             <div class="header">
 
-        <!-- Top Header -->
-        <div class="top-header">
+                <!-- Top Header -->
+                <div class="top-header d-flex flex-column flex-sm-row">
 
-          <!-- Head Logo -->
-          <div class="logo">
-            <a href="{{ url('/') }}">
-              @if (file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
-              <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" class="logo" alt="logo">
-              @else
-              <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" class="logo" alt="logo">
-              @endif
-            </a>
-          </div>
-          <!-- /Head Logo -->
+                    <!-- Head Logo -->
+                    <div class="logo">
+                        <a href="{{ url('/') }}">
+                            @if (file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
+                                <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
+                                    class="logo" alt="logo">
+                            @else
+                                <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
+                                    class="logo" alt="logo">
+                            @endif
+                        </a>
+                    </div>
+                    <!-- /Head Logo -->
 
 
                     <!-- Search Bar -->
-                    <div class="ms-2 position-relative w-50">
+                    <div class="ms-2 position-relative w-100 mt-3 mt-md-0">
                         <form action="{{ route('products.search') }}" method="get">
                             <div class="input-group w-100">
                                 <input type="text" class="form-control bg-second search-bar" id="search"
-                                    placeholder="{{trans_lang('search_products')}}" name="search_key">
+                                    placeholder="{{ trans_lang('search_products') }}" name="search_key">
                                 <button type="submit" class="bg-main text-white magnifying-glass">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
@@ -95,7 +97,7 @@
                     {{-- icon counts --}}
 
                     <!-- Main Nav -->
-                    <div class="d-none d-md-flex gap-5  ms-3">
+                    <div class="d-none d-md-flex gap-5 ms-3">
                         <a href="{{ route('cart') }}" class="position-relative ">
                             <i class="fa-solid fa-cart-shopping icon"></i>
                             <span id="cart_count"
@@ -107,32 +109,36 @@
                                 class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
                         </a>
 
-                        @if(Auth::check() || session('user_id'))
-                        <button class="btn-login position-relative">
-                            <i class="fa-solid fa-user icon"></i>
-                            <div class="dropdown position-absolute overflow-hidden bg-white">
-                                <ul class="border">
-                                    <li>
-                                        <a href="{{ url('/profile') }}" class="d-flex gap-2 text-black text-center">
-                                            <i class="fa-solid fa-address-card icon"></i>{{trans_lang('profile')}}
-                                        </a>
-                                    </li>
-                                    @if(check_role(2))
-                                    <li>
-                                        <a href="{{ url('/admin') }}" class="d-flex gap-2 text-black text-center">
-                                            <i class="fa-solid fa-tachometer-alt icon"></i>{{ trans_lang('dashboard') }}
-                                        </a>
-                                    </li>
-                                    @endif
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            class="px-3 d-flex gap-2 text-black text-center">
-                                            <i class="fas fa-door-open icon"></i>{{trans_lang('logout')}}
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </button>
+                        @if (Auth::check() || session('user_id'))
+                            <button class="btn-login position-relative">
+                                <i class="fa-solid fa-user icon"></i>
+                                <div class="dropdown position-absolute overflow-hidden bg-white">
+                                    <ul class="border">
+                                        <li>
+                                            <a href="{{ url('/profile') }}"
+                                                class="d-flex gap-2 text-black text-center">
+                                                <i
+                                                    class="fa-solid fa-address-card icon"></i>{{ trans_lang('profile') }}
+                                            </a>
+                                        </li>
+                                        @if (check_role(2))
+                                            <li>
+                                                <a href="{{ url('/admin') }}"
+                                                    class="d-flex gap-2 text-black text-center">
+                                                    <i
+                                                        class="fa-solid fa-tachometer-alt icon"></i>{{ trans_lang('dashboard') }}
+                                                </a>
+                                            </li>
+                                        @endif
+                                        <li>
+                                            <a href="{{ route('logout') }}"
+                                                class="px-3 d-flex gap-2 text-black text-center">
+                                                <i class="fas fa-door-open icon"></i>{{ trans_lang('logout') }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </button>
                         @else
                             <a href="{{ route('login') }}" class="btn-login position-relative">
                                 <i class="fa-solid fa-sign-in-alt icon"></i>
@@ -153,13 +159,15 @@
                             </a>
                         </div>
                         <ul class="w-100">
-                            <li><a href="{{ url('/') }}" class="menu-header">{{trans_lang('home')}}</a></li>
-                            <li><a href="{{ url('/special-offer') }}" class="menu-header">{{trans_lang('special_offer')}}</a></li>
+                            <li><a href="{{ url('/') }}" class="menu-header">{{ trans_lang('home') }}</a></li>
+                            <li><a href="{{ url('/special-offer') }}"
+                                    class="menu-header">{{ trans_lang('special_offer') }}</a></li>
                             @foreach ($categories as $category)
                                 <li><a href="{{ route('category', $category->id) }}"
                                         class="menu-header">{{ $category->category_name }}</a></li>
                             @endforeach
-                            <li><a href="{{ url('/support') }}" class="menu-header">{{trans_lang('support')}}</a></li>
+                            <li><a href="{{ url('/support') }}" class="menu-header">{{ trans_lang('support') }}</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -235,25 +243,28 @@
 
                 {{-- Useful Link --}}
                 <div class="col-12 col-lg-3 mt-3 d-flex flex-column justify-content-center">
-                    <h6 class="text-center text-warning mb-2">{{trans_lang('useful_links')}}</h6>
+                    <h6 class="text-center text-warning mb-2">{{ trans_lang('useful_links') }}</h6>
                     <ul class="list-unstyled link-list txt-15 useful-link">
-                        <li><a href="{{ route('home') }}">{{trans_lang('home')}}</a></li>
-                        <li><a href="#">{{trans_lang('product')}}</a></li>
-                        <li><a href="#">{{trans_lang('faqs')}}</a></li>
-                        <li><a href="{{ route('policy') }}">{{trans_lang('terms_privacy')}}</a></li>
-                        <li><a href="#">{{trans_lang('customer_review')}}</a></li>
-                        <li><a href="#">{{trans_lang('blogs')}}</a></li>
+                        <li><a href="{{ route('home') }}">{{ trans_lang('home') }}</a></li>
+                        <li><a href="#">{{ trans_lang('product') }}</a></li>
+                        <li><a href="#">{{ trans_lang('faqs') }}</a></li>
+                        <li><a href="{{ route('policy') }}">{{ trans_lang('terms_privacy') }}</a></li>
+                        <li><a href="#">{{ trans_lang('customer_review') }}</a></li>
+                        <li><a href="#">{{ trans_lang('blogs') }}</a></li>
                     </ul>
                 </div>
                 {{-- /Useful Link --}}
 
                 {{-- Contact Us --}}
                 <div class="col-12 col-lg-2 mt-3 ">
-                    <h6 class="text-center text-warning mb-2">{{trans_lang('contact_us')}}</h6>
+                    <h6 class="text-center text-warning mb-2">{{ trans_lang('contact_us') }}</h6>
                     <ul class="list-unstyled text-white txt-15 text-center">
-                        <li><a href="#">{{trans_lang('address')}} : {{ App\Models\Setting::getValue('contact_address') }}</a></li>
-                        <li><a href="#">{{trans_lang('phone_number')}} :  {{ App\Models\Setting::getValue('contact_phone') }}</a></li>
-                        <li><a href="#">{{trans_lang('email')}} : {{ App\Models\Setting::getValue('contact_email') }}</a></li>
+                        <li><a href="#">{{ trans_lang('address') }} :
+                                {{ App\Models\Setting::getValue('contact_address') }}</a></li>
+                        <li><a href="#">{{ trans_lang('phone_number') }} :
+                                {{ App\Models\Setting::getValue('contact_phone') }}</a></li>
+                        <li><a href="#">{{ trans_lang('email') }} :
+                                {{ App\Models\Setting::getValue('contact_email') }}</a></li>
                     </ul>
                 </div>
                 {{-- /Contact Us --}}
@@ -301,15 +312,15 @@
     <script src="{{ asset('assets/js/popup.js') }}"></script>
     {{--
   <script src="{{asset('assets/js/preloader.js')}}"></script> --}}
-  <script src="{{ asset('assets/js/moving-text.js') }}"></script>
-  <script src="{{ asset('assets/js/password.js') }}"></script>
-  <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
-  <script>
-    $(document).ready(() => {
-      //dropdown trigger
-      $('.btn-login').click(() => {
-        $('.dropdown').toggleClass('active');
-      });
+    <script src="{{ asset('assets/js/moving-text.js') }}"></script>
+    <script src="{{ asset('assets/js/password.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script>
+        $(document).ready(() => {
+            //dropdown trigger
+            $('.btn-login').click(() => {
+                $('.dropdown').toggleClass('active');
+            });
 
             // close dropdown
             $(document).click(ev => {

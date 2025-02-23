@@ -20,7 +20,7 @@
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>FAQs</h3>
+            <h3>{{trans_lang('faqs')}}</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
                     <a href="index.html">
@@ -76,7 +76,7 @@
             <div class="wg-table table-product-list">
                 <ul class="table-title flex gap20 mb-14">
                     <li>
-                        <div class="body-title">Id</div>
+                        <div class="body-title">ID</div>
                     </li>
                     <li>
                         <div class="body-title">{{trans_lang('question')}}</div>
