@@ -87,19 +87,15 @@ Route::middleware(['is_seller'])->group(function () {
     Route::post('/profile/seller/update_basic', [ProfileController::class, 'update_basic_profile'])->name('seller.update_basic_profile');
     Route::post('/profile/seller/update_contact', [ProfileController::class, 'update_contact_details'])->name('seller.update_contact_details');
 
-    
-});
+     // Product Routes
+     Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products');
+     Route::get('/admin/products/create', [ProductController::class, 'create'])->name('create_product');
+     Route::post('/admin/products', [ProductController::class, 'store'])->name('add_product');
+     Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+     Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('update_product');
+     Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 
-Route::middleware(['is_buyer'])->group(function () {
-    Route::get('/profile/buyer', [ProfileController::class, 'user_profile'])->name('profile_user');
-    Route::post('/buyer/request-shop', [ShopController::class, 'requestShop'])->name('buyer.request_shop');
-
-    Route::post('/profile/user/update_basic', [ProfileController::class, 'update_basic_profile'])->name('user.update_basic_profile');
-    Route::post('/profile/user/update_contact', [ProfileController::class, 'update_contact_details'])->name('user.update_contact_details');
-});
-
-Route::middleware(['is_admin'])->group(function () {
-    // Categories Controller
+      // Categories Controller
 
     Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('admin.categories');
     Route::get('/admin/categories/create', [CategoriesController::class, 'create'])->name('create_category');
@@ -116,13 +112,18 @@ Route::middleware(['is_admin'])->group(function () {
     Route::put('/admin/sub-categories/{sub_category}', [SubCategoriesController::class, 'update'])->name('update_sub_category');
     Route::delete('/admin/sub-categories/{sub_category}', [SubCategoriesController::class, 'destroy'])->name('admin.sub_categories.destroy');
 
-    // Product Routes
-    Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products');
-    Route::get('/admin/products/create', [ProductController::class, 'create'])->name('create_product');
-    Route::post('/admin/products', [ProductController::class, 'store'])->name('add_product');
-    Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
-    Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('update_product');
-    Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+
+});
+
+Route::middleware(['is_buyer'])->group(function () {
+    Route::get('/profile/buyer', [ProfileController::class, 'user_profile'])->name('profile_user');
+    Route::post('/buyer/request-shop', [ShopController::class, 'requestShop'])->name('buyer.request_shop');
+
+    Route::post('/profile/user/update_basic', [ProfileController::class, 'update_basic_profile'])->name('user.update_basic_profile');
+    Route::post('/profile/user/update_contact', [ProfileController::class, 'update_contact_details'])->name('user.update_contact_details');
+});
+
+Route::middleware(['is_admin'])->group(function () {
 
     //FAQs
     Route::get('/admin/faqs', [AdminController::class, 'all_faqs'])->name('admin.faqs');
