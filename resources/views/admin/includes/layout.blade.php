@@ -1,3 +1,10 @@
+@php
+     $user = \App\Models\Users::select('users.*','roles.name as role_name')
+                ->join('user_roles','user_roles.user_id','=','users.id')
+                ->join('roles','roles.id','=','user_roles.role_id')
+                ->where('users.id',auth_helper()->user()->id)
+                ->first();
+@endphp
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
@@ -551,8 +558,8 @@
                                                     <img src="{{asset('assets/admin/images/avatar/user-1.png')}}" alt="">
                                                 </span>
                                                 <span class="flex flex-column">
-                                                    <span class="body-title mb-2">Kristin Watson</span>
-                                                    <span class="text-tiny">Admin</span>
+                                                    <span class="body-title mb-2">{{auth_helper()->user()->username}}</span>
+                                                    <span class="text-tiny">{{$user->role_name}}</span>
                                                 </span>
                                             </span>
                                         </button>
@@ -565,39 +572,7 @@
                                                     <div class="body-title-2">Account</div>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="#" class="user-item">
-                                                    <div class="icon">
-                                                        <i class="icon-mail"></i>
-                                                    </div>
-                                                    <div class="body-title-2">Inbox</div>
-                                                    <div class="number">27</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="user-item">
-                                                    <div class="icon">
-                                                        <i class="icon-file-text"></i>
-                                                    </div>
-                                                    <div class="body-title-2">Taskboard</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="setting.html" class="user-item">
-                                                    <div class="icon">
-                                                        <i class="icon-settings"></i>
-                                                    </div>
-                                                    <div class="body-title-2">Setting</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="user-item">
-                                                    <div class="icon">
-                                                        <i class="icon-headphones"></i>
-                                                    </div>
-                                                    <div class="body-title-2">Support</div>
-                                                </a>
-                                            </li>
+                                        
                                             <li>
                                                 <a href="{{route('admin.logout')}}" class="user-item">
                                                     <div class="icon">
