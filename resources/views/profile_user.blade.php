@@ -3,7 +3,11 @@
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/profile_user.css') }}" />
 @endsection
+
 @section('contents')
+    @php
+        $hasShopRequest = \App\Models\Shop::where('user_id', auth_helper()->id())->exists();
+    @endphp
     <!-- Breadcrumbs -->
     <section class="mt-2">
         <div class="container-custom">
@@ -127,17 +131,33 @@
                         </div>
                         <!-- /Form Content -->
 
-                        <!-- alert box -->
+                        @if (!$hasShopRequest)
+                            <!-- alert box -->
                         <button class="mt-auto" data-bs-toggle="modal" data-bs-target="#modal_dialog"
-                            onclick="event.preventDefault()">
-                            <div class="alert alert-warning d-flex mb-0" role="alert">
-                                <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
-                                    aria-label="Warning:"></i>
-                                <div class="text-start">
-                                    {{ trans_lang('payment_method_used_card_last_no') }}
-                                </div>
+                        onclick="event.preventDefault()">
+                        <div class="alert alert-warning d-flex mb-0" role="alert">
+                            <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
+                                aria-label="Warning:"></i>
+                            <div class="text-start">
+                                {{ trans_lang('payment_method_used_card_last_no') }}
                             </div>
-                        </button>
+                        </div>
+                    </button>
+                        @else
+                            <!-- alert box -->
+
+                        <div class="alert alert-warning d-flex mb-0" role="alert">
+                            <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
+                                aria-label="Warning:"></i>
+                            <div class="text-start">
+                                You have been requested
+                                {{-- {{ trans_lang('payment_method_used_card_last_no') }} --}}
+                            </div>
+                        </div>
+                    {{-- </button> --}}
+                        @endif
+
+
 
                     </form>
                     <!-- /Profile Info -->
@@ -178,7 +198,7 @@
                                                 <div class="col-lg-7 col-12 input-box">
                                                     <input type="text" class="form-control" name="transManagement"
                                                         id="transManagement">
-                                                        <span class="invalid-feedback"></span>
+                                                    <span class="invalid-feedback"></span>
                                                 </div>
                                             </div>
 
@@ -190,7 +210,7 @@
                                                 <div class="col-lg-7 col-12 input-box">
                                                     <input type="email" class="form-control" name="transEmail"
                                                         id="transEmail">
-                                                        <span class="invalid-feedback"></span>
+                                                    <span class="invalid-feedback"></span>
                                                 </div>
                                             </div>
 
@@ -202,7 +222,7 @@
                                                 <div class="col-lg-7 col-12 input-box">
                                                     <input type="tel" class="form-control" name="phoneNumber"
                                                         id="phoneNumber">
-                                                        <span class="invalid-feedback"></span>
+                                                    <span class="invalid-feedback"></span>
                                                 </div>
                                             </div>
 
@@ -214,7 +234,7 @@
                                                 <div class="col-lg-7 col-12 input-box">
                                                     <input type="file" class="form-control" name="avatar"
                                                         id="avatar">
-                                                        <span class="invalid-feedback"></span>
+                                                    <span class="invalid-feedback"></span>
                                                 </div>
                                             </div>
 
