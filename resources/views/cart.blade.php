@@ -512,7 +512,7 @@
             <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">{{trans_lang('selet_payment')}}</h2>
             <div class="d-flex gap-3 py-3 px-3">
                 <input type="checkbox" id="select-payment">
-                <label for="select-payment">Credit Card</label>
+                <label for="select-payment">{{trans_lang('credit_card')}}</label>
                 <div class="ms-auto text-danger" id="warning-msg">{{trans_lang('check_mark')}}<</div>
             </div>
 
