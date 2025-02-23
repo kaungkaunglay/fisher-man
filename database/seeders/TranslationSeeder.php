@@ -347,6 +347,11 @@ class TranslationSeeder extends Seeder
                 'jp' => 'アカウントを確認する',
             ],
             [
+                'key' => 'credit_card',
+                'en' => 'Credit Card',
+                'jp' => 'クレジットカード',
+            ],
+            [
                 'key' => 'day_of_caught',
                 'en' => 'Day of Caught',
                 'jp' => '捕獲日',
@@ -555,7 +560,7 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'request_shops',
                 'en' => 'Request Shops',
-                'jp' => 'ショップへのリクエスト',
+                'jp' => '販売希望者リスト',
             ],
             [
                 'key' => 'faqs',
