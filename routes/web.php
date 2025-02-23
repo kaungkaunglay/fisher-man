@@ -123,9 +123,11 @@ Route::middleware(['is_buyer'])->group(function () {
     Route::get('/profile/buyer', [ProfileController::class, 'user_profile'])->name('profile_user');
     Route::post('/buyer/request-shop', [ShopController::class, 'requestShop'])->name('buyer.request_shop');
 
-    Route::post('/profile/user/update_basic', [ProfileController::class, 'update_basic_profile'])->name('user.update_basic_profile');
-    Route::post('/profile/user/update_contact', [ProfileController::class, 'update_contact_details'])->name('user.update_contact_details');
+    
 });
+
+Route::post('/profile/update_basic', [ProfileController::class, 'update_basic_profile'])->name('update_basic_profile');
+Route::post('/profile/update_contact', [ProfileController::class, 'update_contact_details'])->name('update_contact_details');
 
 Route::middleware(['is_admin'])->group(function () {
 
