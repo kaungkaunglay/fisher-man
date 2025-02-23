@@ -926,7 +926,7 @@
                 e.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
-                    url: "{{ route('seller.request_shop') }}",
+                    url: "{{ route('buyer.request_shop') }}",
                     type: 'POST',
                     dataType: 'json',
                     data: formData,
