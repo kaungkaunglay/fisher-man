@@ -157,14 +157,13 @@
                                 <div class="row modal-body p-3">
 
                                     <div class="col-12 col-md-6">
-                                        <form action="#">
-
+                                        <form id="shopRequestForm" enctype="multipart/form-data">
                                             <div class="mb-2 row align-items-center">
                                                 <div class="col-lg-5 col-12">
                                                     <label for="exampleFormControlInput1" class="col-form-label">{{trans_lang('shop_name')}}</label>
                                                 </div>
                                                 <div class="col-lg-7 col-12">
-                                                    <input type="text" class="form-control"
+                                                    <input type="text" class="form-control" name="shopName"
                                                         id="exampleFormControlInput1">
                                                 </div>
                                             </div>
@@ -175,7 +174,7 @@
                                                         Management</label>
                                                 </div>
                                                 <div class="col-lg-7 col-12">
-                                                    <input type="text" class="form-control"
+                                                    <input type="text" class="form-control" name="transManagement"
                                                         id="exampleFormControlInput1">
                                                 </div>
                                             </div>
@@ -186,7 +185,7 @@
                                                         class="col-form-label">{{trans_lang('email')}}</label>
                                                 </div>
                                                 <div class="col-lg-7 col-12">
-                                                    <input type="email" class="form-control"
+                                                    <input type="email" class="form-control" name="email"
                                                         id="exampleFormControlInput1">
                                                 </div>
                                             </div>
@@ -196,7 +195,7 @@
                                                     <label for="exampleFormControlInput1" class="col-form-label">{{trans_lang('phone_number')}}</label>
                                                 </div>
                                                 <div class="col-lg-7 col-12">
-                                                    <input type="tel" class="form-control"
+                                                    <input type="tel" class="form-control" name="phoneNumber"
                                                         id="exampleFormControlInput1">
                                                 </div>
                                             </div>
@@ -206,12 +205,12 @@
                                                     <label for="exampleFormControlInput1" class="col-form-label">{{trans_lang('upload_img')}}</label>
                                                 </div>
                                                 <div class="col-lg-7 col-12">
-                                                    <input type="file" class="form-control"
+                                                    <input type="file" class="form-control" name="avatar"
                                                         id="exampleFormControlInput1">
                                                 </div>
                                             </div>
 
-                                        </form>
+
                                     </div>
 
                                     <!-- Qr -->
@@ -232,8 +231,9 @@
                                 <!-- Modal Footer -->
                                 <div class="modal-footer">
                                     <button class="common-btn" data-bs-dismiss="modal">{{trans_lang('cancle')}}</button>
-                                    <button class="common-btn">{{trans_lang('request')}}</button>
+                                    <button class="common-btn" type="submit">{{trans_lang('request')}}</button>
                                 </div>
+                            </form>
                                 <!-- /Modal Footer -->
 
                             </div>
@@ -653,6 +653,34 @@
             }
         });
     </script>
+
+<script>
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $("#shopRequestForm").submit(function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                url: "{{ route('buyer.request_shop') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response.status == true) {
+                        window.location.href = "{{ route('profile_seller') }}";
+                    } else {
+                    }
+                }
+            });
+        });
+    });
+</script>
     <!-- /All Scripts -->
 
 @endsection
