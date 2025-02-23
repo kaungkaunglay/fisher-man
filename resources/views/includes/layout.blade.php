@@ -106,7 +106,7 @@
                             <span id="white_list_count"
                                 class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
                         </a>
-                        
+
                         @if(Auth::check() || session('user_id'))
                         <button class="btn-login position-relative">
                             <i class="fa-solid fa-user icon"></i>
@@ -284,7 +284,7 @@
         <div class="">
             <a href="#" class="menu-header mobile-shopping-card"><i
                     class="fa-solid fa-cart-shopping shopping"></i><br>{{trans_lang('cart')}}(
-                <span class="price">2</span> )
+                <span class="text-danger" id="cart_count_bottom">0</span> )
             </a>
         </div>
         <a href="#" class="menu-header"><i class="fa-solid fa-tags"></i><br>{{trans_lang('offer')}}</a>
@@ -381,6 +381,7 @@
                 success: function(response) {
                     // Assuming response contains the new count
                     $('#cart_count').text(response.cart_count);
+                    $('#cart_count_bottom').text(response.cart_count);
                 },
                 error: function(xhr) {
                     // Handle error here
