@@ -45,7 +45,7 @@ input[type="range"]{
   margin: auto;
   top: 0;
   bottom: 0;
-  background-color: transparent;
+  background-color: transparent !important;
   pointer-events: none;
 }
 .slider-track{
