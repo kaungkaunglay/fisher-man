@@ -290,17 +290,16 @@
 
     <!-- Mobile Bottom Nav -->
     <div class="bottom-nav d-flex d-md-none">
-        <a href="#" class="menu-header"><i class="fa-solid fa-home"></i><br>{{ trans_lang('home') }}</a>
-        <a href="#" class="menu-header"><i class="fa-solid fa-tags"
-                id="category-link"></i><br>{{ trans_lang('category') }}</a>
+        <a href="{{ route('home')}}" class="menu-header"><i class="fa-solid fa-home"></i><br>{{trans_lang('home')}}</a>
+        <a href="#" class="menu-header"><i class="fa-solid fa-tags" id="category-link"></i><br>{{trans_lang('category')}}</a>
         <div class="">
-            <a href="#" class="menu-header mobile-shopping-card"><i
-                    class="fa-solid fa-cart-shopping shopping"></i><br>{{ trans_lang('cart') }}(
+            <a href="{{ route('cart')}}" class="menu-header mobile-shopping-card"><i
+                    class="fa-solid fa-cart-shopping shopping"></i><br>{{trans_lang('cart')}}(
                 <span class="text-danger" id="cart_count_bottom">0</span> )
             </a>
         </div>
-        <a href="#" class="menu-header"><i class="fa-solid fa-tags"></i><br>{{ trans_lang('offer') }}</a>
-        <a href="#" class="menu-header"><i class="fa-solid fa-user"></i><br>{{ trans_lang('profile') }}</a>
+        <a href="#" class="menu-header"><i class="fa-solid fa-tags"></i><br>{{trans_lang('offer')}}</a>
+        <a href="{{ route('profile')}}" class="menu-header"><i class="fa-solid fa-user"></i><br>{{trans_lang('profile')}}</a>
     </div>
     <!-- /Mobile Bottom Nav -->
 

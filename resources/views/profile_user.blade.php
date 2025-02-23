@@ -76,13 +76,13 @@
                                 <span class="invalid-feedback"></span>
                             </div>
 
-                            <div class="d-flex align-items-center">
+                            {{-- <div class="d-flex align-items-center">
                                 <label class="w-25" for="phone_number">{{ trans_lang('phone_number') }}</label>:
 
                                 <input type="tel" name="phone_number" class="p-1 mt-2 ms-1 rounded-1" id="phone_number"
                                     value="{{ $user->first_phone }}" readonly>
                                 <span class="invalid-feedback"></span>
-                            </div>
+                            </div> --}}
                             <!-- account checkbox -->
                             <div class="mt-2">
                                 <!-- form on state -->
@@ -300,25 +300,25 @@
                     <div class="px-2 py-3">
 
                         <!-- address -->
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center form-group">
                             <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
-                            <input type="text" class="p-1 mt-2 ms-1 rounded-1" id="address"
-                                value="house no street,sue distict,city" readonly>
+                            <input type="text" name="address" class="p-1 mt-2 ms-1 rounded-1" id="address"
+                                value="{{ $user->address }}" readonly>
                             <span class="invalid-feedback"></span>
                         </div>
 
                         <!-- phone-number link -->
-                        <div class="d-flex align-items-start">
+                        <div class="d-flex align-items-start form-group">
                             <label class="w-25" for="tel">{{ trans_lang('phone_number') }}</label>:
                             <div class="ms-1 d-flex phone-no-container">
                                 <!-- <a href="tel:"> -->
-                                <input type="tel" class="p-1 mt-2 rounded-1" id="first_phone"
+                                <input type="tel" name="first_phone" class="p-1 mt-2 rounded-1" id="first_phone"
                                     value="{{ $user->first_phone }}" readonly>
 
                                 <!-- </a> -->
                                 <b class="cor align-content-end">, </b>
                                 <!-- <a href="tel:"> -->
-                                <input type="tel" class="p-1 mt-2 rounded-1" value="{{ $user->second_phone }}"
+                                <input type="tel" name="second_phone" class="p-1 mt-2 rounded-1" value="{{ $user->second_phone }}"
                                     id="second_phone" readonly>
                                 <span class="invalid-feedback"></span>
                                 <!-- </a> -->
@@ -743,5 +743,92 @@
         });
     </script>
     <!-- /All Scripts -->
+
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+
+            function handleErrorMessages(fields, errors, message) {
+                $('#message').html(message ?? '');
+
+                fields.forEach(function(field) {
+                    var fieldGroup = $('#' + field).closest('.form-group');
+                    var errorSpan = fieldGroup.find('span.invalid-feedback');
+
+                    if (errors[field]) {
+                        errorSpan.addClass('d-block').html(errors[field]);
+                    } else {
+                        errorSpan.removeClass('d-block').html('');
+                    }
+                });
+            }
+
+            function sendUpdateBasicData(formData) {
+                $.ajax({
+                    url: "{{ route('user.update_basic_profile') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        console.log(response.status);
+                        if (response.status) {
+
+                            console.log(response.message);
+
+                        } else {
+                            var fields = ['username', 'email'];
+                            handleErrorMessages(fields, response.errors, response.message);
+                        }
+                    }
+                });
+            }
+
+
+
+            function sendUpdateDetailData(formData) {
+                $.ajax({
+                    url: "{{ route('user.update_contact_details') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        console.log(response.status);
+                        if (response.status) {
+
+                            console.log(response.message);
+
+                        } else {
+                            var fields = ['address', 'first_phone','second_phone'];
+                            handleErrorMessages(fields, response.errors, response.message);
+                        }
+                    }
+                });
+            }
+
+            $("#update_basic_profile").submit(function(e) {
+                e.preventDefault();
+
+                var formData = new FormData(this);
+
+                sendUpdateBasicData(formData);
+            });
+
+            $("#update_contact_details").submit(function(e) {
+                e.preventDefault();
+
+                var formData = new FormData(this);
+
+                sendUpdateDetailData(formData);
+            });
+
+
+        });
+    </script>
 
 @endsection
