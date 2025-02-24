@@ -299,7 +299,7 @@
                         <span class="text-danger" id="cart_count_bottom">0</span> )</p>
             </a>
         </div>
-        <a href="{{ route('white_list.index') }}" class="bottom-menu"><i class="fa-solid fa-bookmark"></i><br><p>{{trans_lang('whitelist')}}(
+        <a href="{{ route('white_list.index') }}" class="bottom-menu"><i class="fa-solid fa-bookmark"></i><br><p>{{trans_lang('wish-list')}}(
             <span class="text-danger white_list_count" id="white_list_count">0</span> )</p></a>
         <a href="{{ route('profile')}}" class="bottom-menu"><i class="fa-solid fa-user"></i><br><p>{{trans_lang('profile')}}</p></a>
     </div>
