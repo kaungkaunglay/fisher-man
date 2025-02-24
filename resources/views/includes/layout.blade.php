@@ -106,7 +106,7 @@
                         <a href="{{ route('white_list.index') }}" class="position-relative">
                             <i class="fa-solid fa-bookmark icon" id="bookmark_btn"></i>
                             <span id="white_list_count"
-                                class="cart-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span>
+                                class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
                         </a>
 
                         @if (Auth::check() || session('user_id'))
@@ -409,7 +409,7 @@
                 method: 'GET',
                 success: function(response) {
                     // Assuming response contains the new count
-                    $('.white_list_count').text(response.white_lists_count);
+                    $('#white_list_count').text(response.white_lists_count);
                 },
                 error: function(xhr) {
                     // Handle error here

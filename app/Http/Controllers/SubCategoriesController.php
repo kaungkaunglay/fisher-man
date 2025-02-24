@@ -28,7 +28,7 @@ class SubCategoriesController extends Controller
         $maxPrice = $request->get('max_price', 10000);
 
         $query = Product::where('sub_category_id', $id)->whereBetween('product_price', [$minPrice, $maxPrice]);
-
+ 
         if ($sortBy === 'price_asc') {
             $query->orderBy('product_price', 'asc');
         } elseif ($sortBy === 'price_desc') {
