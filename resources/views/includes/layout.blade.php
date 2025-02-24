@@ -106,7 +106,7 @@
                         <a href="{{ route('white_list.index') }}" class="position-relative">
                             <i class="fa-solid fa-bookmark icon" id="bookmark_btn"></i>
                             <span id="white_list_count"
-                                class="cart-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span>
+                                class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
                         </a>
 
                         @if (Auth::check() || session('user_id'))
@@ -261,7 +261,7 @@
                     <ul class="list-unstyled text-white txt-15 text-center">
                         <li><a href="#">{{ trans_lang('address') }} :
                                 {{ App\Models\Setting::getValue('contact_address') }}</a></li>
-                        <li><a href="#">{{ trans_lang('phone_number') }} :
+                        <li><a href="tel: ">{{ trans_lang('phone_number') }} :
                                 {{ App\Models\Setting::getValue('contact_phone') }}</a></li>
                         <li><a href="#">{{ trans_lang('email') }} :
                                 {{ App\Models\Setting::getValue('contact_email') }}</a></li>
@@ -279,7 +279,7 @@
                     <p class="my-2 txt-13">&copy; Copyright 2024-fisherman Designed by Andfun</p>
                 </div>
                 <div class="col-lg-5 text-white text-lg-end text-center">
-                    <p class="mb-5 my-lg-2 txt-13"><a href="{{ route('policy') }}">Privacy | Terms</a></p>
+                    <p class="my-2 txt-13"><a href="{{ route('policy') }}">Privacy | Terms</a></p>
                 </div>
             </div>
         </div>
@@ -291,15 +291,14 @@
     <!-- Mobile Bottom Nav -->
     <div class="bottom-nav d-flex d-md-none">
         <a href="{{ route('home')}}" class="menu-header"><i class="fa-solid fa-home"></i><br>{{trans_lang('home')}}</a>
-        <a href="" class="menu-header"  id="category-link"><i class="fa-solid fa-tags"></i><br>{{trans_lang('category')}}</a>
+        <a href="#" class="menu-header"><i class="fa-solid fa-tags" id="category-link"></i><br>{{trans_lang('category')}}</a>
         <div class="">
             <a href="{{ route('cart')}}" class="menu-header mobile-shopping-card"><i
                     class="fa-solid fa-cart-shopping shopping"></i><br>{{trans_lang('cart')}}(
                 <span class="text-danger" id="cart_count_bottom">0</span> )
             </a>
         </div>
-        <a href="{{ route('white_list.index') }}" class="menu-header"><i class="fa-solid fa-bookmark"></i><br>{{trans_lang('offer')}}(
-            <span class="text-danger white_list_count" id="white_list_count">0</span> )</a>
+        <a href="#" class="menu-header"><i class="fa-solid fa-tags"></i><br>{{trans_lang('offer')}}</a>
         <a href="{{ route('profile')}}" class="menu-header"><i class="fa-solid fa-user"></i><br>{{trans_lang('profile')}}</a>
     </div>
     <!-- /Mobile Bottom Nav -->
@@ -408,7 +407,7 @@
                 method: 'GET',
                 success: function(response) {
                     // Assuming response contains the new count
-                    $('.white_list_count').text(response.white_lists_count);
+                    $('#white_list_count').text(response.white_lists_count);
                 },
                 error: function(xhr) {
                     // Handle error here
