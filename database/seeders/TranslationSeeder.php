@@ -558,6 +558,11 @@ class TranslationSeeder extends Seeder
                 'jp' => 'ショップ',
             ],
             [
+                'key' => 'submit',
+                'en' => 'Submit',
+                'jp' => '送信',
+            ],
+            [
                 'key' => 'request_shops',
                 'en' => 'Request Shops',
                 'jp' => '販売希望者リスト',
