@@ -9,8 +9,8 @@
 
             <nav aria-label="breadcrumb" class="py-4">
                 <ol class="breadcrumb mb-0 bg-transparent">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans_lang('home') }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ trans_lang('profile') }}</li>
                 </ol>
             </nav>
 
@@ -39,7 +39,7 @@
                             @csrf
                             <!-- Form Headline -->
                             <div class="bg-primary text-white p-2">
-                                <h2 class="fw-bold d-flex justify-content-between">Shop Info
+                                <h2 class="fw-bold d-flex justify-content-between">{{ trans_lang('info') }}
                                     <div class="d-flex justify-content-end gap-4">
                                         <button type="submit" class="save">
                                             <i class="fa-solid fa-save fs-5 text-white"></i>
@@ -60,7 +60,7 @@
                                 <!-- user name -->
                                 <div class="form-group">
                                     <div class="d-flex align-items-center form-group">
-                                        <label class="w-25" for="username">Name</label>:
+                                        <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
                                         <input type="text" name="username"  class="p-1 mt-1 ms-1 rounded-1" id="username"
                                             value="{{ $user->username }}" readonly>
 
@@ -72,7 +72,7 @@
                                 <!-- email link -->
                                 <div class="form-group">
                                     <div class="d-flex align-items-center form-group">
-                                        <label class="w-25" for="email">Email</label>:
+                                        <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
                                         <input type="email" name="email" class="p-1 mt-2 ms-1 rounded-1" id="email"
                                             value="{{ $user->email }}" readonly>
 
@@ -83,7 +83,7 @@
                                 <!-- organization link -->
                                 <div class="form-group">
                                     <div class="d-flex align-items-center form-group">
-                                        <label class="w-25" for="first_org_name">Organize</label>:
+                                        <label class="w-25" for="first_org_name">{{ trans_lang('organize') }}</label>:
                                         <input type="text" name="first_org_name" class="p-1 mt-2 ms-1 rounded-1" id="first_org_name"
                                             value="Organization" readonly>
 
@@ -245,7 +245,7 @@
                         <!-- Form Headline -->
                         <div>
                             <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2">
-                                Detail Personal Info
+                                {{ trans_lang('detail') }}
                                 <!-- button group -->
                                 <div class="d-flex justify-content-end gap-4">
                                     <button type="submit" class="save">
@@ -268,7 +268,7 @@
                             <!-- address -->
                             <div class="form-group">
                                 <div class="d-flex align-items-center">
-                                    <label class="w-25" for="address">Address</label>:
+                                    <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
                                     <input type="text" name="address" class="p-1 mt-2 ms-1 rounded-1" id="address"
                                         value="house no street,sue distict,city" readonly>
 
@@ -279,7 +279,7 @@
                             <!-- phone-number link -->
                             <div class="form-group">
                                 <div class="d-flex align-items-start">
-                                    <label class="w-25" for="tel">Phone No.</label>:
+                                    <label class="w-25" for="tel">{{ trans_lang('phone_number') }}</label>:
                                     <div class="ms-1 d-flex phone-no-container">
                                         <!-- <a href="tel:"> -->
                                         <input type="tel" name="first_phone" class="p-1 mt-2 rounded-1" id="first_phone"
@@ -305,8 +305,8 @@
 
                     <!-- button group -->
                     <div class="buttons d-flex gap-2 mt-3">
-                        <button class="common-btn">Upload product</button>
-                        <button class="common-btn">Check Order Status</button>
+                        <button class="common-btn">{{ trans_lang('upload_product') }}</button>
+                        <button class="common-btn">{{ trans_lang('check_order') }}</button>
                     </div>
 
                 </div>
@@ -317,7 +317,7 @@
 
                     <!-- Map Side -->
                     <div class="h-100 d-flex flex-column gap-4">
-                        <h2 class="fw-bold bg-primary text-white p-2">Shop Location</h2>
+                        <h2 class="fw-bold bg-primary text-white p-2">{{ trans_lang('address') }}</h2>
                         <iframe class="w-100 border-0 h-100 shop-location"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d250151.16276620553!2d104.72537013378734!3d11.579654014369655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109513dc76a6be3%3A0x9c010ee85ab525bb!2sPhnom%20Penh%2C%20Cambodia!5e0!3m2!1sen!2ssg!4v1736774811619!5m2!1sen!2ssg"
                             allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
@@ -339,7 +339,7 @@
         <div class="container-custom">
             <div>
 
-                <h6 class="txt-primary fw-bold mb-3">Discount Products</h6>
+                <h6 class="txt-primary fw-bold mb-3">{{ trans_lang('special_offer') }}</h6>
                 <div class="filter d-flex justify-content-between align-items-center mb-3">
 
                     <!-- display -->
@@ -349,7 +349,7 @@
                     </div>
 
                     <!-- sorting -->
-                    <div class="sort-container">
+                    <!-- <div class="sort-container">
                         <div class="arrows">
                             <button><i class="fa-solid fa-caret-up"></i></button>
                             <button><i class="fa-solid fa-caret-down"></i></button>
@@ -363,7 +363,7 @@
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>

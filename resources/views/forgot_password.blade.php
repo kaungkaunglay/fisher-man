@@ -17,7 +17,7 @@
         <label for="email" class="form-label">{{trans_lang('email')}}</label>
         <input type="email" name="email" id="email" class="form-control border-2" placeholder="email@gmail.com" autofocus>
         <span class="invalid-feedback"></span>
-        <div class="input-box d-flex flex-column">
+        <div class="input-box d-flePx flex-column">
             <span class="mb-2 pt-2 text-danger" id="message"></span>
         </div>
       </div>
