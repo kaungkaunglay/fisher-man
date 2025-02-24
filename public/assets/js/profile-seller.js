@@ -1,7 +1,6 @@
 $(document).ready(() => {
 
   $('.edit').click((ev) => {
-    ev.preventDefault();
     $($(ev.currentTarget.closest('.profile-form'))).addClass('active');
     $('.profile-form input').attr('readonly', false);
   })
@@ -16,6 +15,13 @@ $(document).ready(() => {
 
   
 });
+
+function actionForm(trigger) {
+
+  ev.preventDefault();
+  const trigger = trigger.currentTarget;
+  const form = trigger.currentTarget()
+}
 
 function unactiveForm(cur)
 {
