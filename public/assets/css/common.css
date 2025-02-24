@@ -112,7 +112,10 @@ main {
   color: #ffffff;
 }
 
-.bottom-nav .menu-header{
+.bottom-nav .menu-header>p{
+  font-size: 10px !important;
+}
+.bottom-nav .menu-header>.cart-txt{
   font-size: 13px !important;
 }
 
