@@ -260,7 +260,8 @@
                     <h6 class="text-center text-warning mb-2">{{ trans_lang('contact_us') }}</h6>
                     <ul class="list-unstyled text-white txt-15 text-center">
                         <li>{{ trans_lang('address') }} :
-                                {{ App\Models\Setting::getValue('contact_address') }}</li>
+                            {{config('settings.contact_address')}}
+                                {{-- {{ App\Models\Setting::getValue('contact_address') }}</li> --}}
                         <li>{{ trans_lang('phone_number') }} :
                                 {{ App\Models\Setting::getValue('contact_phone') }}</li>
                         <li>{{ trans_lang('email') }} :
@@ -290,17 +291,17 @@
 
     <!-- Mobile Bottom Nav -->
     <div class="bottom-nav d-flex d-md-none">
-        <a href="{{ route('home')}}" class="menu-header"><i class="fa-solid fa-home"></i><br>{{trans_lang('home')}}</a>
-        <a href="" class="menu-header"  id="category-link"><i class="fa-solid fa-tags"></i><br>{{trans_lang('category')}}</a>
+        <a href="{{ route('home')}}" class="menu-header"><i class="fa-solid fa-home"></i><br><p>{{trans_lang('home')}}</p></a>
+        <a href="" class="menu-header"  id="category-link"><i class="fa-solid fa-tags"></i><br><p>{{trans_lang('category')}}</p></a>
         <div class="">
             <a href="{{ route('cart')}}" class="menu-header mobile-shopping-card"><i
-                    class="fa-solid fa-cart-shopping shopping"></i><br>{{trans_lang('cart')}}(
-                <span class="text-danger" id="cart_count_bottom">0</span> )
+                    class="fa-solid fa-cart-shopping shopping"></i><br><p class="cart-txt">{{trans_lang('cart')}}(
+                        <span class="text-danger" id="cart_count_bottom">0</span> )</p>
             </a>
         </div>
-        <a href="{{ route('white_list.index') }}" class="menu-header"><i class="fa-solid fa-bookmark"></i><br>{{trans_lang('offer')}}(
-            <span class="text-danger white_list_count" id="white_list_count">0</span> )</a>
-        <a href="{{ route('profile')}}" class="menu-header"><i class="fa-solid fa-user"></i><br>{{trans_lang('profile')}}</a>
+        <a href="{{ route('white_list.index') }}" class="menu-header"><i class="fa-solid fa-bookmark"></i><br><p>{{trans_lang('whitelist')}}(
+            <span class="text-danger white_list_count" id="white_list_count">0</span> )</p></a>
+        <a href="{{ route('profile')}}" class="menu-header"><i class="fa-solid fa-user"></i><br><p>{{trans_lang('profile')}}</p></a>
     </div>
     <!-- /Mobile Bottom Nav -->
 
