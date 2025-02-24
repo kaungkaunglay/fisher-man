@@ -248,8 +248,17 @@ class AdminController extends Controller
 
     public function deleteShop(Request $request)
     {
+
+        logger($request);
+        $user = Users::select('users.*')
+        ->join('shops','users.id','=','shops.user_id')
+        ->where('shops.id',$request->shop_id)
+        ->first();
+
+        $user->assignRole(3);
         $shop = Shop::find($request->shop_id);
         $shop->delete();
+
 
         return response()->json(['success' => true, 'message' => 'Shop deleted successfully.']);
     }
