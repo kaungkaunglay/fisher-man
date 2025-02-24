@@ -43,7 +43,7 @@
                 @foreach ($random_products  as $product)
                     <div class="item-card">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
-                            <img src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
+                            <img loading="lazy" src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
                         </a>
                         <div class="left">
                             <p class="price m-t-b-10">
@@ -111,7 +111,7 @@
                @foreach ($popular_shops as $popular_shop)
                <div class="col-6 col-md-6 col-lg-3 mb-3">
                 <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
-                    <img src="{{ asset('assets/images/avatars/'.$popular_shop->avatar) }}" class="card-img-top"
+                    <img loading="lazy" src="{{ asset('assets/images/avatars/'.$popular_shop->avatar) }}" class="card-img-top"
                         alt="..." />
                     <div class="card-body bg-main">
                         <p class="card-text text-center text-white">{{$popular_shop->shop_name}}</p>
@@ -174,7 +174,7 @@
                 @foreach ($products->filter(fn($product) => $product->discount > 0.0)->take(6) as $product)
                     <div class="item-card">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
-                            <img src="{{ asset($product->product_image) }}" class="card-img-top"
+                            <img loading="lazy" src="{{ asset($product->product_image) }}" class="card-img-top"
                                 alt="{{ $product->name }}">
                         </a>
                         <div class="left">
@@ -269,7 +269,7 @@
                 @foreach ($products as $product)
                     <div class="item-card mb-5">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
-                            <img src="{{ asset($product->product_image) }}" class="card-img-top"
+                            <img loading="lazy" src="{{ asset($product->product_image) }}" class="card-img-top"
                                 alt="{{ $product->name }}">
                         </a>
                         <div class="left">
