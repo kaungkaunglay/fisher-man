@@ -4,6 +4,7 @@ const closePopup = document.getElementById("close-popup");
 const seeMoreLink = document.getElementById("see-more-link");
 const categoryLink = document.getElementById("category-link");
 
+
 hamburgerMenu.addEventListener("click", function (event) {
   event.preventDefault();
   categoryPopup.classList.toggle("active");
@@ -12,6 +13,7 @@ hamburgerMenu.addEventListener("click", function (event) {
 
 categoryLink.addEventListener("click", function (event) {
   event.preventDefault();
+  console.log('hello');
   categoryPopup.classList.toggle("active");
 });
 

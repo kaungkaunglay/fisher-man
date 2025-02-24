@@ -8,6 +8,7 @@
     @php
         $hasShopRequest = \App\Models\Shop::where('user_id', auth_helper()->id())->exists();
     @endphp
+
     <!-- Breadcrumbs -->
     <section class="mt-2">
         <div class="container-custom">
@@ -86,13 +87,6 @@
                                 <span class="invalid-feedback"></span>
                             </div>
 
-                            {{-- <div class="d-flex align-items-center">
-                                <label class="w-25" for="phone_number">{{ trans_lang('phone_number') }}</label>:
-
-                                <input type="tel" name="phone_number" class="p-1 mt-2 ms-1 rounded-1" id="phone_number"
-                                    value="{{ $user->first_phone }}" readonly>
-                                <span class="invalid-feedback"></span>
-                            </div> --}}
                             <!-- account checkbox -->
                             <div class="mt-2">
                                 <!-- form on state -->
@@ -103,8 +97,8 @@
                                                 <i class="fa-brands fa-line fs-2 mt-1"></i>
                                             </label>
                                             <div class="form-check form-switch align-self-center">
-                                                <input type="checkbox" id="line_login" class="border form-check-input" role="switch"
-                                                    @if ($user->checkProvider('line')) checked @endif />
+                                                <input type="checkbox" id="line_login" class="border form-check-input"
+                                                    role="switch" @if ($user->checkProvider('line')) checked @endif />
                                             </div>
                                         </div>
                                     </li>
@@ -115,8 +109,8 @@
                                                 <i class="fa-brands fa-facebook fs-2 mt-1"></i>
                                             </label>
                                             <div class="form-check form-switch align-self-center">
-                                                <input type="checkbox" id="facebook_login" class="border form-check-input" role="switch"
-                                                    @if ($user->checkProvider('facebook')) checked @endif />
+                                                <input type="checkbox" id="facebook_login" class="border form-check-input"
+                                                    role="switch" @if ($user->checkProvider('facebook')) checked @endif />
                                             </div>
                                         </div>
                                     </li>
@@ -127,8 +121,8 @@
                                                 <i class="fa-brands fa-google fs-2 mt-1"></i>
                                             </label>
                                             <div class="form-check form-switch align-self-center">
-                                                <input type="checkbox" id="google_login" class="border form-check-input" role="switch"
-                                                    @if ($user->checkProvider('google')) checked @endif />
+                                                <input type="checkbox" id="google_login" class="border form-check-input"
+                                                    role="switch" @if ($user->checkProvider('google')) checked @endif />
                                             </div>
                                         </div>
                                     </li>
@@ -141,31 +135,31 @@
                         </div>
                         <!-- /Form Content -->
 
-                        @if (!$hasShopRequest)
+                        {{-- @if (!$hasShopRequest) --}}
                             <!-- alert box -->
-                        <button class="mt-auto" data-bs-toggle="modal" data-bs-target="#modal_dialog"
-                        onclick="event.preventDefault()">
-                        <div class="alert alert-warning d-flex mb-0" role="alert">
-                            <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
-                                aria-label="Warning:"></i>
-                            <div class="text-start">
-                                {{ trans_lang('payment_method_used_card_last_no') }}
-                            </div>
-                        </div>
-                    </button>
-                        @else
+                            <button class="mt-auto" data-bs-toggle="modal" data-bs-target="#modal_dialog"
+                                onclick="event.preventDefault()">
+                                <div class="alert alert-warning d-flex mb-0" role="alert">
+                                    <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
+                                        aria-label="Warning:"></i>
+                                    <div class="text-start">
+                                        {{ trans_lang('payment_method_used_card_last_no') }}
+                                    </div>
+                                </div>
+                            </button>
+                        {{-- @else --}}
                             <!-- alert box -->
 
-                        <div class="alert alert-warning d-flex mb-0" role="alert">
-                            <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
-                                aria-label="Warning:"></i>
-                            <div class="text-start">
-                                You have been requested
-                                {{-- {{ trans_lang('payment_method_used_card_last_no') }} --}}
-                            </div>
-                        </div>
-                    {{-- </button> --}}
-                        @endif
+                            {{-- <div class="alert alert-warning d-flex mb-0" role="alert">
+                                <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
+                                    aria-label="Warning:"></i>
+                                <div class="text-start"> --}}
+                                    You have been requested
+                                    {{-- {{ trans_lang('payment_method_used_card_last_no') }} --}}
+                                {{-- </div>
+                            </div> --}}
+                            {{-- </button> --}}
+                        {{-- @endif --}}
 
 
 
@@ -174,7 +168,7 @@
 
                     <!-- Form Modal -->
                     <div class="modal fade" id="modal_dialog">
-                        <div class="modal-dialog modal-lg">
+                        <div class="modal-dialog modal-md">
                             <div class="modal-content bg-white">
 
                                 <!-- Modal Header -->
@@ -186,7 +180,7 @@
                                 <!-- Modal Body -->
                                 <div class="row modal-body p-3">
 
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12">
                                         <form id="shopRequestForm" enctype="multipart/form-data">
                                             <div class="mb-2 row align-items-center">
                                                 <div class="col-lg-5 col-12">
@@ -247,39 +241,23 @@
                                                     <span class="invalid-feedback"></span>
                                                 </div>
                                             </div>
-
-
+                                        </form>
                                     </div>
-
-                                    <!-- Qr -->
-                                    <div class="col-12 col-md-6">
-                                        <div class="border h-100 d-flex flex-column justify-content-between">
-                                            <div class="w-100 qr-box mx-auto">
-                                                <img src="{{ asset('assets/images/QR.svg') }}" alt="">
-                                            </div>
-                                            <p class="w-auto px-2 py-3 bg-primary text-center text-white">
-                                                {{ trans_lang('scan_qr') }}
-                                            </p>
-                                        </div>
-                                    </div>
-
                                 </div>
                                 <!-- /Modal Body -->
 
                                 <!-- Modal Footer -->
-                                <div class="modal-footer">
-                                    <button class="common-btn"
+                                <div class="d-flex gap-2 p-3">
+                                    <button class="common-btn w-50 px-0"
                                         data-bs-dismiss="modal">{{ trans_lang('cancle') }}</button>
-                                    <button class="common-btn" type="submit">{{ trans_lang('request') }}</button>
+                                    <button class="common-btn w-50 px-0" type="submit">{{ trans_lang('request') }}</button>
                                 </div>
-                                </form>
                                 <!-- /Modal Footer -->
 
                             </div>
                         </div>
                     </div>
                     <!-- /Form Modal -->
-
                 </div>
 
                 <!-- Detail Info -->
@@ -324,7 +302,7 @@
                         <div class="form-group">
                             <div class="d-flex align-items-start">
                                 <label class="w-25" for="tel">{{ trans_lang('phone_number') }}</label>:
-                                <div class="ms-1 d-flex phone-no-container">
+                                <div class="ms-1 d-flex flex-row flex-md-column phone-no-container">
                                     <!-- <a href="tel:"> -->
                                     <input type="tel" name="first_phone" class="p-1 mt-2 rounded-1" id="first_phone"
                                         value="{{ $user->first_phone }}" readonly>
@@ -332,8 +310,8 @@
                                     <!-- </a> -->
                                     <b class="cor align-content-end">, </b>
                                     <!-- <a href="tel:"> -->
-                                    <input type="tel" name="second_phone" class="p-1 mt-2 rounded-1" value="{{ $user->second_phone }}"
-                                        id="second_phone" readonly>
+                                    <input type="tel" name="second_phone" class="p-1 mt-2 rounded-1"
+                                        value="{{ $user->second_phone }}" id="second_phone" readonly>
 
                                     <!-- </a> -->
                                 </div>
@@ -355,6 +333,22 @@
 
             </div>
             <!-- /Profile Side -->
+
+            <!-- Map Side -->
+            <div class="col-12 col-lg-5 mt-3 mt-lg-0 map-side">
+
+                <!-- Map Side -->
+                <div class="h-100 d-flex flex-column gap-4">
+                    <h2 class="fw-bold bg-primary text-white p-2">Shop Location</h2>
+                    <iframe class="w-100 border-0 h-100 shop-location"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d250151.16276620553!2d104.72537013378734!3d11.579654014369655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109513dc76a6be3%3A0x9c010ee85ab525bb!2sPhnom%20Penh%2C%20Cambodia!5e0!3m2!1sen!2ssg!4v1736774811619!5m2!1sen!2ssg"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <!-- /Map-->
+
+            </div>
+            <!-- /Map Side -->
 
         </div>
     </section>
@@ -475,7 +469,7 @@
                 e.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
-                    url: "{{ route('buyer.request_shop') }}",
+                    url: "/buyer/request-shop",
                     type: 'POST',
                     dataType: 'json',
                     data: formData,
@@ -544,7 +538,7 @@
                 });
             }
 
-            function sendUpdateBasicData(formData,cur) {
+            function sendUpdateBasicData(formData, cur) {
                 $.ajax({
                     url: "{{ route('update_basic_profile') }}",
                     type: 'POST',
@@ -570,7 +564,7 @@
 
 
 
-            function sendUpdateDetailData(formData,cur) {
+            function sendUpdateDetailData(formData, cur) {
                 $.ajax({
                     url: "{{ route('update_contact_details') }}",
                     type: 'POST',
@@ -588,7 +582,7 @@
                             // unactiveForm(cur);
 
                         } else {
-                            var fields = ['address', 'first_phone','second_phone'];
+                            var fields = ['address', 'first_phone', 'second_phone'];
                             handleErrorMessages(fields, response.errors, response.message);
                         }
                     }
@@ -602,7 +596,7 @@
 
                 var cur = $(this);
 
-                sendUpdateBasicData(formData,cur);
+                sendUpdateBasicData(formData, cur);
             });
 
             $("#update_contact_details").submit(function(e) {
@@ -612,7 +606,7 @@
 
                 var cur = $(this);
 
-                sendUpdateDetailData(formData,cur);
+                sendUpdateDetailData(formData, cur);
             });
 
             // Function to handle login/logout for OAuth providers
@@ -629,7 +623,9 @@
                 $.ajax({
                     url: `/oauth/remove/${provider}`,
                     method: 'POST',
-                    data: { provider: provider },  // Pass the provider info in the data
+                    data: {
+                        provider: provider
+                    }, // Pass the provider info in the data
                     success: function(response) {
                         window.location.reload();
                         console.log(response.message);

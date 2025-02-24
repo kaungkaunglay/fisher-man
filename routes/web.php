@@ -120,8 +120,8 @@ Route::middleware(['is_seller'])->group(function () {
 });
 
 Route::middleware(['is_buyer'])->group(function () {
-    Route::get('/profile/buyer', [ProfileController::class, 'user_profile'])->name('profile_user');
     Route::post('/buyer/request-shop', [ShopController::class, 'requestShop'])->name('buyer.request_shop');
+    Route::get('/profile/buyer', [ProfileController::class, 'user_profile'])->name('profile_user');
 
     
 });
@@ -164,7 +164,6 @@ Route::middleware(['is_admin'])->group(function () {
     Route::post('/admin/shops/update-status', [AdminController::class, 'updateStatus'])->name('admin.shops.updateStatus');
     Route::get('/admin/shop-detail/{shopID}', [AdminController::class, 'shopDetail'])->name('admin.seller.shop.detail');
     Route::post('/admin/shops/delete', [AdminController::class, 'deleteShop'])->name('admin.shops.delete');
-
 });
 
 

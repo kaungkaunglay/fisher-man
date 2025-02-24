@@ -34,14 +34,17 @@
                 <span class="invalid-feedback"></span>
             </div>
 
-            <div class="input-box d-flex flex-column mx-auto">
-                <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
-                <span class="invalid-feedback"></span>
+            <div>
+                <div class="input-box d-flex flex-column mx-auto">
+                    <div class="g-recaptcha" data-sitekey="6Leh4t8qAAAAAOWxMlheFOxzPhOL8STyf9FsI7WE"></div>
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="input-box d-flex flex-column">
+                    <span class="text-danger" id="message"></span>
+                </div>
             </div>
-            <div class="input-box d-flex flex-column">
-                <span class="mb-3 text-danger" id="message"></span>
-            </div>
-            <div class="pw-setting d-flex">
+
+            <div class="pw-setting d-flex flex-column gap-3 align-items-center">
                 <div class="remember">
                     <input type="checkbox" name="remember" id="remember" value="1">
                     <label for="remember">{{trans_lang('remember')}}</label>
@@ -58,7 +61,6 @@
                 <span>{{trans_lang('no_have_account_msg')}}
                     <a href="{{ route('register') }}" class="ms-1">{{trans_lang('register')}}</a>
                 </span>
-                <p class="">(or)</p>
             </div>
             <div class="line-wpr green-bg">
                 <a href="{{route('line.login')}}">
