@@ -11,16 +11,15 @@ input[type=number] {-moz-appearance: textfield;}
     display: none;
 }
 
-html,
 body {
     color: #005B96;
-    scroll-behavior: smooth;
 }
 
-main {
-    min-height: 100vh;
+.page {
+    min-height: 50vh;
 }
 
+/* progress box */
 .progress-box {
     top: -14px;
     z-index: -1;
@@ -39,6 +38,7 @@ main {
     background-color: #005B96;
 }
 
+/* step list */
 .step-list li {
     width: calc(100% / 5);
 }
@@ -69,6 +69,10 @@ main {
     margin: 0 auto;
 }
 
+.login-box {
+    max-width: 450px;
+}
+
 .table td,
 .table th {
     font-size: 20px;
@@ -78,9 +82,44 @@ main {
     vertical-align: middle;
 }
 
-.cart tbody td {
+.scroller {
+    max-height: 70vh;
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.table {
+    height: 100%;
+    table-layout: auto;
+}
+
+.table thead, .table tfoot {
+    position: sticky;
+}
+
+.table thead {
+    top: 0;
+}
+
+.table tfoot {
+    bottom: 0;
+}
+
+.table thead th,
+.table tfoot td {
+    height: 20px;
+}
+
+.table tbody td {
+    max-height: max-content;
     color: #005B96;
     background-color: #ECF5FB;
+}
+
+.table tbody tr,
+.table tbody tr {
+    height: max-content;
 }
 
 .cart thead th:nth-child(2),
@@ -159,6 +198,16 @@ main {
 
 #payment-form .input-group .form-control:focus {
     outline: none !important;
+}
+
+#next-btn {
+    color: #005B96 !important;
+    border-color: #005B96 !important;
+}
+
+#next-btn:hover {
+    color: #fff !important;
+    background-color: #005B96 !important;
 }
 
 .card-bank-img {
