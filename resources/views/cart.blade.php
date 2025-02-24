@@ -721,7 +721,7 @@
             function addCart(products)
             {
                 $.ajax({
-                    url: '{{route("cart.add.login")}}',
+                    url: '/cart/add/login',
                     type: "POST",
                     data: {
                         products: products

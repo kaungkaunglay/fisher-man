@@ -7,7 +7,7 @@
 <nav aria-label="breadcrumb" class="py-4">
   <div class="container">
     <ol class="breadcrumb mb-0 bg-transparent">
-      <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
       <li class="breadcrumb-item active" aria-current="page">Terms & Conditions</li>
     </ol>
   </div>

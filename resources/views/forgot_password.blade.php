@@ -23,7 +23,7 @@
       </div>
 
       <div class="d-flex flex-column align-items-center">
-        <button id="submit" name="submit" type="submit" class="common-btn btn btn-primar rounded-pill">{{trans_lang('send_link')}}</button>
+        <button id="submit" name="submit" type="submit" class="common-btn btn btn-primar rounded-pill px-0">{{trans_lang('send_link')}}</button>
         <a href="{{url('/login')}}" class="mt-3">{{trans_lang('back_to_login')}}</a>
       </div>
       <!-- /Forgot -->
