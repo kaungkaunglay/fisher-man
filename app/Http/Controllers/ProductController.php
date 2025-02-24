@@ -150,7 +150,7 @@ class ProductController extends Controller
             if (!file_exists($folderPath)) {
                 mkdir($folderPath, 0755, true);
             }
-delete
+
             $image = $request->file('product_image');
             $imageName = time() . '_' . $image->getClientOriginalName();
 
