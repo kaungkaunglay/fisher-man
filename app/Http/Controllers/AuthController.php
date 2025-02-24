@@ -326,7 +326,7 @@ class AuthController extends Controller
         if($user->email_verified_at == null){
             $token = Str::random(64);
 
-            $user->updateOrCreate([
+            $user->update([
                 'email_verify_token' => $token
             ]);
 
@@ -348,12 +348,10 @@ class AuthController extends Controller
             return redirect()->route('profile');
         }
 
-        $user->updateOrCreate([
-                'email_verified_at' => now()
-            ],[
-                'email_verify_token' => null
-            ]
-        );
+        $user->update([
+            'email_verifed_at' => now(),
+            'email_verify_token' => null
+        ]);
 
         return redirect()->route('profile');
     }
@@ -368,4 +366,5 @@ class AuthController extends Controller
     {
         return $request->has('ship_name') && $request->has('first_org_name') && $request->has('trans_management');
     }
+
 }

@@ -15,7 +15,7 @@ We received a request to verify for your email. To proceed with the verify email
 </p>
 
 <div style="text-align: center; margin: 30px 0;">
-<a href="/verify-email/{{ $token }}" style="background-color:#005B96;color:white;padding:5px 20px;text-decoration:none;">Verify Email</a>
+<a href="{{ $url }}" style="background-color:#005B96;color:white;padding:5px 20px;text-decoration:none;">Verify Email</a>
 </div>
 
 <footer style="font-size: 10px; color: #555; margin: 20px 0;">

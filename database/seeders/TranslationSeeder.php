@@ -573,6 +573,11 @@ class TranslationSeeder extends Seeder
                 'jp' => 'よくある質問',
             ],
             [
+                'key' => 'wish-list', 
+                'en' => 'Wish list', 
+                'jp' => 'ウィッシュリスト'
+            ], 
+            [
                 'key' => 'customer_review',
                 'en' => 'Customer Review',
                 'jp' => '顧客レビュー',
