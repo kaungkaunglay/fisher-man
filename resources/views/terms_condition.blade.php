@@ -7,72 +7,49 @@
 <nav aria-label="breadcrumb" class="py-4">
   <div class="container">
     <ol class="breadcrumb mb-0 bg-transparent">
-      <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Terms & Conditions</li>
+      <li class="breadcrumb-item"><a href="{{route('home')}}">{{trans_lang('home')}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{trans_lang('policy')}}</li>
     </ol>
   </div>
 </nav>
 <!-- ./Breadcrumbs -->
 
 <div class="container mt-2 mb-5">
-  <h1>Terms and Conditions</h1>
-  <p>Please read these terms and conditions ("terms and conditions", "terms") carefully before using [website URL]
-    website (“website”, "service") operated by [company name] ("us", "we", "our").</p>
+  <h1>利用規約</h1>
+  <p>この利用規約（「規約」、「条件」）をよくお読みいただき、[ウェブサイトURL]（「ウェブサイト」、「サービス」）を運営する[会社名]（「当社」、「私たち」、「私たちの」）のサービスをご利用いただく前にご確認ください。</p>
 
-  <h2>Conditions of Use</h2>
-  <p>By using this website, you certify that you have read and reviewed this Agreement and that you agree to comply with
-    its terms. If you do not want to be bound by the terms of this Agreement, you are advised to stop using the website
-    accordingly. [company name] only grants use and access of this website, its products, and its services to those who
-    have accepted its terms.</p>
+  <h2>利用条件</h2>
+  <p>このウェブサイトを使用することによって、あなたは本契約を読み、確認し、その条件に従うことに同意したことになります。本契約の条件に従いたくない場合は、ウェブサイトの利用を中止することをお勧めします。[会社名]は、このウェブサイト、その製品、サービスの利用およびアクセスを、その条件に同意した者にのみ許可します。</p>
 
-  <h2>Privacy Policy</h2>
-  <p>Before you continue using our website, we advise you to read our privacy policy [link to privacy policy] regarding
-    our user data collection. It will help you better understand our practices.</p>
+  <h2>プライバシーポリシー</h2>
+  <p>当社のウェブサイトを引き続きご利用いただく前に、ユーザーデータの収集に関するプライバシーポリシー[プライバシーポリシーのリンク]をお読みいただくことをお勧めします。これにより、当社の運用についてより良く理解していただけます。</p>
 
-  <h2>Age Restriction</h2>
-  <p>You must be at least 18 (eighteen) years of age before you can use this website. By using this website, you warrant
-    that you are at least 18 years of age and you may legally adhere to this Agreement. [company name] assumes no
-    responsibility for liabilities related to age misrepresentation.</p>
+  <h2>年齢制限</h2>
+  <p>このウェブサイトを利用するには、18歳以上である必要があります。このウェブサイトを使用することによって、あなたは18歳以上であり、本契約に合法的に従うことができることを保証します。[会社名]は、年齢の誤表記に関連する責任を負いません。</p>
 
-  <h2>Intellectual Property</h2>
-  <p>You agree that all materials, products, and services provided on this website are the property of [company name],
-    its affiliates, directors, officers, employees, agents, suppliers, or licensors including all copyrights, trade
-    secrets, trademarks, patents, and other intellectual property. You also agree that you will not reproduce or
-    redistribute the [company name]’s intellectual property in any way, including electronic, digital, or new trademark
-    registrations.</p>
-  <p>You grant [company name] a royalty-free and non-exclusive license to display, use, copy, transmit, and broadcast
-    the content you upload and publish. For issues regarding intellectual property claims, you should contact the
-    company in order to come to an agreement.</p>
+  <h2>知的財産権</h2>
+  <p>このウェブサイトで提供されるすべての資料、製品、およびサービスは、[会社名]およびその関連会社、取締役、役員、従業員、代理人、供給者、またはライセンサーの所有物であり、著作権、営業秘密、商標、特許、およびその他の知的財産権を含みます。また、[会社名]の知的財産をいかなる方法でも複製したり再配布したりしないことに同意するものとします。</p>
+  <p>あなたは、[会社名]に対して、アップロードおよび公開したコンテンツを表示、使用、コピー、転送、および放送するためのロイヤリティフリーで非独占的なライセンスを付与します。知的財産権に関する問題については、当社と合意に達するためにご連絡ください。</p>
 
-  <h2>User Accounts</h2>
-  <p>As a user of this website, you may be asked to register with us and provide private information. You are
-    responsible for ensuring the accuracy of this information, and you are responsible for maintaining the safety and
-    security of your identifying information. You are also responsible for all activities that occur under your account
-    or password.</p>
-  <p>If you think there are any possible issues regarding the security of your account on the website, inform us
-    immediately so we may address them accordingly.</p>
-  <p>We reserve all rights to terminate accounts, edit or remove content and cancel orders at our sole discretion.</p>
+  <h2>ユーザーアカウント</h2>
+  <p>このウェブサイトのユーザーとして、あなたは登録を求められ、個人情報の提供を求められる場合があります。あなたはこの情報の正確性を確認する責任があり、あなたの識別情報の安全を維持する責任があります。また、アカウントまたはパスワードの下で発生するすべての活動に対して責任を負います。</p>
+  <p>ウェブサイトでのアカウントのセキュリティに関して問題がある場合は、直ちに当社に通知し、適切に対処できるようにしてください。</p>
+  <p>当社は、アカウントの終了、コンテンツの編集または削除、注文のキャンセルを当社の独自の判断で行う権利を留保します。</p>
 
-  <h2>Applicable Law</h2>
-  <p>By using this website, you agree that the laws of the [your location], without regard to principles of conflict
-    laws, will govern these terms and conditions, or any dispute of any sort that might come between [company name] and
-    you, or its business partners and associates.</p>
+  <h2>適用法</h2>
+  <p>このウェブサイトを使用することによって、あなたは[所在地]の法律が、紛争法の原則に関わらず、この規約、または[会社名]とあなた、またはそのビジネスパートナーおよび提携先の間で発生するあらゆる紛争を支配することに同意するものとします。</p>
 
-  <h2>Disputes</h2>
-  <p>Any dispute related in any way to your use of this website or to products you purchase from us shall be arbitrated
-    by state or federal court [your location] and you consent to exclusive jurisdiction and venue of such courts.</p>
+  <h2>紛争</h2>
+  <p>このウェブサイトの利用または当社から購入した製品に関連する紛争は、[所在地]の州または連邦裁判所で仲裁され、あなたはその裁判所の排他的な管轄権および会場に同意するものとします。</p>
 
-  <h2>Indemnification</h2>
-  <p>You agree to indemnify [company name] and its affiliates and hold [company name] harmless against legal claims and
-    demands that may arise from your use or misuse of our services. We reserve the right to select our own legal
-    counsel.</p>
+  <h2>免責</h2>
+  <p>あなたは、[会社名]およびその関連会社を免責し、当社のサービスの使用または誤使用から生じる法的請求および要求に対して[会社名]を免責することに同意します。当社は自らの法的顧問を選択する権利を留保します。</p>
 
-  <h2>Limitation on Liability</h2>
-  <p>[company name] is not liable for any damages that may occur to you as a result of your misuse of our website.</p>
-  <p>[company name] reserves the right to edit, modify, and change this Agreement at any time. We shall let our users
-    know of these changes through electronic mail. This Agreement is an understanding between [company name] and the
-    user, and this supersedes and replaces all prior agreements regarding the use of this website.</p>
+  <h2>責任の制限</h2>
+  <p>[会社名]は、あなたが当社のウェブサイトを誤使用した結果として発生するいかなる損害についても責任を負いません。</p>
+  <p>[会社名]は、いつでもこの契約を編集、変更、修正する権利を留保します。当社は、電子メールを通じてユーザーにこれらの変更を通知します。この契約は、[会社名]とユーザー間の理解を示すものであり、ウェブサイトの利用に関するすべての以前の契約に取って代わるものです。</p>
 
-  <p>Website terms and conditions template by WebsitePolicies.com</p>
+  <p>ウェブサイトの利用規約テンプレートはWebsitePolicies.comによって提供されています。</p>
 </div>
+
 @endsection
