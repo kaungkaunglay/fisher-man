@@ -111,12 +111,42 @@ main {
   font-weight: bold;
   color: #ffffff;
 }
+.bottom-menu{
+  font-size: 15px;
+  font-weight: bold;
+  color: #ffffff;
+  width: 80px;
+}
 
-.bottom-nav .menu-header>p{
+.mobile-cart-noti{
+    width: 20px;
+    font-size: 10px;
+    aspect-ratio: 1 / 1;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    padding: 2px;
+    top: 6px;
+    right: 10px;
+}
+
+.mobile-white-list-noti{
+  width: 20px;
+  font-size: 10px;
+  aspect-ratio: 1 / 1;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  padding: 2px;
+  top: 3px;
+  right: 122px;
+}
+
+.bottom-nav .bottom-menu>p{
   font-size: 10px !important;
 }
-.bottom-nav .menu-header>.cart-txt{
-  font-size: 13px !important;
+.bottom-nav .bottom-menu>.cart-txt{
+  font-size: 12px !important;
 }
 
 .menu-category,

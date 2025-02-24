@@ -56,7 +56,7 @@
                 <!-- section-menu-left -->
                 <div class="section-menu-left">
                     <div class="box-logo">
-                        <a href="index.html" id="site-logo-inner">
+                        <a href="#" id="site-logo-inner">
                             <img class="" id="logo_header" alt="" src="images/logo/logo.png" data-light="images/logo/logo.png" data-dark="{{asset('assets/images/logo.png')}}" >
                         </a>
                         <div class="button-show-hide">

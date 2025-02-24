@@ -23,7 +23,7 @@
             <h3>{{trans_lang('request_shops')}}</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="index.html">
+                    <a href="#">
                         <div class="text-tiny">{{trans_lang('home')}}</div>
                     </a>
                 </li>
