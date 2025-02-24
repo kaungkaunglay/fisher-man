@@ -188,7 +188,8 @@
                             <div class="row modal-body p-3">
 
                                 <div class="col-12">
-                                    <form id="shopRequestForm" enctype="multipart/form-data">
+                                    <form method="post" id="shopRequestForm" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="mb-2 row align-items-center">
                                             <div class="col-lg-5 col-12">
                                                 <label for="exampleFormControlInput1"
@@ -248,7 +249,7 @@
                                                 <span class="invalid-feedback"></span>
                                             </div>
                                         </div>
-                                    </form>
+                                   
                                 </div>
                             </div>
                             <!-- /Modal Body -->
@@ -259,6 +260,8 @@
                                     data-bs-dismiss="modal">{{ trans_lang('cancle') }}</button>
                                 <button class="common-btn w-50 px-0" type="submit">{{ trans_lang('request') }}</button>
                             </div>
+
+                        </form>
                             <!-- /Modal Footer -->
 
                         </div>
@@ -475,6 +478,7 @@
             });
             $("#shopRequestForm").submit(function(e) {
                 e.preventDefault();
+                console.log('submitted');
                 var formData = new FormData(this);
                 $.ajax({
                     url: "/buyer/request-shop",
