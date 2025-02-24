@@ -21,8 +21,8 @@
     <nav aria-label="breadcrumb" class="py-4">
         <ol class="breadcrumb mb-0 bg-transparent">
             <li class="breadcrumb-item"><a href="{{route('home')}}">{{trans_lang('home')}}</a></li>
-            <li class="breadcrumb-item" aria-current="page"><a href="">{{ $subCategory->category->category_name }}</a></li>
-            <li class="breadcrumb-item" aria-current="page"><a href="">{{ $subCategory->name }}</a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="{{route('category', $subCategory->category_id)}}">{{ $subCategory->category->category_name }}</a></li>
+            <li class="breadcrumb-item" aria-current="page">{{ $subCategory->name }}</li>
         </ol>
     </nav>
 
@@ -108,7 +108,7 @@
 <script src="{{asset('assets/js/price-range.js')}}"></script>
 <script src="{{asset('assets/js/pagination.js')}}"></script>
 <script src="{{ asset('assets/js/words-limit.js') }}"></script>
-<script>
+<!-- <script>
     const itemsPerPage = 24;
     const items = document.querySelectorAll(".item-card");
     const pagination = document.getElementById("pagination");
@@ -171,7 +171,7 @@
     // Initialize
     createPagination();
     showPage(1);
-</script>
+</script> -->
 
 <script src="{{ asset('assets/js/view-list.js') }}"></script>
 
