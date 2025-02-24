@@ -44,7 +44,7 @@
                                 @foreach ($subcategory->products->take(4) as $product)
                                     <div class="item-card">
                                         <a href="{{ route('product.show', $product->id) }}" class="right">
-                                            <img src="{{ asset($product->product_image) }}" class="card-img-top"
+                                            <img loading="lazy" src="{{ asset($product->product_image) }}" class="card-img-top"
                                                 alt="{{ $product->name }}">
                                         </a>
                                         <div class="left">
