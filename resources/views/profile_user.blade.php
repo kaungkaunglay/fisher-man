@@ -30,32 +30,33 @@
 
             <!-- Profile Side -->
             <div class="col-12 col-lg-7 h-100 profile-side">
-                <form action="#" id="update_basic_profile" method="POST">
+                
+                <form action="#" id="update_basic_profile" class="profile-form" method="POST">
 
                     <div class="w-100 h-100 d-md-flex gap-3">
                         <!-- profile img -->
-                        <div class="w-100 profile-form d-flex flex-column">
+                        <div class="w-100 d-flex flex-column">
                             <label for="form-img" class="w-100 d-block">
                                 <img src="{{ $user->avatar ?? asset('assets/images/account1.svg') }}" id="form-img" alt="Account.png">
                             </label>
-                            <input type="file" class="upload-photo d-none" id="uploadimg" readonly>
+                            <input type="file" class="upload-photo d-none" id="uploadimg">
                         </div>
 
                         <!-- Profile Info -->
-                        <div class="w-100 profile-form d-flex flex-column">
+                        <div class="w-100 d-flex flex-column">
 
                             @csrf
                             <!-- Form Headline -->
-                            <div class="bg-primary text-white p-2">
+                            <div class="bg-primary text-white p-2 form-headline">
                                 <h2 class="fw-bold d-flex justify-content-between">{{ trans_lang('info') }}
                                     <div class="d-flex justify-content-end gap-4">
-                                        <button type="submit" class="save">
+                                        <button type="submit" class="save d-none">
                                             <i class="fa-solid fa-save fs-5 text-white"></i>
                                         </button>
                                         <button class="edit">
                                             <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
                                         </button>
-                                        <button class="cancel">
+                                        <button class="cancel d-none">
                                             <i class="fa-solid fa-x fs-5 text-white"></i>
                                         </button>
                                     </div>
@@ -70,8 +71,8 @@
                                 <div class="d-flex align-items-center">
                                     <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
                                     <output class="form-output" for="username">{{ $user->username }}</output>
-                                    <input type="text" name="username" class="p-1 mt-1 ms-1 rounded-1 d-none" id="username"
-                                        value="{{ $user->username }}" readonly>
+                                    <input type="text" name="username" class="mt-1 ms-1 border-bottom rounded-1 d-none" id="username"
+                                        value="{{ $user->username }}">
                                     <span class="invalid-feedback"></span>
                                 </div>
     
@@ -79,22 +80,22 @@
                                 <div class="d-flex align-items-center">
                                     <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
                                     <output class="form-output" for="email">{{ $user->email }}</output>
-                                    <input type="email" name="email" class="p-1 mt-2 ms-1 rounded-1 d-none" id="email"
-                                        value="{{ $user->email }}" readonly>
+                                    <input type="email" name="email" class="mt-2 ms-1 border-bottom rounded-1 d-none" id="email"
+                                        value="{{ $user->email }}">
                                     <span class="invalid-feedback"></span>
                                 </div>
     
                                 <!-- account checkbox -->
                                 <div class="mt-2">
                                     <!-- form on state -->
-                                    <ul class="d-flex gap-4 checkbox-list-on">
+                                    <ul class="d-flex gap-4 checkbox-list">
                                         <li>
                                             <div class="form-group d-flex flex-column gap-1">
                                                 <label for="line_login">
                                                     <i class="fa-brands fa-line fs-2 mt-1"></i>
                                                 </label>
                                                 <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" id="line_login" class="border form-check-input d-none" readonly
+                                                    <input type="checkbox" id="line_login" class="border form-check-input"
                                                         role="switch" @if ($user->checkProvider('line')) checked @endif />
                                                 </div>
                                             </div>
@@ -106,7 +107,7 @@
                                                     <i class="fa-brands fa-facebook fs-2 mt-1"></i>
                                                 </label>
                                                 <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" id="facebook_login" class="border form-check-input d-none" readonly
+                                                    <input type="checkbox" id="facebook_login" class="border form-check-input"
                                                         role="switch" @if ($user->checkProvider('facebook')) checked @endif />
                                                 </div>
                                             </div>
@@ -118,7 +119,7 @@
                                                     <i class="fa-brands fa-google fs-2 mt-1"></i>
                                                 </label>
                                                 <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" id="google_login" class="border form-check-input d-none" readonly
+                                                    <input type="checkbox" id="google_login" class="border form-check-input"
                                                         role="switch" @if ($user->checkProvider('google')) checked @endif />
                                                 </div>
                                             </div>
@@ -261,18 +262,18 @@
 
                     <!-- Form Headline -->
                     <div>
-                        <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2">
+                        <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2 form-headline">
                             {{ trans_lang('detail') }}
 
                             <!-- button group -->
                             <div class="d-flex justify-content-end gap-4">
-                                <button type="submit" class="save">
+                                <button type="submit" class="save d-none">
                                     <i class="fa-solid fa-save fs-5 text-white"></i>
                                 </button>
                                 <button class="edit">
                                     <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
                                 </button>
-                                <button class="cancel">
+                                <button class="cancel d-none">
                                     <i class="fa-solid fa-x fs-5 text-white"></i>
                                 </button>
                             </div>
@@ -287,7 +288,7 @@
                         <div class="d-flex align-items-center form-group">
                             <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
                             <output class="form-output" for="address">{{ $user->address }}</output>
-                            <textarea name="address" class="p-1 mt-2 ms-1 rounded-1 d-none" id="address" readonly>
+                            <textarea name="address" class="p-1 mt-2 ms-1 p-0 border-0 border-bottom rounded-1 d-none" id="address" disabled>
                                 {{ $user->address }}
                             </textarea>
                             <span class="invalid-feedback"></span>
@@ -296,18 +297,17 @@
                         <!-- phone-number link -->
                         <div class="d-flex align-items-start form-group">
                             <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
-                            <div class="ms-1 d-flex flex-row flex-md-column phone-no-container">
+                            <div class="ms-1 d-flex flex-column phone-no-container">
                                 <a href="tel:">
                                     <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
                                 </a>
-                                <input type="tel" name="first_phone" class="p-1 mt-2 rounded-1 d-none" id="first_phone"
-                                    value="{{ $user->first_phone }}" readonly>
-                                <b class="cor align-content-end">, </b>
-                                    <a href="tel:">
-                                        <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
-                                    </a>
-                                <input type="tel" name="second_phone" class="p-1 mt-2 rounded-1 d-none"
-                                    value="{{ $user->second_phone }}" id="second_phone" readonly>
+                                <input type="tel" name="first_phone" class="p-1 mt-2 border-bottom rounded-1 d-none" id="first_phone"
+                                    value="{{ $user->first_phone }}" disabled>
+                                <a href="tel:">
+                                    <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
+                                </a>
+                                <input type="tel" name="second_phone" class="p-1 mt-2 border-bottom rounded-1 d-none"
+                                    value="{{ $user->second_phone }}" id="second_phone" disabled>
                                 <span class="invalid-feedback"></span>
                                 <!-- </a> -->
                             </div>
