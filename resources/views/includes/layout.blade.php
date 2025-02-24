@@ -227,16 +227,16 @@
               alt=""></a> --}}
                     <p class="text-center txt-18">{{ App\Models\Setting::getValue('slogan') }}</p>
                     <div class="social-icons d-flex justify-content-between gap-1">
-                        <a href="">
+                        <a href="https://www.line.me/en/">
                             <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}"
                                 alt="Line">
                         </a>
-                        <a href=""><img class="icon_social"
-                                src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Line"></a>
-                        <a href=""><img class="icon_social"
-                                src="{{ asset('assets/icons/custom/wechat.png') }}" alt="Line"></a>
-                        <a href=""><img class="icon_social"
-                                src="{{ asset('assets/icons/custom/xcom.png') }}"></a>
+                        <a href="https://www.facebook.com/"><img class="icon_social"
+                                src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Facebook"></a>
+                        <a href="https://www.wechat.com/"><img class="icon_social"
+                                src="{{ asset('assets/icons/custom/wechat.png') }}" alt="Wechat"></a>
+                        <a href="https://x.com/"><img class="icon_social"
+                                src="{{ asset('assets/icons/custom/xcom.png') }}" alt="Xcom"></a>
                     </div>
                 </div>
                 {{-- /Footer Logo --}}
@@ -246,8 +246,8 @@
                     <h6 class="text-center text-warning mb-2">{{ trans_lang('useful_links') }}</h6>
                     <ul class="list-unstyled link-list txt-15 useful-link">
                         <li><a href="{{ route('home') }}">{{ trans_lang('home') }}</a></li>
-                        <li><a href="#">{{ trans_lang('product') }}</a></li>
-                        <li><a href="#">{{ trans_lang('faqs') }}</a></li>
+                        <li><a href="{{route('special-offer')}}">{{ trans_lang('special_offer') }}</a></li>
+                        <li><a href="{{route('support')}}">{{ trans_lang('faqs') }}</a></li>
                         <li><a href="{{ route('policy') }}">{{ trans_lang('terms_privacy') }}</a></li>
                         <li><a href="#">{{ trans_lang('customer_review') }}</a></li>
                         <li><a href="#">{{ trans_lang('blogs') }}</a></li>
@@ -259,12 +259,12 @@
                 <div class="col-12 col-lg-2 mt-3 ">
                     <h6 class="text-center text-warning mb-2">{{ trans_lang('contact_us') }}</h6>
                     <ul class="list-unstyled text-white txt-15 text-center">
-                        <li><a href="#">{{ trans_lang('address') }} :
-                                {{ App\Models\Setting::getValue('contact_address') }}</a></li>
-                        <li><a href="tel: ">{{ trans_lang('phone_number') }} :
-                                {{ App\Models\Setting::getValue('contact_phone') }}</a></li>
-                        <li><a href="#">{{ trans_lang('email') }} :
-                                {{ App\Models\Setting::getValue('contact_email') }}</a></li>
+                        <li>{{ trans_lang('address') }} :
+                                {{ App\Models\Setting::getValue('contact_address') }}</li>
+                        <li>{{ trans_lang('phone_number') }} :
+                                {{ App\Models\Setting::getValue('contact_phone') }}</li>
+                        <li>{{ trans_lang('email') }} :
+                                {{ App\Models\Setting::getValue('contact_email') }}</li>
                     </ul>
                 </div>
                 {{-- /Contact Us --}}
@@ -278,8 +278,8 @@
                 <div class="col-lg-5 text-white text-center text-lg-start">
                     <p class="my-2 txt-13">&copy; Copyright 2024-fisherman Designed by Andfun</p>
                 </div>
-                <div class="col-lg-5 text-white text-lg-end text-center">
-                    <p class="my-2 txt-13"><a href="{{ route('policy') }}">Privacy | Terms</a></p>
+                <div class="col-lg-5 text-white text-lg-end text-center mb-2 mb-lg-0">
+                    <p class="mb-4 my-lg-2 txt-13"><a href="{{ route('policy') }}">Privacy | Terms</a></p>
                 </div>
             </div>
         </div>
