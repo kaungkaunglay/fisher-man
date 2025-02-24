@@ -37,8 +37,10 @@ class ProductController extends Controller
         $products = $query->get();
 
         $popular_shops = Shop::inRandomOrder()->take(4)->get();
+
+        $random_products  = Product::inRandomOrder()->take(6)->get(); // Fetch 6 random products
         
-        return view('home', compact('products','popular_shops'));
+        return view('home', compact('products','popular_shops', 'random_products'));
     }
 
     public function create()

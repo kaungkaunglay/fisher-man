@@ -38,7 +38,7 @@
 
             <!-- Card List -->
             <div class="card-list" id="view-list">
-                @foreach ($products->take(6) as $product)
+                @foreach ($random_products  as $product)
                     <div class="item-card">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
                             <img src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
