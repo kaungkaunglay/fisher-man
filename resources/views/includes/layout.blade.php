@@ -105,8 +105,8 @@
                         </a>
                         <a href="{{ route('white_list.index') }}" class="position-relative">
                             <i class="fa-solid fa-bookmark icon" id="bookmark_btn"></i>
-                            <span id="white_list_count"
-                                class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
+                            <span
+                                class="cart-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span>
                         </a>
 
                         @if (Auth::check() || session('user_id'))
@@ -295,12 +295,14 @@
         <a href="" class="bottom-menu"  id="category-link"><i class="fa-solid fa-tags"></i><br><p>{{trans_lang('category')}}</p></a>
         <div class="">
             <a href="{{ route('cart')}}" class="bottom-menu mobile-shopping-card"><i
-                    class="fa-solid fa-cart-shopping shopping"></i><br><p class="cart-txt">{{trans_lang('cart')}}(
-                        <span class="text-danger" id="cart_count_bottom">0</span> )</p>
+                    class="fa-solid fa-cart-shopping shopping"></i><br><p class="cart-txt">{{trans_lang('cart')}}
+                        <span id="cart_count_bottom" class="mobile-cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
+                        </p>
+                        {{-- <span class="text-danger" id="cart_count_bottom">0</span> --}}
             </a>
         </div>
-        <a href="{{ route('white_list.index') }}" class="bottom-menu"><i class="fa-solid fa-bookmark"></i><br><p>{{trans_lang('whitelist')}}(
-            <span class="text-danger white_list_count" id="white_list_count">0</span> )</p></a>
+        <a href="{{ route('white_list.index') }}" class="bottom-menu"><i class="fa-solid fa-bookmark"></i><br><p>{{trans_lang('whitelist')}}
+            <span class="mobile-white-list-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span></p></a>
         <a href="{{ route('profile')}}" class="bottom-menu"><i class="fa-solid fa-user"></i><br><p>{{trans_lang('profile')}}</p></a>
     </div>
     <!-- /Mobile Bottom Nav -->
@@ -409,7 +411,7 @@
                 method: 'GET',
                 success: function(response) {
                     // Assuming response contains the new count
-                    $('#white_list_count').text(response.white_lists_count);
+                    $('.white_list_count').text(response.white_lists_count);
                 },
                 error: function(xhr) {
                     // Handle error here
