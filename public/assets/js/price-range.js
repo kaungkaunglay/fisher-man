@@ -4,9 +4,11 @@ $(document).ready(function () {
     const sliderTrack = $(".slider-track");
     const minInput = $(".min-price");
     const maxInput = $(".max-price");
+    const priceRangeForm = $("#priceRangeForm");
 
     let minGap = 0;
-    let sliderMaxValue = 1000000;  // Updated to 1000000
+    let sliderMaxValue = 50000;
+    let userInteracted = false;
 
     function slideOne() {
         let sliderOneValue = parseInt(sliderOne.val());
@@ -36,7 +38,7 @@ $(document).ready(function () {
         let percent1 = (parseInt(sliderOne.val()) / sliderMaxValue) * 100;
         let percent2 = (parseInt(sliderTwo.val()) / sliderMaxValue) * 100;
 
-        sliderTrack.css("background", `linear-gradient(to right, #dadae5 ${percent1}% , #005B96 ${percent1}% , #005B96 ${percent2}%, #dadae5 ${percent2}%)`);
+        sliderTrack.css("background", `linear-gradient(to right, #dadae5 ${percent1}%, #005B96 ${percent1}%, #005B96 ${percent2}%, #dadae5 ${percent2}%)`);
     }
 
     function syncMinPrice() {
@@ -61,20 +63,30 @@ $(document).ready(function () {
         fillColor();
     }
 
+    function checkAndSearch() {
+        let minValue = minInput.val();
+        let maxValue = maxInput.val();
+
+        if (minValue && maxValue) {
+            if (!userInteracted) {
+                userInteracted = true;
+                priceRangeForm.submit();
+            }
+        }
+    }
+
+    // Update values when input or range changes
     sliderOne.on("input", slideOne);
     sliderTwo.on("input", slideTwo);
+    minInput.on("input", syncMinPrice);
+    maxInput.on("input", syncMaxPrice);
 
-    minInput.on("input", function () {
-        syncMinPrice();
-        slideOne();
-    });
+    // Trigger search when the mouse leaves the input fields
+    minInput.on("mouseleave", checkAndSearch);
+    maxInput.on("mouseleave", checkAndSearch);
+    sliderOne.on("mouseup", checkAndSearch);
+    sliderTwo.on("mouseup", checkAndSearch);
 
-    maxInput.on("input", function () {
-        syncMaxPrice();
-        slideTwo();
-    });
-
-    // Initialize
-    slideOne();
-    slideTwo();
+    // Initialize without searching
+    fillColor();
 });

@@ -58,18 +58,20 @@
 
         <form action="{{ route('sub-category.show', $subCategory->id) }}" method="GET" id="priceRangeForm">
             <div class="range-slider mx-auto">
-                <input type="number" name="min_price" class="min-price" value="{{ request('min_price', 1) }}" min="1" max="1000000">
+                <input type="number" name="min_price" class="min-price" value="{{ request('min_price', 1) }}" min="1" max="50000">
                 <h3 class="txt">{{ trans_lang('price_range') }}</h3>
-                <input type="number" name="max_price" class="max-price" value="{{ request('max_price', 1000000) }}" min="1" max="1000000">
+                <input type="number" name="max_price" class="max-price" value="{{ request('max_price', 50000) }}" min="1" max="50000">
 
                 <div class="range-container position-relative mt-3 w-100">
                     <div class="slider-track"></div>
-                    <input type="range" min="1" max="1000000" value="{{ request('min_price', 1) }}" id="slider-1">
-                    <input type="range" min="1" max="1000000" value="{{ request('max_price', 1000000) }}" id="slider-2">
+                    <input type="range" min="1" max="50000" value="{{ request('min_price', 1) }}" id="slider-1">
+                    <input type="range" min="1" max="50000" value="{{ request('max_price', 10000) }}" id="slider-2">
                 </div>
-                <button type="submit" class="common-btn2">Filter</button>
             </div>
         </form>
+
+
+
 
 
         <div class="sub-category-item">
