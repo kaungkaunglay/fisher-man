@@ -19,10 +19,10 @@ class LanguageMiddleware
     {
         $host = $request->getHost();
         $parts = explode('.', $host);
-        $subdomain = count($parts) >= 3 ? $parts[0] : 'en'; // Default to 'en'
+        $subdomain = count($parts) >= 3 ? $parts[0] : 'jp'; // Default to 'en'
 
         // Determine language based on subdomain
-        $locale = ($subdomain === 'jp') ? 'jp' : 'en';
+        $locale = 'jp';
         // Set Laravel's locale
         App::setLocale($locale);
         Session::put('locale', $locale);

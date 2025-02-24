@@ -112,6 +112,10 @@ main {
   color: #ffffff;
 }
 
+.bottom-nav .menu-header{
+  font-size: 13px !important;
+}
+
 .menu-category,
 .form-label {
   /* font-family: "Roboto", serif; */
