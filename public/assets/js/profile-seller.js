@@ -13,19 +13,16 @@ $(document).ready(() => {
   if($('.sec-phone').val() == '') $('.cor').hide();
   else $('.cor').show();
 
-  
+
 });
 
-function actionForm(trigger) {
-
-  ev.preventDefault();
-  const trigger = trigger.currentTarget;
-  const form = trigger.currentTarget()
+function actionForm(trig) {
+  const trigger = trig.currentTarget;
+  const form = trigger.closest('.profile-form');
 }
 
 function unactiveForm(cur)
 {
-    
     $($(cur.closest('.profile-form'))).removeClass('active');
     $('.profile-form input').attr('readonly', true);
     if($('.sec-phone').val() == '') $('.cor').hide();

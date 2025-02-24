@@ -7,6 +7,7 @@ use App\Helpers\AuthHelper;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\ForgotPasswordMail;
+use App\Mail\VerifyEmail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -316,6 +317,45 @@ class AuthController extends Controller
 
             return response()->json(['status' => true, 'message' => 'Password Reset Success']);
         }
+    }
+
+    public function sendVerificationEmail()
+    {
+        $user = AuthHelper::user();
+
+        if($user->email_verified_at == null){
+            $token = Str::random(64);
+
+            $user->updateOrCreate([
+                'email_verify_token' => $token
+            ]);
+
+            Mail::to($user->email)->send(new VerifyEmail($user,$token));
+
+            return response()->json(['status' => true, 'message' => 'Email Veriy Link Sent']);
+        }
+
+        return response()->json(['status' => false, 'message' => 'Your email already verified']);
+    }
+
+    public function verifyEmail(Request $request){
+        $user = AuthHelper::user();
+
+        $token = $request->query('token');
+
+        if($user->email_verify_token !== $token)
+        {
+            return redirect()->route('profile');
+        }
+
+        $user->updateOrCreate([
+                'email_verified_at' => now()
+            ],[
+                'email_verify_token' => null
+            ]
+        );
+
+        return redirect()->route('profile');
     }
 
 
