@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\AuthHelper;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -12,9 +13,9 @@ class ProfileController extends Controller
     public function seller_profile()
     {
         $user = AuthHelper::auth();
+        $products = Product::where('user_id', $user->id)->paginate(12);
 
-
-        return view('profile_seller', compact('user'));
+        return view('profile_seller', compact('user','products'));
     }
 
 
