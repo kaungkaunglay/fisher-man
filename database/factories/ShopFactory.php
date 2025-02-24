@@ -18,17 +18,14 @@ class ShopFactory extends Factory
 
     public function definition(): array
     {
-        $images = [
-            "assets/images/shop.jpg",
-            "assets/images/shop.jpg"
-        ];
+
         return [
-            'user_id' => "2", // Creates a user if not provided
+            'user_id' => "3", // Creates a user if not provided
             'shop_name' => $this->faker->company,
             'trans_management' => $this->faker->randomElement(['Cash', 'PayPal', 'Bank Transfer']),
             'email' => $this->faker->unique()->safeEmail,
             'phone_number' => $this->faker->phoneNumber,
-            'avatar' => $this->faker->randomElement($images),
+            'avatar' => 'shop.jpg',
             'status' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
         ];
     }

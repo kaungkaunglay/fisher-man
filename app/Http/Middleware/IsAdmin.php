@@ -23,7 +23,7 @@ class IsAdmin
         }
 
         $user = AuthHelper::auth();
-        if ($user->roles->first()->id != 1) {
+        if ($user->roles->first()->id != 1 && $user->roles->first()->id != 2) {
             abort(403, 'Unauthorized Access');
         }
         return $next($request);

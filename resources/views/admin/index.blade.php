@@ -29,7 +29,7 @@
                                 <i class="icon-shopping-bag"></i>
                             </div>
                             <div>
-                                <div class="body-text mb-2">Total Product</div>
+                                <div class="body-text mb-2">{{trans_lang('total')}}{{trans_lang('product')}}</div>
                                 <h4>{{ $total_products->count() }}</h4>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                 <!-- top-product -->
                 <div class="wg-box">
                     <div class="flex items-center justify-between">
-                        <h5>Top Products</h5>
+                        <h5>{{trans_lang('top_products')}}</h5>
                         {{-- <div class="dropdown default">
                             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="view-all">View all<i class="icon-chevron-down"></i></span>
@@ -76,7 +76,7 @@
                                     <div class="text-tiny mt-3">¥ {{$top_product->product_price}}</div>
                                 </div>
                                 <div>
-                                    <div class="body-title-2 mb-3">Discount</div>
+                                    <div class="body-title-2 mb-3">{{trans_lang('special_offer')}}</div>
                                     <div class="text-tiny">{{$top_product->discount}}</div>
                                 </div>
                                 <div class="seller-name">
@@ -99,27 +99,27 @@
                 <!-- product-overview -->
                 <div class="wg-box">
                     <div class="flex items-center justify-between">
-                        <h5>All Product overview</h5>
+                        <h5>{{trans_lang('all_products')}}</h5>
                     </div>
                     <div class="wg-table table-product-overview">
                         <ul class="table-title flex gap20 mb-14">
                             <li>
-                                <div class="body-title">Name</div>
+                                <div class="body-title">{{trans_lang('name')}}</div>
                             </li>    
                             <li>
-                                <div class="body-title">Price</div>
+                                <div class="body-title">{{trans_lang('price')}}</div>
                             </li>
                             <li>
-                                <div class="body-title">Stock</div>
+                                <div class="body-title">{{trans_lang('quanity')}}</div>
                             </li>
                             <li>
-                                <div class="body-title">Sale</div>
+                                <div class="body-title">{{trans_lang('sale')}}</div>
                             </li>
                             <li>
-                                <div class="body-title">Seller Name</div>
+                                <div class="body-title">{{trans_lang('shop')}}{{trans_lang('name')}}</div>
                             </li>
                             <li>
-                                <div class="body-title">Imported Date</div>
+                                <div class="body-title">{{trans_lang('created_date')}}</div>
                             </li>
                         </ul>
                         <ul class="flex flex-column gap10">
@@ -149,9 +149,9 @@
                     <!-- Custom Pagination -->
                     @if ($all_products->hasPages())
                     <div class="flex items-center justify-between flex-wrap gap10">
-                        <div class="text-tiny">
+                        <!-- <div class="text-tiny">
                             Showing {{ $all_products->firstItem() }} to {{ $all_products->lastItem() }} of {{ $all_products->total() }} entries
-                        </div>
+                        </div> -->
                         <ul class="wg-pagination">
                             <!-- Previous Page -->
                             <li class="{{ $all_products->onFirstPage() ? 'disabled' : '' }}">
@@ -180,7 +180,7 @@
                     
                     
                     {{-- <div class="flex items-center justify-between flex-wrap gap10">
-                        <div class="text-tiny">Showing 5 entries</div>
+                        <!-- <div class="text-tiny">Showing 5 entries</div> -->
                         <ul class="wg-pagination">
                             <li>
                                 <a href="#"><i class="icon-chevron-left"></i></a>

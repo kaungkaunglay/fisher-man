@@ -5,9 +5,8 @@ use App\Models\Translations;
 if(!function_exists('trans_lang')){
     function trans_lang($key)
     {
-        $lang = app()->getLocale() ?? 'en';
+        $lang = app()->getLocale() ?? 'jp';
         $translation = Translations::where('key', $key)->first();
-
         return $translation ? $translation->$lang : $key;
     }
 }

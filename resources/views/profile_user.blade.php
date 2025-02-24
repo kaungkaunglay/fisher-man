@@ -3,15 +3,19 @@
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/profile_user.css') }}" />
 @endsection
+
 @section('contents')
+    @php
+        $hasShopRequest = \App\Models\Shop::where('user_id', auth_helper()->id())->exists();
+    @endphp
     <!-- Breadcrumbs -->
     <section class="mt-2">
         <div class="container-custom">
 
             <nav aria-label="breadcrumb" class="py-4">
                 <ol class="breadcrumb mb-0 bg-transparent">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans_lang('home') }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ trans_lang('profile') }}</li>
                 </ol>
             </nav>
 
@@ -29,7 +33,7 @@
 
                     <!-- profile img -->
                     <div class="w-100">
-                        <img src="{{ asset('assets/images/account1.svg') }}" class="w-100" alt="">
+                        <img src="{{ $user->avatar ?? asset('assets/images/account1.svg') }}" class="w-100" alt="">
                     </div>
 
                     <!-- Profile Info -->
@@ -38,7 +42,7 @@
                         @csrf
                         <!-- Form Headline -->
                         <div class="bg-primary text-white p-2">
-                            <h2 class="fw-bold d-flex justify-content-between">Shop Info
+                            <h2 class="fw-bold d-flex justify-content-between">{{ trans_lang('info') }}
                                 <div class="d-flex justify-content-end gap-4">
                                     <button type="submit" class="save">
                                         <i class="fa-solid fa-save fs-5 text-white"></i>
@@ -58,7 +62,7 @@
                         <div class="px-2 py-3">
                             <!-- user name -->
                             <div class="d-flex align-items-center">
-                                <label class="w-25" for="username">Name</label>:
+                                <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
                                 <input type="text" name="username" class="p-1 mt-1 ms-1 rounded-1" id="username"
                                     value="{{ $user->username }}" readonly>
                                 <span class="invalid-feedback"></span>
@@ -66,36 +70,21 @@
 
                             <!-- email link -->
                             <div class="d-flex align-items-center">
-                                <label class="w-25" for="email">Email</label>:
+                                <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
                                 <input type="email" name="email" class="p-1 mt-2 ms-1 rounded-1" id="email"
                                     value="{{ $user->email }}" readonly>
                                 <span class="invalid-feedback"></span>
                             </div>
 
-                            <!-- organization link -->
-                            <div class="d-flex align-items-center">
-                                <label class="w-25" for="organize">Organize</label>:
-                                <input type="text" name="first_org_name" class="p-1 mt-2 ms-1 rounded-1"
-                                    id="first_org_name" value="{{ $user->first_org_name }}" readonly>
-                                <span class="invalid-feedback"></span>
-                            </div>
+                            {{-- <div class="d-flex align-items-center">
+                                <label class="w-25" for="phone_number">{{ trans_lang('phone_number') }}</label>:
 
+                                <input type="tel" name="phone_number" class="p-1 mt-2 ms-1 rounded-1" id="phone_number"
+                                    value="{{ $user->first_phone }}" readonly>
+                                <span class="invalid-feedback"></span>
+                            </div> --}}
                             <!-- account checkbox -->
                             <div class="mt-2">
-
-                                <!-- form off state -->
-                                <ul class="d-flex gap-4 checkbox-list-off">
-                                    <li>
-                                        <i class="fa-brands fa-line fs-2 mt-1"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa-brands fa-facebook fs-2 mt-1"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa-brands fa-google fs-2 mt-1"></i>
-                                    </li>
-                                </ul>
-
                                 <!-- form on state -->
                                 <ul class="d-flex gap-4 checkbox-list-on">
                                     <li>
@@ -104,7 +93,7 @@
                                                 <i class="fa-brands fa-line fs-2 mt-1"></i>
                                             </label>
                                             <div class="form-check form-switch align-self-center">
-                                                <input type="checkbox" class="border form-check-input" role="switch"
+                                                <input type="checkbox" id="line_login" class="border form-check-input" role="switch"
                                                     @if ($user->checkProvider('line')) checked @endif />
                                             </div>
                                         </div>
@@ -116,7 +105,7 @@
                                                 <i class="fa-brands fa-facebook fs-2 mt-1"></i>
                                             </label>
                                             <div class="form-check form-switch align-self-center">
-                                                <input type="checkbox" class="border form-check-input" role="switch"
+                                                <input type="checkbox" id="facebook_login" class="border form-check-input" role="switch"
                                                     @if ($user->checkProvider('facebook')) checked @endif />
                                             </div>
                                         </div>
@@ -128,7 +117,7 @@
                                                 <i class="fa-brands fa-google fs-2 mt-1"></i>
                                             </label>
                                             <div class="form-check form-switch align-self-center">
-                                                <input type="checkbox" class="border form-check-input" role="switch"
+                                                <input type="checkbox" id="google_login" class="border form-check-input" role="switch"
                                                     @if ($user->checkProvider('google')) checked @endif />
                                             </div>
                                         </div>
@@ -142,17 +131,33 @@
                         </div>
                         <!-- /Form Content -->
 
-                        <!-- alert box -->
+                        @if (!$hasShopRequest)
+                            <!-- alert box -->
                         <button class="mt-auto" data-bs-toggle="modal" data-bs-target="#modal_dialog"
-                            onclick="event.preventDefault()">
-                            <div class="alert alert-warning d-flex mb-0" role="alert">
-                                <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
-                                    aria-label="Warning:"></i>
-                                <div class="text-start">
-                                    Your account has not been verified. Please complete the verification process.
-                                </div>
+                        onclick="event.preventDefault()">
+                        <div class="alert alert-warning d-flex mb-0" role="alert">
+                            <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
+                                aria-label="Warning:"></i>
+                            <div class="text-start">
+                                {{ trans_lang('payment_method_used_card_last_no') }}
                             </div>
-                        </button>
+                        </div>
+                    </button>
+                        @else
+                            <!-- alert box -->
+
+                        <div class="alert alert-warning d-flex mb-0" role="alert">
+                            <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
+                                aria-label="Warning:"></i>
+                            <div class="text-start">
+                                You have been requested
+                                {{-- {{ trans_lang('payment_method_used_card_last_no') }} --}}
+                            </div>
+                        </div>
+                    {{-- </button> --}}
+                        @endif
+
+
 
                     </form>
                     <!-- /Profile Info -->
@@ -164,7 +169,7 @@
 
                                 <!-- Modal Header -->
                                 <div class="modal-header text-white bg-primary p-3">
-                                    <h2>Verify Your Account</h2>
+                                    <h2>{{ trans_lang('verify') }}</h2>
                                 </div>
                                 <!-- /Modal Header -->
 
@@ -172,16 +177,16 @@
                                 <div class="row modal-body p-3">
 
                                     <div class="col-12 col-md-6">
-                                        <form action="#">
-
+                                        <form id="shopRequestForm" enctype="multipart/form-data">
                                             <div class="mb-2 row align-items-center">
                                                 <div class="col-lg-5 col-12">
-                                                    <label for="exampleFormControlInput1" class="col-form-label">Shop
-                                                        Name</label>
+                                                    <label for="exampleFormControlInput1"
+                                                        class="col-form-label">{{ trans_lang('shop_name') }}</label>
                                                 </div>
-                                                <div class="col-lg-7 col-12">
-                                                    <input type="text" class="form-control"
-                                                        id="exampleFormControlInput1">
+                                                <div class="col-lg-7 col-12 input-box">
+                                                    <input type="text" class="form-control" name="shopName"
+                                                        id="shopName">
+                                                    <span class="invalid-feedback"></span>
                                                 </div>
                                             </div>
 
@@ -190,46 +195,50 @@
                                                     <label for="exampleFormControlInput1" class="col-form-label">Trans
                                                         Management</label>
                                                 </div>
-                                                <div class="col-lg-7 col-12">
-                                                    <input type="text" class="form-control"
-                                                        id="exampleFormControlInput1">
+                                                <div class="col-lg-7 col-12 input-box">
+                                                    <input type="text" class="form-control" name="transManagement"
+                                                        id="transManagement">
+                                                    <span class="invalid-feedback"></span>
                                                 </div>
                                             </div>
 
                                             <div class="mb-2 row align-items-center">
                                                 <div class="col-lg-5 col-12">
                                                     <label for="exampleFormControlInput1"
-                                                        class="col-form-label">Email</label>
+                                                        class="col-form-label">{{ trans_lang('email') }}</label>
                                                 </div>
-                                                <div class="col-lg-7 col-12">
-                                                    <input type="email" class="form-control"
-                                                        id="exampleFormControlInput1">
-                                                </div>
-                                            </div>
-
-                                            <div class="mb-2 row align-items-center">
-                                                <div class="col-lg-5 col-12">
-                                                    <label for="exampleFormControlInput1" class="col-form-label">Phone
-                                                        Number</label>
-                                                </div>
-                                                <div class="col-lg-7 col-12">
-                                                    <input type="tel" class="form-control"
-                                                        id="exampleFormControlInput1">
+                                                <div class="col-lg-7 col-12 input-box">
+                                                    <input type="email" class="form-control" name="transEmail"
+                                                        id="transEmail">
+                                                    <span class="invalid-feedback"></span>
                                                 </div>
                                             </div>
 
                                             <div class="mb-2 row align-items-center">
                                                 <div class="col-lg-5 col-12">
-                                                    <label for="exampleFormControlInput1" class="col-form-label">Upload
-                                                        Your Shop</label>
+                                                    <label for="exampleFormControlInput1"
+                                                        class="col-form-label">{{ trans_lang('phone_number') }}</label>
                                                 </div>
-                                                <div class="col-lg-7 col-12">
-                                                    <input type="file" class="form-control"
-                                                        id="exampleFormControlInput1">
+                                                <div class="col-lg-7 col-12 input-box">
+                                                    <input type="tel" class="form-control" name="phoneNumber"
+                                                        id="phoneNumber">
+                                                    <span class="invalid-feedback"></span>
                                                 </div>
                                             </div>
 
-                                        </form>
+                                            <div class="mb-2 row align-items-center">
+                                                <div class="col-lg-5 col-12">
+                                                    <label for="exampleFormControlInput1"
+                                                        class="col-form-label">{{ trans_lang('upload_img') }}</label>
+                                                </div>
+                                                <div class="col-lg-7 col-12 input-box">
+                                                    <input type="file" class="form-control" name="avatar"
+                                                        id="avatar">
+                                                    <span class="invalid-feedback"></span>
+                                                </div>
+                                            </div>
+
+
                                     </div>
 
                                     <!-- Qr -->
@@ -239,7 +248,7 @@
                                                 <img src="{{ asset('assets/images/QR.svg') }}" alt="">
                                             </div>
                                             <p class="w-auto px-2 py-3 bg-primary text-center text-white">
-                                                Scan QR Code.
+                                                {{ trans_lang('scan_qr') }}
                                             </p>
                                         </div>
                                     </div>
@@ -249,9 +258,11 @@
 
                                 <!-- Modal Footer -->
                                 <div class="modal-footer">
-                                    <button class="common-btn" data-bs-dismiss="modal">Close</button>
-                                    <button class="common-btn">Request</button>
+                                    <button class="common-btn"
+                                        data-bs-dismiss="modal">{{ trans_lang('cancle') }}</button>
+                                    <button class="common-btn" type="submit">{{ trans_lang('request') }}</button>
                                 </div>
+                                </form>
                                 <!-- /Modal Footer -->
 
                             </div>
@@ -267,7 +278,7 @@
                     <!-- Form Headline -->
                     <div>
                         <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2">
-                            Detail Personal Info
+                            {{ trans_lang('detail') }}
 
                             <!-- button group -->
                             <div class="d-flex justify-content-end gap-4">
@@ -289,25 +300,25 @@
                     <div class="px-2 py-3">
 
                         <!-- address -->
-                        <div class="d-flex align-items-center">
-                            <label class="w-25" for="address">Address</label>:
-                            <input type="text" class="p-1 mt-2 ms-1 rounded-1" id="address"
-                                value="house no street,sue distict,city" readonly>
+                        <div class="d-flex align-items-center form-group">
+                            <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
+                            <input type="text" name="address" class="p-1 mt-2 ms-1 rounded-1" id="address"
+                                value="{{ $user->address }}" readonly>
                             <span class="invalid-feedback"></span>
                         </div>
 
                         <!-- phone-number link -->
-                        <div class="d-flex align-items-start">
-                            <label class="w-25" for="tel">Phone No.</label>:
+                        <div class="d-flex align-items-start form-group">
+                            <label class="w-25" for="tel">{{ trans_lang('phone_number') }}</label>:
                             <div class="ms-1 d-flex phone-no-container">
                                 <!-- <a href="tel:"> -->
-                                <input type="tel" class="p-1 mt-2 rounded-1" id="first_phone"
+                                <input type="tel" name="first_phone" class="p-1 mt-2 rounded-1" id="first_phone"
                                     value="{{ $user->first_phone }}" readonly>
 
                                 <!-- </a> -->
                                 <b class="cor align-content-end">, </b>
                                 <!-- <a href="tel:"> -->
-                                <input type="tel" class="p-1 mt-2 rounded-1" value="{{ $user->second_phone }}"
+                                <input type="tel" name="second_phone" class="p-1 mt-2 rounded-1" value="{{ $user->second_phone }}"
                                     id="second_phone" readonly>
                                 <span class="invalid-feedback"></span>
                                 <!-- </a> -->
@@ -322,8 +333,8 @@
 
                 <!-- button group -->
                 <div class="buttons d-flex gap-2 mt-3">
-                    <button class="common-btn">Upload product</button>
-                    <button class="common-btn">Check Order Status</button>
+                    <button class="common-btn">{{ trans_lang('upload_product') }}</button>
+                    <button class="common-btn">{{ trans_lang('check_order') }}</button>
                 </div>
 
             </div>
@@ -333,12 +344,101 @@
     </section>
     <!-- /Profile Section -->
 
+    <!-- History Table -->
+    <section>
+        <div class="container-custom">
+
+            <div class="history rounded-2">
+                <h2 class="title">History</h2>
+                <ol class="history-list">
+                    <li>
+                        <div class="history-item row">
+                            <div class="col-md-8 col-sm-12">
+                                <h3 class="shop-name">Shop Name</h3>
+                                <p class="payment">Payment method & used card last no.</p>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <span class="date">15/06/2024</span>
+                                <a class="download" download="">
+                                    <i class="fa-solid fa-download"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="history-item row">
+                            <div class="col-md-8 col-sm-12">
+                                <h3 class="shop-name">Shop Name</h3>
+                                <p class="payment">Payment method & used card last no.</p>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <span class="date">15/06/2024</span>
+                                <a class="download" download="">
+                                    <i class="fa-solid fa-download"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="history-item row">
+                            <div class="col-md-8 col-sm-12">
+                                <h3 class="shop-name">Shop Name</h3>
+                                <p class="payment">Payment method & used card last no.</p>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <span class="date">15/06/2024</span>
+                                <a class="download" download="">
+                                    <i class="fa-solid fa-download"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="history-item row">
+                            <div class="col-md-8 col-sm-12">
+                                <h3 class="shop-name">Shop Name</h3>
+                                <p class="payment">Payment method & used card last no.</p>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <span class="date">15/06/2024</span>
+                                <a class="download" download="">
+                                    <i class="fa-solid fa-download"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="history-item row">
+                            <div class="col-md-8 col-sm-12">
+                                <h3 class="shop-name">Shop Name</h3>
+                                <p class="payment">Payment method & used card last no.</p>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <span class="date">15/06/2024</span>
+                                <a class="download" download="">
+                                    <i class="fa-solid fa-download"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+        </div>
+
+    </section>
+    <!-- ./History Table -->
+
     <!-- Main Content => disable -->
     <div class="container-custom mt-2 d-none">
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb" class="py-4">
             <ol class="breadcrumb mb-0 bg-transparent">
-                <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="./home.html">{{ trans_lang('home') }}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Porfile</li>
             </ol>
         </nav>
@@ -377,14 +477,14 @@
 
                             <!-- user name -->
                             <div class="d-flex align-items-center mt-1">
-                                <label class="w-25" for="name">Name</label>:
+                                <label class="w-25" for="name">{{ trans_lang('name') }}</label>:
                                 <input type="text" class="p-1 ms-1 rounded-1" id="name"
                                     value="{{ $user->username }}" readonly>
                             </div>
 
                             <!-- email link -->
                             <div class="d-flex align-items-center link-contain mt-2">
-                                <label class="w-25" for="email">Email</label>:
+                                <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
                                 <a href="mailto:{{ $user->email }}" class="p-1">{{ $user->email }}</a>
                                 <input type="email" class="p-1 ms-1 rounded-1" id="email"
                                     value="{{ $user->email }}" readonly>
@@ -400,7 +500,7 @@
 
                             <!-- organization link -->
                             <div class="d-flex align-items-center mt-2">
-                                <label class="w-25" for="organize">Organize</label>:
+                                <label class="w-25" for="organize">{{ trans_lang('organize') }}</label>:
                                 <input type="text" class="p-1 ms-1 rounded-1" id="organize"
                                     value="Chat with name or Organization name" readonly>
                             </div>
@@ -416,7 +516,7 @@
                         <form action="#" class="col-12 col-lg-12 mt-4 profile-form">
 
                             <h2 class="fw-bold d-flex justify-content-between">
-                                Detail Personal Info
+                                {{ trans_lang('detail') }}
                                 <div class="d-flex justify-content-end gap-4">
                                     <button type="submit" class="save">
                                         <i class="fa-solid fa-save fs-5 text-danger"></i>
@@ -432,14 +532,14 @@
 
                             <!-- address -->
                             <div class="d-flex align-items-center mt-2">
-                                <label class="w-25" for="address">Address</label>:
-                                <input type="text" class="p-1 ms-1 rounded-1" id="address"
-                                    value="house no street,sue distict,city" readonly>
+                                <label class="w-25" for="address">{{ trans_lang('address') }}/label>:
+                                    <input type="text" class="p-1 ms-1 rounded-1" id="address"
+                                        value="house no street,sue distict,city" readonly>
                             </div>
 
                             <!-- phone-number link -->
                             <div class="d-flex align-items-start link-contain">
-                                <label class="w-25" for="tel">Phone No.</label>:
+                                <label class="w-25" for="tel">{{ trans_lang('phone_number') }}</label>:
                                 <div class="ms-1 d-flex phone-no-container">
                                     <a href="tel:{{ $user->first_phone }}" class="p-1">{{ $user->first_phone }}</a>
                                     <input type="tel" class="p-1 mt-2 rounded-1" id="tel"
@@ -456,8 +556,10 @@
 
                         <!-- button group -->
                         <div class="buttons d-flex gap-2 mt-3">
-                            <button class="btn btn-outline-primary px-4 w-50 py-1">Register as a seller</button>
-                            <button class="btn btn-outline-primary px-4 ms-2 w-50">Check order status</button>
+                            <button
+                                class="btn btn-outline-primary px-4 w-50 py-1">{{ trans_lang('request_shops') }}</button>
+                            <button
+                                class="btn btn-outline-primary px-4 ms-2 w-50">{{ trans_lang('check_order') }}</button>
                         </div>
 
                     </div>
@@ -467,100 +569,104 @@
 
                 <!-- Map Side -->
                 <div class="col-12 col-lg-5 mt-3 mt-lg-0">
-                    <h6 class="fw-bold">Selection Your Location</h6>
+                    <h6 class="fw-bold">{{ trans_lang('select_location') }}</h6>
                     <iframe class="w-100"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d250151.16276620553!2d104.72537013378734!3d11.579654014369655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109513dc76a6be3%3A0x9c010ee85ab525bb!2sPhnom%20Penh%2C%20Cambodia!5e0!3m2!1sen!2ssg!4v1736774811619!5m2!1sen!2ssg"
-                        height="330" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
-                <!-- /Map Side -->
+                <!-- /Map-->
 
             </div>
+            <!-- /Map Side -->
 
         </div>
+        </section>
         <!-- /Profile Section -->
 
         <!-- History Table -->
         <div class="history">
-            <h2 class="title">History</h2>
-            <ol class="history-list">
-                <li>
-                    <div class="history-item row">
-                        <div class="col-md-8 col-sm-12">
-                            <h3 class="shop-name">Shop Name</h3>
-                            <p class="payment">Payment method & used card last no.</p>
+            <h2 class="title">{{ trans_lang('history') }}/h2>
+                <ol class="history-list">
+                    <li>
+                        <div class="history-item row">
+                            <div class="col-md-8 col-sm-12">
+                                <h3 class="shop-name">{{ trans_lang('shop_name') }}</h3>
+                                <p class="payment">{{ trans_lang('payment_method_used_card_last_no') }}</p>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <span class="date">15/06/2024</span>
+                                <a class="download" download="">
+                                    <i class="fa-solid fa-download"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-md-4 col-sm-12">
-                            <span class="date">15/06/2024</span>
-                            <a class="download" download="">
-                                <i class="fa-solid fa-download"></i>
-                            </a>
-                        </div>
-                    </div>
-                </li>
+                    </li>
 
-                <li>
-                    <div class="history-item row">
-                        <div class="col-md-8 col-sm-12">
-                            <h3 class="shop-name">Shop Name</h3>
-                            <p class="payment">Payment method & used card last no.</p>
+                    <li>
+                        <div class="history-item row">
+                            <div class="col-md-8 col-sm-12">
+                                <h3 class="shop-name">{{ trans_lang('shop_name') }}</h3>
+                                <p class="payment">{{ trans_lang('payment_method_used_card_last_no') }}</p>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <span class="date">15/06/2024</span>
+                                <a class="download" download="">
+                                    <i class="fa-solid fa-download"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-md-4 col-sm-12">
-                            <span class="date">15/06/2024</span>
-                            <a class="download" download="">
-                                <i class="fa-solid fa-download"></i>
-                            </a>
-                        </div>
-                    </div>
-                </li>
+                    </li>
 
-                <li>
-                    <div class="history-item row">
-                        <div class="col-md-8 col-sm-12">
-                            <h3 class="shop-name">Shop Name</h3>
-                            <p class="payment">Payment method & used card last no.</p>
+                    <li>
+                        <div class="history-item row">
+                            <div class="col-md-8 col-sm-12">
+                                <h3 class="shop-name">{{ trans_lang('shop_name') }}</h3>
+                                <p class="payment">{{ trans_lang('payment_method_used_card_last_no') }}</p>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <span class="date">15/06/2024</span>
+                                <a class="download" download="">
+                                    <i class="fa-solid fa-download"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-md-4 col-sm-12">
-                            <span class="date">15/06/2024</span>
-                            <a class="download" download="">
-                                <i class="fa-solid fa-download"></i>
-                            </a>
-                        </div>
-                    </div>
-                </li>
+                    </li>
 
-                <li>
-                    <div class="history-item row">
-                        <div class="col-md-8 col-sm-12">
-                            <h3 class="shop-name">Shop Name</h3>
-                            <p class="payment">Payment method & used card last no.</p>
+                    <li>
+                        <div class="history-item row">
+                            <div class="col-md-8 col-sm-12">
+                                <h3 class="shop-name">{{ trans_lang('shop_name') }}</h3>
+                                <p class="payment">{{ trans_lang('payment_method_used_card_last_no') }}</p>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <span class="date">15/06/2024</span>
+                                <a class="download" download="">
+                                    <i class="fa-solid fa-download"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-md-4 col-sm-12">
-                            <span class="date">15/06/2024</span>
-                            <a class="download" download="">
-                                <i class="fa-solid fa-download"></i>
-                            </a>
-                        </div>
-                    </div>
-                </li>
+                    </li>
 
-                <li>
-                    <div class="history-item row">
-                        <div class="col-md-8 col-sm-12">
-                            <h3 class="shop-name">Shop Name</h3>
-                            <p class="payment">Payment method & used card last no.</p>
+                    <li>
+                        <div class="history-item row">
+                            <div class="col-md-8 col-sm-12">
+                                <h3 class="shop-name">{{ trans_lang('shop_name') }}</h3>
+                                <p class="payment">{{ trans_lang('payment_method_used_card_last_no') }}</p>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <span class="date">15/06/2024</span>
+                                <a class="download" download="">
+                                    <i class="fa-solid fa-download"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-md-4 col-sm-12">
-                            <span class="date">15/06/2024</span>
-                            <a class="download" download="">
-                                <i class="fa-solid fa-download"></i>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-            </ol>
+                    </li>
+                </ol>
         </div>
         <!-- ./History Table -->
+
+
     </div>
     <!-- ./Main Content -->
 
@@ -578,6 +684,194 @@
             }
         });
     </script>
+
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $("#shopRequestForm").submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: "{{ route('buyer.request_shop') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        console.log(response.status);
+                        if (response.status == true) {
+                            window.location.href = "{{ route('profile_user') }}";
+                            // console.log('success');
+                            // window.location.reload();
+                        } else {
+                            var errors = response.errors ?? {};
+
+                            console.log(errors);
+
+                            var fields = [
+                                'shopName',
+                                'transManagement',
+                                'transEmail',
+                                'phoneNumber',
+                                'avatar'
+                            ];
+
+                            fields.forEach(function(field) {
+                                if (errors[field]) {
+                                    $('#' + field)
+                                        .closest('.input-box')
+                                        .find('span.invalid-feedback')
+                                        .addClass('d-block')
+                                        .html(errors[field]);
+                                } else {
+                                    $('#' + field)
+                                        .closest('.input-box')
+                                        .find('span.invalid-feedback')
+                                        .removeClass('d-block')
+                                        .html('');
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
     <!-- /All Scripts -->
+
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+
+            function handleErrorMessages(fields, errors, message) {
+                $('#message').html(message ?? '');
+
+                fields.forEach(function(field) {
+                    var fieldGroup = $('#' + field).closest('.form-group');
+                    var errorSpan = fieldGroup.find('span.invalid-feedback');
+
+                    if (errors[field]) {
+                        errorSpan.addClass('d-block').html(errors[field]);
+                    } else {
+                        errorSpan.removeClass('d-block').html('');
+                    }
+                });
+            }
+
+            function sendUpdateBasicData(formData,cur) {
+                $.ajax({
+                    url: "{{ route('update_basic_profile') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        console.log(response.status);
+                        if (response.status) {
+
+                            console.log(response.message);
+
+                            unactiveForm(cur);
+                        } else {
+                            var fields = ['username', 'email'];
+                            handleErrorMessages(fields, response.errors, response.message);
+                        }
+                    }
+                });
+            }
+
+
+
+            function sendUpdateDetailData(formData,cur) {
+                $.ajax({
+                    url: "{{ route('update_contact_details') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        console.log(response.status);
+                        if (response.status) {
+
+                            console.log(response.message);
+
+                            unactiveForm(cur);
+
+                        } else {
+                            var fields = ['address', 'first_phone','second_phone'];
+                            handleErrorMessages(fields, response.errors, response.message);
+                        }
+                    }
+                });
+            }
+
+            $("#update_basic_profile").submit(function(e) {
+                e.preventDefault();
+
+                var formData = new FormData(this);
+
+                var cur = $(this);
+
+                sendUpdateBasicData(formData,cur);
+            });
+
+            $("#update_contact_details").submit(function(e) {
+                e.preventDefault();
+
+                var formData = new FormData(this);
+
+                var cur = $(this);
+
+                sendUpdateDetailData(formData,cur);
+            });
+
+            // Function to handle login/logout for OAuth providers
+            function handleOAuthLogin(provider) {
+                if ($('#' + provider + '_login').prop('checked')) {
+                    window.open("/login/" + provider , "_blank");
+                } else {
+                    remove_oauth(provider);
+                }
+            }
+
+            // Function to remove OAuth provider association
+            function remove_oauth(provider) {
+                $.ajax({
+                    url: `/oauth/remove/${provider}`,
+                    method: 'POST',
+                    data: { provider: provider },  // Pass the provider info in the data
+                    success: function(response) {
+                        console.log(response.message);
+                    },
+                    error: function(xhr) {
+                        console.error(xhr);
+                    }
+                });
+            }
+
+            // Attach click event handlers to each OAuth provider login button
+            $('#line_login').click(function() {
+                handleOAuthLogin('line');
+            });
+
+            $('#facebook_login').click(function() {
+                handleOAuthLogin('facebook');
+            });
+
+            $('#google_login').click(function() {
+                handleOAuthLogin('google');
+            });
+
+        });
+    </script>
 
 @endsection

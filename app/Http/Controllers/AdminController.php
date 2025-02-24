@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
 use App\Models\FAQs;
-use App\Models\Product;
-use App\Models\Users;
-use App\Models\Setting;
 use App\Models\Shop;
+use App\Models\Users;
+use App\Models\Contact;
+use App\Models\Product;
+use App\Models\Setting;
 use App\Models\wishList;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
     public function home(Request $request){
-        // dd(auth()->user)
         $top_products = Product::select('products.*','users.username')
                 ->join('users','products.user_id','=','users.id')
                 ->inRandomOrder()->take(5)->get();
@@ -133,7 +132,7 @@ class AdminController extends Controller
 
     //user request
     public function contact(){
-        $contacts = Contact::all();
+        $contacts = Contact::paginate(10);
         return view('admin.contact-request',compact('contacts'));
     }
     public function contactDetail($contactID){
@@ -143,8 +142,14 @@ class AdminController extends Controller
     }
 
     public function wishList(){
-        $wishLists = wishList::all();
+        $wishLists = wishList::paginate(10);
         return view('admin.wishList-request',compact('wishLists'));
+    }
+
+    public function wishListDetail($wishListID){
+        $wishList = wishList::findOrFail($wishListID);
+        // dd($contact);
+        return view('admin.wishList-detail',compact('wishList'));
     }
 
     //faq
@@ -198,21 +203,21 @@ class AdminController extends Controller
         $approvedShops = Shop::select('shops.*', 'users.username')
         ->join('users', 'shops.user_id', '=', 'users.id')
         ->where('status', 'approved')
-        ->get();
+        ->paginate(10);
         return view('admin.approved-shops',compact('approvedShops'));
     }
     public function pendingShopList(){
            $pendingShops = Shop::select('shops.*', 'users.username')
                     ->join('users', 'shops.user_id', '=', 'users.id')
                     ->where('status', 'pending')
-                    ->get();
+                    ->paginate(10);
         return view('admin.pending-shops', compact('pendingShops'));
     }
     public function rejectedShopList(){
            $rejectedShops = Shop::select('shops.*', 'users.username')
                     ->join('users', 'shops.user_id', '=', 'users.id')
                     ->where('status', 'rejected')
-                    ->get();
+                    ->paginate(10);
         return view('admin.rejected-shops', compact('rejectedShops'));
     }
 
@@ -223,7 +228,13 @@ class AdminController extends Controller
         $shop->status = $request->status;
         $shop->save();
 
-        return response()->json(['success' => true, 'message' => 'Shop status updated successfully']);
+        $user = Users::select('users.*')
+                ->join('shops','users.id','=','shops.user_id')
+                ->where('shops.id',$request->shop_id)
+                ->first();
+
+        $user->assignRole(2);
+        return response()->json(['status' => true, 'message' => 'Shop status updated successfully']);
     }
 
     public function shopDetail($shopID){
@@ -239,13 +250,13 @@ class AdminController extends Controller
     {
         $shop = Shop::find($request->shop_id);
         $shop->delete();
-        
+
         return response()->json(['success' => true, 'message' => 'Shop deleted successfully.']);
     }
 
 
     public function logout(){
-        Auth::logout(); 
+        Auth::logout();
         return redirect()->route('admin.login');
     }
 

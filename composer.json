@@ -34,7 +34,8 @@
         "files": [
             "app/Helpers/SettingHelper.php",
             "app/Helpers/auth_helper.php",
-            "app/Helpers/permission_helper.php"
+            "app/Helpers/permission_helper.php",
+            "app/Helpers/line_api_helper.php"
         ]
 
     },

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Users;
 use App\Models\OAuths;
+use App\Helpers\AuthHelper;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -24,14 +25,14 @@ class OAuthController extends Controller
         try {
             // Get user from provider
             $providerUser = Socialite::driver($provider)->user();
-            logger(print_r($providerUser, true));
-            
+            // logger(print_r($providerUser, true));
+
             // Encrypt tokens
             $token = Hash::make($providerUser->token);
             $refreshToken = Hash::make($providerUser->refresh_token);
 
             // Log the user information if needed
-            Log::info(ucfirst($provider) . ' User:', (array) $providerUser);
+            // Log::info(ucfirst($provider) . ' User:', (array) $providerUser);
 
             // Get the correct ID field for this provider
             $providerIdField = $this->providerMap[$provider];
@@ -42,10 +43,11 @@ class OAuthController extends Controller
             // If no user found by provider ID, check by email
             if (!$user && $providerUser->getEmail()) {
                 $user = Users::where('email', $providerUser->getEmail())->first();
-                
+
                 if ($user) {
                     // Update the provider ID for the existing user
                     $user->update([
+                        $user->usernmae => $providerUser->getName(),
                         $providerIdField => $providerUser->getId(),
                         'avatar' => $providerUser->getAvatar() ?? $user->avatar // Keep existing avatar if new one is null
                     ]);
@@ -63,6 +65,9 @@ class OAuthController extends Controller
             // Store session data
             $this->storeSessionData($provider, $token, $refreshToken, $user->id);
 
+            if($provider == 'line'){
+                send_push_notification($user->id, 'Welcome! You have successfully logged in with LINE.');
+            }
             return redirect()->route('home');
         } catch (\Exception $e) {
             Log::error("Error in handle{$provider}Callback: " . $e->getMessage(), ['exception' => $e]);
@@ -129,5 +134,17 @@ class OAuthController extends Controller
     public function handleFacebookCallback(Request $request)
     {
         return $this->handleCallback($request, 'facebook');
+    }
+
+    public function removeProvider($provider)
+    {
+        $user = AuthHelper::user();
+
+        $user->oAuths()->where('provider',$provider)->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => `{$provider} OAuth removed successfully`
+        ]);
     }
 }

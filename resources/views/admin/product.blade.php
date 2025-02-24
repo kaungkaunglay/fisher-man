@@ -16,18 +16,18 @@
 <div class="main-content-inner">
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>{{ isset($product) ? 'Edit Product' : 'Add Product' }}</h3>
+            <h3>{{ isset($product) ? '商品を編集' : '商品を追加' }}</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li><a href="index.html">
-                        <div class="text-tiny">Dashboard</div>
+                        <div class="text-tiny">{{trans_lang('home')}}</div>
                     </a></li>
                 <li><i class="icon-chevron-right"></i></li>
                 <li><a href="#">
-                        <div class="text-tiny">Ecommerce</div>
+                        <div class="text-tiny">{{trans_lang('ecommerce')}}</div>
                     </a></li>
                 <li><i class="icon-chevron-right"></i></li>
                 <li>
-                    <div class="text-tiny">{{ isset($product) ? 'Edit Product' : 'Add Product' }}</div>
+                    <div class="text-tiny">{{ isset($product) ? '商品を編集' : '商品を追加' }}</div>
                 </li>
             </ul>
         </div>
@@ -47,21 +47,18 @@
             @csrf
             @if(isset($product)) @method('PUT') @endif
 
-
-
-
             <div class="wg-box">
                 <fieldset class="name">
-                    <div class="body-title mb-10">Product Name <span class="tf-color-1">*</span></div>
-                    <input class="mb-10" type="text" placeholder="Enter product name" name="name" value="{{ old('name', $product->name ?? '') }}">
-                    <div class="text-tiny">Do not exceed 255 characters when entering the product name.</div>
+                    <div class="body-title mb-10">{{trans_lang('product')}}{{trans_lang('name')}}<span class="tf-color-1">*</span></div>
+                    <input class="mb-10" type="text" placeholder="商品名を入力してください" name="name" value="{{ old('name', $product->name ?? '') }}">
+                    <div class="text-tiny">{{trans_lang('limit')}}</div>
                 </fieldset>
 
                 <fieldset class="category">
-                    <div class="body-title mb-10">Category <span class="tf-color-1">*</span></div>
+                    <div class="body-title mb-10">{{trans_lang('category')}} <span class="tf-color-1">*</span></div>
                     <div class="select">
                         <select name="sub_category_id">
-                            <option value="">Choose category</option>
+                            <option value="">{{trans_lang('select')}}{{trans_lang('category')}}</option>
                             @foreach($subCategories as $subCategory)
                             <option value="{{ $subCategory->id }}" {{ old('sub_category_id', $product->sub_category_id ?? '') == $subCategory->id ? 'selected' : '' }}>
                                 {{ $subCategory->name }}
@@ -72,40 +69,40 @@
                 </fieldset>
 
                 <fieldset class="product_price">
-                    <div class="body-title mb-10">Price <span class="tf-color-1">*</span></div>
+                    <div class="body-title mb-10">{{trans_lang('price')}} <span class="tf-color-1">*</span></div>
                     <input class="mb-10" type="number" name="product_price" value="{{ old('product_price', $product->product_price ?? '') }}">
                 </fieldset>
 
                 <fieldset class="product_price">
-                    <div class="body-title mb-10">Discount</div>
+                    <div class="body-title mb-10">{{trans_lang('special_offer')}}</div>
                     <input class="mb-10" type="number" name="discount" value="{{ old('discount', $product->discount ?? '') }}">
                 </fieldset>
 
                 <fieldset class="stock">
-                    <div class="body-title mb-10">Stock <span class="tf-color-1">*</span></div>
+                    <div class="body-title mb-10">{{trans_lang('quanity')}} <span class="tf-color-1">*</span></div>
                     <input class="mb-10" type="number" name="stock" value="{{ old('stock', $product->stock ?? '') }}">
                 </fieldset>
 
                 <fieldset class="weight">
-                    <div class="body-title mb-10">Weight (kg) <span class="tf-color-1">*</span></div>
+                    <div class="body-title mb-10">{{trans_lang('weight')}} (kg) <span class="tf-color-1">*</span></div>
                     <input class="mb-10" type="number" name="weight" step="0.01" value="{{ old('weight', $product->weight ?? '') }}">
                 </fieldset>
 
                 <fieldset class="size">
-                    <div class="body-title mb-10">Size <span class="tf-color-1">*</span></div>
+                    <div class="body-title mb-10">{{trans_lang('length')}} (cm)<span class="tf-color-1">*</span></div>
                     <input class="mb-10" type="number" name="size" step="0.01" value="{{ old('size', $product->size ?? '') }}">
                 </fieldset>
 
                 <fieldset class="description">
-                    <div class="body-title mb-10">Description</div>
-                    <textarea class="mb-10" name="description" placeholder="Description">{{ old('description', $product->description ?? '') }}</textarea>
-                    <div class="text-tiny">Do not exceed 255 characters when entering the product description.</div>
+                    <div class="body-title mb-10">{{trans_lang('description')}}</div>
+                    <textarea class="mb-10" name="description" placeholder="説明">{{ old('description', $product->description ?? '') }}</textarea>
+                    <div class="text-tiny">{{trans_lang('limit')}}</div>
                 </fieldset>
             </div>
 
             <div class="wg-box">
                 <fieldset>
-                    <div class="body-title mb-10">Upload Image</div>
+                    <div class="body-title mb-10">{{trans_lang('upload_img')}}</div>
                     <div class="upload-image mb-16">
                         <div class="item">
                             @if(isset($product) && $product->product_image)
@@ -117,20 +114,20 @@
                         <div class="item up-load">
                             <label class="uploadfile" for="product_image">
                                 <span class="icon"><i class="icon-upload-cloud"></i></span>
-                                <span class="text-tiny">Drop your image here or select <span class="tf-color">click to browse</span></span>
+                                <span class="text-tiny">{{trans_lang('drop_image')}} <span class="tf-color">{{trans_lang('click_browse')}}</span></span>
                                 <input type="file" id="product_image" name="product_image" accept="image/*">
                             </label>
                             <p id="file-name"></p> <!-- To show the file name -->
                         </div>
                     </div>
-                    <div class="body-text">Add a product image. The quality and background standards should be maintained.</div>
+                    <div class="body-text">{{trans_lang('add_product_image')}}</div>
                 </fieldset>
                 <fieldset class="date">
-                    <div class="body-title mb-10">Day of Caught <span class="tf-color-1">*</span></div>
+                    <div class="body-title mb-10">{{trans_lang('day_of_caught')}} <span class="tf-color-1">*</span></div>
                     <input class="mb-10" type="date" name="day_of_caught" step="0.01" value="{{ old('day_of_caught', $product->day_of_caught ?? '') }}">
                 </fieldset>
                 <fieldset class="date">
-                    <div class="body-title mb-10">Expiration Date <span class="tf-color-1">*</span></div>
+                    <div class="body-title mb-10">{{trans_lang('expire_date')}}<span class="tf-color-1">*</span></div>
                     <input class="mb-10" type="date" name="expiration_date" step="0.01" value="{{ old('expiration_date', $product->expiration_date ?? '') }}">
                 </fieldset>
             </div>
@@ -138,8 +135,8 @@
             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
             <div class="cols gap10">
-                <button class="tf-button w-full" type="submit">{{ isset($product) ? 'Update Product' : 'Add Product' }}</button>
-                <a href="{{ route('admin.products') }}" class="tf-button style-2 w-full">Cancel</a>
+                <button class="tf-button w-full" type="submit">{{ isset($product) ? '商品を更新' : '商品を追加' }}</button>
+                <a href="{{ route('admin.products') }}" class="tf-button style-2 w-full">{{trans_lang('cancle')}}</a>
             </div>
         </form>
     </div>

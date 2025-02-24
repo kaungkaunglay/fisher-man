@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/style.css') }}">
     <!-- Font -->
     <link rel="stylesheet" href="{{ asset('assets/admin/font/fonts.css') }}">
-    
+
     <!-- Icon -->
     <link rel="stylesheet" href="{{ asset('assets/admin/icon/style.css') }}">
 @endsection
@@ -18,22 +18,22 @@
         <!-- main-content-wrap -->
         <div class="main-content-wrap">
             <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-                <h3>Wish List Request</h3>
+                <h3>{{trans_lang('wishlist')}}{{trans_lang('request')}}</h3>
                 <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                     <li>
-                        <a href="index.html"><div class="text-tiny">Dashboard</div></a>
+                        <a href="index.html"><div class="text-tiny">{{trans_lang('home')}}</div></a>
                     </li>
                     <li>
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <a href="#"><div class="text-tiny">User Request</div></a>
+                        <a href="#"><div class="text-tiny">{{trans_lang('request')}}</div></a>
                     </li>
                     <li>
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <div class="text-tiny">Wish List Request</div>
+                        <div class="text-tiny">{{trans_lang('wishlist')}}{{trans_lang('request')}}</div>
                     </li>
                 </ul>
             </div>
@@ -43,28 +43,25 @@
                     <div class="wg-filter flex-grow">
                         <form class="form-search">
                             <fieldset class="name">
-                                <input type="text" placeholder="Search here..." class="" name="name" tabindex="2" value="" aria-required="true" required="">
+                                <input type="text" placeholder="ここで検索。。。" class="" name="name" tabindex="2" value="" aria-required="true" required="">
                             </fieldset>
                             <div class="button-submit">
                                 <button class="" type="submit"><i class="icon-search"></i></button>
                             </div>
                         </form>
                     </div>
-                    
+
                 </div>
                 <div class="wg-table table-all-user">
                     <ul class="table-title flex gap20 mb-14">
                         <li>
-                            <div class="body-title">Name</div>
-                        </li>    
-                        <li>
-                            <div class="body-title">Email</div>
+                            <div class="body-title">{{trans_lang('name')}}</div>
                         </li>
                         <li>
-                            <div class="body-title">Description</div>
+                            <div class="body-title">{{trans_lang('email')}}</div>
                         </li>
                         <li>
-                            <div class="body-title">Action</div>
+                            <div class="body-title">{{trans_lang('action')}}</div>
                         </li>
                     </ul>
                   @foreach($wishLists as $wishList)
@@ -76,16 +73,16 @@
                         <div class="flex items-center justify-between gap20 flex-grow">
                             <div class="name">
                                 <a href="#" class="body-title-2">{{$wishList->name}}</a>
-                                
+
                             </div>
                             <div class="body-text">{{$wishList->email}}</div>
-                            <div class="body-text">{{$wishList->description}}</div>
                             <div class="list-icon-function">
                                 <div class="item eye">
-                                    <i class="icon-eye"></i>
+                                    <a href="{{route('admin.wishList.detail',$wishList->id)}}"><i class="icon-eye"></i></a>
+
                                 </div>
-                              
-                              
+
+
                             </div>
                         </div>
                     </li>
@@ -93,26 +90,36 @@
                   @endforeach
                 </div>
                 <div class="divider"></div>
-                <div class="flex items-center justify-between flex-wrap gap10">
-                    <div class="text-tiny">Showing 10 entries</div>
-                    <ul class="wg-pagination">
-                        <li>
-                            <a href="#"><i class="icon-chevron-left"></i></a>
-                        </li>
-                        <li>
-                            <a href="#">1</a>
-                        </li>
-                        <li class="active">
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon-chevron-right"></i></a>
-                        </li>
-                    </ul>
-                </div>
+                 {{-- pagination --}}
+                 @if ($wishLists->hasPages())
+                 <div class="flex items-center justify-between flex-wrap gap10">
+                     <!-- <div class="text-tiny">
+                         Showing {{ $wishLists->firstItem() }} to {{ $wishLists->lastItem() }} of {{ $wishLists->total() }} entries
+                     </div> -->
+                     <ul class="wg-pagination">
+                         <!-- Previous Page -->
+                         <li class="{{ $wishLists->onFirstPage() ? 'disabled' : '' }}">
+                             <a href="{{ $wishLists->previousPageUrl() }}">
+                                 <i class="icon-chevron-left"></i>
+                             </a>
+                         </li>
+
+                         <!-- Page Numbers -->
+                         @foreach ($wishLists->links()->elements[0] as $page => $url)
+                             <li class="{{ $page == $wishLists->currentPage() ? 'active' : '' }}">
+                                 <a href="{{ $url }}">{{ $page }}</a>
+                             </li>
+                         @endforeach
+
+                         <!-- Next Page -->
+                         <li class="{{ $wishLists->hasMorePages() ? '' : 'disabled' }}">
+                             <a href="{{ $wishLists->nextPageUrl() }}">
+                                 <i class="icon-chevron-right"></i>
+                             </a>
+                         </li>
+                     </ul>
+                 </div>
+                 @endif
             </div>
             <!-- /all-user -->
         </div>

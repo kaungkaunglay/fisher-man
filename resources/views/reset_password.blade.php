@@ -29,9 +29,6 @@
           <span class="invalid-feedback"></span>
           <button class="btn border-0 password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
         </div>
-        <div class="input-box d-flex flex-column">
-          <span class="mb-2 pt-2 text-danger" id="message"></span>
-        </div>
       </div>
 
       <div class="d-flex flex-column align-items-center">
@@ -71,7 +68,6 @@
               $('#message').html(response.message);
             }
             var errors = response.errors ?? {};
-
             var fields = [
               'password',
               'confirm-password'
@@ -79,11 +75,12 @@
 
             fields.forEach(function (field) {
               if (errors[field]) {
+                var errorMessages = errors[field].join('<br>');
                 $('#' + field)
                   .closest('.input-box')
                   .find('span.invalid-feedback')
                   .addClass('d-block')
-                  .html(errors[field]);
+                  .html(errorMessages);
               } else {
                 $('#' + field)
                   .closest('.input-box')

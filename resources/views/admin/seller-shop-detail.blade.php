@@ -9,7 +9,7 @@
 
     <!-- Font -->
     <link rel="stylesheet" href="{{ asset('assets/admin/font/fonts.css') }}">
-    
+
     <!-- Icon -->
     <link rel="stylesheet" href="{{ asset('assets/admin/icon/style.css') }}">
 @endsection
@@ -46,12 +46,12 @@
                             <label class="fs-4 fw-bold mb-8">Owner Name:</label>
                             <p>{{ $shop->username }}</p>
                         </div>
-                
+
                         <div class="mb-20">
                             <label class="fs-4 fw-bold mb-8">Shop Name:</label>
                             <p>{{ $shop->shop_name }}</p>
                         </div>
-                
+
                         <div class="mb-20">
                             <label class="fs-4 fw-bold mb-8">Trans_management:</label>
                             <p>{{ $shop->trans_management }}</p>
@@ -60,12 +60,12 @@
                             <label class="fs-4 fw-bold mb-8">Email:</label>
                             <p>{{ $shop->email }}</p>
                         </div>
-                
+
                         <div class="mb-20">
                             <label class="fs-4 fw-bold mb-8">Phone:</label>
                             <p>{{ $shop->phone_number }}</p>
                         </div>
-                
+
                         <div class="mb-3">
                             <label class="fs-4 fw-bold mb-8">Submitted At:</label>
                             <p>{{ $shop->created_at->format('Y-m-d') }}</p>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="col-lg-6">
                             <div class="image rounded">
-                                <img src="{{asset($shop->avatar)}}" class="rounded-2 avatar" alt="">
+                                <img src="{{asset('assets/images/avatars/'.$shop->avatar)}}" class="rounded-2 avatar" alt="">
                         </div>
                     </div>
                 </div>

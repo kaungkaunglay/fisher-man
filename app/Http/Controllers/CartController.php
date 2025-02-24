@@ -148,6 +148,39 @@ class CartController extends Controller
     //     }
     // }
 
+    public function addToCartWithLogin(Request $request)
+    {
+        $products = $request->input('products');
+        if (empty($products)) {
+            return response()->json([
+                'status' => false,
+                'message' => "You doesn't choice any product"
+            ]);
+        }
+
+        $user = AuthHelper::user();
+        if(!$user){
+            return response()->json([
+                'status' => false,
+                'message' => "You need to login to process"
+            ]);
+        }
+
+        // clean before user cart
+        $user->carts()->delete();
+
+        // add new products to user cart
+        $this->addToUserCart($products, $user);
+
+        session()->forget('cart');
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Products added to cart'
+        ]);
+
+    }
+
     public function delete($product_id)
     {
 

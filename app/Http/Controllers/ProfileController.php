@@ -35,14 +35,12 @@ class ProfileController extends Controller
             'email.required' => 'The email field is required.',
             'email.email' => 'The email must be a valid email address.',
             'email.unique' => 'The email has already been taken.',
-            'first_org_name' => 'The organize field is required.',
         ];
 
         // Validate incoming request data
         $validator = Validator::make($request->all(), [
             'username' => 'required|min:4|max:20|unique:users,username,' . AuthHelper::id(),
-            'email' => 'required|email|unique:users,email' . AuthHelper::id(),
-            'first_org_name' => 'min:4|max:20',
+            'email' => 'required|email|unique:users,email,' . AuthHelper::id(),
         ], $messages);
 
         // Check if validation fails
@@ -59,7 +57,9 @@ class ProfileController extends Controller
         // Update user profile
         $user->username = $request->username;
         $user->email = $request->email;
-        $user->first_org_name = $request->first_org_name;
+        if($request->has('first_org_name')){
+            $user->first_org_name = $request->first_org_name;
+        }
         $user->save();
 
         // Return success response
@@ -82,13 +82,13 @@ class ProfileController extends Controller
 
         // Validate incoming request data for address and phone numbers
         $validator = Validator::make($request->all(), [
-            'address' => 'require|string|max:255',
-            'first_phone' => [
-                'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'
-            ],
-            'second_phone' => [
-                'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'
-            ],
+            'address' => 'required|string|max:255',
+            // 'first_phone' => [
+            //     'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'
+            // ],
+            // 'second_phone' => [
+            //     'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'
+            // ],
         ], $messages);
 
         // Check if validation fails
@@ -113,5 +113,6 @@ class ProfileController extends Controller
             'status' => true,
             'message' => 'Address and phone numbers updated successfully.',
         ]);
+
     }
 }

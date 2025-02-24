@@ -11,7 +11,7 @@ class TranslationHelper{
     {
         $lang = app()->getLocale() ?? 'en';
         $translation = Translations::where('key', $key)->first();
-
+        
         return $translation ? $translation->$lang : $key;
     }
 }

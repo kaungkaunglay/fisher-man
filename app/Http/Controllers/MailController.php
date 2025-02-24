@@ -22,7 +22,7 @@ class MailController extends Controller
         }else{
             $user = Users::where('email', $request->email)->first();
             if(!$user){
-                return response()->json(['status' => false, 'message' => 'Email is not found']);
+                return response()->json(['status' => false, 'message' => 'メールが見つかりません']);
             }else{ 
                 $forgot_password = new forgot_password(); 
                 $forgot_password->user_id = $user->id;

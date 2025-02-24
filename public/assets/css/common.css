@@ -11,6 +11,9 @@
   box-sizing: border-box;
 }
 
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance: none;margin: 0;}
+input[type=number] {-moz-appearance: textfield;}
+
 @font-face {
   font-family: 'BlinkMacSystemFont' !important;
   src: url('../fonts/BlinkMacSystemFont/blinkmacsystemfont-regular.ttf') format('truetype') !important;
@@ -76,6 +79,11 @@ main {
   font-size: 18px !important;
   font-weight: bold;
   color: #005B96 !important;
+}
+
+.original-price{
+  text-decoration: line-through;
+  color: #ff000062;
 }
 
 .txt {
@@ -148,32 +156,49 @@ main {
   margin-bottom: 10px !important;
 }
 
-.common-btn {
+.item-card:not(.row-list .item-card) .description {
+  display: none;
+}
+
+.common-btn,
+.common-btn2 {
   background: transparent;
   border: 1px solid #005B96;
   color: #005B96;
-  /* font-family: Roboto; */
   font-size: 18px;
   font-weight: bold;
-  color: #005B96;
   padding: 10px 72px;
   border-radius: 10px;
   transition: 0.3s;
   text-align: center;
 }
 
-
+.common-btn2 {
+  width: 50%;
+  padding: 0;
+}
 
 .common-btn:hover,
-.cart-btn {
-    background: #005B96;
+.common-btn2:hover,
+.white-list-btn.active {
+    background-color: #005B96;
     color: #fff;
 }
 
-.cart-btn:hover{
-    background: #fff;
-    color: #005B96;
+.-solid {
+  background-color: #005B96;
+  color: #fff;
 }
+
+.-solid:hover {
+  background-color: #005B96;
+  color: #fff;
+}
+
+.common-btn2:active {
+  background-color: color-mix(in srgb, #005B96 50%, #000 50%);
+}
+
 
 .icon img {
   width: 46px;
@@ -259,6 +284,17 @@ main {
 /* product card animation */
 .card-border-animate {
   transition: .5s;
+}
+
+.item-card .title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.row-list .item-card .title {
+  max-width: 80%;
+  margin-right: 10px;
 }
 
 
@@ -501,6 +537,7 @@ li {
 .dot.active {
   background-color: #333;
 }
+
 
 #view-list {
   /* display: grid;
@@ -773,6 +810,15 @@ li {
   justify-content: space-between;
 }
 
+.row-list .card-btn {
+  justify-content: end;
+}
+
+.row-list .card-btn .common-btn,
+.row-list .card-btn .common-btn2 {
+  max-width: 200px;
+}
+
 .product-btn {
   width: 100%;
   max-width: 207px;
@@ -790,7 +836,6 @@ li {
   color: #FFFFFF;
   background-color: #005B96;
 }
-
 
 .row-list .title-category {
   display: flex;
@@ -908,6 +953,4 @@ li {
   .card-list {
     grid-template-columns: 1fr !important;
   }
-
-
 }

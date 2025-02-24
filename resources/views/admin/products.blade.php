@@ -18,11 +18,11 @@
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>Product List</h3>
+            <h3>{{trans_lang('all_products')}}</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
                     <a href="index.html">
-                        <div class="text-tiny">Dashboard</div>
+                        <div class="text-tiny">{{trans_lang('home')}}</div>
                     </a>
                 </li>
                 <li>
@@ -30,14 +30,14 @@
                 </li>
                 <li>
                     <a href="#">
-                        <div class="text-tiny">Ecommerce</div>
+                        <div class="text-tiny">{{trans_lang('ecommerce')}}</div>
                     </a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">Product List</div>
+                    <div class="text-tiny">{{trans_lang('all_products')}}</div>
                 </li>
             </ul>
         </div>
@@ -49,7 +49,7 @@
             </div> -->
             <div class="flex items-center justify-between gap10 flex-wrap">
                 <div class="wg-filter flex-grow">
-                    <div class="show">
+                    <!-- <div class="show">
                         <div class="text-tiny">Showing</div>
                         <div class="select">
                             <select class="">
@@ -59,43 +59,45 @@
                             </select>
                         </div>
                         <div class="text-tiny">entries</div>
-                    </div>
+                    </div> -->
                     <form class="form-search">
                         <fieldset class="name">
-                            <input type="text" placeholder="Search here..." class="" name="name" tabindex="2" value="" aria-required="true" required="">
+                            <input type="text" placeholder="ここで検索。。。" class="" name="name" tabindex="2" value="" aria-required="true" required="">
                         </fieldset>
                         <div class="button-submit">
                             <button class="" type="submit"><i class="icon-search"></i></button>
                         </div>
                     </form>
                 </div>
-                <a class="tf-button style-1 w208" href="/admin/products/create"><i class="icon-plus"></i>Add new</a>
+                @if (check_role(2))
+                <a class="tf-button style-1 w208" href="/admin/products/create"><i class="icon-plus"></i>{{trans_lang('add_product')}}</a>
+                @endif
             </div>
             <div class="wg-table table-product-list">
                 <ul class="table-title flex gap20 mb-14">
                     <li>
-                        <div class="body-title">Product</div>
+                        <div class="body-title">{{trans_lang('product')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Product ID</div>
+                        <div class="body-title">{{trans_lang('product')}}ID</div>
                     </li>
                     <li>
-                        <div class="body-title">Price</div>
+                        <div class="body-title">{{trans_lang('price')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Quantity</div>
+                        <div class="body-title">{{trans_lang('quanity')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Sale</div>
+                        <div class="body-title">{{trans_lang('sale')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Stock</div>
+                        <div class="body-title">{{trans_lang('quanity')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Uploaded date</div>
+                        <div class="body-title">{{trans_lang('uploaded_date')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Action</div>
+                        <div class="body-title">{{trans_lang('action')}}</div>
                     </li>
                 </ul>
 
@@ -150,7 +152,7 @@
 
         <div class="divider"></div>
         <div class="flex items-center justify-between flex-wrap gap10">
-            <div class="text-tiny">Showing 10 entries</div>
+            <div class="text-tiny">{{trans_lang('showing_10_entries')}}</div>
             <ul class="wg-pagination">
                 {{-- Previous Page Link --}}
                 @if ($products->onFirstPage())

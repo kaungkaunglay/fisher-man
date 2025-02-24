@@ -8,8 +8,8 @@
     <nav aria-label="breadcrumb" class="py-4">
         <div class="container">
             <ol class="breadcrumb mb-0 bg-transparent">
-                <li class="breadcrumb-item"><a href="./home.html">ホーム</a></li>
-                <li class="breadcrumb-item active" aria-current="page">ウオッチリスト</li>
+                <li class="breadcrumb-item"><a href="/">{{trans_lang('home')}}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">タグ付けされた商品</li>
             </ol>
         </div>
     </nav>
@@ -24,11 +24,11 @@
                 <thead class="">
                     <tr>
                         <th scope="col">No.</th>
-                        <th scope="col">画像</th>
-                        <th scope="col">商品名</th>
-                        <th scope="col">価格</th>
-                        <th scope="col">削除</th>
-                        <th scope="col">選択</th>
+                        <th scope="col">{{trans_lang('image')}}</th>
+                        <th scope="col">{{trans_lang('shipping_address')}}</th>
+                        <th scope="col">{{trans_lang('price')}}</th>
+                        <th scope="col">{{trans_lang('remove')}}</th>
+                        <th scope="col">{{trans_lang('select')}}</th>
                     </tr>
                 </thead>
                 <tbody class="dsk-white-list-body">
@@ -56,7 +56,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="5">合計</td>
+                        <td colspan="5">{{trans_lang('total')}}</td>
                         <td>
                             <span id="total">{{ $total }}</span>
                         </td>
@@ -65,8 +65,8 @@
             </table>
 
             <div class="text-end d-flex gap-3 justify-content-end">
-                <a href="/" class="common-btn">Shop more</a>
-                <a href="javascript:void(0);" class="common-btn" id="dsk-add-to-cart-btn">Add to Cart</a>
+                <a href="/" class="common-btn">{{trans_lang('shop_more')}}</a>
+                <a href="javascript:void(0);" class="common-btn" id="dsk-add-to-cart-btn">{{trans_lang('add_cart')}}</a>
             </div>
         </div>
         <!-- ./Desktop Style -->
@@ -104,8 +104,8 @@
             </div>
 
             <div class="text-end d-flex flex-column gap-3 mt-3">
-                <a href="/" class="common-btn">Shop more</a>
-                <a href="javascript:void(0);" class="common-btn" id="mb-add-to-cart-btn">Add to Card</a>
+                <a href="/" class="common-btn">{{trans_lang('shop_more')}}</a>
+                <a href="javascript:void(0);" class="common-btn" id="mb-add-to-cart-btn">{{trans_lang('add_cart')}}</a>
             </div>
         </div>
         <!-- ./Mobile Style -->
@@ -125,11 +125,11 @@
             function checkIfEmpty() {
                 var dskbody = $('.dsk-white-list-body');
                 if (dskbody.find('tr').length === 0) {
-                    dskbody.html('<tr><td colspan="6" class="text-center">ウオッチリストに商品はありません</td></tr>');
+                    dskbody.html(`<tr><td colspan="6" class="text-center">{{trans_lang('no_product')}}</td></tr>`);
                 }
                 var mbbody = $('.mb-white-list-body');
                 if (mbbody.find('.card').length === 0) {
-                    mbbody.find('.no-cart').html('<div class="text-center my-3">ウオッチリストに商品はありません</div>')
+                    mbbody.find('.no-cart').html(`<div class="text-center my-3">{{trans_lang('no_product')}}</div>`)
                 }
             }
 
@@ -145,36 +145,64 @@
                 checkIfEmpty();
             }
 
-
-
-            // for desktop
-            // desktop delete button
-            $('.desktop-del-btn').click(function() {
-                const getid = $(this).data('id');
+            //delet cart
+            function deleteWhiteList(product_id)
+            {
                 $.ajax({
-                    url: "{{ route('whitelist-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        $('#white_list_count').text(response.white_lists_count);
-                    },
-                    error: function(xhr) {
-                        console.error(xhr);
-                    }
-                });
-
-                $.ajax({
-                    url: `/white-list/delete/${getid}`,
+                    url: `/white-list/delete/${product_id}`,
                     type: "DELETE",
                     data: {
-                        id: getid
+                        id: product_id
                     },
                     success: function(response) {
                         if (response.status) {
-                            removeCart(getid);
+                            removeCart(product_id);
                         }
                     }
                 });
-            });
+            }
+
+            function handleDeleteBtn(class_name)
+            {
+                $(`.${class_name}`).click(function() {
+                    const getid = $(this).data('id');
+                    deleteWhiteList(getid);
+                    updateWhiteListCount();
+                });
+            }
+
+            // for desktop delete
+            handleDeleteBtn('desktop-del-btn');
+
+            // for mobile delete
+            handleDeleteBtn('mobile-del-btn')
+
+            function addToCart(products)
+            {
+                $.ajax({
+                    url: "{{ route('cart.add') }}",
+                    type: "POST",
+                    data: {
+                        products: products
+                    },
+                    success: function(response) {
+                        if (response.status) {
+                            // $('.desktop-check-product:checked').each(function() {
+                            //     // console.log($(this).val())
+                            //     removeCart($(this).val())
+                            // });
+                            console.log(response.message);
+                        }
+
+                        if (!response.status) {
+                            console.log(response.message);
+
+                        }
+                    }
+                });
+            }
+
+
 
             $('#dsk-add-to-cart-btn').click(function() {
 
@@ -187,88 +215,13 @@
                 });
 
 
-                $.ajax({
-                    url: "{{ route('cart.add') }}",
-                    type: "POST",
-                    data: {
-                        products: selected_products
-                    },
-                    success: function(response) {
-                        if (response.status) {
-                            // $('.desktop-check-product:checked').each(function() {
-                            //     // console.log($(this).val())
-                            //     removeCart($(this).val())
-                            // });
-                            console.log(response.message);
-                        }
-
-                        if (!response.status) {
-                            if(!response.isLogin){
-                                window.location.href = "{{ route('login') }}";
-                            } else {
-                                console.log(response.message);
-                            }
-
-                        }
-                    }
-                });
-                $.ajax({
-                    url: "{{ route('cart-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        // Assuming response contains the new count
-                        $('#cart_count').text(response.cart_count);
-                    },
-                    error: function(xhr) {
-                        // Handle error here
-                        console.error(xhr);
-                    }
-                });
-                $.ajax({
-                    url: "{{ route('whitelist-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        $('#white_list_count').text(response.white_lists_count);
-                    },
-                    error: function(xhr) {
-                        console.error(xhr);
-                    }
-                });
+                addToCart(selected_products);
+                updateCartCount();
             });
 
-            // mobile delete button
-            $('.mobile-del-btn').click(function() {
-                const getid = $(this).data('id');
 
-
-                $.ajax({
-                    url: `/white-list/delete/${getid}`,
-                    type: "DELETE",
-                    data: {
-                        id: getid
-                    },
-                    success: function(response) {
-                        if (response.status) {
-                            removeCart(getid);
-                        }
-                    }
-                });
-
-                $.ajax({
-                    url: "{{ route('whitelist-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        $('#white_list_count').text(response.white_lists_count);
-                    },
-                    error: function(xhr) {
-                        console.error(xhr);
-                    }
-                });
-            });
 
             $('#mb-add-to-cart-btn').click(function() {
-
-
 
                 var selected_products = [];
                 $('.mobile-check-product:checked').each(function() {
@@ -278,42 +231,10 @@
                     });
                 });
 
-                $.ajax({
-                    url: "{{ route('cart.add') }}",
-                    type: "POST",
-                    data: {
-                        products: selected_products
-                    },
-                    success: function(response) {
-                        if (response.status) {
-                            // $('.mobile-check-product:checked').each(function() {
-                            //     removeCart($(this).val())
-                            // });
+                addToCart(selected_products);
+                updateCartCount();
 
-                        }
-
-                        if (!response.status) {
-                            if(!response.isLogin){
-                                window.location.href = "{{ route('login') }}";
-                            } else {
-                                console.log(response.message);
-                            }
-                        }
-                    }
-                });
-
-                $.ajax({
-                    url: "{{ route('whitelist-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        $('#white_list_count').text(response.white_lists_count);
-                    },
-                    error: function(xhr) {
-                        console.error(xhr);
-                    }
-                });
             });
-
 
         });
     </script>

@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LineController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\LineApisController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UsersController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WhiteListController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\OAuthController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SubCategoriesController;
 
 /*
@@ -59,7 +61,11 @@ Route::middleware(['guest_custom'])->group(function(){
 
 
 // Logout
+// Logout
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::post('/oauth/remove/{provider}',[OAuthController::class,'removeProvider'])->name('oauth.remove');
+
 
 // guest
 
@@ -82,17 +88,18 @@ Route::get('/profile')->middleware('check_role')->name('profile');
 Route::middleware(['is_seller'])->group(function () {
     Route::get('/profile/seller', [ProfileController::class, 'seller_profile'])->name('profile_seller');
 
-    Route::post('/profile/seller/update_basic', [ProfileController::class, 'update_basic_profile'])->name('update_basic_profile');
-    Route::post('/profile/seller/update_contact', [ProfileController::class, 'update_contact_details'])->name('update_contact_details');
+    Route::post('/profile/seller/update_basic', [ProfileController::class, 'update_basic_profile'])->name('seller.update_basic_profile');
+    Route::post('/profile/seller/update_contact', [ProfileController::class, 'update_contact_details'])->name('seller.update_contact_details');
 
-});
+     // Product Routes
+     Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products');
+     Route::get('/admin/products/create', [ProductController::class, 'create'])->name('create_product');
+     Route::post('/admin/products', [ProductController::class, 'store'])->name('add_product');
+     Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+     Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('update_product');
+     Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 
-Route::middleware(['is_buyer'])->group(function () {
-    Route::get('/profile/buyer', [ProfileController::class, 'user_profile'])->name('profile_user');
-});
-
-Route::middleware(['is_admin'])->group(function () {
-    // Categories Controller
+      // Categories Controller
 
     Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('admin.categories');
     Route::get('/admin/categories/create', [CategoriesController::class, 'create'])->name('create_category');
@@ -109,13 +116,20 @@ Route::middleware(['is_admin'])->group(function () {
     Route::put('/admin/sub-categories/{sub_category}', [SubCategoriesController::class, 'update'])->name('update_sub_category');
     Route::delete('/admin/sub-categories/{sub_category}', [SubCategoriesController::class, 'destroy'])->name('admin.sub_categories.destroy');
 
-    // Product Routes
-    Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products');
-    Route::get('/admin/products/create', [ProductController::class, 'create'])->name('create_product');
-    Route::post('/admin/products', [ProductController::class, 'store'])->name('add_product');
-    Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
-    Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('update_product');
-    Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+
+});
+
+Route::middleware(['is_buyer'])->group(function () {
+    Route::get('/profile/buyer', [ProfileController::class, 'user_profile'])->name('profile_user');
+    Route::post('/buyer/request-shop', [ShopController::class, 'requestShop'])->name('buyer.request_shop');
+
+    
+});
+
+Route::post('/profile/update_basic', [ProfileController::class, 'update_basic_profile'])->name('update_basic_profile');
+Route::post('/profile/update_contact', [ProfileController::class, 'update_contact_details'])->name('update_contact_details');
+
+Route::middleware(['is_admin'])->group(function () {
 
     //FAQs
     Route::get('/admin/faqs', [AdminController::class, 'all_faqs'])->name('admin.faqs');
@@ -141,6 +155,7 @@ Route::middleware(['is_admin'])->group(function () {
     Route::get('/admin/request-contact', [AdminController::class, 'contact'])->name('admin.users.contact');
     Route::get('/admin/contact/detail/{contactID}', [AdminController::class, 'contactDetail'])->name('admin.contact.detail');
     Route::get('/admin/request-wishList', [AdminController::class, 'wishList'])->name('admin.users.wishList');
+    Route::get('/admin/wishList/detail/{wishListID}', [AdminController::class, 'wishListDetail'])->name('admin.wishList.detail');
 
     //Manage Shop
     Route::get('/admin/shops/approved-shops', [AdminController::class, 'approvedShopList'])->name('admin.shops.approved');
@@ -188,6 +203,7 @@ Route::middleware(['auth_custom_api','restore_cart'])->group(function () {
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/add/login',[CartController::class,'addToCartWithLogin'])->name('cart.add.login');
 Route::delete('/cart/delete/{product_id}', [CartController::class, 'delete'])->name('cart.delete');
 
 
@@ -204,14 +220,14 @@ Route::get('/login/line', function () {
 Route::get('/login/line/callback', [OAuthController::class, 'handleLineCallback']);
 
 // Google Auth
-Route::get('/auth/google', function () {
+Route::get('/login/google', function ()                  {
     return Socialite::driver('google')->redirect();
 })->name('google.login');
 
 Route::get('/login/google/callback', [OAuthController::class, 'handleGoogleCallback']);
 
 // Facebook Auth
-Route::get('/auth/facebook', function () {
+Route::get('/login/facebook', function () {
     return Socialite::driver('facebook')->redirect();
 })->name('facebook.login');
 
@@ -220,3 +236,4 @@ Route::get('/login/facebook/callback', [OAuthController::class, 'handleFacebookC
 // count
 Route::get('/whitelist-count', [WhiteListController::class, 'WhiteListCount'])->name('whitelist-count');
 Route::get('/cart-count', [CartController::class, 'CartCount'])->name('cart-count');
+
