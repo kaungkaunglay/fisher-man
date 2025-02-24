@@ -248,7 +248,7 @@
                         <li><a href="{{ route('home') }}">{{ trans_lang('home') }}</a></li>
                         <li><a href="{{route('special-offer')}}">{{ trans_lang('special_offer') }}</a></li>
                         <li><a href="{{route('support')}}">{{ trans_lang('faqs') }}</a></li>
-                        <li><a href="{{ route('policy') }}">{{ trans_lang('terms_privacy') }}</a></li>
+                        <li><a href="{{ route('terms') }}">{{ trans_lang('terms_privacy') }}</a></li>
                         <li><a href="#">{{ trans_lang('customer_review') }}</a></li>
                         <li><a href="#">{{ trans_lang('blogs') }}</a></li>
                     </ul>
@@ -280,7 +280,7 @@
                     <p class="my-2 txt-13">&copy; Copyright 2024-fisherman Designed by Andfun</p>
                 </div>
                 <div class="col-lg-5 text-white text-lg-end text-center mb-2 mb-lg-0">
-                    <p class="mb-4 my-lg-2 txt-13"><a href="{{ route('policy') }}">Privacy | Terms</a></p>
+                    <p class="mb-4 my-lg-2 txt-13"><a href="{{ route('policy') }}">Privacy | </a><a href="{{route('terms')}}">Terms</a></p>
                 </div>
             </div>
         </div>
