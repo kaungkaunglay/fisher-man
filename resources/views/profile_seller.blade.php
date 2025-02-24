@@ -6,12 +6,14 @@
     <!-- Breadcrumbs -->
     <section class="mt-2">
         <div class="container-custom">
+
             <nav aria-label="breadcrumb" class="py-4">
                 <ol class="breadcrumb mb-0 bg-transparent">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Profile</li>
                 </ol>
             </nav>
+            
         </div>
     </section>
     <!-- /Breadcrumbs -->

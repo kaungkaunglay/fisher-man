@@ -77,13 +77,6 @@
                                 <span class="invalid-feedback"></span>
                             </div>
 
-                            {{-- <div class="d-flex align-items-center">
-                                <label class="w-25" for="phone_number">{{ trans_lang('phone_number') }}</label>:
-
-                                <input type="tel" name="phone_number" class="p-1 mt-2 ms-1 rounded-1" id="phone_number"
-                                    value="{{ $user->first_phone }}" readonly>
-                                <span class="invalid-feedback"></span>
-                            </div> --}}
                             <!-- account checkbox -->
                             <div class="mt-2">
                                 <!-- form on state -->
@@ -132,7 +125,7 @@
                         </div>
                         <!-- /Form Content -->
 
-                        @if (!$hasShopRequest)
+                        {{-- @if (!$hasShopRequest) --}}
                             <!-- alert box -->
                             <button class="mt-auto" data-bs-toggle="modal" data-bs-target="#modal_dialog"
                                 onclick="event.preventDefault()">
@@ -144,19 +137,19 @@
                                     </div>
                                 </div>
                             </button>
-                        @else
+                        {{-- @else --}}
                             <!-- alert box -->
 
-                            <div class="alert alert-warning d-flex mb-0" role="alert">
+                            {{-- <div class="alert alert-warning d-flex mb-0" role="alert">
                                 <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
                                     aria-label="Warning:"></i>
-                                <div class="text-start">
+                                <div class="text-start"> --}}
                                     You have been requested
                                     {{-- {{ trans_lang('payment_method_used_card_last_no') }} --}}
-                                </div>
-                            </div>
+                                {{-- </div>
+                            </div> --}}
                             {{-- </button> --}}
-                        @endif
+                        {{-- @endif --}}
 
 
 
@@ -165,7 +158,7 @@
 
                     <!-- Form Modal -->
                     <div class="modal fade" id="modal_dialog">
-                        <div class="modal-dialog modal-lg">
+                        <div class="modal-dialog modal-md">
                             <div class="modal-content bg-white">
 
                                 <!-- Modal Header -->
@@ -177,7 +170,7 @@
                                 <!-- Modal Body -->
                                 <div class="row modal-body p-3">
 
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12">
                                         <form id="shopRequestForm" enctype="multipart/form-data">
                                             <div class="mb-2 row align-items-center">
                                                 <div class="col-lg-5 col-12">
@@ -238,31 +231,17 @@
                                                     <span class="invalid-feedback"></span>
                                                 </div>
                                             </div>
-                                            
+                                        </form>
                                     </div>
-
-                                    <!-- Qr -->
-                                    {{-- <div class="col-12 col-md-6">
-                                        <div class="border h-100 d-flex flex-column justify-content-between">
-                                            <div class="w-100 qr-box mx-auto">
-                                                <img src="{{ asset('assets/images/QR.svg') }}" alt="">
-                                            </div>
-                                            <p class="w-auto px-2 py-3 bg-primary text-center text-white">
-                                                {{ trans_lang('scan_qr') }}
-                                            </p>
-                                        </div>
-                                    </div> --}}
-
                                 </div>
                                 <!-- /Modal Body -->
 
                                 <!-- Modal Footer -->
-                                <div class="modal-footer">
-                                    <button class="common-btn"
+                                <div class="d-flex gap-2 p-3">
+                                    <button class="common-btn w-50 px-0"
                                         data-bs-dismiss="modal">{{ trans_lang('cancle') }}</button>
-                                    <button class="common-btn" type="submit">{{ trans_lang('request') }}</button>
+                                    <button class="common-btn w-50 px-0" type="submit">{{ trans_lang('request') }}</button>
                                 </div>
-                                </form>
                                 <!-- /Modal Footer -->
 
                             </div>
@@ -309,7 +288,7 @@
                         <!-- phone-number link -->
                         <div class="d-flex align-items-start form-group">
                             <label class="w-25" for="tel">{{ trans_lang('phone_number') }}</label>:
-                            <div class="ms-1 d-flex phone-no-container">
+                            <div class="ms-1 d-flex flex-row flex-md-column phone-no-container">
                                 <!-- <a href="tel:"> -->
                                 <input type="tel" name="first_phone" class="p-1 mt-2 rounded-1" id="first_phone"
                                     value="{{ $user->first_phone }}" readonly>
