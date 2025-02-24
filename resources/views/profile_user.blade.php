@@ -596,7 +596,13 @@
 
                 var cur = $(this);
 
-                sendUpdateBasicData(formData, cur);
+                if(formData && Object.keys(formData).length > 0){
+                    sendUpdateBasicData(formData, cur);
+                } else {
+                    unactiveForm(cur);
+                }
+
+
             });
 
             $("#update_contact_details").submit(function(e) {
@@ -606,7 +612,13 @@
 
                 var cur = $(this);
 
-                sendUpdateDetailData(formData, cur);
+                if(formData && Object.keys(formData).length > 0){
+                    sendUpdateDetailData(formData, cur);
+                } else {
+                    unactiveForm(cur);
+                }
+
+
             });
 
             // Function to handle login/logout for OAuth providers

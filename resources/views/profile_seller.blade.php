@@ -13,7 +13,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Profile</li>
                 </ol>
             </nav>
-            
+
         </div>
     </section>
     <!-- /Breadcrumbs -->
@@ -58,28 +58,37 @@
                             <!-- Form Content -->
                             <div class="px-2 py-3">
                                 <!-- user name -->
-                                <div class="d-flex align-items-center form-group">
-                                    <label class="w-25" for="username">Name</label>:
-                                    <input type="text" name="username"  class="p-1 mt-1 ms-1 rounded-1" id="username"
-                                        value="{{ $user->username }}" readonly>
-                                        <span class="invalid-feedback"></span>
+                                <div class="form-group">
+                                    <div class="d-flex align-items-center form-group">
+                                        <label class="w-25" for="username">Name</label>:
+                                        <input type="text" name="username"  class="p-1 mt-1 ms-1 rounded-1" id="username"
+                                            value="{{ $user->username }}" readonly>
+
+                                    </div>
+                                    <span class="invalid-feedback"></span>
                                 </div>
 
 
                                 <!-- email link -->
-                                <div class="d-flex align-items-center form-group">
-                                    <label class="w-25" for="email">Email</label>:
-                                    <input type="email" name="email" class="p-1 mt-2 ms-1 rounded-1" id="email"
-                                        value="{{ $user->email }}" readonly>
-                                        <span class="invalid-feedback"></span>
+                                <div class="form-group">
+                                    <div class="d-flex align-items-center form-group">
+                                        <label class="w-25" for="email">Email</label>:
+                                        <input type="email" name="email" class="p-1 mt-2 ms-1 rounded-1" id="email"
+                                            value="{{ $user->email }}" readonly>
+
+                                    </div>
+                                    <span class="invalid-feedback"></span>
                                 </div>
 
                                 <!-- organization link -->
-                                <div class="d-flex align-items-center form-group">
-                                    <label class="w-25" for="first_org_name">Organize</label>:
-                                    <input type="text" name="first_org_name" class="p-1 mt-2 ms-1 rounded-1" id="first_org_name"
-                                        value="Organization" readonly>
-                                        <span class="invalid-feedback"></span>
+                                <div class="form-group">
+                                    <div class="d-flex align-items-center form-group">
+                                        <label class="w-25" for="first_org_name">Organize</label>:
+                                        <input type="text" name="first_org_name" class="p-1 mt-2 ms-1 rounded-1" id="first_org_name"
+                                            value="Organization" readonly>
+
+                                    </div>
+                                    <span class="invalid-feedback"></span>
                                 </div>
 
                                 <!-- account checkbox -->
@@ -257,30 +266,35 @@
                         <div class="px-2 py-3">
 
                             <!-- address -->
-                            <div class="d-flex align-items-center">
-                                <label class="w-25" for="address">Address</label>:
-                                <input type="text" name="address" class="p-1 mt-2 ms-1 rounded-1" id="address"
-                                    value="house no street,sue distict,city" readonly>
+                            <div class="form-group">
+                                <div class="d-flex align-items-center">
+                                    <label class="w-25" for="address">Address</label>:
+                                    <input type="text" name="address" class="p-1 mt-2 ms-1 rounded-1" id="address"
+                                        value="house no street,sue distict,city" readonly>
+
+                                </div>
                                 <span class="invalid-feedback"></span>
                             </div>
 
                             <!-- phone-number link -->
-                            <div class="d-flex align-items-start">
-                                <label class="w-25" for="tel">Phone No.</label>:
-                                <div class="ms-1 d-flex phone-no-container">
-                                    <!-- <a href="tel:"> -->
-                                    <input type="tel" name="first_phone" class="p-1 mt-2 rounded-1" id="first_phone"
-                                        value="{{ $user->first_phone }}" readonly>
-                                        <span class="invalid-feedback"></span>
+                            <div class="form-group">
+                                <div class="d-flex align-items-start">
+                                    <label class="w-25" for="tel">Phone No.</label>:
+                                    <div class="ms-1 d-flex phone-no-container">
+                                        <!-- <a href="tel:"> -->
+                                        <input type="tel" name="first_phone" class="p-1 mt-2 rounded-1" id="first_phone"
+                                            value="{{ $user->first_phone }}" readonly>
 
-                                    <!-- </a> -->
-                                    <b class="cor align-content-end">, </b>
-                                    <!-- <a href="tel:"> -->
-                                    <input type="tel" name="second_phone" class="p-1 mt-2 rounded-1" value="{{ $user->second_phone }}"
-                                        id="second_phone" readonly>
-                                    <span class="invalid-feedback"></span>
-                                    <!-- </a> -->
+                                        <!-- </a> -->
+                                        <b class="cor align-content-end">, </b>
+                                        <!-- <a href="tel:"> -->
+                                        <input type="tel" name="second_phone" class="p-1 mt-2 rounded-1" value="{{ $user->second_phone }}"
+                                            id="second_phone" readonly>
+
+                                        <!-- </a> -->
+                                    </div>
                                 </div>
+                                <span class="invalid-feedback"></span>
                             </div>
 
                         </div>
@@ -954,7 +968,11 @@
 
                 var cur = $(this);
 
-                sendUpdateBasicData(formData,cur);
+                if(formData && Object.keys(formData).length > 0){
+                    sendUpdateBasicData(formData,cur);
+                } else {
+                    unactiveForm(cur);
+                }
             });
 
             $("#update_contact_details").submit(function(e) {
@@ -964,7 +982,12 @@
 
                 var cur = $(this);
 
-                sendUpdateDetailData(formData,cur);
+                if(formData && Object.keys(formData).length > 0){
+                    sendUpdateDetailData(formData,cur);
+                } else {
+                    unactiveForm(cur);
+                }
+
             });
 
             // Function to handle login/logout for OAuth providers
