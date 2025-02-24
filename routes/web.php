@@ -176,9 +176,9 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->middleware('tra
 
 Route::get('/support', [UsersController::class, 'support'])->name('support');
 
-Route::get('/policy', function () {
+Route::get('/terms', function () {
     return view('terms_condition');
-})->name('policy');
+})->name('terms');
 
 
 
