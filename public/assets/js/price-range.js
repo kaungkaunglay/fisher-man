@@ -74,6 +74,7 @@ $(document).ready(function () {
             }
         }
     }
+    
 
     // Update values when input or range changes
     sliderOne.on("input", slideOne);
@@ -81,9 +82,9 @@ $(document).ready(function () {
     minInput.on("input", syncMinPrice);
     maxInput.on("input", syncMaxPrice);
 
-    // Trigger search when the mouse leaves the input fields
-    minInput.on("mouseleave", checkAndSearch);
-    maxInput.on("mouseleave", checkAndSearch);
+    // Trigger search when the input field loses focus (instead of mouseleave)
+    minInput.on("blur", checkAndSearch);
+    maxInput.on("blur", checkAndSearch);
     sliderOne.on("mouseup", checkAndSearch);
     sliderTwo.on("mouseup", checkAndSearch);
 
