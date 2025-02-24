@@ -8,6 +8,7 @@
     <!-- Hero Section -->
     <section class="hero mt-5">
         <div class="container-custom">
+
             <div class="row justify-content-between">
                 <div class="col-lg-4 d-none d-lg-block">
                     @include('includes.aside') <!-- Aside Layout -->
@@ -16,6 +17,7 @@
                     @include('includes.slider') <!-- Slider Layout -->
                 </div>
             </div>
+
         </div>
     </section>
     <!-- /Hero Section -->
@@ -61,12 +63,12 @@
                             </a>
                             <div class="d-flex gap-2 card-btn m-t-10">
                                 <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 -solid cart-btn @if ($product->inCart()) active @endif"
+                                    class="py-1 common-btn2 -solid cart-btn"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </a>
                                 <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 white-list-btn @if ($product->inWhiteLists()) active @endif"
+                                    class="py-1 common-btn2 white-list-btn"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-bookmark"></i>
                                 </a>
@@ -193,14 +195,12 @@
                             </a>
                             <div class="d-flex gap-2 card-btn m-t-10">
                                 <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 -solid cart-btn
-                  @if ($product->inCart()) active @endif"
+                                    class="py-1 common-btn2 -solid cart-btn"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </a>
                                 <a href="#"
-                                    class="py-1 common-btn2 white-list-btn
-                  @if ($product->inWhiteLists()) active @endif"
+                                    class="py-1 common-btn2 white-list-btn"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-bookmark"></i>
                                 </a>
@@ -290,14 +290,12 @@
                             </a>
                             <div class="d-flex gap-2 card-btn m-t-10">
                                 <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 -solid cart-btn
-                  @if ($product->inCart()) active @endif"
+                                    class="py-1 common-btn2 -solid cart-btn"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </a>
                                 <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 white-list-btn
-                  @if ($product->inWhiteLists()) active @endif"
+                                    class="py-1 common-btn2 white-list-btn"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-bookmark"></i>
                                 </a>
@@ -326,7 +324,7 @@
     <script src="{{ asset('assets/js/loadmore.js') }}"></script>
     <script src="{{ asset('assets/js/view-list.js') }}"></script>
     <script src="{{ asset('assets/js/words-limit.js') }}"></script>
-
+    <script src=""></script>
     <!-- /All Scripts -->
 
     <!-- Testing Scripts -->

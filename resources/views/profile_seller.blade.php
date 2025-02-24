@@ -1,7 +1,6 @@
 @extends('includes.layout')
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/profile_seller.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/profile_seller.css') }}" />
 @endsection
 @section('contents')
     <!-- Breadcrumbs -->
@@ -15,18 +14,6 @@
             </nav>
         </div>
     </section>
-    <!-- /Breadcrumbs -->
-    <!-- Breadcrumbs -->
-    {{-- <section class="mt-2">
-        <div class="container-custom">
-            <nav aria-label="breadcrumb" class="py-4">
-                <ol class="breadcrumb mb-0 bg-transparent">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Profile</li>
-                </ol>
-            </nav>
-        </div>
-    </section> --}}
     <!-- /Breadcrumbs -->
 
     <!-- Profile Section -->
