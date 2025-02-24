@@ -216,7 +216,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="text" id="username" class="p-1 address_input"
+                                <input type="text" id="username" name="username" class="p-1 address_input"
                                     value="{{ auth_helper()->user()->username ?? '' }}">
                             </td>
                         </tr>
@@ -226,7 +226,7 @@
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
-                                <input type="number" id="tel" class="p-1 address_input"
+                                <input type="number" name="first_phone" id="tel" class="p-1 address_input"
                                     value="{{ auth_helper()->user()->first_phone ?? '' }}">
                             </td>
                         </tr>
@@ -575,11 +575,11 @@
             function checkIfEmpty() {
                 var dskbody = $('.dsk-cart-body');
                 if (dskbody.find('tr').length === 0) {
-                    dskbody.html('<tr><td colspan="6" class="text-center">No product in the cart</td></tr>');
+                    dskbody.html(`<tr><td colspan="6" class="text-center">{{ trans_lang('no_product') }}</td></tr>`);
                 }
                 var mbbody = $('.mb-cart-body');
                 if (mbbody.find('.card').length === 0) {
-                    mbbody.find('.no-cart').html('<div class="text-center my-3">No product in the cart</div>')
+                    mbbody.find('.no-cart').html(`<div class="text-center my-3">{{ trans_lang('no_product') }}</div>`)
                 }
             }
 

@@ -36,8 +36,6 @@ $(document).ready(() => {
     quantityChange('.increment', 1);
     netTotal(true);
     netTotal();
-
-    // remove Item
 })
 
 function showPage(target) {

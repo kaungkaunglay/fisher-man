@@ -13,7 +13,7 @@
                     <li class="breadcrumb-item active" aria-current="page">{{ trans_lang('profile') }}</li>
                 </ol>
             </nav>
-            
+
         </div>
     </section>
     <!-- /Breadcrumbs -->
@@ -22,13 +22,16 @@
     <section>
         <div class="profile_seller container-custom">
             <div class="row">
+                <div class="col-12 text-center">
+                    @include('messages.index')
+                </div>
                 <!-- Profile Side -->
                 <div class="col-12 col-lg-7 h-100 profile-side">
                     <div class="d-md-flex gap-3">
 
                         <!-- profile img -->
                         <div class="w-100">
-                            <img src="{{ asset('assets/images/account1.svg') }}" class="w-100" alt="">
+                            <img src="{{ $user->avatar ??  asset('assets/images/account1.svg') }}" class="w-100" alt="">
                         </div>
 
                         <!-- Profile Info -->
@@ -55,28 +58,37 @@
                             <!-- Form Content -->
                             <div class="px-2 py-3">
                                 <!-- user name -->
-                                <div class="d-flex align-items-center">
-                                    <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
-                                    <input type="text" name="username"  class="p-1 mt-1 ms-1 rounded-1" id="username"
-                                        value="{{ $user->username }}" readonly>
-                                        <span class="invalid-feedback"></span>
+                                <div class="form-group">
+                                    <div class="d-flex align-items-center form-group">
+                                        <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
+                                        <input type="text" name="username"  class="p-1 mt-1 ms-1 rounded-1" id="username"
+                                            value="{{ $user->username }}" readonly>
+
+                                    </div>
+                                    <span class="invalid-feedback"></span>
                                 </div>
-                        
+
 
                                 <!-- email link -->
-                                <div class="d-flex align-items-center">
-                                    <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
-                                    <input type="email" name="email" class="p-1 mt-2 ms-1 rounded-1" id="email"
-                                        value="{{ $user->email }}" readonly>
-                                        <span class="invalid-feedback"></span>
+                                <div class="form-group">
+                                    <div class="d-flex align-items-center form-group">
+                                        <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
+                                        <input type="email" name="email" class="p-1 mt-2 ms-1 rounded-1" id="email"
+                                            value="{{ $user->email }}" readonly>
+
+                                    </div>
+                                    <span class="invalid-feedback"></span>
                                 </div>
 
                                 <!-- organization link -->
-                                <div class="d-flex align-items-center">
-                                    <label class="w-25" for="first_org_name">{{ trans_lang('organize') }}</label>:
-                                    <input type="text" name="first_org_name" class="p-1 mt-2 ms-1 rounded-1" id="first_org_name"
-                                        value="Organization" readonly>
-                                        <span class="invalid-feedback"></span>
+                                <div class="form-group">
+                                    <div class="d-flex align-items-center form-group">
+                                        <label class="w-25" for="first_org_name">{{ trans_lang('organize') }}</label>:
+                                        <input type="text" name="first_org_name" class="p-1 mt-2 ms-1 rounded-1" id="first_org_name"
+                                            value="Organization" readonly>
+
+                                    </div>
+                                    <span class="invalid-feedback"></span>
                                 </div>
 
                                 <!-- account checkbox -->
@@ -115,7 +127,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            
+
                             <!-- /Form Content -->
 
                             <!-- alert box -->
@@ -131,100 +143,7 @@
                             </button> --}}
                         </form>
                         <!-- /Profile Info -->
-
-                        <!-- Form Modal -->
-                        {{-- <div class="modal fade" id="modal_dialog">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content bg-white">
-                                    <!-- Modal Header -->
-                                    <div class="modal-header text-white bg-primary p-3">
-                                        <h2>Verify Your Account</h2>
-                                    </div>
-                                    <!-- /Modal Header -->
-
-                                    <!-- Modal Body -->
-                                    <div class="row modal-body p-3">
-                                        <div class="col-12 col-md-6">
-                                            <form method="post" name="shopRequestForm" id="shopRequestForm" enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="mb-2 row align-items-center">
-                                                    <div class="col-lg-5 col-12">
-                                                        <label for="exampleFormControlInput1" class="col-form-label">Shop
-                                                            Name</label>
-                                                    </div>
-                                                    <div class="col-lg-7 col-12">
-                                                        <input type="text" name="shop_name" class="form-control"
-                                                            id="exampleFormControlInput1">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-2 row align-items-center">
-                                                    <div class="col-lg-5 col-12">
-                                                        <label for="exampleFormControlInput1" class="col-form-label">Trans
-                                                            Management</label>
-                                                    </div>
-                                                    <div class="col-lg-7 col-12">
-                                                        <input type="text" name="trans_management" class="form-control"
-                                                            id="exampleFormControlInput1">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-2 row align-items-center">
-                                                    <div class="col-lg-5 col-12">
-                                                        <label for="exampleFormControlInput1"
-                                                            class="col-form-label">Email</label>
-                                                    </div>
-                                                    <div class="col-lg-7 col-12">
-                                                        <input type="email" name="email" class="form-control"
-                                                            id="exampleFormControlInput1">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-2 row align-items-center">
-                                                    <div class="col-lg-5 col-12">
-                                                        <label for="exampleFormControlInput1"  class="col-form-label">Phone
-                                                            Number</label>
-                                                    </div>
-                                                    <div class="col-lg-7 col-12">
-                                                        <input type="tel" name="phone" class="form-control"
-                                                            id="exampleFormControlInput1">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-2 row align-items-center">
-                                                    <div class="col-lg-5 col-12">
-                                                        <label for="exampleFormControlInput1"
-                                                            class="col-form-label">Upload Your Shop</label>
-                                                    </div>
-                                                    <div class="col-lg-7 col-12">
-                                                        <input type="file" name="avatar" class="form-control"
-                                                            id="exampleFormControlInput1">
-                                                    </div>
-                                                </div>
-                                            </form>
-
-                                        </div>
-
-                                        <!-- Qr -->
-                                        <div class="col-12 col-md-6">
-                                            <div class="border h-100 d-flex flex-column justify-content-between">
-                                                <div class="w-100 qr-box mx-auto">
-                                                    <img src="{{ asset('assets/images/QR.svg') }}" alt="">
-                                                </div>
-                                                <p class="w-auto px-2 py-3 bg-primary text-center text-white">
-                                                    Scan QR Code.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /Modal Body -->
-
-                                    <!-- Modal Footer -->
-                                    <div class="modal-footer">
-                                        <button class="common-btn" data-bs-dismiss="modal">Close</button>
-                                        <button name="submit" id="submit" type="submit" class="common-btn">Request</button>
-                                    </div>
-                                    <!-- /Modal Footer -->
-                                </div>
-                            </div>
-                        </div> --}}
-                        <!-- /Form Modal -->
+                        
                     </div>
 
                     <!-- Detail Info -->
@@ -254,30 +173,35 @@
                         <div class="px-2 py-3">
 
                             <!-- address -->
-                            <div class="d-flex align-items-center">
-                                <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
-                                <input type="text" name="address" class="p-1 mt-2 ms-1 rounded-1" id="address"
-                                    value="house no street,sue distict,city" readonly>
+                            <div class="form-group">
+                                <div class="d-flex align-items-center">
+                                    <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
+                                    <input type="text" name="address" class="p-1 mt-2 ms-1 rounded-1" id="address"
+                                        value="house no street,sue distict,city" readonly>
+
+                                </div>
                                 <span class="invalid-feedback"></span>
                             </div>
 
                             <!-- phone-number link -->
-                            <div class="d-flex align-items-start">
-                                <label class="w-25" for="tel">{{ trans_lang('phone_number') }}</label>:
-                                <div class="ms-1 d-flex phone-no-container">
-                                    <!-- <a href="tel:"> -->
-                                    <input type="tel" name="first_phone" class="p-1 mt-2 rounded-1" id="first_phone"
-                                        value="{{ $user->first_phone }}" readonly>
-                                        <span class="invalid-feedback"></span>
+                            <div class="form-group">
+                                <div class="d-flex align-items-start">
+                                    <label class="w-25" for="tel">{{ trans_lang('phone_number') }}</label>:
+                                    <div class="ms-1 d-flex phone-no-container">
+                                        <!-- <a href="tel:"> -->
+                                        <input type="tel" name="first_phone" class="p-1 mt-2 rounded-1" id="first_phone"
+                                            value="{{ $user->first_phone }}" readonly>
 
-                                    <!-- </a> -->
-                                    <b class="cor align-content-end">, </b>
-                                    <!-- <a href="tel:"> -->
-                                    <input type="tel" name="second_phone" class="p-1 mt-2 rounded-1" value="{{ $user->second_phone }}"
-                                        id="second_phone" readonly>
-                                    <span class="invalid-feedback"></span>
-                                    <!-- </a> -->
+                                        <!-- </a> -->
+                                        <b class="cor align-content-end">, </b>
+                                        <!-- <a href="tel:"> -->
+                                        <input type="tel" name="second_phone" class="p-1 mt-2 rounded-1" value="{{ $user->second_phone }}"
+                                            id="second_phone" readonly>
+
+                                        <!-- </a> -->
+                                    </div>
                                 </div>
+                                <span class="invalid-feedback"></span>
                             </div>
 
                         </div>
@@ -322,7 +246,7 @@
         <div class="container-custom">
             <div>
 
-                <h6 class="txt-primary fw-bold mb-3">{{ trans_lang('special_offer') }}/h6>
+                <h6 class="txt-primary fw-bold mb-3">{{ trans_lang('special_offer') }}</h6>
                 <div class="filter d-flex justify-content-between align-items-center mb-3">
 
                     <!-- display -->
@@ -907,7 +831,8 @@
 
                             console.log(response.message);
 
-                            unactiveForm(cur);
+                            window.location.reload();
+                            // unactiveForm(cur);
                         } else {
                             var fields = ['username', 'email'];
                             handleErrorMessages(fields, response.errors, response.message);
@@ -932,7 +857,8 @@
 
                             console.log(response.message);
 
-                            unactiveForm(cur);
+                            window.location.reload();
+                            // unactiveForm(cur);
 
                         } else {
                             var fields = ['address', 'first_phone','second_phone'];
@@ -949,7 +875,11 @@
 
                 var cur = $(this);
 
-                sendUpdateBasicData(formData,cur);
+                if(formData && Object.keys(formData).length > 0){
+                    sendUpdateBasicData(formData,cur);
+                } else {
+                    unactiveForm(cur);
+                }
             });
 
             $("#update_contact_details").submit(function(e) {
@@ -959,13 +889,18 @@
 
                 var cur = $(this);
 
-                sendUpdateDetailData(formData,cur);
+                if(formData && Object.keys(formData).length > 0){
+                    sendUpdateDetailData(formData,cur);
+                } else {
+                    unactiveForm(cur);
+                }
+
             });
 
             // Function to handle login/logout for OAuth providers
             function handleOAuthLogin(provider) {
                 if ($('#' + provider + '_login').prop('checked')) {
-                    window.open("/login/" + provider , "_blank");
+                    window.location.href = `/login/${provider}`;
                 } else {
                     remove_oauth(provider);
                 }
@@ -978,6 +913,7 @@
                     method: 'POST',
                     data: { provider: provider },  // Pass the provider info in the data
                     success: function(response) {
+                        window.location.reload();
                         console.log(response.message);
                     },
                     error: function(xhr) {

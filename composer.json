@@ -32,6 +32,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
+            "app/Helpers/TranslationHelper.php",
+            "app/Helpers/translation.php",
             "app/Helpers/SettingHelper.php",
             "app/Helpers/auth_helper.php",
             "app/Helpers/permission_helper.php",
@@ -48,8 +50,8 @@
             "app/Helpers/translation.php",
             "app/Helpers/SettingHelper.php",
             "app/Helpers/auth_helper.php",
-            "app/Helpers/permission_helper.php"
-
+            "app/Helpers/permission_helper.php",
+            "app/Helpers/line_api_helper.php"
         ]
     },
     "scripts": {
