@@ -280,7 +280,7 @@
                     <p class="my-2 txt-13">&copy; Copyright 2024-fisherman Designed by Andfun</p>
                 </div>
                 <div class="col-lg-5 text-white text-lg-end text-center mb-2 mb-lg-0">
-                    <p class="mb-4 my-lg-2 txt-13"><a href="{{ route('terms') }}">Privacy | Terms</a></p>
+                    <p class="mb-4 my-lg-2 txt-13"><a href="{{ route('policy') }}">Privacy | </a><a href="{{route('terms')}}">Terms</a></p>
                 </div>
             </div>
         </div>
