@@ -291,17 +291,17 @@
 
     <!-- Mobile Bottom Nav -->
     <div class="bottom-nav d-flex d-md-none">
-        <a href="{{ route('home')}}" class="menu-header"><i class="fa-solid fa-home"></i><br><p>{{trans_lang('home')}}</p></a>
-        <a href="" class="menu-header"  id="category-link"><i class="fa-solid fa-tags"></i><br><p>{{trans_lang('category')}}</p></a>
+        <a href="{{ route('home')}}" class="bottom-menu"><i class="fa-solid fa-home"></i><br><p>{{trans_lang('home')}}</p></a>
+        <a href="" class="bottom-menu"  id="category-link"><i class="fa-solid fa-tags"></i><br><p>{{trans_lang('category')}}</p></a>
         <div class="">
-            <a href="{{ route('cart')}}" class="menu-header mobile-shopping-card"><i
+            <a href="{{ route('cart')}}" class="bottom-menu mobile-shopping-card"><i
                     class="fa-solid fa-cart-shopping shopping"></i><br><p class="cart-txt">{{trans_lang('cart')}}(
                         <span class="text-danger" id="cart_count_bottom">0</span> )</p>
             </a>
         </div>
-        <a href="{{ route('white_list.index') }}" class="menu-header"><i class="fa-solid fa-bookmark"></i><br><p>{{trans_lang('whitelist')}}(
+        <a href="{{ route('white_list.index') }}" class="bottom-menu"><i class="fa-solid fa-bookmark"></i><br><p>{{trans_lang('whitelist')}}(
             <span class="text-danger white_list_count" id="white_list_count">0</span> )</p></a>
-        <a href="{{ route('profile')}}" class="menu-header"><i class="fa-solid fa-user"></i><br><p>{{trans_lang('profile')}}</p></a>
+        <a href="{{ route('profile')}}" class="bottom-menu"><i class="fa-solid fa-user"></i><br><p>{{trans_lang('profile')}}</p></a>
     </div>
     <!-- /Mobile Bottom Nav -->
 

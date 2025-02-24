@@ -111,12 +111,18 @@ main {
   font-weight: bold;
   color: #ffffff;
 }
+.bottom-menu{
+  font-size: 15px;
+  font-weight: bold;
+  color: #ffffff;
+  width: 80px;
+}
 
-.bottom-nav .menu-header>p{
+.bottom-nav .bottom-menu>p{
   font-size: 10px !important;
 }
-.bottom-nav .menu-header>.cart-txt{
-  font-size: 13px !important;
+.bottom-nav .bottom-menu>.cart-txt{
+  font-size: 12px !important;
 }
 
 .menu-category,
