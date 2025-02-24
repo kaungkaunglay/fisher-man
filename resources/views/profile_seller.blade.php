@@ -33,13 +33,16 @@
     <section>
         <div class="profile_seller container-custom">
             <div class="row">
+                <div class="col-12 text-center">
+                    @include('messages.index')
+                </div>
                 <!-- Profile Side -->
                 <div class="col-12 col-lg-7 h-100 profile-side">
                     <div class="d-md-flex gap-3">
 
                         <!-- profile img -->
                         <div class="w-100">
-                            <img src="{{ asset('assets/images/account1.svg') }}" class="w-100" alt="">
+                            <img src="{{ $user->avatar ??  asset('assets/images/account1.svg') }}" class="w-100" alt="">
                         </div>
 
                         <!-- Profile Info -->
@@ -66,16 +69,16 @@
                             <!-- Form Content -->
                             <div class="px-2 py-3">
                                 <!-- user name -->
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center form-group">
                                     <label class="w-25" for="username">Name</label>:
                                     <input type="text" name="username"  class="p-1 mt-1 ms-1 rounded-1" id="username"
                                         value="{{ $user->username }}" readonly>
                                         <span class="invalid-feedback"></span>
                                 </div>
-                        
+
 
                                 <!-- email link -->
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center form-group">
                                     <label class="w-25" for="email">Email</label>:
                                     <input type="email" name="email" class="p-1 mt-2 ms-1 rounded-1" id="email"
                                         value="{{ $user->email }}" readonly>
@@ -83,7 +86,7 @@
                                 </div>
 
                                 <!-- organization link -->
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center form-group">
                                     <label class="w-25" for="first_org_name">Organize</label>:
                                     <input type="text" name="first_org_name" class="p-1 mt-2 ms-1 rounded-1" id="first_org_name"
                                         value="Organization" readonly>
@@ -126,7 +129,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            
+
                             <!-- /Form Content -->
 
                             <!-- alert box -->
@@ -918,7 +921,8 @@
 
                             console.log(response.message);
 
-                            unactiveForm(cur);
+                            window.location.reload();
+                            // unactiveForm(cur);
                         } else {
                             var fields = ['username', 'email'];
                             handleErrorMessages(fields, response.errors, response.message);
@@ -943,7 +947,8 @@
 
                             console.log(response.message);
 
-                            unactiveForm(cur);
+                            window.location.reload();
+                            // unactiveForm(cur);
 
                         } else {
                             var fields = ['address', 'first_phone','second_phone'];
@@ -976,7 +981,7 @@
             // Function to handle login/logout for OAuth providers
             function handleOAuthLogin(provider) {
                 if ($('#' + provider + '_login').prop('checked')) {
-                    window.open("/login/" + provider , "_blank");
+                    window.location.href = `/login/${provider}`;
                 } else {
                     remove_oauth(provider);
                 }
@@ -989,6 +994,7 @@
                     method: 'POST',
                     data: { provider: provider },  // Pass the provider info in the data
                     success: function(response) {
+                        window.location.reload();
                         console.log(response.message);
                     },
                     error: function(xhr) {

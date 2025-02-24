@@ -14,6 +14,8 @@ use Laravel\Socialite\Facades\Socialite;
 
 class OAuthController extends Controller
 {
+    private $isProfileUpdated = false;
+
     protected $providerMap = [
         'line' => 'line_id',
         'google' => 'google_id',
@@ -37,20 +39,27 @@ class OAuthController extends Controller
             // Get the correct ID field for this provider
             $providerIdField = $this->providerMap[$provider];
 
+
             // First try to find user by provider ID
             $user = Users::where($providerIdField, $providerUser->getId())->first();
 
             // If no user found by provider ID, check by email
             if (!$user && $providerUser->getEmail()) {
-                $user = Users::where('email', $providerUser->getEmail())->first();
+
+                $this->isProfileUpdated = AuthHelper::check();
+
+                $user = $this->isProfileUpdated ? AuthHelper::user(): Users::where('email', $providerUser->getEmail())->first();
 
                 if ($user) {
                     // Update the provider ID for the existing user
                     $user->update([
-                        $user->usernmae => $providerUser->getName(),
+                        'username' => $providerUser->getName(),
+                        'email' => $providerUser->getEmail(),
                         $providerIdField => $providerUser->getId(),
                         'avatar' => $providerUser->getAvatar() ?? $user->avatar // Keep existing avatar if new one is null
                     ]);
+
+
                 }
             }
 
@@ -68,7 +77,7 @@ class OAuthController extends Controller
             if($provider == 'line'){
                 send_push_notification($user->id, 'Welcome! You have successfully logged in with LINE.');
             }
-            return redirect()->route('home');
+            return $this->isProfileUpdated ? redirect()->route('profile') : redirect()->route('home');
         } catch (\Exception $e) {
             Log::error("Error in handle{$provider}Callback: " . $e->getMessage(), ['exception' => $e]);
             return redirect()->route('login')->with('error', "Failed to authenticate with " . ucfirst($provider));
@@ -140,7 +149,14 @@ class OAuthController extends Controller
     {
         $user = AuthHelper::user();
 
+        $user->update([
+            `{$provider}_id` => null
+        ]);
+
         $user->oAuths()->where('provider',$provider)->delete();
+
+        session()->flash('status','success');
+        session()->flash('message',`{$provider} OAuth removed successfully`);
 
         return response()->json([
             'status' => true,

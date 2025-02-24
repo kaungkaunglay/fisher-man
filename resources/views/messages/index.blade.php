@@ -1,14 +1,14 @@
 @if(session('status'))
     @if(session('status') == 'success')
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success text-center" role="alert">
             {{ session('message') }}
         </div>
     @elseif(session('status') == 'error')
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger  text-center" role="alert">
             {{ session('message') }}
         </div>
     @else
-        <div class="alert alert-warning" role="alert">
+        <div class="alert alert-warning  text-center" role="alert">
             {{ session('message') }}
         </div>
     @endif

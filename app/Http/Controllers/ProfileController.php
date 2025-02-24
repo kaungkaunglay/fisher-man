@@ -62,6 +62,9 @@ class ProfileController extends Controller
         }
         $user->save();
 
+        session()->flash('status',"success");
+        session()->flash('message',"Profile updated successfully.");
+
         // Return success response
         return response()->json([
             'status' => true,
@@ -107,6 +110,9 @@ class ProfileController extends Controller
         $user->first_phone = $request->first_phone;
         $user->second_phone = $request->second_phone;
         $user->save();
+
+        session()->flash('status',"success");
+        session()->flash('message',"Address and phone numbers updated successfully.");
 
         // Return success response
         return response()->json([
