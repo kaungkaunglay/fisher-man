@@ -12,6 +12,14 @@ body {
   box-shadow: none;
 }
 
+.avatar-upload {
+background-color: black;
+opacity: 0.5;
+top: 0;
+font-size: 100px;
+display: flex;
+}
+
 .profile-form:not(.active) .link-contain input {
   display: none;
 }

@@ -34,14 +34,16 @@
 
             <!-- Profile Side -->
             <div class="col-12 col-lg-7 h-100 profile-side">
-                
+
                 <form action="#" id="update_basic_profile" class="profile-form" method="POST">
 
                     <div class="w-100 h-100 d-md-flex gap-3">
                         <!-- profile img -->
-                        <div class="w-100 profile-form d-flex flex-column">
-                            <label for="avatar-input" class="w-100 d-block">
-                                <img src="{{ $user->avatar ?? asset('assets/images/account1.svg') }}" id="form-img" alt="Account.png">
+                        <div class="w-100 profile-form d-flex flex-column avatar-input">
+                            <label for="avatar-input" class="w-100 d-block position-relative">
+                                <img src="{{ $user->avatar ?? asset('assets/images/account1.svg') }}" id="form-img"
+                                    alt="Account.png">
+                                <div class="avatar-upload w-100 h-100 position-absolute d-none"><i class="fas fa-upload m-auto"></i></div>
                             </label>
                             <input type="file" class="upload-photo d-none" id="avatar-input" readonly />
                         </div>
@@ -73,22 +75,24 @@
 
                                 <!-- user name -->
                                 <div class="form-group">
-                                <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center">
                                         <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
-                                    <output class="form-output" for="username">{{ $user->username }}</output>
-                                    <input type="text" name="username" class="mt-1 ms-1 border-bottom rounded-1 d-none" id="username"
-                                        value="{{ $user->username }}">
-                                    <span class="invalid-feedback"></span>
+                                        <output class="form-output" for="username">{{ $user->username }}</output>
+                                        <input type="text" name="username" class="p-1 mt-1 ms-1 rounded-1 d-none"
+                                            id="username" value="{{ $user->username }}" readonly>
+                                        <span class="invalid-feedback"></span>
+                                    </div>
                                 </div>
 
                                 <!-- email link -->
                                 <div class="form-group">
-                                <div class="d-flex align-items-center form-group">
+                                    <div class="d-flex align-items-center form-group">
                                         <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
-                                    <output class="form-output" for="email">{{ $user->email }}</output>
-                                    <input type="email" name="email" class="mt-2 ms-1 border-bottom rounded-1 d-none" id="email"
-                                        value="{{ $user->email }}">
-                                    <span class="invalid-feedback"></span>
+                                        <output class="form-output" for="email">{{ $user->email }}</output>
+                                        <input type="email" name="email" class="p-1 mt-2 ms-1 rounded-1 d-none"
+                                            id="email" value="{{ $user->email }}" readonly>
+                                        <span class="invalid-feedback"></span>
+                                    </div>
                                 </div>
 
                                 <!-- account checkbox -->
@@ -113,8 +117,9 @@
                                                     <i class="fa-brands fa-facebook fs-2 mt-1"></i>
                                                 </label>
                                                 <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" id="facebook_login" class="border form-check-input"
-                                                        role="switch" @if ($user->checkProvider('facebook')) checked @endif />
+                                                    <input type="checkbox" id="facebook_login"
+                                                        class="border form-check-input" role="switch"
+                                                        @if ($user->checkProvider('facebook')) checked @endif />
                                                 </div>
                                             </div>
                                         </li>
@@ -133,9 +138,10 @@
                                     </ul>
                                 </div>
 
-                            </div>
-                            <div class="input-box d-flex flex-column">
-                                <span class="mb-3 text-danger" id="message"></span>
+
+                                <div class="input-box d-flex flex-column">
+                                    <span class="mb-3 text-danger" id="message"></span>
+                                </div>
                             </div>
                             <!-- /Form Content -->
 
@@ -144,29 +150,29 @@
                                 <button class="mt-auto" data-bs-toggle="modal" data-bs-target="#modal_dialog"
                                     onclick="event.preventDefault()">
                                     <div class="alert alert-warning d-flex mb-0" role="alert">
-                                        <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
-                                            aria-label="Warning:"></i>
+                                        <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1"
+                                            role="img" aria-label="Warning:"></i>
                                         <div class="text-start">
                                             {{ trans_lang('payment_method_used_card_last_no') }}
                                         </div>
                                     </div>
                                 </button>
                             @else
-
                                 <!-- alert box -->
-                                <div class="alert alert-success d-flex mb-0 mt-auto" role="alert">
-                                    <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
-                                        aria-label="Success:"></i>
-                                    <div class="text-start">
-                                        You have been requested
+                                <button>
+                                    <div class="alert alert-success d-flex mb-0 mt-auto" role="alert">
+                                        <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
+                                            aria-label="Success:"></i>
+                                        <div class="text-start">
+                                            You have been requested
+                                        </div>
                                     </div>
-                                </div>
                                 </button>
                             @endif
 
                         </div>
+                        {{-- /Profile Info --}}
                     </div>
-
                 </form>
                 <!-- /Profile Info -->
 
@@ -246,7 +252,7 @@
                                                 <span class="invalid-feedback"></span>
                                             </div>
                                         </div>
-                                   
+
                                 </div>
                             </div>
                             <!-- /Modal Body -->
@@ -258,7 +264,7 @@
                                 <button class="common-btn w-50 px-0" type="submit">{{ trans_lang('request') }}</button>
                             </div>
 
-                        </form>
+                            </form>
                             <!-- /Modal Footer -->
 
                         </div>
@@ -297,7 +303,7 @@
                         <div class="d-flex align-items-center form-group">
                             <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
                             <output class="form-output" for="address">{{ $user->address }}</output>
-                            <textarea name="address" class="p-1 mt-2 ms-1 p-0 border-0 border-bottom rounded-1 d-none" id="address" disabled>
+                            <textarea name="address" class="p-1 mt-2 ms-1 rounded-1 d-none" id="address" readonly>
                                 {{ $user->address }}
                             </textarea>
                             <span class="invalid-feedback"></span>
@@ -310,8 +316,8 @@
                                 <a href="tel:">
                                     <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
                                 </a>
-                                <input type="tel" name="first_phone" class="p-1 mt-2 border-bottom rounded-1 d-none" id="first_phone"
-                                    value="{{ $user->first_phone }}" disabled>
+                                <input type="tel" name="first_phone" class="p-1 mt-2 border-bottom rounded-1 d-none"
+                                    id="first_phone" value="{{ $user->first_phone }}" disabled>
                                 <a href="tel:">
                                     <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
                                 </a>
@@ -602,7 +608,7 @@
 
                 var cur = $(this);
 
-                if(formData && Object.keys(formData).length > 0){
+                if (formData && Object.keys(formData).length > 0) {
                     sendUpdateBasicData(formData, cur);
                 } else {
                     unactiveForm(cur);
@@ -618,7 +624,7 @@
 
                 var cur = $(this);
 
-                if(formData && Object.keys(formData).length > 0){
+                if (formData && Object.keys(formData).length > 0) {
                     sendUpdateDetailData(formData, cur);
                 } else {
                     unactiveForm(cur);
