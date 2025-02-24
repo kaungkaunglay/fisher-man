@@ -36,23 +36,23 @@
             </div>
 
             <div class="sort-container">
-              <div class="arrows">
-                <button><i class="fa-solid fa-caret-up"></i></button>
-                <button><i class="fa-solid fa-caret-down"></i></button>
-              </div>
-              <div class="dropdown">
-                <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  {{trans_lang('sortby')}}
-                </button>
-                <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_asc']) }}">{{trans_lang('price_l_h')}}</a></li>
-                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_desc']) }}">{{trans_lang('price_h_l')}}</a></li>
-                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_asc']) }}">{{trans_lang('name_a_z')}}</a></li>
-                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_desc']) }}">{{trans_lang('name_z_a')}}</a></li>
-                <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'latest']) }}">{{trans_lang('latest')}}</a></li>
+                <div class="arrows">
+                    <button><i class="fa-solid fa-caret-up"></i></button>
+                    <button><i class="fa-solid fa-caret-down"></i></button>
+                </div>
+                <div class="dropdown">
+                    <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{trans_lang('sortby')}}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_asc']) }}">{{trans_lang('price_l_h')}}</a></li>
+                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'price_desc']) }}">{{trans_lang('price_h_l')}}</a></li>
+                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_asc']) }}">{{trans_lang('name_a_z')}}</a></li>
+                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_desc']) }}">{{trans_lang('name_z_a')}}</a></li>
+                        <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'latest']) }}">{{trans_lang('latest')}}</a></li>
 
-                </ul>
-              </div>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -84,8 +84,10 @@
                             {{ $product->description }}
                         </a>
                         <div class="d-flex gap-2 card-btn m-t-10">
-                            <a href="javascript:void(0);" class="py-1 common-btn2 -solid cart-btn @if($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}">
-                                <i class="fa-solid fa-bookmark"></i>
+                            <a href="javascript:void(0);"
+                                class="py-1 common-btn2 -solid cart-btn @if ($product->inCart()) active @endif"
+                                data-id="{{ $product->id }}">
+                                <i class="fa-solid fa-cart-shopping"></i>
                             </a>
                             <a href="javascript:void(0);" class="py-1 common-btn2 white-list-btn @if($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}">
                                 <i class="fa-solid fa-bookmark"></i>
@@ -176,10 +178,10 @@
 
 @endsection
 @section('script')
-    <script>
-        $(document).ready(() => {
-            handleAddToCartBtn('cart-btn');
-            handleAddToWhiteListBtn('white-list-btn');
-        })
-    </script>
+<script>
+    $(document).ready(() => {
+        handleAddToCartBtn('cart-btn');
+        handleAddToWhiteListBtn('white-list-btn');
+    })
+</script>
 @endsection
