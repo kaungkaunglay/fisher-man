@@ -123,7 +123,7 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $this->authorize('update', $product); // Ensure only owners can edit
+        // $this->authorize('update', $product); // Ensure only owners can edit
 
         $subCategories = Sub_category::all();
         return view('admin.product', compact('product', 'subCategories'));
@@ -131,7 +131,7 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        $this->authorize('update', $product); // Ensure only owners can update
+        // $this->authorize('update', $product); // Ensure only owners can update
 
         $request->validate([
             'name' => 'sometimes|string|max:255',
@@ -152,7 +152,7 @@ class ProductController extends Controller
             if (!file_exists($folderPath)) {
                 mkdir($folderPath, 0755, true);
             }
-
+delete
             $image = $request->file('product_image');
             $imageName = time() . '_' . $image->getClientOriginalName();
 
