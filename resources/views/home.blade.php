@@ -6,7 +6,7 @@
 
 @section('contents')
     <!-- Hero Section -->
-    <section class="hero mt-5">
+    <section class="hero mt-4">
         <div class="container-custom">
 
             <div class="row justify-content-between">
@@ -41,7 +41,7 @@
             <!-- Card List -->
             <div class="card-list" id="view-list">
                 @foreach ($random_products  as $product)
-                    <div class="item-card">
+                    <div class="item-card mb-5">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
                             <img src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
                         </a>
@@ -172,7 +172,7 @@
             <!-- Products List -->
             <div class="card-list" id="view-list">
                 @foreach ($products->filter(fn($product) => $product->discount > 0.0)->take(6) as $product)
-                    <div class="item-card">
+                    <div class="item-card mb-5">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
                             <img src="{{ asset($product->product_image) }}" class="card-img-top"
                                 alt="{{ $product->name }}">
