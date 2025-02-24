@@ -28,6 +28,10 @@
     <section>
         <div class="profile_seller container-custom row">
 
+            <div class="col-12">
+                @include('messages.index')
+            </div>
+
             <!-- Profile Side -->
             <div class="col-12 col-lg-7 h-100 profile-side">
                 <form action="#" id="update_basic_profile" method="POST">
@@ -35,10 +39,10 @@
                     <div class="w-100 h-100 d-md-flex gap-3">
                         <!-- profile img -->
                         <div class="w-100 profile-form d-flex flex-column">
-                            <label for="form-img" class="w-100 d-block">
+                            <label for="avatar-input" class="w-100 d-block">
                                 <img src="{{ $user->avatar ?? asset('assets/images/account1.svg') }}" id="form-img" alt="Account.png">
                             </label>
-                            <input type="file" class="upload-photo d-none" id="uploadimg" readonly>
+                            <input type="file" class="upload-photo d-none" id="avatar-input" readonly />
                         </div>
 
                         <!-- Profile Info -->
@@ -62,28 +66,34 @@
                                 </h2>
                             </div>
                             <!-- /Form Headline -->
-    
+
                             <!-- /Form Content -->
                             <div class="px-2 py-3">
 
                                 <!-- user name -->
+                                <div class="form-group">
                                 <div class="d-flex align-items-center">
-                                    <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
+                                        <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
                                     <output class="form-output" for="username">{{ $user->username }}</output>
-                                    <input type="text" name="username" class="p-1 mt-1 ms-1 rounded-1 d-none" id="username"
-                                        value="{{ $user->username }}" readonly>
-                                    <span class="invalid-feedback"></span>
+                                        <input type="text" name="username" class="p-1 mt-1 ms-1 rounded-1 d-none" id="username"
+                                            value="{{ $user->username }}" readonly>
+
                                 </div>
-    
+                                <span class="invalid-feedback"></span>
+                                </div>
+
                                 <!-- email link -->
-                                <div class="d-flex align-items-center">
-                                    <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
+                                <div class="form-group">
+                                <div class="d-flex align-items-center form-group">
+                                        <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
                                     <output class="form-output" for="email">{{ $user->email }}</output>
-                                    <input type="email" name="email" class="p-1 mt-2 ms-1 rounded-1 d-none" id="email"
-                                        value="{{ $user->email }}" readonly>
-                                    <span class="invalid-feedback"></span>
+                                        <input type="email" name="email" class="p-1 mt-2 ms-1 rounded-1 d-none" id="email"
+                                            value="{{ $user->email }}" readonly>
+
                                 </div>
-    
+                                <span class="invalid-feedback"></span>
+                                </div>
+
                                 <!-- account checkbox -->
                                 <div class="mt-2">
                                     <!-- form on state -->
@@ -99,7 +109,7 @@
                                                 </div>
                                             </div>
                                         </li>
-    
+
                                         <li>
                                             <div class="form-group d-flex flex-column gap-1">
                                                 <label for="facebook_login">
@@ -111,7 +121,7 @@
                                                 </div>
                                             </div>
                                         </li>
-    
+
                                         <li>
                                             <div class="form-group d-flex flex-column gap-1">
                                                 <label for="google_login">
@@ -125,13 +135,13 @@
                                         </li>
                                     </ul>
                                 </div>
-    
+
                             </div>
                             <div class="input-box d-flex flex-column">
                                 <span class="mb-3 text-danger" id="message"></span>
                             </div>
                             <!-- /Form Content -->
-    
+
                             @if (!$hasShopRequest)
                                 <!-- alert box -->
                                 <button class="mt-auto" data-bs-toggle="modal" data-bs-target="#modal_dialog"
@@ -145,7 +155,7 @@
                                     </div>
                                 </button>
                             @else
-    
+
                                 <!-- alert box -->
                                 <div class="alert alert-success d-flex mb-0 mt-auto" role="alert">
                                     <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
@@ -284,12 +294,15 @@
                     <div class="px-2 py-3">
 
                         <!-- address -->
-                        <div class="d-flex align-items-center form-group">
-                            <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
-                            <output class="form-output" for="address">{{ $user->address }}</output>
-                            <textarea name="address" class="p-1 mt-2 ms-1 rounded-1 d-none" id="address" readonly>
-                                {{ $user->address }}
-                            </textarea>
+                        <div class="form-group">
+                            <div class="d-flex align-items-center">
+                                <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
+                                <output class="form-output" for="address">{{ $user->address }}</output>
+                                <textarea name="address" class="p-1 mt-2 ms-1 rounded-1 d-none" id="address" readonly>
+                                        {{ $user->address }}
+                                </textarea>
+
+                            </div>
                             <span class="invalid-feedback"></span>
                         </div>
 
@@ -311,6 +324,7 @@
                                 <span class="invalid-feedback"></span>
                                 <!-- </a> -->
                             </div>
+                            <span class="invalid-feedback"></span>
                         </div>
 
                     </div>
@@ -439,7 +453,7 @@
 
     <!-- All Scripts -->
     <script src="{{ asset('assets/js/profile-seller.js') }}"></script>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(function(position) {
@@ -450,7 +464,7 @@
                 });
             }
         });
-    </script>
+    </script> --}}
 
     <script>
         $(document).ready(function() {
@@ -546,7 +560,8 @@
 
                             console.log(response.message);
 
-                            unactiveForm(cur);
+                            window.location.reload();
+                            // unactiveForm(cur);
                         } else {
                             var fields = ['username', 'email'];
                             handleErrorMessages(fields, response.errors, response.message);
@@ -571,7 +586,8 @@
 
                             console.log(response.message);
 
-                            unactiveForm(cur);
+                            window.location.reload();
+                            // unactiveForm(cur);
 
                         } else {
                             var fields = ['address', 'first_phone', 'second_phone'];
@@ -585,10 +601,17 @@
                 e.preventDefault();
 
                 var formData = new FormData(this);
+                formData.append('avatar', $('#avatar-input')[0].files[0]);
 
                 var cur = $(this);
 
-                sendUpdateBasicData(formData, cur);
+                if(formData && Object.keys(formData).length > 0){
+                    sendUpdateBasicData(formData, cur);
+                } else {
+                    unactiveForm(cur);
+                }
+
+
             });
 
             $("#update_contact_details").submit(function(e) {
@@ -598,13 +621,19 @@
 
                 var cur = $(this);
 
-                sendUpdateDetailData(formData, cur);
+                if(formData && Object.keys(formData).length > 0){
+                    sendUpdateDetailData(formData, cur);
+                } else {
+                    unactiveForm(cur);
+                }
+
+
             });
 
             // Function to handle login/logout for OAuth providers
             function handleOAuthLogin(provider) {
                 if ($('#' + provider + '_login').prop('checked')) {
-                    window.open("/login/" + provider, "_blank");
+                    window.location.href = `/login/${provider}`;
                 } else {
                     remove_oauth(provider);
                 }
@@ -619,6 +648,7 @@
                         provider: provider
                     }, // Pass the provider info in the data
                     success: function(response) {
+                        window.location.reload();
                         console.log(response.message);
                     },
                     error: function(xhr) {
