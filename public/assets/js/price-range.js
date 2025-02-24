@@ -1,80 +1,80 @@
 $(document).ready(function () {
-  const sliderOne = $("#slider-1");
-  const sliderTwo = $("#slider-2");
-  const sliderTrack = $(".slider-track");
-  const minInput = $(".min-price");
-  const maxInput = $(".max-price");
+    const sliderOne = $("#slider-1");
+    const sliderTwo = $("#slider-2");
+    const sliderTrack = $(".slider-track");
+    const minInput = $(".min-price");
+    const maxInput = $(".max-price");
 
-  let minGap = 0;
-  let sliderMaxValue = parseInt(sliderOne.attr("max"));
+    let minGap = 0;
+    let sliderMaxValue = 1000000;  // Updated to 1000000
 
-  function slideOne() {
-      let sliderOneValue = parseInt(sliderOne.val());
-      let sliderTwoValue = parseInt(sliderTwo.val());
+    function slideOne() {
+        let sliderOneValue = parseInt(sliderOne.val());
+        let sliderTwoValue = parseInt(sliderTwo.val());
 
-      if (sliderTwoValue - sliderOneValue <= minGap) {
-          sliderOne.val(sliderTwoValue - minGap);
-      }
+        if (sliderTwoValue - sliderOneValue <= minGap) {
+            sliderOne.val(sliderTwoValue - minGap);
+        }
 
-      minInput.val(sliderOne.val());
-      fillColor();
-  }
+        minInput.val(sliderOne.val());
+        fillColor();
+    }
 
-  function slideTwo() {
-      let sliderOneValue = parseInt(sliderOne.val());
-      let sliderTwoValue = parseInt(sliderTwo.val());
+    function slideTwo() {
+        let sliderOneValue = parseInt(sliderOne.val());
+        let sliderTwoValue = parseInt(sliderTwo.val());
 
-      if (sliderTwoValue - sliderOneValue <= minGap) {
-          sliderTwo.val(sliderOneValue + minGap);
-      }
+        if (sliderTwoValue - sliderOneValue <= minGap) {
+            sliderTwo.val(sliderOneValue + minGap);
+        }
 
-      maxInput.val(sliderTwo.val());
-      fillColor();
-  }
+        maxInput.val(sliderTwo.val());
+        fillColor();
+    }
 
-  function fillColor() {
-      let percent1 = (parseInt(sliderOne.val()) / sliderMaxValue) * 100;
-      let percent2 = (parseInt(sliderTwo.val()) / sliderMaxValue) * 100;
-      
-      sliderTrack.css("background", `linear-gradient(to right, #dadae5 ${percent1}% , #005B96 ${percent1}% , #005B96 ${percent2}%, #dadae5 ${percent2}%)`);
-  }
+    function fillColor() {
+        let percent1 = (parseInt(sliderOne.val()) / sliderMaxValue) * 100;
+        let percent2 = (parseInt(sliderTwo.val()) / sliderMaxValue) * 100;
 
-  function syncMinPrice() {
-      let value = parseInt(minInput.val());
-      let maxValue = parseInt(sliderTwo.val());
+        sliderTrack.css("background", `linear-gradient(to right, #dadae5 ${percent1}% , #005B96 ${percent1}% , #005B96 ${percent2}%, #dadae5 ${percent2}%)`);
+    }
 
-      if (value < parseInt(sliderOne.attr("min"))) value = parseInt(sliderOne.attr("min"));
-      if (value > maxValue - minGap) value = maxValue - minGap;
+    function syncMinPrice() {
+        let value = parseInt(minInput.val());
+        let maxValue = parseInt(sliderTwo.val());
 
-      sliderOne.val(value);
-      fillColor();
-  }
+        if (value < parseInt(sliderOne.attr("min"))) value = parseInt(sliderOne.attr("min"));
+        if (value > maxValue - minGap) value = maxValue - minGap;
 
-  function syncMaxPrice() {
-      let value = parseInt(maxInput.val());
-      let minValue = parseInt(sliderOne.val());
+        sliderOne.val(value);
+        fillColor();
+    }
 
-      if (value > sliderMaxValue) value = sliderMaxValue;
-      if (value < minValue + minGap) value = minValue + minGap;
+    function syncMaxPrice() {
+        let value = parseInt(maxInput.val());
+        let minValue = parseInt(sliderOne.val());
 
-      sliderTwo.val(value);
-      fillColor();
-  }
+        if (value > sliderMaxValue) value = sliderMaxValue;
+        if (value < minValue + minGap) value = minValue + minGap;
 
-  sliderOne.on("input", slideOne);
-  sliderTwo.on("input", slideTwo);
+        sliderTwo.val(value);
+        fillColor();
+    }
 
-  minInput.on("input", function () {
-      syncMinPrice();
-      slideOne();
-  });
+    sliderOne.on("input", slideOne);
+    sliderTwo.on("input", slideTwo);
 
-  maxInput.on("input", function () {
-      syncMaxPrice();
-      slideTwo();
-  });
+    minInput.on("input", function () {
+        syncMinPrice();
+        slideOne();
+    });
 
-  // Initialize
-  slideOne();
-  slideTwo();
+    maxInput.on("input", function () {
+        syncMaxPrice();
+        slideTwo();
+    });
+
+    // Initialize
+    slideOne();
+    slideTwo();
 });
