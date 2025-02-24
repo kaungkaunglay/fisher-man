@@ -123,7 +123,7 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $this->authorize('update', $product); // Ensure only owners can edit
+        // $this->authorize('update', $product); // Ensure only owners can edit
 
         $subCategories = Sub_category::all();
         return view('admin.product', compact('product', 'subCategories'));
@@ -131,7 +131,7 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        $this->authorize('update', $product); // Ensure only owners can update
+        // $this->authorize('update', $product); // Ensure only owners can update
 
         $request->validate([
             'name' => 'sometimes|string|max:255',
@@ -172,7 +172,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
-        $this->authorize('delete', $product); // Ensure only owners can delete
+        // $this->authorize('delete', $product); // Ensure only owners can delete
 
         if ($product->product_image) {
             Storage::disk('public')->delete($product->product_image);
