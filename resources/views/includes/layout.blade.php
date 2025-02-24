@@ -106,7 +106,7 @@
                         <a href="{{ route('white_list.index') }}" class="position-relative">
                             <i class="fa-solid fa-bookmark icon" id="bookmark_btn"></i>
                             <span id="white_list_count"
-                                class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
+                                class="cart-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span>
                         </a>
 
                         @if (Auth::check() || session('user_id'))
@@ -227,16 +227,16 @@
               alt=""></a> --}}
                     <p class="text-center txt-18">{{ App\Models\Setting::getValue('slogan') }}</p>
                     <div class="social-icons d-flex justify-content-between gap-1">
-                        <a href="">
+                        <a href="https://www.line.me/en/">
                             <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}"
                                 alt="Line">
                         </a>
-                        <a href=""><img class="icon_social"
-                                src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Line"></a>
-                        <a href=""><img class="icon_social"
-                                src="{{ asset('assets/icons/custom/wechat.png') }}" alt="Line"></a>
-                        <a href=""><img class="icon_social"
-                                src="{{ asset('assets/icons/custom/xcom.png') }}"></a>
+                        <a href="https://www.facebook.com/"><img class="icon_social"
+                                src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Facebook"></a>
+                        <a href="https://www.wechat.com/"><img class="icon_social"
+                                src="{{ asset('assets/icons/custom/wechat.png') }}" alt="Wechat"></a>
+                        <a href="https://x.com/"><img class="icon_social"
+                                src="{{ asset('assets/icons/custom/xcom.png') }}" alt="Xcom"></a>
                     </div>
                 </div>
                 {{-- /Footer Logo --}}
@@ -246,8 +246,8 @@
                     <h6 class="text-center text-warning mb-2">{{ trans_lang('useful_links') }}</h6>
                     <ul class="list-unstyled link-list txt-15 useful-link">
                         <li><a href="{{ route('home') }}">{{ trans_lang('home') }}</a></li>
-                        <li><a href="#">{{ trans_lang('product') }}</a></li>
-                        <li><a href="#">{{ trans_lang('faqs') }}</a></li>
+                        <li><a href="{{route('special-offer')}}">{{ trans_lang('special_offer') }}</a></li>
+                        <li><a href="{{route('support')}}">{{ trans_lang('faqs') }}</a></li>
                         <li><a href="{{ route('policy') }}">{{ trans_lang('terms_privacy') }}</a></li>
                         <li><a href="#">{{ trans_lang('customer_review') }}</a></li>
                         <li><a href="#">{{ trans_lang('blogs') }}</a></li>
@@ -259,12 +259,12 @@
                 <div class="col-12 col-lg-2 mt-3 ">
                     <h6 class="text-center text-warning mb-2">{{ trans_lang('contact_us') }}</h6>
                     <ul class="list-unstyled text-white txt-15 text-center">
-                        <li><a href="#">{{ trans_lang('address') }} :
-                                {{ App\Models\Setting::getValue('contact_address') }}</a></li>
-                        <li><a href="#">{{ trans_lang('phone_number') }} :
-                                {{ App\Models\Setting::getValue('contact_phone') }}</a></li>
-                        <li><a href="#">{{ trans_lang('email') }} :
-                                {{ App\Models\Setting::getValue('contact_email') }}</a></li>
+                        <li>{{ trans_lang('address') }} :
+                                {{ App\Models\Setting::getValue('contact_address') }}</li>
+                        <li>{{ trans_lang('phone_number') }} :
+                                {{ App\Models\Setting::getValue('contact_phone') }}</li>
+                        <li>{{ trans_lang('email') }} :
+                                {{ App\Models\Setting::getValue('contact_email') }}</li>
                     </ul>
                 </div>
                 {{-- /Contact Us --}}
@@ -278,8 +278,8 @@
                 <div class="col-lg-5 text-white text-center text-lg-start">
                     <p class="my-2 txt-13">&copy; Copyright 2024-fisherman Designed by Andfun</p>
                 </div>
-                <div class="col-lg-5 text-white text-lg-end text-center">
-                    <p class="my-2 txt-13"><a href="{{ route('policy') }}">Privacy | Terms</a></p>
+                <div class="col-lg-5 text-white text-lg-end text-center mb-2 mb-lg-0">
+                    <p class="mb-4 my-lg-2 txt-13"><a href="{{ route('policy') }}">Privacy | Terms</a></p>
                 </div>
             </div>
         </div>
@@ -291,14 +291,15 @@
     <!-- Mobile Bottom Nav -->
     <div class="bottom-nav d-flex d-md-none">
         <a href="{{ route('home')}}" class="menu-header"><i class="fa-solid fa-home"></i><br>{{trans_lang('home')}}</a>
-        <a href="#" class="menu-header"><i class="fa-solid fa-tags" id="category-link"></i><br>{{trans_lang('category')}}</a>
+        <a href="" class="menu-header"  id="category-link"><i class="fa-solid fa-tags"></i><br>{{trans_lang('category')}}</a>
         <div class="">
             <a href="{{ route('cart')}}" class="menu-header mobile-shopping-card"><i
                     class="fa-solid fa-cart-shopping shopping"></i><br>{{trans_lang('cart')}}(
                 <span class="text-danger" id="cart_count_bottom">0</span> )
             </a>
         </div>
-        <a href="#" class="menu-header"><i class="fa-solid fa-tags"></i><br>{{trans_lang('offer')}}</a>
+        <a href="{{ route('white_list.index') }}" class="menu-header"><i class="fa-solid fa-bookmark"></i><br>{{trans_lang('offer')}}(
+            <span class="text-danger white_list_count" id="white_list_count">0</span> )</a>
         <a href="{{ route('profile')}}" class="menu-header"><i class="fa-solid fa-user"></i><br>{{trans_lang('profile')}}</a>
     </div>
     <!-- /Mobile Bottom Nav -->
@@ -407,7 +408,7 @@
                 method: 'GET',
                 success: function(response) {
                     // Assuming response contains the new count
-                    $('#white_list_count').text(response.white_lists_count);
+                    $('.white_list_count').text(response.white_lists_count);
                 },
                 error: function(xhr) {
                     // Handle error here

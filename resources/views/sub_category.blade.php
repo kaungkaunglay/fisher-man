@@ -20,9 +20,9 @@
 <div class="container-custom">
     <nav aria-label="breadcrumb" class="py-4">
         <ol class="breadcrumb mb-0 bg-transparent">
-            <li class="breadcrumb-item"><a href="./home.html">{{trans_lang('home')}}</a></li>
-            <li class="breadcrumb-item" aria-current="page"><a href="">{{ $subCategory->category->category_name }}</a></li>
-            <li class="breadcrumb-item" aria-current="page"><a href="">{{ $subCategory->name }}</a></li>
+            <li class="breadcrumb-item"><a href="{{route('home')}}">{{trans_lang('home')}}</a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="{{route('category', $subCategory->category_id)}}">{{ $subCategory->category->category_name }}</a></li>
+            <li class="breadcrumb-item" aria-current="page">{{ $subCategory->name }}</li>
         </ol>
     </nav>
 
@@ -56,16 +56,21 @@
             </div>
         </div>
 
-        <div class="range-slider mx-auto">
-            <input type="number" class="min-price" value="1" min="1" max="100">
-            <h3 class="txt">{{trans_lang('price_range')}}</h3>
-            <input type="number" class="max-price" value="25" min="1" max="100">
-            <div class="range-container position-relative mt-3 w-100">
-                <div class="slider-track"></div>
-                <input type="range" min="1" max="100" value="1" id="slider-1">
-                <input type="range" min="1" max="100" value="25" id="slider-2">
+        <form action="{{ route('sub-category.show', $subCategory->id) }}" method="GET" id="priceRangeForm">
+            <div class="range-slider mx-auto">
+                <input type="number" name="min_price" class="min-price" value="{{ request('min_price', 1) }}" min="1" max="1000000">
+                <h3 class="txt">{{ trans_lang('price_range') }}</h3>
+                <input type="number" name="max_price" class="max-price" value="{{ request('max_price', 1000000) }}" min="1" max="1000000">
+
+                <div class="range-container position-relative mt-3 w-100">
+                    <div class="slider-track"></div>
+                    <input type="range" min="1" max="1000000" value="{{ request('min_price', 1) }}" id="slider-1">
+                    <input type="range" min="1" max="1000000" value="{{ request('max_price', 1000000) }}" id="slider-2">
+                </div>
+                <button type="submit" class="common-btn2">Filter</button>
             </div>
-        </div>
+        </form>
+
 
         <div class="sub-category-item">
             <div class="card-list" id="view-list">
@@ -108,7 +113,7 @@
 <script src="{{asset('assets/js/price-range.js')}}"></script>
 <script src="{{asset('assets/js/pagination.js')}}"></script>
 <script src="{{ asset('assets/js/words-limit.js') }}"></script>
-<script>
+<!-- <script>
     const itemsPerPage = 24;
     const items = document.querySelectorAll(".item-card");
     const pagination = document.getElementById("pagination");
@@ -171,7 +176,7 @@
     // Initialize
     createPagination();
     showPage(1);
-</script>
+</script> -->
 
 <script src="{{ asset('assets/js/view-list.js') }}"></script>
 

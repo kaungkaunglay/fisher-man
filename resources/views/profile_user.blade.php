@@ -432,7 +432,7 @@
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb" class="py-4">
             <ol class="breadcrumb mb-0 bg-transparent">
-                <li class="breadcrumb-item"><a href="./home.html">{{ trans_lang('home') }}</a></li>
+                <li class="breadcrumb-item"><a href="{{route('home')}}">{{ trans_lang('home') }}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Porfile</li>
             </ol>
         </nav>
