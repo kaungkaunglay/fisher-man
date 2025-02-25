@@ -9,6 +9,7 @@ use App\Models\Contact;
 use App\Models\Product;
 use App\Models\Setting;
 use App\Models\wishList;
+use App\Helpers\AuthHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -261,6 +262,13 @@ class AdminController extends Controller
 
 
         return response()->json(['success' => true, 'message' => 'Shop deleted successfully.']);
+    }
+
+    public function logout()
+    {
+        AuthHelper::logout();
+
+        return to_route('admin.login');
     }
 
 }
