@@ -173,7 +173,9 @@ class AuthController extends Controller
 
                 // return redirect()->intended('/');
 
-                return response()->json(['status' => true, 'message' => 'login successfull', 'user' => $user ]);
+                $isSeller = $user->roles->first()->id == 2;
+
+                return response()->json(['status' => true, 'message' => 'login successfull', 'user' => $user , 'isSeller' => $isSeller ]);
             }
 
             return response()->json(['status' => false, 'message' => 'Username or Password is Incorrect']);
@@ -355,10 +357,16 @@ class AuthController extends Controller
         $user = AuthHelper::user();
 
         if (!$user) {
+
+
             return redirect()->route('home')->with('error', 'User not found.');
         }
 
         if ($user->email_verify_token !== $token) {
+
+            session()->flash('status' , 'error');
+            session()->flash('message', 'Invalid verification');
+
             return redirect()->route('profile')->with('error', 'Invalid verification token.');
         }
 
@@ -367,6 +375,8 @@ class AuthController extends Controller
             'email_verify_token' => null
         ]);
 
+        session()->flash('status' , 'success');
+        session()->flash('message', 'Email verified successfully.');
         return redirect()->route('profile')->with('success', 'Email verified successfully.');
     }
 
