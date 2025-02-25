@@ -6,11 +6,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title', 'Fisher Man')</title>
+    <meta name="keywords" content="fishing, fisherman, r-mekiki, sea, ocean">
+    <meta name="author" content="AndFun">
+    <meta property="og:title" content="{{config('app.url')}}">
+    <meta property="og:description" content="{{config('settings.slogan')}}}}">
+    <meta property="og:image" content="https://s6.imgcdn.dev/YhKH6e.png">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}" />
     @yield('style')
     <link rel="icon" href="demo_icon.gif" type="image/gif" sizes="16x16">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" />
@@ -22,7 +28,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('assets/images/favicon/site.webmanifest') }}">
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
