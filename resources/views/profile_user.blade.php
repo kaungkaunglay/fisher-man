@@ -140,13 +140,18 @@
                                 </div>
 
                             </div>
-                            <div class="alert alert-warning d-flex mb-2" role="alert" id="sent_email_verify_link">
-                                <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
-                                    aria-label="Warning:"></i>
-                                <div class="text-start">
-                                    Verify your email
+
+                            @if(!auth_helper()->isVerified())
+                                <div class="alert alert-warning d-flex mb-2" role="alert" >
+                                    <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
+                                        aria-label="Warning:"></i>
+                                    <div class="text-start">
+                                        Verify your email
+                                        <a href="javascript:void(0);" id="sent_email_verify_link" class="btn btn-outline-warning btn-sm">here</a>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
+
                             <!-- /Form Content -->
 
                             @if (!$hasShopRequest)
