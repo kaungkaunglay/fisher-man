@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Validator;
 
 class ShopController extends Controller
 {
+    public function shop_detials(){
+        return view('shop');
+    }
     public function requestShop(Request $request)
     {
 
