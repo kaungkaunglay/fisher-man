@@ -51,11 +51,6 @@
                                 <label class="fs-4 fw-bold mb-8">Email:</label>
                                 <p>{{ $contact->email }}</p>
                             </div>
-
-                            <div class="mb-20">
-                                <label class="fs-4 fw-bold mb-8">LineID:</label>
-                                <p>{{ $contact->line_id }}</p>
-                            </div>
                             <div class="mb-20">
                                 <label class="fs-4 fw-bold mb-8">Phone:</label>
                                 <p>{{ $contact->phone }}</p>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Shop;
 use App\Models\Product;
+use App\Helpers\AuthHelper;
 use App\Models\Sub_category;
 use Illuminate\Http\Request;
 use App\Rules\ValidExpireDate;
@@ -109,7 +110,7 @@ class ProductController extends Controller
         }
 
         Product::create([
-            'user_id' => Auth::id(), // Add the logged-in user ID
+            'user_id' => AuthHelper::id(), // Add the logged-in user ID
             'sub_category_id' => $request->sub_category_id,
             'name' => $request->name,
             'product_price' => $request->product_price,

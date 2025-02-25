@@ -42,7 +42,7 @@
                         @foreach ($whitelist_products as $index => $product)
                             <tr class="table-row white-list-{{ $product->id }}">
                                 <td>
-                                    <div class="table-img"><img src="{{ asset($product->product_image) }}"
+                                    <div class="table-img"><img src="{{ asset('assets/products/'.$product->product_image) }}"
                                             alt="{{ $product->name }}"></div>
                                 </td>
                                 <td class="col-name">{{ $product->name }}</td>
@@ -82,7 +82,7 @@
                 @foreach ($whitelist_products as $idx => $product)
                     <div class="card white-list-{{ $product->id }}">
                         <div class="card-img me-2">
-                            <img src="{{ asset($product->product_image) }}" alt="product img">
+                            <img src="{{ asset('assets/products/'.$product->product_image) }}" alt="product img">
                         </div>
                         <div class="card-body">
                             <div class="table-row">

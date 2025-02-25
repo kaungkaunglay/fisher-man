@@ -38,11 +38,13 @@
 
                 <form action="#" id="update_basic_profile" class="profile-form" method="POST">
 
+                    @csrf
+
                     <div class="w-100 h-100 d-md-flex gap-3">
                         <!-- profile img -->
                         <div class="w-100 profile-form d-flex flex-column avatar-input">
                             <label for="avatar-input" class="w-100 d-block position-relative">
-                                <img src="{{ $user->avatar ?? asset('assets/images/account1.svg') }}" id="form-img"
+                                <img src="{{ $user->avatar ? asset('assets/avatars/'.$user->avatar) : asset('assets/images/account1.svg') }}" id="form-img"
                                     alt="{{ $user->username ?? 'Account.png'}}">
                                     <div class="avatar-upload position-absolute d-none">
                                         <div class="m-auto">
@@ -51,13 +53,12 @@
                                         </div>
                                     </div>
                             </label>
-                            <input type="file" class="upload-photo d-none" id="avatar-input">
+                            <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input">
                         </div>
 
                         <!-- Profile Info -->
                         <div class="w-100 d-flex flex-column">
 
-                            @csrf
                             <!-- Form Headline -->
                             <div class="bg-primary text-white p-2 form-headline">
                                 <h2 class="fw-bold d-flex justify-content-between">{{ trans_lang('info') }}
@@ -86,7 +87,6 @@
                                         <output class="form-output" for="username">{{ $user->username }}</output>
                                         <input type="text" name="username" class="p-1 mt-1 ms-1 border-bottom border-2 d-none"
                                             id="username" value="{{ $user->username }}" disabled>
-
                                     </div>
                                     <span class="invalid-feedback"></span>
                                 </div>
@@ -316,9 +316,7 @@
                         <div class="d-flex align-items-center form-group">
                             <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
                             <output class="form-output" for="address">{{ $user->address }}</output>
-                            <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>
-                                {{ $user->address }}
-                            </textarea>
+                            <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea>
                             <span class="invalid-feedback"></span>
                         </div>
 

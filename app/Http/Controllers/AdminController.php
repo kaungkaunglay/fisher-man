@@ -121,7 +121,7 @@ class AdminController extends Controller
         }else{
             $user = Users::where('email', $request->email)->first();
 
-            if($user && Hash::check($request->password, $user->password)){
+            if($user && Hash::check($request->password, $user->password) && $user->roles()->first()->id == 1){
                 Auth::login($user);
                 return response()->json(['status' => true, 'message' => 'Login success', 'errors'=> '']);
             }
@@ -262,12 +262,5 @@ class AdminController extends Controller
 
         return response()->json(['success' => true, 'message' => 'Shop deleted successfully.']);
     }
-
-
-    public function logout(){
-        Auth::logout();
-        return redirect()->route('admin.login');
-    }
-
 
 }

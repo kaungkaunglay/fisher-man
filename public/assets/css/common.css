@@ -599,10 +599,15 @@ li {
   color: white;
 }
 
+.main-search-bar{
+  width: 600px;
+}
+
 @media screen and (max-width: 1350px) {
   #view-list {
     grid-template-columns: 1fr 1fr 1fr;
   }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -934,6 +939,7 @@ li {
     padding: 5px 25px;
   }
 
+
 }
 
 /* Card Design */
@@ -960,6 +966,7 @@ li {
     justify-content: center;
   }
 
+
 }
 
 @media screen and (max-width: 768px) {
@@ -984,6 +991,10 @@ li {
     padding: 7px 20px;
   }
 
+  .main-search-bar{
+    width: 430px !important;
+  }
+
 }
 @media screen and (max-width: 490px) {
 
@@ -991,4 +1002,7 @@ li {
   .card-list {
     grid-template-columns: 1fr !important;
   }
+
+
+
 }

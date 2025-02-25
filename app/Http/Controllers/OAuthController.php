@@ -61,6 +61,8 @@ class OAuthController extends Controller
                     if($user->email != $providerUser->getEmail()){
                         session()->flash('status',"error");
                         session()->flash('message',"Your provided email does not match with your {$provider} account.");
+
+                        return redirect()->route('profile');
                     }
 
                     // Update the provider ID for the existing user
