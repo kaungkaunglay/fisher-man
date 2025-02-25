@@ -44,7 +44,7 @@ class VerifyEmail extends Mailable
             view: 'emails.verify_email',
             with: [
                 'user' => $this->user,
-                'url' => url("/verify-email/" . $this->token)
+                'url' => route('email.verify',$this->token)
             ]
         );
     }

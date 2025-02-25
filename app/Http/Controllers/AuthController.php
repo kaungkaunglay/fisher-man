@@ -323,37 +323,51 @@ class AuthController extends Controller
     {
         $user = AuthHelper::user();
 
-        if($user->email_verified_at == null){
-            $token = Str::random(64);
+        if (!$user || $user->email_verified_at) {
 
-            $user->update([
-                'email_verify_token' => $token
+            session()->flash('status' , 'error');
+            session()->flash('message', 'Your email is already verified or user not found.');
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Your email is already verified or user not found.'
             ]);
-
-            Mail::to($user->email)->send(new VerifyEmail($user,$token));
-
-            return response()->json(['status' => true, 'message' => 'Email Veriy Link Sent']);
         }
 
-        return response()->json(['status' => false, 'message' => 'Your email already verified']);
+        $token = Str::random(64);
+
+        $user->email_verify_token =  $token;
+        $user->save();
+
+        Mail::to($user->email)->send(new VerifyEmail($user, $token));
+
+        session()->flash('status' , 'success');
+        session()->flash('message', 'Verification email sent successfully.');
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Verification email sent successfully.'
+        ]);
     }
 
-    public function verifyEmail(Request $request){
+    public function verifyEmail($token)
+    {
         $user = AuthHelper::user();
 
-        $token = $request->query('token');
+        if (!$user) {
+            return redirect()->route('home')->with('error', 'User not found.');
+        }
 
-        if($user->email_verify_token !== $token)
-        {
-            return redirect()->route('profile');
+        if ($user->email_verify_token !== $token) {
+            return redirect()->route('profile')->with('error', 'Invalid verification token.');
         }
 
         $user->update([
-            'email_verifed_at' => now(),
+            'email_verified_at' => now(),
             'email_verify_token' => null
         ]);
 
-        return redirect()->route('profile');
+        return redirect()->route('profile')->with('success', 'Email verified successfully.');
     }
 
 

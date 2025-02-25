@@ -29,12 +29,15 @@ class Users extends Authenticatable implements CanResetPassword,MustVerifyEmail
         'trans_management',
         'avatar',
         'location',
-        'address'
+        'address',
+        'email_verified_at',
+        'email_verify_token'
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
+        'email_verify_token'
     ];
 
     public function roles()
