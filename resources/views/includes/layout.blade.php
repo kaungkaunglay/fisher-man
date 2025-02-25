@@ -496,6 +496,26 @@
                 addToCart(products, cur_btn);
             });
         }
+        function formatPriceJapanese(price) {
+        // Convert to string and handle potential non-number inputs
+        const priceStr = String(price);
+        
+        // Check if the input is a valid number
+        if (isNaN(Number(priceStr))) {
+            return "Invalid input";
+        }
+        
+        // Split into integer and decimal parts (if any)
+        const parts = priceStr.split('.');
+        const integerPart = parts[0];
+        const decimalPart = parts.length > 1 ? '.' + parts[1] : '';
+        
+        // Format the integer part with commas every 3 digits
+        const formattedInteger = integerPart.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+        
+        // Return the formatted price
+        return formattedInteger + decimalPart;
+        }
     </script>
     <!-- /All Scripts -->
     @yield('script')

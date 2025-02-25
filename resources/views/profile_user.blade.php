@@ -43,10 +43,15 @@
                         <div class="w-100 profile-form d-flex flex-column avatar-input">
                             <label for="avatar-input" class="w-100 d-block position-relative">
                                 <img src="{{ $user->avatar ?? asset('assets/images/account1.svg') }}" id="form-img"
-                                    alt="Account.png">
-                                <div class="avatar-upload w-100 h-100 position-absolute d-none"><i class="fas fa-upload m-auto"></i></div>
+                                    alt="{{ $user->username ?? 'Account.png'}}">
+                                    <div class="avatar-upload position-absolute d-none">
+                                        <div class="m-auto">
+                                            <i class="fas fa-upload"></i>
+                                            <p>Upload Profile Image</p>
+                                        </div>
+                                    </div>
                             </label>
-                            <input type="image" class="upload-photo d-none" id="avatar-input">
+                            <input type="file" class="upload-photo d-none" id="avatar-input">
                         </div>
 
                         <!-- Profile Info -->
@@ -81,8 +86,9 @@
                                         <output class="form-output" for="username">{{ $user->username }}</output>
                                         <input type="text" name="username" class="p-1 mt-1 ms-1 border-bottom border-2 d-none"
                                             id="username" value="{{ $user->username }}" disabled>
-                                        <span class="invalid-feedback"></span>
+
                                     </div>
+                                    <span class="invalid-feedback"></span>
                                 </div>
 
                                 <!-- email link -->
@@ -92,8 +98,8 @@
                                         <output class="form-output" for="email">{{ $user->email }}</output>
                                         <input type="email" name="email" class="p-1 mt-2 ms-1 border-bottom border-2 d-none"
                                             id="email" value="{{ $user->email }}" disabled>
-                                        <span class="invalid-feedback"></span>
                                     </div>
+                                    <span class="invalid-feedback"></span>
                                 </div>
 
                                 <!-- account checkbox -->
@@ -608,15 +614,20 @@
 
             $("#update_basic_profile").submit(function(e) {
                 e.preventDefault();
+                // console.log('Hello');
 
                 var formData = new FormData(this);
-                formData.append('avatar', $('#avatar-input')[0].files[0]);
+                // formData.append('avatar', $('#avatar-input')[0].files[0] ?? null);
+
+                // console.log(formData->getKey('username'));
 
                 var cur = $(this);
 
-                if (formData && Object.keys(formData).length > 0) {
+                if (formData) {
+                    // console.log("I work in success")
                     sendUpdateBasicData(formData, cur);
                 } else {
+                    // console.log("I work in status false")
                     unactiveForm(cur);
                 }
 
@@ -630,7 +641,7 @@
 
                 var cur = $(this);
 
-                if (formData && Object.keys(formData).length > 0) {
+                if (formData) {
                     sendUpdateDetailData(formData, cur);
                 } else {
                     unactiveForm(cur);

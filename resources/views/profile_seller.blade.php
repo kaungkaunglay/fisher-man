@@ -262,20 +262,20 @@
 
                 <!-- sorting -->
                 <!-- <div class="sort-container">
-                            <div class="arrows">
-                                <button><i class="fa-solid fa-caret-up"></i></button>
-                                <button><i class="fa-solid fa-caret-down"></i></button>
-                            </div>
-                            <div class="dropdown">
-                                <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">Sort by</button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </div> -->
+                                <div class="arrows">
+                                    <button><i class="fa-solid fa-caret-up"></i></button>
+                                    <button><i class="fa-solid fa-caret-down"></i></button>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">Sort by</button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    </ul>
+                                </div>
+                            </div> -->
 
             </div>
 
@@ -297,13 +297,14 @@
                                 @endif
                             </p>
                             <div class="title-category">
-                                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category ">{{ $product->subCategory->name }}</a>
+                                <a href="{{ route('sub-category.show', $product->subCategory->id) }}"
+                                    class="menu-category ">{{ $product->subCategory->name }}</a>
                                 <h3 class="title m-t-b-10">{{ $product->name }}</h3>
                             </div>
                             <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
                                 {{ $product->description }}
                             </a>
-       
+
                         </div>
                     </div>
                 @endforeach
@@ -321,19 +322,19 @@
                         @else
                             <li><a href="{{ $products->previousPageUrl() }}" class="">&lt;</a></li>
                         @endif
-            
+
                         <!-- Page Numbers (Only Show 3 Pages at a Time) -->
                         @php
                             $start = max(1, $products->currentPage() - 1);
                             $end = min($start + 2, $products->lastPage());
                         @endphp
-            
+
                         @for ($i = $start; $i <= $end; $i++)
                             <li class="{{ $products->currentPage() == $i ? 'active' : '' }}">
                                 <a href="{{ $products->url($i) }}" class="">{{ $i }}</a>
                             </li>
                         @endfor
-            
+
                         <!-- Next Page Link -->
                         @if ($products->hasMorePages())
                             <li><a href="{{ $products->nextPageUrl() }}" class="">&gt;</a></li>
@@ -527,22 +528,21 @@
         });
     </script>
 
-<script>
-    $(document).on('click', '.pagination a', function (e) {
-        e.preventDefault();
-        let page = $(this).attr('href').split('page=')[1];
-        fetchProducts(page);
-    });
-
-    function fetchProducts(page) {
-        $.ajax({
-            url: "?page=" + page,
-            success: function (data) {
-                $('#view-list').html($(data).find('#view-list').html());
-                $('.pagination').html($(data).find('.pagination').html());
-            }
+    <script>
+        $(document).on('click', '.pagination a', function(e) {
+            e.preventDefault();
+            let page = $(this).attr('href').split('page=')[1];
+            fetchProducts(page);
         });
-    }
-</script>
 
+        function fetchProducts(page) {
+            $.ajax({
+                url: "?page=" + page,
+                success: function(data) {
+                    $('#view-list').html($(data).find('#view-list').html());
+                    $('.pagination').html($(data).find('.pagination').html());
+                }
+            });
+        }
+    </script>
 @endsection
