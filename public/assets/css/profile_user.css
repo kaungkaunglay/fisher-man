@@ -20,6 +20,10 @@ font-size: 100px;
 display: flex;
 }
 
+.upload-photo {
+  font-size: 0;
+}
+
 .profile-form:not(.active) .link-contain input {
   display: none;
 }

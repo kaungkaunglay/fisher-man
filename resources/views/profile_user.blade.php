@@ -46,7 +46,7 @@
                                     alt="Account.png">
                                 <div class="avatar-upload w-100 h-100 position-absolute d-none"><i class="fas fa-upload m-auto"></i></div>
                             </label>
-                            <input type="image" class="upload-photo d-none" id="avatar-input" disabled>
+                            <input type="image" class="upload-photo d-none" id="avatar-input">
                         </div>
 
                         <!-- Profile Info -->

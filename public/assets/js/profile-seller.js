@@ -1,9 +1,5 @@
 $(document).ready(() => {
 
-  $('.form-check-input').click((ev)=> {
-    ev.preventDefault();
-  })
-
   $('.edit').click((ev) => {
     ev.preventDefault();
     actionForm(ev, true)
@@ -18,7 +14,7 @@ $(document).ready(() => {
 
 
   $('.save').click((ev) => {
-    ev.preventDefault();
+    // ev.preventDefault();
     actionForm(ev)
     unactiveForm(ev.currentTarget);
     updateData(ev);
@@ -48,7 +44,7 @@ function actionForm(trig, action) {
     $(textarea).attr('disabled', true);
   }
   $(output).toggleClass('d-none');
-  $(input).toggleClass($(this).attr('type') != 'image' ? 'd-none': '');
+  $(input).toggleClass($(this).attr('type') != 'image' ? 'd-none': $(this).text(null));
   $(textarea).toggleClass('d-none');
   $(btn).toggleClass('d-none');
   $(img).toggleClass('d-none'); 
@@ -87,8 +83,6 @@ function resetData(trig) {
 function unactiveForm(cur) {
 
     $($(cur.closest('.profile-form'))).removeClass('active');
-    if($('.sec-phone').val() == '') $('.cor').hide();
-    else $('.cor').show();
 }
 
 
