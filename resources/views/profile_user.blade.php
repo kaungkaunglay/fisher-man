@@ -38,6 +38,8 @@
 
                 <form action="#" id="update_basic_profile" class="profile-form" method="POST">
 
+                    @csrf
+
                     <div class="w-100 h-100 d-md-flex gap-3">
                         <!-- profile img -->
                         <div class="w-100 profile-form d-flex flex-column avatar-input">
@@ -52,7 +54,7 @@
                         <!-- Profile Info -->
                         <div class="w-100 d-flex flex-column">
 
-                            @csrf
+
                             <!-- Form Headline -->
                             <div class="bg-primary text-white p-2 form-headline">
                                 <h2 class="fw-bold d-flex justify-content-between">{{ trans_lang('info') }}
