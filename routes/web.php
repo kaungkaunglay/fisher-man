@@ -176,7 +176,7 @@ Route::get('/shop/{id}', [ShopController::class, 'shop_detials']);
 //     return view('cart');
 // })->name('cart');
 
-Route::get('/support', [ShopController::class, 'support'])->name('support');
+Route::get('/support', [UsersController::class, 'support'])->name('support');
 
 Route::get('/terms', function () {
     return view('terms_condition');
