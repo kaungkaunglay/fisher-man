@@ -17,20 +17,21 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!AuthHelper::check())
-        {
+        // Check if the user is authenticated
+        if (!AuthHelper::check()) {
             return redirect()->route('login');
         }
 
         $user = AuthHelper::auth();
+        $roleId = optional($user->roles->first())->id;
 
-        if ($user->roles->first()->id == 2) {
-            return to_route('profile_seller');
-        }
+        return match ($roleId) {
+            1 => to_route('admin.index'),
+            2 => to_route('profile_seller'),
+            3 => to_route('profile_user'),
+            default => abort(403, 'Unauthorized access'),
+        };
 
-        if ($user->roles->first()->id == 3) {
-            return to_route('profile_user');
-        }
         return $next($request);
     }
 }

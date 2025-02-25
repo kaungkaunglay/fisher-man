@@ -11,6 +11,7 @@ use App\Mail\ThankYouMail;
 use App\Mail\ThankYouMailforWishList;
 use App\Models\Contact;
 use App\Models\FAQs;
+use App\Models\Users;
 use App\Models\wishList;
 use App\Rules\ReCaptcha;
 use Illuminate\Support\Facades\Auth;
@@ -95,7 +96,7 @@ class UsersController extends Controller
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
-            $user = new User();
+            $user = new Users();
             $user->username = $request->username;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
@@ -131,7 +132,7 @@ class UsersController extends Controller
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }
         $user_password = $request->password;
-        $user = User::where('id', $request->userid)->first();
+        $user = Users::where('id', $request->userid)->first();
         if ($user) {
             $user->password = Hash::make($user_password);
             $user->save();
@@ -148,7 +149,7 @@ class UsersController extends Controller
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
-            $user = User::where('username', $request->username)
+            $user = Users::where('username', $request->username)
             ->orWhere('email', $request->username)
             ->first();
 
@@ -174,7 +175,7 @@ class UsersController extends Controller
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
-            $user = User::where('email', $request->email)->first();
+            $user = Users::where('email', $request->email)->first();
 
             // dd($user);
             if($user){
@@ -223,7 +224,7 @@ class UsersController extends Controller
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
-            $user = User::where('remember_token', $request->token)->first();
+            $user = Users::where('remember_token', $request->token)->first();
             if($user){
                 $user->password = Hash::make($request->password);
                 $user->remember_token = Str::random(60);

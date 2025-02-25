@@ -6,11 +6,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title', 'Fisher Man')</title>
+    <meta name="keywords" content="fishing, fisherman, r-mekiki, sea, ocean">
+    <meta name="author" content="AndFun">
+    <meta property="og:title" content="{{config('app.url')}}">
+    <meta property="og:description" content="{{config('settings.slogan')}}}}">
+    <meta property="og:image" content="https://s6.imgcdn.dev/YhKH6e.png">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}" />
     @yield('style')
     <link rel="icon" href="demo_icon.gif" type="image/gif" sizes="16x16">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" />
@@ -22,7 +28,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('assets/images/favicon/site.webmanifest') }}">
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
@@ -109,19 +114,21 @@
                                 class="cart-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span>
                         </a>
 
-                        @if (Auth::check() || session('user_id'))
+                        @if (auth_helper()->check())
                             <button class="btn-login position-relative">
                                 <i class="fa-solid fa-user icon"></i>
                                 <div class="dropdown position-absolute overflow-hidden bg-white">
                                     <ul class="border">
-                                        <li>
-                                            <a href="{{ url('/profile') }}"
-                                                class="d-flex gap-2 text-black text-center">
-                                                <i
-                                                    class="fa-solid fa-address-card icon"></i>{{ trans_lang('profile') }}
-                                            </a>
-                                        </li>
-                                        @if (check_role(2))
+                                        @if (!check_role(1))
+                                            <li>
+                                                <a href="{{ url('/profile') }}"
+                                                    class="d-flex gap-2 text-black text-center">
+                                                    <i
+                                                        class="fa-solid fa-address-card icon"></i>{{ trans_lang('profile') }}
+                                                </a>
+                                            </li>
+                                        @endif
+                                        @if (check_role(2) || check_role(1))
                                             <li>
                                                 <a href="{{ url('/admin') }}"
                                                     class="d-flex gap-2 text-black text-center">
@@ -492,6 +499,26 @@
 
                 addToCart(products, cur_btn);
             });
+        }
+        function formatPriceJapanese(price) {
+        // Convert to string and handle potential non-number inputs
+        const priceStr = String(price);
+
+        // Check if the input is a valid number
+        if (isNaN(Number(priceStr))) {
+            return "Invalid input";
+        }
+
+        // Split into integer and decimal parts (if any)
+        const parts = priceStr.split('.');
+        const integerPart = parts[0];
+        const decimalPart = parts.length > 1 ? '.' + parts[1] : '';
+
+        // Format the integer part with commas every 3 digits
+        const formattedInteger = integerPart.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+
+        // Return the formatted price
+        return formattedInteger + decimalPart;
         }
     </script>
     <!-- /All Scripts -->

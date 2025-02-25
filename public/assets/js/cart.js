@@ -109,11 +109,11 @@ function setPrice(target) {
 function caculating(target) {
 
     const container = target.closest('.table-row');
-    const price = $(container).find('.price').text().replace('¥', '');
+    const price = $(container).find('.price').text().replace('¥', '').replace(/,/g, '');
     const quantity = $(container).find('.quantity-value').val();
     const cost = $(container).find('.cost');
-
-    cost.text('¥' + Number(price) * Number(quantity));
+    const value = Number(price) * Number(quantity);
+    cost.text(formatPriceJapanese(value));
 }
 
 function netTotal(addtion) {
@@ -134,15 +134,15 @@ function netTotal(addtion) {
 
         for (i = 0; i < cost.length; i++) {
 
-            const priceVal = $(price[i]).text().replace('¥', '');
+            const priceVal = $(price[i]).text().replace('¥', '').replace(/,/g, ''); 
             const quantityVal = $(quantity[i]).val();
+            const price_value = Number(priceVal) * Number(quantityVal); 
+            if (addtion) $(cost[i]).text(formatPriceJapanese(price_value));
 
-            if (addtion) $(cost[i]).text('¥' + Number(priceVal) * Number(quantityVal));
-
-            result += Number($(cost[i]).text().replace('¥', ''));
+            result += Number($(cost[i]).text().replace('¥', '').replace(/,/g, ''));
         };
 
-        total.text('¥' + result);
+        total.text(formatPriceJapanese(result));
     })
 }
 

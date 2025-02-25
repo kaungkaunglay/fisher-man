@@ -29,19 +29,17 @@ class ProfileController extends Controller
     {
         // Define custom error messages
         $messages = [
-            'username.required' => 'The username field is required.',
             'username.min' => 'The username must be at least 4 characters.',
             'username.max' => 'The username may not be greater than 12 characters.',
             'username.unique' => 'The username has already been taken.',
-            'email.required' => 'The email field is required.',
             'email.email' => 'The email must be a valid email address.',
             'email.unique' => 'The email has already been taken.',
         ];
 
         // Validate incoming request data
         $validator = Validator::make($request->all(), [
-            'username' => 'required|min:4|max:20|unique:users,username,' . AuthHelper::id(),
-            'email' => 'required|email|unique:users,email,' . AuthHelper::id(),
+            'username' => 'sometimes|min:4|max:20|unique:users,username,' . AuthHelper::id(),
+            'email' => 'sometimes|email|unique:users,email,' . AuthHelper::id(),
         ], $messages);
 
         // Check if validation fails
@@ -77,22 +75,23 @@ class ProfileController extends Controller
     {
         // Define custom error messages for the new fields
         $messages = [
-            'address.required' => 'The address field is required.',
             'address.max' => 'The address may not be greater than 3]255 characters.',
             'address.string' => 'The address must be text.',
             'first_phone.regex' => 'The first phone number must be a valid phone number.',
             'second_phone.regex' => 'The second phone number must be a valid phone number.',
+            'avatar.image' => 'The avatar must be image.',
         ];
 
         // Validate incoming request data for address and phone numbers
         $validator = Validator::make($request->all(), [
-            'address' => 'required|string|max:255',
+            'address' => 'sometimes|string|max:255',
             // 'first_phone' => [
             //     'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'
             // ],
             // 'second_phone' => [
             //     'regex:/^(\+95[6-9]\d{6,9}|\+81[789]0\d{4}\d{4})?$/'
             // ],
+            'avatar' => 'sometimes|image|mimes:jpeg,jpg,png|max:2048'
         ], $messages);
 
         // Check if validation fails

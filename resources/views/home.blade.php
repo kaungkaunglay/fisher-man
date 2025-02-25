@@ -48,8 +48,8 @@
                         <div class="left">
                             <p class="price m-t-b-10">
                                 @if ($product->discount > 0)
-                                    ¥{{ number_format($product->product_price - $product->discount, 2) }}
-                                    <span class="original-price">¥{{ number_format($product->product_price, 2) }}</span>
+                                <span class="format">{{$product->product_price - $product->discount}}</span>
+                                <span class="original-price format">{{ $product->product_price }}</span>
                                 @else
                                     <span class="">¥{{ number_format($product->product_price, 2) }}</span>
                                 @endif
@@ -180,10 +180,10 @@
                         <div class="left">
                             <p class="price m-t-b-10">
                                 @if ($product->discount > 0)
-                                    ¥{{ number_format($product->product_price - $product->discount, 2) }}
-                                    <span class="original-price">¥{{ number_format($product->product_price, 2) }}</span>
+                                    <span class="format">{{$product->product_price - $product->discount}}</span>
+                                    <span class="original-price format">{{ $product->product_price }}</span>
                                 @else
-                                    <span class="">¥{{ number_format($product->product_price, 2) }}</span>
+                                    <span class="format">{{ $product->product_price }}</span>
                                 @endif
                             </p>
                             <div class="title-category flex-column flex-sm-row align-items-start">
@@ -275,10 +275,10 @@
                         <div class="left">
                             <p class="price m-t-b-10">
                                 @if ($product->discount > 0)
-                                    ¥{{ number_format($product->product_price - $product->discount, 2) }}
-                                    <span class="original-price">¥{{ number_format($product->product_price, 2) }}</span>
+                                    <span class="format">{{$product->product_price - $product->discount}}</span>
+                                    <span class="original-price format">{{ $product->product_price }}</span>
                                 @else
-                                    <span class="">¥{{ number_format($product->product_price, 2) }}</span>
+                                    <span class="format">{{ $product->product_price }}</span>
                                 @endif
                             </p>
                             <div class="title-category">

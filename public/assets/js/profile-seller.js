@@ -1,9 +1,5 @@
 $(document).ready(() => {
 
-  $('.form-check-input').click((ev)=> {
-    ev.preventDefault();
-  })
-
   $('.edit').click((ev) => {
     ev.preventDefault();
     actionForm(ev, true)
@@ -17,17 +13,8 @@ $(document).ready(() => {
   })
 
 
-  $('.save').click((ev) => {
-    ev.preventDefault();
-    actionForm(ev)
-    unactiveForm(ev.currentTarget);
-    updateData(ev);
-  })
-
   if($('.sec-phone').val() == '') $('.cor').hide();
   else $('.cor').show();
-
-
 
 });
 
@@ -35,10 +22,10 @@ function actionForm(trig, action) {
 
   const trigger = trig.currentTarget;
   const form = trigger.closest('.profile-form');
-  const input = form.querySelectorAll('input');
+  const input = form.querySelectorAll('input:not(.checkbox-list input)');
   const textarea = form.querySelectorAll('textarea');
   const output = form.querySelectorAll('output');
-  const btn = form.querySelectorAll('.form-headline button');
+  const btn = form.querySelectorAll('button');
   const img = form.querySelector('.avatar-upload');
 
   if(action) {
@@ -50,10 +37,10 @@ function actionForm(trig, action) {
     $(textarea).attr('disabled', true);
   }
   $(output).toggleClass('d-none');
-  $(input).toggleClass('d-none');
+  $(input).toggleClass($(this).attr('type') != 'image' ? 'd-none': '');
   $(textarea).toggleClass('d-none');
   $(btn).toggleClass('d-none');
-  $(img).toggleClass('d-none'); 
+  $(img).toggleClass('d-none');
 }
 
 function updateData(trig) {
@@ -86,11 +73,16 @@ function resetData(trig) {
 
 }
 
-function unactiveForm(cur) {
 
-    $($(cur.closest('.profile-form'))).removeClass('active');
+function unactiveForm(cur) {
+    cur.removeClass('active');
     if($('.sec-phone').val() == '') $('.cor').hide();
     else $('.cor').show();
+}
+
+
+function checkIfChange(){
+    
 }
 
 

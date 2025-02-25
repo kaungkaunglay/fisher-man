@@ -166,14 +166,16 @@ class AuthController extends Controller
             ->orWhere('email', $request->username)
             ->first();
 
-            if($user && Hash::check($request->password, $user->password)){
+            if($user && Hash::check($request->password, $user->password )  && $user->roles()->first()->id != 1){
                 $remember = $request->has('remember') && $request->remember == 1;
 
                 Auth::login($user,$remember);
 
                 // return redirect()->intended('/');
 
-                return response()->json(['status' => true, 'message' => 'login successfull', 'user' => $user ]);
+                $isSeller = $user->roles->first()->id == 2;
+
+                return response()->json(['status' => true, 'message' => 'login successfull', 'user' => $user , 'isSeller' => $isSeller ]);
             }
 
             return response()->json(['status' => false, 'message' => 'Username or Password is Incorrect']);
@@ -323,37 +325,59 @@ class AuthController extends Controller
     {
         $user = AuthHelper::user();
 
-        if($user->email_verified_at == null){
-            $token = Str::random(64);
+        if (!$user || $user->email_verified_at) {
 
-            $user->update([
-                'email_verify_token' => $token
+            session()->flash('status' , 'error');
+            session()->flash('message', 'Your email is already verified or user not found.');
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Your email is already verified or user not found.'
             ]);
-
-            Mail::to($user->email)->send(new VerifyEmail($user,$token));
-
-            return response()->json(['status' => true, 'message' => 'Email Veriy Link Sent']);
         }
 
-        return response()->json(['status' => false, 'message' => 'Your email already verified']);
+        $token = Str::random(64);
+
+        $user->email_verify_token =  $token;
+        $user->save();
+
+        Mail::to($user->email)->send(new VerifyEmail($user, $token));
+
+        session()->flash('status' , 'success');
+        session()->flash('message', 'Verification email sent successfully.');
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Verification email sent successfully.'
+        ]);
     }
 
-    public function verifyEmail(Request $request){
+    public function verifyEmail($token)
+    {
         $user = AuthHelper::user();
 
-        $token = $request->query('token');
+        if (!$user) {
 
-        if($user->email_verify_token !== $token)
-        {
-            return redirect()->route('profile');
+
+            return redirect()->route('home')->with('error', 'User not found.');
+        }
+
+        if ($user->email_verify_token !== $token) {
+
+            session()->flash('status' , 'error');
+            session()->flash('message', 'Invalid verification');
+
+            return redirect()->route('profile')->with('error', 'Invalid verification token.');
         }
 
         $user->update([
-            'email_verifed_at' => now(),
+            'email_verified_at' => now(),
             'email_verify_token' => null
         ]);
 
-        return redirect()->route('profile');
+        session()->flash('status' , 'success');
+        session()->flash('message', 'Email verified successfully.');
+        return redirect()->route('profile')->with('success', 'Email verified successfully.');
     }
 
 

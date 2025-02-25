@@ -43,10 +43,10 @@
                         <div class="w-100 profile-form d-flex flex-column avatar-input">
                             <label for="avatar-input" class="w-100 d-block position-relative">
                                 <img src="{{ $user->avatar ?? asset('assets/images/account1.svg') }}" id="form-img"
-                                    alt="Account.png">
+                                    alt="{{ $user->username ?? 'Account.png'}}">
                                 <div class="avatar-upload w-100 h-100 position-absolute d-none"><i class="fas fa-upload m-auto"></i></div>
                             </label>
-                            <input type="file" class="upload-photo d-none" id="avatar-input" readonly />
+                            <input type="image" class="upload-photo d-none" id="avatar-input" disabled>
                         </div>
 
                         <!-- Profile Info -->
@@ -79,10 +79,10 @@
                                     <div class="d-flex align-items-center">
                                         <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
                                         <output class="form-output" for="username">{{ $user->username }}</output>
-                                        <input type="text" name="username" class="p-1 mt-1 ms-1 rounded-1 d-none"
-                                            id="username" value="{{ $user->username }}" readonly>
-                                        <span class="invalid-feedback"></span>
+                                        <input type="text" name="username" class="p-1 mt-1 ms-1 border-bottom border-2 d-none"
+                                            id="username" value="{{ $user->username }}" disabled>
                                     </div>
+                                    <span class="invalid-feedback"></span>
                                 </div>
 
                                 <!-- email link -->
@@ -90,10 +90,10 @@
                                     <div class="d-flex align-items-center form-group">
                                         <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
                                         <output class="form-output" for="email">{{ $user->email }}</output>
-                                        <input type="email" name="email" class="p-1 mt-2 ms-1 rounded-1 d-none"
-                                            id="email" value="{{ $user->email }}" readonly>
-                                        <span class="invalid-feedback"></span>
+                                        <input type="email" name="email" class="p-1 mt-2 ms-1 border-bottom border-2 d-none"
+                                            id="email" value="{{ $user->email }}" disabled>
                                     </div>
+                                    <span class="invalid-feedback"></span>
                                 </div>
 
                                 <!-- account checkbox -->
@@ -140,13 +140,17 @@
                                 </div>
 
                             </div>
-                            <div class="alert alert-warning d-flex mb-2" role="alert" id="sent_email_verify_link">
-                                <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
-                                    aria-label="Warning:"></i>
-                                <div class="text-start">
-                                    Verify your email
+
+                            @if(!auth_helper()->isVerified())
+                                <div class="alert alert-warning d-flex mb-2" role="alert" >
+                                    <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
+                                        aria-label="Warning:"></i>
+                                    <div class="text-start">
+                                        Verify your email
+                                        <a href="javascript:void(0);" id="sent_email_verify_link" class="btn btn-outline-warning btn-sm">here</a>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                             <!-- /Form Content -->
 
                             @if (!$hasShopRequest)
@@ -175,7 +179,6 @@
                             @endif
 
                         </div>
-                        {{-- /Profile Info --}}
                     </div>
                 </form>
                 <!-- /Profile Info -->
@@ -307,7 +310,7 @@
                         <div class="d-flex align-items-center form-group">
                             <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
                             <output class="form-output" for="address">{{ $user->address }}</output>
-                            <textarea name="address" class="p-1 mt-2 ms-1 rounded-1 d-none" id="address" readonly>
+                            <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>
                                 {{ $user->address }}
                             </textarea>
                             <span class="invalid-feedback"></span>
@@ -320,15 +323,14 @@
                                 <a href="tel:">
                                     <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
                                 </a>
-                                <input type="tel" name="first_phone" class="p-1 mt-2 border-bottom rounded-1 d-none"
+                                <input type="tel" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none"
                                     id="first_phone" value="{{ $user->first_phone }}" disabled>
                                 <a href="tel:">
                                     <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
                                 </a>
-                                <input type="tel" name="second_phone" class="p-1 mt-2 border-bottom rounded-1 d-none"
+                                <input type="tel" name="second_phone" class="p-1 mt-2 border-bottom border-2 d-none"
                                     value="{{ $user->second_phone }}" id="second_phone" disabled>
                                 <span class="invalid-feedback"></span>
-                                <!-- </a> -->
                             </div>
                             <span class="invalid-feedback"></span>
                         </div>
@@ -606,15 +608,20 @@
 
             $("#update_basic_profile").submit(function(e) {
                 e.preventDefault();
+                // console.log('Hello');
 
                 var formData = new FormData(this);
-                formData.append('avatar', $('#avatar-input')[0].files[0]);
+                // formData.append('avatar', $('#avatar-input')[0].files[0] ?? null);
+
+                // console.log(formData->getKey('username'));
 
                 var cur = $(this);
 
-                if (formData && Object.keys(formData).length > 0) {
+                if (formData) {
+                    // console.log("I work in success")
                     sendUpdateBasicData(formData, cur);
                 } else {
+                    // console.log("I work in status false")
                     unactiveForm(cur);
                 }
 
@@ -628,7 +635,7 @@
 
                 var cur = $(this);
 
-                if (formData && Object.keys(formData).length > 0) {
+                if (formData) {
                     sendUpdateDetailData(formData, cur);
                 } else {
                     unactiveForm(cur);

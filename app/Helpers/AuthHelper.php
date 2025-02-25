@@ -54,6 +54,16 @@ class AuthHelper
     }
 
     /**
+     * Check if the user has a verified email.
+     *
+     * @return bool
+     */
+    public static function isVerified(): bool
+    {
+        return (bool) self::auth()?->email_verified_at;
+    }
+
+    /**
      * Log the user out by clearing their session and logging out of Auth.
      *
      * @return bool
