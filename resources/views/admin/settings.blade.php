@@ -80,8 +80,8 @@
                     </fieldset>
                     <fieldset class="slogan">
                         <div class="body-title mb-10">{{trans_lang('slogan')}}<span class="tf-color-1">*</span></div>
-                        <input type="text" name="slogan" id=""  class="mb-10 @error('slogan') is-invalid @enderror" value="{{ old('slogan', $settings['slogan']) }}">
-                        {{-- <textarea class="mb-10 @error('slogan') is-invalid @enderror" name="slogan" >{{ old('slogan', $settings['slogan']) }}</textarea> --}}
+                        <textarea class="mb-10 @error('slogan') is-invalid @enderror" name="slogan" id="" cols="30"
+                            rows="2" style="height: 50px">{{ old('slogan', $settings['slogan']) }}</textarea>
                         {{-- <input class="mb-10 @error('slogan') is-invalid @enderror" type="text" placeholder="" name="slogan" value="{{ old('slogan', $settings['slogan']) }}"> --}}
                         @error('slogan')
                             <div class="invalid-feedback">
@@ -150,8 +150,8 @@
                                 </div>
                             @endforeach
                         </div>
-                        
-                        
+
+
                         <button type="button" class="tf-button add-more" id="add-link">Add More <i class="icon-plus"></i></button>
 
                     </fieldset> --}}
@@ -194,7 +194,7 @@
                 </div>`;
             document.getElementById('social-links').insertAdjacentHTML('beforeend', newInput);
         });
-        
+
         document.addEventListener('click', function (e) {
             if (e.target.classList.contains('remove-link')) {
                 e.target.parentElement.remove();
