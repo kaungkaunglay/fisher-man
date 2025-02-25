@@ -53,8 +53,11 @@ class ProfileController extends Controller
         $user = AuthHelper::user();
 
         if ($request->hasFile('avatar')) {
-            if ($user->avatar && file_exists(public_path($user->avatar))) {
-                unlink(public_path($user->avatar));
+
+            $existing_avatar = 'assets/avatars/'.$user->avatar;
+
+            if ($user->avatar && file_exists(public_path($existing_avatar))) {
+                unlink(public_path($existing_avatar));
             }
             $avatar = $request->file('avatar');
 
@@ -69,6 +72,7 @@ class ProfileController extends Controller
             $avatar->move($destinationPath, $avatarName);
 
             $user->avatar = $avatarName;
+            $user->save();
         }
 
 

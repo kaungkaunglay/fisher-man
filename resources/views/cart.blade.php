@@ -106,7 +106,7 @@
                 @foreach ($carts as $item)
                     <div class="card cart-{{ $item->product->id }}">
                         <div class="card-img align-content-center me-2">
-                            <img src="{{ asset($item->product->product_image) }}" alt="product img">
+                            <img src="{{ asset('assets/products/'.$item->product->product_image) }}" alt="product img">
                         </div>
                         <div class="card-body">
                             <div class="table-row">
@@ -484,7 +484,7 @@
                 @foreach ($carts as $item)
                     <div class="card cart-{{ $item->product->id }}">
                         <div class="card-img align-content-center me-2">
-                            <img src="{{ asset($item->product->product_image) }}" alt="product img">
+                            <img src="{{ asset('assets/products/'.$item->product->product_image) }}" alt="product img">
                         </div>
                         <div class="card-body">
                             <div class="table-row">
