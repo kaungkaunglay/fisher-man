@@ -96,7 +96,13 @@
                     processData: false,
                     success: function (response) {
                         if (response.status == true) {
-                            window.location.href = "{{ route('home') }}";
+                            if(response.isSeller){
+                                // console.log("I am seller")
+                                window.location.href = "/admin"
+                            } else {
+                                // console.log("I am buyer")
+                                window.location.href = "{{ route('home') }}";
+                            }
                         } else {
 
                             // if response has message, show the message , if not empty the message, clear the error messages
