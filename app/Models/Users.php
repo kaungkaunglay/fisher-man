@@ -6,10 +6,11 @@ use App\Models\Role;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class Users extends Authenticatable implements CanResetPassword
+class Users extends Authenticatable implements CanResetPassword,MustVerifyEmail
 {
     use HasFactory,Notifiable;
     protected $primaryKey = 'id';
@@ -28,12 +29,15 @@ class Users extends Authenticatable implements CanResetPassword
         'trans_management',
         'avatar',
         'location',
-        'address'
+        'address',
+        'email_verified_at',
+        'email_verify_token'
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
+        'email_verify_token'
     ];
 
     public function roles()

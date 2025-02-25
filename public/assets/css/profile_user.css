@@ -12,14 +12,19 @@ body {
   box-shadow: none;
 }
 
-.profile-form:not(.active) .cancel,
-.profile-form:not(.active) .save,
+.avatar-upload {
+background-color: black;
+opacity: 0.5;
+top: 0;
+font-size: 100px;
+display: flex;
+}
+
 .profile-form:not(.active) .link-contain input {
   display: none;
 }
 
 .profile-form.active .edit,
-.profile-form.active .cor,
 .profile-form.active .link-contain a {
   display: none;
 }

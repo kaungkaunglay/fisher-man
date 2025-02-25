@@ -50,7 +50,6 @@
                         <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_asc']) }}">{{trans_lang('name_a_z')}}</a></li>
                         <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'name_desc']) }}">{{trans_lang('name_z_a')}}</a></li>
                         <li><a class="dropdown-item" href="{{ route('sub-category.show', ['id' => $subCategory->id, 'sort_by' => 'latest']) }}">{{trans_lang('latest')}}</a></li>
-
                     </ul>
                 </div>
             </div>

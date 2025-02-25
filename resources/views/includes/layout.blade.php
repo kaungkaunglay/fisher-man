@@ -6,11 +6,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title', 'Fisher Man')</title>
+    <meta name="keywords" content="fishing, fisherman, r-mekiki, sea, ocean">
+    <meta name="author" content="AndFun">
+    <meta property="og:title" content="{{config('app.url')}}">
+    <meta property="og:description" content="{{config('settings.slogan')}}}}">
+    <meta property="og:image" content="https://s6.imgcdn.dev/YhKH6e.png">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}" />
     @yield('style')
     <link rel="icon" href="demo_icon.gif" type="image/gif" sizes="16x16">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" />
@@ -22,7 +28,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('assets/images/favicon/site.webmanifest') }}">
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
@@ -248,7 +253,7 @@
                         <li><a href="{{ route('home') }}">{{ trans_lang('home') }}</a></li>
                         <li><a href="{{route('special-offer')}}">{{ trans_lang('special_offer') }}</a></li>
                         <li><a href="{{route('support')}}">{{ trans_lang('faqs') }}</a></li>
-                        <li><a href="{{ route('policy') }}">{{ trans_lang('terms_privacy') }}</a></li>
+                        <li><a href="{{ route('terms') }}">{{ trans_lang('terms_privacy') }}</a></li>
                         <li><a href="#">{{ trans_lang('customer_review') }}</a></li>
                         <li><a href="#">{{ trans_lang('blogs') }}</a></li>
                     </ul>
@@ -280,7 +285,7 @@
                     <p class="my-2 txt-13">&copy; Copyright 2024-fisherman Designed by Andfun</p>
                 </div>
                 <div class="col-lg-5 text-white text-lg-end text-center mb-2 mb-lg-0">
-                    <p class="mb-4 my-lg-2 txt-13"><a href="{{ route('policy') }}">Privacy | Terms</a></p>
+                    <p class="mb-4 my-lg-2 txt-13"><a href="{{ route('policy') }}">Privacy | </a><a href="{{route('terms')}}">Terms</a></p>
                 </div>
             </div>
         </div>
@@ -435,6 +440,7 @@
                         window.location.href = response.url;
                     } else if (response.status) {
                         // btn.toggleClass('active');
+                        btn.closet('#btn-message').find('span').html(response.message);
                         updateWhiteListCount();
                     }
                     console.log(response.message);
@@ -465,8 +471,11 @@
                 success: function(response) {
                     if (response.status) {
                         // btn.toggleClass('active');
+
                         updateCartCount();
                     }
+
+                    btn.closest('#btn-message').find('span').html(response.message);
                     console.log(response.message);
                 }
             });
@@ -486,6 +495,26 @@
 
                 addToCart(products, cur_btn);
             });
+        }
+        function formatPriceJapanese(price) {
+        // Convert to string and handle potential non-number inputs
+        const priceStr = String(price);
+        
+        // Check if the input is a valid number
+        if (isNaN(Number(priceStr))) {
+            return "Invalid input";
+        }
+        
+        // Split into integer and decimal parts (if any)
+        const parts = priceStr.split('.');
+        const integerPart = parts[0];
+        const decimalPart = parts.length > 1 ? '.' + parts[1] : '';
+        
+        // Format the integer part with commas every 3 digits
+        const formattedInteger = integerPart.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+        
+        // Return the formatted price
+        return formattedInteger + decimalPart;
         }
     </script>
     <!-- /All Scripts -->

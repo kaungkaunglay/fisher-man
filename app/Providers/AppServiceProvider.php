@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('includes.aside', SubCategoryComposer::class);
 
-        $this->preloadProductsToCache();
+        // $this->preloadProductsToCache();
 
         Paginator::useBootstrap();
     }

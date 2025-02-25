@@ -123,7 +123,7 @@ Route::middleware(['is_buyer'])->group(function () {
     Route::post('/buyer/request-shop', [ShopController::class, 'requestShop'])->name('buyer.request_shop');
     Route::get('/profile/buyer', [ProfileController::class, 'user_profile'])->name('profile_user');
 
-    
+
 });
 
 Route::post('/profile/update_basic', [ProfileController::class, 'update_basic_profile'])->name('update_basic_profile');
@@ -169,18 +169,20 @@ Route::middleware(['is_admin'])->group(function () {
 
 // Product detail
 Route::get('/product/{id}', [ProductController::class, 'show'])->middleware('track_visitor')->name('product.show');
-
+Route::get('/shop/{id}', [ShopController::class, 'shop_detials']); 
 // Route::get('/cart', function () {
 //     return view('cart');
 // })->name('cart');
 
-Route::get('/support', [UsersController::class, 'support'])->name('support');
+Route::get('/support', [ShopController::class, 'support'])->name('support');
 
-Route::get('/policy', function () {
+Route::get('/terms', function () {
     return view('terms_condition');
+})->name('terms');
+
+Route::get('/policy', function(){
+    return view('policy'); //privacy policy
 })->name('policy');
-
-
 
 // cart
 Route::middleware(['auth_custom','restore_cart'])->group(function () {
@@ -194,10 +196,15 @@ Route::middleware(['auth_custom','restore_cart'])->group(function () {
 
 Route::middleware(['auth_custom_api','restore_cart'])->group(function () {
 
+
+
     Route::delete('/white-list/delete/{product_id}', [WhiteListController::class, 'delete'])->name('white_list.delete');
     Route::post('/white-list/{product_id}', [WhiteListController::class, 'store'])->name('white_list.store');
 
 });
+
+Route::get('/verify-email/{token}', [AuthController::class, 'verifyEmail'])->name('email.verify');
+Route::post('/send-verification-email', [AuthController::class, 'sendVerificationEmail'])->name('email.sent_verify_link');
 
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
