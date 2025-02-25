@@ -22,7 +22,7 @@ footer .link-list {
   margin: 0 auto !important;
 }
 
-footer .link-list li a, ul li a {
+footer .link-list li a,footer ul li a {
   color: white;
 }
 

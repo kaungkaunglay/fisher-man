@@ -75,6 +75,11 @@ class TranslationSeeder extends Seeder
                 'jp' => '拒否されたショップ',
             ],
             [
+                'key' => 'uploaded_products',
+                'en' => 'Uploaded Products',
+                'jp' => 'アップロードされた商品',
+            ],
+            [
                 'key' => 'all_products',
                 'en' => 'All Products',
                 'jp' => 'すべての商品',

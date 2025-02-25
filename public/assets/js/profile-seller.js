@@ -26,7 +26,9 @@ $(document).ready(() => {
 
   if($('.sec-phone').val() == '') $('.cor').hide();
   else $('.cor').show();
-  
+
+
+
 });
 
 function actionForm(trig, action) {
@@ -37,22 +39,21 @@ function actionForm(trig, action) {
   const textarea = form.querySelectorAll('textarea');
   const output = form.querySelectorAll('output');
   const btn = form.querySelectorAll('.form-headline button');
+  const img = form.querySelector('.avatar-upload');
 
   if(action) {
-    $(output).toggleClass('d-none');
-    $(input).toggleClass('d-none');
     $(input).attr('disabled', false);
-    $(textarea).toggleClass('d-none');
     $(textarea).attr('disabled', false);
-    $(btn).toggleClass('d-none');
+
   }else {
-    $(input).toggleClass('d-none');
     $(input).attr('disabled', true);
-    $(textarea).toggleClass('d-none');
     $(textarea).attr('disabled', true);
-    $(output).toggleClass('d-none');
-    $(btn).toggleClass('d-none');
   }
+  $(output).toggleClass('d-none');
+  $(input).toggleClass('d-none');
+  $(textarea).toggleClass('d-none');
+  $(btn).toggleClass('d-none');
+  $(img).toggleClass('d-none'); 
 }
 
 function updateData(trig) {
@@ -77,19 +78,20 @@ function resetData(trig) {
 
     $(i).val($(`output[for="${$(i).attr('id')}"]`).text());
   })
-  
+
   textarea.forEach(i => {
-    
+
     $(i).val($(`output[for="${$(i).attr('id')}"]`).text());
   })
 
 }
 
 function unactiveForm(cur) {
-    
+
     $($(cur.closest('.profile-form'))).removeClass('active');
     if($('.sec-phone').val() == '') $('.cor').hide();
     else $('.cor').show();
 }
+
 
 
