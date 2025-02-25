@@ -1,9 +1,5 @@
 $(document).ready(() => {
 
-  $('.form-check-input').click((ev)=> {
-    ev.preventDefault();
-  })
-
   $('.edit').click((ev) => {
     ev.preventDefault();
     actionForm(ev, true)
@@ -16,13 +12,6 @@ $(document).ready(() => {
     resetData(ev)
   })
 
-
-  $('.save').click((ev) => {
-    ev.preventDefault();
-    actionForm(ev)
-    unactiveForm(ev.currentTarget);
-    updateData(ev);
-  })
 
   if($('.sec-phone').val() == '') $('.cor').hide();
   else $('.cor').show();
@@ -51,7 +40,7 @@ function actionForm(trig, action) {
   $(input).toggleClass($(this).attr('type') != 'image' ? 'd-none': '');
   $(textarea).toggleClass('d-none');
   $(btn).toggleClass('d-none');
-  $(img).toggleClass('d-none'); 
+  $(img).toggleClass('d-none');
 }
 
 function updateData(trig) {
@@ -84,11 +73,16 @@ function resetData(trig) {
 
 }
 
-function unactiveForm(cur) {
 
-    $($(cur.closest('.profile-form'))).removeClass('active');
+function unactiveForm(cur) {
+    cur.removeClass('active');
     if($('.sec-phone').val() == '') $('.cor').hide();
     else $('.cor').show();
+}
+
+
+function checkIfChange(){
+    
 }
 
 
