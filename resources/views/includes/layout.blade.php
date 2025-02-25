@@ -8,8 +8,8 @@
     <title>@yield('title', 'Fisher Man')</title>
     <meta name="keywords" content="fishing, fisherman, r-mekiki, sea, ocean">
     <meta name="author" content="AndFun">
-    <meta property="og:title" content="{{config('app.url')}}">
-    <meta property="og:description" content="{{config('settings.slogan')}}}}">
+    <meta property="og:title" content="{{ config('app.url') }}">
+    <meta property="og:description" content="{{ config('settings.slogan') }}}}">
     <meta property="og:image" content="https://s6.imgcdn.dev/YhKH6e.png">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -253,8 +253,8 @@
                     <h6 class="text-center text-warning mb-2">{{ trans_lang('useful_links') }}</h6>
                     <ul class="list-unstyled link-list txt-15 useful-link">
                         <li><a href="{{ route('home') }}">{{ trans_lang('home') }}</a></li>
-                        <li><a href="{{route('special-offer')}}">{{ trans_lang('special_offer') }}</a></li>
-                        <li><a href="{{route('support')}}">{{ trans_lang('faqs') }}</a></li>
+                        <li><a href="{{ route('special-offer') }}">{{ trans_lang('special_offer') }}</a></li>
+                        <li><a href="{{ route('support') }}">{{ trans_lang('faqs') }}</a></li>
                         <li><a href="{{ route('terms') }}">{{ trans_lang('terms_privacy') }}</a></li>
                         <li><a href="#">{{ trans_lang('customer_review') }}</a></li>
                         <li><a href="#">{{ trans_lang('blogs') }}</a></li>
@@ -267,12 +267,12 @@
                     <h6 class="text-center text-warning mb-2">{{ trans_lang('contact_us') }}</h6>
                     <ul class="list-unstyled text-white txt-15 text-center">
                         <li>{{ trans_lang('address') }} :
-                            {{config('settings.contact_address')}}
-                                {{-- {{ App\Models\Setting::getValue('contact_address') }}</li> --}}
+                            {{ config('settings.contact_address') }}
+                            {{-- {{ App\Models\Setting::getValue('contact_address') }}</li> --}}
                         <li>{{ trans_lang('phone_number') }} :
-                                {{ App\Models\Setting::getValue('contact_phone') }}</li>
+                            {{ App\Models\Setting::getValue('contact_phone') }}</li>
                         <li>{{ trans_lang('email') }} :
-                                {{ App\Models\Setting::getValue('contact_email') }}</li>
+                            {{ App\Models\Setting::getValue('contact_email') }}</li>
                     </ul>
                 </div>
                 {{-- /Contact Us --}}
@@ -287,7 +287,8 @@
                     <p class="my-2 txt-13">&copy; Copyright 2024-fisherman Designed by Andfun</p>
                 </div>
                 <div class="col-lg-5 text-white text-lg-end text-center mb-2 mb-lg-0">
-                    <p class="mb-4 my-lg-2 txt-13"><a href="{{ route('policy') }}">Privacy | </a><a href="{{route('terms')}}">Terms</a></p>
+                    <p class="mb-4 my-lg-2 txt-13"><a href="{{ route('policy') }}">Privacy | </a><a
+                            href="{{ route('terms') }}">Terms</a></p>
                 </div>
             </div>
         </div>
@@ -298,19 +299,31 @@
 
     <!-- Mobile Bottom Nav -->
     <div class="bottom-nav d-flex d-md-none">
-        <a href="{{ route('home')}}" class="bottom-menu"><i class="fa-solid fa-home"></i><br><p>{{trans_lang('home')}}</p></a>
-        <a href="" class="bottom-menu"  id="category-link"><i class="fa-solid fa-tags"></i><br><p>{{trans_lang('category')}}</p></a>
+        <a href="{{ route('home') }}" class="bottom-menu"><i class="fa-solid fa-home"></i><br>
+            <p>{{ trans_lang('home') }}</p>
+        </a>
+        <a href="" class="bottom-menu" id="category-link"><i class="fa-solid fa-tags"></i><br>
+            <p>{{ trans_lang('category') }}</p>
+        </a>
         <div class="">
-            <a href="{{ route('cart')}}" class="bottom-menu mobile-shopping-card"><i
-                    class="fa-solid fa-cart-shopping shopping"></i><br><p class="cart-txt">{{trans_lang('cart')}}
-                        <span id="cart_count_bottom" class="mobile-cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
-                        </p>
-                        {{-- <span class="text-danger" id="cart_count_bottom">0</span> --}}
+            <a href="{{ route('cart') }}" class="bottom-menu mobile-shopping-card"><i
+                    class="fa-solid fa-cart-shopping shopping"></i><br>
+                <p class="cart-txt">{{ trans_lang('cart') }}
+                    <span id="cart_count_bottom"
+                        class="mobile-cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
+                </p>
+                {{-- <span class="text-danger" id="cart_count_bottom">0</span> --}}
             </a>
         </div>
-        <a href="{{ route('white_list.index') }}" class="bottom-menu"><i class="fa-solid fa-bookmark"></i><br><p>{{trans_lang('whitelist')}}
-            <span class="mobile-white-list-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span></p></a>
-        <a href="{{ route('profile')}}" class="bottom-menu"><i class="fa-solid fa-user"></i><br><p>{{trans_lang('profile')}}</p></a>
+        <a href="{{ route('white_list.index') }}" class="bottom-menu"><i class="fa-solid fa-bookmark"></i><br>
+            <p>{{ trans_lang('whitelist') }}
+                <span
+                    class="mobile-white-list-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span>
+            </p>
+        </a>
+        <a href="{{ route('profile') }}" class="bottom-menu"><i class="fa-solid fa-user"></i><br>
+            <p>{{ trans_lang('profile') }}</p>
+        </a>
     </div>
     <!-- /Mobile Bottom Nav -->
 
@@ -498,12 +511,13 @@
                 addToCart(products, cur_btn);
             });
         }
+
         function formatPriceJapanese(price) {
         // Convert to string and handle potential non-number inputs
         const priceStr = String(price);
 
         // Check if the input is a valid number
-        if (isNaN(Number(priceStr))) {
+        if (isNaN(priceNum)) {
             return "Invalid input";
         }
 

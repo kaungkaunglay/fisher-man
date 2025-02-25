@@ -310,9 +310,7 @@
                         <div class="d-flex align-items-center form-group">
                             <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
                             <output class="form-output" for="address">{{ $user->address }}</output>
-                            <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>
-                                {{ $user->address }}
-                            </textarea>
+                            <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea>
                             <span class="invalid-feedback"></span>
                         </div>
 
