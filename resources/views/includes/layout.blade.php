@@ -511,28 +511,28 @@
         }
 
         function formatPriceJapanese(price) {
-            // Convert to number and handle potential non-number inputs
-            const priceNum = Number(price);
+        // Convert to number and handle potential non-number inputs
+        const priceNum = Number(price);
 
-            // Check if the input is a valid number
-            if (isNaN(priceNum)) {
-                return "Invalid input";
-            }
-
-            // Convert the number to a string with fixed decimal places (if any)
-            const priceStr = priceNum.toFixed(2);
-
-            // Split into integer and decimal parts
-            const parts = priceStr.split('.');
-            const integerPart = parts[0];
-            const decimalPart = parts.length > 1 ? '.' + parts[1] : '';
-
-            // Format the integer part with commas every 3 digits
-            const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-            // Return the formatted price with the currency symbol
-            return '¥' + formattedInteger + decimalPart;
+        // Check if the input is a valid number
+        if (isNaN(priceNum)) {
+            return "Invalid input";
         }
+
+        // Convert the number to a string with fixed decimal places (if any)
+        const priceStr = priceNum.toFixed(2);
+
+        // Split into integer and decimal parts
+        const parts = priceStr.split('.');
+        const integerPart = parts[0];
+        const decimalPart = parts.length > 1 && parts[1] !== '00' ? '.' + parts[1] : '';
+
+        // Format the integer part with commas every 3 digits
+        const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+        // Return the formatted price with the currency symbol
+        return '¥' + formattedInteger + decimalPart;
+    }
 
         document.addEventListener('DOMContentLoaded', function() {
             // Select all elements with the class name 'format'
