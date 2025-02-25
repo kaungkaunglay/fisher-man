@@ -11,9 +11,9 @@ class Setting extends Model
     protected $fillable = ['key', 'value'];
 
     // Cast the value to an array for easy JSON handling
-    protected $casts = [
-        'value' => 'array',
-    ];
+    // protected $casts = [
+    //     'value' => 'array',
+    // ];
 
     // // Helper method to get setting value by key
     // public static function getValue($key)
