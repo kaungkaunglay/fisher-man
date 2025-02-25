@@ -11,6 +11,19 @@ class ShopController extends Controller
 {
     public function requestShop(Request $request)
     {
+        $messages = [
+            'shopName.required' => 'Shop Name field is required.',
+            'ShopName.string' => 'Shop Name must be string.',
+            'shopName.max' => 'Shop name may not be greater than 255 characters.',
+            'transManagement.required' => 'Trans management field is required.',
+            'transManagement.string' => 'Trans management must be string.',
+            'transEmail.required' => 'Trans email field is required.',
+            'transEmail.email' => 'Trans email must be a valid email address.',
+            'transEmail.unique' => 'Trans email already exists.',
+            'phoneNumber.required' => 'Phone number field is required',
+            'phoneNumber.string' => 'Phone number must be string',
+            ''
+        ];
 
         // Validate request
         $validator = Validator::make($request->all(), [
@@ -18,7 +31,7 @@ class ShopController extends Controller
             'transManagement' => 'required|string',
             'transEmail' => 'required|email|unique:shops,email',
             'phoneNumber' => 'required|string|min:10',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
         ]);
 
 
