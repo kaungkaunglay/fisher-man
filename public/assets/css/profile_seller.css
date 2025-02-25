@@ -123,7 +123,7 @@ body {
   background-color: #005B96;
   color:#00CCFF;
 }
-.pagination li:active {
+.pagination li.active  {
   background-color: #005B96 !important;
   color:#00CCFF !important;
 }

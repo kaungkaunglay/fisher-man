@@ -24,7 +24,7 @@
                 <div class="row justify-content-between product-mobile">
                     <div class="product-image-container col-6">
                         <div class="product-image-bigger d-flex flex-column mb-3">
-                            <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}" class="img-fluid">
+                            <img src="{{ asset('assets/products/'.$product->product_image) }}" alt="{{ $product->name }}" class="img-fluid">
                         </div>
                         <!-- <div class="product-image-smaller d-flex justify-content-between gap-3">
                 <div class="small-img">

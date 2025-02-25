@@ -65,7 +65,7 @@
                         @foreach ($carts as $item)
                             <tr class="table-row cart-{{ $item->product->id }}" data-id="{{ $item->product->id }}">
                                 <td>
-                                    <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
+                                    <div class="table-img"><img src="{{ asset('assets/products/'.$item->product->product_image) }}"
                                             alt="{{ $item->product->name }}"></div>
                                 </td>
                                 <td class="col-name">{{ $item->product->name }}</td>
@@ -454,7 +454,7 @@
                         @foreach ($carts as $item)
                             <tr class="table-row cart-{{ $item->product->id }}">
                                 <td>
-                                    <div class="table-img"><img src="{{ asset($item->product->product_image) }}"
+                                    <div class="table-img"><img src="{{ asset('assets/products/'.$item->product->product_image) }}"
                                             alt="product img"></div>
                                 </td>
                                 <td clas="col-name">{{ $item->product->name }}</td>

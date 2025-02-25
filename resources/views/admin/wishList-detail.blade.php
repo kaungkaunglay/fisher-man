@@ -50,11 +50,6 @@
                             <label class="fs-4 fw-bold mb-8">Email:</label>
                             <p>{{ $wishList->email }}</p>
                         </div>
-
-                        <div class="mb-20">
-                            <label class="fs-4 fw-bold mb-8">LineID:</label>
-                            <p>{{ $wishList->line_id }}</p>
-                        </div>
                         <div class="mb-20">
                             <label class="fs-4 fw-bold mb-8">Phone:</label>
                             <p>{{ $wishList->phone }}</p>

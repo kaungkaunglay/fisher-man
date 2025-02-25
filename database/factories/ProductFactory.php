@@ -21,8 +21,8 @@ class ProductFactory extends Factory
         $user = Users::inRandomOrder()->first();
 
         $images = [
-            "assets/products/product1.png",
-            "assets/products/product2.png"
+            "product1.png",
+            "product2.png"
         ];
         return [
             'name' => $this->faker->name,
