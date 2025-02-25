@@ -27,8 +27,6 @@ $(document).ready(() => {
   if($('.sec-phone').val() == '') $('.cor').hide();
   else $('.cor').show();
 
-
-
 });
 
 function actionForm(trig, action) {
@@ -50,7 +48,7 @@ function actionForm(trig, action) {
     $(textarea).attr('disabled', true);
   }
   $(output).toggleClass('d-none');
-  $(input).toggleClass('d-none');
+  $(input).toggleClass($(this).attr('type') != 'image' ? 'd-none': '');
   $(textarea).toggleClass('d-none');
   $(btn).toggleClass('d-none');
   $(img).toggleClass('d-none'); 

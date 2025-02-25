@@ -46,7 +46,7 @@
                                     alt="Account.png">
                                 <div class="avatar-upload w-100 h-100 position-absolute d-none"><i class="fas fa-upload m-auto"></i></div>
                             </label>
-                            <input type="file" class="upload-photo d-none" id="avatar-input" readonly />
+                            <input type="image" class="upload-photo d-none" id="avatar-input" disabled>
                         </div>
 
                         <!-- Profile Info -->
@@ -79,8 +79,8 @@
                                     <div class="d-flex align-items-center">
                                         <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
                                         <output class="form-output" for="username">{{ $user->username }}</output>
-                                        <input type="text" name="username" class="p-1 mt-1 ms-1 rounded-1 d-none"
-                                            id="username" value="{{ $user->username }}" readonly>
+                                        <input type="text" name="username" class="p-1 mt-1 ms-1 border-bottom border-2 d-none"
+                                            id="username" value="{{ $user->username }}" disabled>
                                         <span class="invalid-feedback"></span>
                                     </div>
                                 </div>
@@ -90,8 +90,8 @@
                                     <div class="d-flex align-items-center form-group">
                                         <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
                                         <output class="form-output" for="email">{{ $user->email }}</output>
-                                        <input type="email" name="email" class="p-1 mt-2 ms-1 rounded-1 d-none"
-                                            id="email" value="{{ $user->email }}" readonly>
+                                        <input type="email" name="email" class="p-1 mt-2 ms-1 border-bottom border-2 d-none"
+                                            id="email" value="{{ $user->email }}" disabled>
                                         <span class="invalid-feedback"></span>
                                     </div>
                                 </div>
@@ -151,7 +151,6 @@
                                     </div>
                                 </div>
                             @endif
-
                             <!-- /Form Content -->
 
                             @if (!$hasShopRequest)
@@ -180,7 +179,6 @@
                             @endif
 
                         </div>
-                        {{-- /Profile Info --}}
                     </div>
                 </form>
                 <!-- /Profile Info -->
@@ -312,7 +310,7 @@
                         <div class="d-flex align-items-center form-group">
                             <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
                             <output class="form-output" for="address">{{ $user->address }}</output>
-                            <textarea name="address" class="p-1 mt-2 ms-1 rounded-1 d-none" id="address" readonly>
+                            <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>
                                 {{ $user->address }}
                             </textarea>
                             <span class="invalid-feedback"></span>
@@ -325,15 +323,14 @@
                                 <a href="tel:">
                                     <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
                                 </a>
-                                <input type="tel" name="first_phone" class="p-1 mt-2 border-bottom rounded-1 d-none"
+                                <input type="tel" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none"
                                     id="first_phone" value="{{ $user->first_phone }}" disabled>
                                 <a href="tel:">
                                     <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
                                 </a>
-                                <input type="tel" name="second_phone" class="p-1 mt-2 border-bottom rounded-1 d-none"
+                                <input type="tel" name="second_phone" class="p-1 mt-2 border-bottom border-2 d-none"
                                     value="{{ $user->second_phone }}" id="second_phone" disabled>
                                 <span class="invalid-feedback"></span>
-                                <!-- </a> -->
                             </div>
                             <span class="invalid-feedback"></span>
                         </div>
