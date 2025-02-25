@@ -81,7 +81,6 @@
                                         <output class="form-output" for="username">{{ $user->username }}</output>
                                         <input type="text" name="username" class="p-1 mt-1 ms-1 border-bottom border-2 d-none"
                                             id="username" value="{{ $user->username }}" disabled>
-
                                     </div>
                                     <span class="invalid-feedback"></span>
                                 </div>
@@ -93,7 +92,6 @@
                                         <output class="form-output" for="email">{{ $user->email }}</output>
                                         <input type="email" name="email" class="p-1 mt-2 ms-1 border-bottom border-2 d-none"
                                             id="email" value="{{ $user->email }}" disabled>
-
                                     </div>
                                     <span class="invalid-feedback"></span>
                                 </div>

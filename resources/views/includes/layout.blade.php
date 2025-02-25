@@ -114,19 +114,21 @@
                                 class="cart-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span>
                         </a>
 
-                        @if (Auth::check() || session('user_id'))
+                        @if (auth_helper()->check())
                             <button class="btn-login position-relative">
                                 <i class="fa-solid fa-user icon"></i>
                                 <div class="dropdown position-absolute overflow-hidden bg-white">
                                     <ul class="border">
-                                        <li>
-                                            <a href="{{ url('/profile') }}"
-                                                class="d-flex gap-2 text-black text-center">
-                                                <i
-                                                    class="fa-solid fa-address-card icon"></i>{{ trans_lang('profile') }}
-                                            </a>
-                                        </li>
-                                        @if (check_role(2))
+                                        @if (!check_role(1))
+                                            <li>
+                                                <a href="{{ url('/profile') }}"
+                                                    class="d-flex gap-2 text-black text-center">
+                                                    <i
+                                                        class="fa-solid fa-address-card icon"></i>{{ trans_lang('profile') }}
+                                                </a>
+                                            </li>
+                                        @endif
+                                        @if (check_role(2) || check_role(1))
                                             <li>
                                                 <a href="{{ url('/admin') }}"
                                                     class="d-flex gap-2 text-black text-center">
@@ -499,20 +501,20 @@
         function formatPriceJapanese(price) {
         // Convert to string and handle potential non-number inputs
         const priceStr = String(price);
-        
+
         // Check if the input is a valid number
         if (isNaN(Number(priceStr))) {
             return "Invalid input";
         }
-        
+
         // Split into integer and decimal parts (if any)
         const parts = priceStr.split('.');
         const integerPart = parts[0];
         const decimalPart = parts.length > 1 ? '.' + parts[1] : '';
-        
+
         // Format the integer part with commas every 3 digits
         const formattedInteger = integerPart.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-        
+
         // Return the formatted price
         return formattedInteger + decimalPart;
         }

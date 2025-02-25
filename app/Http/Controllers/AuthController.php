@@ -166,7 +166,7 @@ class AuthController extends Controller
             ->orWhere('email', $request->username)
             ->first();
 
-            if($user && Hash::check($request->password, $user->password)){
+            if($user && Hash::check($request->password, $user->password )  && $user->roles()->first()->id != 1){
                 $remember = $request->has('remember') && $request->remember == 1;
 
                 Auth::login($user,$remember);
