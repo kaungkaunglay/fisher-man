@@ -35,6 +35,7 @@
             <!-- Profile Side -->
             <div class="col-12 col-lg-7 h-100 profile-side">
 
+
                 <form action="#" id="update_basic_profile" class="profile-form" method="POST">
 
                     <div class="w-100 h-100 d-md-flex gap-3">
@@ -138,11 +139,19 @@
                                     </ul>
                                 </div>
 
-
-                                <div class="input-box d-flex flex-column">
-                                    <span class="mb-3 text-danger" id="message"></span>
-                                </div>
                             </div>
+
+                            @if(!auth_helper()->isVerified())
+                                <div class="alert alert-warning d-flex mb-2" role="alert" >
+                                    <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
+                                        aria-label="Warning:"></i>
+                                    <div class="text-start">
+                                        Verify your email
+                                        <a href="javascript:void(0);" id="sent_email_verify_link" class="btn btn-outline-warning btn-sm">here</a>
+                                    </div>
+                                </div>
+                            @endif
+
                             <!-- /Form Content -->
 
                             @if (!$hasShopRequest)
@@ -672,6 +681,20 @@
             $('#google_login').click(function() {
                 handleOAuthLogin('google');
             });
+
+            $('#sent_email_verify_link').click(function(){
+                $.ajax({
+                    url: `/send-verification-email`,
+                    method: 'POST',
+                    success: function(response) {
+                        window.location.reload();
+                        console.log(response.message);
+                    },
+                    error: function(xhr) {
+                        console.error(xhr);
+                    }
+                });
+            })
 
         });
     </script>

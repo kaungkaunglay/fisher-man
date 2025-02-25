@@ -26,7 +26,9 @@ $(document).ready(() => {
 
   if($('.sec-phone').val() == '') $('.cor').hide();
   else $('.cor').show();
-  
+
+
+
 });
 
 function actionForm(trig, action) {
@@ -76,19 +78,20 @@ function resetData(trig) {
 
     $(i).val($(`output[for="${$(i).attr('id')}"]`).text());
   })
-  
+
   textarea.forEach(i => {
-    
+
     $(i).val($(`output[for="${$(i).attr('id')}"]`).text());
   })
 
 }
 
 function unactiveForm(cur) {
-    
+
     $($(cur.closest('.profile-form'))).removeClass('active');
     if($('.sec-phone').val() == '') $('.cor').hide();
     else $('.cor').show();
 }
+
 
 
