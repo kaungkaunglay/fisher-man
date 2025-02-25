@@ -100,6 +100,10 @@ header .dropdown li:hover {
     background-color: #e2e2e2;
 }
 
+header .dropdown li:hover a {
+    color: #ffc107 !important;
+}
+
 header .input-group {
     justify-content: center !important;
   }
@@ -300,7 +304,6 @@ display: block !important;
         gap: 50px;
     } */
 
-    
 }
 
 

@@ -33,10 +33,10 @@ function actionForm(trig, action) {
 
   const trigger = trig.currentTarget;
   const form = trigger.closest('.profile-form');
-  const input = form.querySelectorAll('input');
+  const input = form.querySelectorAll('input:not(.checkbox-list input)');
   const textarea = form.querySelectorAll('textarea');
   const output = form.querySelectorAll('output');
-  const btn = form.querySelectorAll('.form-headline button');
+  const btn = form.querySelectorAll('button');
   const img = form.querySelector('.avatar-upload');
 
   if(action) {
