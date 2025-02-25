@@ -57,7 +57,7 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'recomended_product',
                 'en' => 'Recomended Product',
-                'jp' => 'おすすめ商品',
+                'jp' => '売れ筋商品',
             ],
             [
                 'key' => 'popular_shop',
@@ -550,7 +550,7 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'wishlist',
                 'en' => 'Wishlist form',
-                'jp' => 'タグ付けされた商品',
+                'jp' => 'ほしいものリスト',
             ],
             [
                 'key' => 'shop_list',
