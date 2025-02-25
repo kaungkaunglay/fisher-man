@@ -60,11 +60,11 @@
                     <!-- Head Logo -->
                     <div class="logo">
                         <a href="{{ url('/') }}">
-                            @if (file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
-                                <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
+                            @if (file_exists(public_path('assets/logos/' . config('settings.logo'))))
+                                <img src="{{ asset('assets/logos/' . config('settings.logo')) }}"
                                     class="logo" alt="logo">
                             @else
-                                <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
+                                <img src="{{ asset('assets/images/' . config('settings.logo')) }}"
                                     class="logo" alt="logo">
                             @endif
                         </a>
@@ -73,7 +73,7 @@
 
 
                     <!-- Search Bar -->
-                    <div class="ms-2 position-relative w-100 mt-3 mt-md-0">
+                    <div class="ms-2 position-relative mt-3 mt-md-0 main-search-bar">
                         <form action="{{ route('products.search') }}" method="get">
                             <div class="input-group w-100">
                                 <input type="text" class="form-control bg-second search-bar" id="search"
@@ -215,17 +215,17 @@
 
                 {{-- Footer Logo --}}
                 <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white">
-                    @if (file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
-                        <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
+                    @if (file_exists(public_path('assets/logos/' . config('settings.logo'))))
+                        <img src="{{ asset('assets/logos/' . config('settings.logo')) }}"
                             class="logo" alt="logo">
                     @else
-                        <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}"
+                        <img src="{{ asset('assets/images/' . config('settings.logo')) }}"
                             class="logo" alt="logo">
                     @endif
 
                     {{-- <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo"
               alt=""></a> --}}
-                    <p class="text-center txt-18">{{ App\Models\Setting::getValue('slogan') }}</p>
+                    <p class="text-center txt-18">{{ config('settings.slogan') }}</p>
                     <div class="social-icons d-flex justify-content-between gap-1">
                         <a href="https://www.line.me/en/">
                             <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}"
@@ -261,11 +261,13 @@
                     <ul class="list-unstyled text-white txt-15 text-center">
                         <li>{{ trans_lang('address') }} :
                             {{config('settings.contact_address')}}
-                                {{-- {{ App\Models\Setting::getValue('contact_address') }}</li> --}}
+                                
                         <li>{{ trans_lang('phone_number') }} :
-                                {{ App\Models\Setting::getValue('contact_phone') }}</li>
+                            {{config('settings.contact_phone')}}
+                                </li>
                         <li>{{ trans_lang('email') }} :
-                                {{ App\Models\Setting::getValue('contact_email') }}</li>
+                            {{config('settings.contact_email')}}
+                                </li>
                     </ul>
                 </div>
                 {{-- /Contact Us --}}
