@@ -68,7 +68,7 @@
                            @foreach($top_products as $top_product)
                            <li class="product-item">
                             <div class="image">
-                                <img src="{{asset($top_product->product_image)}}" alt="">
+                                <img src="{{asset('assets/products/'.$top_product->product_image)}}" alt="">
                             </div>
                             <div class="flex items-center justify-between flex-grow">
                                 <div class="name">
@@ -126,7 +126,7 @@
                             @foreach($all_products as $product)
                             <li class="product-item gap14">
                                 <div class="image">
-                                    <img src="{{asset($product->product_image)}}" alt="">
+                                    <img src="{{asset('assets/products/'.$product->product_image)}}" alt="">
                                 </div>
                                 <div class="flex items-center justify-between flex-grow">
                                     <div class="name">

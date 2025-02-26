@@ -13,6 +13,6 @@ class ShopSeeder extends Seeder
      */
     public function run(): void
     {
-        Shop::factory()->count(1)->create(); // Generates 1 fake shops
+        Shop::factory()->count(50)->create(); // Generates 1 fake shops
     }
 }

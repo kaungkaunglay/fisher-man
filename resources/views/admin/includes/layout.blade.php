@@ -282,7 +282,7 @@
                         <div class="wrap">
                             <div class="header-left">
                                 <a href="index.html">
-                                    <img class="" id="logo_header_mobile" alt="" src="{{asset('assets/admin/images/logo.png')}}" data-light="{{asset('assets/admin/images/logo.png')}}" data-dark="{{asset('assets/admin/images/logo.png')}}" data-width="100px" data-height="52px" data-retina="{{asset('assets/admin/images/logo.png')}}">
+                                    <img class="" id="logo_header_mobile" alt="" style="height: 50px" src="{{asset('assets/admin/images/logo.png')}}" data-light="{{asset('assets/admin/images/logo.png')}}" data-dark="{{asset('assets/admin/images/logo.png')}}" data-width="100px" data-height="52px" data-retina="{{asset('assets/admin/images/logo.png')}}">
                                 </a>
                                 <div class="button-show-hide">
                                     <i class="icon-menu-left"></i>

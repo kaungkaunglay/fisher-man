@@ -21,14 +21,11 @@
 
 
                 <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
-                    <li><a href="#">
-                            <div class="text-tiny">{{trans_lang('home')}}</div>
+                    <li><a href="{{route('admin.index')}}">
+                            <div class="text-tiny">Dashboard</div>
                         </a></li>
                     <li><i class="icon-chevron-right"></i></li>
-                    {{-- <li><a href="#">
-                        <div class="text-tiny">{{trans_lang('ecommerce')}}</div>
-                    </a></li> --}}
-                    {{-- <li><i class="icon-chevron-right"></i></li> --}}
+
                     <li>
                         <div class="text-tiny">{{trans_lang('add_setting')}}</div>
 
@@ -81,7 +78,7 @@
                     <fieldset class="slogan">
                         <div class="body-title mb-10">{{trans_lang('slogan')}}<span class="tf-color-1">*</span></div>
                         <textarea class="mb-10 @error('slogan') is-invalid @enderror" name="slogan" id="" cols="30"
-                            rows="2" style="height: 50px">{{ old('slogan', $settings['slogan']) }}</textarea>
+                        rows="10" style="height: 100px !important">{{ old('slogan', $settings['slogan']) }}</textarea>
                         {{-- <input class="mb-10 @error('slogan') is-invalid @enderror" type="text" placeholder="" name="slogan" value="{{ old('slogan', $settings['slogan']) }}"> --}}
                         @error('slogan')
                             <div class="invalid-feedback">

@@ -1895,6 +1895,7 @@ a:hover, a:focus {
   align-items: center;
   justify-content: start;
   gap: 20px;
+  width: 100px;
 }
 .list-icon-function .item {
   font-size: 20px;
@@ -4645,7 +4646,7 @@ select.h40 {
   width: 72px;
 }
 .wg-table.table-product-list > * {
-  min-width: 1515px;
+  min-width: 800px;
 }
 .wg-table.table-product-list ul.table-title {
   padding: 12px;
@@ -4656,7 +4657,7 @@ select.h40 {
   width: 100%;
 }
 .wg-table.table-product-list ul.table-title li:first-child {
-  width: 430px;
+  width: 260px;
   flex-shrink: 0;
 }
 .wg-table.table-product-list ul.table-title li:nth-child(5), .wg-table.table-product-list ul.table-title li:nth-child(4) {
@@ -4678,7 +4679,7 @@ select.h40 {
   width: 100%;
 }
 .wg-table.table-product-list .product-item > .flex > div:first-child {
-  width: 366px;
+  width: 225px;
   flex-shrink: 0;
 }
 .wg-table.table-product-list .product-item > .flex > div:nth-child(5), .wg-table.table-product-list .product-item > .flex > div:nth-child(4) {
@@ -4870,7 +4871,7 @@ select.h40 {
   width: 452px;
 }
 .wg-table.table-all-user > * {
-  min-width: 1515px;
+  min-width: 800px;
 }
 .wg-table.table-all-user ul.table-title {
   padding: 12px;
@@ -4895,7 +4896,7 @@ select.h40 {
   width: 100%;
 }
 .wg-table.table-all-user .user-item > .flex > div:first-child {
-  width: 382px;
+  width: 300px;
   flex-shrink: 0;
 }
 .wg-table.table-all-user .user-item > .flex > div:last-child {
@@ -6756,6 +6757,16 @@ select.h40 {
   .upload-image .item {
     width: 100%;
   }
+}
+
+.faqs-table li:first-child{
+    width: 80px !important;
+}
+.faqs-data div:first-child{
+  width: 80px !important;
+}
+.faqs-data .answer{
+  width: 370px !important;
 }
 
 /*# sourceMappingURL=style.css.map */
