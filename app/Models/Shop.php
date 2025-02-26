@@ -14,6 +14,7 @@ class Shop extends Model
         'trans_management',
         'email',
         'phone_number',
+        'description',
         'avatar',
         'status',
     ];

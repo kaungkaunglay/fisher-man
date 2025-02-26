@@ -2,15 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 
 class ShopController extends Controller
 {
-    public function shop_detials(){
-        return view('shop');
+    public function shop_detials($id){
+        $shop = Shop::select('shops.*', 'users.username', 'users.address')
+        ->join('users', 'shops.user_id',  'users.id')
+        ->where('shops.id','=',$id)
+        ->first();
+
+        $products = Product::select('products.*','sub_categories.name as sub_categories_name')
+                    ->join('users','users.id','products.user_id')
+                    ->join('shops','shops.user_id','users.id')
+                    ->join('sub_categories','sub_categories.id','products.sub_category_id')
+                    ->where('shops.id','=',$id)
+                    ->get();
+
+
+        return view('shop_detail',compact('shop','products'));
     }
     public function requestShop(Request $request)
     {
@@ -25,7 +40,8 @@ class ShopController extends Controller
             'transEmail.unique' => 'Trans email already exists.',
             'phoneNumber.required' => 'Phone number field is required',
             'phoneNumber.string' => 'Phone number must be string',
-            ''
+            'shopDescription.required' => 'Shop Description field is required',
+            'shopDescription.string' => 'Shop Description must be string',
         ];
 
         // Validate request
@@ -34,6 +50,7 @@ class ShopController extends Controller
             'transManagement' => 'required|string',
             'transEmail' => 'required|email|unique:shops,email',
             'phoneNumber' => 'required|string|min:10',
+            'shopDescription' => 'required|string|min:10',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
         ]);
 
@@ -58,6 +75,7 @@ class ShopController extends Controller
             'trans_management' => $request->transManagement,
             'email' => $request->transEmail,
             'phone_number' => $request->phoneNumber,
+            'description' => $request->shopDescription,
             'avatar' => $imageName,
             'status' => 'pending', // Default status as pending
         ]);
