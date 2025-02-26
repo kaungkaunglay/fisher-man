@@ -13,30 +13,47 @@ class CartController extends Controller
 {
     public function index()
     {
-        if(AuthHelper::check()){
-
+        if (AuthHelper::check()) {
             $carts = AuthHelper::user()->carts;
-
             $carts->load('product');
         } else {
-
             $products = session('cart', []);
 
-            $carts = collect($products)->map(function ($product) {
-                $cart = new Cart();
-                $cart->product_id = $product['id'];
-                $cart->quantity = $product['quantity'];
-                return $cart;
-            });
+            if ($products != []) {
 
-            $carts = $carts->load('product');
+                $productIds = array_column($products, 'id');
 
+
+                $carts = Cart::whereIn('product_id', $productIds)
+                            ->with('product')
+                            ->get()
+                            ->map(function ($cart) use ($products) {
+                                $sessionItem = collect($products)->firstWhere('id', $cart->product_id);
+                                $cart->quantity = $sessionItem['quantity'] ?? $cart->quantity;
+                                return $cart;
+                            });
+
+                if ($carts->isEmpty()) {
+                    $carts = collect($products)->map(function ($product) {
+                        $cart = new Cart();
+                        $cart->product_id = $product['id'];
+                        $cart->quantity = $product['quantity'];
+                        return $cart;
+                    });
+
+                    $productsFromDb = Product::whereIn('id', $productIds)->get()->keyBy('id');
+                    $carts = $carts->map(function ($cart) use ($productsFromDb) {
+                        $cart->product = $productsFromDb->get($cart->product_id);
+                        return $cart;
+                    });
+                }
+            } else {
+                $carts = collect();
+            }
 
         }
 
-        return view('cart',compact('carts'));
-
-
+        return view('cart', compact('carts'));
     }
     public function CartCount() {
         // return cart count
@@ -57,8 +74,11 @@ class CartController extends Controller
         }
 
         if (!AuthHelper::check()) {
-            $this->addToSessionCart($products);
-            return response()->json(['status' => true, 'message' => 'Products added to cart']);
+            $isNotNew = $this->addToSessionCart($products);
+            if(!$isNotNew){
+                return response()->json(['status' => false, 'message' => 'All products are already in the cart']);
+            }
+            return response()->json(['status' => true,'isNotNew' => $isNotNew , 'message' => 'Products added to cart']);
         }
 
         $user = AuthHelper::user();
@@ -68,7 +88,7 @@ class CartController extends Controller
         $newProducts = $this->getNewProducts($products, $existingProductIds);
 
         if (empty($newProducts)) {
-            return response()->json(['status' => true, 'message' => 'All products are already in the cart']);
+            return response()->json(['status' => false, 'message' => 'All products are already in the cart']);
         }
 
         $this->addToUserCart($newProducts, $user);
@@ -80,21 +100,27 @@ class CartController extends Controller
     {
         $cart = session('cart', []);
 
+        $allProductsAlreadyInCart = true; // Assume all are already in cart initially
+
         foreach ($products as $product) {
             $found = false;
             foreach ($cart as &$cartItem) {
                 if ($cartItem['id'] === $product['id']) {
                     $cartItem['quantity'] += $product['quantity'];
                     $found = true;
+                    $allProductsAlreadyInCart = false; // At least one product was new
                     break;
                 }
             }
             if (!$found) {
                 $cart[] = $product;
+                // $allProductsAlreadyInCart = false; // At least one product was new
             }
         }
 
         session(['cart' => $cart]);
+
+        return $allProductsAlreadyInCart && !empty($products);
     }
 
     private function getNewProducts($products, $existingProductIds)

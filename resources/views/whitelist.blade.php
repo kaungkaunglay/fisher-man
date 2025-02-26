@@ -179,7 +179,9 @@
                 $(`.${class_name}`).click(function() {
                     const getid = $(this).data('id');
                     deleteWhiteList(getid);
-                    updateWhiteListCount();
+                    // updateWhiteListCount();
+                        let count = Math.max(0,getStoredCount("white_list_count") - 1);
+                        updateStoredCount("white_list_count", ".white_list_count", count);
                 });
             }
 
@@ -203,6 +205,8 @@
                             //     removeCart($(this).val())
                             // });
                             console.log(response.message);
+
+                            updateCartCount();
                         }
 
                         if (!response.status) {
@@ -223,11 +227,15 @@
                         id: $(this).val(),
                         quantity: 1
                     });
+
+                    $(this).prop('checked', false);
                 });
 
 
-                addToCart(selected_products);
-                updateCartCount();
+                if(selected_products.length > 0){
+                    addToCart(selected_products);
+                }
+                // updateCartCount();
             });
 
 

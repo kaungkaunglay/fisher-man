@@ -611,7 +611,9 @@
                         if (response.status) {
                             removeCart(product_id);
                             netTotal();
-                            updateCartCount();
+                            // updateCartCount();
+                            let count = Math.max(0,getStoredCount("cart_count") - 1);
+                            updateStoredCount("cart_count", "#cart_count, #cart_count_bottom", count);
                         }
                     }
                 });

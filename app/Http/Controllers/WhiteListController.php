@@ -31,7 +31,7 @@ class WhiteListController extends Controller
         $user = AuthHelper::user();
 
         if ($user->whitelists()->where('product_id', $product_id)->exists()) {
-            return response()->json(['status' => true, 'message' => 'Product already added to whitelist']); // Or a more appropriate message
+            return response()->json(['status' => false, 'message' => 'Product already added to whitelist']); // Or a more appropriate message
         }
 
         $user->whitelists()->attach($product_id);

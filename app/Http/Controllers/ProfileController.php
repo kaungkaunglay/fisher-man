@@ -51,19 +51,34 @@ class ProfileController extends Controller
         $user = AuthHelper::user();
 
         if ($request->hasFile('avatar')) {
+
+            $existing_avatar = 'assets/avatars/'.$user->avatar;
+
             $avatar = $request->file('avatar');
             $avatarName = time() . '_' . $avatar->getClientOriginalName();
 
 
-            \Storage::disk('public')->putFile('avatars', $avatar, $avatarName);
+            if ($user->avatar && file_exists(public_path($existing_avatar))) {
 
+                unlink(public_path($existing_avatar));
 
-            if ($user->avatar) {
-                \Storage::disk('public')->delete('avatars/' . $user->avatar);
             }
+
+            $avatar = $request->file('avatar');
+
+            $destinationPath = public_path('assets/avatars');
+
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            $avatarName = time() . '_' . $avatar->getClientOriginalName();
+
+            $avatar->move($destinationPath, $avatarName);
 
             $user->avatar = $avatarName;
             $user->save();
+
         }
 
         $user->update([
