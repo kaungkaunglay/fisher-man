@@ -71,4 +71,8 @@ footer .link-list li a,footer ul li a {
   margin-top: -30px;
   z-index: 1000;
 }
+
+.hv-icon:hover {
+  color: #ffc107;
+}
 /* mobile nav bar end */
