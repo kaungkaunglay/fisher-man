@@ -17,18 +17,6 @@ body {
   box-shadow: none;
 }
 
-.profile-form:not(.active) .cancel,
-.profile-form:not(.active) .save,
-.profile-form:not(.active) .checkbox-list-on {
-  display: none !important;
-}
-
-.profile-form.active .edit,
-.profile-form.active .cor,
-.profile-form.active .checkbox-list-off {
-  display: none !important;
-}
- 
 .profile-form.active .phone-no-container {
   flex-direction: column;
 }

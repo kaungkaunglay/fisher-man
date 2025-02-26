@@ -457,7 +457,7 @@
                         window.location.href = response.url;
                     } else if (response.status) {
                         // btn.toggleClass('active');
-                        btn.closet('#btn-message').find('span').html(response.message);
+                        // btn.closest('#btn-message').find('span').html(response.message);
                         updateWhiteListCount();
                     }
                     console.log(response.message);

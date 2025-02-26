@@ -232,7 +232,8 @@ main {
   color: #fff;
 }
 
-.common-btn2:active {
+.common-btn2:active,
+.-solid:active {
   background-color: color-mix(in srgb, #005B96 50%, #000 50%);
 }
 
@@ -688,6 +689,8 @@ li {
   height: 100%;
   background: #005B96;
 }
+
+
 
 @media screen and (max-width: 1150px) {
   .range-slider {

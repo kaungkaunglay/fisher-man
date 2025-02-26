@@ -14,12 +14,35 @@
   z-index: 2;
 }
 
+.nav-link.active {
+  color: #000 !important;
+}
+
 .rating-stars .fas {
   color: #ffc107;
 }
 
 .product-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shop-location {
+  min-height: 500px;
+}
+
+.review-img {
+  width: 20vw;
+  max-width: 200px;
+}
+
+.scroller {
+  /* max-height: 120vh; */
+  /* overflow: hidden;
+  overflow-y: scroll; */
+}
+
+#view-list {
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .product-card:hover {

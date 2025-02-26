@@ -27,146 +27,147 @@
                 </div>
                 <!-- Profile Side -->
                 <div class="col-12 col-lg-7 h-100 profile-side">
-                    <div class="d-md-flex gap-3">
+                    <form action="#" id="update_basic_profile" class="profile-form" method="POST">
 
-                        <!-- profile img -->
-                        <div class="w-100">
-                            <img src="{{ $user->avatar ?? asset('assets/images/account1.svg') }}" class="w-100"
-                                alt="">
+                        @csrf
+
+                        <div class="w-100 h-100 d-md-flex gap-3">
+                            <!-- profile img -->
+                            <div class="w-100 profile-form d-flex flex-column avatar-input">
+                                <label for="avatar-input" class="w-100 d-block position-relative">
+                                    <img src="{{ $user->avatar ? asset('assets/avatars/'.$user->avatar) : asset('assets/images/account1.svg') }}" id="form-img"
+                                        alt="{{ $user->username ?? 'Account.png'}}">
+                                    <div class="avatar-upload w-100 h-100 position-absolute d-none"><i class="fas fa-upload m-auto"></i></div>
+                                </label>
+                                <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input" disabled>
+                            </div>
+
+                            <!-- Profile Info -->
+                            <div class="w-100 d-flex flex-column">
+
+
+                                <!-- Form Headline -->
+                                <div class="bg-primary text-white p-2 form-headline">
+                                    <h2 class="fw-bold d-flex justify-content-between">{{ trans_lang('info') }}
+                                        <div class="d-flex justify-content-end gap-4">
+                                            <button type="submit" class="save d-none">
+                                                <i class="fa-solid fa-save fs-5 text-white"></i>
+                                            </button>
+                                            <button class="edit">
+                                                <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
+                                            </button>
+                                            <button class="cancel d-none">
+                                                <i class="fa-solid fa-x fs-5 text-white"></i>
+                                            </button>
+                                        </div>
+                                    </h2>
+                                </div>
+                                <!-- /Form Headline -->
+
+                                <!-- /Form Content -->
+                                <div class="px-2 py-3">
+
+                                    <!-- user name -->
+                                    <div class="form-group">
+                                        <div class="d-flex align-items-center">
+                                            <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
+                                            <output class="form-output" for="username">{{ $user->username }}</output>
+                                            <input type="text" name="username" class="p-1 mt-1 ms-1 border-bottom border-2 d-none"
+                                                id="username" value="{{ $user->username }}" disabled>
+                                        </div>
+                                        <span class="invalid-feedback"></span>
+                                    </div>
+
+                                    <!-- email link -->
+                                    <div class="form-group">
+                                        <div class="d-flex align-items-center form-group">
+                                            <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
+                                            <output class="form-output" for="email">{{ $user->email }}</output>
+                                            <input type="email" name="email" class="p-1 mt-2 ms-1 border-bottom border-2 d-none"
+                                                id="email" value="{{ $user->email }}" disabled>
+                                        </div>
+                                        <span class="invalid-feedback"></span>
+                                    </div>
+
+                                    <!-- account checkbox -->
+                                    <div class="mt-2">
+                                        <!-- form on state -->
+                                        <ul class="d-flex gap-4 checkbox-list">
+                                            <li>
+                                                <div class="form-group d-flex flex-column gap-1">
+                                                    <label for="line_login">
+                                                        <i class="fa-brands fa-line fs-2 mt-1"></i>
+                                                    </label>
+                                                    <div class="form-check form-switch align-self-center">
+                                                        <input type="checkbox" id="line_login" class="border form-check-input"
+                                                            role="switch" @if ($user->checkProvider('line')) checked @endif />
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="form-group d-flex flex-column gap-1">
+                                                    <label for="facebook_login">
+                                                        <i class="fa-brands fa-facebook fs-2 mt-1"></i>
+                                                    </label>
+                                                    <div class="form-check form-switch align-self-center">
+                                                        <input type="checkbox" id="facebook_login"
+                                                            class="border form-check-input" role="switch"
+                                                            @if ($user->checkProvider('facebook')) checked @endif />
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="form-group d-flex flex-column gap-1">
+                                                    <label for="google_login">
+                                                        <i class="fa-brands fa-google fs-2 mt-1"></i>
+                                                    </label>
+                                                    <div class="form-check form-switch align-self-center">
+                                                        <input type="checkbox" id="google_login" class="border form-check-input"
+                                                            role="switch" @if ($user->checkProvider('google')) checked @endif />
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                @if(!auth_helper()->isVerified())
+                                    <div class="alert alert-warning d-flex mb-2" role="alert" >
+                                        <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
+                                            aria-label="Warning:"></i>
+                                        <div class="text-start">
+                                            Verify your email
+                                            <a href="javascript:void(0);" id="sent_email_verify_link" class="btn btn-outline-warning btn-sm">here</a>
+                                        </div>
+                                    </div>
+                                @endif
+                                <!-- /Form Content -->
+
+                            </div>
                         </div>
-
-                        <!-- Profile Info -->
-                        <form method="POST" id="update_basic_profile" class="w-100 profile-form d-flex flex-column">
-                            @csrf
-                            <!-- Form Headline -->
-                            <div class="bg-primary text-white p-2">
-                                <h2 class="fw-bold d-flex justify-content-between">{{ trans_lang('info') }}
-                                    <div class="d-flex justify-content-end gap-4">
-                                        <button type="submit" class="save">
-                                            <i class="fa-solid fa-save fs-5 text-white"></i>
-                                        </button>
-                                        <button class="edit">
-                                            <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
-                                        </button>
-                                        <button class="cancel">
-                                            <i class="fa-solid fa-x fs-5 text-white"></i>
-                                        </button>
-                                    </div>
-                                </h2>
-                            </div>
-                            <!-- /Form Headline -->
-
-                            <!-- Form Content -->
-                            <div class="px-2 py-3">
-                                <!-- user name -->
-                                <div class="form-group">
-                                    <div class="d-flex align-items-center form-group">
-                                        <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
-                                        <input type="text" name="username" class="p-1 mt-1 ms-1 rounded-1" id="username"
-                                            value="{{ $user->username }}" readonly>
-
-                                    </div>
-                                    <span class="invalid-feedback"></span>
-                                </div>
-
-
-                                <!-- email link -->
-                                <div class="form-group">
-                                    <div class="d-flex align-items-center form-group">
-                                        <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
-                                        <input type="email" name="email" class="p-1 mt-2 ms-1 rounded-1" id="email"
-                                            value="{{ $user->email }}" readonly>
-
-                                    </div>
-                                    <span class="invalid-feedback"></span>
-                                </div>
-
-                                <!-- organization link -->
-                                <div class="form-group">
-                                    <div class="d-flex align-items-center form-group">
-                                        <label class="w-25" for="first_org_name">{{ trans_lang('organize') }}</label>:
-                                        <input type="text" name="first_org_name" class="p-1 mt-2 ms-1 rounded-1"
-                                            id="first_org_name" value="Organization" readonly>
-
-                                    </div>
-                                    <span class="invalid-feedback"></span>
-                                </div>
-
-                                <!-- account checkbox -->
-                                <div class="mt-2">
-                                    <ul class="d-flex gap-4 checkbox-list-on">
-                                        <li>
-                                            <div class="form-group d-flex flex-column gap-1">
-                                                <label for="">
-                                                    <i class="fa-brands fa-line fs-2 mt-1"></i>
-                                                </label>
-                                                <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" id="line_login" class="border form-check-input"
-                                                        role="switch" @if ($user->checkProvider('line')) checked @endif />
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-group d-flex flex-column gap-1">
-                                                <label for="">
-                                                    <i class="fa-brands fa-facebook fs-2 mt-1"></i>
-                                                </label>
-                                                <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" id="facebook_login"
-                                                        class="border form-check-input" role="switch"
-                                                        @if ($user->checkProvider('facebook')) checked @endif />
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-group d-flex flex-column gap-1">
-                                                <label for="">
-                                                    <i class="fa-brands fa-google fs-2 mt-1"></i>
-                                                </label>
-                                                <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" id="google_login" class="border form-check-input"
-                                                        role="switch" @if ($user->checkProvider('google')) checked @endif />
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- /Form Content -->
-
-                            <!-- alert box -->
-                            {{-- <button class="mt-auto" data-bs-toggle="modal" data-bs-target="#modal_dialog"
-                                onclick="event.preventDefault()">
-                                <div class="alert alert-warning d-flex mb-0" role="alert">
-                                    <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
-                                        aria-label="Warning:"></i>
-                                    <div class="text-start">
-                                        Your account has not been verified. Please complete the verification process.
-                                    </div>
-                                </div>
-                            </button> --}}
-                        </form>
-                        <!-- /Profile Info -->
-
-                    </div>
+                    </form>
+                    
 
                     <!-- Detail Info -->
-                    <form method="POST" id="update_contact_details" class="w-100 mt-3 profile-form">
-                        @csrf
+                    <form action="" id="update_contact_details" method="POST" class="w-100 mt-3 profile-form">
+
                         <!-- Form Headline -->
                         <div>
-                            <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2">
+                            <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2 form-headline">
                                 {{ trans_lang('detail') }}
+
                                 <!-- button group -->
                                 <div class="d-flex justify-content-end gap-4">
-                                    <button type="submit" class="save">
+                                    <button type="submit" class="save d-none">
                                         <i class="fa-solid fa-save fs-5 text-white"></i>
                                     </button>
                                     <button class="edit">
                                         <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
                                     </button>
-                                    <button class="cancel">
+                                    <button class="cancel d-none">
                                         <i class="fa-solid fa-x fs-5 text-white"></i>
                                     </button>
                                 </div>
@@ -178,33 +179,28 @@
                         <div class="px-2 py-3">
 
                             <!-- address -->
-                            <div class="form-group">
-                                <div class="d-flex align-items-center">
-                                    <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
-                                    <input type="text" name="address" class="p-1 mt-2 ms-1 rounded-1" id="address"
-                                        value="house no street,sue distict,city" readonly>
-
-                                </div>
+                            <div class="d-flex align-items-center form-group">
+                                <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
+                                <output class="form-output" for="address">{{ $user->address }}</output>
+                                <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea>
                                 <span class="invalid-feedback"></span>
                             </div>
 
                             <!-- phone-number link -->
-                            <div class="form-group">
-                                <div class="d-flex align-items-start">
-                                    <label class="w-25" for="tel">{{ trans_lang('phone_number') }}</label>:
-                                    <div class="ms-1 d-flex phone-no-container">
-                                        <!-- <a href="tel:"> -->
-                                        <input type="tel" name="first_phone" class="p-1 mt-2 rounded-1"
-                                            id="first_phone" value="{{ $user->first_phone }}" readonly>
-
-                                        <!-- </a> -->
-                                        <b class="cor align-content-end">, </b>
-                                        <!-- <a href="tel:"> -->
-                                        <input type="tel" name="second_phone" class="p-1 mt-2 rounded-1"
-                                            value="{{ $user->second_phone }}" id="second_phone" readonly>
-
-                                        <!-- </a> -->
-                                    </div>
+                            <div class="d-flex align-items-start form-group">
+                                <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
+                                <div class="ms-1 d-flex flex-column phone-no-container">
+                                    <a href="tel:">
+                                        <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
+                                    </a>
+                                    <input type="tel" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none"
+                                        id="first_phone" value="{{ $user->first_phone }}" disabled>
+                                    <a href="tel:">
+                                        <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
+                                    </a>
+                                    <input type="tel" name="second_phone" class="p-1 mt-2 border-bottom border-2 d-none"
+                                        value="{{ $user->second_phone }}" id="second_phone" disabled>
+                                    <span class="invalid-feedback"></span>
                                 </div>
                                 <span class="invalid-feedback"></span>
                             </div>
@@ -262,20 +258,20 @@
 
                 <!-- sorting -->
                 <!-- <div class="sort-container">
-                            <div class="arrows">
-                                <button><i class="fa-solid fa-caret-up"></i></button>
-                                <button><i class="fa-solid fa-caret-down"></i></button>
-                            </div>
-                            <div class="dropdown">
-                                <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">Sort by</button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </div> -->
+                                <div class="arrows">
+                                    <button><i class="fa-solid fa-caret-up"></i></button>
+                                    <button><i class="fa-solid fa-caret-down"></i></button>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">Sort by</button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    </ul>
+                                </div>
+                            </div> -->
 
             </div>
 
@@ -297,13 +293,14 @@
                                 @endif
                             </p>
                             <div class="title-category">
-                                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category ">{{ $product->subCategory->name }}</a>
+                                <a href="{{ route('sub-category.show', $product->subCategory->id) }}"
+                                    class="menu-category ">{{ $product->subCategory->name }}</a>
                                 <h3 class="title m-t-b-10">{{ $product->name }}</h3>
                             </div>
                             <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
                                 {{ $product->description }}
                             </a>
-       
+
                         </div>
                     </div>
                 @endforeach
@@ -321,19 +318,19 @@
                         @else
                             <li><a href="{{ $products->previousPageUrl() }}" class="">&lt;</a></li>
                         @endif
-            
+
                         <!-- Page Numbers (Only Show 3 Pages at a Time) -->
                         @php
                             $start = max(1, $products->currentPage() - 1);
                             $end = min($start + 2, $products->lastPage());
                         @endphp
-            
+
                         @for ($i = $start; $i <= $end; $i++)
                             <li class="{{ $products->currentPage() == $i ? 'active' : '' }}">
                                 <a href="{{ $products->url($i) }}" class="">{{ $i }}</a>
                             </li>
                         @endfor
-            
+
                         <!-- Next Page Link -->
                         @if ($products->hasMorePages())
                             <li><a href="{{ $products->nextPageUrl() }}" class="">&gt;</a></li>
@@ -527,22 +524,21 @@
         });
     </script>
 
-<script>
-    $(document).on('click', '.pagination a', function (e) {
-        e.preventDefault();
-        let page = $(this).attr('href').split('page=')[1];
-        fetchProducts(page);
-    });
-
-    function fetchProducts(page) {
-        $.ajax({
-            url: "?page=" + page,
-            success: function (data) {
-                $('#view-list').html($(data).find('#view-list').html());
-                $('.pagination').html($(data).find('.pagination').html());
-            }
+    <script>
+        $(document).on('click', '.pagination a', function(e) {
+            e.preventDefault();
+            let page = $(this).attr('href').split('page=')[1];
+            fetchProducts(page);
         });
-    }
-</script>
 
+        function fetchProducts(page) {
+            $.ajax({
+                url: "?page=" + page,
+                success: function(data) {
+                    $('#view-list').html($(data).find('#view-list').html());
+                    $('.pagination').html($(data).find('.pagination').html());
+                }
+            });
+        }
+    </script>
 @endsection

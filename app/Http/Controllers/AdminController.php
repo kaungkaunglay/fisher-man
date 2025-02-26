@@ -9,10 +9,11 @@ use App\Models\Contact;
 use App\Models\Product;
 use App\Models\Setting;
 use App\Models\wishList;
+use App\Helpers\AuthHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\Facades\Image as ImageIntervention;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -101,6 +102,7 @@ class AdminController extends Controller
             $imageName = time() . '.' . $file->getClientOriginalExtension(); // Generate unique name
 
             // $resizedImage = Image::make($file)->resize(300, 300)->encode();
+            $resizedImage = ImageIntervention::make($image)->resize(300, 300);
             $file->move(public_path('assets/logos'),$imageName);
 
             Setting::updateOrCreate(['key' => 'logo'], ['value' => $imageName]);
@@ -260,6 +262,13 @@ class AdminController extends Controller
 
 
         return response()->json(['success' => true, 'message' => 'Shop deleted successfully.']);
+    }
+
+    public function logout()
+    {
+        AuthHelper::logout();
+
+        return to_route('admin.login');
     }
 
 }
