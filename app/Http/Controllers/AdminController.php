@@ -89,8 +89,7 @@ class AdminController extends Controller
             'contact_address' => request('contact_address'),
             'slogan' => request('slogan'),
             'policy' => request('policy'),
-        ];
-        // dd("here");
+    ];
 
         foreach ($settings as $key => $value) {
             Setting::updateOrCreate(['key' => $key], ['value' => $value]);
