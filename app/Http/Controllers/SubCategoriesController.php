@@ -23,12 +23,12 @@ class SubCategoriesController extends Controller
 
     public function show($id, Request $request)
     {
-        $sortBy = $request->get('sort_by', 'latest'); 
+        $sortBy = $request->get('sort_by', 'latest');
         $minPrice = $request->get('min_price', 1);
         $maxPrice = $request->get('max_price', 10000);
 
         $query = Product::where('sub_category_id', $id)->whereBetween('product_price', [$minPrice, $maxPrice]);
- 
+
         if ($sortBy === 'price_asc') {
             $query->orderBy('product_price', 'asc');
         } elseif ($sortBy === 'price_desc') {
@@ -38,7 +38,7 @@ class SubCategoriesController extends Controller
         } elseif ($sortBy === 'name_desc') {
             $query->orderBy('name', 'desc');
         } else {
-            $query->latest(); 
+            $query->latest();
         }
 
         $products = $query->paginate(10);
@@ -84,9 +84,10 @@ class SubCategoriesController extends Controller
     {
         $categories = Category::all();
         return view('admin.sub-category', [
-            'subcategory' => $sub_category, 
+            'subcategory' => $sub_category,
             'categories' => $categories
-        ]);    }
+        ]);
+    }
 
     public function update(Request $request, Sub_category $sub_category)
     {

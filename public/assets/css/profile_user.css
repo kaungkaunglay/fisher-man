@@ -45,7 +45,7 @@ body {
 .profile-form.active .link-contain a {
   display: none;
 }
- 
+
 .profile-form.active .phone-no-container {
   flex-direction: column;
 }
