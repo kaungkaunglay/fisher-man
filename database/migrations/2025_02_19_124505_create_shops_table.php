@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('trans_management');
             $table->string('email')->unique();
             $table->string('phone_number');
+            $table->string('description');
             $table->string('avatar')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();

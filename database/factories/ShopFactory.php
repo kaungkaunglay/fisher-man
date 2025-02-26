@@ -25,6 +25,7 @@ class ShopFactory extends Factory
             'trans_management' => $this->faker->randomElement(['Cash', 'PayPal', 'Bank Transfer']),
             'email' => $this->faker->unique()->safeEmail,
             'phone_number' => $this->faker->phoneNumber,
+            'description' => $this->faker->sentence,
             'avatar' => 'shop.jpg',
             'status' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
         ];
