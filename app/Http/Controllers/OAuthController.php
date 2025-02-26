@@ -27,7 +27,6 @@ class OAuthController extends Controller
         try {
             // Get user from provider
             $providerUser = Socialite::driver($provider)->user();
-            // logger(print_r($providerUser, true));
 
             // Encrypt tokens
             $token = Hash::make($providerUser->token);

@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image as ImageIntervention;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Drivers\Gd\Driver; 
+use Intervention\Image\ImageManager; 
+
 
 class AdminController extends Controller
 {
@@ -37,6 +40,22 @@ class AdminController extends Controller
     }
     public function orders(){
         return view('admin.orders');
+    }
+    public function ImageProcess($image){
+        if(!$image){
+            return 'default_profile.jpg';
+        }
+        $ext  = $image->getClientOriginalExtension();
+        $imageName = time().'.'.$ext; 
+        $image->move(public_path('/employee_image/'), $imageName); 
+        $sourcePath = public_path('/employee_image/'.$imageName); 
+       
+        $manager = new ImageManager(Driver::class);
+        $image = $manager->read($sourcePath);
+
+        $image->cover(150, 150);
+        $image->toPng()->save(public_path('/employee_image/thumb/' . $imageName));
+        return $imageName;
     }
     public function order(){
         return view('admin.order');
@@ -224,7 +243,6 @@ class AdminController extends Controller
 
     public function updateStatus(Request $request)
     {
-        logger($request);
         $shop = Shop::findOrFail($request->shop_id);
         $shop->status = $request->status;
         $shop->save();
@@ -249,8 +267,6 @@ class AdminController extends Controller
 
     public function deleteShop(Request $request)
     {
-
-        logger($request);
         $user = Users::select('users.*')
         ->join('shops','users.id','=','shops.user_id')
         ->where('shops.id',$request->shop_id)

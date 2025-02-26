@@ -52,7 +52,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 bg-transparent">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans_lang('home') }}</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ trans_lang('profile') }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">Shop Detail</li>
                 </ol>
             </nav>
 
@@ -68,7 +68,7 @@
                 {{-- Shop Detail --}}
                 <div class="col-md-3 text-center text-md-start">
 
-                    <img src="{{ asset('assets/images/account1.svg') }}" class="rounded" alt="Shop avatar">
+                    <img src="{{ asset('assets/images/avatars/'.$shop->avatar) }}" class="rounded" alt="Shop avatar">
                     <div class="mt-3">
                         <p class="rating-stars mb-1">
                             <i class="fas fa-star"></i>
@@ -118,16 +118,14 @@
                                 {{-- About Tab --}}
                                 <div class="tab-pane fade show active" id="home" role="tabpanel">
                                     <h4 class="p-2 border-bottom border-2">About Shop</h4>
-                                    <p class="p-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat
-                                        velit officiis quae sequi illum. Totam tenetur maiores ullam ea! Eos fugiat ipsa
-                                        reiciendis voluptates commodi provident est, quaerat unde nesciunt!</p>
+                                    <p class="p-2">{{$shop->description}}</p>
                                     <div class="row mt-4">
                                         <div>
                                             <h5 class="p-2 border-bottom border-2">Shop Details</h5>
                                             <ul class="list-unstyled p-2">
-                                                <li><i class="fas fa-map-marker-alt text-primary mb-3"></i> Portland, Oregon
+                                                <li><i class="fas fa-map-marker-alt text-primary mb-3 me-2"></i> {{$shop->address}}
                                                 </li>
-                                                <li><i class="fas fa-box text-primary mb-3"></i> 145 products</li>
+                                                <li><i class="fas fa-box text-primary mb-3 me-2"></i>{{$products->count()}} products</li>
                                                 <li><i class="fas fa-users text-primary mb-3"></i> 3500+ followers</li>
                                             </ul>
                                         </div>
@@ -170,20 +168,28 @@
                                         <div class="card-list m-3" id="view-list" data-list="fish-list">
 
                                             <template data-clone="6" data-target="fish-list">
+                                                @foreach ($products as $product)
                                                 <div class="item-card mb-3">
                                                     <a href="#" class="right">
-                                                        <img src="{{ asset('assets/images/fishes/Fish-02.svg') }}"
+                                                        <img src="{{ asset('assets/products/'. $product->product_image) }}"
                                                             class="card-img-top" alt="">
                                                     </a>
                                                     <div class="left">
-                                                        <p class="price m-t-b-10">¥1000</p>
+                                                        <p class="price m-t-b-10">
+                                                            @if ($product->discount > 0)
+                                                            <span class="format">{{$product->product_price - $product->discount}}</span>
+                                                            <span class="original-price format">{{ $product->product_price }}</span>
+                                                        @else
+                                                            <span class="format">{{ $product->product_price }}</span>
+                                                        @endif
+                                                            
                                                         <div
                                                             class="title-category flex-column flex-sm-row align-items-start">
-                                                            <a href="#" class="menu-category">Fish</a>
-                                                            <h3 class="title m-t-b-10">Tuna</h3>
+                                                            <a href="#" class="menu-category">{{$product->sub_categories_name}}</a>
+                                                            <h3 class="title m-t-b-10">{{$product->name}}</h3>
                                                         </div>
                                                         <a href="#" class="txt m-b-10 description">
-                                                            Not Good
+                                                           {{$product->description}}
                                                         </a>
                                                         <div class="d-flex gap-2 card-btn m-t-10">
                                                             <a href="#" class="py-1 common-btn2 -solid cart-btn">
@@ -195,6 +201,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @endforeach
                                             </template>
 
                                         </div>
