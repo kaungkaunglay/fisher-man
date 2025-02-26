@@ -224,7 +224,6 @@ class AdminController extends Controller
 
     public function updateStatus(Request $request)
     {
-        logger($request);
         $shop = Shop::findOrFail($request->shop_id);
         $shop->status = $request->status;
         $shop->save();
@@ -249,8 +248,6 @@ class AdminController extends Controller
 
     public function deleteShop(Request $request)
     {
-
-        logger($request);
         $user = Users::select('users.*')
         ->join('shops','users.id','=','shops.user_id')
         ->where('shops.id',$request->shop_id)
