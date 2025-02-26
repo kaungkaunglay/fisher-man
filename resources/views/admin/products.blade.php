@@ -125,7 +125,7 @@
                         <div class="body-text">{{  $product->created_at->format('d M Y') }}</div>
                         <div class="list-icon-function">
                             <div class="item eye">
-                                <a href="{{ route('admin.products', $product->id) }}">
+                                <a href="{{ route('admin.product.show', $product->id) }}">
                                     <i class="icon-eye"></i>
                                 </a>
                             </div>

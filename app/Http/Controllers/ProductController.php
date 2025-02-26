@@ -133,6 +133,12 @@ class ProductController extends Controller
         return view('product_detail', compact('product'));
     }
 
+    public function adminshow($id)
+    {
+        $product = Product::with('subCategory')->findOrFail($id);
+        return view('admin.product-detail', compact('product'));
+    }
+
     public function discountProducts(Request $request)
     {
         $sortBy = $request->get('sort_by', 'latest');
