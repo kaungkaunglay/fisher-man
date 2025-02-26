@@ -23,16 +23,8 @@
                 <h3>{{trans_lang('shops')}}</h3>
                 <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                     <li>
-                        <a href="#">
-                            <div class="text-tiny">{{trans_lang('home')}}</div>
-                        </a>
-                    </li>
-                    <li>
-                        <i class="icon-chevron-right"></i>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="text-tiny">{{trans_lang('shop_list')}}</div>
+                        <a href="{{route('admin.index')}}">
+                            <div class="text-tiny">Dashboard</div>
                         </a>
                     </li>
                     <li>
@@ -86,7 +78,7 @@
                             <div class="body-title">{{trans_lang('email')}}</div>
                         </li>
                         <li>
-                            <div class="body-title">{{trans_lang('status')}}</div>
+                            <div class="body-title text-center">{{trans_lang('status')}}</div>
                         </li>
                         <li>
                             <div class="body-title">{{trans_lang('action')}}</div>

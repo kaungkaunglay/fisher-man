@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
 {
+
+    public function contactDetail($contactID)
+    {
+        $contact = Contact::findOrFail($contactID);
+        // dd($contact);
+        return view('admin.contact-detail', compact('contact'));
+    }
+
     public function contact(Request $request){
         $messages = [
             'name.required' => 'The name field is required.',

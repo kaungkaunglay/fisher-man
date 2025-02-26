@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Validator;
 
 class WishListController extends Controller
 {
+
+    public function wishListDetail($wishListID)
+    {
+        $wishList = wishList::findOrFail($wishListID);
+        // dd($contact);
+        return view('admin.wishList-detail', compact('wishList'));
+    }
+
     public function wishList(Request $request){
         logger($request);
         $messages = [

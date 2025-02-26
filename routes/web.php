@@ -15,7 +15,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WhiteListController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FAQsController;
 use App\Http\Controllers\OAuthController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SubCategoriesController;
 use App\Http\Controllers\WishListController;
@@ -134,12 +136,12 @@ Route::post('/profile/update_contact', [ProfileController::class, 'update_contac
 Route::middleware(['is_admin'])->group(function () {
 
     //FAQs
-    Route::get('/admin/faqs', [AdminController::class, 'all_faqs'])->name('admin.faqs');
-    Route::get('/admin/faq/create', [AdminController::class, 'faq'])->name('create_faq');
-    Route::post('/admin/faq', [AdminController::class, 'store'])->name('add_faq');
-    Route::get('/admin/faqs/{faq}/edit', [AdminController::class, 'edit'])->name('admin.faqs.edit');
-    Route::put('/admin/faqs/{faq}', [AdminController::class, 'update'])->name('update_faq');
-    Route::delete('/admin/faqs/{faq}', [AdminController::class, 'destroy'])->name('admin.faqs.destroy');
+    Route::get('/admin/faqs', [FAQsController::class, 'all_faqs'])->name('admin.faqs');
+    Route::get('/admin/faq/create', [FAQsController::class, 'faq'])->name('create_faq');
+    Route::post('/admin/faq', [FAQsController::class, 'store'])->name('add_faq');
+    Route::get('/admin/faqs/{faq}/edit', [FAQsController::class, 'edit'])->name('admin.faqs.edit');
+    Route::put('/admin/faqs/{faq}', [FAQsController::class, 'update'])->name('update_faq');
+    Route::delete('/admin/faqs/{faq}', [FAQsController::class, 'destroy'])->name('admin.faqs.destroy');
 
     // Admin Controller
     Route::get('/admin', [AdminController::class, 'home'])->name('admin.index');
@@ -150,22 +152,22 @@ Route::middleware(['is_admin'])->group(function () {
     Route::post('/admin/mail', [MailController::class, 'sendmail'])->name('mail.reset');
 
     //admin settings
-    Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
-    Route::post('/admin/settings/save', [AdminController::class, 'save'])->name('admin.settings.save');
+    Route::get('/admin/settings', [SettingController::class, 'settings'])->name('admin.settings');
+    Route::post('/admin/settings/save', [SettingController::class, 'save'])->name('admin.settings.save');
 
     //User Request
     Route::get('/admin/request-contact', [AdminController::class, 'contact'])->name('admin.users.contact');
-    Route::get('/admin/contact/detail/{contactID}', [AdminController::class, 'contactDetail'])->name('admin.contact.detail');
+    Route::get('/admin/contact/detail/{contactID}', [ContactController::class, 'contactDetail'])->name('admin.contact.detail');
     Route::get('/admin/request-wishList', [AdminController::class, 'wishList'])->name('admin.users.wishList');
-    Route::get('/admin/wishList/detail/{wishListID}', [AdminController::class, 'wishListDetail'])->name('admin.wishList.detail');
+    Route::get('/admin/wishList/detail/{wishListID}', [WishListController::class, 'wishListDetail'])->name('admin.wishList.detail');
 
     //Manage Shop
-    Route::get('/admin/shops/approved-shops', [AdminController::class, 'approvedShopList'])->name('admin.shops.approved');
-    Route::get('/admin/shops/pending-shops', [AdminController::class, 'pendingShopList'])->name('admin.shops.pending');
-    Route::get('/admin/shops/rejected-shops', [AdminController::class, 'rejectedShopList'])->name('admin.shops.rejected');
-    Route::post('/admin/shops/update-status', [AdminController::class, 'updateStatus'])->name('admin.shops.updateStatus');
-    Route::get('/admin/shop-detail/{shopID}', [AdminController::class, 'shopDetail'])->name('admin.seller.shop.detail');
-    Route::post('/admin/shops/delete', [AdminController::class, 'deleteShop'])->name('admin.shops.delete');
+    Route::get('/admin/shops/approved-shops', [ShopController::class, 'approvedShopList'])->name('admin.shops.approved');
+    Route::get('/admin/shops/pending-shops', [ShopController::class, 'pendingShopList'])->name('admin.shops.pending');
+    Route::get('/admin/shops/rejected-shops', [ShopController::class, 'rejectedShopList'])->name('admin.shops.rejected');
+    Route::post('/admin/shops/update-status', [ShopController::class, 'updateStatus'])->name('admin.shops.updateStatus');
+    Route::get('/admin/shop-detail/{shopID}', [ShopController::class, 'shopDetail'])->name('admin.seller.shop.detail');
+    Route::post('/admin/shops/delete', [ShopController::class, 'deleteShop'])->name('admin.shops.delete');
 });
 
 

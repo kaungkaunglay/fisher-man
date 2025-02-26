@@ -1,6 +1,8 @@
 @extends('includes.layout')
 @section('title', 'Shop Profile')
 @section('style')
+    <!-- Bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/shop.css') }}" />
 @endsection
 
@@ -123,6 +125,10 @@
                                         <div>
                                             <h5 class="p-2 border-bottom border-2">Shop Details</h5>
                                             <ul class="list-unstyled p-2">
+                                                <li><i class="bi bi-telephone-fill text-primary mb-3 me-2"></i> {{$shop->phone_number}}
+                                                </li>
+                                                <li><i class="bi bi-envelope-fill text-primary mb-3 me-2"></i> {{$shop->email}}
+                                                </li>
                                                 <li><i class="fas fa-map-marker-alt text-primary mb-3 me-2"></i> {{$shop->address}}
                                                 </li>
                                                 <li><i class="fas fa-box text-primary mb-3 me-2"></i>{{$products->count()}} products</li>
@@ -167,7 +173,7 @@
                                     <div class="scroller">
                                         <div class="card-list m-3" id="view-list" data-list="fish-list">
 
-                                            <template data-clone="6" data-target="fish-list">
+
                                                 @foreach ($products as $product)
                                                 <div class="item-card mb-3">
                                                     <a href="#" class="right">
@@ -202,7 +208,7 @@
                                                     </div>
                                                 </div>
                                                 @endforeach
-                                            </template>
+ 
 
                                         </div>
                                     </div>
