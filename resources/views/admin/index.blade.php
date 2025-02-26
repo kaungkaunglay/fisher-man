@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/style.css') }}">
     <!-- Font -->
     <link rel="stylesheet" href="{{ asset('assets/admin/font/fonts.css') }}">
-    
+
     <!-- Icon -->
     <link rel="stylesheet" href="{{ asset('assets/admin/icon/style.css') }}">
 @endsection
@@ -30,7 +30,7 @@
                             </div>
                             <div>
                                 <div class="body-text mb-2">{{trans_lang('total')}}{{trans_lang('product')}}</div>
-                                <h4>{{ $total_products->count() }}</h4>
+                                <h4>{{ $total_product_count }}</h4>
                             </div>
                         </div>
                         {{-- <div class="box-icon-trending up">
@@ -54,10 +54,10 @@
                                 <span class="view-all">View all<i class="icon-chevron-down"></i></span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li>  
+                                <li>
                                     <a href="javascript:void(0);">3 days</a>
                                 </li>
-                                <li>  
+                                <li>
                                     <a href="javascript:void(0);">7 days</a>
                                 </li>
                             </ul>
@@ -105,7 +105,7 @@
                         <ul class="table-title flex gap20 mb-14">
                             <li>
                                 <div class="body-title">{{trans_lang('name')}}</div>
-                            </li>    
+                            </li>
                             <li>
                                 <div class="body-title">{{trans_lang('price')}}</div>
                             </li>
@@ -159,14 +159,14 @@
                                     <i class="icon-chevron-left"></i>
                                 </a>
                             </li>
-                    
+
                             <!-- Page Numbers -->
                             @foreach ($all_products->links()->elements[0] as $page => $url)
                                 <li class="{{ $page == $all_products->currentPage() ? 'active' : '' }}">
                                     <a href="{{ $url }}">{{ $page }}</a>
                                 </li>
                             @endforeach
-                    
+
                             <!-- Next Page -->
                             <li class="{{ $all_products->hasMorePages() ? '' : 'disabled' }}">
                                 <a href="{{ $all_products->nextPageUrl() }}">
@@ -176,9 +176,9 @@
                         </ul>
                     </div>
                     @endif
-                    
-                    
-                    
+
+
+
                     {{-- <div class="flex items-center justify-between flex-wrap gap10">
                         <!-- <div class="text-tiny">Showing 5 entries</div> -->
                         <ul class="wg-pagination">

@@ -19,15 +19,16 @@ use Illuminate\Support\Facades\Validator;
 class AdminController extends Controller
 {
     public function home(Request $request){
-        $top_products = Product::select('products.*','users.username')
-                ->join('users','products.user_id','=','users.id')
-                ->inRandomOrder()->take(5)->get();
-        $all_products = Product::select('products.*','users.username')
-        ->join('users','products.user_id','=','users.id')
-        ->paginate(10);
+        $top_products = Product::with('user:id,username')
+                        ->inRandomOrder()
+                        ->take(5)
+                        ->get();
 
-        $total_products = Product::get();
-        return view('admin.index',compact('top_products','all_products','total_products'));
+        $all_products = Product::with('user:id,username')
+                        ->paginate(10);
+
+        $total_product_count = Product::count();
+        return view('admin.index',compact('top_products','all_products','total_product_count'));
     }
     public function categoreis(){
         return view('admin.categories');
@@ -63,14 +64,18 @@ class AdminController extends Controller
 
     public function settings(){
         // dd(Setting::where('key', 'contact_email'));
+
+        $settings = Setting::pluck('value', 'key');
+
         $settings = [
-            'contact_email' => Setting::where('key', 'contact_email')->value('value') ?? '',
-            'contact_phone' => Setting::where('key', 'contact_phone')->value('value') ?? '',
-            'contact_address' => Setting::where('key', 'contact_address')->value('value') ?? '',
-            'slogan' => Setting::where('key', 'slogan')->value('value') ?? '',
-            'policy' => Setting::where('key', 'policy')->value('value') ?? '',
-            'logo' => Setting::where('key', 'logo')->value('value') ?? '',
+            'contact_email' => $settings['contact_email'] ?? '',
+            'contact_phone' => $settings['contact_phone'] ?? '',
+            'contact_address' => $settings['contact_address'] ?? '',
+            'slogan' => $settings['slogan'] ?? '',
+            'policy' => $settings['policy'] ?? '',
+            'logo' => $settings['logo'] ?? '',
         ];
+
         return view('admin.settings',compact('settings'));
     }
 
@@ -202,24 +207,22 @@ class AdminController extends Controller
 
     //Manage Shop
     public function approvedShopList(){
-        $approvedShops = Shop::select('shops.*', 'users.username')
-        ->join('users', 'shops.user_id', '=', 'users.id')
-        ->where('status', 'approved')
-        ->paginate(10);
+        $approvedShops = Shop::with('user:id,username')
+                            ->where('status', 'approved')
+                            ->paginate(10);
+
         return view('admin.approved-shops',compact('approvedShops'));
     }
     public function pendingShopList(){
-           $pendingShops = Shop::select('shops.*', 'users.username')
-                    ->join('users', 'shops.user_id', '=', 'users.id')
-                    ->where('status', 'pending')
-                    ->paginate(10);
+        $pendingShops = Shop::with('user:id,username')
+                            ->where('status', 'approved')
+                            ->paginate(10);
         return view('admin.pending-shops', compact('pendingShops'));
     }
     public function rejectedShopList(){
-           $rejectedShops = Shop::select('shops.*', 'users.username')
-                    ->join('users', 'shops.user_id', '=', 'users.id')
-                    ->where('status', 'rejected')
-                    ->paginate(10);
+        $rejectedShops = Shop::with('user:id,username')
+                        ->where('status', 'rejected')
+                        ->paginate(10);
         return view('admin.rejected-shops', compact('rejectedShops'));
     }
 
@@ -229,21 +232,15 @@ class AdminController extends Controller
         $shop = Shop::findOrFail($request->shop_id);
         $shop->status = $request->status;
         $shop->save();
-        $user = Users::select('users.*')
-                ->join('shops','users.id','=','shops.user_id')
-                ->where('shops.id',$request->shop_id)
-                ->first();
-
+        $user = $shop->user;
         $user->assignRole(2);
 
         return response()->json(['status' => true, 'message' => 'Shop status updated successfully']);
     }
 
     public function shopDetail($shopID){
-        $shop = Shop::select('shops.*', 'users.username','users.email')
-            ->join('users', 'shops.user_id', '=', 'users.id')
-            ->where('shops.id', $shopID)
-            ->firstOrFail();
+        $shop = Shop::with('user:id,username,email')
+                        ->findOrFail($shopID);
 
         return view('admin.seller-shop-detail', compact('shop'));
     }
@@ -252,13 +249,11 @@ class AdminController extends Controller
     {
 
         logger($request);
-        $user = Users::select('users.*')
-        ->join('shops','users.id','=','shops.user_id')
-        ->where('shops.id',$request->shop_id)
-        ->first();
 
-        $user->assignRole(3);
+
         $shop = Shop::find($request->shop_id);
+        $user = $shop->user;
+        $user->assignRole(3);
         $shop->delete();
 
 

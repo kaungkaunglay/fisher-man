@@ -43,8 +43,8 @@
                     <div class="w-100 h-100 d-md-flex gap-3">
                         <!-- profile img -->
                         <div class="w-100 profile-form d-flex flex-column avatar-input">
-                            <label for="avatar-input" class="w-100 d-block position-relative">
-                                <img src="{{ $user->avatar ? asset('assets/avatars/'.$user->avatar) : asset('assets/images/account1.svg') }}" id="form-img"
+                            <label for="avatar-input" class="w-100 d-block position-relative gallery">
+                                <img src="{{ $user->avatar ? asset('assets/avatars/'.$user->avatar) : asset('assets/images/account1.svg') }}" class="default-preview" id="form-img"
                                     alt="{{ $user->username ?? 'Account.png'}}">
                                     <div class="avatar-upload position-absolute d-none">
                                         <div class="m-auto">
@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                             </label>
-                            <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input">
+                            <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input" accept="image/*">
                         </div>
 
                         <!-- Profile Info -->
@@ -700,7 +700,9 @@
                         console.error(xhr);
                     }
                 });
-            })
+            });
+
+
 
         });
     </script>

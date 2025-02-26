@@ -14,7 +14,7 @@ class ProfileController extends Controller
     public function seller_profile()
     {
         $user = AuthHelper::auth();
-        $products = Product::where('user_id', $user->id)->paginate(12);
+        $products = $user->products()->paginate(12);
 
         return view('profile_seller', compact('user', 'products'));
     }
@@ -41,56 +41,43 @@ class ProfileController extends Controller
         $validator = Validator::make($request->all(), [
             'username' => 'sometimes|min:4|max:20|unique:users,username,' . AuthHelper::id(),
             'email' => 'sometimes|email|unique:users,email,' . AuthHelper::id(),
+            'avatar' => 'sometimes|image|mimes:jpeg,jpg,png|max:2048',
         ], $messages);
 
         if ($validator->fails()) {
-            return response()->json([
-                'status' => false,
-                'errors' => $validator->errors(),
-            ]);
+            return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }
 
         $user = AuthHelper::user();
 
         if ($request->hasFile('avatar')) {
-
-            $existing_avatar = 'assets/avatars/'.$user->avatar;
-
-            if ($user->avatar && file_exists(public_path($existing_avatar))) {
-                unlink(public_path($existing_avatar));
-            }
             $avatar = $request->file('avatar');
-
-            $destinationPath = public_path('assets/avatars');
-
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0755, true);
-            }
-
             $avatarName = time() . '_' . $avatar->getClientOriginalName();
 
-            $avatar->move($destinationPath, $avatarName);
+
+            \Storage::disk('public')->putFile('avatars', $avatar, $avatarName);
+
+
+            if ($user->avatar) {
+                \Storage::disk('public')->delete('avatars/' . $user->avatar);
+            }
 
             $user->avatar = $avatarName;
             $user->save();
         }
 
-
         $user->update([
             'username' => $request->username ?? $user->username,
             'email' => $request->email ?? $user->email,
-
             'first_org_name' => $request->first_org_name ?? $user->first_org_name,
         ]);
 
         session()->flash('status', 'success');
         session()->flash('message', 'Profile updated successfully.');
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Profile updated successfully.',
-        ]);
+        return response()->json(['status' => true, 'message' => 'Profile updated successfully.']);
     }
+
 
     public function update_contact_details(Request $request)
     {
@@ -108,10 +95,7 @@ class ProfileController extends Controller
         ], $messages);
 
         if ($validator->fails()) {
-            return response()->json([
-                'status' => false,
-                'errors' => $validator->errors(),
-            ]);
+            return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }
 
         $user = AuthHelper::user();
@@ -123,11 +107,8 @@ class ProfileController extends Controller
         ]);
 
         session()->flash('status', 'success');
-        session()->flash('message', 'Address, phone numbers, and avatar updated successfully.');
+        session()->flash('message', 'Contact details updated successfully.'); // More specific message
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Address, phone numbers, and avatar updated successfully.'
-        ]);
+        return response()->json(['status' => true, 'message' => 'Contact details updated successfully.']);
     }
 }

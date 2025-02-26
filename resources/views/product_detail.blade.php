@@ -57,7 +57,7 @@
                                     <input type="number" class="quantity-value" value="{{ $product->getCart()->quantity ?? 1 }}">
                                     <button class="btn increment" @if($product->inCart()) disabled @endif>+</button>
                                 </div>
-                                <button class="common-btn ms-5 add-to-cart-btn" data-id="{{$product->id}}"> @if($product->inCart()) {{trans_lang('added_cart')}} @else {{trans_lang('add_cart')}} @endif</button>
+                                <button class="common-btn ms-5 add-to-cart-btn" data-id="{{$product->id}}" @if($product->inCart()) disabled @endif> @if($product->inCart()) {{trans_lang('added_cart')}} @else {{trans_lang('add_cart')}} @endif</button>
                             </div>
                         </div>
                         <div class="detail">
@@ -221,7 +221,7 @@
 
                 console.log(selected_products);
 
-
+                cur = $(this);
 
                 $.ajax({
                     url: "{{ route('cart.add') }}",
@@ -231,37 +231,17 @@
                     },
                     success: function(response) {
                         if (response.status) {
-                            location.href="{{ route('cart')}}";
-                            console.log(response.message);
-                        }
+                            // location.href="{{ route('cart')}}";
+                            cur.prop('disabled', true); // Disable the button
 
-                        if (!response.status) {
+                            cur.siblings('.quantity').find('.decrement, .increment').prop('disabled', true);
+
+                            cur.html("{{ trans_lang('added_cart') }}");
                             console.log(response.message);
                         }
                     }
                 });
-                $.ajax({
-                    url: "{{ route('cart-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        // Assuming response contains the new count
-                        $('#cart_count').text(response.cart_count);
-                    },
-                    error: function(xhr) {
-                        // Handle error here
-                        console.error(xhr);
-                    }
-                });
-                $.ajax({
-                    url: "{{ route('whitelist-count') }}",
-                    method: 'GET',
-                    success: function(response) {
-                        $('#white_list_count').text(response.white_lists_count);
-                    },
-                    error: function(xhr) {
-                        console.error(xhr);
-                    }
-                });
+                updateCartCount();
             });
 
         });

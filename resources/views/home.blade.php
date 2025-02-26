@@ -326,7 +326,7 @@
     <!-- All Scripts -->
     <script src="{{ asset('assets/js/loadmore.js') }}"></script>
     <script src="{{ asset('assets/js/view-list.js') }}"></script>
-    <script src="{{ asset('assets/js/words-limit.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/words-limit.js') }}"></script> --}}
     <!-- /All Scripts -->
 
     <!-- Testing Scripts -->

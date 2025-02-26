@@ -492,7 +492,7 @@
                         updateCartCount();
                     }
 
-                    btn.closest('#btn-message').find('span').html(response.message);
+                    // btn.closest('#btn-message').find('span').html(response.message);
                     console.log(response.message);
                 }
             });
