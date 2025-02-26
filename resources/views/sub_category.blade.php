@@ -75,6 +75,7 @@
 
         <div class="sub-category-item">
             <div class="card-list" id="view-list">
+                @if($products && $products->isNotEmpty())
                 @foreach ($products as $product)
                 <div class="item-card">
                     <a href="{{ route('product.show', $product->id) }}" class="right">
@@ -102,11 +103,16 @@
                     </div>
                 </div>
                 @endforeach
+                @else
+                <h3 class="title">{{ trans_lang('no_products') }}</h3>
+                @endif
             </div>
         </div>
 
         <!-- Pagination -->
-        <div class="pagination mt-2" id="pagination"></div>
+        <div class="pagination mt-2">
+            {{ $products->links('vendor.pagination.bootstrap-4') }}
+        </div>
     </div>
 </div>
 

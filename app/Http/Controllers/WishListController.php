@@ -20,7 +20,6 @@ class WishListController extends Controller
     }
 
     public function wishList(Request $request){
-        logger($request);
         $messages = [
             'wish_name.required' => 'The name field is required.',
             'wish_phone.required' => 'The phone field is required.',

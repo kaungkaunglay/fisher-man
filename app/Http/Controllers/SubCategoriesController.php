@@ -41,7 +41,7 @@ class SubCategoriesController extends Controller
             $query->latest(); 
         }
 
-        $products = $query->get();
+        $products = $query->paginate(10);
 
         $subCategory = Sub_category::findOrFail($id);
 

@@ -14,6 +14,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Drivers\Gd\Driver; 
+use Intervention\Image\ImageManager; 
+
 
 class AdminController extends Controller
 {
@@ -41,6 +44,23 @@ class AdminController extends Controller
     {
         return view('admin.orders');
     }
+    public function ImageProcess($image){
+        if(!$image){
+            return 'default_profile.jpg';
+        }
+        $ext  = $image->getClientOriginalExtension();
+        $imageName = time().'.'.$ext; 
+        $image->move(public_path('/employee_image/'), $imageName); 
+        $sourcePath = public_path('/employee_image/'.$imageName); 
+       
+        $manager = new ImageManager(Driver::class);
+        $image = $manager->read($sourcePath);
+
+        $image->cover(150, 150);
+        $image->toPng()->save(public_path('/employee_image/thumb/' . $imageName));
+        return $imageName;
+    }
+    public function order(){
     public function order()
     {
         return view('admin.order');

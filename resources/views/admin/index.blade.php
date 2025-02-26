@@ -20,7 +20,7 @@
             <div class="tf-section-4 mb-30">
                 <!-- chart-default -->
                 <div class="wg-chart-default">
-                    <div class="flex items-center justify-between">
+                    <d5iv class="flex items-center justify-between">
                         <div class="flex items-center gap14">
                             <div class="image type-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="52" viewBox="0 0 48 52" fill="none">
@@ -37,7 +37,7 @@
                             <i class="icon-trending-up"></i>
                             <div class="body-title number">1.56%</div>
                         </div> --}}
-                    </div>
+                    </d5iv>
                     <div class="wrap-chart">
                         <div id="line-chart-1"></div>
                     </div>

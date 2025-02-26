@@ -63,7 +63,7 @@ Route::middleware(['guest_custom'])->group(function(){
 });
 
 
-
+Route::get('/verified', [AuthController::class, 'verified'])->name('verified');
 // Logout
 // Logout
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -97,6 +97,7 @@ Route::middleware(['is_seller'])->group(function () {
 
      // Product Routes
      Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products');
+     Route::get('/admin/products/detail/{product}', [ProductController::class, 'adminshow'])->name('admin.product.show');
      Route::get('/admin/products/create', [ProductController::class, 'create'])->name('create_product');
      Route::post('/admin/products', [ProductController::class, 'store'])->name('add_product');
      Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
