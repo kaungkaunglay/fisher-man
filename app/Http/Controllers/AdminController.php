@@ -60,7 +60,7 @@ class AdminController extends Controller
         $image->toPng()->save(public_path('/employee_image/thumb/' . $imageName));
         return $imageName;
     }
-    public function order(){
+
     public function order()
     {
         return view('admin.order');
