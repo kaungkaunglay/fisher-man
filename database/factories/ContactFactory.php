@@ -18,7 +18,6 @@ class ContactFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'line_id' => $this->faker->unique()->userName(),
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
             'description' => $this->faker->sentence()

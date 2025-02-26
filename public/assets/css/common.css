@@ -232,7 +232,8 @@ main {
   color: #fff;
 }
 
-.common-btn2:active {
+.common-btn2:active,
+.-solid:active {
   background-color: color-mix(in srgb, #005B96 50%, #000 50%);
 }
 
@@ -598,10 +599,15 @@ li {
   color: white;
 }
 
+.main-search-bar{
+  width: 600px;
+}
+
 @media screen and (max-width: 1350px) {
   #view-list {
     grid-template-columns: 1fr 1fr 1fr;
   }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -683,6 +689,8 @@ li {
   height: 100%;
   background: #005B96;
 }
+
+
 
 @media screen and (max-width: 1150px) {
   .range-slider {
@@ -933,6 +941,7 @@ li {
     padding: 5px 25px;
   }
 
+
 }
 
 /* Card Design */
@@ -959,6 +968,7 @@ li {
     justify-content: center;
   }
 
+
 }
 
 @media screen and (max-width: 768px) {
@@ -983,6 +993,10 @@ li {
     padding: 7px 20px;
   }
 
+  .main-search-bar{
+    width: 430px !important;
+  }
+
 }
 @media screen and (max-width: 490px) {
 
@@ -990,4 +1004,7 @@ li {
   .card-list {
     grid-template-columns: 1fr !important;
   }
+
+
+
 }

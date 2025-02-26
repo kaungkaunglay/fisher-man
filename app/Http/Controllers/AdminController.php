@@ -9,10 +9,11 @@ use App\Models\Contact;
 use App\Models\Product;
 use App\Models\Setting;
 use App\Models\wishList;
+use App\Helpers\AuthHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\Facades\Image as ImageIntervention;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -89,8 +90,7 @@ class AdminController extends Controller
             'contact_address' => request('contact_address'),
             'slogan' => request('slogan'),
             'policy' => request('policy'),
-        ];
-        // dd("here");
+    ];
 
         foreach ($settings as $key => $value) {
             Setting::updateOrCreate(['key' => $key], ['value' => $value]);
@@ -102,6 +102,7 @@ class AdminController extends Controller
             $imageName = time() . '.' . $file->getClientOriginalExtension(); // Generate unique name
 
             // $resizedImage = Image::make($file)->resize(300, 300)->encode();
+            $resizedImage = ImageIntervention::make($image)->resize(300, 300);
             $file->move(public_path('assets/logos'),$imageName);
 
             Setting::updateOrCreate(['key' => 'logo'], ['value' => $imageName]);
@@ -121,7 +122,7 @@ class AdminController extends Controller
         }else{
             $user = Users::where('email', $request->email)->first();
 
-            if($user && Hash::check($request->password, $user->password)){
+            if($user && Hash::check($request->password, $user->password) && $user->roles()->first()->id == 1){
                 Auth::login($user);
                 return response()->json(['status' => true, 'message' => 'Login success', 'errors'=> '']);
             }
@@ -263,11 +264,11 @@ class AdminController extends Controller
         return response()->json(['success' => true, 'message' => 'Shop deleted successfully.']);
     }
 
+    public function logout()
+    {
+        AuthHelper::logout();
 
-    public function logout(){
-        Auth::logout();
-        return redirect()->route('admin.login');
+        return to_route('admin.login');
     }
-
 
 }

@@ -21,12 +21,12 @@ class ProductFactory extends Factory
         $user = Users::inRandomOrder()->first();
 
         $images = [
-            "assets/products/product1.png",
-            "assets/products/product2.png"
+            "product1.png",
+            "product2.png"
         ];
         return [
             'name' => $this->faker->name,
-            'product_price' => $this->faker->randomNumber(3),
+            'product_price' => $this->faker->randomNumber(4),
             'product_image' => $this->faker->randomElement($images),
             'stock' => $this->faker->randomNumber(2),
             'weight' => $this->faker->randomFloat(2, 1, 10),
