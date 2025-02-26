@@ -43,7 +43,7 @@
                 @foreach ($random_products  as $product)
                     <div class="item-card mb-5">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
-                            <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
+                            <img loading="lazy" src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
                         </a>
                         <div class="left">
                             <p class="price m-t-b-10">
@@ -174,7 +174,7 @@
                 @foreach ($products->filter(fn($product) => $product->discount > 0.0)->take(6) as $product)
                     <div class="item-card mb-5">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
-                            <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
+                            <img loading="lazy" src="{{ asset($product->product_image) }}" class="card-img-top"
                                 alt="{{ $product->name }}">
                         </a>
                         <div class="left">
@@ -269,7 +269,7 @@
                 @foreach ($products as $product)
                     <div class="item-card mb-5">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
-                            <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
+                            <img loading="lazy" src="{{ asset($product->product_image) }}" class="card-img-top"
                                 alt="{{ $product->name }}">
                         </a>
                         <div class="left">

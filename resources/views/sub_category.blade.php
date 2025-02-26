@@ -78,7 +78,7 @@
                 @foreach ($products as $product)
                 <div class="item-card">
                     <a href="{{ route('product.show', $product->id) }}" class="right">
-                        <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
+                        <img loading="lazy" src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
                     </a>
                     <div class="left">
                         <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
