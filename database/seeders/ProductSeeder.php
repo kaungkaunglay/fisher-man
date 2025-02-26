@@ -27,28 +27,9 @@ class ProductSeeder extends Seeder
         }
 
         // Create 50 products with a random user_id
-        $products = [
-            [
-                'name' => 'Product 1',
-                'description' => 'Description for product 1',
-                'price' => 100,
-            ],
-            [
-                'name' => 'Product 2',
-                'description' => 'Description for product 2',
-                'price' => 200,
-            ],
-            [
-                'name' => 'Product 3',
-                'description' => 'Description for product 3',
-                'price' => 300,
-            ],
-            // Add more products as needed...
-        ];
-
-        foreach ($products as $product) {
-            $product['user_id'] = $users->random()->id; // Assign a random user
-            Product::create($product);
-        }
+        Product::factory()->count(50)->make()->each(function ($product) use ($users) {
+            $product->user_id = $users->random()->id; // Assign a random user to each product
+            $product->save(); // Save the product with the assigned user_id
+        });
     }
 }
