@@ -19,6 +19,9 @@ class AuthController extends Controller
     public function register() {
         return view('register');
     }
+    public function verified(){
+        return view('messages/verified');
+    }
     // public function register_seller(){
     //     return view('sellers.register');
     // }

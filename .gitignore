@@ -17,5 +17,5 @@ yarn-error.log
 /.idea
 /.vscode
 
-/app/Http/Middleware/LanguageMiddleware.php
+app/Http/Middleware/LanguageMiddleware.php
 
