@@ -76,7 +76,7 @@
                                 <li class="menu-item">
                                     <a href="{{route('admin.index')}}" class="{{ request()->is('admin') ? 'active' : '' }}">
                                         <div class="icon"><i class="icon-grid"></i></div>
-                                        <div class="text">Dashboard</div>
+                                        <div class="text">{{trans_lang('dashboard')}}</div>
                                     </a>
                                     <a href="{{ route('home')}}" >
                                         <div class="icon"><i class="icon-grid"></i></div>
@@ -573,7 +573,7 @@
                                                     <div class="icon">
                                                         <i class="icon-user"></i>
                                                     </div>
-                                                    <div class="body-title-2">Account</div>
+                                                    <div class="body-title-2">{{auth_helper()->user()->username}}</div>
                                                 </a>
                                             </li>
 

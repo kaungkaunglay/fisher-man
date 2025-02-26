@@ -48,20 +48,20 @@
                     </a>
                     <div class="login-box">
                         <div>
-                            <h3>Login to account</h3>
-                            <div class="body-text">Enter your email & password to login</div>
+                            <h3>{{trans_lang('dashboard')}}{{trans_lang('login')}}</h3>
+                            <!-- <div class="body-text">Enter your email & password to login</div> -->
                         </div>
                         <form id="login_form" class="form-login flex flex-column gap24">
                             @csrf
                             <fieldset class="email">
-                                <div class="body-title mb-10">Email address <span class="tf-color-1">*</span></div>
-                                <input class="flex-grow" id="email" type="email" placeholder="Enter your email address" name="email" tabindex="0" value="" aria-required="true" required="">
+                                <div class="body-title mb-10">{{trans_lang('email')}} <span class="tf-color-1">*</span></div>
+                                <input class="flex-grow" id="email" type="email" placeholder="{{trans_lang('email')}}" name="email" tabindex="0" value="" aria-required="true" required="">
                                 <span class="invalid-feedback"></span>
 
                             </fieldset>
                             <fieldset class="password">
-                                <div class="body-title mb-10">Password <span class="tf-color-1">*</span></div>
-                                <input class="password-input" id="password" type="password" placeholder="Enter your password" name="password" tabindex="0" value="" aria-required="true" required="">
+                                <div class="body-title mb-10">{{trans_lang('password')}} <span class="tf-color-1">*</span></div>
+                                <input class="password-input" id="password" type="password" placeholder="{{trans_lang('password')}}" name="password" tabindex="0" value="" aria-required="true" required="">
                                 <span class="invalid-feedback"></span>
                                 <span class="show-pass">
                                     <i class="icon-eye view"></i>
@@ -73,7 +73,7 @@
                                 <p class="mb-3 text-danger" id="message"></p>
                             </div>
 
-                            <button type="submit" class="tf-button w-full">Login</button>
+                            <button type="submit" class="tf-button w-full">{{trans_lang('login')}}</button>
                         </form>
                     </div>
                 </div>
