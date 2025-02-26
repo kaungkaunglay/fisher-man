@@ -19,6 +19,9 @@ class AuthController extends Controller
     public function register() {
         return view('register');
     }
+    public function verified(){
+        return view('messages/verified');
+    }
     // public function register_seller(){
     //     return view('sellers.register');
     // }
@@ -45,7 +48,7 @@ class AuthController extends Controller
             'first_phone.required' => 'The first phone field is required.',
             'first_phone.regex' => 'The first phone format is invalid.',
             'second_phone.regex' => 'The second phone format is invalid.',
-
+            'second_phone.different' => 'The second phone and first phone must be different.',      
             // 'line_id.min' => 'The line ID must be at least 4 characters.',
             // 'line_id.max' => 'The line ID may not be greater than 20 characters.',
             // 'ship_name.required' => 'The ship name field is required.',
@@ -70,8 +73,9 @@ class AuthController extends Controller
             'confirm_password' => 'required|same:password',
             'g-recaptcha-response' => 'required',
             'first_phone' => 'required',
-            'second_phone' => 'nullable'
+            'second_phone' => 'nullable|different:first_phone',
         ], $messages);
+        logger($request->all());
         if($this->is_seller($request))
         {
             $validator->addRules([
@@ -86,9 +90,7 @@ class AuthController extends Controller
         if($request->input('first_phone') != null ){
             $request->merge([
                 'first_phone' => $request->input('first_phone_extension') . $request->input('first_phone'),
-                'second_phone' => $request->input('second_phone_extension') . $request->input('second_phone')
             ]);
-
             $phoneRegexJapan = '/^\+81[789]0\d{4}\d{4}$/';
             $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
                 // Validate first phone number

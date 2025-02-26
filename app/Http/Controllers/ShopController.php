@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Shop;
+use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -11,6 +12,75 @@ use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
 {
+
+     //Manage Shop
+     public function approvedShopList()
+     {
+         $approvedShops = Shop::select('shops.*', 'users.username')
+             ->join('users', 'shops.user_id', '=', 'users.id')
+             ->where('status', 'approved')
+             ->paginate(10);
+         return view('admin.approved-shops', compact('approvedShops'));
+     }
+     public function pendingShopList()
+     {
+         $pendingShops = Shop::select('shops.*', 'users.username')
+             ->join('users', 'shops.user_id', '=', 'users.id')
+             ->where('status', 'pending')
+             ->paginate(10);
+         return view('admin.pending-shops', compact('pendingShops'));
+     }
+     public function rejectedShopList()
+     {
+         $rejectedShops = Shop::select('shops.*', 'users.username')
+             ->join('users', 'shops.user_id', '=', 'users.id')
+             ->where('status', 'rejected')
+             ->paginate(10);
+         return view('admin.rejected-shops', compact('rejectedShops'));
+     }
+ 
+     public function updateStatus(Request $request)
+     {
+         $shop = Shop::findOrFail($request->shop_id);
+         $shop->status = $request->status;
+         $shop->save();
+         $user = Users::select('users.*')
+             ->join('shops', 'users.id', '=', 'shops.user_id')
+             ->where('shops.id', $request->shop_id)
+             ->first();
+ 
+         $user->assignRole(2);
+ 
+         return response()->json(['status' => true, 'message' => 'Shop status updated successfully']);
+     }
+ 
+     public function shopDetail($shopID)
+     {
+         $shop = Shop::select('shops.*', 'users.username', 'users.email')
+             ->join('users', 'shops.user_id', '=', 'users.id')
+             ->where('shops.id', $shopID)
+             ->firstOrFail();
+ 
+         return view('admin.seller-shop-detail', compact('shop'));
+     }
+ 
+     public function deleteShop(Request $request)
+     {
+ 
+         $user = Users::select('users.*')
+             ->join('shops', 'users.id', '=', 'shops.user_id')
+             ->where('shops.id', $request->shop_id)
+             ->first();
+ 
+         $user->assignRole(3);
+         $shop = Shop::find($request->shop_id);
+         $shop->delete();
+ 
+ 
+         return response()->json(['success' => true, 'message' => 'Shop deleted successfully.']);
+     }
+
+
     public function shop_detials($id){
         $shop = Shop::select('shops.*', 'users.username', 'users.address')
         ->join('users', 'shops.user_id',  'users.id')
@@ -23,6 +93,8 @@ class ShopController extends Controller
                     ->join('sub_categories','sub_categories.id','products.sub_category_id')
                     ->where('shops.id','=',$id)
                     ->get();
+
+        // dd($products);
 
 
         return view('shop_detail',compact('shop','products'));

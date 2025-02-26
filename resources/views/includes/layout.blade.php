@@ -84,7 +84,7 @@
 
 
                     <!-- Search Bar -->
-                    <div class="ms-2 position-relative mt-3 mt-md-0 main-search-bar">
+                    <div class="ms-2 position-relative mt-3 mt-md-0 main-search-bar w-100">
                         <form action="{{ route('products.search') }}" method="get">
                             <div class="input-group w-100">
                                 <input type="text" class="form-control bg-second search-bar" id="search"
@@ -109,15 +109,17 @@
 
                     <!-- Main Nav -->
                     <div class="d-none d-md-flex gap-5 ms-3">
-                        <a href="{{ route('cart') }}" class="position-relative ">
+                        <a href="{{ route('cart') }}" class="position-relative cart-fx">
                             <i class="fa-solid fa-cart-shopping icon"></i>
-                            <span id="cart_count"
-                                class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
+                            <span class="noti-animation nth-1 position-absolute rounded-circle"></span>
+                            <span class="noti-animation nth-2 position-absolute rounded-circle cart-item-btn"></span>
+                            <span id="cart_count" class="cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
                         </a>
-                        <a href="{{ route('white_list.index') }}" class="position-relative">
+                        <a href="{{ route('white_list.index') }}" class="position-relative bookmark-btn white-list-fx">
                             <i class="fa-solid fa-bookmark icon" id="bookmark_btn"></i>
-                            <span
-                                class="cart-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span>
+                            <span class="noti-animation nth-1 position-absolute rounded-circle"></span>
+                            <span class="noti-animation nth-2 position-absolute rounded-circle"></span>
+                            <span class="cart-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span>
                         </a>
 
                         @if (auth_helper()->check())
@@ -315,29 +317,30 @@
 
     <!-- Mobile Bottom Nav -->
     <div class="bottom-nav d-flex d-md-none">
-        <a href="{{ route('home') }}" class="bottom-menu"><i class="fa-solid fa-home"></i><br>
+        <a href="{{ route('home') }}" class="bottom-menu hv-icon"><i class="fa-solid fa-home"></i><br>
             <p>{{ trans_lang('home') }}</p>
         </a>
-        <a href="" class="bottom-menu" id="category-link"><i class="fa-solid fa-tags"></i><br>
+        <a href="" class="bottom-menu hv-icon" id="category-link"><i class="fa-solid fa-tags"></i><br>
             <p>{{ trans_lang('category') }}</p>
         </a>
         <div class="">
-            <a href="{{ route('cart') }}" class="bottom-menu mobile-shopping-card"><i
-                    class="fa-solid fa-cart-shopping shopping"></i><br>
+            <a href="{{ route('cart') }}" class="bottom-menu mobile-shopping-card hv-icon cart-fx"><i class="fa-solid fa-cart-shopping shopping"></i><br>
                 <p class="cart-txt">{{ trans_lang('cart') }}
-                    <span id="cart_count_bottom"
-                        class="mobile-cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
+                    <span class="noti-animation nth-1 position-absolute rounded-circle"></span>
+                    <span class="noti-animation nth-2 position-absolute rounded-circle cart-item-btn"></span>
+                    <span id="cart_count_bottom" class="mobile-cart-noti position-absolute bg-danger text-white rounded-circle">0</span>
                 </p>
                 {{-- <span class="text-danger" id="cart_count_bottom">0</span> --}}
             </a>
         </div>
-        <a href="{{ route('white_list.index') }}" class="bottom-menu"><i class="fa-solid fa-bookmark"></i><br>
+        <a href="{{ route('white_list.index') }}" class="bottom-menu position-relative hv-icon white-list-fx"><i class="fa-solid fa-bookmark"></i><br>
             <p>{{ trans_lang('whitelist') }}
-                <span
-                    class="mobile-white-list-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span>
+                <span class="noti-animation nth-1 position-absolute rounded-circle"></span>
+                <span class="noti-animation nth-2 position-absolute rounded-circle cart-item-btn"></span>
+                <span class="mobile-white-list-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span>
             </p>
         </a>
-        <a href="{{ route('profile') }}" class="bottom-menu"><i class="fa-solid fa-user"></i><br>
+        <a href="{{ route('profile') }}" class="bottom-menu hv-icon"><i class="fa-solid fa-user"></i><br>
             <p>{{ trans_lang('profile') }}</p>
         </a>
     </div>
@@ -346,9 +349,7 @@
     <!-- All Scripts -->
     <!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
     {{-- <!-- <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script> --> --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{ asset('assets/js/popup.js') }}"></script>
     {{--
   <script src="{{asset('assets/js/preloader.js')}}"></script> --}}

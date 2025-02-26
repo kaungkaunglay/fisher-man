@@ -118,7 +118,8 @@ main {
   width: 80px;
 }
 
-.mobile-cart-noti{
+.mobile-cart-noti,
+.bottom-nav .cart-fx .noti-animation {
     width: 20px;
     font-size: 10px;
     aspect-ratio: 1 / 1;
@@ -130,7 +131,8 @@ main {
     right: 10px;
 }
 
-.mobile-white-list-noti{
+.mobile-white-list-noti,
+.bottom-nav .white-list-fx .noti-animation {
   width: 20px;
   font-size: 10px;
   aspect-ratio: 1 / 1;
@@ -138,8 +140,8 @@ main {
   vertical-align: middle;
   display: inline-block;
   padding: 2px;
-  top: 3px;
-  right: 122px;
+  top: -18%;
+  right: 24%;
 }
 
 .bottom-nav .bottom-menu>p{
@@ -992,19 +994,5 @@ li {
   .common-btn{
     padding: 7px 20px;
   }
-
-  .main-search-bar{
-    width: 430px !important;
-  }
-
-}
-@media screen and (max-width: 490px) {
-
-
-  .card-list {
-    grid-template-columns: 1fr !important;
-  }
-
-
 
 }

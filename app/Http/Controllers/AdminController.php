@@ -13,7 +13,6 @@ use App\Helpers\AuthHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Intervention\Image\Facades\Image as ImageIntervention;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -30,28 +29,35 @@ class AdminController extends Controller
         $total_product_count = Product::count();
         return view('admin.index',compact('top_products','all_products','total_product_count'));
     }
-    public function categoreis(){
+    public function categoreis()
+    {
         return view('admin.categories');
     }
-    public function category() {
+    public function category()
+    {
         return view('admin.category');
     }
-    public function orders(){
+    public function orders()
+    {
         return view('admin.orders');
     }
     public function order(){
         return view('admin.order');
     }
-    public function products(){
+    public function products()
+    {
         return view('admin.products');
     }
-    public function product(){
+    public function product()
+    {
         return view('admin.product');
     }
-    public function users(){
+    public function users()
+    {
         return view('admin.users');
     }
-    public function user(){
+    public function user()
+    {
         return view('admin.user');
     }
 
@@ -122,14 +128,14 @@ class AdminController extends Controller
             'password' => 'required',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
-        }else{
+        } else {
             $user = Users::where('email', $request->email)->first();
 
-            if($user && Hash::check($request->password, $user->password) && $user->roles()->first()->id == 1){
+            if ($user && Hash::check($request->password, $user->password) && $user->roles()->first()->id == 1) {
                 Auth::login($user);
-                return response()->json(['status' => true, 'message' => 'Login success', 'errors'=> '']);
+                return response()->json(['status' => true, 'message' => 'Login success', 'errors' => '']);
             }
 
             return response()->json(['status' => false, 'message' => 'email or Password is Incorrect']);
@@ -137,31 +143,16 @@ class AdminController extends Controller
     }
 
     //user request
-    public function contact(){
+    public function contact()
+    {
         $contacts = Contact::paginate(10);
-        return view('admin.contact-request',compact('contacts'));
-    }
-    public function contactDetail($contactID){
-        $contact = Contact::findOrFail($contactID);
-        // dd($contact);
-        return view('admin.contact-detail',compact('contact'));
+        return view('admin.contact-request', compact('contacts'));
     }
 
-    public function wishList(){
+    public function wishList()
+    {
         $wishLists = wishList::paginate(10);
-        return view('admin.wishList-request',compact('wishLists'));
-    }
-
-    public function wishListDetail($wishListID){
-        $wishList = wishList::findOrFail($wishListID);
-        // dd($contact);
-        return view('admin.wishList-detail',compact('wishList'));
-    }
-
-    //faq
-    public function all_faqs(){
-        $faqs = FAQs::all();
-        return view('admin.faqs', compact('faqs'));
+        return view('admin.wishList-request', compact('wishLists'));
     }
     public function faq(){
         return view('admin.faq');
@@ -265,5 +256,4 @@ class AdminController extends Controller
 
         return to_route('admin.login');
     }
-
 }

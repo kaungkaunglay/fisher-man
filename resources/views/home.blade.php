@@ -297,7 +297,7 @@
                                 </a>
                                 {{-- <small class="py-1 common-btn2 -solid cart-btn "><i class="fa-solid fa-cart-plus"></i></small> --}}
                                 <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 white-list-btn position-relative"
+                                    class="py-1 common-btn2 white-list-btn"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-bookmark"></i>
                                     {{-- <i class="fa-solid fa-check position-absolute top-50 start-50 translate-middle fa-2xs text-white" ></i> --}}
@@ -326,7 +326,7 @@
     <!-- All Scripts -->
     <script src="{{ asset('assets/js/loadmore.js') }}"></script>
     <script src="{{ asset('assets/js/view-list.js') }}"></script>
-    {{-- <script src="{{ asset('assets/js/words-limit.js') }}"></script> --}}
+    <script src="{{ asset('assets/js/notify.js')}}"></script>
     <!-- /All Scripts -->
 
     <!-- Testing Scripts -->
