@@ -292,6 +292,11 @@ class TranslationSeeder extends Seeder
                 'jp' => '商品が選択されていません',
             ],
             [
+                'key' => 'no_products',
+                'en' => 'There is no product.',
+                'jp' => '商品はありません。',
+            ],
+            [
                 'key' => 'product',
                 'en' => 'Product',
                 'jp' => '製品',
