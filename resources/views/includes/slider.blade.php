@@ -2,13 +2,13 @@
     <!-- Carousel Items -->
     <div class="carousel-inner rounded">
         <div class="carousel-item active" data-bs-interval="2000">
-            <img src="{{ asset('assets/images/Rectangle_90.jpg') }}" class="d-block w-100" alt="Slide 1" />
+            <img loading="lazy" src="{{ asset('assets/images/Rectangle_90.jpg') }}" class="d-block w-100" alt="Slide 1" />
         </div>
         <div class="carousel-item" data-bs-interval="2000">
-            <img src="{{ asset('assets/images/Rectangle_90.jpg') }}" class="d-block w-100" alt="Slide 2" />
+            <img loading="lazy" src="{{ asset('assets/images/Rectangle_90.jpg') }}" class="d-block w-100" alt="Slide 2" />
         </div>
         <div class="carousel-item" data-bs-interval="2000">
-            <img src="{{ asset('assets/images/Rectangle_90.jpg') }}" class="d-block w-100" alt="Slide 3" />
+            <img loading="lazy" src="{{ asset('assets/images/Rectangle_90.jpg') }}" class="d-block w-100" alt="Slide 3" />
         </div>
     </div>
 
