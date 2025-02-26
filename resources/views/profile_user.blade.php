@@ -253,6 +253,16 @@
                                                 <span class="invalid-feedback"></span>
                                             </div>
                                         </div>
+                                        <div class="mb-2 row align-items-center">
+                                            <div class="col-lg-5 col-12">
+                                                <label for="exampleFormControlInput1"
+                                                    class="col-form-label">Shop Description</label>
+                                            </div>
+                                            <div class="col-lg-7 col-12 input-box">
+                                                <textarea name="shopDescription" class="form-control" id="shopDescription" cols="30" rows="10"></textarea>
+                                                <span class="invalid-feedback"></span>
+                                            </div>
+                                        </div>
 
                                         <div class="mb-2 row align-items-center">
                                             <div class="col-lg-5 col-12">
@@ -500,8 +510,6 @@
                         console.log(response.status);
                         if (response.status == true) {
                             window.location.href = "{{ route('profile_user') }}";
-                            // console.log('success');
-                            // window.location.reload();
                         } else {
                             var errors = response.errors ?? {};
 
@@ -512,6 +520,7 @@
                                 'transManagement',
                                 'transEmail',
                                 'phoneNumber',
+                                'shopDescription'
                                 'avatar'
                             ];
 

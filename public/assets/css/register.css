@@ -1,6 +1,10 @@
 input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance: none;margin: 0;}
 input[type=number] {-moz-appearance: textfield;}
 
+header,footer, .bottom-nav, .category-popup{
+    display: none !important;
+}
+
 main {
     color: #005B96;
     background: url(../images/bg/cristian-palmer-XexawgzYOBc-unsplash.jpg) no-repeat fixed center/cover;

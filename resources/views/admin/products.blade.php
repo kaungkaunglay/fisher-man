@@ -105,7 +105,7 @@
                 <ul class="flex flex-column">
                     <li class="product-item gap14">
                         <div class="image no-bg">
-                            <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
+                            <img src="{{ asset('assets/products/'.$product->product_image) }}" alt="{{ $product->name }}">
                         </div>
                         <div class="flex items-center justify-between gap20 flex-grow">
                             <div class="name">

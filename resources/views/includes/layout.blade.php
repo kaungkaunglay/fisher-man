@@ -53,7 +53,13 @@
     </div>
   </div> -->
     {{-- end preloader --}}
+    @if (Request::routeIs('login') || Request::routeIs('register'))
+    <header id="main-content">
+    </header>
 
+    <div class="category-popup" id="category-popup">
+    </div>
+    @else
     <!-- Header Section -->
     <header id="main-content">
         <div class="container-custom">
@@ -200,6 +206,7 @@
             @endforeach
         </ul>
     </div>
+    @endif
     <!-- /Search Menu -->
     <!-- /Header Section -->
 
@@ -214,6 +221,13 @@
         $socialLinks = \App\Models\Setting::getValue('social_links', []);
     @endphp
 
+    @if (Request::routeIs('login') || Request::routeIs('register'))
+    <footer class="">
+    </footer>
+
+    <div class="bottom-nav d-flex d-md-none">
+    </div>
+    @else
     <!-- Footer Section -->
     <!-- filepath: /C:/fisherman/laravel/fisherman/resources/views/includes/layout.blade.php -->
     <footer class="bg-main d-flex flex-column justify-content-between">
@@ -232,7 +246,7 @@
 
                     {{-- <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo"
               alt=""></a> --}}
-                    <p class="text-center txt-18">{{ config('settings.slogan') }}</p>
+                    <p class="text-center txt-18">{{ json_decode(config('settings.slogan'))  }}</p>
                     <div class="social-icons d-flex justify-content-between gap-1">
                         <a href="https://www.line.me/en/">
                             <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}"
@@ -328,7 +342,7 @@
         </a>
     </div>
     <!-- /Mobile Bottom Nav -->
-
+    @endif
     <!-- All Scripts -->
     <!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
     {{-- <!-- <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script> --> --}}
