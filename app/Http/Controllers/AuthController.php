@@ -89,9 +89,7 @@ class AuthController extends Controller
         if($request->input('first_phone') != null ){
             $request->merge([
                 'first_phone' => $request->input('first_phone_extension') . $request->input('first_phone'),
-                'second_phone' => $request->input('second_phone_extension') . $request->input('second_phone')
             ]);
-
             $phoneRegexJapan = '/^\+81[789]0\d{4}\d{4}$/';
             $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
                 // Validate first phone number

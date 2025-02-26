@@ -58,7 +58,6 @@ class AdminController extends Controller
 
         $image->cover(150, 150);
         $image->toPng()->save(public_path('/employee_image/thumb/' . $imageName));
-        return $imageName;
     }
 
     public function order()
