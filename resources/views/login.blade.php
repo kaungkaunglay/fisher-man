@@ -44,24 +44,9 @@
                 </div>
             </div>
 
-            <div class="pw-setting d-flex flex-column gap-3 align-items-center">
-                <div class="remember">
-                    <input type="checkbox" name="remember" id="remember" value="1">
-                    <label for="remember">{{trans_lang('remember')}}</label>
-                </div>
-
-                <div class="forgot-pw">
-                    <a href="{{ route('forgotpassword') }}">{{trans_lang('forget_password')}}</a>
-                </div>
-            </div>
+            
 
             <button name="submit" id="submit" type="submit" class="input-submit">{{trans_lang('login')}}</button>
-
-            <div class="register">
-                <span>{{trans_lang('no_have_account_msg')}}
-                    <a href="{{ route('register') }}" class="ms-1">{{trans_lang('register')}}</a>
-                </span>
-            </div>
             <div class="line-wpr green-bg">
                 <a href="{{route('line.login')}}">
                     <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}" alt="Line">
@@ -72,6 +57,23 @@
                 <a href="{{route('google.login')}}"><img class="icon_social" src="{{ asset('assets/icons/custom/google.png') }}" alt="Google"></a>
                 <a href="{{route('facebook.login')}}"><img class="icon_social" src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Facebook"></a>
             </div>
+            <div class="register">
+                <span>{{trans_lang('no_have_account_msg')}}
+                    <a href="{{ route('register') }}" class="ms-1">{{trans_lang('register')}}</a>
+                </span>
+            </div>
+            <div class="pw-setting d-flex flex-column gap-3 align-items-center">
+                <div class="remember">
+                    <input type="checkbox" name="remember" id="remember" value="1">
+                    <label for="remember">{{trans_lang('remember')}}</label>
+                </div>
+
+                <div class="forgot-pw">
+                    <a href="{{ route('forgotpassword') }}">{{trans_lang('forget_password')}}</a>
+                </div>
+            </div>
+            
+            
 
         </form>
         <!-- form end -->

@@ -53,7 +53,13 @@
     </div>
   </div> -->
     {{-- end preloader --}}
+    @if (Request::routeIs('login') || Request::routeIs('register'))
+    <header id="main-content">
+    </header>
 
+    <div class="category-popup" id="category-popup">
+    </div>
+    @else
     <!-- Header Section -->
     <header id="main-content">
         <div class="container-custom">
@@ -198,6 +204,7 @@
             @endforeach
         </ul>
     </div>
+    @endif
     <!-- /Search Menu -->
     <!-- /Header Section -->
 
@@ -212,6 +219,13 @@
         $socialLinks = \App\Models\Setting::getValue('social_links', []);
     @endphp
 
+    @if (Request::routeIs('login') || Request::routeIs('register'))
+    <footer class="">
+    </footer>
+
+    <div class="bottom-nav d-flex d-md-none">
+    </div>
+    @else
     <!-- Footer Section -->
     <!-- filepath: /C:/fisherman/laravel/fisherman/resources/views/includes/layout.blade.php -->
     <footer class="bg-main d-flex flex-column justify-content-between">
@@ -311,7 +325,7 @@
         <a href="{{ route('profile')}}" class="bottom-menu"><i class="fa-solid fa-user"></i><br><p>{{trans_lang('profile')}}</p></a>
     </div>
     <!-- /Mobile Bottom Nav -->
-
+    @endif
     <!-- All Scripts -->
     <!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
     {{-- <!-- <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script> --> --}}
