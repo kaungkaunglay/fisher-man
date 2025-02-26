@@ -23,16 +23,8 @@
             <h3>{{trans_lang('faqs')}}</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="#">
-                        <div class="text-tiny">{{trans_lang('home')}}</div>
-                    </a>
-                </li>
-                <li>
-                    <i class="icon-chevron-right"></i>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="text-tiny">{{trans_lang('ecommerce')}}</div>
+                    <a href="{{route('admin.index')}}">
+                        <div class="text-tiny">Dashboard</div>
                     </a>
                 </li>
                 <li>
@@ -74,7 +66,7 @@
                 <a class="tf-button style-1 w208" href="/admin/faq/create"><i class="icon-plus"></i>{{trans_lang('add_faq')}}</a>
             </div>
             <div class="wg-table table-product-list">
-                <ul class="table-title flex gap20 mb-14">
+                <ul class="table-title flex gap20 mb-14 faqs-table">
                     <li>
                         <div class="body-title">ID</div>
                     </li>
@@ -93,18 +85,13 @@
                 <ul class="flex flex-column">
                     <li class="product-item gap14">
 
-                        <div class="flex items-center justify-between gap20 flex-grow">
+                        <div class="flex items-center justify-between gap20 flex-grow faqs-data">
 
                             <div class="body-text">{{ $faq->id }}</div>
                             <div class="body-text">{{ $faq->question }}</div>
-                            <div class="body-text">{{ $faq->answer }}</div>
+                            <div class="body-text answer">{{ $faq->answer }}</div>
                         </div>
                         <div class="list-icon-function">
-                            <div class="item eye">
-                                <a href="">
-                                    <i class="icon-eye"></i>
-                                </a>
-                            </div>
                             <div class="item edit">
                                 <a href="{{ route('admin.faqs.edit', $faq->id) }}">
                                     <i class="icon-edit-3"></i>

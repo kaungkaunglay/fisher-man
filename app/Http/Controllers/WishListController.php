@@ -11,8 +11,15 @@ use Illuminate\Support\Facades\Validator;
 
 class WishListController extends Controller
 {
+
+    public function wishListDetail($wishListID)
+    {
+        $wishList = wishList::findOrFail($wishListID);
+        // dd($contact);
+        return view('admin.wishList-detail', compact('wishList'));
+    }
+
     public function wishList(Request $request){
-        logger($request);
         $messages = [
             'wish_name.required' => 'The name field is required.',
             'wish_phone.required' => 'The phone field is required.',

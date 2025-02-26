@@ -96,7 +96,7 @@ class ProductController extends Controller
             'description' => 'nullable|string',
         ],$messages);
 
-        $folderPath = public_path('storage/products');
+        $folderPath = public_path('assets/products');
         if (!file_exists($folderPath)) {
             mkdir($folderPath, 0755, true);
         }
@@ -106,7 +106,7 @@ class ProductController extends Controller
             $image = $request->file('product_image');
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move($folderPath, $imageName);
-            $imagePath = 'storage/products/' . $imageName;
+            $imagePath = $imageName;
         }
 
         Product::create([
@@ -131,6 +131,12 @@ class ProductController extends Controller
     {
         $product = Product::with('subCategory')->findOrFail($id);
         return view('product_detail', compact('product'));
+    }
+
+    public function adminshow($id)
+    {
+        $product = Product::with('subCategory')->findOrFail($id);
+        return view('admin.product-detail', compact('product'));
     }
 
     public function discountProducts(Request $request)
@@ -198,7 +204,7 @@ class ProductController extends Controller
         ]);
 
         if ($request->hasFile('product_image')) {
-            $folderPath = public_path('storage/products');
+            $folderPath = public_path('assets/products');
             if (!file_exists($folderPath)) {
                 mkdir($folderPath, 0755, true);
             }
@@ -211,7 +217,7 @@ class ProductController extends Controller
             }
 
             $image->move($folderPath, $imageName);
-            $product->product_image = 'storage/products/' . $imageName;
+            $product->product_image = $imageName;
         }
 
         $product->update($request->except('product_image'));

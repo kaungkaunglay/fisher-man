@@ -105,7 +105,7 @@
                 <ul class="flex flex-column">
                     <li class="product-item gap14">
                         <div class="image no-bg">
-                            <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
+                            <img src="{{ asset('assets/products/'.$product->product_image) }}" alt="{{ $product->name }}">
                         </div>
                         <div class="flex items-center justify-between gap20 flex-grow">
                             <div class="name">
@@ -125,7 +125,7 @@
                         <div class="body-text">{{  $product->created_at->format('d M Y') }}</div>
                         <div class="list-icon-function">
                             <div class="item eye">
-                                <a href="{{ route('admin.products', $product->id) }}">
+                                <a href="{{ route('admin.product.show', $product->id) }}">
                                     <i class="icon-eye"></i>
                                 </a>
                             </div>

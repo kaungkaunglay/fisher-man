@@ -106,7 +106,7 @@
                     <div class="upload-image mb-16">
                         <div class="item">
                             @if(isset($product) && $product->product_image)
-                            <img id="preview" src="{{ asset($product->product_image) }}" alt="{{ $product->name }}" style="display: block;">
+                            <img id="preview" src="{{ asset('assets/products/'.$product->product_image) }}" alt="{{ $product->name }}" style="display: block;">
                             @else
                             <img id="preview" src="" alt="Image Preview" style="display: none;">
                             @endif

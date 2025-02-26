@@ -17,7 +17,6 @@ class SellersController extends Controller
         return view('sellers.login');
     }
     public function register_store(Request $request){
-        logger($request->all());
         $validator = Validator::make($request->all(), [
             'username' => 'required',
             'email' => 'required|email',

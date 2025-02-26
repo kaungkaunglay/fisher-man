@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
 
-                                <div class="text-center mb-mobile-3">
+                                <div class="text-center mb-mobile-3 mb-3">
                                     <button type="submit" class="common-btn">{{ trans_lang('submit') }}</button>
                                 </div>
                             </form>
@@ -151,31 +151,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- location & contact -->
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="p-3">
-                        <h2 class="title m-b-20">{{ trans_lang('contact_us') }}</h2>
-                        <div class="support-icon">
-                            <i class="fa-brands fa-line"></i>
-                            <i class="fa-brands fa-square-facebook"></i>
-                            <i class="fa-brands fa-x-twitter"></i>
-                            <i class="fa-brands fa-square-instagram"></i>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <p class="txt m-b-10">{{ trans_lang('address') }}: 1234 Main Street, Anytown, Japan</p>
-                                <p class="txt m-b-10">{{ trans_lang('phone_number') }}: 1234567890</p>
-                                <p class="txt m-b-10">{{ trans_lang('email') }}:user@email.com</p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <script src="{{ asset('assets/js/support.js') }}"></script>
         <script>
             $(document).ready(function() {
