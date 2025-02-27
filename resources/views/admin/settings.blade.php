@@ -135,6 +135,30 @@
                         </div>
 
                     </fieldset>
+                    <fieldset>
+                        <div class="body-title mb-10">Banner Image</div>
+                        <div class="card">
+                            <div class="card-body">
+                                <form id="uploadForm">
+                                    <div class="file-input-container">
+                                        <div class="drop-zone" id="dropZone">
+                                            <span>Drag & drop images here or click to browse</span>
+                                            <input type="file" id="fileInput" class="custom-file-input d-none" multiple accept="image/*">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-primary d-none" id="uploadButton">Upload</button>
+                                </form>
+                                
+                                <div class="preview-container" id="previewContainer"></div>
+                            </div>
+                        </div>
+
+                    </fieldset>
                     {{-- <fieldset>
                         <div class="body-title mb-10">Social Links</div>
                         <div id="social-links">
@@ -154,7 +178,7 @@
                     </fieldset> --}}
                 </div>
 
-                <div class="cols gap10">
+                <div class="cols mt-4">
                     <button class="tf-button " type="submit">{{trans_lang('save')}}</button>
                     {{-- <a href="" class="tf-button style-2 w-full">{{trans_lang('cancle')}}</a> --}}
                 </div>
@@ -178,6 +202,7 @@
     <script src="{{ asset('assets/admin/js/switcher.js') }}"></script>
     <script src="{{ asset('assets/admin/js/theme-settings.js') }}"></script>
     <script src="{{ asset('assets/admin/js/main.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/image-uploader.js') }}"></script>
 
     <script>
         document.getElementById('add-link').addEventListener('click', function () {

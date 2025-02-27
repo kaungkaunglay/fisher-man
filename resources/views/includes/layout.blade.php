@@ -23,12 +23,12 @@
     <link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}" />
     <!-- add jquery -->
-    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}" ></script>
     <!-- {{-- favicon --}} -->
+ 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon/favicon-16x16.png') }}">
-
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
@@ -251,14 +251,14 @@
                     <p class="text-center txt-18">{{ json_decode(config('settings.slogan'))  }}</p>
                     <div class="social-icons d-flex justify-content-between gap-1">
                         <a href="https://www.line.me/en/">
-                            <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}"
+                            <img loading="lazy" class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}"
                                 alt="Line">
                         </a>
-                        <a href="https://www.facebook.com/"><img class="icon_social"
+                        <a href="https://www.facebook.com/"><img loading="lazy" class="icon_social"
                                 src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Facebook"></a>
-                        <a href="https://www.wechat.com/"><img class="icon_social"
+                        <a href="https://www.wechat.com/"><img loading="lazy" class="icon_social"
                                 src="{{ asset('assets/icons/custom/wechat.png') }}" alt="Wechat"></a>
-                        <a href="https://x.com/"><img class="icon_social"
+                        <a href="https://x.com/"><img loading="lazy" class="icon_social"
                                 src="{{ asset('assets/icons/custom/xcom.png') }}" alt="Xcom"></a>
                     </div>
                 </div>
@@ -349,13 +349,12 @@
     <!-- All Scripts -->
     <!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
     {{-- <!-- <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script> --> --}}
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{ asset('assets/js/popup.js') }}"></script>
+    <script defer src="{{ asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+    <script defer src="{{ asset('assets/js/popup.js') }}"></script>
     {{--
   <script src="{{asset('assets/js/preloader.js')}}"></script> --}}
-    <script src="{{ asset('assets/js/moving-text.js') }}"></script>
-    <script src="{{ asset('assets/js/password.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script defer src="{{ asset('assets/js/moving-text.js') }}"></script>
+    <script defer src="{{ asset('assets/js/password.js') }}"></script>
     <script>
         $(document).ready(() => {
             //dropdown trigger
@@ -424,87 +423,95 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
+            $("#cart_count, #cart_count_bottom").text(getStoredCount("cart_count"));
+            $(".white_list_count").text(getStoredCount("white_list_count"));
+
+            // Fetch latest counts from the server
+            updateWhiteListCount();
+            updateCartCount();
+
         });
 
+        // Function to get count from sessionStorage
+        function getStoredCount(key) {
+            return parseInt(sessionStorage.getItem(key)) || 0;
+        }
+
+        // Function to update count in sessionStorage and UI
+        function updateStoredCount(key, selector, value) {
+            sessionStorage.setItem(key, value);
+            $(selector).text(value);
+        }
+
+        // Function to update cart count
         function updateCartCount() {
             $.ajax({
                 url: "{{ route('cart-count') }}",
                 method: 'GET',
                 success: function(response) {
-                    // Assuming response contains the new count
-                    $('#cart_count').text(response.cart_count);
-                    $('#cart_count_bottom').text(response.cart_count);
+                    let cartCount = response.cart_count;
+                    updateStoredCount("cart_count", "#cart_count, #cart_count_bottom", cartCount);
                 },
                 error: function(xhr) {
-                    // Handle error here
                     console.error(xhr);
                 }
             });
         }
 
+        // Function to update whitelist count
         function updateWhiteListCount() {
             $.ajax({
                 url: "{{ route('whitelist-count') }}",
                 method: 'GET',
                 success: function(response) {
-                    // Assuming response contains the new count
-                    $('.white_list_count').text(response.white_lists_count);
+                    let whiteListCount = response.white_lists_count;
+                    updateStoredCount("white_list_count", ".white_list_count", whiteListCount);
                 },
                 error: function(xhr) {
-                    // Handle error here
                     console.error(xhr);
                 }
             });
         }
-        updateWhiteListCount();
-        updateCartCount();
 
-        // add to whitelist
+        // Add to whitelist
         function addToWhiteList(product_id, btn) {
             $.ajax({
                 url: `/white-list/${product_id}`,
                 type: "POST",
-                data: {
-                    id: product_id
-                },
+                data: { id: product_id },
                 success: function(response) {
-                    if (response.status == "redirect") {
+                    if (response.status === "redirect") {
                         window.location.href = response.url;
                     } else if (response.status) {
-                        // btn.toggleClass('active');
-                        // btn.closest('#btn-message').find('span').html(response.message);
-                        updateWhiteListCount();
+                        let count = getStoredCount("white_list_count") + 1;
+                        updateStoredCount("white_list_count", ".white_list_count", count);
                     }
                     console.log(response.message);
                 }
             });
         }
 
-        // handle add to whtite button
+        // Handle add to whitelist button click
         function handleAddToWhiteListBtn(class_name) {
             $(`.${class_name}`).click(function(e) {
                 e.preventDefault();
                 const getid = $(this).data('id');
                 const cur_btn = $(`.${class_name}[data-id="${getid}"]`);
-
                 addToWhiteList(getid, cur_btn);
-
             });
         }
 
-        // add to cart
+        // Add to cart
         function addToCart(products, btn) {
             $.ajax({
                 url: "{{ route('cart.add') }}",
                 type: "POST",
-                data: {
-                    products: products
-                },
+                data: { products: products },
                 success: function(response) {
                     if (response.status) {
-                        // btn.toggleClass('active');
-
-                        updateCartCount();
+                        let count = getStoredCount("cart_count") + 1;
+                        updateStoredCount("cart_count", "#cart_count, #cart_count_bottom", count);
                     }
 
                     btn.closest('#btn-message').find('span').html(response.message);
@@ -513,21 +520,20 @@
             });
         }
 
-        // handle add to cart button
+        // Handle add to cart button click
         function handleAddToCartBtn(class_name) {
             $(`.${class_name}`).click(function(e) {
                 e.preventDefault();
                 const getid = $(this).data('id');
                 const cur_btn = $(`.${class_name}[data-id="${getid}"]`);
 
-                var products = [{
-                    id: getid,
-                    quantity: 1
-                }];
-
+                var products = [{ id: getid, quantity: 1 }];
                 addToCart(products, cur_btn);
             });
         }
+
+
+
 
         function formatPriceJapanese(price) {
         // Convert to number and handle potential non-number inputs
@@ -565,7 +571,7 @@
 
 
     <!-- Testing Scripts -->
-    <script src="{{ asset('assets/js/cloneNode.test.js') }}"></script>
+    <script defer src="{{ asset('assets/js/cloneNode.test.js') }}"></script>
     <!-- /Testing Scripts -->
 </body>
 

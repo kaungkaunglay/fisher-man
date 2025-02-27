@@ -52,7 +52,7 @@
             </div>
             <div class="line-wpr green-bg">
                 <a href="#">
-                    <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}" alt="Line">
+                    <img loading="lazy" class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}" alt="Line">
                     Login with Line
                 </a>
             </div>

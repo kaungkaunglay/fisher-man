@@ -84,8 +84,57 @@ function unactiveForm(cur) {
 
 
 function checkIfChange(){
-    
+
 }
 
+// start image preview
+let previewImage = function(input, outputSelector) {
+    const output = $(outputSelector);
 
+    // Clear previous preview
+    output.empty();
+
+    if (input.files && input.files.length > 0) {
+        const file = input.files[0]; // Only take the first file
+
+        // Check if file is an image
+        if (file.type.match('image.*')) {
+            const fileReader = new FileReader();
+
+            fileReader.onload = function(e) {
+                const img = $('<img>', {
+                    src: e.target.result,
+                    class: 'preview-image',
+                    alt: 'Preview',
+                    css: {
+                        // Add some styles to the image
+                    }
+                });
+                output.append(img);
+            };
+
+            fileReader.onerror = function(e) {
+                console.error('Error reading file:', e);
+            };
+
+            fileReader.readAsDataURL(file);
+        } else {
+            // Show default image if file isn't an image
+            output.find('img.default-preview').removeClass("d-none");
+        }
+    } else {
+        // Show default image when no file selected
+        output.find('img.default-preview').removeClass("d-none");
+    }
+}
+
+// Event listener with error handling
+$("#avatar-input").on('change', function() {
+    try {
+        previewImage(this, ".gallery");
+    } catch (error) {
+        console.error('Preview error:', error);
+    }
+});
+// end image preview
 

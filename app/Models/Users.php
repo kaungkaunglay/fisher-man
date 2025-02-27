@@ -51,7 +51,7 @@ class Users extends Authenticatable implements CanResetPassword,MustVerifyEmail
     }
 
     public function products() {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class,'user_id','id');
     }
 
     public function whitelists()
@@ -70,7 +70,7 @@ class Users extends Authenticatable implements CanResetPassword,MustVerifyEmail
     }
 
     public function shop() {
-        return $this->hasOne(Shop::class);
+        return $this->hasOne(Shop::class,'user_id','id');
     }
 
     public function oAuths(){
