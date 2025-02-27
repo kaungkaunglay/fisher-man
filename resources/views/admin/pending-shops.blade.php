@@ -201,8 +201,7 @@
             let shop_id = $(this).data('id');
             let status = $(this).data('status');
 
-            console.log(status);
-            console.log(shop_id);
+
 
             $.ajax({
                 url: "{{ route('admin.shops.updateStatus') }}",

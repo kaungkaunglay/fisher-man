@@ -5,24 +5,6 @@ const seeMoreLink = document.getElementById("see-more-link");
 const categoryLink = document.getElementById("category-link");
 
 
-hamburgerMenu.addEventListener("click", function (event) {
-  event.preventDefault();
-  categoryPopup.classList.toggle("active");
-});
-
-
-categoryLink.addEventListener("click", function (event) {
-  event.preventDefault();
-  console.log('hello');
-  categoryPopup.classList.toggle("active");
-});
-
-
-closePopup.addEventListener("click", function (event) {
-  event.preventDefault();
-  categoryPopup.classList.remove("active");
-});
-
 document.addEventListener("click", function (event) {
   if (
     !categoryPopup.contains(event.target) &&

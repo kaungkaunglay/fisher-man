@@ -1,4 +1,3 @@
-const value = {name: '',email: '',addresss: '',tel_1: '',tel_2: ''};
 $(document).ready(() => {
 
   $('.edit').click((ev) => {
@@ -12,7 +11,6 @@ $(document).ready(() => {
     unactiveForm(ev.currentTarget);
     resetData(ev);
   })
-
 
   if($('.sec-phone').val() == '') $('.cor').hide();
   else $('.cor').show();
@@ -75,13 +73,11 @@ function resetData(trig) {
 
 }
 
-
 function unactiveForm(cur) {
     cur.removeClass('active');
     if($('.sec-phone').val() == '') $('.cor').hide();
     else $('.cor').show();
 }
-
 
 function checkIfChange(){
 

@@ -423,11 +423,8 @@
                     contentType: false,
                     processData: false,
                     success: function(response) {
-                        console.log(response.status);
+
                         if (response.status) {
-
-                            console.log(response.message);
-
                             window.location.reload();
                             // unactiveForm(cur);
                         } else {
@@ -449,10 +446,9 @@
                     contentType: false,
                     processData: false,
                     success: function(response) {
-                        console.log(response.status);
                         if (response.status) {
 
-                            console.log(response.message);
+        
 
                             window.location.reload();
                             // unactiveForm(cur);
@@ -513,7 +509,6 @@
                     }, // Pass the provider info in the data
                     success: function(response) {
                         window.location.reload();
-                        console.log(response.message);
                     },
                     error: function(xhr) {
                         console.error(xhr);
