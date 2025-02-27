@@ -204,14 +204,11 @@
                             //     // console.log($(this).val())
                             //     removeCart($(this).val())
                             // });
-                            console.log(response.message);
 
                             updateCartCount();
                         }
 
                         if (!response.status) {
-                            console.log(response.message);
-
                         }
                     }
                 });

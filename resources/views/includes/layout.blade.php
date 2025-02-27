@@ -16,14 +16,12 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}" />
     @yield('style')
-    <link rel="icon" href="demo_icon.gif" type="image/gif" sizes="16x16">
     <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}" />
     <!-- add jquery -->
-    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}" ></script>
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <!-- {{-- favicon --}} -->
  
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png') }}">
@@ -487,7 +485,7 @@
                         let count = getStoredCount("white_list_count") + 1;
                         updateStoredCount("white_list_count", ".white_list_count", count);
                     }
-                    console.log(response.message);
+    
                 }
             });
         }
@@ -515,7 +513,6 @@
                     }
 
                     btn.closest('#btn-message').find('span').html(response.message);
-                    console.log(response.message);
                 }
             });
         }

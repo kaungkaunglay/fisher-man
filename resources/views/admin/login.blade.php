@@ -3,9 +3,6 @@
 <!--[if (gte IE 9)|!(IE)]><!-->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <!--<![endif]-->
-
-
-<!-- Mirrored from themesflat.co/html/remos/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 22 Jan 2025 01:50:16 GMT -->
 <head>
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
@@ -18,7 +15,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Theme Style -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/animation.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/animation.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/bootstrap-select.min.css') }}">
@@ -85,7 +81,7 @@
     <!-- /#wrapper -->
 
     <!-- Javascript -->
-    <script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script>
+    <script src="{{ asset(path: 'assets/admin/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/bootstrap-select.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/main.js') }}"></script>
@@ -112,8 +108,6 @@
                         if (response.status == true) {
                             window.location.href = "{{ route('admin.index')}}";
                         } else {
-
-                            console.log(message,errors)
 
                             // if response has message, show the message , if not empty the message, clear the error messages
                             $('#message').html(response.message ?? '');
