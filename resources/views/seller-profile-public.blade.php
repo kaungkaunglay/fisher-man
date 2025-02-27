@@ -57,33 +57,29 @@
                                 <div class="form-group">
                                     <div class="d-flex align-items-center">
                                         <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
-                                        <output class="form-output" for="username"></output>
-                                        <input type="text" name="username" class="p-1 mt-1 ms-1 border-bottom border-2 d-none"
-                                            id="username" value="" disabled>
+                                        <output class="form-output" for="username">{{$sellerInfo->username}}</output>
                                     </div>
-                                    <span class="invalid-feedback"></span>
+
                                 </div>
 
                                 <!-- email link -->
                                 <div class="form-group">
                                     <div class="d-flex align-items-center form-group">
                                         <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
-                                        <output class="form-output" for="email"></output>
-                                        <input type="email" name="email" class="p-1 mt-2 ms-1 border-bottom border-2 d-none"
-                                            id="email" value="" disabled>
+                                        <output class="form-output" for="email">{{$sellerInfo->email}}</output>
+
                                     </div>
-                                    <span class="invalid-feedback"></span>
+
                                 </div>
 
                                 <!-- organizaion -->
                                 <div class="form-group">
                                     <div class="d-flex align-items-center form-group">
                                         <label class="w-25" for="first_org_name">{{ trans_lang('first_org_name') }}</label>:
-                                        <output class="form-output" for="first_org_name"></output>
-                                        <input type="text" name="first_org_name" class="p-1 mt-2 ms-1 border-bottom border-2 d-none"
-                                            id="first_org_name" value="" disabled>
+                                        <output class="form-output" for="first_org_name">{{$sellerInfo->first_org_name}}</output>
+
                                     </div>
-                                    <span class="invalid-feedback"></span>
+
                                 </div>
 
                                 <!-- account checkbox -->
@@ -131,7 +127,7 @@
 
                             </div>
 
-                            
+
                                 {{-- <div class="alert alert-warning d-flex mb-2" role="alert" >
                                     <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
                                         aria-label="Warning:"></i>
@@ -140,7 +136,7 @@
                                         <a href="javascript:void(0);" id="sent_email_verify_link" class="btn btn-outline-warning btn-sm">here</a>
                                     </div>
                                 </div> --}}
-                          
+
                             <!-- /Form Content -->
 
                         </div>
@@ -174,13 +170,11 @@
 
                     <!-- Form Content -->
                     <div class="px-2 py-3">
-
                         <!-- address -->
                         <div class="d-flex align-items-center form-group">
                             <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
-                            <output class="form-output" for="address"></output>
-                            <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled></textarea>
-                            <span class="invalid-feedback"></span>
+                            <output class="form-output" for="address">{{$sellerInfo->address}}</output>
+
                         </div>
 
                         <!-- phone-number link -->
@@ -188,20 +182,16 @@
                             <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
                             <div class="ms-1 d-flex flex-column phone-no-container">
                                 <a href="tel:">
-                                    <output class="form-output" for="first_phone"></output>
+                                    <output class="form-output" for="first_phone">{{$sellerInfo->first_phone}}</output>
                                 </a>
-                                <input type="tel" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none"
-                                    id="first_phone" value="" disabled>
+                                
                                 <a href="tel:">
-                                    <output class="form-output" for="second_phone"></output>
+                                    <output class="form-output" for="second_phone">{{$sellerInfo->second_phone}}</output>
                                 </a>
-                                <input type="tel" name="second_phone" class="p-1 mt-2 border-bottom border-2 d-none"
-                                    value="" id="second_phone" disabled>
-                                <span class="invalid-feedback"></span>
-                            </div>
-                            <span class="invalid-feedback"></span>
-                        </div>
 
+                            </div>
+
+                        </div>
                     </div>
                     <!-- /Form Content -->
 
@@ -209,10 +199,10 @@
                 <!-- /Detail Info -->
 
                 <!-- button group -->
-                <div class="buttons d-flex gap-2 mt-3">
+                {{-- <div class="buttons d-flex gap-2 mt-3">
                     <button class="common-btn">{{ trans_lang('upload_product') }}</button>
                     <button class="common-btn">{{ trans_lang('check_order') }}</button>
-                </div>
+                </div> --}}
 
             </div>
             <!-- /Profile Side -->
@@ -240,8 +230,6 @@
     <!-- Product Section -->
     <section class="discount-products bg-second py-4 mt-5">
         <div class="container-custom">
-
-
             <h6 class="txt-primary fw-bold mb-3">{{ trans_lang('uploaded_products') }}</h6>
             <div class="filter d-flex justify-content-between align-items-center mb-3">
 
@@ -252,7 +240,7 @@
                 </div>
 
                 <!-- sorting -->
-                <!-- <div class="sort-container">
+                 <div class="sort-container">
                                 <div class="arrows">
                                     <button><i class="fa-solid fa-caret-up"></i></button>
                                     <button><i class="fa-solid fa-caret-down"></i></button>
@@ -266,39 +254,45 @@
                                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                                     </ul>
                                 </div>
-                            </div> -->
-
+                            </div>
             </div>
 
             <div class="card-list" id="view-list" data-list="fish-list-1">
-
-                {{-- @foreach ($products as $product) --}}
+                @foreach ($sellerProducts as $sellerProduct)
                     <div class="item-card">
-                        <a href="" class="right">
-                            <img src="" class="card-img-top"
-                                alt="">
+                        <a href="{{ route('product.show', $sellerProduct->id) }}" class="right">
+                            <img src="{{ asset('assets/products/' . $sellerProduct->product_image) }}" class="card-img-top"
+                                alt="{{ $sellerProduct->name }}">
                         </a>
                         <div class="left">
                             <p class="price m-t-b-10">
-                               
-                               
-                                    <span class="original-price">¥</span>
-                        
-                                    <span class="">¥</span>
-                    
+                                @if ($sellerProduct->discount > 0)
+                                    ¥{{ number_format($sellerProduct->product_price - $sellerProduct->discount, 2) }}
+                                    <span class="original-price">¥{{ number_format($sellerProduct->product_price) }}</span>
+                                @else
+                                    <span class="">¥{{ number_format($sellerProduct->product_price) }}</span>
+                                @endif
                             </p>
                             <div class="title-category">
-                                <a href=""
-                                    class="menu-category "></a>
-                                <h3 class="title m-t-b-10"></h3>
+                                <a href="{{ route('sub-category.show', $sellerProduct->subCategory->id) }}"
+                                    class="menu-category ">{{ $sellerProduct->subCategory->name }}</a>
+                                <h3 class="title m-t-b-10">{{ $sellerProduct->name }}</h3>
                             </div>
-                            <a href="" class="txt m-b-10 description">
-                                
+                            <a href="{{ route('product.show', $sellerProduct->id) }}" class="txt m-b-10 description">
+                                {{ $sellerProduct->description }}
                             </a>
+                            <div class="d-flex gap-2 card-btn m-t-10">
+                                <a href="#" class="py-1 common-btn2 -solid cart-btn">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </a>
+                                <a href="#" class="py-1 common-btn2 white-list-btn">
+                                    <i class="fa-solid fa-bookmark"></i>
+                                </a>
+                            </div>
 
                         </div>
                     </div>
-        
+                @endforeach
 
             </div>
 
