@@ -131,9 +131,9 @@
 
             <div class="fish-shadow"></div>
         </div>
-
-        <h4 class="loading-text">LOADING FRESH CATCH...</h4>
-
+        
+        <h4 class="loading-text">{{trans_lang('loading_preload')}}</h4>
+        
         <div class="progress">
             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"></div>
         </div>
