@@ -62,7 +62,10 @@ class SellersController extends Controller
                 }
             }
             return response()->json(['status' => false, 'message' => 'Login Failed']);
-        }
-        
+        }    
+    }
+
+    public function contact(){
+        return view('seller-profile-public');
     }
 }

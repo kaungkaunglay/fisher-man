@@ -22,6 +22,7 @@ use App\Http\Controllers\WhiteListController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\SubCategoriesController;
 use App\Http\Controllers\EmailVerificationController;
+use App\Http\Controllers\SellersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -176,6 +177,8 @@ Route::middleware(['is_admin'])->group(function () {
 // Product detail
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/shop/{id}', [ShopController::class, 'shop_detials'])->name('shop.detail');
+Route::get('/seller/contact', [SellersController::class, 'contact'])->name('seller.contact');
+
 // Route::get('/cart', function () {
 //     return view('cart');
 // })->name('cart');
