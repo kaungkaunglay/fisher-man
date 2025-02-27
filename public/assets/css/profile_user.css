@@ -98,6 +98,10 @@ body {
   cursor: pointer;
 }
 
+.modal-btn {
+  cursor: pointer;
+}
+
 @media  screen and (max-width: 767.9px) {
   .profile-detail,
   .map {
