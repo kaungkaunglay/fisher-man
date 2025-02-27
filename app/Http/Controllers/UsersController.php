@@ -22,5 +22,8 @@ use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
-    //
+    public function support(){
+        $faqs = FAQs::all();
+        return view('support', compact('faqs'));
+    }
 }

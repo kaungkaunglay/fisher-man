@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sub_category;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,6 +14,7 @@ class SubCategoriesController extends Controller
     public function index()
     {
         $sub_categories = Sub_category::paginate(10);
+        
         return view('admin.sub-categories', compact('sub_categories'));
     }
 
@@ -45,7 +47,10 @@ class SubCategoriesController extends Controller
 
         $subCategory = Sub_category::findOrFail($id);
 
-        return view('sub_category', compact('subCategory', 'products'));
+        $settings = Setting::pluck('value', 'key')->toArray();
+        $bannerImages = isset($settings['site_banner_images']) ? json_decode($settings['site_banner_images']) : [];
+
+        return view('sub_category', compact('subCategory', 'products','bannerImages'));
     }
 
     public function create()
