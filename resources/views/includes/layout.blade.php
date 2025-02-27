@@ -333,7 +333,7 @@
 
                     {{-- <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo only.png') }}" class="logo"
               alt=""></a> --}}
-                    <p class="text-center txt-18">{{ json_decode(config('settings.slogan'))  }}</p>
+                    <p class="text-center txt-18">{{ config('settings.slogan')  }}</p>
                     <div class="social-icons d-flex justify-content-between gap-1">
                         <a href="https://www.line.me/en/">
                             <img loading="lazy" class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}"
