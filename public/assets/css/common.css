@@ -17,6 +17,7 @@ input[type=number] {-moz-appearance: textfield;}
 @font-face {
   font-family: 'BlinkMacSystemFont' !important;
   src: url('../fonts/BlinkMacSystemFont/blinkmacsystemfont-regular.ttf') format('truetype') !important;
+  font-display: swap;
 }
 
 body {

@@ -49,13 +49,13 @@
             <button name="submit" id="submit" type="submit" class="input-submit">{{trans_lang('login')}}</button>
             <div class="line-wpr green-bg">
                 <a href="{{route('line.login')}}">
-                    <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}" alt="Line">
+                    <img loading="lazy" class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}" alt="Line">
                     {{trans_lang('login_line')}}
                 </a>
             </div>
             <div class="icon-wpr">
-                <a href="{{route('google.login')}}"><img class="icon_social" src="{{ asset('assets/icons/custom/google.png') }}" alt="Google"></a>
-                <a href="{{route('facebook.login')}}"><img class="icon_social" src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Facebook"></a>
+                <a loading="lazy" href="{{route('google.login')}}"><img class="icon_social" src="{{ asset('assets/icons/custom/google.png') }}" alt="Google"></a>
+                <a loading="lazy" href="{{route('facebook.login')}}"><img class="icon_social" src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Facebook"></a>
             </div>
             <div class="register">
                 <span>{{trans_lang('no_have_account_msg')}}

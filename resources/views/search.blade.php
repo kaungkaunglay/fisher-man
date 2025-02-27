@@ -295,6 +295,6 @@
 <!-- category list end -->
 </div>
 
-<script src="{{ asset('assets/js/view-list.js') }}"></script>
-<script src="{{ asset('assets/js/words-limit.js') }}"></script>
+<script defer src="{{ asset('assets/js/view-list.js') }}"></script>
+<script defer src="{{ asset('assets/js/words-limit.js') }}"></script>
 @endsection
