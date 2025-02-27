@@ -308,7 +308,7 @@
         $socialLinks = \App\Models\Setting::getValue('social_links', []);
     @endphp
 
-    @if (Request::routeIs('login') || Request::routeIs('register'))
+    @if (Request::routeIs('login') || Request::routeIs('register') )
     <footer class="">
     </footer>
 

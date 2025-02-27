@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}" />
 @endsection
 @section('contents')
+
 {{-- @dd(ITE_KEY') --}}
     <div class="login-box d-flex flex-column">
 
@@ -43,8 +44,6 @@
                     <span class="text-danger" id="message"></span>
                 </div>
             </div>
-
-            
 
             <button name="submit" id="submit" type="submit" class="input-submit">{{trans_lang('login')}}</button>
             <div class="line-wpr green-bg">

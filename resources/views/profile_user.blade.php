@@ -41,7 +41,7 @@
                         <!-- profile img -->
                         <div class="w-100 profile-form d-flex flex-column avatar-input">
                             <label for="avatar-input" class="w-100 d-block position-relative gallery">
-                                <img src="{{ $user->avatar ? asset('assets/avatars/'.$user->avatar) : asset('assets/images/account1.svg') }}" class="default-preview" id="form-img"
+                                <img src="{{ $user->avatar ? asset('assets/avatars/'.$user->avatar) : asset('assets/avatars/default_avatar.png') }}" class="default-preview" id="form-img"
                                     alt="{{ $user->username ?? 'Account.png'}}">
                                     <div class="avatar-upload position-absolute d-none">
                                         <div class="m-auto">
@@ -52,6 +52,7 @@
                             </label>
                             <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input" accept="image/*">
                         </div>
+                        <!-- /profile img -->
 
                         <!-- Profile Info -->
                         <div class="w-100 d-flex flex-column">
@@ -144,22 +145,30 @@
 
                             </div>
 
-                            @if(!auth_helper()->isVerified())
-                                <div class="alert alert-warning d-flex mb-2" role="alert" >
+                            @if (!auth_helper()->isEmailLinkInvalid())
+                                <div class="alert alert-success d-flex mb-2 mt-auto" role="alert">
+                                    <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
+                                        aria-label="Success:"></i>
+                                    <div class="text-start">
+                                        Email verification link already sent.
+                                    </div>
+                                </div>
+                            @elseif(!auth_helper()->isVerified())
+                                <div class="alert alert-warning d-flex mb-2 email_verify_box" role="alert" >
                                     <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
                                         aria-label="Warning:"></i>
                                     <div class="text-start">
                                         Verify your email
-                                        <a href="javascript:void(0);" id="sent_email_verify_link" class="btn btn-outline-warning btn-sm">here</a>
+                                        <a href="javascript:void(0);" id="sent_email_verify_link" class="text-warning">here</a>
                                     </div>
                                 </div>
+
                             @endif
                             <!-- /Form Content -->
 
                             @if (!$hasShopRequest)
                                 <!-- alert box -->
-                                <button class="mt-auto" data-bs-toggle="modal" data-bs-target="#modal_dialog"
-                                    onclick="event.preventDefault()">
+                                <div class="mt-auto modal-btn" data-bs-toggle="modal" data-bs-target="#modal_dialog">
                                     <div class="alert alert-warning d-flex mb-0" role="alert">
                                         <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1"
                                             role="img" aria-label="Warning:"></i>
@@ -167,10 +176,10 @@
                                             {{ trans_lang('payment_method_used_card_last_no') }}
                                         </div>
                                     </div>
-                                </button>
+                                </div>
                             @else
                                 <!-- alert box -->
-                                <button>
+                                <div>
                                     <div class="alert alert-success d-flex mb-0 mt-auto" role="alert">
                                         <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
                                             aria-label="Success:"></i>
@@ -178,7 +187,7 @@
                                             You have been requested
                                         </div>
                                     </div>
-                                </button>
+                                </div>
                             @endif
 
                         </div>
@@ -250,7 +259,7 @@
                                                 <span class="invalid-feedback"></span>
                                             </div>
                                         </div>
-                                        <div class="mb-2 row align-items-center">
+                                        <div class="mb-2 row">
                                             <div class="col-lg-5 col-12">
                                                 <label for="exampleFormControlInput1"
                                                     class="col-form-label">Shop Description</label>
@@ -273,13 +282,18 @@
                                             </div>
                                         </div>
 
+                                        <div class="d-flex">
+                                            <input type="checkbox" class="me-3">
+                                            Privacy Policy
+                                        </div>
+
                                 </div>
                             </div>
                             <!-- /Modal Body -->
 
                             <!-- Modal Footer -->
                             <div class="d-flex gap-2 p-3">
-                                <button class="common-btn w-50 px-0"
+                                <button class="common-btn -solid w-50 px-0"
                                     data-bs-dismiss="modal">{{ trans_lang('cancle') }}</button>
                                 <button class="common-btn w-50 px-0" type="submit">{{ trans_lang('request') }}</button>
                             </div>
@@ -320,7 +334,7 @@
                     <div class="px-2 py-3">
 
                         <!-- address -->
-                        <div class="d-flex align-items-center form-group">
+                        <div class="d-flex form-group">
                             <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
                             <output class="form-output" for="address">{{ $user->address }}</output>
                             <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea>
@@ -517,7 +531,7 @@
                                 'transManagement',
                                 'transEmail',
                                 'phoneNumber',
-                                'shopDescription'
+                                'shopDescription',
                                 'avatar'
                             ];
 
@@ -694,16 +708,53 @@
                 handleOAuthLogin('google');
             });
 
-            $('#sent_email_verify_link').click(function(){
+            // $('#sent_email_verify_link').click(function(){
+            //     $.ajax({
+            //         url: `/email/verify/send`,
+            //         method: 'POST',
+            //         success: function(response) {
+            //             window.location.reload();
+            //             console.log(response.message);
+            //         },
+            //         error: function(xhr) {
+            //             console.error(xhr);
+            //         }
+            //     });
+            // });
+
+            $('#sent_email_verify_link').click(function() {
+
+                const $button = $(this);
+                const $box = $button.closest('.email_verify_box');
+                const originalText = $box.html();
+
+                // Disable button and show loading state
+                $button.prop('disabled', true);
+
+
+                $box.html(`<div class="spinner-border text-primary me-2" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div> Sending Verification Link...`);
                 $.ajax({
-                    url: `/send-verification-email`,
+                    url: `/email/verify/send`,
                     method: 'POST',
                     success: function(response) {
-                        window.location.reload();
+                        // On success, reload and show message
                         console.log(response.message);
+                        window.location.reload();
                     },
                     error: function(xhr) {
+                        // On error, restore button state and show error
                         console.error(xhr);
+                        $button.prop('disabled', true);
+                        $box.html($originalText);
+                        // alert('Failed to send verification link. Please try again.');
+                        sessionStorage.setItem('success', 'error');
+                        sessionStorage.setItem('message', 'Failed to send verification link. Please try again.');
+                    },
+                    complete: function() {
+                        // This will run after success or error
+                        // Only needed if you want additional cleanup
                     }
                 });
             });

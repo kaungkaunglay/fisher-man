@@ -69,7 +69,6 @@ class OAuthController extends Controller
                         // 'username' => $providerUser->getName(),
                         // 'email' => $providerUser->getEmail(),
                         $providerIdField => $providerUser->getId(),
-                        'avatar' => $providerUser->getAvatar() ?? $user->avatar // Keep existing avatar if new one is null
                     ]);
 
                 }
@@ -81,7 +80,7 @@ class OAuthController extends Controller
             }
 
             // Save OAuth information
-            $this->saveOAuthData($user, $provider, $token, $refreshToken, $providerUser->expiresIn);
+            $this->saveOAuthData($user, $provider, $token, $refreshToken, $providerUser->expiresIn,$providerUser->avatar);
 
             // Store session data
             $this->storeSessionData($provider, $token, $refreshToken, $user->id);
@@ -103,7 +102,6 @@ class OAuthController extends Controller
     {
         $userData = [
             'username' => $providerUser->getName(),
-            'avatar' => $providerUser->getAvatar(),
             $providerIdField => $providerUser->getId()
         ];
 
@@ -120,7 +118,7 @@ class OAuthController extends Controller
         return $user;
     }
 
-    protected function saveOAuthData($user, $provider, $token, $refreshToken, $expiresIn)
+    protected function saveOAuthData($user, $provider, $token, $refreshToken, $expiresIn, $avatar)
     {
         OAuths::updateOrCreate(
             [
@@ -129,6 +127,7 @@ class OAuthController extends Controller
             ],
             [
                 'token' => $token,
+                'avatar' => $avatar,
                 'refresh_token' => $refreshToken,
                 'expires_in' => $expiresIn
             ]

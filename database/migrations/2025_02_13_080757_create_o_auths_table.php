@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('refresh_token')->nullable();
             $table->string('expires_in')->nullable();
             $table->foreignId('user_id')->constrained('users');
+            $table->string('avatar')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });
