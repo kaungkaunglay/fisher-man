@@ -112,7 +112,7 @@
                                 <a href="{{ route('admin.products', $product->id) }}" class="body-title-2">{{ $product->name }}</a>
                             </div>
                             <div class="body-text">{{ $product->id }}</div>
-                            <div class="body-text">${{ number_format($product->product_price, 2) }}</div>
+                            <div class="body-text">${{ number_format($product->product_price) }}</div>
                             <div class="body-text">{{ $product->stock }}</div>
                             <div class="body-text">{{ $product->sale_percentage ?? 'N/A' }}</div>
                             <div>

@@ -5,8 +5,6 @@
 @endsection
 
 @section('contents')
-    <div class="py-4 h-18px"></div>
-    
     <!-- Hero Section -->
     <section class="hero mt-4">
         <div class="container-custom">
@@ -43,17 +41,17 @@
             <!-- Card List -->
             <div class="card-list" id="view-list">
                 @foreach ($random_products  as $product)
-                    <div class="item-card mb-2">
+                    <div class="item-card mb-5">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
                             <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
                         </a>
                         <div class="left">
-                            <p class="price m-t-b-10 d-flex flex-column flex-sm-row align-items-baseline">
+                            <p class="price m-t-b-10">
                                 @if ($product->discount > 0)
-                                    <span class="format me-3">{{$product->product_price - $product->discount}}</span>
-                                    <span class="original-price format">{{ $product->product_price }}</span>
+                                <span class="format">{{$product->product_price - $product->discount}}</span>
+                                <span class="original-price format">{{ $product->product_price }}</span>
                                 @else
-                                    <span>¥{{ number_format($product->product_price, 2) }}</span>
+                                    <span class="">¥{{ number_format($product->product_price) }}</span>
                                 @endif
                             </p>
                             <div class="title-category">
@@ -65,12 +63,12 @@
                             </a>
                             <div class="d-flex gap-2 card-btn m-t-10">
                                 <a href="javascript:void(0);"
-                                    class="py-1 p-0 common-btn2 -solid cart-btn"
+                                    class="py-1 common-btn2 -solid cart-btn"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </a>
                                 <a href="javascript:void(0);"
-                                    class="py-1 p-0 common-btn2 white-list-btn"
+                                    class="py-1 common-btn2 white-list-btn"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-bookmark"></i>
                                 </a>
@@ -97,39 +95,7 @@
     </section>
     <!-- /Animation Bar -->
 
-    <!-- Porpular Shop -->
-    <section class="popular_top_rate_shop_section mt-3">
-        <div class="container-custom">
-
-            <!-- Porpular Headline -->
-            <div>
-                <h6 class="txt-primary fw-bold mb-3">{{trans_lang('popular_shop')}}</h6>
-            </div>
-            <!-- /Porpular Headline -->
-
-            <!-- Shop List  -->
-            <div class="row shop-carts">
-
-               @foreach ($popular_shops as $popular_shop)
-               <div class="col-6 col-md-6 col-lg-3 mb-3">
-                <a href="{{route('shop.detail',$popular_shop->id)}}">
-                    <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
-                        <img loading="lazy" src="{{ asset('assets/images/avatars/'.$popular_shop->avatar) }}" class="card-img-top"
-                            alt="..." />
-                        <div class="card-body bg-main">
-                            <p class="card-text text-center text-white">{{$popular_shop->shop_name}}</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-               @endforeach
-
-            </div>
-            <!-- /Shop List -->
-
-        </div>
-    </section>
-    <!-- /Porpular Shop -->
+    
 
     <!-- Discount Products -->
     <section class="discount-products bg-second py-4">
@@ -184,7 +150,7 @@
                         <div class="left">
                             <p class="price m-t-b-10">
                                 @if ($product->discount > 0)
-                                    <span class="format me-3">{{$product->product_price - $product->discount}}</span>
+                                    <span class="format">{{$product->product_price - $product->discount}}</span>
                                     <span class="original-price format">{{ $product->product_price }}</span>
                                 @else
                                     <span class="format">{{ $product->product_price }}</span>
@@ -279,7 +245,7 @@
                         <div class="left">
                             <p class="price m-t-b-10">
                                 @if ($product->discount > 0)
-                                    <span class="format me-3">{{$product->product_price - $product->discount}}</span>
+                                    <span class="format">{{$product->product_price - $product->discount}}</span>
                                     <span class="original-price format">{{ $product->product_price }}</span>
                                 @else
                                     <span class="format">{{ $product->product_price }}</span>
@@ -301,7 +267,7 @@
                                 </a>
                                 {{-- <small class="py-1 common-btn2 -solid cart-btn "><i class="fa-solid fa-cart-plus"></i></small> --}}
                                 <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 white-list-btn"
+                                    class="py-1 common-btn2 white-list-btn position-relative"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-bookmark"></i>
                                     {{-- <i class="fa-solid fa-check position-absolute top-50 start-50 translate-middle fa-2xs text-white" ></i> --}}
@@ -327,10 +293,42 @@
     </section>
     <!-- /All Products -->
 
+    <!-- Porpular Shop -->
+    <section class="popular_top_rate_shop_section mt-3">
+        <div class="container-custom">
+
+            <!-- Porpular Headline -->
+            <div>
+                <h6 class="txt-primary fw-bold mb-3">{{trans_lang('popular_shop')}}</h6>
+            </div>
+            <!-- /Porpular Headline -->
+
+            <!-- Shop List  -->
+            <div class="row shop-carts">
+
+               @foreach ($popular_shops as $popular_shop)
+               <div class="col-6 col-md-6 col-lg-3 mb-3">
+                <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
+                    <img loading="lazy" src="{{ asset('assets/images/avatars/'.$popular_shop->avatar) }}" class="card-img-top"
+                        alt="..." />
+                    <div class="card-body bg-main">
+                        <p class="card-text text-center text-white">{{$popular_shop->shop_name}}</p>
+                    </div>
+                </div>
+            </div>
+               @endforeach
+
+            </div>
+            <!-- /Shop List -->
+
+        </div>
+    </section>
+    <!-- /Porpular Shop -->
+
     <!-- All Scripts -->
-    <script defer src="{{ asset('assets/js/loadmore.js') }}"></script>
-    <script defer src="{{ asset('assets/js/view-list.js') }}"></script>
-    <script defer src="{{ asset('assets/js/notify.js')}}"></script>
+    <script src="{{ asset('assets/js/loadmore.js') }}"></script>
+    <script src="{{ asset('assets/js/view-list.js') }}"></script>
+    <script src="{{ asset('assets/js/words-limit.js') }}"></script>
     <!-- /All Scripts -->
 
     <!-- Testing Scripts -->
