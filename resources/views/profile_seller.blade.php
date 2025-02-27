@@ -20,15 +20,15 @@
 
     <!-- Profile Section -->
     <section>
-        <div class="profile_seller container-customn row">
+        <div class="profile_seller container-custom row">
 
             <div class="col-12 text-center">
                 @include('messages.index')
             </div>
 
-
             <!-- Profile Side -->
             <div class="col-12 col-lg-7 h-100 profile-side">
+
                 <form action="#" id="update_basic_profile" class="profile-form" method="POST">
 
                     @csrf
@@ -37,10 +37,8 @@
                         <!-- profile img -->
                         <div class="w-100 profile-form d-flex flex-column avatar-input">
                             <label for="avatar-input" class="w-100 d-block position-relative gallery">
-                                <img src="{{ $user->oauth_avatar ? $user->oauth_avatar :
-                                            ($user->avatar ? asset('assets/avatars/'.$user->avatar) :
-                                            asset('assets/avatars/default_avatar.png'))
-                                }}" class="default-preview" id="form-img" alt="{{ $user->username ?? 'Account.png'}}">
+                                <img src="{{ $user->oauth_avatar ? $user->oauth_avatar: ($user->avatar ? asset('assets/avatars/' . $user->avatar): asset('assets/avatars/default_avatar.png')) }}"
+                                    class="default-preview" id="form-img" alt="{{ $user->username ?? 'Account.png' }}">
                                 <div class="avatar-upload position-absolute d-none">
                                     <div class="m-auto">
                                         <i class="fas fa-upload"></i>
@@ -48,7 +46,8 @@
                                     </div>
                                 </div>
                             </label>
-                            <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input" accept="image/*">
+                            <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input"
+                                accept="image/*">
                         </div>
                         <!-- /profile img -->
 
@@ -81,8 +80,9 @@
                                     <div class="d-flex align-items-center">
                                         <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
                                         <output class="form-output" for="username">{{ $user->username }}</output>
-                                        <input type="text" name="username" class="p-1 mt-1 ms-1 border-bottom border-2 d-none"
-                                            id="username" value="{{ $user->username }}" disabled>
+                                        <input type="text" name="username"
+                                            class="p-1 mt-1 ms-1 border-bottom border-2 d-none" id="username"
+                                            value="{{ $user->username }}" disabled>
                                     </div>
                                     <span class="invalid-feedback"></span>
                                 </div>
@@ -92,8 +92,9 @@
                                     <div class="d-flex align-items-center form-group">
                                         <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
                                         <output class="form-output" for="email">{{ $user->email }}</output>
-                                        <input type="email" name="email" class="p-1 mt-2 ms-1 border-bottom border-2 d-none"
-                                            id="email" value="{{ $user->email }}" disabled>
+                                        <input type="email" name="email"
+                                            class="p-1 mt-2 ms-1 border-bottom border-2 d-none" id="email"
+                                            value="{{ $user->email }}" disabled>
                                     </div>
                                     <span class="invalid-feedback"></span>
                                 </div>
@@ -101,10 +102,13 @@
                                 <!-- organizaion -->
                                 <div class="form-group">
                                     <div class="d-flex align-items-center form-group">
-                                        <label class="w-25" for="first_org_name">{{ trans_lang('first_org_name') }}</label>:
-                                        <output class="form-output" for="first_org_name">{{ $user->first_org_name }}</output>
-                                        <input type="text" name="first_org_name" class="p-1 mt-2 ms-1 border-bottom border-2 d-none"
-                                            id="first_org_name" value="{{ $user->first_org_name }}" disabled>
+                                        <label class="w-25"
+                                            for="first_org_name">{{ trans_lang('first_org_name') }}</label>:
+                                        <output class="form-output"
+                                            for="first_org_name">{{ $user->first_org_name }}</output>
+                                        <input type="text" name="first_org_name"
+                                            class="p-1 mt-2 ms-1 border-bottom border-2 d-none" id="first_org_name"
+                                            value="{{ $user->first_org_name }}" disabled>
                                     </div>
                                     <span class="invalid-feedback"></span>
                                 </div>
@@ -144,8 +148,9 @@
                                                     <i class="fa-brands fa-google fs-2 mt-1"></i>
                                                 </label>
                                                 <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" id="google_login" class="border form-check-input"
-                                                        role="switch" @if ($user->checkProvider('google')) checked @endif />
+                                                    <input type="checkbox" id="google_login"
+                                                        class="border form-check-input" role="switch"
+                                                        @if ($user->checkProvider('google')) checked @endif />
                                                 </div>
                                             </div>
                                         </li>
@@ -163,15 +168,15 @@
                                     </div>
                                 </div>
                             @elseif(!auth_helper()->isVerified())
-                                <div class="alert alert-warning d-flex mb-2 email_verify_box" role="alert" >
+                                <div class="alert alert-warning d-flex mb-2 email_verify_box" role="alert">
                                     <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
                                         aria-label="Warning:"></i>
                                     <div class="text-start">
                                         Verify your email
-                                        <a href="javascript:void(0);" id="sent_email_verify_link" class="text-warning">here</a>
+                                        <a href="javascript:void(0);" id="sent_email_verify_link"
+                                            class="text-warning">here</a>
                                     </div>
                                 </div>
-
                             @endif
                             <!-- /Form Content -->
 
@@ -270,7 +275,7 @@
     <!-- /Profile Section -->
 
     <!-- Product Section -->
-    <section class="discount-products bg-second py-4 mt-5">
+    <section class="discount-products bg-second mt-5">
         <div class="container-custom">
 
 
@@ -282,23 +287,6 @@
                     <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
                     <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
                 </div>
-
-                <!-- sorting -->
-                <!-- <div class="sort-container">
-                                <div class="arrows">
-                                    <button><i class="fa-solid fa-caret-up"></i></button>
-                                    <button><i class="fa-solid fa-caret-down"></i></button>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">Sort by</button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
-                                </div>
-                            </div> -->
 
             </div>
 
@@ -414,7 +402,7 @@
                             window.location.reload();
                             // unactiveForm(cur);
                         } else {
-                            var fields = ['username', 'email','first_org_name'];
+                            var fields = ['username', 'email', 'first_org_name'];
                             handleErrorMessages(fields, response.errors, response.message);
                         }
                     }
@@ -476,9 +464,9 @@
 
             // Function to handle login/logout for OAuth providers
             function handleOAuthLogin(provider) {
-                var checkbox =  $('#' + provider + '_login');
+                var checkbox = $('#' + provider + '_login');
                 if (checkbox.prop('checked')) {
-                    checkbox.prop('checked',false)
+                    checkbox.prop('checked', false)
                     window.location.href = `/login/${provider}`;
                 } else {
                     remove_oauth(provider);
