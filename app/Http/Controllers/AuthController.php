@@ -75,7 +75,6 @@ class AuthController extends Controller
             'first_phone' => 'required',
             'second_phone' => 'nullable|different:first_phone',
         ], $messages);
-        logger($request->all());
         if($this->is_seller($request))
         {
             $validator->addRules([

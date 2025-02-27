@@ -485,7 +485,7 @@
                         let count = getStoredCount("white_list_count") + 1;
                         updateStoredCount("white_list_count", ".white_list_count", count);
                     }
-                    console.log(response.message);
+    
                 }
             });
         }
@@ -513,7 +513,6 @@
                     }
 
                     btn.closest('#btn-message').find('span').html(response.message);
-                    console.log(response.message);
                 }
             });
         }

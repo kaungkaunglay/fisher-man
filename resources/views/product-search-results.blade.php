@@ -102,7 +102,6 @@
                     if (data.status) {
 
                     }
-                    console.log(data.message);
                 }
             });
 
