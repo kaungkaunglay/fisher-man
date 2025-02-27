@@ -14,6 +14,7 @@ class ProfileController extends Controller
     public function seller_profile()
     {
         $user = AuthHelper::auth();
+        $user->oauth_avatar = $user->oAuths?->avatar;
         $products = $user->products()->paginate(12);
 
         return view('profile_seller', compact('user', 'products'));
@@ -22,7 +23,8 @@ class ProfileController extends Controller
     public function user_profile()
     {
         $user = AuthHelper::auth();
-        return view('profile_user', compact('user'));
+        $hasShopRequest = $user->shop()->exists();
+        return view('profile_user', compact('user','hasShopRequest'));
     }
 
     public function update_basic_profile(Request $request)

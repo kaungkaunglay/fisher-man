@@ -177,7 +177,7 @@
                             } else {
                                 var errors = response.errors ?? {};
 
-                                console.log(errors);
+
 
                                 var fields = [
                                     'wish_name',
@@ -219,14 +219,12 @@
                         success: function(response) {
                             if (response.status == true) {
                                 // Display success message
-                                console.log(response.message);
                                 $('#success-message').text(response.message).removeClass('d-none').addClass('d-block');
                                 // Optionally, clear the form fields
                                 // $('#contact-form')[0].reset();
                             } else {
                                 var errors = response.errors ?? {};
 
-                                console.log(errors);
 
                                 var fields = [
                                     'name',

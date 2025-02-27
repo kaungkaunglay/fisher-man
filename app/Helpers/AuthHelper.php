@@ -60,8 +60,24 @@ class AuthHelper
      */
     public static function isVerified(): bool
     {
-        return (bool) self::auth()?->email_verified_at;
+        return self::auth()?->email_verification?->verified_at !== null;
     }
+
+
+    /**
+     *  Check if the user email verify link is invalid
+     *
+     *  @return bool
+     */
+
+    public static function isEmailLinkInvalid(): bool
+    {
+        return self::auth()?->email_verification?->token_expire_at
+            ? now()->greaterThan(self::auth()->email_verification->token_expire_at)
+            : true;
+    }
+
+
 
     /**
      * Log the user out by clearing their session and logging out of Auth.
@@ -133,9 +149,9 @@ class AuthHelper
 
         return Cache::remember($cacheKey, 60, function () use ($userId, $provider, $token) {
             $oauth = OAuths::where('user_id', $userId)
-                         ->where('provider', $provider)
-                         ->latest()
-                         ->first();
+                ->where('provider', $provider)
+                ->latest()
+                ->first();
 
             return $oauth && $oauth->token === $token;
         });

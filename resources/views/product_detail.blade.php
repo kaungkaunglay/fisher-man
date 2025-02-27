@@ -219,7 +219,7 @@
                         quantity: +($(this).siblings('.quantity').find('.quantity-value').val())
                     });
 
-                console.log(selected_products);
+  
 
                 cur = $(this);
 
@@ -237,7 +237,6 @@
                             cur.siblings('.quantity').find('.decrement, .increment').prop('disabled', true);
 
                             cur.html("{{ trans_lang('added_cart') }}");
-                            console.log(response.message);
                         }
                     }
                 });

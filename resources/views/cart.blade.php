@@ -640,7 +640,6 @@
                 e.preventDefault();
 
                 var products = collectProducts();
-                console.log(products);
 
                 var formData = new FormData(this);
 
@@ -678,8 +677,6 @@
 
             function handleLoginResponse(response, products) {
                 if (response.status) {
-                    console.log('Login successfully');
-
                     $(".btn-next[data-page='#login']").attr('data-page', '#address');
 
                     updatePageWithUserInfo(response.user);
@@ -692,7 +689,6 @@
             }
 
             function updatePageWithUserInfo(user) {
-                console.log("user data: " + user.username);
                 $(".address_input#username").val(user.username);
                 $(".address_input#tel").val(user.first_phone);
                 $(".address_input#line_id").val(user.line_id);
@@ -730,7 +726,6 @@
                         products: products
                     },
                     success: function(response) {
-                        console.log(response.message);
                         // return response.status;
                     }
                 });

@@ -218,7 +218,6 @@ class AdminController extends Controller
 
     public function updateStatus(Request $request)
     {
-        logger($request);
         $shop = Shop::findOrFail($request->shop_id);
         $shop->status = $request->status;
         $shop->save();
@@ -238,9 +237,6 @@ class AdminController extends Controller
     public function deleteShop(Request $request)
     {
 
-        logger($request);
-
-
         $shop = Shop::find($request->shop_id);
         $user = $shop->user;
         $user->assignRole(3);
@@ -253,7 +249,6 @@ class AdminController extends Controller
     public function logout()
     {
         AuthHelper::logout();
-
         return to_route('admin.login');
     }
 }

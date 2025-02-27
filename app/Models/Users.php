@@ -30,14 +30,11 @@ class Users extends Authenticatable implements CanResetPassword,MustVerifyEmail
         'avatar',
         'location',
         'address',
-        'email_verified_at',
-        'email_verify_token'
     ];
 
     protected $hidden = [
         'password',
-        'remember_token',
-        'email_verify_token'
+        'remember_token'
     ];
 
     public function roles()
@@ -64,13 +61,18 @@ class Users extends Authenticatable implements CanResetPassword,MustVerifyEmail
         return $this->hasMany(Cart::class, 'user_id' , 'id');
     }
 
+    public function email_verification()
+    {
+        return $this->hasOne(EmailVerification::class, 'user_id', 'id');
+    }
+
     public function assignRole($role_id)
     {
         $this->roles()->sync([$role_id]);
     }
 
     public function shop() {
-        return $this->hasOne(Shop::class);
+        return $this->hasOne(Shop::class,'user_id','id');
     }
 
     public function oAuths(){
