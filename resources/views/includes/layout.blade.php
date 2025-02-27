@@ -21,10 +21,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}" />
     <!-- add jquery -->
-        <script
-    src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
-    integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
-    crossorigin="anonymous"></script>
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <!-- {{-- favicon --}} -->
  
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png') }}">
