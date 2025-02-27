@@ -74,9 +74,9 @@
                                         @if ($product->discount > 0)
                                             ¥{{ number_format($product->product_price - $product->discount, 2) }}
                                             <span
-                                                class="original-price">¥{{ number_format($product->product_price, 2) }}</span>
+                                                class="original-price">¥{{ number_format($product->product_price) }}</span>
                                         @else
-                                            <span class="">¥{{ number_format($product->product_price, 2) }}</span>
+                                            <span class="">¥{{ number_format($product->product_price) }}</span>
                                         @endif
                                     </p>
                                     <div class="title-category">

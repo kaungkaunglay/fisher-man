@@ -48,7 +48,7 @@
                                                 alt="{{ $product->name }}">
                                         </a>
                                         <div class="left">
-                                            <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
+                                            <p class="price m-t-b-10">¥{{ number_format($product->product_price) }}</p>
                                             <div class="title-category">
                                                 <a href="{{ route('sub-category.show', $product->subCategory->id) }}"
                                                     class="menu-category">{{ $product->subCategory->name }}</a>
