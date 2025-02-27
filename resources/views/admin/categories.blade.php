@@ -88,7 +88,7 @@
                     @foreach($categories as $category)
                     <li class="product-item gap14">
                         <div class="image no-bg">
-                            <img src="{{ asset($category->image) }}" alt="{{ $category->category_name }}">
+                            <img src="{{ asset('assets/images/categories/'.$category->image) }}" alt="{{ $category->category_name }}">
                         </div>
                         <div class="flex items-center justify-between gap20 flex-grow">
                             <div class="name">
