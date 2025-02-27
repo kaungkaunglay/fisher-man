@@ -6,67 +6,45 @@
     <!-- Breadcrumbs -->
     <section class="mt-5 mb-3 ">
         <div class="container-custom">
-
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 bg-transparent">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans_lang('home') }}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ trans_lang('profile') }}</li>
                 </ol>
             </nav>
-
         </div>
     </section>
     <!-- /Breadcrumbs -->
 
     <!-- Profile Section -->
     <section>
-        <div class="profile_seller container-custom row">
+        <div class="profile_seller container-customn row">
 
-            <div class="col-12 text-center">
+            {{-- <div class="col-12 text-center">
                 @include('messages.index')
-            </div>
+            </div> --}}
 
             <!-- Profile Side -->
             <div class="col-12 col-lg-7 h-100 profile-side">
-
-                <form action="#" id="update_basic_profile" class="profile-form" method="POST">
-
-                    @csrf
-
+                {{-- <form action="#" id="update_basic_profile" class="profile-form" method="POST">
+                    @csrf --}}
                     <div class="w-100 h-100 d-md-flex gap-3">
                         <!-- profile img -->
                         <div class="w-100 profile-form d-flex flex-column avatar-input">
                             <label for="avatar-input" class="w-100 d-block position-relative gallery">
-                                <img src="{{ $user->oauth_avatar ? $user->oauth_avatar: ($user->avatar ? asset('assets/avatars/' . $user->avatar): asset('assets/avatars/default_avatar.png')) }}"
-                                    class="default-preview" id="form-img" alt="{{ $user->username ?? 'Account.png' }}">
-                                <div class="avatar-upload position-absolute d-none">
-                                    <div class="m-auto">
-                                        <i class="fas fa-upload"></i>
-                                        <p>Upload Profile Image</p>
-                                    </div>
-                                </div>
+                                <img src="{{asset('assets/admin/images/avatar/user-13.png')}}" class="default-preview" id="form-img" alt="">
                             </label>
-                            <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input"
-                                accept="image/*">
                         </div>
                         <!-- /profile img -->
 
                         <!-- Profile Info -->
                         <div class="w-100 d-flex flex-column">
 
+
                             <!-- Form Headline -->
                             <div class="bg-primary text-white p-2 form-headline">
                                 <h2 class="fw-bold d-flex justify-content-between">{{ trans_lang('info') }}
                                     <div class="d-flex justify-content-end gap-4">
-                                        <button type="submit" class="save d-none">
-                                            <i class="fa-solid fa-save fs-5 text-white"></i>
-                                        </button>
-                                        <button class="edit">
-                                            <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
-                                        </button>
-                                        <button class="cancel d-none">
-                                            <i class="fa-solid fa-x fs-5 text-white"></i>
-                                        </button>
                                     </div>
                                 </h2>
                             </div>
@@ -79,10 +57,9 @@
                                 <div class="form-group">
                                     <div class="d-flex align-items-center">
                                         <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
-                                        <output class="form-output" for="username">{{ $user->username }}</output>
-                                        <input type="text" name="username"
-                                            class="p-1 mt-1 ms-1 border-bottom border-2 d-none" id="username"
-                                            value="{{ $user->username }}" disabled>
+                                        <output class="form-output" for="username"></output>
+                                        <input type="text" name="username" class="p-1 mt-1 ms-1 border-bottom border-2 d-none"
+                                            id="username" value="" disabled>
                                     </div>
                                     <span class="invalid-feedback"></span>
                                 </div>
@@ -91,10 +68,9 @@
                                 <div class="form-group">
                                     <div class="d-flex align-items-center form-group">
                                         <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
-                                        <output class="form-output" for="email">{{ $user->email }}</output>
-                                        <input type="email" name="email"
-                                            class="p-1 mt-2 ms-1 border-bottom border-2 d-none" id="email"
-                                            value="{{ $user->email }}" disabled>
+                                        <output class="form-output" for="email"></output>
+                                        <input type="email" name="email" class="p-1 mt-2 ms-1 border-bottom border-2 d-none"
+                                            id="email" value="" disabled>
                                     </div>
                                     <span class="invalid-feedback"></span>
                                 </div>
@@ -102,19 +78,16 @@
                                 <!-- organizaion -->
                                 <div class="form-group">
                                     <div class="d-flex align-items-center form-group">
-                                        <label class="w-25"
-                                            for="first_org_name">{{ trans_lang('first_org_name') }}</label>:
-                                        <output class="form-output"
-                                            for="first_org_name">{{ $user->first_org_name }}</output>
-                                        <input type="text" name="first_org_name"
-                                            class="p-1 mt-2 ms-1 border-bottom border-2 d-none" id="first_org_name"
-                                            value="{{ $user->first_org_name }}" disabled>
+                                        <label class="w-25" for="first_org_name">{{ trans_lang('first_org_name') }}</label>:
+                                        <output class="form-output" for="first_org_name"></output>
+                                        <input type="text" name="first_org_name" class="p-1 mt-2 ms-1 border-bottom border-2 d-none"
+                                            id="first_org_name" value="" disabled>
                                     </div>
                                     <span class="invalid-feedback"></span>
                                 </div>
 
                                 <!-- account checkbox -->
-                                <div class="mt-2">
+                                {{-- <div class="mt-2">
                                     <!-- form on state -->
                                     <ul class="d-flex gap-4 checkbox-list">
                                         <li>
@@ -124,7 +97,7 @@
                                                 </label>
                                                 <div class="form-check form-switch align-self-center">
                                                     <input type="checkbox" id="line_login" class="border form-check-input"
-                                                        role="switch" @if ($user->checkProvider('line')) checked @endif />
+                                                        role="switch" />
                                                 </div>
                                             </div>
                                         </li>
@@ -137,7 +110,7 @@
                                                 <div class="form-check form-switch align-self-center">
                                                     <input type="checkbox" id="facebook_login"
                                                         class="border form-check-input" role="switch"
-                                                        @if ($user->checkProvider('facebook')) checked @endif />
+                                                         />
                                                 </div>
                                             </div>
                                         </li>
@@ -148,54 +121,44 @@
                                                     <i class="fa-brands fa-google fs-2 mt-1"></i>
                                                 </label>
                                                 <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" id="google_login"
-                                                        class="border form-check-input" role="switch"
-                                                        @if ($user->checkProvider('google')) checked @endif />
+                                                    <input type="checkbox" id="google_login" class="border form-check-input"
+                                                        role="switch"  />
                                                 </div>
                                             </div>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> --}}
 
                             </div>
 
-                            @if (!auth_helper()->isEmailLinkInvalid())
-                                <div class="alert alert-success d-flex mb-2 mt-auto" role="alert">
-                                    <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
-                                        aria-label="Success:"></i>
-                                    <div class="text-start">
-                                        Email verification link already sent.
-                                    </div>
-                                </div>
-                            @elseif(!auth_helper()->isVerified())
-                                <div class="alert alert-warning d-flex mb-2 email_verify_box" role="alert">
+                            
+                                {{-- <div class="alert alert-warning d-flex mb-2" role="alert" >
                                     <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
                                         aria-label="Warning:"></i>
                                     <div class="text-start">
                                         Verify your email
-                                        <a href="javascript:void(0);" id="sent_email_verify_link"
-                                            class="text-warning">here</a>
+                                        <a href="javascript:void(0);" id="sent_email_verify_link" class="btn btn-outline-warning btn-sm">here</a>
                                     </div>
-                                </div>
-                            @endif
+                                </div> --}}
+                          
                             <!-- /Form Content -->
 
                         </div>
                     </div>
-                </form>
+                {{-- </form> --}}
 
 
                 <!-- Detail Info -->
-                <form action="" id="update_contact_details" method="POST" class="w-100 mt-3 profile-form">
+                {{-- <form action="" id="update_contact_details" method="POST" class="w-100 mt-3 profile-form"> --}}
 
                     <!-- Form Headline -->
-                    <div>
+                    <div class="mt-3">
                         <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2 form-headline">
                             {{ trans_lang('detail') }}
 
                             <!-- button group -->
                             <div class="d-flex justify-content-end gap-4">
-                                <button type="submit" class="save d-none">
+                                {{-- <button type="submit" class="save d-none">
                                     <i class="fa-solid fa-save fs-5 text-white"></i>
                                 </button>
                                 <button class="edit">
@@ -203,7 +166,7 @@
                                 </button>
                                 <button class="cancel d-none">
                                     <i class="fa-solid fa-x fs-5 text-white"></i>
-                                </button>
+                                </button> --}}
                             </div>
                         </h2>
                     </div>
@@ -215,8 +178,8 @@
                         <!-- address -->
                         <div class="d-flex align-items-center form-group">
                             <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
-                            <output class="form-output" for="address">{{ $user->address }}</output>
-                            <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea>
+                            <output class="form-output" for="address"></output>
+                            <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled></textarea>
                             <span class="invalid-feedback"></span>
                         </div>
 
@@ -225,15 +188,15 @@
                             <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
                             <div class="ms-1 d-flex flex-column phone-no-container">
                                 <a href="tel:">
-                                    <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
+                                    <output class="form-output" for="first_phone"></output>
                                 </a>
                                 <input type="tel" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none"
-                                    id="first_phone" value="{{ $user->first_phone }}" disabled>
+                                    id="first_phone" value="" disabled>
                                 <a href="tel:">
-                                    <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
+                                    <output class="form-output" for="second_phone"></output>
                                 </a>
                                 <input type="tel" name="second_phone" class="p-1 mt-2 border-bottom border-2 d-none"
-                                    value="{{ $user->second_phone }}" id="second_phone" disabled>
+                                    value="" id="second_phone" disabled>
                                 <span class="invalid-feedback"></span>
                             </div>
                             <span class="invalid-feedback"></span>
@@ -275,7 +238,7 @@
     <!-- /Profile Section -->
 
     <!-- Product Section -->
-    <section class="discount-products bg-second mt-5">
+    <section class="discount-products bg-second py-4 mt-5">
         <div class="container-custom">
 
 
@@ -288,43 +251,60 @@
                     <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
                 </div>
 
+                <!-- sorting -->
+                <!-- <div class="sort-container">
+                                <div class="arrows">
+                                    <button><i class="fa-solid fa-caret-up"></i></button>
+                                    <button><i class="fa-solid fa-caret-down"></i></button>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">Sort by</button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    </ul>
+                                </div>
+                            </div> -->
+
             </div>
 
             <div class="card-list" id="view-list" data-list="fish-list-1">
 
-                @foreach ($products as $product)
+                {{-- @foreach ($products as $product) --}}
                     <div class="item-card">
-                        <a href="{{ route('product.show', $product->id) }}" class="right">
-                            <img src="{{ asset('assets/products/' . $product->product_image) }}" class="card-img-top"
-                                alt="{{ $product->name }}">
+                        <a href="" class="right">
+                            <img src="" class="card-img-top"
+                                alt="">
                         </a>
                         <div class="left">
                             <p class="price m-t-b-10">
-                                @if ($product->discount > 0)
-                                    ¥{{ number_format($product->product_price - $product->discount, 2) }}
-                                    <span class="original-price">¥{{ number_format($product->product_price, 2) }}</span>
-                                @else
-                                    <span class="">¥{{ number_format($product->product_price, 2) }}</span>
-                                @endif
+                               
+                               
+                                    <span class="original-price">¥</span>
+                        
+                                    <span class="">¥</span>
+                    
                             </p>
                             <div class="title-category">
-                                <a href="{{ route('sub-category.show', $product->subCategory->id) }}"
-                                    class="menu-category ">{{ $product->subCategory->name }}</a>
-                                <h3 class="title m-t-b-10">{{ $product->name }}</h3>
+                                <a href=""
+                                    class="menu-category "></a>
+                                <h3 class="title m-t-b-10"></h3>
                             </div>
-                            <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
-                                {{ $product->description }}
+                            <a href="" class="txt m-b-10 description">
+                                
                             </a>
 
                         </div>
                     </div>
-                @endforeach
+        
 
             </div>
 
 
 
-            <div class="row mt-4">
+            {{-- <div class="row mt-4">
                 @if ($products->hasPages())
                     <ul class="pagination">
                         <!-- Previous Page Link -->
@@ -354,22 +334,50 @@
                         @endif
                     </ul>
                 @endif
-            </div>
+            </div> --}}
         </div>
     </section>
     <!-- /Product Section -->
 
     <!-- All Scripts -->
     <script defer src="{{ asset('assets/js/view-list.js') }}"></script>
-    {{-- <script defer src="{{ asset('assets/js/words-limit.js') }}"></script> --}}
+    <script defer src="{{ asset('assets/js/words-limit.js') }}"></script>
     <script defer src="{{ asset('assets/js/profile-seller.js') }}"></script>
+
+    {{-- <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $("#shopRequestForm").submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: "{{ route('buyer.request_shop') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        if (response.status == true) {
+                            window.location.href = "{{ route('profile_seller') }}";
+                        } else {}
+                    }
+                });
+            });
+        });
+    </script> --}}
+    <!-- /All Scripts -->
 
     {{-- Testing --}}
     <script defer src="{{ asset('assets/js/cloneNode.test.js') }}"></script>
     {{-- /Testing --}}
 @endsection
 
-@section('script')
+{{-- @section('script')
     <script>
         $(document).ready(function() {
 
@@ -402,7 +410,7 @@
                             window.location.reload();
                             // unactiveForm(cur);
                         } else {
-                            var fields = ['username', 'email', 'first_org_name'];
+                            var fields = ['username', 'email'];
                             handleErrorMessages(fields, response.errors, response.message);
                         }
                     }
@@ -422,6 +430,8 @@
                     success: function(response) {
                         if (response.status) {
 
+
+
                             window.location.reload();
                             // unactiveForm(cur);
 
@@ -440,7 +450,7 @@
 
                 var cur = $(this);
 
-                if (formData) {
+                if (formData && Object.keys(formData).length > 0) {
                     sendUpdateBasicData(formData, cur);
                 } else {
                     unactiveForm(cur);
@@ -454,7 +464,7 @@
 
                 var cur = $(this);
 
-                if (formData) {
+                if (formData && Object.keys(formData).length > 0) {
                     sendUpdateDetailData(formData, cur);
                 } else {
                     unactiveForm(cur);
@@ -464,9 +474,7 @@
 
             // Function to handle login/logout for OAuth providers
             function handleOAuthLogin(provider) {
-                var checkbox = $('#' + provider + '_login');
-                if (checkbox.prop('checked')) {
-                    checkbox.prop('checked', false)
+                if ($('#' + provider + '_login').prop('checked')) {
                     window.location.href = `/login/${provider}`;
                 } else {
                     remove_oauth(provider);
@@ -504,7 +512,9 @@
             });
 
         });
+    </script>
 
+    <script>
         $(document).on('click', '.pagination a', function(e) {
             e.preventDefault();
             let page = $(this).attr('href').split('page=')[1];
@@ -521,4 +531,4 @@
             });
         }
     </script>
-@endsection
+@endsection --}}

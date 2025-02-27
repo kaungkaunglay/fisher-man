@@ -12,6 +12,10 @@ body {
   box-shadow: none;
 }
 
+.shop-location {
+  min-height: 300px;
+}
+
 .avatar-upload {
   width: 100%;
   height: 100%;
