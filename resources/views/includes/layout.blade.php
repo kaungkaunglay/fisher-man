@@ -23,7 +23,7 @@
     <!-- add jquery -->
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <!-- {{-- favicon --}} -->
- 
+
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon/favicon-16x16.png') }}">
@@ -270,8 +270,6 @@
                         <li><a href="{{ route('special-offer') }}">{{ trans_lang('special_offer') }}</a></li>
                         <li><a href="{{ route('support') }}">{{ trans_lang('faqs') }}</a></li>
                         <li><a href="{{ route('terms') }}">{{ trans_lang('terms_privacy') }}</a></li>
-                        <li><a href="#">{{ trans_lang('customer_review') }}</a></li>
-                        <li><a href="#">{{ trans_lang('blogs') }}</a></li>
                     </ul>
                 </div>
                 {{-- /Useful Link --}}
@@ -485,7 +483,7 @@
                         let count = getStoredCount("white_list_count") + 1;
                         updateStoredCount("white_list_count", ".white_list_count", count);
                     }
-    
+
                 }
             });
         }

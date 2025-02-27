@@ -41,14 +41,16 @@
                         <!-- profile img -->
                         <div class="w-100 profile-form d-flex flex-column avatar-input">
                             <label for="avatar-input" class="w-100 d-block position-relative gallery">
-                                <img src="{{ $user->avatar ? asset('assets/avatars/'.$user->avatar) : asset('assets/avatars/default_avatar.png') }}" class="default-preview" id="form-img"
-                                    alt="{{ $user->username ?? 'Account.png'}}">
-                                    <div class="avatar-upload position-absolute d-none">
-                                        <div class="m-auto">
-                                            <i class="fas fa-upload"></i>
-                                            <p>Upload Profile Image</p>
-                                        </div>
+                                <img src="{{ $user->oauth_avatar ? $user->oauth_avatar :
+                                            ($user->avatar ? asset('assets/avatars/'.$user->avatar) :
+                                            asset('assets/avatars/default_avatar.png'))
+                                    }}" class="default-preview" id="form-img" alt="{{ $user->username ?? 'Account.png'}}">
+                                <div class="avatar-upload position-absolute d-none">
+                                    <div class="m-auto">
+                                        <i class="fas fa-upload"></i>
+                                        <p>Upload Profile Image</p>
                                     </div>
+                                </div>
                             </label>
                             <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input" accept="image/*">
                         </div>

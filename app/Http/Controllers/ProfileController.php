@@ -14,6 +14,7 @@ class ProfileController extends Controller
     public function seller_profile()
     {
         $user = AuthHelper::auth();
+        $user->oauth_avatar = $user->oAuths?->avatar;
         $products = $user->products()->paginate(12);
 
         return view('profile_seller', compact('user', 'products'));
