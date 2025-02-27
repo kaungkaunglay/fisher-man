@@ -22,7 +22,8 @@ class ProfileController extends Controller
     public function user_profile()
     {
         $user = AuthHelper::auth();
-        return view('profile_user', compact('user'));
+        $hasShopRequest = $user->shop()->exists();
+        return view('profile_user', compact('user','hasShopRequest'));
     }
 
     public function update_basic_profile(Request $request)

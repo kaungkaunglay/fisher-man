@@ -25,7 +25,7 @@ class Product extends Model
     }
 
     public function user(){
-        return $this->belongsTo(Users::class,'id','user_id');
+        return $this->belongsTo(Users::class,'user_id','id');
     }
 
     public function inWhiteLists()
