@@ -4,18 +4,15 @@
     <link rel="stylesheet" href="{{ asset('assets/css/whitelist.css') }}">
 @endsection
 @section('contents')
-
-    <!-- Bre]adcrumbs -->
-    <section>
+    <!-- Breadcrumbs -->
+    <section class="mt-4 mb-3">
         <div class="container-custom">
 
-            <nav aria-label="breadcrumb" class="py-4">
-                <div class="container">
-                    <ol class="breadcrumb mb-0 bg-transparent">
-                        <li class="breadcrumb-item"><a href="/">{{ trans_lang('home') }}</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">タグ付けされた商品</li>
-                    </ol>
-                </div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 bg-transparent">
+                    <li class="breadcrumb-item"><a href="/">{{ trans_lang('home') }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">タグ付けされた商品</li>
+                </ol>
             </nav>
 
         </div>

@@ -372,7 +372,7 @@
         {{-- /All Scripts --}}
 
         {{-- Test Scripts --}}
-        <script defer src="{{ asset('assets/js/cloneNode.test.js') }}"></script>
+        
         {{-- /Test Scripts --}}
     </section>
 
