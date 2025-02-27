@@ -120,12 +120,9 @@ class AdminController extends Controller
         return view('admin.wishList-request', compact('wishLists'));
     }
 
-   
-
     public function logout()
     {
         AuthHelper::logout();
-
         return to_route('admin.login');
     }
 }

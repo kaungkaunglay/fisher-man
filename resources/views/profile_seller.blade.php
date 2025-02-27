@@ -345,9 +345,9 @@
     <!-- /Product Section -->
 
     <!-- All Scripts -->
-    <script src="{{ asset('assets/js/view-list.js') }}"></script>
-    <script src="{{ asset('assets/js/words-limit.js') }}"></script>
-    <script src="{{ asset('assets/js/profile-seller.js') }}"></script>
+    <script defer src="{{ asset('assets/js/view-list.js') }}"></script>
+    <script defer src="{{ asset('assets/js/words-limit.js') }}"></script>
+    <script defer src="{{ asset('assets/js/profile-seller.js') }}"></script>
 
     <script>
         $(document).ready(function() {
@@ -378,7 +378,7 @@
     <!-- /All Scripts -->
 
     {{-- Testing --}}
-    <script src="{{ asset('assets/js/cloneNode.test.js') }}"></script>
+    <script defer src="{{ asset('assets/js/cloneNode.test.js') }}"></script>
     {{-- /Testing --}}
 @endsection
 

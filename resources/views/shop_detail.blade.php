@@ -374,11 +374,11 @@
         </div>
 
         {{-- All Scripts --}}
-        <script src="{{ asset('assets/js/view-list.js') }}"></script>
+        <script defer src="{{ asset('assets/js/view-list.js') }}"></script>
         {{-- /All Scripts --}}
 
         {{-- Test Scripts --}}
-        <script src="{{ asset('assets/js/cloneNode.test.js') }}"></script>
+        <script defer src="{{ asset('assets/js/cloneNode.test.js') }}"></script>
         {{-- /Test Scripts --}}
     </section>
 

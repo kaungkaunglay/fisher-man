@@ -23,12 +23,12 @@
     <link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}" />
     <!-- add jquery -->
-    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script async src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <!-- {{-- favicon --}} -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon/favicon-16x16.png') }}">
-
+    <link rel="preload" as="image" href="{{ asset('assets/images/Rectangle_90.jpg') }}">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
@@ -251,14 +251,14 @@
                     <p class="text-center txt-18">{{ json_decode(config('settings.slogan'))  }}</p>
                     <div class="social-icons d-flex justify-content-between gap-1">
                         <a href="https://www.line.me/en/">
-                            <img class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}"
+                            <img loading="lazy" class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}"
                                 alt="Line">
                         </a>
-                        <a href="https://www.facebook.com/"><img class="icon_social"
+                        <a href="https://www.facebook.com/"><img loading="lazy" class="icon_social"
                                 src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Facebook"></a>
-                        <a href="https://www.wechat.com/"><img class="icon_social"
+                        <a href="https://www.wechat.com/"><img loading="lazy" class="icon_social"
                                 src="{{ asset('assets/icons/custom/wechat.png') }}" alt="Wechat"></a>
-                        <a href="https://x.com/"><img class="icon_social"
+                        <a href="https://x.com/"><img loading="lazy" class="icon_social"
                                 src="{{ asset('assets/icons/custom/xcom.png') }}" alt="Xcom"></a>
                     </div>
                 </div>
@@ -349,13 +349,13 @@
     <!-- All Scripts -->
     <!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
     {{-- <!-- <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script> --> --}}
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{ asset('assets/js/popup.js') }}"></script>
+    <script defer src="{{ asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+    <script defer src="{{ asset('assets/js/popup.js') }}"></script>
     {{--
   <script src="{{asset('assets/js/preloader.js')}}"></script> --}}
-    <script src="{{ asset('assets/js/moving-text.js') }}"></script>
-    <script src="{{ asset('assets/js/password.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script defer src="{{ asset('assets/js/moving-text.js') }}"></script>
+    <script defer src="{{ asset('assets/js/password.js') }}"></script>
+    <script defer src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <script>
         $(document).ready(() => {
             //dropdown trigger
@@ -565,7 +565,7 @@
 
 
     <!-- Testing Scripts -->
-    <script src="{{ asset('assets/js/cloneNode.test.js') }}"></script>
+    <script defer src="{{ asset('assets/js/cloneNode.test.js') }}"></script>
     <!-- /Testing Scripts -->
 </body>
 
