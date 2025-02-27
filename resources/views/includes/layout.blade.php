@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}" />
     <!-- add jquery -->
-    <script async src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <!-- {{-- favicon --}} -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon/favicon-32x32.png') }}">
@@ -355,7 +355,6 @@
   <script src="{{asset('assets/js/preloader.js')}}"></script> --}}
     <script defer src="{{ asset('assets/js/moving-text.js') }}"></script>
     <script defer src="{{ asset('assets/js/password.js') }}"></script>
-    <script defer src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <script>
         $(document).ready(() => {
             //dropdown trigger
