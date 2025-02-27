@@ -23,12 +23,12 @@
     <link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}" />
     <!-- add jquery -->
-    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}" ></script>
     <!-- {{-- favicon --}} -->
+ 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon/favicon-16x16.png') }}">
-    <link rel="preload" as="image" href="{{ asset('assets/images/Rectangle_90.jpg') }}">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
