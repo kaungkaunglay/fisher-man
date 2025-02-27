@@ -26,4 +26,6 @@ class UsersController extends Controller
         $faqs = FAQs::all();
         return view('support', compact('faqs'));
     }
+
+   
 }

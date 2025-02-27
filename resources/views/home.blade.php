@@ -5,6 +5,8 @@
 @endsection
 
 @section('contents')
+    <div class="py-4 h-18px"></div>
+    
     <!-- Hero Section -->
     <section class="hero mt-4">
         <div class="container-custom">
@@ -41,17 +43,17 @@
             <!-- Card List -->
             <div class="card-list" id="view-list">
                 @foreach ($random_products  as $product)
-                    <div class="item-card mb-5">
+                    <div class="item-card mb-2">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
                             <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
                         </a>
                         <div class="left">
-                            <p class="price m-t-b-10">
+                            <p class="price m-t-b-10 d-flex flex-column flex-sm-row align-items-baseline">
                                 @if ($product->discount > 0)
-                                <span class="format">{{$product->product_price - $product->discount}}</span>
-                                <span class="original-price format">{{ $product->product_price }}</span>
+                                    <span class="format me-3">{{$product->product_price - $product->discount}}</span>
+                                    <span class="original-price format">{{ $product->product_price }}</span>
                                 @else
-                                    <span class="">¥{{ number_format($product->product_price, 2) }}</span>
+                                    <span>¥{{ number_format($product->product_price, 2) }}</span>
                                 @endif
                             </p>
                             <div class="title-category">
@@ -63,12 +65,12 @@
                             </a>
                             <div class="d-flex gap-2 card-btn m-t-10">
                                 <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 -solid cart-btn"
+                                    class="py-1 p-0 common-btn2 -solid cart-btn"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </a>
                                 <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 white-list-btn"
+                                    class="py-1 p-0 common-btn2 white-list-btn"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-bookmark"></i>
                                 </a>
@@ -110,13 +112,15 @@
 
                @foreach ($popular_shops as $popular_shop)
                <div class="col-6 col-md-6 col-lg-3 mb-3">
-                <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
-                    <img loading="lazy" src="{{ asset('assets/images/avatars/'.$popular_shop->avatar) }}" class="card-img-top"
-                        alt="..." />
-                    <div class="card-body bg-main">
-                        <p class="card-text text-center text-white">{{$popular_shop->shop_name}}</p>
+                <a href="{{route('shop.detail',$popular_shop->id)}}">
+                    <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
+                        <img loading="lazy" src="{{ asset('assets/images/avatars/'.$popular_shop->avatar) }}" class="card-img-top"
+                            alt="..." />
+                        <div class="card-body bg-main">
+                            <p class="card-text text-center text-white">{{$popular_shop->shop_name}}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
                @endforeach
 
@@ -180,7 +184,7 @@
                         <div class="left">
                             <p class="price m-t-b-10">
                                 @if ($product->discount > 0)
-                                    <span class="format">{{$product->product_price - $product->discount}}</span>
+                                    <span class="format me-3">{{$product->product_price - $product->discount}}</span>
                                     <span class="original-price format">{{ $product->product_price }}</span>
                                 @else
                                     <span class="format">{{ $product->product_price }}</span>
@@ -275,7 +279,7 @@
                         <div class="left">
                             <p class="price m-t-b-10">
                                 @if ($product->discount > 0)
-                                    <span class="format">{{$product->product_price - $product->discount}}</span>
+                                    <span class="format me-3">{{$product->product_price - $product->discount}}</span>
                                     <span class="original-price format">{{ $product->product_price }}</span>
                                 @else
                                     <span class="format">{{ $product->product_price }}</span>
