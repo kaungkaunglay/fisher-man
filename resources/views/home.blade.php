@@ -110,13 +110,15 @@
 
                @foreach ($popular_shops as $popular_shop)
                <div class="col-6 col-md-6 col-lg-3 mb-3">
-                <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
-                    <img loading="lazy" src="{{ asset('assets/images/avatars/'.$popular_shop->avatar) }}" class="card-img-top"
-                        alt="..." />
-                    <div class="card-body bg-main">
-                        <p class="card-text text-center text-white">{{$popular_shop->shop_name}}</p>
+                <a href="{{route('shop.detail',$popular_shop->id)}}">
+                    <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
+                        <img loading="lazy" src="{{ asset('assets/images/avatars/'.$popular_shop->avatar) }}" class="card-img-top"
+                            alt="..." />
+                        <div class="card-body bg-main">
+                            <p class="card-text text-center text-white">{{$popular_shop->shop_name}}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
                @endforeach
 
