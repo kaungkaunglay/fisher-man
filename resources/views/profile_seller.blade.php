@@ -55,7 +55,6 @@
                         <!-- Profile Info -->
                         <div class="w-100 d-flex flex-column">
 
-
                             <!-- Form Headline -->
                             <div class="bg-primary text-white p-2 form-headline">
                                 <h2 class="fw-bold d-flex justify-content-between">{{ trans_lang('info') }}
@@ -155,15 +154,24 @@
 
                             </div>
 
-                            @if(!auth_helper()->isVerified())
-                                <div class="alert alert-warning d-flex mb-2" role="alert" >
+                            @if (!auth_helper()->isEmailLinkInvalid())
+                                <div class="alert alert-success d-flex mb-2 mt-auto" role="alert">
+                                    <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
+                                        aria-label="Success:"></i>
+                                    <div class="text-start">
+                                        Email verification link already sent.
+                                    </div>
+                                </div>
+                            @elseif(!auth_helper()->isVerified())
+                                <div class="alert alert-warning d-flex mb-2 email_verify_box" role="alert" >
                                     <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
                                         aria-label="Warning:"></i>
                                     <div class="text-start">
                                         Verify your email
-                                        <a href="javascript:void(0);" id="sent_email_verify_link" class="btn btn-outline-warning btn-sm">here</a>
+                                        <a href="javascript:void(0);" id="sent_email_verify_link" class="text-warning">here</a>
                                     </div>
                                 </div>
+
                             @endif
                             <!-- /Form Content -->
 
@@ -365,36 +373,8 @@
 
     <!-- All Scripts -->
     <script defer src="{{ asset('assets/js/view-list.js') }}"></script>
-    <script defer src="{{ asset('assets/js/words-limit.js') }}"></script>
+    {{-- <script defer src="{{ asset('assets/js/words-limit.js') }}"></script> --}}
     <script defer src="{{ asset('assets/js/profile-seller.js') }}"></script>
-
-    <script>
-        $(document).ready(function() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $("#shopRequestForm").submit(function(e) {
-                e.preventDefault();
-                var formData = new FormData(this);
-                $.ajax({
-                    url: "{{ route('buyer.request_shop') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        if (response.status == true) {
-                            window.location.href = "{{ route('profile_seller') }}";
-                        } else {}
-                    }
-                });
-            });
-        });
-    </script>
-    <!-- /All Scripts -->
 
     {{-- Testing --}}
     <script defer src="{{ asset('assets/js/cloneNode.test.js') }}"></script>
@@ -434,7 +414,7 @@
                             window.location.reload();
                             // unactiveForm(cur);
                         } else {
-                            var fields = ['username', 'email'];
+                            var fields = ['username', 'email','first_org_name'];
                             handleErrorMessages(fields, response.errors, response.message);
                         }
                     }
@@ -454,8 +434,6 @@
                     success: function(response) {
                         if (response.status) {
 
-
-
                             window.location.reload();
                             // unactiveForm(cur);
 
@@ -474,7 +452,7 @@
 
                 var cur = $(this);
 
-                if (formData && Object.keys(formData).length > 0) {
+                if (formData) {
                     sendUpdateBasicData(formData, cur);
                 } else {
                     unactiveForm(cur);
@@ -488,7 +466,7 @@
 
                 var cur = $(this);
 
-                if (formData && Object.keys(formData).length > 0) {
+                if (formData) {
                     sendUpdateDetailData(formData, cur);
                 } else {
                     unactiveForm(cur);
@@ -498,7 +476,9 @@
 
             // Function to handle login/logout for OAuth providers
             function handleOAuthLogin(provider) {
-                if ($('#' + provider + '_login').prop('checked')) {
+                var checkbox =  $('#' + provider + '_login');
+                if (checkbox.prop('checked')) {
+                    checkbox.prop('checked',false)
                     window.location.href = `/login/${provider}`;
                 } else {
                     remove_oauth(provider);
@@ -536,9 +516,7 @@
             });
 
         });
-    </script>
 
-    <script>
         $(document).on('click', '.pagination a', function(e) {
             e.preventDefault();
             let page = $(this).attr('href').split('page=')[1];

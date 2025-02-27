@@ -590,7 +590,7 @@
                         console.log(response.status);
                         if (response.status) {
 
-                            console.log(response.message);
+                            // console.log(response.message);
 
                             window.location.reload();
                             // unactiveForm(cur);
@@ -613,10 +613,10 @@
                     contentType: false,
                     processData: false,
                     success: function(response) {
-                        console.log(response.status);
+                        // console.log(response.status);
                         if (response.status) {
 
-                            console.log(response.message);
+                            // console.log(response.message);
 
                             window.location.reload();
                             // unactiveForm(cur);
