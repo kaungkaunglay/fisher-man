@@ -22,11 +22,13 @@ class AdminUserSeeder extends Seeder
             [
                 'username' => 'seller',
                 'email' => 'seller@gmail.com',
+                'address' => 'Cambodia',
                 'password' => bcrypt('P@$$w0rd'),
             ],
         [
                 'username' => 'buyer',
                 'email' => 'buyer@gmail.com',
+                'address' => 'Cambodia',
                 'password' => bcrypt('P@$$w0rd'),
             ]
         ];

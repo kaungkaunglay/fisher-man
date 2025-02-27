@@ -326,7 +326,7 @@ class AuthController extends Controller
 
     public function logout(){
         AuthHelper::logout();
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 
     public function is_seller($request)

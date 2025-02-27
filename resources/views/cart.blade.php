@@ -137,8 +137,8 @@
             </div>
             <!-- ./Mobile Style -->
 
-            <div class="text-end my-4">
-                <button class="common-btn btn-next" data-page="{{ auth_helper()->check() ? "#address" : "#login"}}">{{trans_lang('next')}}</button>
+            <div class="d-flex my-4">
+                <button class="common-btn btn-next ms-auto" data-page="{{ auth_helper()->check() ? "#address" : "#login"}}">{{trans_lang('next')}}</button>
             </div>
 
         </div>

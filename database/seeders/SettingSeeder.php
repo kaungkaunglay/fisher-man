@@ -29,5 +29,11 @@ class SettingSeeder extends Seeder
                 ['platform' => 'Instagram', 'url' => 'https://instagram.com', 'icon' => 'fa-instagram'],
             ])]
         );
+        // Add default banner image
+        Setting::updateOrCreate(
+            ['key' => 'site_banner_images'],
+            ['value' => json_encode(['Rectangle_90.jpg','Rectangle_90.jpg','Rectangle_90.jpg'])]
+        );
+        
     }
 }

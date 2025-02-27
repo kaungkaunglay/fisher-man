@@ -72,17 +72,12 @@
 
                     <img src="{{ asset('assets/images/avatars/'.$shop->avatar) }}" class="rounded" alt="Shop avatar">
                     <div class="mt-3">
-                        <p class="rating-stars mb-1">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span class="ms-2 text-muted">4.5 (256 reviews)</span>
+                        <p class="mb-2 text-center d-flex justify-content-center">
+                            <span>Shop Name : &nbsp;</span>
+                            <span class="text-muted">{{$shop->shop_name}}</span>
                         </p>
                         <div class="d-grid gap-2">
-                            <button class="common-btn -solid"><i class="fas fa-envelope me-2"></i>Contact Seller</button>
-                            <button class="common-btn"><i class="fas fa-plus me-2"></i>Follow Shop</button>
+                            <a class="common-btn -solid" href="{{route('seller.contact')}}"><i class="fas fa-envelope me-2"></i>Contact Seller</a>
                         </div>
                     </div>
                 </div>
@@ -103,10 +98,10 @@
                                     <a class="nav-link text-white" id="products-tab" data-bs-toggle="tab" href="#products"
                                         role="tab">Products</a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link text-white" id="reviews-tab" data-bs-toggle="tab" href="#reviews"
                                         role="tab">Reviews</a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item">
                                     <a class="nav-link text-white" id="policies-tab" data-bs-toggle="tab" href="#policies"
                                         role="tab">Location</a>
@@ -119,20 +114,19 @@
 
                                 {{-- About Tab --}}
                                 <div class="tab-pane fade show active" id="home" role="tabpanel">
-                                    <h4 class="p-2 border-bottom border-2">About Shop</h4>
+                                    <h4 class="p-2 border-bottom border-2 fw-bold">About Shop</h4>
                                     <p class="p-2">{{$shop->description}}</p>
                                     <div class="row mt-4">
                                         <div>
-                                            <h5 class="p-2 border-bottom border-2">Shop Details</h5>
+                                            <h5 class="p-2 border-bottom border-2 fw-bold">Shop Details</h5>
                                             <ul class="list-unstyled p-2">
-                                                <li><i class="bi bi-telephone-fill text-primary mb-3 me-2"></i> {{$shop->phone_number}}
+                                                <li><i class="fas fa-phone text-primary mb-3 me-2"></i> {{$shop->phone_number}}
                                                 </li>
-                                                <li><i class="bi bi-envelope-fill text-primary mb-3 me-2"></i> {{$shop->email}}
+                                                <li><i class="fas fa-envelope text-primary mb-3 me-2"></i> {{$shop->email}}
                                                 </li>
                                                 <li><i class="fas fa-map-marker-alt text-primary mb-3 me-2"></i> {{$shop->address}}
                                                 </li>
                                                 <li><i class="fas fa-box text-primary mb-3 me-2"></i>{{$products->count()}} products</li>
-                                                <li><i class="fas fa-users text-primary mb-3"></i> 3500+ followers</li>
                                             </ul>
                                         </div>
                                     </div>

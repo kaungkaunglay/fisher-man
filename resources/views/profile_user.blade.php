@@ -5,7 +5,6 @@
 @endsection
 
 @section('contents')
-
     <!-- Breadcrumbs -->
     <section class="mt-5 mb-3 ">
         <div class="container-custom">
@@ -31,7 +30,6 @@
 
             <!-- Profile Side -->
             <div class="col-12 col-lg-7 h-100 profile-side">
-
 
                 <form action="#" id="update_basic_profile" class="profile-form" method="POST">
 
@@ -161,7 +159,6 @@
                                         <a href="javascript:void(0);" id="sent_email_verify_link" class="text-warning">here</a>
                                     </div>
                                 </div>
-
                             @endif
                             <!-- /Form Content -->
 
@@ -183,7 +180,7 @@
                                         <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
                                             aria-label="Success:"></i>
                                         <div class="text-start">
-                                            You have been requested
+                                            {{trans_lang('shop_request_sent')}}
                                         </div>
                                     </div>
                                 </div>
@@ -366,8 +363,7 @@
                 <!-- /Detail Info -->
 
                 <!-- button group -->
-                <div class="buttons d-flex gap-2 mt-3">
-                    <button class="common-btn">{{ trans_lang('upload_product') }}</button>
+                <div class="buttons d-flex mt-3">
                     <button class="common-btn">{{ trans_lang('check_order') }}</button>
                 </div>
 
@@ -590,7 +586,7 @@
                         console.log(response.status);
                         if (response.status) {
 
-                            console.log(response.message);
+                            // console.log(response.message);
 
                             window.location.reload();
                             // unactiveForm(cur);
@@ -613,10 +609,10 @@
                     contentType: false,
                     processData: false,
                     success: function(response) {
-                        console.log(response.status);
+                        // console.log(response.status);
                         if (response.status) {
 
-                            console.log(response.message);
+                            // console.log(response.message);
 
                             window.location.reload();
                             // unactiveForm(cur);
