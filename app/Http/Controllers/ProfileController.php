@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\AuthHelper;
 use App\Models\Product;
+use App\Helpers\AuthHelper;
 use Illuminate\Http\Request;
+use App\Models\EmailVerification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -14,7 +15,6 @@ class ProfileController extends Controller
     public function seller_profile()
     {
         $user = AuthHelper::auth();
-        $user->oauth_avatar = $user->oAuths?->avatar;
         $products = $user->products()->paginate(12);
 
         return view('profile_seller', compact('user', 'products'));
@@ -24,6 +24,7 @@ class ProfileController extends Controller
     {
         $user = AuthHelper::auth();
         $hasShopRequest = $user->shop()->exists();
+
         return view('profile_user', compact('user','hasShopRequest'));
     }
 
@@ -83,11 +84,25 @@ class ProfileController extends Controller
 
         }
 
+        $verification = EmailVerification::where('user_id', $user->id)->latest()->first();
+
+        if ($user->email !== $request->email && $verification) {
+            $verification->update([
+                'verified_at' => null,
+                'token' => null,
+                'token_expire_at' => null,
+            ]);
+        }
+
+
+
         $user->update([
             'username' => $request->username ?? $user->username,
             'email' => $request->email ?? $user->email,
             'first_org_name' => $request->first_org_name ?? $user->first_org_name,
         ]);
+
+
 
         session()->flash('status', 'success');
         session()->flash('message', 'Profile updated successfully.');

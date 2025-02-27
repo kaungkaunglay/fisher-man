@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -69,6 +70,7 @@ class OAuthController extends Controller
                         // 'username' => $providerUser->getName(),
                         // 'email' => $providerUser->getEmail(),
                         $providerIdField => $providerUser->getId(),
+                        'avatar' => $providerUser->getAvatar()
                     ]);
 
                 }
@@ -80,7 +82,7 @@ class OAuthController extends Controller
             }
 
             // Save OAuth information
-            $this->saveOAuthData($user, $provider, $token, $refreshToken, $providerUser->expiresIn,$providerUser->avatar);
+            $this->saveOAuthData($user, $provider, $token, $refreshToken, $providerUser->expiresIn);
 
             // Store session data
             $this->storeSessionData($provider, $token, $refreshToken, $user->id);
@@ -102,23 +104,18 @@ class OAuthController extends Controller
     {
         $userData = [
             'username' => $providerUser->getName(),
-            $providerIdField => $providerUser->getId()
+            $providerIdField => $providerUser->getId(),
+            'avatar' => $providerUser->getAvatar() ?? null,
+            'email' => $providerUser->getEmail() ?? $providerUser->getId() . '@placeholder.com'
         ];
 
-        // Add email only if it's available
-        if ($providerUser->getEmail()) {
-            $userData['email'] = $providerUser->getEmail();
-        } else {
-            // Generate a placeholder email or handle no-email case
-            $userData['email'] = $providerUser->getId() . '@placeholder.com';
-        }
 
         $user = Users::create($userData);
         $user->assignRole(3);
         return $user;
     }
 
-    protected function saveOAuthData($user, $provider, $token, $refreshToken, $expiresIn, $avatar)
+    protected function saveOAuthData($user, $provider, $token, $refreshToken, $expiresIn)
     {
         OAuths::updateOrCreate(
             [
@@ -127,7 +124,6 @@ class OAuthController extends Controller
             ],
             [
                 'token' => $token,
-                'avatar' => $avatar,
                 'refresh_token' => $refreshToken,
                 'expires_in' => $expiresIn
             ]
@@ -163,18 +159,25 @@ class OAuthController extends Controller
     {
         $user = AuthHelper::user();
 
-        $user->update([
-            `{$provider}_id` => null
-        ]);
+        // Remove the provider's ID dynamically
+        $column = "{$provider}_id";
 
-        $user->oAuths()->where('provider',$provider)->delete();
+        if (Schema::hasColumn('users', $column)) {
+            $user->update([
+                $column => null
+            ]);
+        }
 
-        session()->flash('status','success');
-        session()->flash('message','OAuth removed successfully');
+        // Remove OAuth entry from related table
+        $user->oAuths()->where('provider', $provider)->delete();
+
+        session()->flash('status', 'success');
+        session()->flash('message', 'OAuth removed successfully');
 
         return response()->json([
             'status' => true,
-            'message' => `{$provider} OAuth removed successfully`
+            'message' => "{$provider} OAuth removed successfully"
         ]);
     }
+
 }

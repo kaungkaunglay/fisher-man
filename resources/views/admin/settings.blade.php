@@ -1,3 +1,4 @@
+{{-- @dd($settings) --}}
 @extends('admin.includes.layout')
 @section('style')
     <!-- Theme Style -->
@@ -139,26 +140,23 @@
                         <div class="body-title mb-10">Banner Image</div>
                         <div class="card">
                             <div class="card-body">
-                                <form id="uploadForm">
                                     <div class="file-input-container">
                                         <div class="drop-zone" id="dropZone">
-                                            <span>Drag & drop images here or click to browse</span>
-                                            <input type="file" id="fileInput" class="custom-file-input d-none" multiple accept="image/*">
+                                            <span>Choose Banner Images</span>
+                                            <input type="file" id="image-upload" name="site_banner_images[]" class="custom-file-input d-none"  multiple>
+                                           
                                         </div>
                                     </div>
-                                    
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                    <div class="image-preview" id="image-preview">
+                                        @if(isset($settings['site_banner_images']))
+                                            @foreach(json_decode($settings['site_banner_images']) as $imageName)
+                                                <img src="{{ asset('assets/banner-images/' . $imageName) }}" alt="Banner Image" style="max-width: 150px;">
+                                            @endforeach
+                                        @endif
                                     </div>
-                                    
-                                    <button type="submit" class="btn btn-primary d-none" id="uploadButton">Upload</button>
-                                </form>
-                                
-                                <div class="preview-container" id="previewContainer"></div>
-                            </div>
-                        </div>
-
                     </fieldset>
+
+                  
                     {{-- <fieldset>
                         <div class="body-title mb-10">Social Links</div>
                         <div id="social-links">
@@ -180,7 +178,6 @@
 
                 <div class="cols mt-4">
                     <button class="tf-button " type="submit">{{trans_lang('save')}}</button>
-                    {{-- <a href="" class="tf-button style-2 w-full">{{trans_lang('cancle')}}</a> --}}
                 </div>
             </form>
         </div>
