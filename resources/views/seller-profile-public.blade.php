@@ -32,7 +32,7 @@
                         <!-- profile img -->
                         <div class="w-100 profile-form d-flex flex-column avatar-input">
                             <label for="avatar-input" class="w-100 d-block position-relative gallery">
-                                <img src="{{asset('assets/admin/images/avatar/user-13.png')}}" class="default-preview" id="form-img" alt="">
+                                <img src="{{asset('assets/avatars/'.$sellerInfo->avatar)}}" class="default-preview" id="form-img" alt="">
                             </label>
                         </div>
                         <!-- /profile img -->
@@ -184,7 +184,7 @@
                                 <a href="tel:">
                                     <output class="form-output" for="first_phone">{{$sellerInfo->first_phone}}</output>
                                 </a>
-                                
+
                                 <a href="tel:">
                                     <output class="form-output" for="second_phone">{{$sellerInfo->second_phone}}</output>
                                 </a>
