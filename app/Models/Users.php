@@ -51,7 +51,7 @@ class Users extends Authenticatable implements CanResetPassword,MustVerifyEmail
     }
 
     public function products() {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class,'user_id','id');
     }
 
     public function whitelists()

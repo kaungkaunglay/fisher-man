@@ -11,18 +11,19 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        $categories = Category::paginate(10); 
+        $categories = Category::paginate(10);
         return view('admin.categories', compact('categories'));
     }
 
-    public function show($id) {
-        $category = Category::with(['subCategories.products' => function ($query) {
-            $query->get();
+    public function show($id)
+    {
+        $category = Category::with(['subCategories' => function ($query) {
+            $query->with('products');
         }])->findOrFail($id);
-    
+
         return view('category', compact('category'));
     }
-    
+
 
     public function create()
     {
@@ -67,34 +68,34 @@ class CategoriesController extends Controller
             'category_name' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
         ]);
-    
+
         $category->category_name = $request->category_name;
-    
+
         if ($request->hasFile('image')) {
             $folderPath = public_path('storage/categories');
-    
+
             if (!file_exists($folderPath)) {
                 mkdir($folderPath, 0755, true);
             }
-    
+
             $image = $request->file('image');
-    
+
             $imageName = time() . '_' . $image->getClientOriginalName();
-    
+
             if ($category->image && file_exists(public_path($category->image))) {
                 unlink(public_path($category->image));
             }
-    
+
             $image->move($folderPath, $imageName);
-    
+
             $category->image = 'storage/categories/' . $imageName;
         }
-    
+
         $category->save();
-    
+
         return redirect()->route('admin.categories')->with('success', 'Category updated successfully.');
     }
-    
+
     public function destroy(Category $category)
     {
         Storage::delete('public/' . $category->image);
