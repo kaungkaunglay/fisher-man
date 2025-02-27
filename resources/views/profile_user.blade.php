@@ -5,9 +5,6 @@
 @endsection
 
 @section('contents')
-    @php
-        $hasShopRequest = \App\Models\Shop::where('user_id', auth_helper()->id())->exists();
-    @endphp
 
     <!-- Breadcrumbs -->
     <section class="mt-5 mb-3 ">
