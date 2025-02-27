@@ -186,7 +186,7 @@
                                         <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
                                             aria-label="Success:"></i>
                                         <div class="text-start">
-                                            You have been requested
+                                            {{trans_lang('shop_request_sent')}}
                                         </div>
                                     </div>
                                 </div>
