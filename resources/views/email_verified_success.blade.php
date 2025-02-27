@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Verification Success</title>
-    <!-- Bootstrap CSS from CDN -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
     <style>
         .verification-card {
             max-width: 500px;
@@ -120,8 +119,8 @@
                 <p class="card-text mb-3 pop-in" style="animation-delay: 0.4s;">Your email has been successfully
                     verified.</p>
                 <p class="text-muted mb-4 fade-in">You can now enjoy all the features of your account.</p>
-                <a href="" class="btn btn-primary px-4 py-2 fade-in" style="animation-delay: 0.8s;">Continue to
-                    Dashboard</a>
+                <a href="{{ route('profile')}}" class="btn btn-primary px-4 py-2 fade-in" style="animation-delay: 0.8s;">Continue to
+                    profile</a>
             </div>
             <div class="card-footer text-center py-3 text-muted">
                 <small>Thank you for completing the verification process.</small>
@@ -129,8 +128,10 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS from CDN (optional, only needed if you want to use Bootstrap's JavaScript features) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script defer src="{{ asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+
+
 </body>
 
 </html>

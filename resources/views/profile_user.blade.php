@@ -41,7 +41,7 @@
                         <!-- profile img -->
                         <div class="w-100 profile-form d-flex flex-column avatar-input">
                             <label for="avatar-input" class="w-100 d-block position-relative gallery">
-                                <img src="{{ $user->avatar ? asset('assets/avatars/'.$user->avatar) : asset('assets/images/account1.svg') }}" class="default-preview" id="form-img"
+                                <img src="{{ $user->avatar ? asset('assets/avatars/'.$user->avatar) : asset('assets/avatars/default_avatar.png') }}" class="default-preview" id="form-img"
                                     alt="{{ $user->username ?? 'Account.png'}}">
                                     <div class="avatar-upload position-absolute d-none">
                                         <div class="m-auto">
@@ -52,6 +52,7 @@
                             </label>
                             <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input" accept="image/*">
                         </div>
+                        <!-- /profile img -->
 
                         <!-- Profile Info -->
                         <div class="w-100 d-flex flex-column">
@@ -144,8 +145,16 @@
 
                             </div>
 
-                            @if(!auth_helper()->isVerified())
-                                <div class="alert alert-warning d-flex mb-2" role="alert" >
+                            @if (!auth_helper()->isEmailLinkInvalid())
+                                <div class="alert alert-success d-flex mb-2 mt-auto" role="alert">
+                                    <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
+                                        aria-label="Success:"></i>
+                                    <div class="text-start">
+                                        Email verification link already sent.
+                                    </div>
+                                </div>
+                            @elseif(!auth_helper()->isVerified())
+                                <div class="alert alert-warning d-flex mb-2 email_verify_box" role="alert" >
                                     <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
                                         aria-label="Warning:"></i>
                                     <div class="text-start">
@@ -153,6 +162,7 @@
                                         <a href="javascript:void(0);" id="sent_email_verify_link" class="btn btn-outline-warning btn-sm">here</a>
                                     </div>
                                 </div>
+
                             @endif
                             <!-- /Form Content -->
 
@@ -517,7 +527,7 @@
                                 'transManagement',
                                 'transEmail',
                                 'phoneNumber',
-                                'shopDescription'
+                                'shopDescription',
                                 'avatar'
                             ];
 
@@ -694,16 +704,53 @@
                 handleOAuthLogin('google');
             });
 
-            $('#sent_email_verify_link').click(function(){
+            // $('#sent_email_verify_link').click(function(){
+            //     $.ajax({
+            //         url: `/email/verify/send`,
+            //         method: 'POST',
+            //         success: function(response) {
+            //             window.location.reload();
+            //             console.log(response.message);
+            //         },
+            //         error: function(xhr) {
+            //             console.error(xhr);
+            //         }
+            //     });
+            // });
+
+            $('#sent_email_verify_link').click(function() {
+
+                const $button = $(this);
+                const $box = $button.closest('.email_verify_box');
+                const originalText = $box.html();
+
+                // Disable button and show loading state
+                $button.prop('disabled', true);
+
+
+                $box.html(`<div class="spinner-border text-primary me-2" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div> Sending Verification Link...`);
                 $.ajax({
-                    url: `/send-verification-email`,
+                    url: `/email/verify/send`,
                     method: 'POST',
                     success: function(response) {
-                        window.location.reload();
+                        // On success, reload and show message
                         console.log(response.message);
+                        window.location.reload();
                     },
                     error: function(xhr) {
+                        // On error, restore button state and show error
                         console.error(xhr);
+                        $button.prop('disabled', true);
+                        $box.html($originalText);
+                        // alert('Failed to send verification link. Please try again.');
+                        sessionStorage.setItem('success', 'error');
+                        sessionStorage.setItem('message', 'Failed to send verification link. Please try again.');
+                    },
+                    complete: function() {
+                        // This will run after success or error
+                        // Only needed if you want additional cleanup
                     }
                 });
             });

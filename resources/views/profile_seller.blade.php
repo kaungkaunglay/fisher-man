@@ -4,10 +4,10 @@
 @endsection
 @section('contents')
     <!-- Breadcrumbs -->
-    <section class="mt-2">
+    <section class="mt-5 mb-3 ">
         <div class="container-custom">
 
-            <nav aria-label="breadcrumb" class="py-4">
+            <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 bg-transparent">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans_lang('home') }}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ trans_lang('profile') }}</li>
@@ -20,11 +20,15 @@
 
     <!-- Profile Section -->
     <section>
-        <div class="profile_seller container-custom">
-            <div class="row">
-                <div class="col-12 text-center">
-                    @include('messages.index')
-                </div>
+        <div class="profile_seller container-customn row">
+
+            <div class="col-12 text-center">
+                @include('messages.index')
+            </div>
+
+
+            <div class="">
+
                 <!-- Profile Side -->
                 <div class="col-12 col-lg-7 h-100 profile-side">
                     <form action="#" id="update_basic_profile" class="profile-form" method="POST">
@@ -34,13 +38,22 @@
                         <div class="w-100 h-100 d-md-flex gap-3">
                             <!-- profile img -->
                             <div class="w-100 profile-form d-flex flex-column avatar-input">
-                                <label for="avatar-input" class="w-100 d-block position-relative">
-                                    <img src="{{ $user->avatar ? asset('assets/avatars/'.$user->avatar) : asset('assets/images/account1.svg') }}" id="form-img"
-                                        alt="{{ $user->username ?? 'Account.png'}}">
-                                    <div class="avatar-upload w-100 h-100 position-absolute d-none"><i class="fas fa-upload m-auto"></i></div>
+                                <label for="avatar-input" class="w-100 d-block position-relative gallery">
+                                    <img src="{{
+                                        $user->oauth_avatar ? $user->oauth_avatar :
+                                        ($user->avatar ? asset('assets/avatars/'.$user->avatar) :
+                                        asset('assets/avatars/default_avatar.png'))
+                                    }}" class="default-preview" id="form-img" alt="{{ $user->username ?? 'Account.png'}}">
+                                    <div class="avatar-upload position-absolute d-none">
+                                        <div class="m-auto">
+                                            <i class="fas fa-upload"></i>
+                                            <p>Upload Profile Image</p>
+                                        </div>
+                                    </div>
                                 </label>
-                                <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input" disabled>
+                                <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input" accept="image/*">
                             </div>
+                        <!-- /profile img -->
 
                             <!-- Profile Info -->
                             <div class="w-100 d-flex flex-column">
@@ -149,7 +162,7 @@
                             </div>
                         </div>
                     </form>
-                    
+
 
                     <!-- Detail Info -->
                     <form action="" id="update_contact_details" method="POST" class="w-100 mt-3 profile-form">

@@ -3,24 +3,25 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\FAQsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LineController;
 use App\Http\Controllers\MailController;
-use App\Http\Controllers\LineApisController;
+use App\Http\Controllers\ShopController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\LineApisController;
+use App\Http\Controllers\WishListController;
 use App\Http\Controllers\WhiteListController;
 use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\FAQsController;
-use App\Http\Controllers\OAuthController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SubCategoriesController;
-use App\Http\Controllers\WishListController;
+use App\Http\Controllers\EmailVerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -208,8 +209,9 @@ Route::middleware(['auth_custom_api','restore_cart'])->group(function () {
 
 });
 
-Route::get('/verify-email/{token}', [AuthController::class, 'verifyEmail'])->name('email.verify');
-Route::post('/send-verification-email', [AuthController::class, 'sendVerificationEmail'])->name('email.sent_verify_link');
+Route::get('/email/verify/{token}', [EmailVerificationController::class, 'verifyEmail'])->name('email.verify');
+Route::post('/email/verify/send', [EmailVerificationController::class, 'sendVerificationEmail'])->name('email.sent_verify_link');
+Route::get('/email/success/verify',[EmailVerificationController::class,'emailVerifiedSuccess'])->name('email.verified_success');
 
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');

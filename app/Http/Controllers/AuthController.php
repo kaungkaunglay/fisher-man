@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Users;
+use App\Mail\VerifyEmail;
 use App\Helpers\AuthHelper;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\ForgotPasswordMail;
-use App\Mail\VerifyEmail;
+use App\Models\EmailVerification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -48,7 +49,7 @@ class AuthController extends Controller
             'first_phone.required' => 'The first phone field is required.',
             'first_phone.regex' => 'The first phone format is invalid.',
             'second_phone.regex' => 'The second phone format is invalid.',
-            'second_phone.different' => 'The second phone and first phone must be different.',      
+            'second_phone.different' => 'The second phone and first phone must be different.',
             // 'line_id.min' => 'The line ID must be at least 4 characters.',
             // 'line_id.max' => 'The line ID may not be greater than 20 characters.',
             // 'ship_name.required' => 'The ship name field is required.',
@@ -321,65 +322,6 @@ class AuthController extends Controller
 
             return response()->json(['status' => true, 'message' => 'Password Reset Success']);
         }
-    }
-
-    public function sendVerificationEmail()
-    {
-        $user = AuthHelper::user();
-
-        if (!$user || $user->email_verified_at) {
-
-            session()->flash('status' , 'error');
-            session()->flash('message', 'Your email is already verified or user not found.');
-
-            return response()->json([
-                'status' => false,
-                'message' => 'Your email is already verified or user not found.'
-            ]);
-        }
-
-        $token = Str::random(64);
-
-        $user->email_verify_token =  $token;
-        $user->save();
-
-        Mail::to($user->email)->send(new VerifyEmail($user, $token));
-
-        session()->flash('status' , 'success');
-        session()->flash('message', 'Verification email sent successfully.');
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Verification email sent successfully.'
-        ]);
-    }
-
-    public function verifyEmail($token)
-    {
-        $user = AuthHelper::user();
-
-        if (!$user) {
-
-
-            return redirect()->route('home')->with('error', 'User not found.');
-        }
-
-        if ($user->email_verify_token !== $token) {
-
-            session()->flash('status' , 'error');
-            session()->flash('message', 'Invalid verification');
-
-            return redirect()->route('profile')->with('error', 'Invalid verification token.');
-        }
-
-        $user->update([
-            'email_verified_at' => now(),
-            'email_verify_token' => null
-        ]);
-
-        session()->flash('status' , 'success');
-        session()->flash('message', 'Email verified successfully.');
-        return redirect()->route('profile')->with('success', 'Email verified successfully.');
     }
 
 

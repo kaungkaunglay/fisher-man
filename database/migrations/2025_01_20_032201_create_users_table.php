@@ -29,8 +29,6 @@ return new class extends Migration
             $table->decimal('latitude', 10, 7)->nullable();
             $table->string('address')->nullable();
             $table->rememberToken();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('email_verify_token')->nullable();
             $table->timestamps();
         });
     }

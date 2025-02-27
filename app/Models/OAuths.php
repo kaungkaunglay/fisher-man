@@ -15,6 +15,7 @@ class OAuths extends Model
         'refresh_token',
         'expires_in',
         'user_id',
+        'token',
         'status'
     ];
 
