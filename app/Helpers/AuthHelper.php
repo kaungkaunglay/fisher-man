@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Models\Users;
 use App\Models\OAuths;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
@@ -61,6 +62,22 @@ class AuthHelper
     public static function isVerified(): bool
     {
         return self::auth()?->email_verification?->verified_at !== null;
+    }
+
+    /**
+     * Get the user's avatar
+     *
+     * @return string|null
+     */
+
+    public static function getAvatar()
+    {
+        $avatar = self::auth()?->avatar;
+        return $avatar
+        ? (filter_var($avatar, FILTER_VALIDATE_URL) && Str::isUrl($avatar)
+        ? $avatar
+        : asset('assets/avatars/'.$avatar))
+        : asset('assets/avatars/default_avatar.png') ;
     }
 
 

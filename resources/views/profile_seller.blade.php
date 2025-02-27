@@ -99,6 +99,17 @@
                                     <span class="invalid-feedback"></span>
                                 </div>
 
+                                <!-- organizaion -->
+                                <div class="form-group">
+                                    <div class="d-flex align-items-center form-group">
+                                        <label class="w-25" for="first_org_name">{{ trans_lang('first_org_name') }}</label>:
+                                        <output class="form-output" for="first_org_name">{{ $user->first_org_name }}</output>
+                                        <input type="text" name="first_org_name" class="p-1 mt-2 ms-1 border-bottom border-2 d-none"
+                                            id="first_org_name" value="{{ $user->first_org_name }}" disabled>
+                                    </div>
+                                    <span class="invalid-feedback"></span>
+                                </div>
+
                                 <!-- account checkbox -->
                                 <div class="mt-2">
                                     <!-- form on state -->
