@@ -61,7 +61,7 @@
                             <input type="text" placeholder="ここで検索。。。" class="" name="name" tabindex="2" value="" aria-required="true" required="">
                         </fieldset>
                         <div class="button-submit">
-                            <button class="" type="submit"><i class="icon-search"></i></button>
+                        <button class="" type="submit"><i class="icon-search"></i></button>
                         </div>
                     </form>
                 </div>
@@ -85,7 +85,8 @@
                     @foreach($sub_categories as $subCategory)
                     <li class="product-item gap14">
                         <div class="image no-bg">
-                            <img src="{{ asset($subCategory->image) }}" alt="{{ $subCategory->name }}">
+
+                            <img src="{{ asset('assets/images/sub_categories/'.$subCategory->image) }}" alt="{{ $subCategory->name }}">
                         </div>
                         <div class="flex items-center justify-between gap20 flex-grow">
                             <div class="name">

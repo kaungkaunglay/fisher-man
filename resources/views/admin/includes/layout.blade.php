@@ -95,7 +95,7 @@
                                         </a>
                                         <ul class="sub-menu">
                                             <li class="sub-menu-item">
-                                                <a href="{{route('create_product')}}" class="{{ request()->is('admin/product') ? 'active' : '' }}">
+                                                <a href="{{route('create_product')}}" class="{{ request()->is('admin/products/create') ? 'active' : '' }}">
                                                     <div class="text">{{trans_lang('add_product')}}</div>
                                                 </a>
                                             </li>

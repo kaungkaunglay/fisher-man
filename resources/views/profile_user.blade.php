@@ -183,7 +183,7 @@
                                         <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
                                             aria-label="Success:"></i>
                                         <div class="text-start">
-                                            You have been requested
+                                            {{trans_lang('shop_request_sent')}}
                                         </div>
                                     </div>
                                 </div>
@@ -590,7 +590,7 @@
                         console.log(response.status);
                         if (response.status) {
 
-                            console.log(response.message);
+                            // console.log(response.message);
 
                             window.location.reload();
                             // unactiveForm(cur);
@@ -613,10 +613,10 @@
                     contentType: false,
                     processData: false,
                     success: function(response) {
-                        console.log(response.status);
+                        // console.log(response.status);
                         if (response.status) {
 
-                            console.log(response.message);
+                            // console.log(response.message);
 
                             window.location.reload();
                             // unactiveForm(cur);

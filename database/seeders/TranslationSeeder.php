@@ -45,6 +45,11 @@ class TranslationSeeder extends Seeder
                 'jp' => 'サポート',
             ],
             [
+                'key' => 'shop_request_sent',
+                'en' => 'You have been requested',
+                'jp' => 'リクエストされました',
+            ],
+            [
                 'key' => 'product_management',
                 'en' => 'Product Management',
                 'jp' => '商品管理',
@@ -173,6 +178,11 @@ class TranslationSeeder extends Seeder
                 'key' => 'shipping_address',
                 'en' => 'Shipping Address',
                 'jp' => '配送先住所',
+            ],
+            [
+                'key' => 'loading_preload',  
+                'en' => 'LOADING FRESH CATCH...',
+                'jp' => '新鮮な魚をロード中...',
             ],
             [
                 'key' => 'payment',
@@ -492,6 +502,7 @@ class TranslationSeeder extends Seeder
                 'en' => 'Email',
                 'jp' => 'メールアドレス',
             ],
+
             [
                 'key' => 'confirm_psw',
                 'en' => 'Confirm Password',
