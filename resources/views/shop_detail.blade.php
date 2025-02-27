@@ -103,10 +103,10 @@
                                     <a class="nav-link text-white" id="products-tab" data-bs-toggle="tab" href="#products"
                                         role="tab">Products</a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link text-white" id="reviews-tab" data-bs-toggle="tab" href="#reviews"
                                         role="tab">Reviews</a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item">
                                     <a class="nav-link text-white" id="policies-tab" data-bs-toggle="tab" href="#policies"
                                         role="tab">Location</a>
@@ -132,7 +132,6 @@
                                                 <li><i class="fas fa-map-marker-alt text-primary mb-3 me-2"></i> {{$shop->address}}
                                                 </li>
                                                 <li><i class="fas fa-box text-primary mb-3 me-2"></i>{{$products->count()}} products</li>
-                                                <li><i class="fas fa-users text-primary mb-3"></i> 3500+ followers</li>
                                             </ul>
                                         </div>
                                     </div>

@@ -40,7 +40,7 @@
                 <hr>
             </div>
             <!-- support form  -->
-            <div class="container support-form">
+            <div class="container support-form mb-4">
                 <!-- Success Message -->
                 <div id="success-message" class="alert alert-success d-none"></div>
                 

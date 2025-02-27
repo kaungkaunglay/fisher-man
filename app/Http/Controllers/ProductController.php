@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Shop;
 use App\Models\Product;
 use App\Helpers\AuthHelper;
+use App\Models\Setting;
 use App\Models\Sub_category;
 use Illuminate\Http\Request;
 use App\Rules\ValidExpireDate;
@@ -43,7 +44,10 @@ class ProductController extends Controller
 
         $random_products  = Product::inRandomOrder()->take(6)->get(); // Fetch 6 random products
 
-        return view('home', compact('products','popular_shops', 'random_products'));
+        $settings = Setting::pluck('value', 'key')->toArray();
+        $bannerImages = isset($settings['site_banner_images']) ? json_decode($settings['site_banner_images']) : [];
+
+        return view('home', compact('products','popular_shops', 'random_products','bannerImages'));
     }
 
     public function create()
