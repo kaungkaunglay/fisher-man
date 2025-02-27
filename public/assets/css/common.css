@@ -83,7 +83,7 @@ main {
 }
 
 .original-price{
-  font-size: 17px;
+  font-size: 15px;
   text-decoration: line-through;
   color: #ff000062;
 }
@@ -277,6 +277,10 @@ main {
 .breadcrumb a {
   color: #005B96;
   text-decoration: none;
+}
+
+.breadcrumb-sp {
+  height: 18px;
 }
 
 .icon-buttons i {

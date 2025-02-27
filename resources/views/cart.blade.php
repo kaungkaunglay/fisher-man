@@ -7,7 +7,7 @@
 @section('contents')
 
     <!-- Step List -->
-    <section class="py-4 mt-3">
+    <section class="mt-5 mb-3">
         <div class="container-custom px-0">
 
             <div class="position-relative">

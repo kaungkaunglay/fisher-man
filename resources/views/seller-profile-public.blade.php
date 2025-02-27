@@ -4,14 +4,16 @@
 @endsection
 @section('contents')
     <!-- Breadcrumbs -->
-    <section class="mt-5 mb-3 ">
+    <section class="mt-4 mb-3 ">
         <div class="container-custom">
+
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 bg-transparent">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans_lang('home') }}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ trans_lang('profile') }}</li>
                 </ol>
             </nav>
+
         </div>
     </section>
     <!-- /Breadcrumbs -->
@@ -373,7 +375,7 @@
     <!-- /All Scripts -->
 
     {{-- Testing --}}
-    <script defer src="{{ asset('assets/js/cloneNode.test.js') }}"></script>
+
     {{-- /Testing --}}
 @endsection
 

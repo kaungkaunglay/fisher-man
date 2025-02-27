@@ -5,8 +5,10 @@
 @endsection
 
 @section('contents')
+    <div class="breadcrumb-sp mt-4 mb-3"></div>
+
     <!-- Hero Section -->
-    <section class="hero mt-4">
+    <section class="hero">
         <div class="container-custom">
 
             <div class="row justify-content-between">
@@ -41,22 +43,22 @@
             <!-- Card List -->
             <div class="card-list" id="view-list">
                 @foreach ($random_products  as $product)
-                    <div class="item-card mb-5">
+                    <div class="item-card mb-2">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
                             <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
                         </a>
-                        <div class="left">
-                            <p class="price m-t-b-10">
+                        <div class="left pt-3">
+                            <p class="price">
                                 @if ($product->discount > 0)
-                                <span class="format">{{$product->product_price - $product->discount}}</span>
+                                <span class="format me-2">{{$product->product_price - $product->discount}}</span>
                                 <span class="original-price format">{{ $product->product_price }}</span>
                                 @else
                                     <span class="">¥{{ number_format($product->product_price) }}</span>
                                 @endif
                             </p>
-                            <div class="title-category">
+                            <div class="title-categor mb-2">
                                 <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
-                                <h3 class="title m-t-b-10">{{ $product->name }}</h3>
+                                <h3 class="title">{{ $product->name }}</h3>
                             </div>
                             <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
                                 {{ $product->description }}
@@ -142,23 +144,23 @@
             <!-- Products List -->
             <div class="card-list" id="view-list">
                 @foreach ($products->filter(fn($product) => $product->discount > 0.0)->take(6) as $product)
-                    <div class="item-card mb-5">
+                    <div class="item-card mb-2">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
                             <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
                                 alt="{{ $product->name }}">
                         </a>
-                        <div class="left">
-                            <p class="price m-t-b-10">
+                        <div class="left pt-3">
+                            <p class="price">
                                 @if ($product->discount > 0)
-                                    <span class="format">{{$product->product_price - $product->discount}}</span>
+                                    <span class="format me-2">{{$product->product_price - $product->discount}}</span>
                                     <span class="original-price format">{{ $product->product_price }}</span>
                                 @else
                                     <span class="format">{{ $product->product_price }}</span>
                                 @endif
                             </p>
-                            <div class="title-category flex-column flex-sm-row align-items-start">
+                            <div class="title-category mb-2">
                                 <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
-                                <h3 class="title m-t-b-10">{{ $product->name }}</h3>
+                                <h3 class="title">{{ $product->name }}</h3>
                             </div>
                             <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
                                 {{ $product->description }}
@@ -237,23 +239,23 @@
             <!-- Products List -->
             <div class="card-list" id="view-list">
                 @foreach ($products as $product)
-                    <div class="item-card mb-5">
+                    <div class="item-card mb-2">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
                             <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
                                 alt="{{ $product->name }}">
                         </a>
-                        <div class="left">
-                            <p class="price m-t-b-10">
+                        <div class="left pt-3">
+                            <p class="price">
                                 @if ($product->discount > 0)
-                                    <span class="format">{{$product->product_price - $product->discount}}</span>
+                                    <span class="format me-2">{{$product->product_price - $product->discount}}</span>
                                     <span class="original-price format">{{ $product->product_price }}</span>
                                 @else
                                     <span class="format">{{ $product->product_price }}</span>
                                 @endif
                             </p>
-                            <div class="title-category">
+                            <div class="title-category mb-2">
                                 <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
-                                <h3 class="title m-t-b-10">{{ $product->name }}</h3>
+                                <h3 class="title">{{ $product->name }}</h3>
                             </div>
                             <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
                                 {{ $product->description }}
@@ -304,7 +306,7 @@
             <!-- /Porpular Headline -->
 
             <!-- Shop List  -->
-            <div class="row shop-carts">
+            <div class="row shop-carts mb-3">
 
                @foreach ($popular_shops as $popular_shop)
                <div class="col-6 col-md-6 col-lg-3 mb-3">
@@ -328,7 +330,7 @@
     <!-- All Scripts -->
     <script src="{{ asset('assets/js/loadmore.js') }}"></script>
     <script src="{{ asset('assets/js/view-list.js') }}"></script>
-    <script src="{{ asset('assets/js/words-limit.js') }}"></script>
+    <script src="{{ asset('assets/js/notify.js') }}"></script>
     <!-- /All Scripts -->
 
     <!-- Testing Scripts -->
