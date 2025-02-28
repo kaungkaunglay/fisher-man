@@ -64,7 +64,7 @@
                                     <label for="name" class="form-label">{{ trans_lang('name') }}</label>
                                     <input type="text" name="name" class="form-control" id="name"
                                         value="{{ auth_helper()->check() ? auth_helper()->user()->username : '' }}"
-                                        placeholder="{{ trans_lang('name') }}">
+                                        placeholder="{{ trans_lang('name') }}" @if(auth_helper()->check()) readonly @endif>
                                     <span class="invalid-feedback"></span>
 
                                 </div>
@@ -81,7 +81,7 @@
                                     <label for="email" class="form-label">{{ trans_lang('email') }}</label>
                                     <input type="email" name="email" class="form-control" id="email"
                                         value="{{ auth_helper()->check() ? auth_helper()->user()->email : '' }}"
-                                        placeholder="{{ trans_lang('email') }}">
+                                        placeholder="{{ trans_lang('email') }}" @if(auth_helper()->check()) readonly @endif>
                                     <span class="invalid-feedback"></span>
                                 </div>
 
@@ -110,7 +110,7 @@
                                     <label for="name" class="form-label">{{ trans_lang('name') }}</label>
                                     <input type="text" name="wish_name" class="form-control" id="wish_name"
                                         placeholder="{{ trans_lang('name') }}"
-                                        value="{{ auth_helper()->check() ? auth_helper()->user()->username : '' }}">
+                                        value="{{ auth_helper()->check() ? auth_helper()->user()->username : '' }}" @if(auth_helper()->check()) readonly @endif>
                                     <span class="invalid-feedback"></span>
                                 </div>
 
@@ -126,7 +126,7 @@
                                     <label for="email" class="form-label">{{ trans_lang('email') }}</label>
                                     <input type="email" name="wish_email" class="form-control" id="wish_email"
                                         placeholder="{{ trans_lang('email') }}"
-                                        value="{{ auth_helper()->check() ? auth_helper()->user()->email : '' }}">
+                                        value="{{ auth_helper()->check() ? auth_helper()->user()->email : '' }}" @if(auth_helper()->check()) readonly @endif>
                                     <span class="invalid-feedback"></span>
                                 </div>
 
