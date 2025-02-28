@@ -25,6 +25,11 @@ class TranslationSeeder extends Seeder
                 'jp' => 'こんにちは',
             ],
             [
+                'key' => 'added_cart',
+                'en' => 'Added to the cart',
+                'jp' => 'カートに追加されました',
+            ],
+            [
                 'key' => 'goodbye',
                 'en' => 'Goodbye',
                 'jp' => 'さようなら',
