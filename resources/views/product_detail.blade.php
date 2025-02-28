@@ -63,7 +63,7 @@
                             <p class="m-0">{{ $product->created_at->format('d M Y') }}</p>
                         </div>
                         <div class="product-price">
-                            <p class="m-b-10 price ">¥ {{ $product->product_price }}</p>
+                            <p class="m-b-10 price format">¥ {{ $product->product_price }}</p>
                             <p class="m-0 category-txt"><a
                                     href="{{ route('sub-category.show', $product->subCategory->id) }}">{{ $product->subCategory->name }}</a>
                             </p>
@@ -78,7 +78,7 @@
                                     <button class="btn increment"
                                         @if ($product->inCart()) disabled @endif>+</button>
                                 </div>
-                                <button class="common-btn ms-5 add-to-cart-btn" data-id="{{ $product->id }}"
+                                <button class="common-btn ms-5 add-to-cart-btn cart-btn" data-id="{{ $product->id }}"
                                     @if ($product->inCart()) disabled @endif>
                                     @if ($product->inCart())
                                         {{ trans_lang('added_cart') }}

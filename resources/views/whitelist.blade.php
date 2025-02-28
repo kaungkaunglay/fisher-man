@@ -114,7 +114,7 @@
 
             <div class="text-end d-flex gap-3 justify-content-end my-4">
                 <a href="/" class="common-btn">{{ trans_lang('shop_more') }}</a>
-                <a href="javascript:void(0);" class="common-btn" id="dsk-add-to-cart-btn">{{ trans_lang('add_cart') }}</a>
+                <a href="javascript:void(0);" class="common-btn cart-btn" id="dsk-add-to-cart-btn">{{ trans_lang('add_cart') }}</a>
             </div>
 
         </div>
@@ -122,7 +122,7 @@
     <!-- /Main Content -->
 
     {{-- All Scripts --}}
-    <script src="{{ asset('assets/js/cart.js') }}"></script>
+    <script src="{{ asset('assets/js/caculate.js') }}"></script>
     <script>
         $(document).ready(function() {
             $.ajaxSetup({
@@ -165,6 +165,7 @@
                     success: function(response) {
                         if (response.status) {
                             removeCart(product_id);
+                            netTotal();
                         }
                     }
                 });

@@ -131,10 +131,6 @@
 .horizontal-product-card .card-body{padding-top: 0px;}
 .horizontal-product-card .card-body .card-title{color: #004B8D;}
 
-
-.all-products .item-card{display: none;}
-.row-list .item-card{display: flex !important;}
-
 @media screen and (max-width: 584px) {
     .product-btn{padding: 4px 30px !important;}
 

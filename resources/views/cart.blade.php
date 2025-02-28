@@ -20,23 +20,23 @@
                 <ul class="step-list d-flex text-center">
                     <li class="step active d-flex flex-column align-items-center">
                         <span class="me-2">1</span>
-                        <p class="d-none d-md-block">{{trans_lang('order_detail')}}s</p>
+                        <p class="d-none d-md-block">{{ trans_lang('order_detail') }}s</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">2</span>
-                        <p class="d-none d-md-block">{{trans_lang('login')}}</p>
+                        <p class="d-none d-md-block">{{ trans_lang('login') }}</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">3</span>
-                        <p class="d-none d-md-block">{{trans_lang('shipping_address')}}</p>
+                        <p class="d-none d-md-block">{{ trans_lang('shipping_address') }}</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">4</span>
-                        <p class="d-none d-md-block">{{trans_lang('payment')}}</p>
+                        <p class="d-none d-md-block">{{ trans_lang('payment') }}</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">5</span>
-                        <p class="d-none d-md-block">{{trans_lang('complete')}}</p>
+                        <p class="d-none d-md-block">{{ trans_lang('complete') }}</p>
                     </li>
                 </ul>
             </div>
@@ -54,19 +54,20 @@
                 <table class="table desktop text-center d-md-table d-none table-item">
                     <thead>
                         <tr>
-                            <th scope="col">{{trans_lang('image')}}</th>
-                            <th scope="col">{{trans_lang('product_name')}}</th>
-                            <th scope="col">{{trans_lang('price')}}</th>
-                            <th scope="col">{{trans_lang('quantity')}}</th>
-                            <th scope="col">{{trans_lang('total')}}</th>
-                            <th scope="col">{{trans_lang('remove')}}</th>
+                            <th scope="col">{{ trans_lang('image') }}</th>
+                            <th scope="col">{{ trans_lang('product_name') }}</th>
+                            <th scope="col">{{ trans_lang('price') }}</th>
+                            <th scope="col">{{ trans_lang('quantity') }}</th>
+                            <th scope="col">{{ trans_lang('total') }}</th>
+                            <th scope="col">{{ trans_lang('remove') }}</th>
                         </tr>
                     </thead>
                     <tbody class="dsk-cart-body">
                         @foreach ($carts as $item)
                             <tr class="table-row cart-{{ $item->product->id }}" data-id="{{ $item->product->id }}">
                                 <td>
-                                    <div class="table-img"><img src="{{ asset('assets/products/'.$item->product->product_image) }}"
+                                    <div class="table-img"><img
+                                            src="{{ asset('assets/products/' . $item->product->product_image) }}"
                                             alt="{{ $item->product->name }}"></div>
                                 </td>
                                 <td class="col-name">{{ $item->product->name }}</td>
@@ -92,7 +93,7 @@
                     <tfoot>
                         <tr>
                             <td colspan="4"></td>
-                            <td>{{trans_lang('total')}}</td>
+                            <td>{{ trans_lang('total') }}</td>
                             <td>
                                 <span class="total"></span>
                             </td>
@@ -107,7 +108,7 @@
                 @foreach ($carts as $item)
                     <div class="card cart-{{ $item->product->id }}">
                         <div class="card-img align-content-center me-2">
-                            <img src="{{ asset('assets/products/'.$item->product->product_image) }}" alt="product img">
+                            <img src="{{ asset('assets/products/' . $item->product->product_image) }}" alt="product img">
                         </div>
                         <div class="card-body">
                             <div class="table-row">
@@ -139,7 +140,8 @@
             <!-- ./Mobile Style -->
 
             <div class="d-flex my-4">
-                <button class="common-btn btn-next ms-auto" data-page="{{ auth_helper()->check() ? "#address" : "#login"}}">{{trans_lang('next')}}</button>
+                <button class="common-btn btn-next ms-auto"
+                    data-page="{{ auth_helper()->check() ? '#address' : '#login' }}">{{ trans_lang('next') }}</button>
             </div>
 
         </div>
@@ -151,15 +153,16 @@
         <div class="container-custom">
 
             <div class="border w-75 mx-auto px-5 py-3 rounded shadow login-box">
-                <h2 class="text-center mb-3">{{trans_lang('login')}}</h2>
+                <h2 class="text-center mb-3">{{ trans_lang('login') }}</h2>
                 <form action="#" id="login_form" method="POST">
                     @csrf
                     <div class="d-flex flex-column">
                         <div class="form-group row mt-3 align-items-center">
-                            <label for="username" class="col-12 col-md-4">{{trans_lang('name')}}</label>
+                            <label for="username" class="col-12 col-md-4">{{ trans_lang('name') }}</label>
                             <div class="col-12 col-md-8 mt-2">
                                 <div class="input-group border border-2 rounded px-0">
-                                    <input  type="text" name="username" id="username" class="form-control border-0" placeholder="Username or Email">
+                                    <input type="text" name="username" id="username" class="form-control border-0"
+                                        placeholder="Username or Email">
                                     <button class="btn" tabindex="-1">
                                         <i class="fa-solid fa-user"></i>
                                     </button>
@@ -168,11 +171,12 @@
                             </div>
                         </div>
                         <div class="form-group row mt-3 align-item-center">
-                            <label for="password" class="col-12 col-md-4">{{trans_lang('password')}}</label>
+                            <label for="password" class="col-12 col-md-4">{{ trans_lang('password') }}</label>
                             <div class="col-12 col-md-8 mt-2">
                                 <div class="input-group border border-2 rounded px-0">
-                                    <input type="password" name="password" id="password" class="form-control border-0" placeholder="********">
-                                    <button class="btn" tabindex="-1">
+                                    <input type="password" name="password" id="password" class="form-control border-0"
+                                        placeholder="********">
+                                    <button class="btn password" tabindex="-1">
                                         <i class="fa-solid fa-eye"></i>
                                     </button>
                                 </div>
@@ -183,7 +187,7 @@
                             <span class="mb-3 text-danger" id="message"></span>
                         </div>
                         <div class="form-group d-flex flex-column mt-2 mx-auto">
-                            <div class="g-recaptcha" data-sitekey="6LfCvtoqAAAAAP_U1Pm-7x4IFB-avJ8O_SxjNQZ8"></div>
+                            <div class="g-recaptcha" data-sitekey="{{env('RECAPTCHA_SECRET_KEY')}}"></div>
                             <span class="invalid-feedback mt-1"></span>
                         </div>
                         <button type="submit" class="common-btn -solid mx-auto mt-5 rounded-pill w-100">Login</button>
@@ -196,15 +200,16 @@
     <!-- /Login Step -->
 
     {{-- Address Step --}}
-    {{-- <section>
+    <section class="page mt-3" id="address" data-step="3">
         <div class="container-custom">
-            <form action="" id="update_contact_details" method="POST" class="w-100 mt-3 profile-form">
-        
+
+            <form action="#" class="w-100 mt-3 profile-form">
+
                 <!-- Form Headline -->
                 <div>
                     <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2 form-headline">
                         {{ trans_lang('detail') }}
-        
+
                         <!-- button group -->
                         <div class="d-flex justify-content-end gap-4">
                             <button type="submit" class="save d-none">
@@ -220,44 +225,77 @@
                     </h2>
                 </div>
                 <!-- /Form Headline -->
-        
+
                 <!-- Form Content -->
                 <div class="px-2 py-3">
-        
-                    <!-- address -->
-                    <div class="d-flex form-group">
-                        <label class="w-25" for="address">{{ trans_lang('name') }}</label>:
-                        <output class="form-output" for="address">{{ $user->address }}</output>
-                        <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea>
+
+                    <!-- name -->
+                    <div class="form-group">
+                        <label class="w-25" for="name">{{ trans_lang('name') }}</label>:
+                        <output class="form-output" for="name">{{ auth_helper()->user()->username ?? '' }}</output>
+                        <input name="name" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="name" 
+                        value="{{ auth_helper()->user()->username ?? '' }}" disabled>
                         <span class="invalid-feedback"></span>
                     </div>
-        
-                    <!-- phone-number link -->
-                    <div class="d-flex align-items-start form-group">
-                        <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
-                        <div class="ms-1 d-flex flex-column phone-no-container">
-                            <a href="tel:">
-                                <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
-                            </a>
-                            <input type="tel" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none" id="first_phone" value="{{ $user->first_phone }}" disabled>
 
+                    {{-- pohne-number link --}}
+                    <div class="form-group">
+                        <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
+                        <output class="form-output" for="first_phone">{{ auth_helper()->user()->first_phone ?? '' }}</output>
+                        <input type="tel" name="first_phone" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="first_phone" 
+                        value="{{ auth_helper()->user()->first_phone ?? '' }}" disabled>
+                        <span class="invalid-feedback"></span>
                     </div>
-        
+
+                    <!-- postal link -->
+                    <div class="form-group">
+                        <label class="w-25" for="zip">{{ trans_lang('postal') }}</label>:
+                        <output class="form-output" for="zip">1105</output>
+                        <input type="number" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="zip" 
+                        value="1105" disabled>
+                        <span class="invalid-feedback"></span>
+                    </div>
+
+                    <!-- country link -->
+                    <div class="form-group">
+                        <label class="w-25" for="country">{{ trans_lang('country') }}</label>:
+                        <output class="form-output" for="country">Cambodia</output>
+                        <input type="text" name="country" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="country"
+                        value="Cambodia" disabled>
+                        <span class="invalid-feedback"></span>
+                    </div>
+
+                    <!-- address link -->
+                    <div class="form-group d-flex align-items-start">
+                        <label class="w-25" for="address">{{ trans_lang('shipping_address') }}</label>:
+                        <output class="form-output" for="address">Cambodia</output>
+                        <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ auth_helper()->user()->address ?? '' }}</textarea>
+                        <span class="invalid-feedback"></span>
+                    </div>
+
                 </div>
                 <!-- /Form Content -->
-        
+
+                <div class="d-flex gap-3 my-4 justify-content-end address-btn-group">
+                    <button class="btn btn-outline-primary common-btn btn-back"
+                        data-page="#checkout">{{ trans_lang('go_back') }}</button>
+                    <button class="btn btn-outline-primary common-btn btn-next"
+                        data-page="#payment">{{ trans_lang('next') }}</button>
+                </div>
+
             </form>
+
         </div>
-    </section> --}}
+    </section>
     {{-- /Address Step --}}
 
     <!-- Address Step -->
-    <section class="page mt-3" id="address" data-step="3">
+    {{-- <section class="page mt-3" id="address" data-step="3">
         <div class="container-custom">
 
             <div class="p-3 bg-primary d-flex text-white">
                 <div class="d-flex justify-content-between align-items-center w-100">
-                    <h2>{{trans_lang('detail')}}</h2>
+                    <h2>{{ trans_lang('detail') }}</h2>
                     <button id="edit">
                         <i class="fas fa-square-pen text-white"></i>
                     </button>
@@ -270,7 +308,7 @@
                     <table>
                         <tr>
                             <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                                <label for="name">{{trans_lang('name')}}</label>
+                                <label for="name">{{ trans_lang('name') }}</label>
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
@@ -280,7 +318,7 @@
                         </tr>
                         <tr>
                             <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                                <label for="tel">{{trans_lang('phone_number')}}</label>
+                                <label for="tel">{{ trans_lang('phone_number') }}</label>
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
@@ -290,7 +328,7 @@
                         </tr>
                         <tr>
                             <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                                <label for="line_id">{{trans_lang('line_id')}}</label>
+                                <label for="line_id">{{ trans_lang('line_id') }}</label>
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
@@ -300,7 +338,7 @@
                         </tr>
                         <tr>
                             <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                                <label for="zip">{{trans_lang('postal')}}</label>
+                                <label for="zip">{{ trans_lang('postal') }}</label>
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
@@ -309,7 +347,7 @@
                         </tr>
                         <tr>
                             <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                                <label for="country">{{trans_lang('country')}}</label>
+                                <label for="country">{{ trans_lang('country') }}</label>
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
@@ -321,7 +359,7 @@
                         </tr>
                         <tr>
                             <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                                <label for="delivery">{{trans_lang('shipping_address')}}</label>
+                                <label for="delivery">{{ trans_lang('shipping_address') }}</label>
                                 <b>:</b>
                             </th>
                             <td class="p-1 bg-white">
@@ -332,8 +370,9 @@
                     </table>
                     <div class="d-flex gap-3 my-4 justify-content-end">
                         <button data-page="#checkout" class="btn btn-outline-primary common-btn"
-                            id="cancel">{{trans_lang('cancle')}}</button>
-                        <button type="button" data-page="#payment" class="btn btn-outline-primary common-btn">{{trans_lang('save')}}</button>
+                            id="cancel">{{ trans_lang('cancle') }}</button>
+                        <button type="button" data-page="#payment"
+                            class="btn btn-outline-primary common-btn">{{ trans_lang('save') }}</button>
                     </div>
                 </form>
             </div>
@@ -344,7 +383,7 @@
                 <table>
                     <tr>
                         <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                            <p>{{trans_lang('name')}}</p>
+                            <p>{{ trans_lang('name') }}</p>
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
@@ -353,7 +392,7 @@
                     </tr>
                     <tr>
                         <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                            <p>{{trans_lang('phone_number')}}</p>
+                            <p>{{ trans_lang('phone_number') }}</p>
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
@@ -362,7 +401,7 @@
                     </tr>
                     <tr>
                         <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                            <p>{{trans_lang('line_id')}}</p>
+                            <p>{{ trans_lang('line_id') }}</p>
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
@@ -371,7 +410,7 @@
                     </tr>
                     <tr>
                         <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                            <p>{{trans_lang('postal')}}</p>
+                            <p>{{ trans_lang('postal') }}</p>
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
@@ -380,7 +419,7 @@
                     </tr>
                     <tr>
                         <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                            <p>{{trans_lang('country')}}</p>
+                            <p>{{ trans_lang('country') }}</p>
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
@@ -389,7 +428,7 @@
                     </tr>
                     <tr>
                         <th class="py-2 ps-2 gap-2 d-flex justify-content-between">
-                            <p>{{trans_lang('shipping_address')}}</p>
+                            <p>{{ trans_lang('shipping_address') }}</p>
                             <b>:</b>
                         </th>
                         <td class="p-1 bg-white">
@@ -398,14 +437,16 @@
                     </tr>
                 </table>
                 <div class="d-flex gap-3 my-4 justify-content-end">
-                    <button class="btn btn-outline-primary common-btn btn-back" data-page="#checkout">{{trans_lang('go_back')}}</button>
-                    <button class="btn btn-outline-primary common-btn btn-next" data-page="#payment">{{trans_lang('next')}}</button>
+                    <button class="btn btn-outline-primary common-btn btn-back"
+                        data-page="#checkout">{{ trans_lang('go_back') }}</button>
+                    <button class="btn btn-outline-primary common-btn btn-next"
+                        data-page="#payment">{{ trans_lang('next') }}</button>
                 </div>
             </div>
             <!-- /output -->
 
         </div>
-    </section>
+    </section> --}}
     <!-- /Address Step -->
 
     <!-- Payment Step -->
@@ -415,7 +456,7 @@
             <!-- Payment Method Form -->
             <div class="popup">
                 <div class="bg-white rounded-3 border text-black mx-auto" id="payment-form">
-                    <h2 class="title">{{trans_lang('payment')}}</h2>
+                    <h2 class="title">{{ trans_lang('payment') }}</h2>
                     <form class="d-flex flex-column" action="">
                         <div>
                             <label for="card-number">Card number</label>
@@ -461,13 +502,13 @@
 
                         <div class="d-flex flex-column flex-sm-row input-wpr">
                             <div class="w-100">
-                                <label for="count">{{trans_lang('country')}}</label>
+                                <label for="count">{{ trans_lang('country') }}</label>
                                 <select id="count" class="w-100 p-2 border rounded">
                                     <option value="jpn" selected>Japan</option>
                                 </select>
                             </div>
                             <div class="w-100">
-                                <label for="zp">{{trans_lang('postal')}}</label>
+                                <label for="zp">{{ trans_lang('postal') }}</label>
                                 <input name="" type="number" id="zp" class="w-100 p-2 border rounded"
                                     placeholder="104-0044">
                             </div>
@@ -488,8 +529,10 @@
                         </div>
 
                         <div class="d-flex gap-3 text-center justify-content-center">
-                            <button class="common-btn btn btn-outline-primary" id="cancel">{{trans_lang('cancle')}}</button>
-                            <button class="common-btn btn btn-outline-primary btn-next" data-page="#complete">{{trans_lang('save')}}</button>
+                            <button class="common-btn btn btn-outline-primary"
+                                id="cancel">{{ trans_lang('cancle') }}</button>
+                            <button class="common-btn btn btn-outline-primary btn-next"
+                                data-page="#complete">{{ trans_lang('save') }}</button>
                         </div>
                     </form>
                 </div>
@@ -501,18 +544,17 @@
                 <table class="table desktop text-center d-md-table d-none table-item pannel pannel-default ">
                     <thead>
                         <tr>
-                            <th scope="col">{{trans_lang('image')}}</th>
-                            <th scope="col">{{trans_lang('product_name')}}</th>
-                            <th scope="col">{{trans_lang('price')}}</th>
-                            <th scope="col">{{trans_lang('total')}}</th>
+                            <th scope="col">{{ trans_lang('image') }}</th>
+                            <th scope="col">{{ trans_lang('product_name') }}</th>
+                            <th scope="col">{{ trans_lang('price') }}</th>
+                            <th scope="col">{{ trans_lang('total') }}</th>
                         </tr>
                     </thead>
                     <tbody class="dsk-cart-body">
                         @foreach ($carts as $item)
                             <tr class="table-row cart-{{ $item->product->id }}">
                                 <td>
-                                    <div class="table-img"><img src="{{ asset('assets/products/'.$item->product->product_image) }}"
-                                            alt="product img"></div>
+                                    <div class="table-img"><img src="{{ asset('assets/products/' . $item->product->product_image) }}" alt="product img"></div>
                                 </td>
                                 <td clas="col-name">{{ $item->product->name }}</td>
                                 <td class="price">¥{{ $item->product->product_price }}</td>
@@ -526,7 +568,7 @@
                     <tfoot>
                         <tr>
                             <td colspan="2"></td>
-                            <td>{{trans_lang('total')}}</td>
+                            <td>{{ trans_lang('total') }}</td>
                             <td>
                                 <span class="total"></span>
                             </td>
@@ -541,7 +583,7 @@
                 @foreach ($carts as $item)
                     <div class="card cart-{{ $item->product->id }}">
                         <div class="card-img align-content-center me-2">
-                            <img src="{{ asset('assets/products/'.$item->product->product_image) }}" alt="product img">
+                            <img src="{{ asset('assets/products/' . $item->product->product_image) }}" alt="product img">
                         </div>
                         <div class="card-body">
                             <div class="table-row">
@@ -567,45 +609,76 @@
             </div>
             <!-- ./Mobile Style -->
 
-            <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">{{trans_lang('selet_payment')}}</h2>
-            <div class="d-flex gap-3 py-3 px-3">
-                <input type="checkbox" id="select-payment">
-                <label for="select-payment">{{trans_lang('credit_card')}}</label>
-                <div class="ms-auto text-danger" id="warning-msg">{{trans_lang('check_mark')}}<</div>
+            {{-- Check Payment --}}
+            <div>
+                <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">{{ trans_lang('selet_payment') }}</h2>
+                <div class="d-flex gap-3 py-3 px-3">
+                    <input type="checkbox" id="select-payment">
+                    <label for="select-payment">{{ trans_lang('credit_card') }}</label>
+                    <div class="ms-auto text-danger" id="warning-msg">{{ trans_lang('check_mark') }}</div>
+                </div>
             </div>
+            {{-- /Check Payment --}}
 
-            <h2 class="py-3 px-3 bg-primary text-white">{{trans_lang('detail')}}</h2>
-            <ul class="list-group gap-3 py-3 px-3">
-                <li>
-                    <span>{{trans_lang('name')}}</span>
-                    : <span id="name-result"></span>
-                </li>
-                <li>
-                    <span>{{trans_lang('phone_number')}}</span>
-                    : <span id="tel-result"></span>
-                </li>
-                <li>
-                    <span>{{trans_lang('line_id')}}</span>
-                    : <span id="line_id-result"></span>
-                </li>
-                <li>
-                    <span>{{trans_lang('postal')}}</span>
-                    : 110001
-                </li>
-                <li>
-                    <span>{{trans_lang('country')}}</span>
-                    : Japan
-                </li>
-                <li>
-                    <span>{{trans_lang('shipping_address')}}</span>
-                    : <span id="delivery-result"></span>
-                </li>
-            </ul>
+            {{-- Address --}}
+            <div>
+
+                <!-- Form Headline -->
+                <div>
+                    <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2 form-headline">
+                        {{ trans_lang('detail') }}
+                    </h2>
+                </div>
+                <!-- /Form Headline -->
+
+                <!-- Form Content -->
+                <div class="px-2 py-3">
+
+                    <!-- name -->
+                    <div class="form-group d-flex">
+                        <h3 class="w-25">{{ trans_lang('name') }}</h3>:
+                        <output class="form-output">{{ auth_helper()->user()->username ?? '' }}</output>
+                        <span class="invalid-feedback"></span>
+                    </div>
+
+                    {{-- pohne-number link --}}
+                    <div class="form-group d-flex">
+                        <h3 class="w-25">{{ trans_lang('phone_number') }}</h3>:
+                        <output class="form-output">{{ auth_helper()->user()->first_phone ?? '' }}</output>
+                        <span class="invalid-feedback"></span>
+                    </div>
+
+                    <!-- postal link -->
+                    <div class="form-group d-flex">
+                        <h3 class="w-25">{{ trans_lang('postal') }}</h3>:
+                        <output class="form-output">1105</output>
+                        <span class="invalid-feedback"></span>
+                    </div>
+
+                    <!-- country link -->
+                    <div class="form-group d-flex">
+                        <h3 class="w-25">{{ trans_lang('country') }}</h3>:
+                        <output class="form-output">Cambodia</output>
+                        <span class="invalid-feedback"></span>
+                    </div>
+
+                    <!-- address link -->
+                    <div class="form-group d-flex align-items-start">
+                        <h3 class="w-25">{{ trans_lang('shipping_address') }}</h3>:
+                        <output class="form-output">{{ auth_helper()->user()->address ?? '' }}</output>
+                        <span class="invalid-feedback"></span>
+                    </div>
+
+                </div>
+                <!-- /Form Content -->
+
+            </div>
+            {{-- /Address --}}
+
             <div class="d-flex gap-3 my-4 justify-content-end">
-                <a data-page="#address" class="btn btn-outline-primary common-btn btn-back">{{trans_lang('go_back')}}</a>
-                <button data-page="#complete" class="btn btn-outline-primary common-btn btn-payment">{{trans_lang('check_out')}}</button>
+                <a data-page="#address"class="btn btn-outline-primary common-btn btn-back">{{ trans_lang('go_back') }}</a>
+                <button data-page="#complete" class="btn btn-outline-primary common-btn btn-payment">{{ trans_lang('check_out') }}</button>
             </div>
-
         </div>
     </section>
     <!-- /Payment Step -->
@@ -614,30 +687,34 @@
     <section class="page mt-5" id="complete" data-step="5">
         <div class="container-custom">
             <p class="text-center">
-                {{trans_lang('paymnet_success_msg')}}
+                {{ trans_lang('paymnet_success_msg') }}
             </p>
             <div class="d-flex gap-3 py-5 justify-content-center">
-                <a href="{{ route('support') }}" class="btn btn-outline-primary common-btn">{{trans_lang('contact_us')}}</a>
-                <a href="{{ route('home') }}" class="btn btn-outline-primary common-btn">{{trans_lang('home')}}</a>
+                <a href="{{ route('support') }}"
+                    class="btn btn-outline-primary common-btn">{{ trans_lang('contact_us') }}</a>
+                <a href="{{ route('home') }}" class="btn btn-outline-primary common-btn">{{ trans_lang('home') }}</a>
             </div>
         </div>
     </section>
     <!-- /Complete Step -->
 
     <!-- All Scripts -->
-    <script src="{{ asset('assets/js/cart.js') }}"></script>
+    <script src="{{ asset('assets/js/caculate.js') }}"></script>
     <script src="{{ asset('assets/js/pageChange.js') }}"></script>
+    <script src="{{ asset('assets/js/updateForm.js') }}"></script>
     <script>
         $(document).ready(function() {
 
             function checkIfEmpty() {
                 var dskbody = $('.dsk-cart-body');
                 if (dskbody.find('tr').length === 0) {
-                    dskbody.html(`<tr><td colspan="6" class="text-center">{{ trans_lang('no_product') }}</td></tr>`);
+                    dskbody.html(
+                        `<tr><td colspan="6" class="text-center">{{ trans_lang('no_product') }}</td></tr>`);
                 }
                 var mbbody = $('.mb-cart-body');
                 if (mbbody.find('.card').length === 0) {
-                    mbbody.find('.no-cart').html(`<div class="text-center my-3">{{ trans_lang('no_product') }}</div>`)
+                    mbbody.find('.no-cart').html(
+                        `<div class="text-center my-3">{{ trans_lang('no_product') }}</div>`)
                 }
             }
 
@@ -656,7 +733,7 @@
 
             // for desktop
 
-            function deleteCart(product_id){
+            function deleteCart(product_id) {
                 $.ajax({
                     url: `/cart/delete/${product_id}`,
                     type: "DELETE",
@@ -669,7 +746,7 @@
                             removeCart(product_id);
                             netTotal();
                             // updateCartCount();
-                            let count = Math.max(0,getStoredCount("cart_count") - 1);
+                            let count = Math.max(0, getStoredCount("cart_count") - 1);
                             updateStoredCount("cart_count", "#cart_count, #cart_count_bottom", count);
                         }
                     }
@@ -677,7 +754,7 @@
             }
 
             //dsk-cart-del-btn
-            function handelDeleteCartBtn(class_name){
+            function handelDeleteCartBtn(class_name) {
                 $(`.${class_name}`).click(function(e) {
                     e.preventDefault();
 
@@ -709,7 +786,10 @@
                     var productId = $(this).data('id');
                     if (productId) {
                         var quantity = $(this).find('.quantity-value').val();
-                        products.push({ id: productId, quantity: quantity });
+                        products.push({
+                            id: productId,
+                            quantity: quantity
+                        });
                     }
                 });
                 return products;
@@ -774,8 +854,7 @@
             }
 
 
-            function addCart(products)
-            {
+            function addCart(products) {
                 $.ajax({
                     url: '/cart/add/login',
                     type: "POST",

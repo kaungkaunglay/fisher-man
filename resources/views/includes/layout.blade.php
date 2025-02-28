@@ -398,6 +398,41 @@
     </footer>
     <!-- /Footer Section -->
 
+    {{-- Side Pannel --}}
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="side_pannel">
+        <div class="offcanvas-header bg-primary fw-bold text-white">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul>
+                @if (!check_role(1))
+                    <li>
+                        <a href="{{ url('/profile') }}"
+                            class="p-2 d-flex gap-2 text-black text-center">
+                            <i class="fa-solid fa-address-card icon"></i>{{ trans_lang('profile') }}
+                        </a>
+                    </li>
+                @endif
+                @if (check_role(2) || check_role(1))
+                    <li>
+                        <a href="{{ url('/admin') }}"
+                            class="p-2 d-flex gap-2 text-black text-center">
+                            <i class="fa-solid fa-tachometer-alt icon"></i>{{ trans_lang('dashboard') }}
+                        </a>
+                    </li>
+                @endif
+                <li>
+                    <a href="{{ route('logout') }}"
+                        class="p-2 d-flex gap-2 text-black text-center">
+                        <i class="fas fa-door-open icon"></i>{{ trans_lang('logout') }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{-- /Side Pannel --}}
+
     <!-- Mobile Bottom Nav -->
     <div class="bottom-nav d-flex d-md-none">
         <a href="{{ route('home') }}" class="bottom-menu hv-icon"><i class="fa-solid fa-home"></i><br>
@@ -423,9 +458,13 @@
                 <span class="mobile-white-list-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span>
             </p>
         </a>
-        <a href="{{ route('profile') }}" class="bottom-menu hv-icon"><i class="fa-solid fa-user"></i><br>
-            <p>{{ trans_lang('profile') }}</p>
+        <a class="bottom-menu hv-icon" data-bs-toggle="offcanvas" href="#side_pannel">
+            <i class="fa-solid fa-user"></i><br>
+            {{ trans_lang('profile') }}
         </a>
+        {{-- <a href="{{ route('profile') }}" class="bottom-menu hv-icon"><i class="fa-solid fa-user"></i><br>
+            <p>{{ trans_lang('profile') }}</p>
+        </a> --}}
     </div>
     <!-- /Mobile Bottom Nav -->
     @endif
@@ -642,7 +681,7 @@
     }
     document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.format').forEach(function(element) {
-                let rawPrice = element.textContent.replace('¥', '').replace(/,/g, '');
+                let rawPrice = element.textContent.replace('¥', '').replace(/,/g, '').replace('.00','');
                 let formattedPrice = formatPriceJapanese(rawPrice);
                 element.textContent = formattedPrice;
             });

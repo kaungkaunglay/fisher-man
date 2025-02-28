@@ -479,7 +479,7 @@
     <!-- ./History Table -->
 
     <!-- All Scripts -->
-    <script src="{{ asset('assets/js/profile-seller.js') }}"></script>
+    <script defer src="{{ asset('assets/js/updateForm.js') }}"></script>
     {{-- <script>
         $(document).ready(function() {
             if ("geolocation" in navigator) {

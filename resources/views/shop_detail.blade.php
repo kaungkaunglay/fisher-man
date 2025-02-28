@@ -75,7 +75,7 @@
                             {{-- /Tab List --}}
 
                             {{-- Tab Content  --}}
-                            <div class="tab-content p-3" id="shopTabsContent">
+                            <div class="tab-content p-3 all-products" id="shopTabsContent">
 
                                 {{-- About Tab --}}
                                 <div class="tab-pane fade show active" id="home" role="tabpanel">
@@ -141,50 +141,48 @@
 
                                     {{-- Products List --}}
                                     <div class="scroller">
-                                        <div class="card-list m-3 all-products" id="view-list">
+                                        <div class="card-list m-3" id="view-list">
 
 
                                             @foreach ($products as $product)
-                                                @if ($product->status == 'approved')
-                                                    <div class="item-card mb-3">
-                                                        <a href="#" class="right">
-                                                            <img src="{{ asset('assets/products/' . $product->product_image) }}"
-                                                                class="card-img-top" alt="">
-                                                        </a>
-                                                        <div class="left">
-                                                            <p class="price m-t-b-10">
-                                                                @if ($product->discount > 0)
-                                                                    <span
-                                                                        class="format">{{ $product->product_price - $product->discount }}</span>
-                                                                    <span
-                                                                        class="original-price format">{{ $product->product_price }}</span>
-                                                                @else
-                                                                    <span class="format">{{ $product->product_price }}</span>
-                                                                @endif
+                                            @if ($product->status == 'approved')
+                                                <div class="item-card mb-3">
+                                                    <a href="#" class="right">
+                                                        <img src="{{ asset('assets/products/' . $product->product_image) }}"
+                                                            class="card-img-top" alt="">
+                                                    </a>
+                                                    <div class="left pt-3">
+                                                        <p class="price">
+                                                            @if ($product->discount > 0)
+                                                                <span
+                                                                    class="format me-2">{{ $product->product_price - $product->discount }}</span>
+                                                                <span
+                                                                    class="original-price format">{{ $product->product_price }}</span>
+                                                            @else
+                                                                <span class="format">{{ $product->product_price }}</span>
+                                                            @endif
 
-                                                            <div
-                                                                class="title-category flex-column flex-sm-row align-items-start">
-                                                                <a href="#"
-                                                                    class="menu-category">{{ $product->sub_categories_name }}</a>
-                                                                <h3 class="title m-t-b-10">{{ $product->name }}</h3>
-                                                            </div>
-                                                            <a href="#" class="txt m-b-10 description">
-                                                                {{ $product->description }}
+                                                        <div class="title-category mb-2">
+                                                            <a href="#" class="menu-category">{{ $product->sub_categories_name }}</a>
+                                                            <h3 class="title m-t-b-10">{{ $product->name }}</h3>
+                                                        </div>
+                                                        <a href="#" class="txt m-b-10 description">
+                                                            {{ $product->description }}
+                                                        </a>
+                                                        <div class="d-flex gap-2 card-btn m-t-10">
+                                                            <a href="javascript:void(0);"
+                                                                class="py-1 common-btn2 -solid cart-btn"
+                                                                data-id="{{ $product->id }}">
+                                                                <i class="fa-solid fa-cart-shopping"></i>
                                                             </a>
-                                                            <div class="d-flex gap-2 card-btn m-t-10">
-                                                                <a href="javascript:void(0);"
-                                                                    class="py-1 common-btn2 -solid cart-btn"
-                                                                    data-id="{{ $product->id }}">
-                                                                    <i class="fa-solid fa-cart-shopping"></i>
-                                                                </a>
-                                                                <a href="javascript:void(0);"
-                                                                    class="py-1 common-btn2 white-list-btn"
-                                                                    data-id="{{ $product->id }}">
-                                                                    <i class="fa-solid fa-bookmark"></i>
-                                                                </a>
-                                                            </div>
+                                                            <a href="javascript:void(0);"
+                                                                class="py-1 common-btn2 white-list-btn"
+                                                                data-id="{{ $product->id }}">
+                                                                <i class="fa-solid fa-bookmark"></i>
+                                                            </a>
                                                         </div>
                                                     </div>
+                                                </div>
                                                 @endif
                                             @endforeach
 
@@ -196,8 +194,7 @@
                                     <!-- All Products Footline -->
                                     <div class="row justify-content-center">
                                         <div class="col-5 col-lg-3 text-center">
-                                            <button class="btn btn-outline-primary px-5 py-2  mt-5" id="load-more"
-                                                title="Load More Items">
+                                            <button class="btn btn-outline-primary px-5 py-2  mt-5" id="load-more" title="Load More Items">
                                                 <i class="fas fa-chevron-down"></i>
                                             </button>
                                         </div>
