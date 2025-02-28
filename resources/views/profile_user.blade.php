@@ -3,10 +3,9 @@
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/profile_user.css') }}" />
 @endsection
-
 @section('contents')
     <!-- Breadcrumbs -->
-    <section class="mt-5 mb-3 ">
+    <section class="mt-4 mb-3 ">
         <div class="container-custom">
 
             <nav aria-label="breadcrumb">

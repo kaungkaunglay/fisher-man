@@ -177,7 +177,7 @@ Route::middleware(['is_admin'])->group(function () {
 // Product detail
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/shop/{id}', [ShopController::class, 'shop_detials'])->name('shop.detail');
-Route::get('/seller/contact', [SellersController::class, 'contact'])->name('seller.contact');
+Route::get('/seller/contact/{id}', [SellersController::class, 'contact'])->name('seller.contact');
 
 // Route::get('/cart', function () {
 //     return view('cart');

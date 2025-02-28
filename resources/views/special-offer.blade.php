@@ -4,15 +4,22 @@
     <link rel="stylesheet" href="{{ asset('assets/css/category.css') }}" />
 @endsection
 @section('contents')
+    <!-- Breadcrumbs -->
+    <section class="mt-4 mb-3">
+        <div class="container-custom">
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 bg-transparent">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans_lang('home') }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ trans_lang('special_offer') }}</li>
+                </ol>
+            </nav>
+
+        </div>
+    </section>
+    <!-- ./Breadcrumbs -->
+
     <div class="container-custom row">
-        <!-- Breadcrumbs -->
-        <nav aria-label="breadcrumb" class="py-4">
-            <ol class="breadcrumb mb-0 bg-transparent">
-                <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans_lang('home') }}</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ trans_lang('special_offer') }}</li>
-            </ol>
-        </nav>
-        <!-- ./Breadcrumbs -->
         <!-- aside start -->
         <div class="side-menu col-4">
             @include('includes.aside')
@@ -66,23 +73,23 @@
                         @foreach ($products as $product)
                             <div class="item-card">
                                 <a href="{{ route('product.show', $product->id) }}" class="right">
-                                    <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
-                                        alt="{{ $product->name }}">
+                                    <img loading="lazy" src="{{ asset('assets/products/' . $product->product_image) }}"
+                                        class="card-img-top" alt="{{ $product->name }}">
                                 </a>
-                                <div class="left">
-                                    <p class="price m-t-b-10">
+                                <div class="left pt-3">
+                                    <p class="price">
                                         @if ($product->discount > 0)
                                             ¥{{ number_format($product->product_price - $product->discount, 2) }}
                                             <span
-                                                class="original-price">¥{{ number_format($product->product_price) }}</span>
+                                                class="original-price ms-2">¥{{ number_format($product->product_price) }}</span>
                                         @else
-                                            <span class="">¥{{ number_format($product->product_price) }}</span>
+                                            <span>¥{{ number_format($product->product_price) }}</span>
                                         @endif
                                     </p>
-                                    <div class="title-category">
+                                    <div class="title-category mb-2">
                                         <a href="{{ route('sub-category.show', $product->subCategory->id) }}"
                                             class="menu-category">{{ $product->subCategory->name }}</a>
-                                        <h3 class="title m-t-b-10">{{ $product->name }}</h3>
+                                        <h3 class="title">{{ $product->name }}</h3>
                                     </div>
                                     <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
                                         {{ $product->description }}
@@ -114,7 +121,7 @@
     </div>
 
     <script defer src="{{ asset('assets/js/view-list.js') }}"></script>
-    <script defer src="{{ asset('assets/js/words-limit.js') }}"></script>
+    <script src="{{ asset('assets/js/notify.js') }}"></script>
 
 @endsection
 @section('script')

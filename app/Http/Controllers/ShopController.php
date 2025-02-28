@@ -38,7 +38,7 @@ class ShopController extends Controller
              ->paginate(10);
          return view('admin.rejected-shops', compact('rejectedShops'));
      }
- 
+
      public function updateStatus(Request $request)
      {
          $shop = Shop::findOrFail($request->shop_id);
@@ -48,35 +48,35 @@ class ShopController extends Controller
              ->join('shops', 'users.id', '=', 'shops.user_id')
              ->where('shops.id', $request->shop_id)
              ->first();
- 
+
          $user->assignRole(2);
- 
+
          return response()->json(['status' => true, 'message' => 'Shop status updated successfully']);
      }
- 
+
      public function shopDetail($shopID)
      {
          $shop = Shop::select('shops.*', 'users.username', 'users.email')
              ->join('users', 'shops.user_id', '=', 'users.id')
              ->where('shops.id', $shopID)
              ->firstOrFail();
- 
+
          return view('admin.seller-shop-detail', compact('shop'));
      }
- 
+
      public function deleteShop(Request $request)
      {
- 
+
          $user = Users::select('users.*')
              ->join('shops', 'users.id', '=', 'shops.user_id')
              ->where('shops.id', $request->shop_id)
              ->first();
- 
+
          $user->assignRole(3);
          $shop = Shop::find($request->shop_id);
          $shop->delete();
- 
- 
+
+
          return response()->json(['success' => true, 'message' => 'Shop deleted successfully.']);
      }
 
@@ -86,6 +86,8 @@ class ShopController extends Controller
         ->join('users', 'shops.user_id',  'users.id')
         ->where('shops.id','=',$id)
         ->first();
+
+    
 
         $products = Product::select('products.*','sub_categories.name as sub_categories_name')
                     ->join('users','users.id','products.user_id')

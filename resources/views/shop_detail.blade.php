@@ -77,7 +77,7 @@
                             <span class="text-muted">{{$shop->shop_name}}</span>
                         </p>
                         <div class="d-grid gap-2">
-                            <a class="common-btn -solid" href="{{route('seller.contact')}}"><i class="fas fa-envelope me-2"></i>Contact Seller</a>
+                            <a class="common-btn -solid" href="{{route('seller.contact',$shop->user_id)}}"><i class="fas fa-envelope me-2"></i>Contact Seller</a>
                         </div>
                     </div>
                 </div>
@@ -182,7 +182,7 @@
                                                         @else
                                                             <span class="format">{{ $product->product_price }}</span>
                                                         @endif
-                                                            
+
                                                         <div
                                                             class="title-category flex-column flex-sm-row align-items-start">
                                                             <a href="#" class="menu-category">{{$product->sub_categories_name}}</a>
@@ -202,7 +202,7 @@
                                                     </div>
                                                 </div>
                                                 @endforeach
- 
+
 
                                         </div>
                                     </div>
@@ -372,7 +372,7 @@
         {{-- /All Scripts --}}
 
         {{-- Test Scripts --}}
-        <script defer src="{{ asset('assets/js/cloneNode.test.js') }}"></script>
+        
         {{-- /Test Scripts --}}
     </section>
 

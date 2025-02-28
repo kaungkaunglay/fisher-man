@@ -11,8 +11,6 @@ function notiFx(type) {
       return $(this).hasClass('active');
     });
 
-    console.log(check);
-
     // If there's no element with the 'active' class
     if (check.length === 0) {
       $(type + '-fx').addClass('active');

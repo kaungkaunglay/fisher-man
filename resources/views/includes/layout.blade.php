@@ -653,7 +653,7 @@
 
     <script src="{{asset('assets/js/preloader.js')}}"></script>
     <!-- Testing Scripts -->
-    <script defer src="{{ asset('assets/js/cloneNode.test.js') }}"></script>
+
     <!-- /Testing Scripts -->
 </body>
 

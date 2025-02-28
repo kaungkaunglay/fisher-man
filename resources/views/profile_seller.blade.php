@@ -4,7 +4,7 @@
 @endsection
 @section('contents')
     <!-- Breadcrumbs -->
-    <section class="mt-5 mb-3 ">
+    <section class="mt-4 mb-3 ">
         <div class="container-custom">
 
             <nav aria-label="breadcrumb">
@@ -365,7 +365,7 @@
     <script defer src="{{ asset('assets/js/profile-seller.js') }}"></script>
 
     {{-- Testing --}}
-    <script defer src="{{ asset('assets/js/cloneNode.test.js') }}"></script>
+    
     {{-- /Testing --}}
 @endsection
 
