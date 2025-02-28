@@ -14,7 +14,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 bg-transparent">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans_lang('home') }}</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Shop Detail</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ trans_lang('shops') }}{{ trans_lang('detail') }}</li>
                 </ol>
             </nav>
 
@@ -33,16 +33,16 @@
                     <img src="{{ asset('assets/images/avatars/' . $shop->avatar) }}" class="rounded" alt="Shop avatar">
                     <div class="mt-3">
                         <p class="mb-2 text-center d-flex justify-content-center">
-                            <span>Shop Name : &nbsp;</span>
+                            <span>{{ trans_lang('shops') }}{{ trans_lang('name') }} : &nbsp;</span>
                             <span class="text-muted">{{ $shop->shop_name }}</span>
                         </p>
                         <p class="mb-2 text-center d-flex justify-content-center">
-                            <span>Owner Name : &nbsp;</span>
+                            <span>{{ trans_lang('username') }} : &nbsp;</span>
                             <span class="text-muted">{{ $shop->username }}</span>
                         </p>
                         <div class="d-grid gap-2">
                             <a class="common-btn -solid" href="{{ route('seller.contact', $shop->user_id) }}"><i
-                                    class="fas fa-envelope me-2"></i>Contact Seller</a>
+                                    class="fas fa-envelope me-2"></i>{{ trans_lang('contact') }}</a>
                         </div>
                     </div>
                 </div>
@@ -57,11 +57,11 @@
                             <ul class="nav nav-tabs bg-primary p-3 pb-0" id="shopTabs" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link text-white active" id="home-tab" data-bs-toggle="tab" href="#home"
-                                        role="tab">About</a>
+                                        role="tab">{{ trans_lang('about') }}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-white" id="products-tab" data-bs-toggle="tab" href="#products"
-                                        role="tab">Products</a>
+                                        role="tab">{{ trans_lang('product') }}</a>
                                 </li>
                                 {{-- <li class="nav-item">
                                     <a class="nav-link text-white" id="reviews-tab" data-bs-toggle="tab" href="#reviews"
@@ -69,7 +69,7 @@
                                 </li> --}}
                                 <li class="nav-item">
                                     <a class="nav-link text-white" id="policies-tab" data-bs-toggle="tab" href="#policies"
-                                        role="tab">Location</a>
+                                        role="tab">{{ trans_lang('location') }}</a>
                                 </li>
                             </ul>
                             {{-- /Tab List --}}
@@ -79,11 +79,11 @@
 
                                 {{-- About Tab --}}
                                 <div class="tab-pane fade show active" id="home" role="tabpanel">
-                                    <h4 class="p-2 border-bottom border-2 fw-bold">About Shop</h4>
+                                    <h4 class="p-2 border-bottom border-2 fw-bold">{{ trans_lang('about') }}{{ trans_lang('shops') }}</h4>
                                     <p class="p-2">{{ $shop->description }}</p>
                                     <div class="row mt-4">
                                         <div>
-                                            <h5 class="p-2 border-bottom border-2 fw-bold">Shop Details</h5>
+                                            <h5 class="p-2 border-bottom border-2 fw-bold">{{ trans_lang('shops') }}{{ trans_lang('detail') }}</h5>
                                             <ul class="list-unstyled p-2">
                                                 <li><i class="fas fa-phone text-primary mb-3 me-2"></i>
                                                     {{ $shop->phone_number }}

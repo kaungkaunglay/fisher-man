@@ -13,22 +13,23 @@
       @csrf
 
       <!-- Reset -->
-      <div class="mb-3 password-wpr">
+      <div class="mb-3 password-wpr input-box">
         <label for="password" class="form-label">Password</label>
         <div class="input-group border border-2 rounded overflow-hidden">
           <input id="password" name="password" type="password" placeholder="Enter New Password" class="form-control border-0 shadow-none @error('password') is-invalid @enderror" required autofocus>
-          <span class="invalid-feedback"></span>
+
           <button class="btn border-0 password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
         </div>
+        <span class="invalid-feedback"></span>
       </div>
 
-      <div class="mb-3 password-wpr">
-        <label for="confirm-password" class="form-label">Confirm Password</label>
+      <div class="mb-3 password-wpr input-box">
+        <label for="confirm_password" class="form-label">Confirm Password</label>
         <div class="input-group border border-2 rounded overflow-hidden">
-          <input id="confirm-password" name="confirm_password" type="password" placeholder="Re-Enter Password" class="form-control border-0 shadow-none @error('confirm-password') is-invalid @enderror" required autofocus>
-          <span class="invalid-feedback"></span>
+          <input id="confirm_password" name="confirm_password" type="password" placeholder="Re-Enter Password" class="form-control border-0 shadow-none @error('confirm-password') is-invalid @enderror" required autofocus>
           <button class="btn border-0 password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
         </div>
+        <span class="invalid-feedback"></span>
       </div>
 
       <div class="d-flex flex-column align-items-center">
@@ -70,7 +71,7 @@
             var errors = response.errors ?? {};
             var fields = [
               'password',
-              'confirm-password'
+              'confirm_password'
             ];
 
             fields.forEach(function (field) {

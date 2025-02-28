@@ -75,7 +75,7 @@
             <!-- ./Desktop Style -->
 
             <!-- Mobile Style -->
-            <div class="mobile d-md-none d-flex flex-column gap-3 table-item mb-cart-body">
+            <div class="mobile d-md-none d-flex flex-column gap-3 table-item mb-white-list-body">
                 @foreach ($whitelist_products as $idx => $product)
                     <div class="card white-list-{{ $product->id }}">
                         <div class="card-img me-2">
@@ -148,8 +148,6 @@
 
             function removeCart(id) {
 
-                const dsk_white_list = $('.mb-white-list-body').find(`.white-list-${id}`);
-                const mb_white_list = $('.dsk-white-list-body').find(`.white-list-${id}`);
 
                 $('.mb-white-list-body').find(`.white-list-${id}`).remove();
                 $('.dsk-white-list-body').find(`.white-list-${id}`).remove();

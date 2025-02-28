@@ -131,9 +131,9 @@
 
             <div class="fish-shadow"></div>
         </div>
-        
+
         <h4 class="loading-text">{{trans_lang('loading_preload')}}</h4>
-        
+
         <div class="progress">
             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"></div>
         </div>
@@ -254,7 +254,7 @@
                 <div class="bottom-header">
                     <nav>
                         <div class="hambuger-menu">
-                            <button id="hamburger-menu">
+                            <a href="javascript:void(0);" id="hamburger-menu">
                                 <i class="fa-solid fa-bars"></i>
                             </button>
                         </div>
@@ -435,7 +435,7 @@
     <script defer src="{{ asset('assets/js/bootstrap.bundle.min.js')}}"></script>
     <script defer src="{{ asset('assets/js/popup.js') }}"></script>
     {{--
-  <script src="{{asset('assets/js/preloader.js')}}"></script> --}}
+    <script src="{{asset('assets/js/preloader.js')}}"></script> --}}
     <script defer src="{{ asset('assets/js/moving-text.js') }}"></script>
     <script defer src="{{ asset('assets/js/password.js') }}"></script>
     <script>
@@ -450,7 +450,7 @@
                 $(document).click(ev => {
 
                         if (!document.querySelector('.btn-login').contains(ev.target)) {
-        
+
                             $('.dropdown').removeClass('active');
                         }
                     })
