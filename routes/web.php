@@ -82,6 +82,9 @@ Route::get('/category/{id}', [CategoriesController::class, 'show'])->name('categ
 Route::post('/contact', [ContactController::class, 'contact'])->name('contact');
 Route::post('/wishList', [WishListController::class, 'wishList'])->name('wishList');
 
+//products-sorting
+Route::get('/products/srot/',[ProductController::class,'sortBy'])->name('products.sort');
+
 //search-product-ajax
 Route::get('/products/ajax-search', [ProductController::class, 'ajaxSearch'])->name('products.ajaxSearch');
 
@@ -180,7 +183,7 @@ Route::middleware(['is_admin'])->group(function () {
 
 // Product detail
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
-Route::get('/shop/{id}', [ShopController::class, 'shop_detials'])->name('shop.detail');
+Route::get('/shop/{id}', [ShopController::class, 'shop_details'])->name('shop.detail');
 Route::get('/seller/contact/{id}', [SellersController::class, 'contact'])->name('seller.contact');
 
 // Route::get('/cart', function () {

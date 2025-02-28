@@ -81,26 +81,23 @@ class ShopController extends Controller
      }
 
 
-    public function shop_detials($id){
+    public function shop_details($id){
         $shop = Shop::select('shops.*', 'users.username', 'users.address')
         ->join('users', 'shops.user_id',  'users.id')
         ->where('shops.id','=',$id)
         ->first();
 
-    
-
-        $products = Product::select('products.*','sub_categories.name as sub_categories_name')
-                    ->join('users','users.id','products.user_id')
-                    ->join('shops','shops.user_id','users.id')
-                    ->join('sub_categories','sub_categories.id','products.sub_category_id')
-                    ->where('shops.id','=',$id)
-                    ->get();
-
-        // dd($products);
-
+        $products = Product::select('products.*', 'sub_categories.name as sub_categories_name')
+                ->join('users', 'users.id', 'products.user_id')
+                ->join('shops', 'shops.user_id', 'users.id')
+                ->join('sub_categories', 'sub_categories.id', 'products.sub_category_id')
+                ->where('shops.id', '=', $id)
+                ->orderBy('products.created_at', 'desc')
+                ->get();
 
         return view('shop_detail',compact('shop','products'));
     }
+
     public function requestShop(Request $request)
     {
         $messages = [

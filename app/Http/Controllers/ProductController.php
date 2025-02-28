@@ -277,4 +277,31 @@ class ProductController extends Controller
 
         return view('product-search-results', compact('products', 'query'));
     }
+
+    //product-sorting
+    public function sortBy(Request $request)
+    {
+        $sort = $request->get('sort', 'latest'); // Default sorting
+        $products = Product::select('*')
+                ->selectRaw('(product_price - discount) as discounted_price');
+
+        // Sorting logic
+        if ($sort == 'low_to_high') {
+            $products->orderBy('discounted_price', 'asc');
+        } elseif ($sort == 'high_to_low') {
+            $products->orderBy('discounted_price', 'desc');
+        } elseif ($sort == 'latest') {
+            $products->orderBy('created_at', 'desc');
+        } elseif ($sort == 'name_asc') {
+            $products->orderBy('name', 'asc');
+        } elseif ($sort == 'name_desc') {
+            $products->orderBy('name', 'desc');
+        }
+
+        $products = $products->get();
+
+        // return response()->json($products);
+        return response()->json($products);
+        
+    }
 }

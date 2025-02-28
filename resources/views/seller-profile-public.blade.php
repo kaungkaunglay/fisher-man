@@ -32,10 +32,10 @@
                     @csrf --}}
                 <div class="w-100 h-100 d-md-flex gap-3">
                     <!-- profile img -->
-                    <div class="w-100 profile-form d-flex flex-column avatar-input">
+                    <div class="w-100 mb-3 mb-md-0 mb-lg-0 profile-form d-flex flex-column avatar-input">
                         <label for="avatar-input" class="w-100 d-block position-relative gallery">
                             <img src="{{ asset('assets/avatars/' . $sellerInfo->avatar) }}" class="default-preview"
-                                id="form-img" alt="">
+                                id="form-img" width="100" alt="">
                         </label>
                     </div>
                     <!-- /profile img -->
@@ -78,7 +78,7 @@
                             <!-- organizaion -->
                             <div class="form-group">
                                 <div class="d-flex align-items-center form-group">
-                                    <label class="w-25 me-5" for="first_org_name">{{ trans_lang('first_org_name') }}</label>:
+                                    <label class="w-25 me-5" for="first_org_name">Organization Name</label>:
                                     <output class="form-output"
                                         for="first_org_name">{{ $sellerInfo->first_org_name }}</output>
 
@@ -245,13 +245,13 @@
 
             <div class="card-list" id="view-list" data-list="fish-list-1">
                 @foreach ($sellerProducts as $sellerProduct)
-                    <div class="item-card">
+                    <div class="item-card mb-2">
                         <a href="{{ route('product.show', $sellerProduct->id) }}" class="right">
                             <img loading="lazy" src="{{ asset('assets/products/' . $sellerProduct->product_image) }}"
                                 class="card-img-top" alt="{{ $sellerProduct->name }}">
                         </a>
-                        <div class="left">
-                            <p class="price m-t-b-10">
+                        <div class="left pt-3">
+                            <p class="price">
                                 @if ($sellerProduct->discount > 0)
                                     ¥{{ number_format($sellerProduct->product_price - $sellerProduct->discount, 2) }}
                                     <span
@@ -260,10 +260,10 @@
                                     <span class="">¥{{ number_format($sellerProduct->product_price) }}</span>
                                 @endif
                             </p>
-                            <div class="title-category">
+                            <div class="title-category mb-2">
                                 <a href="{{ route('sub-category.show', $sellerProduct->subCategory->id) }}"
                                     class="menu-category ">{{ $sellerProduct->subCategory->name }}</a>
-                                <h3 class="title m-t-b-10">{{ $sellerProduct->name }}</h3>
+                                <h3 class="title">{{ $sellerProduct->name }}</h3>
                             </div>
                             <a href="{{ route('product.show', $sellerProduct->id) }}" class="txt m-b-10 description">
                                 {{ $sellerProduct->description }}
@@ -335,7 +335,7 @@
     <script src="{{ asset('assets/js/loadmore.js') }}"></script>
     <script defer src="{{ asset('assets/js/view-list.js') }}"></script>
     <script defer src="{{ asset('assets/js/words-limit.js') }}"></script>
-    <script defer src="{{ asset('assets/js/profile-seller.js') }}"></script>
+    <script defer src="{{ asset('assets/js/updateForm.js') }}"></script>
 
     {{-- <script>
         $(document).ready(function() {

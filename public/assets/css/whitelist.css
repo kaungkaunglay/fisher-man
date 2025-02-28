@@ -16,8 +16,12 @@ a{
     position: sticky;
 }
 
-.table tbody {
+/* .table tbody {
   min-height: 200px;
+} */
+
+.table tbody td:first-child {
+  padding: 30px 0;
 }
 
 .table thead {top: 0;}
