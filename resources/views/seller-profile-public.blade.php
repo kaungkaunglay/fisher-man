@@ -20,7 +20,7 @@
 
     <!-- Profile Section -->
     <section>
-        <div class="profile_seller container-customn row">
+        <div class="profile_seller container-customn row m-auto">
 
             {{-- <div class="col-12 text-center">
                 @include('messages.index')
@@ -54,12 +54,12 @@
                         <!-- /Form Headline -->
 
                         <!-- /Form Content -->
-                        <div class="px-2 py-3">
+                        <div class="px-2 py-3 seller-info">
 
                             <!-- user name -->
                             <div class="form-group">
                                 <div class="d-flex align-items-center">
-                                    <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
+                                    <label class="w-25 me-5" for="username">{{ trans_lang('name') }}</label>:
                                     <output class="form-output" for="username">{{ $sellerInfo->username }}</output>
                                 </div>
 
@@ -68,7 +68,7 @@
                             <!-- email link -->
                             <div class="form-group">
                                 <div class="d-flex align-items-center form-group">
-                                    <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
+                                    <label class="w-25 me-5" for="email">{{ trans_lang('email') }}</label>:
                                     <output class="form-output" for="email">{{ $sellerInfo->email }}</output>
 
                                 </div>
@@ -78,7 +78,7 @@
                             <!-- organizaion -->
                             <div class="form-group">
                                 <div class="d-flex align-items-center form-group">
-                                    <label class="w-25" for="first_org_name">{{ trans_lang('first_org_name') }}</label>:
+                                    <label class="w-25 me-5" for="first_org_name">{{ trans_lang('first_org_name') }}</label>:
                                     <output class="form-output"
                                         for="first_org_name">{{ $sellerInfo->first_org_name }}</output>
 
@@ -131,18 +131,6 @@
 
                         </div>
 
-
-                        {{-- <div class="alert alert-warning d-flex mb-2" role="alert" >
-                                    <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
-                                        aria-label="Warning:"></i>
-                                    <div class="text-start">
-                                        Verify your email
-                                        <a href="javascript:void(0);" id="sent_email_verify_link" class="btn btn-outline-warning btn-sm">here</a>
-                                    </div>
-                                </div> --}}
-
-                        <!-- /Form Content -->
-
                     </div>
                 </div>
                 {{-- </form> --}}
@@ -155,16 +143,12 @@
                 <div class="mt-3">
                     <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2 form-headline">
                         {{ trans_lang('detail') }}
-
-                        <!-- button group -->
-                        <div class="d-flex justify-content-end gap-4">
-                        </div>
                     </h2>
                 </div>
                 <!-- /Form Headline -->
 
                 <!-- Form Content -->
-                <div class="px-2 py-3">
+                <div class="px-2 py-3 seller-detail">
                     <!-- address -->
                     <div class="d-flex align-items-center form-group">
                         <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
@@ -230,7 +214,7 @@
     <!-- /Profile Section -->
 
     <!-- Product Section -->
-    <section class="discount-products bg-second py-4 mt-5">
+    <section class="discount-products bg-second py-3 mt-3">
         <div class="container-custom">
             <h6 class="txt-primary fw-bold mb-3">{{ trans_lang('uploaded_products') }}</h6>
             <div class="filter d-flex justify-content-between align-items-center mb-3">
@@ -285,10 +269,10 @@
                                 {{ $sellerProduct->description }}
                             </a>
                             <div class="d-flex gap-2 card-btn m-t-10">
-                                <a href="#" class="py-1 common-btn2 -solid cart-btn">
+                                <a href="javascript:void(0);" class="py-1 common-btn2 -solid cart-btn" data-id="{{ $sellerProduct->id }}">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </a>
-                                <a href="#" class="py-1 common-btn2 white-list-btn">
+                                <a href="javascript:void(0);" class="py-1 common-btn2 white-list-btn" data-id="{{ $sellerProduct->id }}">
                                     <i class="fa-solid fa-bookmark"></i>
                                 </a>
                             </div>

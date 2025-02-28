@@ -146,6 +146,10 @@ body {
   color:#00CCFF !important;
 }
 
+.seller-info output, .seller-detail output{
+  margin-left: 50px;
+}
+
 /* new break point for top section responsive */
 @media  screen and (max-width: 1120px) {
 

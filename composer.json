@@ -15,6 +15,7 @@
         "linecorp/line-bot-sdk": "^10.0",
         "socialiteproviders/line": "^4.1",
         "socialiteproviders/manager": "^4.8",
+        "spatie/image-optimizer": "^1.8",
         "spatie/laravel-responsecache": "^7.6"
     },
     "require-dev": {

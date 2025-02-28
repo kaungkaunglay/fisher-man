@@ -642,7 +642,7 @@
     }
     document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.format').forEach(function(element) {
-                let rawPrice = element.textContent.replace('¥', '').replace(/,/g, '');
+                let rawPrice = element.textContent.replace('¥', '').replace(/,/g, '').replace('.00','');
                 let formattedPrice = formatPriceJapanese(rawPrice);
                 element.textContent = formattedPrice;
             });

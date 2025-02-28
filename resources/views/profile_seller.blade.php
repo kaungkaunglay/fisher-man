@@ -20,7 +20,7 @@
 
     <!-- Profile Section -->
     <section>
-        <div class="profile_seller container-custom row">
+        <div class="profile_seller container-custom row m-auto">
 
             <div class="col-12 text-center">
                 @include('messages.index')
@@ -73,12 +73,12 @@
                             <!-- /Form Headline -->
 
                             <!-- /Form Content -->
-                            <div class="px-2 py-3">
+                            <div class="px-2 py-3 seller-info">
 
                                 <!-- user name -->
                                 <div class="form-group">
                                     <div class="d-flex align-items-center">
-                                        <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
+                                        <label class="w-25 me-5" for="username">{{ trans_lang('name') }}</label>:
                                         <output class="form-output" for="username">{{ $user->username }}</output>
                                         <input type="text" name="username"
                                             class="p-1 mt-1 ms-1 border-bottom border-2 d-none" id="username"
@@ -90,7 +90,7 @@
                                 <!-- email link -->
                                 <div class="form-group">
                                     <div class="d-flex align-items-center form-group">
-                                        <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
+                                        <label class="w-25 me-5" for="email">{{ trans_lang('email') }}</label>:
                                         <output class="form-output" for="email">{{ $user->email }}</output>
                                         <input type="email" name="email"
                                             class="p-1 mt-2 ms-1 border-bottom border-2 d-none" id="email"
@@ -102,7 +102,7 @@
                                 <!-- organizaion -->
                                 <div class="form-group">
                                     <div class="d-flex align-items-center form-group">
-                                        <label class="w-25"
+                                        <label class="w-25 me-5"
                                             for="first_org_name">{{ trans_lang('first_org_name') }}</label>:
                                         <output class="form-output"
                                             for="first_org_name">{{ $user->first_org_name }}</output>
@@ -210,7 +210,7 @@
                     <!-- /Form Headline -->
 
                     <!-- Form Content -->
-                    <div class="px-2 py-3">
+                    <div class="px-2 py-3 seller-detail">
 
                         <!-- address -->
                         <div class="d-flex align-items-center form-group">
@@ -275,7 +275,7 @@
     <!-- /Profile Section -->
 
     <!-- Product Section -->
-    <section class="discount-products bg-second mt-5">
+    <section class="discount-products bg-second mt-3 py-3">
         <div class="container-custom">
 
 
