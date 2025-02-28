@@ -446,12 +446,15 @@
             });
 
             // close dropdown
-            $(document).click(ev => {
-                if (!document.querySelector('.btn-login').contains(ev.target)) {
+            if(document.querySelector('.btn-login')) {
+                $(document).click(ev => {
 
-                    $('.dropdown').removeClass('active');
+                        if (!document.querySelector('.btn-login').contains(ev.target)) {
+        
+                            $('.dropdown').removeClass('active');
+                        }
+                    })
                 }
-            })
 
             //search-box open
             $('.search-bar').on('input', () => searchResultShow())

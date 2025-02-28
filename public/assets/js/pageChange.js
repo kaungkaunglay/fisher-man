@@ -20,6 +20,7 @@ function PageChange() {
     }, 500);
 
     stepChange(getPage);
+    progress(getPage);
     ev.preventDefault();
   })
 
@@ -29,6 +30,11 @@ function stepChange(page) {
   const step = $(page).attr('data-step');
   
   for(let i = 0;i < step; i ++) $($('.step-list .step')[i]).addClass('active');
+}
 
-  console.log($(page));
+function progress(page) {
+  const progress = $('.progress-2');
+  const value = $(page).attr('data-step');
+
+  console.log(value)
 }
