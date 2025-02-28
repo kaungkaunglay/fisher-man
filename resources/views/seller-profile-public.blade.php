@@ -30,62 +30,64 @@
             <div class="col-12 col-lg-7 h-100 profile-side">
                 {{-- <form action="#" id="update_basic_profile" class="profile-form" method="POST">
                     @csrf --}}
-                    <div class="w-100 h-100 d-md-flex gap-3">
-                        <!-- profile img -->
-                        <div class="w-100 profile-form d-flex flex-column avatar-input">
-                            <label for="avatar-input" class="w-100 d-block position-relative gallery">
-                                <img src="{{asset('assets/avatars/'.$sellerInfo->avatar)}}" class="default-preview" id="form-img" alt="">
-                            </label>
+                <div class="w-100 h-100 d-md-flex gap-3">
+                    <!-- profile img -->
+                    <div class="w-100 profile-form d-flex flex-column avatar-input">
+                        <label for="avatar-input" class="w-100 d-block position-relative gallery">
+                            <img src="{{ asset('assets/avatars/' . $sellerInfo->avatar) }}" class="default-preview"
+                                id="form-img" alt="">
+                        </label>
+                    </div>
+                    <!-- /profile img -->
+
+                    <!-- Profile Info -->
+                    <div class="w-100 d-flex flex-column">
+
+
+                        <!-- Form Headline -->
+                        <div class="bg-primary text-white p-2 form-headline">
+                            <h2 class="fw-bold d-flex justify-content-between">{{ trans_lang('info') }}
+                                <div class="d-flex justify-content-end gap-4">
+                                </div>
+                            </h2>
                         </div>
-                        <!-- /profile img -->
+                        <!-- /Form Headline -->
 
-                        <!-- Profile Info -->
-                        <div class="w-100 d-flex flex-column">
+                        <!-- /Form Content -->
+                        <div class="px-2 py-3">
 
+                            <!-- user name -->
+                            <div class="form-group">
+                                <div class="d-flex align-items-center">
+                                    <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
+                                    <output class="form-output" for="username">{{ $sellerInfo->username }}</output>
+                                </div>
 
-                            <!-- Form Headline -->
-                            <div class="bg-primary text-white p-2 form-headline">
-                                <h2 class="fw-bold d-flex justify-content-between">{{ trans_lang('info') }}
-                                    <div class="d-flex justify-content-end gap-4">
-                                    </div>
-                                </h2>
                             </div>
-                            <!-- /Form Headline -->
 
-                            <!-- /Form Content -->
-                            <div class="px-2 py-3">
-
-                                <!-- user name -->
-                                <div class="form-group">
-                                    <div class="d-flex align-items-center">
-                                        <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
-                                        <output class="form-output" for="username">{{$sellerInfo->username}}</output>
-                                    </div>
+                            <!-- email link -->
+                            <div class="form-group">
+                                <div class="d-flex align-items-center form-group">
+                                    <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
+                                    <output class="form-output" for="email">{{ $sellerInfo->email }}</output>
 
                                 </div>
 
-                                <!-- email link -->
-                                <div class="form-group">
-                                    <div class="d-flex align-items-center form-group">
-                                        <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
-                                        <output class="form-output" for="email">{{$sellerInfo->email}}</output>
+                            </div>
 
-                                    </div>
-
-                                </div>
-
-                                <!-- organizaion -->
-                                <div class="form-group">
-                                    <div class="d-flex align-items-center form-group">
-                                        <label class="w-25" for="first_org_name">{{ trans_lang('first_org_name') }}</label>:
-                                        <output class="form-output" for="first_org_name">{{$sellerInfo->first_org_name}}</output>
-
-                                    </div>
+                            <!-- organizaion -->
+                            <div class="form-group">
+                                <div class="d-flex align-items-center form-group">
+                                    <label class="w-25" for="first_org_name">{{ trans_lang('first_org_name') }}</label>:
+                                    <output class="form-output"
+                                        for="first_org_name">{{ $sellerInfo->first_org_name }}</output>
 
                                 </div>
 
-                                <!-- account checkbox -->
-                                {{-- <div class="mt-2">
+                            </div>
+
+                            <!-- account checkbox -->
+                            {{-- <div class="mt-2">
                                     <!-- form on state -->
                                     <ul class="d-flex gap-4 checkbox-list">
                                         <li>
@@ -127,10 +129,10 @@
                                     </ul>
                                 </div> --}}
 
-                            </div>
+                        </div>
 
 
-                                {{-- <div class="alert alert-warning d-flex mb-2" role="alert" >
+                        {{-- <div class="alert alert-warning d-flex mb-2" role="alert" >
                                     <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
                                         aria-label="Warning:"></i>
                                     <div class="text-start">
@@ -139,63 +141,61 @@
                                     </div>
                                 </div> --}}
 
-                            <!-- /Form Content -->
+                        <!-- /Form Content -->
 
-                        </div>
                     </div>
+                </div>
                 {{-- </form> --}}
 
 
                 <!-- Detail Info -->
                 {{-- <form action="" id="update_contact_details" method="POST" class="w-100 mt-3 profile-form"> --}}
 
-                    <!-- Form Headline -->
-                    <div class="mt-3">
-                        <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2 form-headline">
-                            {{ trans_lang('detail') }}
+                <!-- Form Headline -->
+                <div class="mt-3">
+                    <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2 form-headline">
+                        {{ trans_lang('detail') }}
 
-                            <!-- button group -->
-                            <div class="d-flex justify-content-end gap-4">
-                                {{-- <button type="submit" class="save d-none">
-                                    <i class="fa-solid fa-save fs-5 text-white"></i>
-                                </button>
-                                <button class="edit">
-                                    <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
-                                </button>
-                                <button class="cancel d-none">
-                                    <i class="fa-solid fa-x fs-5 text-white"></i>
-                                </button> --}}
-                            </div>
-                        </h2>
-                    </div>
-                    <!-- /Form Headline -->
-
-                    <!-- Form Content -->
-                    <div class="px-2 py-3">
-                        <!-- address -->
-                        <div class="d-flex align-items-center form-group">
-                            <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
-                            <output class="form-output" for="address">{{$sellerInfo->address}}</output>
-
+                        <!-- button group -->
+                        <div class="d-flex justify-content-end gap-4">
                         </div>
+                    </h2>
+                </div>
+                <!-- /Form Headline -->
 
-                        <!-- phone-number link -->
-                        <div class="d-flex align-items-start form-group">
-                            <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
-                            <div class="ms-1 d-flex flex-column phone-no-container">
-                                <a href="tel:">
-                                    <output class="form-output" for="first_phone">{{$sellerInfo->first_phone}}</output>
-                                </a>
+                <!-- Form Content -->
+                <div class="px-2 py-3">
+                    <!-- address -->
+                    <div class="d-flex align-items-center form-group">
+                        <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
+                        <output class="form-output" for="address">{{ $sellerInfo->address }}</output>
 
-                                <a href="tel:">
+                    </div>
+
+                    <!-- phone-number link -->
+                    <div class="d-flex align-items-start form-group">
+                        <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
+                        <div class="ms-1 d-flex flex-column phone-no-container">
+                            <a href="tel:">
+                                <output class="form-output" for="first_phone">{{ $sellerInfo->first_phone }}</output>
+                            </a>
+
+                            {{-- <a href="tel:">
                                     <output class="form-output" for="second_phone">{{$sellerInfo->second_phone}}</output>
-                                </a>
-
-                            </div>
+                                </a> --}}
 
                         </div>
+
                     </div>
-                    <!-- /Form Content -->
+                    <!-- shop name -->
+                    <div class="d-flex align-items-center form-group">
+                        <label class="w-25">Shop Name</label>:
+                        <a href="{{route('shop.detail',$sellerInfo->shop_id)}}"><output class="form-output text-warning">{{ $sellerInfo->shop_name }}</output></a>
+
+                    </div>
+
+                </div>
+                <!-- /Form Content -->
 
                 </form>
                 <!-- /Detail Info -->
@@ -242,35 +242,36 @@
                 </div>
 
                 <!-- sorting -->
-                 <div class="sort-container">
-                                <div class="arrows">
-                                    <button><i class="fa-solid fa-caret-up"></i></button>
-                                    <button><i class="fa-solid fa-caret-down"></i></button>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">Sort by</button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                <div class="sort-container">
+                    <div class="arrows">
+                        <button><i class="fa-solid fa-caret-up"></i></button>
+                        <button><i class="fa-solid fa-caret-down"></i></button>
+                    </div>
+                    <div class="dropdown">
+                        <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">Sort by</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <div class="card-list" id="view-list" data-list="fish-list-1">
                 @foreach ($sellerProducts as $sellerProduct)
                     <div class="item-card">
                         <a href="{{ route('product.show', $sellerProduct->id) }}" class="right">
-                            <img src="{{ asset('assets/products/' . $sellerProduct->product_image) }}" class="card-img-top"
-                                alt="{{ $sellerProduct->name }}">
+                            <img loading="lazy" src="{{ asset('assets/products/' . $sellerProduct->product_image) }}"
+                                class="card-img-top" alt="{{ $sellerProduct->name }}">
                         </a>
                         <div class="left">
                             <p class="price m-t-b-10">
                                 @if ($sellerProduct->discount > 0)
                                     ¥{{ number_format($sellerProduct->product_price - $sellerProduct->discount, 2) }}
-                                    <span class="original-price">¥{{ number_format($sellerProduct->product_price) }}</span>
+                                    <span
+                                        class="original-price">¥{{ number_format($sellerProduct->product_price) }}</span>
                                 @else
                                     <span class="">¥{{ number_format($sellerProduct->product_price) }}</span>
                                 @endif
@@ -297,6 +298,17 @@
                 @endforeach
 
             </div>
+
+            <!-- All Products Footline -->
+            <div class="row justify-content-center">
+                <div class="col-5 col-lg-3 text-center">
+                    <button class="btn btn-outline-primary px-5 py-2  mt-5" id="load-more"
+                        title="Load More Items">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /All Products Footline -->
 
 
 
@@ -336,6 +348,7 @@
     <!-- /Product Section -->
 
     <!-- All Scripts -->
+    <script src="{{ asset('assets/js/loadmore.js') }}"></script>
     <script defer src="{{ asset('assets/js/view-list.js') }}"></script>
     <script defer src="{{ asset('assets/js/words-limit.js') }}"></script>
     <script defer src="{{ asset('assets/js/profile-seller.js') }}"></script>
@@ -371,6 +384,15 @@
     {{-- Testing --}}
 
     {{-- /Testing --}}
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(() => {
+            handleAddToCartBtn('cart-btn');
+            handleAddToWhiteListBtn('white-list-btn');
+        })
+    </script>
 @endsection
 
 {{-- @section('script')

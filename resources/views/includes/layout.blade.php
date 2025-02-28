@@ -256,7 +256,7 @@
                         <div class="hambuger-menu">
                             <a href="javascript:void(0);" id="hamburger-menu">
                                 <i class="fa-solid fa-bars"></i>
-                            </a>
+                            </button>
                         </div>
                         <ul class="w-100">
                             <li><a href="{{ url('/') }}" class="menu-header">{{ trans_lang('home') }}</a></li>
@@ -446,12 +446,15 @@
             });
 
             // close dropdown
-            $(document).click(ev => {
-                if (!document.querySelector('.btn-login').contains(ev.target)) {
+            if(document.querySelector('.btn-login')) {
+                $(document).click(ev => {
 
-                    $('.dropdown').removeClass('active');
+                        if (!document.querySelector('.btn-login').contains(ev.target)) {
+
+                            $('.dropdown').removeClass('active');
+                        }
+                    })
                 }
-            })
 
             //search-box open
             $('.search-bar').on('input', () => searchResultShow())
@@ -614,9 +617,6 @@
             });
         }
 
-
-
-
         function formatPriceJapanese(price) {
         // Convert to number and handle potential non-number inputs
         const priceNum = Number(price);
@@ -652,6 +652,7 @@
     @yield('script')
 
     <script src="{{asset('assets/js/preloader.js')}}"></script>
+    <script src="{{ asset('assets/js/notify.js') }}"></script>
     <!-- Testing Scripts -->
 
     <!-- /Testing Scripts -->

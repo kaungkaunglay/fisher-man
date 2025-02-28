@@ -43,6 +43,7 @@
             <!-- Card List -->
             <div class="card-list" id="view-list">
                 @foreach ($random_products  as $product)
+                @if ($product->status == 'approved')
                     <div class="item-card mb-2">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
                             <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
@@ -77,6 +78,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 @endforeach
             </div>
             <!-- /Card List -->
@@ -144,6 +146,7 @@
             <!-- Products List -->
             <div class="card-list" id="view-list">
                 @foreach ($products->filter(fn($product) => $product->discount > 0.0)->take(6) as $product)
+                @if ($product->status == 'approved')
                     <div class="item-card mb-2">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
                             <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
@@ -179,6 +182,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 @endforeach
             </div>
             <!-- /Products List -->
@@ -239,6 +243,7 @@
             <!-- Products List -->
             <div class="card-list" id="view-list">
                 @foreach ($products as $product)
+                @if ($product->status == 'approved')
                     <div class="item-card mb-2">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
                             <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
@@ -277,6 +282,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 @endforeach
             </div>
             <!-- /Products List -->
@@ -332,7 +338,6 @@
     <!-- All Scripts -->
     <script src="{{ asset('assets/js/loadmore.js') }}"></script>
     <script src="{{ asset('assets/js/view-list.js') }}"></script>
-    <script src="{{ asset('assets/js/notify.js') }}"></script>
     <!-- /All Scripts -->
 
     <!-- Testing Scripts -->

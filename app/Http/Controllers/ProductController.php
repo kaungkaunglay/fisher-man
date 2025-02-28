@@ -50,10 +50,30 @@ class ProductController extends Controller
         return view('home', compact('products','popular_shops', 'random_products','bannerImages'));
     }
 
+    public function updateStatus(Request $request)
+    {
+        $product = Product::find($request->id);
+        if ($product) {
+            $product->status = $request->status;
+            $product->save();
+
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false]);
+    }
+
+
     public function create()
     {
         $subCategories = Sub_category::all();
         return view('admin.product', compact('subCategories'));
+    }
+
+    public function pendingProducts()
+    {
+        $products = Product::where('status', 'pending')->paginate(10);
+        return view('admin.pending-products', compact('products'));
     }
 
     public function store(Request $request)
@@ -82,7 +102,7 @@ class ProductController extends Controller
             'expiration_date.date' => 'Expiration date must be date',
             'expiration_date' => 'Expiration date must be valid date',
             'discount.numeric' => 'Discount must be numeric',
-            'description.string' => 'Description must be string'
+            'status.string' => 'status is required',
         ];
 
 
@@ -98,6 +118,7 @@ class ProductController extends Controller
             'expiration_date' => ['nullable','date',new ValidExpireDate()],
             'discount' => 'nullable|numeric',
             'description' => 'nullable|string',
+            'status' => 'nullable|string',
         ],$messages);
 
         $folderPath = public_path('assets/products');
@@ -126,6 +147,7 @@ class ProductController extends Controller
             'expiration_date' => $request->expiration_date,
             'discount' => $request->discount,
             'description' => $request->description,
+            'status' => $request->status,
         ]);
 
         return redirect()->route('admin.products')->with('success', 'Product created successfully.');

@@ -70,14 +70,19 @@
                 {{-- Shop Detail --}}
                 <div class="col-md-3 text-center text-md-start">
 
-                    <img src="{{ asset('assets/images/avatars/'.$shop->avatar) }}" class="rounded" alt="Shop avatar">
+                    <img src="{{ asset('assets/images/avatars/' . $shop->avatar) }}" class="rounded" alt="Shop avatar">
                     <div class="mt-3">
                         <p class="mb-2 text-center d-flex justify-content-center">
                             <span>Shop Name : &nbsp;</span>
-                            <span class="text-muted">{{$shop->shop_name}}</span>
+                            <span class="text-muted">{{ $shop->shop_name }}</span>
+                        </p>
+                        <p class="mb-2 text-center d-flex justify-content-center">
+                            <span>Owner Name : &nbsp;</span>
+                            <span class="text-muted">{{ $shop->username }}</span>
                         </p>
                         <div class="d-grid gap-2">
-                            <a class="common-btn -solid" href="{{route('seller.contact',$shop->user_id)}}"><i class="fas fa-envelope me-2"></i>Contact Seller</a>
+                            <a class="common-btn -solid" href="{{ route('seller.contact', $shop->user_id) }}"><i
+                                    class="fas fa-envelope me-2"></i>Contact Seller</a>
                         </div>
                     </div>
                 </div>
@@ -115,18 +120,23 @@
                                 {{-- About Tab --}}
                                 <div class="tab-pane fade show active" id="home" role="tabpanel">
                                     <h4 class="p-2 border-bottom border-2 fw-bold">About Shop</h4>
-                                    <p class="p-2">{{$shop->description}}</p>
+                                    <p class="p-2">{{ $shop->description }}</p>
                                     <div class="row mt-4">
                                         <div>
                                             <h5 class="p-2 border-bottom border-2 fw-bold">Shop Details</h5>
                                             <ul class="list-unstyled p-2">
-                                                <li><i class="fas fa-phone text-primary mb-3 me-2"></i> {{$shop->phone_number}}
+                                                <li><i class="fas fa-phone text-primary mb-3 me-2"></i>
+                                                    {{ $shop->phone_number }}
                                                 </li>
-                                                <li><i class="fas fa-envelope text-primary mb-3 me-2"></i> {{$shop->email}}
+                                                <li><i class="fas fa-envelope text-primary mb-3 me-2"></i>
+                                                    {{ $shop->email }}
                                                 </li>
-                                                <li><i class="fas fa-map-marker-alt text-primary mb-3 me-2"></i> {{$shop->address}}
+                                                <li><i class="fas fa-map-marker-alt text-primary mb-3 me-2"></i>
+                                                    {{ $shop->address }}
                                                 </li>
-                                                <li><i class="fas fa-box text-primary mb-3 me-2"></i>{{$products->count()}} products</li>
+                                                <li><i
+                                                        class="fas fa-box text-primary mb-3 me-2"></i>{{ $products->count() }}
+                                                    products</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -168,49 +178,65 @@
                                         <div class="card-list m-3" id="view-list" data-list="fish-list">
 
 
-                                                @foreach ($products as $product)
+                                            @foreach ($products as $product)
+                                            @if ($product->status == 'approved')
                                                 <div class="item-card mb-3">
                                                     <a href="#" class="right">
-                                                        <img src="{{ asset('assets/products/'. $product->product_image) }}"
+                                                        <img src="{{ asset('assets/products/' . $product->product_image) }}"
                                                             class="card-img-top" alt="">
                                                     </a>
                                                     <div class="left">
                                                         <p class="price m-t-b-10">
                                                             @if ($product->discount > 0)
-                                                            <span class="format">{{$product->product_price - $product->discount}}</span>
-                                                            <span class="original-price format">{{ $product->product_price }}</span>
-                                                        @else
-                                                            <span class="format">{{ $product->product_price }}</span>
-                                                        @endif
+                                                                <span
+                                                                    class="format">{{ $product->product_price - $product->discount }}</span>
+                                                                <span
+                                                                    class="original-price format">{{ $product->product_price }}</span>
+                                                            @else
+                                                                <span class="format">{{ $product->product_price }}</span>
+                                                            @endif
 
                                                         <div
                                                             class="title-category flex-column flex-sm-row align-items-start">
-                                                            <a href="#" class="menu-category">{{$product->sub_categories_name}}</a>
-                                                            <h3 class="title m-t-b-10">{{$product->name}}</h3>
+                                                            <a href="#"
+                                                                class="menu-category">{{ $product->sub_categories_name }}</a>
+                                                            <h3 class="title m-t-b-10">{{ $product->name }}</h3>
                                                         </div>
                                                         <a href="#" class="txt m-b-10 description">
-                                                           {{$product->description}}
+                                                            {{ $product->description }}
                                                         </a>
                                                         <div class="d-flex gap-2 card-btn m-t-10">
-                                                            <a href="#" class="py-1 common-btn2 -solid cart-btn">
+                                                            <a href="javascript:void(0);"
+                                                                class="py-1 common-btn2 -solid cart-btn"
+                                                                data-id="{{ $product->id }}">
                                                                 <i class="fa-solid fa-cart-shopping"></i>
                                                             </a>
-                                                            <a href="#" class="py-1 common-btn2 white-list-btn">
+                                                            <a href="javascript:void(0);"
+                                                                class="py-1 common-btn2 white-list-btn"
+                                                                data-id="{{ $product->id }}">
                                                                 <i class="fa-solid fa-bookmark"></i>
                                                             </a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @endforeach
+                                                @endif
+                                            @endforeach
 
 
                                         </div>
                                     </div>
                                     {{-- /Products List --}}
 
-                                    <div class="d-flex">
-                                        <button class="common-btn mx-auto">Load More</button>
+                                    <!-- All Products Footline -->
+                                    <div class="row justify-content-center">
+                                        <div class="col-5 col-lg-3 text-center">
+                                            <button class="btn btn-outline-primary px-5 py-2  mt-5" id="load-more"
+                                                title="Load More Items">
+                                                <i class="fas fa-chevron-down"></i>
+                                            </button>
+                                        </div>
                                     </div>
+                                    <!-- /All Products Footline -->
 
                                 </div>
                                 {{-- /Product Tab --}}
@@ -330,10 +356,10 @@
                                                         </div>
                                                     </div>
                                                     <p>
-                                                    Thank you for your feedback, James! We apologize for the shipping
-                                                    delay. We had some unexpected issues with our carrier, but we've
-                                                    addressed them to ensure faster delivery times. We're glad you're
-                                                    enjoying the spoons!
+                                                        Thank you for your feedback, James! We apologize for the shipping
+                                                        delay. We had some unexpected issues with our carrier, but we've
+                                                        addressed them to ensure faster delivery times. We're glad you're
+                                                        enjoying the spoons!
                                                     </p>
                                                 </div>
                                             </div>
@@ -368,13 +394,23 @@
         </div>
 
         {{-- All Scripts --}}
+        <script src="{{ asset('assets/js/loadmore.js') }}"></script>
         <script defer src="{{ asset('assets/js/view-list.js') }}"></script>
         {{-- /All Scripts --}}
 
         {{-- Test Scripts --}}
-        
+
         {{-- /Test Scripts --}}
     </section>
 
 
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(() => {
+            handleAddToCartBtn('cart-btn');
+            handleAddToWhiteListBtn('white-list-btn');
+        })
+    </script>
 @endsection
