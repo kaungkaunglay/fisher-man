@@ -133,6 +133,7 @@
             </div>
 
             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+            <input type="hidden" name="status" value="pending">
 
             <div class="cols gap10">
                 <button class="tf-button w-full" type="submit">{{ isset($product) ? '商品を更新' : '商品を追加' }}</button>
