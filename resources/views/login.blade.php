@@ -1,4 +1,4 @@
-@extends('includes.layout')
+@extends('includes.guest')
 @section('title','Login')
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}" />
@@ -71,8 +71,8 @@
                     <a href="{{ route('forgotpassword') }}">{{trans_lang('forget_password')}}</a>
                 </div>
             </div>
-            
-            
+
+
 
         </form>
         <!-- form end -->

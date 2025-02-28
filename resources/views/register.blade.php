@@ -1,4 +1,4 @@
-@extends('includes.layout')
+@extends('includes.guest')
 @section('title','Register')
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/register.css') }}" />

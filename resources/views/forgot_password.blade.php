@@ -16,7 +16,7 @@
       <div class="mb-3">
         <label for="email" class="form-label">{{trans_lang('email')}}</label>
         <input type="email" name="email" id="email" class="form-control border-2" placeholder="email@gmail.com" autofocus>
-        <span class="invalid-feedback"></span>
+        <p></p>
         <div class="input-box d-flePx flex-column">
             <span class="mb-2 pt-2 text-danger" id="message"></span>
         </div>
@@ -54,17 +54,20 @@
             window.location.href = `/email_success/${$('#email').val() ?? response.email}`;
           } else {
             $('#message').html(response.message ?? '');
-            var errors = response.errors;
+            var errors = response.errors ?? '';
             if (errors.email) {
               $('#email').addClass('is-invalid')
                 .siblings('p')
                 .addClass('invalid-feedback')
                 .html(errors.email);
+
+                console.log(errors.email)
             } else {
               $('#email').removeClass('is-invalid')
                 .siblings('p')
                 .removeClass('invalid-feedback')
                 .html('');
+                console.log(errors.email)
             }
           }
         }

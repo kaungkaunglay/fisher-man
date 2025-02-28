@@ -16,9 +16,32 @@ document.addEventListener("click", function (event) {
   }
 });
 
+if(hamburgerMenu) {
+  hamburgerMenu.addEventListener("click", function (event) {
+    event.preventDefault();
+    categoryPopup.classList.toggle("active");
+  });
+}
+
 if(seeMoreLink) {
   seeMoreLink.addEventListener("click", function (event) {
     event.preventDefault();
     categoryPopup.classList.toggle("active");
   });
 }
+
+if(categoryLink) {
+  categoryLink.addEventListener("click", function (event) {
+    event.preventDefault();
+    categoryPopup.classList.toggle("active");
+  });
+}
+
+if(closePopup) {
+  closePopup.addEventListener("click", function (event) {
+    event.preventDefault();
+    categoryPopup.classList.remove("active");
+  });
+}
+
+

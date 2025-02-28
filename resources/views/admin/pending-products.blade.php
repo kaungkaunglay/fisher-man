@@ -13,31 +13,25 @@
 <link rel="stylesheet" href="{{ asset('assets/admin/icon/style.css') }}">
 @endsection
 @section('contents')
+@include('messages.index')
+
 <!-- main-content-wrap -->
 <div class="main-content-inner">
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>{{trans_lang('all_products')}}</h3>
+            <h3>{{trans_lang('request_shops')}}</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="index.html">
-                        <div class="text-tiny">{{trans_lang('home')}}</div>
+                    <a href="{{route('admin.index')}}">
+                        <div class="text-tiny">Dashboard</div>
                     </a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <a href="#">
-                        <div class="text-tiny">{{trans_lang('ecommerce')}}</div>
-                    </a>
-                </li>
-                <li>
-                    <i class="icon-chevron-right"></i>
-                </li>
-                <li>
-                    <div class="text-tiny">{{trans_lang('all_products')}}</div>
+                    <div class="text-tiny">{{trans_lang('request_shops')}}</div>
                 </li>
             </ul>
         </div>
@@ -69,9 +63,7 @@
                         </div>
                     </form>
                 </div>
-                @if (check_role(2))
-                <a class="tf-button style-1 w208" href="/admin/products/create"><i class="icon-plus"></i>{{trans_lang('add_product')}}</a>
-                @endif
+                {{-- <a class="tf-button style-1 w208" href="/admin/faq/create"><i class="icon-plus"></i>Add new</a> --}}
             </div>
             <div class="wg-table table-product-list">
                 <ul class="table-title flex gap20 mb-14">
@@ -85,16 +77,19 @@
                         <div class="body-title">{{trans_lang('price')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">{{trans_lang('status')}}</div>
+                        <div class="body-title">{{trans_lang('quanity')}}</div>
                     </li>
                     <li>
                         <div class="body-title">{{trans_lang('sale')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">{{trans_lang('quanity')}}</div>
+                        <div class="body-title">{{trans_lang('uploaded_date')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">{{trans_lang('uploaded_date')}}</div>
+                        <div class="body-title">{{trans_lang('expire_date')}}</div>
+                    </li>
+                    <li>
+                        <div class="body-title">{{trans_lang('status')}}</div>
                     </li>
                     <li>
                         <div class="body-title">{{trans_lang('action')}}</div>
@@ -108,30 +103,38 @@
                             <img src="{{ asset('assets/products/'.$product->product_image) }}" alt="{{ $product->name }}">
                         </div>
                         <div class="flex items-center justify-between gap20 flex-grow">
-                            <div class="name">
-                                <a href="{{ route('admin.products', $product->id) }}" class="body-title-2">{{ $product->name }}</a>
-                            </div>
+
+                            <div class="body-text">{{ $product->name }}</div>
                             <div class="body-text">{{ $product->id }}</div>
                             <div class="body-text">¥{{ number_format($product->product_price) }}</div>
-                            <div class="body-text">{{ $product->status }}</div>
-                            <div class="body-text">{{ $product->sale_percentage ?? 'N/A' }}</div>
-                            <div>
-                                @if($product->stock <= 0)
-                                    <div class="block-not-available">Out of stock</div>
-                            @else
                             <div class="body-text">{{ $product->stock }}</div>
-                            @endif
+                            <div class="body-text">{{ $product->sale_percentage ?? 'N/A' }}</div>
+                            <div class="body-text">{{ $product->created_at->format('d M Y') }}</div>
+                            <div class="body-text">{{ $product->expiration_date }}</div>
+                            <div class="dropdown">
+                                {{-- <div class="block-pending">Pending</div> --}}
+                                <button class="btn
+                                    @if($product->status == 'accepted') block-available
+                                    @elseif($product->status == 'pending') block-pending
+                                    @else block-not-available @endif
+                                    dropdown-toggle"
+                                    type="button"
+                                    id="statusDropdown{{ $product->id }}"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    {{ ucfirst($product->status) }}
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="statusDropdown{{ $product->id }}">
+                                    <li><a class="dropdown-item change-status" href="#" data-id="{{ $product->id }}" data-status="approved">✅ Approve</a></li>
+                                    <li><a class="dropdown-item change-status" href="#" data-id="{{ $product->id }}" data-status="pending">⏳ Pending</a></li>
+                                    <li><a class="dropdown-item change-status" href="#" data-id="{{ $product->id }}" data-status="rejected">❌ Reject</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="body-text">{{ $product->created_at->format('d M Y') }}</div>
                         <div class="list-icon-function">
                             <div class="item eye">
-                                <a href="{{ route('admin.product.show', $product->id) }}">
+                                <a href="{{route('admin.product.show',$product->id)}}">
                                     <i class="icon-eye"></i>
-                                </a>
-                            </div>
-                            <div class="item edit">
-                                <a href="{{ route('admin.products.edit', $product->id) }}">
-                                    <i class="icon-edit-3"></i>
                                 </a>
                             </div>
                             <div class="item trash">
@@ -143,50 +146,48 @@
                                     <i class="icon-trash-2"></i>
                                 </a>
                             </div>
+                            
                         </div>
                     </li>
                 </ul>
                 @endforeach
             </div>
         </div>
-
-        <div class="divider"></div>
-        <div class="flex items-center justify-between flex-wrap gap10">
-            <div class="text-tiny">{{trans_lang('showing_10_entries')}}</div>
-            <ul class="wg-pagination">
-                {{-- Previous Page Link --}}
-                @if ($products->onFirstPage())
-                <li class="disabled">
-                    <span><i class="icon-chevron-left"></i></span>
-                </li>
-                @else
-                <li>
-                    <a href="{{ $products->previousPageUrl() }}"><i class="icon-chevron-left"></i></a>
-                </li>
-                @endif
-
-                {{-- Pagination Elements --}}
-                @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
-                <li class="{{ $products->currentPage() == $page ? 'active' : '' }}">
-                    <a href="{{ $url }}">{{ $page }}</a>
-                </li>
-                @endforeach
-
-                {{-- Next Page Link --}}
-                @if ($products->hasMorePages())
-                <li>
-                    <a href="{{ $products->nextPageUrl() }}"><i class="icon-chevron-right"></i></a>
-                </li>
-                @else
-                <li class="disabled">
-                    <span><i class="icon-chevron-right"></i></span>
-                </li>
-                @endif
-            </ul>
-
-        </div>
     </div>
-    <!-- /product-list -->
+
+    <div class="divider mb-20"></div>
+    {{-- pagination --}}
+    @if ($products->hasPages())
+    <div class="flex items-center justify-between flex-wrap gap10">
+        <!-- <div class="text-tiny">
+                Showing {{ $products->firstItem() }} to {{ $products->lastItem() }} of {{ $products->total() }} entries
+            </div> -->
+        <ul class="wg-pagination">
+            <!-- Previous Page -->
+            <li class="{{ $products->onFirstPage() ? 'disabled' : '' }}">
+                <a href="{{ $products->previousPageUrl() }}">
+                    <i class="icon-chevron-left"></i>
+                </a>
+            </li>
+
+            <!-- Page Numbers -->
+            @foreach ($products->links()->elements[0] as $page => $url)
+            <li class="{{ $page == $products->currentPage() ? 'active' : '' }}">
+                <a href="{{ $url }}">{{ $page }}</a>
+            </li>
+            @endforeach
+
+            <!-- Next Page -->
+            <li class="{{ $products->hasMorePages() ? '' : 'disabled' }}">
+                <a href="{{ $products->nextPageUrl() }}">
+                    <i class="icon-chevron-right"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    @endif
+</div>
+<!-- /product-list -->
 </div>
 <!-- /main-content-wrap -->
 </div>
@@ -215,4 +216,38 @@
 <script src="{{ asset('assets/admin/js/switcher.js') }}"></script>
 <script src="{{ asset('assets/admin/js/theme-settings.js') }}"></script>
 <script src="{{ asset('assets/admin/js/main.js') }}"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".change-status").on("click", function (e) {
+            e.preventDefault();
+
+            let productId = $(this).data("id");
+            let status = $(this).data("status");
+
+            $.ajax({
+                url: "{{ route('admin.products.updateStatus') }}",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    id: productId,
+                    status: status
+                },
+                success: function (response) {
+                    if (response.success) {
+                        $("#statusDropdown" + productId).text(status.charAt(0).toUpperCase() + status.slice(1));
+                        $("#statusDropdown" + productId)
+                            .removeClass("btn-success btn-warning btn-danger")
+                            .addClass(status === "approved" ? "btn-success" : status === "pending" ? "btn-warning" : "btn-danger");
+                    } else {
+                        alert("Failed to update status.");
+                    }
+                },
+                error: function () {
+                    alert("Error updating status.");
+                }
+            });
+        });
+    });
+</script>
 @endsection

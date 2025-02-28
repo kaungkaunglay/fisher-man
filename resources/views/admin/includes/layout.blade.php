@@ -1,5 +1,5 @@
 @php
-     $user = \App\Models\Users::select('users.*','roles.name as role_name')
+    $user = \App\Models\Users::select('users.*','roles.name as role_name')
                 ->join('user_roles','user_roles.user_id','=','users.id')
                 ->join('roles','roles.id','=','user_roles.role_id')
                 ->where('users.id',auth_helper()->user()->id)

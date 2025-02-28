@@ -25,6 +25,7 @@ return new class extends Migration
             $table->foreignId('sub_category_id')->constrained('sub_categories')->onDelete('cascade');
             $table->text('description')->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

@@ -8,14 +8,15 @@
 
     <!-- Step List -->
     <section class="mt-5 mb-3">
-        <div class="container-custom px-0">
+        <div class="container-custom">
 
             <div class="position-relative">
-                <div class="progress-box w-100 h-100 position-absolute d-flex">
-                    <span class="progress-bar m-auto">
-                        <span class="progress"></span>
-                    </span>
+                <div class="progress-box position-absolute w-100 d-flex">
+                    <div class="progress-bar-2 mx-auto">
+                        <div class="progress-2"></div>
+                    </div>
                 </div>
+
                 <ul class="step-list d-flex text-center">
                     <li class="step active d-flex flex-column align-items-center">
                         <span class="me-2">1</span>
@@ -45,7 +46,7 @@
     <!-- /Step List -->
 
     <!-- Checkout Step -->
-    <section class="page" id="checkout">
+    <section class="page" id="checkout" data-step="1">
         <div class="container-custom">
 
             <!-- Desktop Style -->
@@ -193,6 +194,62 @@
         </div>
     </section>
     <!-- /Login Step -->
+
+    {{-- Address Step --}}
+    {{-- <section>
+        <div class="container-custom">
+            <form action="" id="update_contact_details" method="POST" class="w-100 mt-3 profile-form">
+        
+                <!-- Form Headline -->
+                <div>
+                    <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2 form-headline">
+                        {{ trans_lang('detail') }}
+        
+                        <!-- button group -->
+                        <div class="d-flex justify-content-end gap-4">
+                            <button type="submit" class="save d-none">
+                                <i class="fa-solid fa-save fs-5 text-white"></i>
+                            </button>
+                            <button class="edit">
+                                <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
+                            </button>
+                            <button class="cancel d-none">
+                                <i class="fa-solid fa-x fs-5 text-white"></i>
+                            </button>
+                        </div>
+                    </h2>
+                </div>
+                <!-- /Form Headline -->
+        
+                <!-- Form Content -->
+                <div class="px-2 py-3">
+        
+                    <!-- address -->
+                    <div class="d-flex form-group">
+                        <label class="w-25" for="address">{{ trans_lang('name') }}</label>:
+                        <output class="form-output" for="address">{{ $user->address }}</output>
+                        <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea>
+                        <span class="invalid-feedback"></span>
+                    </div>
+        
+                    <!-- phone-number link -->
+                    <div class="d-flex align-items-start form-group">
+                        <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
+                        <div class="ms-1 d-flex flex-column phone-no-container">
+                            <a href="tel:">
+                                <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
+                            </a>
+                            <input type="tel" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none" id="first_phone" value="{{ $user->first_phone }}" disabled>
+
+                    </div>
+        
+                </div>
+                <!-- /Form Content -->
+        
+            </form>
+        </div>
+    </section> --}}
+    {{-- /Address Step --}}
 
     <!-- Address Step -->
     <section class="page mt-3" id="address" data-step="3">
@@ -743,7 +800,7 @@
     <!-- /All Scripts -->
 
     {{-- Test Scripts --}}
-    <script src="{{asset('assets/js/skipTester.test.js')}}"></script>
+
     {{-- /Test Scripts --}}
 
 @endsection
