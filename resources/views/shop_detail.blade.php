@@ -121,13 +121,19 @@
                                                 <button><i class="fa-solid fa-caret-down"></i></button>
                                             </div>
                                             <div class="dropdown">
-                                                <button class="sort-button dropdown-toggle" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">Sort by</button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                </ul>
+                                                <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                                aria-expanded="false">{{trans_lang('sortby')}}</button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item sort-option"
+                                                        href="#" data-sort="low_to_high">{{trans_lang('price_l_h')}}</a></li>
+                                                <li><a class="dropdown-item sort-option"
+                                                        href="#" data-sort="high_to_low">{{trans_lang('price_h_l')}}</a>
+                                                </li>
+                                                <li><a class="dropdown-item sort-option" href="#" data-sort="name_asc">{{trans_lang('name_a_z')}}</a></li>
+                                                <li><a class="dropdown-item sort-option" href="#" data-sort="name_desc">{{trans_lang('name_z_a')}}</a></li>
+                                                <li><a class="dropdown-item sort-option"
+                                                        href="#" data-sort="latest">{{trans_lang('latest')}}</a></li>
+                                            </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -139,46 +145,46 @@
 
 
                                             @foreach ($products as $product)
-                                            @if ($product->status == 'approved')
-                                                <div class="item-card mb-3">
-                                                    <a href="#" class="right">
-                                                        <img src="{{ asset('assets/products/' . $product->product_image) }}"
-                                                            class="card-img-top" alt="">
-                                                    </a>
-                                                    <div class="left">
-                                                        <p class="price m-t-b-10">
-                                                            @if ($product->discount > 0)
-                                                                <span
-                                                                    class="format">{{ $product->product_price - $product->discount }}</span>
-                                                                <span
-                                                                    class="original-price format">{{ $product->product_price }}</span>
-                                                            @else
-                                                                <span class="format">{{ $product->product_price }}</span>
-                                                            @endif
-
-                                                        <div
-                                                            class="title-category flex-column flex-sm-row align-items-start">
-                                                            <a href="#"
-                                                                class="menu-category">{{ $product->sub_categories_name }}</a>
-                                                            <h3 class="title m-t-b-10">{{ $product->name }}</h3>
-                                                        </div>
-                                                        <a href="#" class="txt m-b-10 description">
-                                                            {{ $product->description }}
+                                                @if ($product->status == 'approved')
+                                                    <div class="item-card mb-3">
+                                                        <a href="#" class="right">
+                                                            <img src="{{ asset('assets/products/' . $product->product_image) }}"
+                                                                class="card-img-top" alt="">
                                                         </a>
-                                                        <div class="d-flex gap-2 card-btn m-t-10">
-                                                            <a href="javascript:void(0);"
-                                                                class="py-1 common-btn2 -solid cart-btn"
-                                                                data-id="{{ $product->id }}">
-                                                                <i class="fa-solid fa-cart-shopping"></i>
+                                                        <div class="left">
+                                                            <p class="price m-t-b-10">
+                                                                @if ($product->discount > 0)
+                                                                    <span
+                                                                        class="format">{{ $product->product_price - $product->discount }}</span>
+                                                                    <span
+                                                                        class="original-price format">{{ $product->product_price }}</span>
+                                                                @else
+                                                                    <span class="format">{{ $product->product_price }}</span>
+                                                                @endif
+
+                                                            <div
+                                                                class="title-category flex-column flex-sm-row align-items-start">
+                                                                <a href="#"
+                                                                    class="menu-category">{{ $product->sub_categories_name }}</a>
+                                                                <h3 class="title m-t-b-10">{{ $product->name }}</h3>
+                                                            </div>
+                                                            <a href="#" class="txt m-b-10 description">
+                                                                {{ $product->description }}
                                                             </a>
-                                                            <a href="javascript:void(0);"
-                                                                class="py-1 common-btn2 white-list-btn"
-                                                                data-id="{{ $product->id }}">
-                                                                <i class="fa-solid fa-bookmark"></i>
-                                                            </a>
+                                                            <div class="d-flex gap-2 card-btn m-t-10">
+                                                                <a href="javascript:void(0);"
+                                                                    class="py-1 common-btn2 -solid cart-btn"
+                                                                    data-id="{{ $product->id }}">
+                                                                    <i class="fa-solid fa-cart-shopping"></i>
+                                                                </a>
+                                                                <a href="javascript:void(0);"
+                                                                    class="py-1 common-btn2 white-list-btn"
+                                                                    data-id="{{ $product->id }}">
+                                                                    <i class="fa-solid fa-bookmark"></i>
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                                 @endif
                                             @endforeach
 
@@ -371,6 +377,28 @@
         $(document).ready(() => {
             handleAddToCartBtn('cart-btn');
             handleAddToWhiteListBtn('white-list-btn');
+
+            //sort-by
+            $(".sort-option").on("click", function (e) {
+            e.preventDefault();
+            let sortType = $(this).data("sort");
+            
+            $.ajax({
+                url: "{{ route('products.sort') }}",
+                type: "GET",
+                data: { sort: sortType },
+                beforeSend: function () {
+                    $("#product-list").html('<div class="text-center"><span>Loading...</span></div>');
+                },
+                success: function (response) {
+                    console.log(response);
+                    // $("#product-list").html(response.products);
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                }
+            });
+        });
         })
     </script>
 @endsection

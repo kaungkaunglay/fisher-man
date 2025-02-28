@@ -32,10 +32,10 @@
                     @csrf --}}
                 <div class="w-100 h-100 d-md-flex gap-3">
                     <!-- profile img -->
-                    <div class="w-100 profile-form d-flex flex-column avatar-input">
+                    <div class="w-100 mb-3 mb-md-0 mb-lg-0 profile-form d-flex flex-column avatar-input">
                         <label for="avatar-input" class="w-100 d-block position-relative gallery">
                             <img src="{{ asset('assets/avatars/' . $sellerInfo->avatar) }}" class="default-preview"
-                                id="form-img" alt="">
+                                id="form-img" width="100" alt="">
                         </label>
                     </div>
                     <!-- /profile img -->
@@ -78,7 +78,7 @@
                             <!-- organizaion -->
                             <div class="form-group">
                                 <div class="d-flex align-items-center form-group">
-                                    <label class="w-25 me-5" for="first_org_name">{{ trans_lang('first_org_name') }}</label>:
+                                    <label class="w-25 me-5" for="first_org_name">Organization Name</label>:
                                     <output class="form-output"
                                         for="first_org_name">{{ $sellerInfo->first_org_name }}</output>
 
