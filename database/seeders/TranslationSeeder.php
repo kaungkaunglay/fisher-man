@@ -115,6 +115,11 @@ class TranslationSeeder extends Seeder
                 'jp' => '価格: 高い順',
             ],
             [
+                'key' => 'about',
+                'en' => 'About',
+                'jp' => '約',
+            ],
+            [
                 'key' => 'name',
                 'en' => 'Name',
                 'jp' => '名前',
@@ -435,6 +440,11 @@ class TranslationSeeder extends Seeder
                 'key' => 'history',
                 'en' => 'History',
                 'jp' => '履歴',
+            ],
+            [
+                'key' => 'location',
+                'en' => 'Location',
+                'jp' => '場所',
             ],
             
             [
