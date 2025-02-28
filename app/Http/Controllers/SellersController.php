@@ -68,7 +68,11 @@ class SellersController extends Controller
     }
 
     public function contact($id){
-        $sellerInfo = Users::where('id', $id)->first();
+        
+        $sellerInfo = Users::select('users.*', 'shops.shop_name','shops.id as shop_id')
+            ->join('shops', 'users.id', '=', 'shops.user_id')
+            ->where('users.id', $id)
+            ->first();
 
         $sellerProducts = Product::where('user_id', $id)->get();
         return view('seller-profile-public',compact('sellerInfo','sellerProducts'));

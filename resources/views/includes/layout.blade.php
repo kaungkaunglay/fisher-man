@@ -652,6 +652,7 @@
     @yield('script')
 
     <script src="{{asset('assets/js/preloader.js')}}"></script>
+    <script src="{{ asset('assets/js/notify.js') }}"></script>
     <!-- Testing Scripts -->
 
     <!-- /Testing Scripts -->
