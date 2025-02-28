@@ -120,10 +120,6 @@ function netTotal(addtion) {
 
     const table = $('.table-item');
 
-    console.log(Array.from(table).length);
-
-
-
     Array.from(table).forEach((i) => {
 
         const cost = $(i).find('.cost');

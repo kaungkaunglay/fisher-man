@@ -176,7 +176,7 @@
                                 <div class="input-group border border-2 rounded px-0">
                                     <input type="password" name="password" id="password" class="form-control border-0"
                                         placeholder="********">
-                                    <button class="btn" tabindex="-1">
+                                    <button class="btn password" tabindex="-1">
                                         <i class="fa-solid fa-eye"></i>
                                     </button>
                                 </div>
@@ -554,9 +554,7 @@
                         @foreach ($carts as $item)
                             <tr class="table-row cart-{{ $item->product->id }}">
                                 <td>
-                                    <div class="table-img"><img
-                                            src="{{ asset('assets/products/' . $item->product->product_image) }}"
-                                            alt="product img"></div>
+                                    <div class="table-img"><img src="{{ asset('assets/products/' . $item->product->product_image) }}" alt="product img"></div>
                                 </td>
                                 <td clas="col-name">{{ $item->product->name }}</td>
                                 <td class="price">¥{{ $item->product->product_price }}</td>
@@ -681,9 +679,7 @@
                 <a data-page="#address"class="btn btn-outline-primary common-btn btn-back">{{ trans_lang('go_back') }}</a>
                 <button data-page="#complete" class="btn btn-outline-primary common-btn btn-payment">{{ trans_lang('check_out') }}</button>
             </div>
-
         </div>
-
     </section>
     <!-- /Payment Step -->
 
@@ -703,9 +699,9 @@
     <!-- /Complete Step -->
 
     <!-- All Scripts -->
-    <script src="{{ asset('assets/js/cart.js') }}"></script>
+    <script src="{{ asset('assets/js/caculate.js') }}"></script>
     <script src="{{ asset('assets/js/pageChange.js') }}"></script>
-    <script defer src="{{ asset('assets/js/updateForm.js') }}"></script>
+    <script src="{{ asset('assets/js/updateForm.js') }}"></script>
     <script>
         $(document).ready(function() {
 
