@@ -28,13 +28,10 @@ function PageChange() {
 
 function stepChange(page) {
   const step = $(page).attr('data-step');
-  
   for(let i = 0;i < step; i ++) $($('.step-list .step')[i]).addClass('active');
 }
 
 function progress(page) {
-  const progress = $('.progress-2');
   const value = $(page).attr('data-step');
-
-  console.log(value)
+  $($('.progress-2')).css({width: `${(100 / 4) * (value - 1)}%`});
 }
