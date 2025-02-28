@@ -78,7 +78,7 @@
                                     <button class="btn increment"
                                         @if ($product->inCart()) disabled @endif>+</button>
                                 </div>
-                                <button class="common-btn ms-5 add-to-cart-btn" data-id="{{ $product->id }}"
+                                <button class="common-btn ms-5 add-to-cart-btn cart-btn" data-id="{{ $product->id }}"
                                     @if ($product->inCart()) disabled @endif>
                                     @if ($product->inCart())
                                         {{ trans_lang('added_cart') }}

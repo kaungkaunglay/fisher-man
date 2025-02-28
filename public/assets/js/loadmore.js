@@ -32,5 +32,7 @@ const showItems = () => {
 // Initial load
 showItems();
 
+console.log(productCards.length)
+
 // Event listener for "Load More" button
 loadMoreBtn.addEventListener('click', showItems);

@@ -75,7 +75,7 @@
                             {{-- /Tab List --}}
 
                             {{-- Tab Content  --}}
-                            <div class="tab-content p-3" id="shopTabsContent">
+                            <div class="tab-content p-3 all-products" id="shopTabsContent">
 
                                 {{-- About Tab --}}
                                 <div class="tab-pane fade show active" id="home" role="tabpanel">
@@ -135,7 +135,7 @@
 
                                     {{-- Products List --}}
                                     <div class="scroller">
-                                        <div class="card-list m-3 all-products" id="view-list">
+                                        <div class="card-list m-3" id="view-list">
 
 
                                             @foreach ($products as $product)
@@ -145,21 +145,19 @@
                                                         <img src="{{ asset('assets/products/' . $product->product_image) }}"
                                                             class="card-img-top" alt="">
                                                     </a>
-                                                    <div class="left">
-                                                        <p class="price m-t-b-10">
+                                                    <div class="left pt-3">
+                                                        <p class="price">
                                                             @if ($product->discount > 0)
                                                                 <span
-                                                                    class="format">{{ $product->product_price - $product->discount }}</span>
+                                                                    class="format me-2">{{ $product->product_price - $product->discount }}</span>
                                                                 <span
                                                                     class="original-price format">{{ $product->product_price }}</span>
                                                             @else
                                                                 <span class="format">{{ $product->product_price }}</span>
                                                             @endif
 
-                                                        <div
-                                                            class="title-category flex-column flex-sm-row align-items-start">
-                                                            <a href="#"
-                                                                class="menu-category">{{ $product->sub_categories_name }}</a>
+                                                        <div class="title-category mb-2">
+                                                            <a href="#" class="menu-category">{{ $product->sub_categories_name }}</a>
                                                             <h3 class="title m-t-b-10">{{ $product->name }}</h3>
                                                         </div>
                                                         <a href="#" class="txt m-b-10 description">
@@ -190,8 +188,7 @@
                                     <!-- All Products Footline -->
                                     <div class="row justify-content-center">
                                         <div class="col-5 col-lg-3 text-center">
-                                            <button class="btn btn-outline-primary px-5 py-2  mt-5" id="load-more"
-                                                title="Load More Items">
+                                            <button class="btn btn-outline-primary px-5 py-2  mt-5" id="load-more" title="Load More Items">
                                                 <i class="fas fa-chevron-down"></i>
                                             </button>
                                         </div>

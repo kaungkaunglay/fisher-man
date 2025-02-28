@@ -302,8 +302,6 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0px;
-
-
 }
 
 .arrows button {
@@ -353,6 +351,11 @@ main {
   margin-right: 10px;
 }
 
+.row-list .item-card {
+  display: flex !important;
+}
+
+.all-products .item-card{display: none;}
 
 .card-border-animate:hover {
   border: 1px solid black;

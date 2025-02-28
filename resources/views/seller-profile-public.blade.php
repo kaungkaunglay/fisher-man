@@ -261,13 +261,13 @@
 
             <div class="card-list" id="view-list" data-list="fish-list-1">
                 @foreach ($sellerProducts as $sellerProduct)
-                    <div class="item-card">
+                    <div class="item-card mb-2">
                         <a href="{{ route('product.show', $sellerProduct->id) }}" class="right">
                             <img loading="lazy" src="{{ asset('assets/products/' . $sellerProduct->product_image) }}"
                                 class="card-img-top" alt="{{ $sellerProduct->name }}">
                         </a>
-                        <div class="left">
-                            <p class="price m-t-b-10">
+                        <div class="left pt-3">
+                            <p class="price">
                                 @if ($sellerProduct->discount > 0)
                                     ¥{{ number_format($sellerProduct->product_price - $sellerProduct->discount, 2) }}
                                     <span
@@ -276,10 +276,10 @@
                                     <span class="">¥{{ number_format($sellerProduct->product_price) }}</span>
                                 @endif
                             </p>
-                            <div class="title-category">
+                            <div class="title-category mb-2">
                                 <a href="{{ route('sub-category.show', $sellerProduct->subCategory->id) }}"
                                     class="menu-category ">{{ $sellerProduct->subCategory->name }}</a>
-                                <h3 class="title m-t-b-10">{{ $sellerProduct->name }}</h3>
+                                <h3 class="title">{{ $sellerProduct->name }}</h3>
                             </div>
                             <a href="{{ route('product.show', $sellerProduct->id) }}" class="txt m-b-10 description">
                                 {{ $sellerProduct->description }}
@@ -351,7 +351,7 @@
     <script src="{{ asset('assets/js/loadmore.js') }}"></script>
     <script defer src="{{ asset('assets/js/view-list.js') }}"></script>
     <script defer src="{{ asset('assets/js/words-limit.js') }}"></script>
-    <script defer src="{{ asset('assets/js/profile-seller.js') }}"></script>
+    <script defer src="{{ asset('assets/js/updateForm.js') }}"></script>
 
     {{-- <script>
         $(document).ready(function() {

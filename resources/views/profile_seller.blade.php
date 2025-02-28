@@ -294,24 +294,24 @@
 
                 @foreach ($products as $product)
                 @if ($product->status == 'approved')
-                    <div class="item-card">
+                    <div class="item-card mb-2">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
                             <img src="{{ asset('assets/products/' . $product->product_image) }}" class="card-img-top"
                                 alt="{{ $product->name }}">
                         </a>
-                        <div class="left">
-                            <p class="price m-t-b-10">
+                        <div class="left pt-3">
+                            <p class="price">
                                 @if ($product->discount > 0)
                                     ¥{{ number_format($product->product_price - $product->discount, 2) }}
-                                    <span class="original-price">¥{{ number_format($product->product_price) }}</span>
+                                    <span class="original-price ms-2">¥{{ number_format($product->product_price) }}</span>
                                 @else
                                     <span class="">¥{{ number_format($product->product_price) }}</span>
                                 @endif
                             </p>
-                            <div class="title-category">
+                            <div class="title-category mb-2">
                                 <a href="{{ route('sub-category.show', $product->subCategory->id) }}"
                                     class="menu-category ">{{ $product->subCategory->name }}</a>
-                                <h3 class="title m-t-b-10">{{ $product->name }}</h3>
+                                <h3 class="title">{{ $product->name }}</h3>
                             </div>
                             <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
                                 {{ $product->description }}
@@ -363,8 +363,7 @@
 
     <!-- All Scripts -->
     <script defer src="{{ asset('assets/js/view-list.js') }}"></script>
-    {{-- <script defer src="{{ asset('assets/js/words-limit.js') }}"></script> --}}
-    <script defer src="{{ asset('assets/js/profile-seller.js') }}"></script>
+    <script defer src="{{ asset('assets/js/updateForm.js') }}"></script>
 
     {{-- Testing --}}
     
