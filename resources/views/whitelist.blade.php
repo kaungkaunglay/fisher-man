@@ -43,11 +43,11 @@
                                             alt="{{ $product->name }}"></div>
                                 </td>
                                 <td class="col-name">{{ $product->name }}</td>
-                                <td class="price">¥{{ $product->product_price }}</td>
+                                <td class="price format">¥{{ $product->product_price }}</td>
                                 <td class="d-none">
                                     <input type="number" value="1" class="quantity-value">
                                 </td>
-                                <td class="cost d-none">{{ $product->product_price }}</td>
+                                <td class="cost d-none format">{{ $product->product_price }}</td>
                                 <td class="col-remove">
                                     <a href="javascript:void(0);" class="mx-auto desktop-del-btn"
                                         data-id="{{ $product->id }}">
@@ -86,7 +86,7 @@
                                 <p class="card-name">{{ $product->name }}</p>
                                 <div class="card-text">
                                     <span class="cost d-none"></span>
-                                    <span class="price">¥{{ $product->product_price }}</span>
+                                    <span class="price format">¥{{ $product->product_price }}</span>
                                 </div>
                                 <div class="quantity d-flex">
                                     <input type="number" value="1" class="quantity-value d-none">
