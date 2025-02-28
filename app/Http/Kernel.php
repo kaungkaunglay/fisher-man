@@ -37,6 +37,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            // \Spatie\ResponseCache\Middlewares\CacheResponse::class,
         ],
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
@@ -71,5 +72,6 @@ class Kernel extends HttpKernel
         'auth_custom_api' => \App\Http\Middleware\AuthCustomApi::class,
         'restore_cart' => \App\Http\Middleware\RestoreCart::class,
         'guest_custom' => \App\Http\Middleware\GuestCustom::class,
+        // 'doNotCacheResponse' => \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class,
     ];
 }
