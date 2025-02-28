@@ -254,9 +254,9 @@
                 <div class="bottom-header">
                     <nav>
                         <div class="hambuger-menu">
-                            <a href="#" id="hamburger-menu">
+                            <button id="hamburger-menu">
                                 <i class="fa-solid fa-bars"></i>
-                            </a>
+                            </button>
                         </div>
                         <ul class="w-100">
                             <li><a href="{{ url('/') }}" class="menu-header">{{ trans_lang('home') }}</a></li>
@@ -613,9 +613,6 @@
                 addToCart(products, cur_btn);
             });
         }
-
-
-
 
         function formatPriceJapanese(price) {
         // Convert to number and handle potential non-number inputs

@@ -85,7 +85,7 @@
                                 @endforeach
                             </div>
                             <!-- card items list end -->
-                            <div class="see-more-box d-flex m-t-b-20 justify-content-center justify-content-lg-end">
+                            <div class="see-more-box d-flex m-t-b-20 justify-content-center justify-content-lg-end mt-5">
                                 <a href="{{ route('sub-category.show', $subcategory->id) }}"
                                     class="common-btn">{{ trans_lang('seemore') }}</a>
                             </div>

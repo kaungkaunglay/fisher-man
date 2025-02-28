@@ -8,14 +8,15 @@
 
     <!-- Step List -->
     <section class="mt-5 mb-3">
-        <div class="container-custom px-0">
+        <div class="container-custom">
 
             <div class="position-relative">
-                <div class="progress-box w-100 h-100 position-absolute d-flex">
-                    <span class="progress-bar m-auto">
-                        <span class="progress"></span>
+                <div class="progress-box position-absolute w-100 d-flex">
+                    <span class="progress-bar-2 mx-auto">
+                        <span class="progress-2"></span>
                     </span>
                 </div>
+
                 <ul class="step-list d-flex text-center">
                     <li class="step active d-flex flex-column align-items-center">
                         <span class="me-2">1</span>
@@ -743,7 +744,7 @@
     <!-- /All Scripts -->
 
     {{-- Test Scripts --}}
-    <script src="{{asset('assets/js/skipTester.test.js')}}"></script>
+
     {{-- /Test Scripts --}}
 
 @endsection
