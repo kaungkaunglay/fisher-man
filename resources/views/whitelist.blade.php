@@ -122,7 +122,7 @@
     <!-- /Main Content -->
 
     {{-- All Scripts --}}
-    <script src="{{ asset('assets/js/cart.js') }}"></script>
+    <script src="{{ asset('assets/js/caculate.js') }}"></script>
     <script>
         $(document).ready(function() {
             $.ajaxSetup({
@@ -165,6 +165,7 @@
                     success: function(response) {
                         if (response.status) {
                             removeCart(product_id);
+                            netTotal();
                         }
                     }
                 });

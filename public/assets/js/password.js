@@ -13,5 +13,6 @@ window.addEventListener('DOMContentLoaded', () => {
       icon.classList.toggle('fa-eye-slash');
       input.setAttribute('type', attri == 'password'? 'text': 'password');
     })
+
   })
 })

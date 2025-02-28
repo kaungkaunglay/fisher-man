@@ -92,11 +92,13 @@ header .dropdown a {
     padding: 15px;
 }
 
-header .dropdown li:hover {
+header .dropdown li:hover,
+#side_pannel li:hover {
     background-color: #e2e2e2;
 }
 
-header .dropdown li:hover a {
+header .dropdown li:hover a,
+#side_pannel li:hover a {
     color: #ffc107 !important;
 }
 
