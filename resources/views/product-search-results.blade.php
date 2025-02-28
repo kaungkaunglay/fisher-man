@@ -35,6 +35,7 @@
     </div>
     <div class="card-list" id="view-list">
         @foreach ($products as $product)
+        @if ($product->status == 'approved')
         <div class="item-card">
             <a href="{{ route('product.show', $product->id) }}" class="right">
                 <img src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
@@ -56,6 +57,7 @@
 
             </div>
         </div>
+        @endif
         @endforeach
     </div>
     <div class="row justify-content-center">

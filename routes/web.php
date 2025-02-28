@@ -158,6 +158,10 @@ Route::middleware(['is_admin'])->group(function () {
     Route::get('/admin/settings', [SettingController::class, 'settings'])->name('admin.settings');
     Route::post('/admin/settings/save', [SettingController::class, 'save'])->name('admin.settings.save');
 
+    //Product
+    Route::get('/admin/pending-products', [ProductController::class, 'pendingProducts'])->name('pending-products');
+    Route::post('/admin/products/updateStatus', [ProductController::class , 'updateStatus'])->name('admin.products.updateStatus');
+
     //User Request
     Route::get('/admin/request-contact', [AdminController::class, 'contact'])->name('admin.users.contact');
     Route::get('/admin/contact/detail/{contactID}', [ContactController::class, 'contactDetail'])->name('admin.contact.detail');

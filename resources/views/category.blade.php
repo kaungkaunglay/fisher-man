@@ -49,6 +49,7 @@
                             <!-- card itmes list start -->
                             <div class="card-list" id="view-list">
                                 @foreach ($subcategory->products->take(4) as $product)
+                                @if ($product->status == 'approved')
                                     <div class="item-card">
                                         <a href="{{ route('product.show', $product->id) }}" class="right">
                                             <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
@@ -82,6 +83,7 @@
 
                                         </div>
                                     </div>
+                                    @endif
                                 @endforeach
                             </div>
                             <!-- card items list end -->

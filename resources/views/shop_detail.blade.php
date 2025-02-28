@@ -179,6 +179,7 @@
 
 
                                             @foreach ($products as $product)
+                                            @if ($product->status == 'approved')
                                                 <div class="item-card mb-3">
                                                     <a href="#" class="right">
                                                         <img src="{{ asset('assets/products/' . $product->product_image) }}"
@@ -218,6 +219,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @endif
                                             @endforeach
 
 

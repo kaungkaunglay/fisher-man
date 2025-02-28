@@ -293,6 +293,7 @@
             <div class="card-list" id="view-list" data-list="fish-list-1">
 
                 @foreach ($products as $product)
+                @if ($product->status == 'approved')
                     <div class="item-card">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
                             <img src="{{ asset('assets/products/' . $product->product_image) }}" class="card-img-top"
@@ -318,6 +319,7 @@
 
                         </div>
                     </div>
+                @endif
                 @endforeach
 
             </div>
