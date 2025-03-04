@@ -2,39 +2,54 @@ a{
   text-decoration: none;
 }
 
-.cart th img{
-  width: 100px;
-  height: 100px;
+.scroller {
+  position: relative;
+  max-height: 60vh;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
-.cart thead th, .cart tfoot td{
-  font-size: 20px;
-  font-weight: bold;
-  color: #ffffff;
-  background: #005B96;
-  text-align: center;
+
+.table thead,
+.table tfoot {
+    height: 20px;
+    position: sticky;
 }
 
-.cart tbody th, .cart tbody td{
-  font-weight: bold;
-  color: #005B96;
-  background-color: #ECF5FB;
-  vertical-align: middle;
-  text-align: center;
+/* .table tbody {
+  min-height: 200px;
+} */
+
+.table tbody td:first-child {
+  padding: 30px 0;
 }
 
-.cart tfoot td {
-  text-align: end;
+.table thead {top: 0;}
+.table tfoot {bottom: 0;}
+
+.table-img {
+  width: 75px;
+  padding: 0;
+  margin: 0 auto;
 }
 
-.cart thead th:nth-child(3),
-.cart tbody td:nth-child(3) {
-  text-align: start;
+.table td,
+.table th {
+    font-size: 20px;
+    background: #005B96;
+    color: white;
+    font-weight: bold;
+    vertical-align: middle;
 }
 
-.cart tbody th:nth-child(2) {
-  display: flex;
-  justify-content: center;
+.table tbody td {
+    color: #005B96;
+    background-color: #ECF5FB;
+}
+
+.table thead th:nth-child(2),
+.table tbody td:nth-child(2) {
+    text-align: start;
 }
 
 .checkout{
@@ -62,7 +77,45 @@ input[type="checkbox"] {
   accent-color: #005B96; /* Change the default color of the checkbox (modern browsers) */
 }
 
-@media screen and (max-width: 768px){
+/* mobile */
+.mobile {
+  display: none;
+}
+
+.card,
+.card-body {
+  display: flex;
+  flex-direction: row;
+  border: none;
+}
+
+.card-body {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-img {
+  width: 25%;
+}
+
+.card-img img {
+  max-width: 100px;
+  height: 100px;
+}
+
+.del-btn {
+  width: max-content;
+  aspect-ratio: 1/1;
+  background: #FF0000;
+  border-radius: 10px;
+  color: #ffffff;
+}
+
+.card-body {
+  padding: 0;
+}
+
+/* @media screen and (max-width: 768px){
   .desktop{
       display: none !important;
   }
@@ -127,4 +180,4 @@ input[type="checkbox"] {
       margin: 0;
   }
 
-}
+} */

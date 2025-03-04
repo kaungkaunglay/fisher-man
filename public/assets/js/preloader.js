@@ -1,56 +1,18 @@
-// Wait for the page to load
 window.addEventListener('load', function() {
-    // Get DOM elements
-    const progressBar = document.getElementById('progress-bar');
-    const preloader = document.getElementById('preloader');
-    const mainContent = document.getElementById('main-content');
-    
-    // Initialize progress
-    let progress = 0;
-    
-    // Simulate loading progress
-    const interval = setInterval(function() {
-        // Increment progress
-        progress += 5;
-        
-        // Update progress bar width
-        progressBar.style.width = progress + '%';
-        
-        // Check if loading is complete
-        if (progress >= 100) {
-            // Clear the interval
-            clearInterval(interval);
-            
-            // Add fade-out class to preloader
-            preloader.classList.add('fade-out');
-            
-            // After animation completes, hide preloader and show main content
-            setTimeout(function() {
-                preloader.style.display = 'none';
-                mainContent.style.display = 'block';
-            }, 500);
-        }
-    }, 100);
-});
+    // Fade out the preloader
+    document.querySelector('.preloader').style.opacity = 0;
+    document.querySelector('.preloader').style.transition = 'opacity 1s ease';
 
-// Optional: Function to manually show preloader
-function showPreloader() {
-    const preloader = document.getElementById('preloader');
-    const mainContent = document.getElementById('main-content');
-    
-    preloader.classList.remove('fade-out');
-    preloader.style.display = 'flex';
-    mainContent.style.display = 'none';
-}
-
-// Optional: Function to manually hide preloader
-function hidePreloader() {
-    const preloader = document.getElementById('preloader');
-    const mainContent = document.getElementById('main-content');
-    
-    preloader.classList.add('fade-out');
+    // Wait for the fade-out transition to complete
     setTimeout(function() {
-        preloader.style.display = 'none';
-        mainContent.style.display = 'block';
-    }, 500);
-}
+        // Hide the preloader and show the main content
+        document.querySelector('.preloader').style.display = 'none';
+        document.querySelector('.main-content') ? document.querySelector('.main-content').style.display = 'block' : null;
+
+        // Fade in the main content
+        setTimeout(function() {
+            document.querySelector('.main-content') ? document.querySelector('.main-content').style.opacity = 1 : null;
+            document.querySelector('.main-content') ? document.querySelector('.main-content').style.transition = 'opacity 0.5s ease' : null;
+        }, 50);
+    }, 1000); // Duration of the fade-out transition
+});

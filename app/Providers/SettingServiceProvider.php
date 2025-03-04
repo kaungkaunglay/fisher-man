@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class SettingServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,9 @@ class SettingServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if(!Schema::hasTable('settings')) {
+            return; 
+        }
         $settings = get_settings();
 
         // Remove double quotes from keys and values
@@ -36,7 +41,6 @@ class SettingServiceProvider extends ServiceProvider
             }, array_keys($settings)),
             $settings
         );
-        logger($settings);  
         config()->set('settings', $settings);
     }
 }

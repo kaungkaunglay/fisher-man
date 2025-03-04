@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Users;
+use App\Mail\VerifyEmail;
 use App\Helpers\AuthHelper;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\ForgotPasswordMail;
+use App\Models\EmailVerification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,6 +19,9 @@ class AuthController extends Controller
 {
     public function register() {
         return view('register');
+    }
+    public function verified(){
+        return view('messages/verified');
     }
     // public function register_seller(){
     //     return view('sellers.register');
@@ -33,7 +38,7 @@ class AuthController extends Controller
             'username.unique' => 'The username has already been taken.',
             'email.required' => 'The email field is required.',
             'email.email' => 'The email must be a valid email address.',
-            'email.unique' => 'The email has already been taken.',      
+            'email.unique' => 'The email has already been taken.',
             'g-recaptcha-response.required' => 'The recaptcha field is required.',
             'password.required' => 'The password field is required.',
             'password.min' => 'The password must be at least 6 characters.',
@@ -44,7 +49,7 @@ class AuthController extends Controller
             'first_phone.required' => 'The first phone field is required.',
             'first_phone.regex' => 'The first phone format is invalid.',
             'second_phone.regex' => 'The second phone format is invalid.',
-
+            'second_phone.different' => 'The second phone and first phone must be different.',
             // 'line_id.min' => 'The line ID must be at least 4 characters.',
             // 'line_id.max' => 'The line ID may not be greater than 20 characters.',
             // 'ship_name.required' => 'The ship name field is required.',
@@ -57,6 +62,7 @@ class AuthController extends Controller
             // 'trans_management.min' => 'The transportation management must be at least 4 characters',
             // 'trans_management.max' => 'The transportation management may not be greater than 20 characters.'
         ];
+       
         $validator = Validator::make($request->all(), [
             'username' => 'required|min:4|max:12|unique:users,username',
             'email' => 'required|email|unique:users,email',
@@ -68,9 +74,10 @@ class AuthController extends Controller
             ],
             'confirm_password' => 'required|same:password',
             'g-recaptcha-response' => 'required',
-            'first_phone' => 'required',
-            'second_phone' => 'nullable'
+            'first_phone' => 'required|numeric',
+            'second_phone' => 'nullable|numeric|different:first_phone',
         ], $messages);
+        $errors = [];
         if($this->is_seller($request))
         {
             $validator->addRules([
@@ -85,26 +92,36 @@ class AuthController extends Controller
         if($request->input('first_phone') != null ){
             $request->merge([
                 'first_phone' => $request->input('first_phone_extension') . $request->input('first_phone'),
-                'second_phone' => $request->input('second_phone_extension') . $request->input('second_phone')
             ]);
-
             $phoneRegexJapan = '/^\+81[789]0\d{4}\d{4}$/';
             $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
                 // Validate first phone number
             if ($request->input('first_phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('first_phone'))) {
-                    return response()->json(['status' => false, 'errors' => ['first_phone' => 'Invalid phone number.']]);
+                    $errors['first_phone'] = 'Invalid phone number.';
              } elseif ($request->input('first_phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('first_phone'))) {
-                    return response()->json(['status' => false, 'errors' => ['first_phone' => 'Invalid phone number.']]);
+                    $errors['first_phone'] = 'Invalid phone number.';
             }
         }
 
-        if($validator->fails()){
-            return response()->json(['status' => false, 'errors' => $validator->errors()]);
+        if($request->input('second_phone') != null ){
+            $request->merge([
+                'second_phone' => $request->input('second_phone_extension') . $request->input('second_phone'),
+            ]);
+            $phoneRegexJapan = '/^\+81[789]0\d{4}\d{4}$/';
+            $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
+                // Validate second phone number
+            if ($request->input('second_phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('second_phone'))) {
+                $errors['second_phone'] = 'Invalid phone number.';
+             } elseif ($request->input('second_phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('second_phone'))) {
+                $errors['second_phone'] = 'Invalid phone number.';
+            }
+        }
+
+        if($validator->fails() || !empty($errors)){
+            $allErrors = array_merge($validator->errors()->toArray(), $errors);
+            return response()->json(['status' => false, 'errors' => $allErrors]);
         }else{
-
             // need to start checking first phone number is valid for myanmar and japan.
-
-
             $user = new Users();
             $user->username = $request->username;
             $user->email = $request->email;
@@ -165,14 +182,16 @@ class AuthController extends Controller
             ->orWhere('email', $request->username)
             ->first();
 
-            if($user && Hash::check($request->password, $user->password)){
+            if($user && Hash::check($request->password, $user->password )  && $user->roles()->first()->id != 1){
                 $remember = $request->has('remember') && $request->remember == 1;
 
                 Auth::login($user,$remember);
 
                 // return redirect()->intended('/');
 
-                return response()->json(['status' => true, 'message' => 'login successfull']);
+                $isSeller = $user->roles->first()->id == 2;
+
+                return response()->json(['status' => true, 'message' => 'login successfull', 'user' => $user , 'isSeller' => $isSeller ]);
             }
 
             return response()->json(['status' => false, 'message' => 'Username or Password is Incorrect']);
@@ -197,7 +216,7 @@ class AuthController extends Controller
             if($user){
 
                 if( DB::table('password_reset_tokens')->where('email', $user->email)->first() ){
-                    return response()->json(['status' => false, 'message' => 'Reset Link Already Sent']);
+                    return response()->json(['status' => false, 'message' => 'リセットリンクはすでに送信されています']);
                 }
 
 
@@ -212,13 +231,13 @@ class AuthController extends Controller
                 Mail::to($user->email)->send(new ForgotPasswordMail($user,$token));
                 return response()->json(['status' => true, 'message' => 'Reset Link Sent', 'email' => $user->email]);
             }
-            return response()->json(['status' => false, 'message' => 'Email is not found']);
+            return response()->json(['status' => false, 'message' => 'メールが見つかりません']);
         }
     }
 
     public function showEmailSuccess($email){
-        session()->flash('status', 'success'); 
-        session()->flash('message', 'We sent you an email to reset your password. Please check your email.');
+        session()->flash('status', 'success');
+        session()->flash('message', 'パスワードリセットのためのメールを送信しました。メールをご確認ください。');
         return view('email_success', ['email' => $email]);
     }
 
@@ -249,7 +268,7 @@ class AuthController extends Controller
                 Mail::to($user->email)->send(new ForgotPasswordMail($user,$token));
                 return response()->json(['status' => true, 'message' => 'Reset Link Sent', 'email' => $user->email]);
             }
-            return response()->json(['status' => false, 'message' => 'Email is not found']);
+            return response()->json(['status' => false, 'message' => 'メールが見つかりません']);
         }
     }
 
@@ -318,13 +337,15 @@ class AuthController extends Controller
         }
     }
 
+
     public function logout(){
         AuthHelper::logout();
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 
     public function is_seller($request)
     {
         return $request->has('ship_name') && $request->has('first_org_name') && $request->has('trans_management');
     }
+
 }

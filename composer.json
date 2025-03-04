@@ -14,7 +14,9 @@
         "laravel/tinker": "^2.8",
         "linecorp/line-bot-sdk": "^10.0",
         "socialiteproviders/line": "^4.1",
-        "socialiteproviders/manager": "^4.8"
+        "socialiteproviders/manager": "^4.8",
+        "spatie/image-optimizer": "^1.8",
+        "spatie/laravel-responsecache": "^7.6"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -32,9 +34,12 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
+            "app/Helpers/TranslationHelper.php",
+            "app/Helpers/translation.php",
             "app/Helpers/SettingHelper.php",
             "app/Helpers/auth_helper.php",
-            "app/Helpers/permission_helper.php"
+            "app/Helpers/permission_helper.php",
+            "app/Helpers/line_api_helper.php"
         ]
 
     },
@@ -47,8 +52,8 @@
             "app/Helpers/translation.php",
             "app/Helpers/SettingHelper.php",
             "app/Helpers/auth_helper.php",
-            "app/Helpers/permission_helper.php"
-
+            "app/Helpers/permission_helper.php",
+            "app/Helpers/line_api_helper.php"
         ]
     },
     "scripts": {

@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Users;
 use App\Models\OAuths;
+use App\Helpers\AuthHelper;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 
 class OAuthController extends Controller
 {
+    private $isProfileUpdated = false;
+
     protected $providerMap = [
         'line' => 'line_id',
         'google' => 'google_id',
@@ -24,36 +28,56 @@ class OAuthController extends Controller
         try {
             // Get user from provider
             $providerUser = Socialite::driver($provider)->user();
-            logger(print_r($providerUser, true));
-            
+
             // Encrypt tokens
             $token = Hash::make($providerUser->token);
             $refreshToken = Hash::make($providerUser->refresh_token);
 
             // Log the user information if needed
-            Log::info(ucfirst($provider) . ' User:', (array) $providerUser);
+            // Log::info(ucfirst($provider) . ' User:', (array) $providerUser);
 
             // Get the correct ID field for this provider
             $providerIdField = $this->providerMap[$provider];
 
+
+            $this->isProfileUpdated = AuthHelper::check();
             // First try to find user by provider ID
             $user = Users::where($providerIdField, $providerUser->getId())->first();
 
+            if($user && $this->isProfileUpdated){
+                session()->flash('status','error');
+                session()->flash('message',`Your {$provider} OAuth already registered with another account.`);
+                return redirect()->route('profile');
+            }
+
             // If no user found by provider ID, check by email
             if (!$user && $providerUser->getEmail()) {
-                $user = Users::where('email', $providerUser->getEmail())->first();
-                
+
+                $user = $this->isProfileUpdated ? AuthHelper::user(): Users::where('email', $providerUser->getEmail())->first();
+
                 if ($user) {
+
+
+                    if($user->email != $providerUser->getEmail()){
+                        session()->flash('status',"error");
+                        session()->flash('message',"Your provided email does not match with your {$provider} account.");
+
+                        return redirect()->route('profile');
+                    }
+
                     // Update the provider ID for the existing user
                     $user->update([
+                        // 'username' => $providerUser->getName(),
+                        // 'email' => $providerUser->getEmail(),
                         $providerIdField => $providerUser->getId(),
-                        'avatar' => $providerUser->getAvatar() ?? $user->avatar // Keep existing avatar if new one is null
+                        'avatar' => $providerUser->getAvatar()
                     ]);
+
                 }
             }
 
             // If still no user, create new one
-            if (!$user) {
+            if (!$user && !$this->isProfileUpdated) {
                 $user = $this->createNewUser($providerUser, $providerIdField);
             }
 
@@ -63,7 +87,13 @@ class OAuthController extends Controller
             // Store session data
             $this->storeSessionData($provider, $token, $refreshToken, $user->id);
 
-            return redirect()->route('home');
+            if($provider == 'line'){
+                send_push_notification($user->id, 'Welcome! You have successfully logged in with LINE.');
+            }
+
+            session()->flash('status','success');
+            session()->flash('message',`{$provider} OAuth added successfully`);
+            return $this->isProfileUpdated ? redirect()->route('profile') : redirect()->route('home');
         } catch (\Exception $e) {
             Log::error("Error in handle{$provider}Callback: " . $e->getMessage(), ['exception' => $e]);
             return redirect()->route('login')->with('error', "Failed to authenticate with " . ucfirst($provider));
@@ -74,17 +104,11 @@ class OAuthController extends Controller
     {
         $userData = [
             'username' => $providerUser->getName(),
-            'avatar' => $providerUser->getAvatar(),
-            $providerIdField => $providerUser->getId()
+            $providerIdField => $providerUser->getId(),
+            'avatar' => $providerUser->getAvatar() ?? null,
+            'email' => $providerUser->getEmail() ?? $providerUser->getId() . '@placeholder.com'
         ];
 
-        // Add email only if it's available
-        if ($providerUser->getEmail()) {
-            $userData['email'] = $providerUser->getEmail();
-        } else {
-            // Generate a placeholder email or handle no-email case
-            $userData['email'] = $providerUser->getId() . '@placeholder.com';
-        }
 
         $user = Users::create($userData);
         $user->assignRole(3);
@@ -130,4 +154,30 @@ class OAuthController extends Controller
     {
         return $this->handleCallback($request, 'facebook');
     }
+
+    public function removeProvider($provider)
+    {
+        $user = AuthHelper::user();
+
+        // Remove the provider's ID dynamically
+        $column = "{$provider}_id";
+
+        if (Schema::hasColumn('users', $column)) {
+            $user->update([
+                $column => null
+            ]);
+        }
+
+        // Remove OAuth entry from related table
+        $user->oAuths()->where('provider', $provider)->delete();
+
+        session()->flash('status', 'success');
+        session()->flash('message', 'OAuth removed successfully');
+
+        return response()->json([
+            'status' => true,
+            'message' => "{$provider} OAuth removed successfully"
+        ]);
+    }
+
 }

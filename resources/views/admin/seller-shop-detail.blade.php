@@ -9,7 +9,7 @@
 
     <!-- Font -->
     <link rel="stylesheet" href="{{ asset('assets/admin/font/fonts.css') }}">
-    
+
     <!-- Icon -->
     <link rel="stylesheet" href="{{ asset('assets/admin/icon/style.css') }}">
 @endsection
@@ -22,13 +22,7 @@
                 <h3>Shop Detail</h3>
                 <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                     <li>
-                        <a href="index.html"><div class="text-tiny">Dashboard</div></a>
-                    </li>
-                    <li>
-                        <i class="icon-chevron-right"></i>
-                    </li>
-                    <li>
-                        <a href="#"><div class="text-tiny">Manage Shops</div></a>
+                        <a href="{{route('admin.index')}}"><div class="text-tiny">Dashboard</div></a>
                     </li>
                     <li>
                         <i class="icon-chevron-right"></i>
@@ -46,12 +40,12 @@
                             <label class="fs-4 fw-bold mb-8">Owner Name:</label>
                             <p>{{ $shop->username }}</p>
                         </div>
-                
+
                         <div class="mb-20">
                             <label class="fs-4 fw-bold mb-8">Shop Name:</label>
                             <p>{{ $shop->shop_name }}</p>
                         </div>
-                
+
                         <div class="mb-20">
                             <label class="fs-4 fw-bold mb-8">Trans_management:</label>
                             <p>{{ $shop->trans_management }}</p>
@@ -60,20 +54,20 @@
                             <label class="fs-4 fw-bold mb-8">Email:</label>
                             <p>{{ $shop->email }}</p>
                         </div>
-                
+
                         <div class="mb-20">
                             <label class="fs-4 fw-bold mb-8">Phone:</label>
                             <p>{{ $shop->phone_number }}</p>
                         </div>
-                
+
                         <div class="mb-3">
                             <label class="fs-4 fw-bold mb-8">Submitted At:</label>
-                            <p>{{ $shop->created_at->format('Y-m-d H:i') }}</p>
+                            <p>{{ $shop->created_at->format('Y-m-d') }}</p>
                         </div>
                     </div>
                     <div class="col-lg-6">
                             <div class="image rounded">
-                                <img src="{{asset($shop->avatar)}}" class="rounded-2 avatar" alt="">
+                                <img src="{{asset('assets/images/avatars/'.$shop->avatar)}}" class="rounded-2 avatar" alt="">
                         </div>
                     </div>
                 </div>

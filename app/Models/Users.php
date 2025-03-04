@@ -6,10 +6,11 @@ use App\Models\Role;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class Users extends Authenticatable implements CanResetPassword
+class Users extends Authenticatable implements CanResetPassword,MustVerifyEmail
 {
     use HasFactory,Notifiable;
     protected $primaryKey = 'id';
@@ -28,12 +29,12 @@ class Users extends Authenticatable implements CanResetPassword
         'trans_management',
         'avatar',
         'location',
-        'address'
+        'address',
     ];
 
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token'
     ];
 
     public function roles()
@@ -47,7 +48,7 @@ class Users extends Authenticatable implements CanResetPassword
     }
 
     public function products() {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class,'user_id','id');
     }
 
     public function whitelists()
@@ -60,13 +61,18 @@ class Users extends Authenticatable implements CanResetPassword
         return $this->hasMany(Cart::class, 'user_id' , 'id');
     }
 
+    public function email_verification()
+    {
+        return $this->hasOne(EmailVerification::class, 'user_id', 'id');
+    }
+
     public function assignRole($role_id)
     {
         $this->roles()->sync([$role_id]);
     }
 
     public function shop() {
-        return $this->hasOne(Shop::class);
+        return $this->hasOne(Shop::class,'user_id','id');
     }
 
     public function oAuths(){
@@ -76,7 +82,6 @@ class Users extends Authenticatable implements CanResetPassword
     public function checkProvider($provider_name){
         return $this->oAuths()
             ->where('provider',$provider_name)
-            ->where('status',true)
             ->exists();
     }
 

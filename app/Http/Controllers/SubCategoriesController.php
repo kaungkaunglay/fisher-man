@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sub_category;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,6 +14,7 @@ class SubCategoriesController extends Controller
     public function index()
     {
         $sub_categories = Sub_category::paginate(10);
+        
         return view('admin.sub-categories', compact('sub_categories'));
     }
 
@@ -23,11 +25,11 @@ class SubCategoriesController extends Controller
 
     public function show($id, Request $request)
     {
-        // Retrieve the sort option from the query string
-        $sortBy = $request->get('sort_by', 'latest'); // default to 'latest'
+        $sortBy = $request->get('sort_by', 'latest');
+        $minPrice = $request->get('min_price', 1);
+        $maxPrice = $request->get('max_price', 10000);
 
-        // Build the query based on the sort option
-        $query = Product::where('sub_category_id', $id);
+        $query = Product::where('sub_category_id', $id)->whereBetween('product_price', [$minPrice, $maxPrice]);
 
         if ($sortBy === 'price_asc') {
             $query->orderBy('product_price', 'asc');
@@ -38,17 +40,17 @@ class SubCategoriesController extends Controller
         } elseif ($sortBy === 'name_desc') {
             $query->orderBy('name', 'desc');
         } else {
-            $query->latest(); // Default sorting by latest
+            $query->latest();
         }
 
-        // Get the sorted products
-        $products = $query->get();
+        $products = $query->paginate(10);
 
-        // Get sub-category details
         $subCategory = Sub_category::findOrFail($id);
 
-        // Return view with data
-        return view('sub_category', compact('subCategory', 'products'));
+        $settings = Setting::pluck('value', 'key')->toArray();
+        $bannerImages = isset($settings['site_banner_images']) ? json_decode($settings['site_banner_images']) : [];
+
+        return view('sub_category', compact('subCategory', 'products','bannerImages'));
     }
 
     public function create()
@@ -87,9 +89,10 @@ class SubCategoriesController extends Controller
     {
         $categories = Category::all();
         return view('admin.sub-category', [
-            'subcategory' => $sub_category, 
+            'subcategory' => $sub_category,
             'categories' => $categories
-        ]);    }
+        ]);
+    }
 
     public function update(Request $request, Sub_category $sub_category)
     {

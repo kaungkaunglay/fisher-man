@@ -3,22 +3,18 @@
 <!--[if (gte IE 9)|!(IE)]><!-->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <!--<![endif]-->
-
-
-<!-- Mirrored from themesflat.co/html/remos/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 22 Jan 2025 01:50:16 GMT -->
 <head>
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
     <title>Fisherman Admin</title>
 
-    <meta name="author" content="themesflat.com">
+    <meta name="author" content="andfun">
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Theme Style -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/animation.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/animation.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/bootstrap-select.min.css') }}">
@@ -48,20 +44,20 @@
                     </a>
                     <div class="login-box">
                         <div>
-                            <h3>Login to account</h3>
-                            <div class="body-text">Enter your email & password to login</div>
+                            <h3>{{trans_lang('dashboard')}}{{trans_lang('login')}}</h3>
+                            <!-- <div class="body-text">Enter your email & password to login</div> -->
                         </div>
                         <form id="login_form" class="form-login flex flex-column gap24">
                             @csrf
                             <fieldset class="email">
-                                <div class="body-title mb-10">Email address <span class="tf-color-1">*</span></div>
-                                <input class="flex-grow" id="email" type="email" placeholder="Enter your email address" name="email" tabindex="0" value="" aria-required="true" required="">
+                                <div class="body-title mb-10">{{trans_lang('email')}} <span class="tf-color-1">*</span></div>
+                                <input class="flex-grow" id="email" type="email" placeholder="{{trans_lang('email')}}" name="email" tabindex="0" value="" aria-required="true" required="">
                                 <span class="invalid-feedback"></span>
 
                             </fieldset>
                             <fieldset class="password">
-                                <div class="body-title mb-10">Password <span class="tf-color-1">*</span></div>
-                                <input class="password-input" id="password" type="password" placeholder="Enter your password" name="password" tabindex="0" value="" aria-required="true" required="">
+                                <div class="body-title mb-10">{{trans_lang('password')}} <span class="tf-color-1">*</span></div>
+                                <input class="password-input" id="password" type="password" placeholder="{{trans_lang('password')}}" name="password" tabindex="0" value="" aria-required="true" required="">
                                 <span class="invalid-feedback"></span>
                                 <span class="show-pass">
                                     <i class="icon-eye view"></i>
@@ -73,7 +69,7 @@
                                 <p class="mb-3 text-danger" id="message"></p>
                             </div>
 
-                            <button type="submit" class="tf-button w-full">Login</button>
+                            <button type="submit" class="tf-button w-full">{{trans_lang('login')}}</button>
                         </form>
                     </div>
                 </div>
@@ -85,7 +81,7 @@
     <!-- /#wrapper -->
 
     <!-- Javascript -->
-    <script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script>
+    <script src="{{ asset(path: 'assets/admin/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/bootstrap-select.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/main.js') }}"></script>
@@ -112,8 +108,6 @@
                         if (response.status == true) {
                             window.location.href = "{{ route('admin.index')}}";
                         } else {
-
-                            console.log(message,errors)
 
                             // if response has message, show the message , if not empty the message, clear the error messages
                             $('#message').html(response.message ?? '');

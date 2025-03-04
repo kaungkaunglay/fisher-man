@@ -18,11 +18,11 @@
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>All category</h3>
+            <h3>{{trans_lang('all_category')}}</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
                     <a href="index.html">
-                        <div class="text-tiny">Dashboard</div>
+                        <div class="text-tiny">{{trans_lang('home')}}</div>
                     </a>
                 </li>
                 <li>
@@ -30,14 +30,14 @@
                 </li>
                 <li>
                     <a href="#">
-                        <div class="text-tiny">Category</div>
+                        <div class="text-tiny">{{trans_lang('category')}}</div>
                     </a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">All category</div>
+                    <div class="text-tiny">{{trans_lang('all_category')}}</div>
                 </li>
             </ul>
         </div>
@@ -45,7 +45,7 @@
         <div class="wg-box">
             <div class="flex items-center justify-between gap10 flex-wrap">
                 <div class="wg-filter flex-grow">
-                    <div class="show">
+                    <!-- <div class="show">
                         <div class="text-tiny">Showing</div>
                         <div class="select">
                             <select class="">
@@ -55,38 +55,40 @@
                             </select>
                         </div>
                         <div class="text-tiny">entries</div>
-                    </div>
+                    </div> -->
                     <form class="form-search">
                         <fieldset class="name">
-                            <input type="text" placeholder="Search here..." class="" name="name" tabindex="2" value="" aria-required="true" required="">
+                            <input type="text" placeholder="ここで検索。。。" class="" name="name" tabindex="2" value="" aria-required="true" required="">
                         </fieldset>
                         <div class="button-submit">
                             <button class="" type="submit"><i class="icon-search"></i></button>
                         </div>
                     </form>
                 </div>
-                <a class="tf-button style-1 w208" href="/admin/categories/create"><i class="icon-plus"></i>Add new</a>
+                @if (check_role(2))
+                <a class="tf-button style-1 w208" href="/admin/categories/create"><i class="icon-plus"></i>{{trans_lang('add_category')}}</a>
+                @endif
             </div>
             <div class="wg-table table-all-category">
                 <ul class="table-title flex gap20 mb-14">
                     <li>
-                        <div class="body-title">Category</div>
+                        <div class="body-title">{{trans_lang('category')}}</div>
                     </li>
                     <!-- <li>
                                 <div class="body-title">Quantity</div>
                             </li> -->
                     <li>
-                        <div class="body-title">Start date</div>
+                        <div class="body-title">{{trans_lang('uploaded_date')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Action</div>
+                        <div class="body-title">{{trans_lang('action')}}</div>
                     </li>
                 </ul>
                 <ul class="flex flex-column">
                     @foreach($categories as $category)
                     <li class="product-item gap14">
                         <div class="image no-bg">
-                            <img src="{{ asset($category->image) }}" alt="{{ $category->category_name }}">
+                            <img src="{{ asset('assets/images/categories/'.$category->image) }}" alt="{{ $category->category_name }}">
                         </div>
                         <div class="flex items-center justify-between gap20 flex-grow">
                             <div class="name">
@@ -119,8 +121,8 @@
             </div>
             <div class="divider"></div>
             <div class="flex items-center justify-between flex-wrap gap10">
-                <div class="text-tiny">Showing 10 entries</div>
-                
+                <div class="text-tiny">{{trans_lang('showing_10_entries')}}</div>
+
 
             </div>
         </div>

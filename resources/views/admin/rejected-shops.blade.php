@@ -20,10 +20,10 @@
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>Rejected Shops</h3>
+            <h3>{{trans_lang('rejected_shops')}}</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="index.html">
+                    <a href="{{route('admin.index')}}">
                         <div class="text-tiny">Dashboard</div>
                     </a>
                 </li>
@@ -31,15 +31,7 @@
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <a href="#">
-                        <div class="text-tiny">Shop Lists</div>
-                    </a>
-                </li>
-                <li>
-                    <i class="icon-chevron-right"></i>
-                </li>
-                <li>
-                    <div class="text-tiny">Rejected Shops</div>
+                    <div class="text-tiny">{{trans_lang('rejected_shops')}}</div>
                 </li>
             </ul>
         </div>
@@ -51,7 +43,7 @@
             </div> -->
             <div class="flex items-center justify-between gap10 flex-wrap">
                 <div class="wg-filter flex-grow">
-                    <div class="show">
+                    <!-- <div class="show">
                         <div class="text-tiny">Showing</div>
                         <div class="select">
                             <select class="">
@@ -61,10 +53,10 @@
                             </select>
                         </div>
                         <div class="text-tiny">entries</div>
-                    </div>
+                    </div> -->
                     <form class="form-search">
                         <fieldset class="name">
-                            <input type="text" placeholder="Search here..." class="" name="name" tabindex="2" value="" aria-required="true" required="">
+                            <input type="text" placeholder="ここで検索。。。" class="" name="name" tabindex="2" value="" aria-required="true" required="">
                         </fieldset>
                         <div class="button-submit">
                             <button class="" type="submit"><i class="icon-search"></i></button>
@@ -76,19 +68,19 @@
             <div class="wg-table table-product-list">
                 <ul class="table-title flex gap20 mb-14">
                     <li>
-                        <div class="body-title">User Name</div>
+                        <div class="body-title">{{trans_lang('username')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Shop Name</div>
+                        <div class="body-title">{{trans_lang('shop_name')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Email</div>
+                        <div class="body-title">{{trans_lang('email')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Status</div>
+                        <div class="body-title">{{trans_lang('status')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Action</div>
+                        <div class="body-title">{{trans_lang('action')}}</div>
                     </li>
                 </ul>
 
@@ -107,10 +99,10 @@
                                     @if($rejectedShop->status == 'accepted') block-available
                                     @elseif($rejectedShop->status == 'pending') block-pending
                                     @else block-not-available @endif
-                                    dropdown-toggle" 
-                                    type="button" 
-                                    id="statusDropdown{{ $rejectedShop->id }}" 
-                                    data-bs-toggle="dropdown" 
+                                    dropdown-toggle"
+                                    type="button"
+                                    id="statusDropdown{{ $rejectedShop->id }}"
+                                    data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     {{ ucfirst($rejectedShop->status) }}
                                 </button>
@@ -127,13 +119,13 @@
                                     <i class="icon-eye"></i>
                                 </a>
                             </div>
-                            <div class="item trash">
+                            <div class="item">
                                     {{-- <form id="delete-form-{{ $faq->id }}" action="{{ route('admin.faqs.destroy', $faq->id) }}" method="POST" style="display: none;">
                                         @csrf
                                         @method('DELETE')
                                     </form> --}}
                                     {{-- onclick="event.preventDefault(); document.getElementById('delete-form-{{ $faq->id }}').submit();" --}}
-                                    <a href="#" class="btn-trash delete-faq" data-id="">
+                                    <a href="#" class="btn-trash delete-shop text-danger" data-id="{{$rejectedShop->id}}">
                                         <i class="icon-trash-2"></i>
                                     </a>
                             </div>
@@ -145,26 +137,36 @@
         </div>
 
         <div class="divider"></div>
+        {{-- pagination --}}
+        @if ($rejectedShops->hasPages())
         <div class="flex items-center justify-between flex-wrap gap10">
-            <div class="text-tiny">Showing 10 entries</div>
-            {{-- <ul class="wg-pagination">
-                <li>
-                    <a href="#"><i class="icon-chevron-left"></i></a>
+            <!-- <div class="text-tiny">
+                Showing {{ $rejectedShops->firstItem() }} to {{ $rejectedShops->lastItem() }} of {{ $rejectedShops->total() }} entries
+            </div> -->
+            <ul class="wg-pagination">
+                <!-- Previous Page -->
+                <li class="{{ $rejectedShops->onFirstPage() ? 'disabled' : '' }}">
+                    <a href="{{ $rejectedShops->previousPageUrl() }}">
+                        <i class="icon-chevron-left"></i>
+                    </a>
                 </li>
-                <li>
-                    <a href="#">1</a>
+
+                <!-- Page Numbers -->
+                @foreach ($rejectedShops->links()->elements[0] as $page => $url)
+                    <li class="{{ $page == $rejectedShops->currentPage() ? 'active' : '' }}">
+                        <a href="{{ $url }}">{{ $page }}</a>
+                    </li>
+                @endforeach
+
+                <!-- Next Page -->
+                <li class="{{ $rejectedShops->hasMorePages() ? '' : 'disabled' }}">
+                    <a href="{{ $rejectedShops->nextPageUrl() }}">
+                        <i class="icon-chevron-right"></i>
+                    </a>
                 </li>
-                <li class="active">
-                    <a href="#">2</a>
-                </li>
-                <li>
-                    <a href="#">3</a>
-                </li>
-                <li>
-                    <a href="#"><i class="icon-chevron-right"></i></a>
-                </li>
-            </ul> --}}
+            </ul>
         </div>
+        @endif
     </div>
     <!-- /product-list -->
 </div>
@@ -200,13 +202,9 @@
     $(document).ready(function () {
         $('.change-status').click(function (e) {
             e.preventDefault();
-            
+
             let shop_id = $(this).data('id');
             let status = $(this).data('status');
-
-            console.log(status);
-            console.log(shop_id);
-
             $.ajax({
                 url: "{{ route('admin.shops.updateStatus') }}",
                 type: "POST",
@@ -224,6 +222,45 @@
                 },
                 error: function () {
                     alert('Something went wrong!');
+                }
+            });
+        });
+
+        $('.delete-shop').click(function (e) {
+            e.preventDefault();
+
+            let shop_id = $(this).data('id');
+
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('admin.shops.delete') }}",
+                        type: "POST",
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            shop_id: shop_id
+                        },
+                        success: function (response) {
+                            if(response.success) {
+                                Swal.fire('Deleted!', response.message, 'success')
+                                    .then(() => location.reload());
+                            } else {
+                                Swal.fire('Error!', response.message, 'error');
+                            }
+                        },
+                        error: function () {
+                            Swal.fire('Error!', 'Something went wrong!', 'error');
+                        }
+                    });
                 }
             });
         });

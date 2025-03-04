@@ -1,6 +1,6 @@
 @component('mail::message')
 <div class="header" style="text-align: center; padding: 0px 0px 30px 0px; border-bottom: 1px solid #edf2f7;">
-    <img src="{{ config('app.url') . '/assets/logos/' . config('settings.logo') }}" alt="Company Logo" class="logo" style="width: 150px; height: 100px;">
+    <img src="https://s6.imgcdn.dev/YhKH6e.png" alt="Company Logo" class="logo" style="width: 150px; height: 100px;">
 </div>
 
 <h1 style="font-size: 24px; color: #333; text-align: center; margin-top: 20px;">Hello <strong>{{ $user->username }}</strong>,</h1>

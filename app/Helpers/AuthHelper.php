@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Models\Users;
 use App\Models\OAuths;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
@@ -52,6 +53,48 @@ class AuthHelper
     {
         return Auth::id() ?? session('user_id');
     }
+
+    /**
+     * Check if the user has a verified email.
+     *
+     * @return bool
+     */
+    public static function isVerified(): bool
+    {
+        return self::auth()?->email_verification?->verified_at !== null;
+    }
+
+    /**
+     * Get the user's avatar
+     *
+     * @return string|null
+     */
+
+    public static function getAvatar()
+    {
+        $avatar = self::auth()?->avatar;
+        return $avatar
+        ? (filter_var($avatar, FILTER_VALIDATE_URL) && Str::isUrl($avatar)
+        ? $avatar
+        : asset('assets/avatars/'.$avatar))
+        : asset('assets/avatars/default_avatar.png') ;
+    }
+
+
+    /**
+     *  Check if the user email verify link is invalid
+     *
+     *  @return bool
+     */
+
+    public static function isEmailLinkInvalid(): bool
+    {
+        return self::auth()?->email_verification?->token_expire_at
+            ? now()->greaterThan(self::auth()->email_verification->token_expire_at)
+            : true;
+    }
+
+
 
     /**
      * Log the user out by clearing their session and logging out of Auth.
@@ -123,9 +166,9 @@ class AuthHelper
 
         return Cache::remember($cacheKey, 60, function () use ($userId, $provider, $token) {
             $oauth = OAuths::where('user_id', $userId)
-                         ->where('provider', $provider)
-                         ->latest()
-                         ->first();
+                ->where('provider', $provider)
+                ->latest()
+                ->first();
 
             return $oauth && $oauth->token === $token;
         });

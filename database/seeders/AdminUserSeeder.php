@@ -22,11 +22,16 @@ class AdminUserSeeder extends Seeder
             [
                 'username' => 'seller',
                 'email' => 'seller@gmail.com',
+                'address' => 'Cambodia',
+                'first_phone' => '0977653421',
+                'avatar' => '1740476645_cyber.jpg',
+                'first_org_name' => 'FishChamp.org',
                 'password' => bcrypt('P@$$w0rd'),
             ],
         [
                 'username' => 'buyer',
                 'email' => 'buyer@gmail.com',
+                'address' => 'Cambodia',
                 'password' => bcrypt('P@$$w0rd'),
             ]
         ];

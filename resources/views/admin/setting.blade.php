@@ -56,7 +56,7 @@
                 <!-- section-menu-left -->
                 <div class="section-menu-left">
                     <div class="box-logo">
-                        <a href="index.html" id="site-logo-inner">
+                        <a href="#" id="site-logo-inner">
                             <img class="" id="logo_header" alt="" src="images/logo/logo.png" data-light="images/logo/logo.png" data-dark="{{asset('assets/images/logo.png')}}" >
                         </a>
                         <div class="button-show-hide">
@@ -424,7 +424,7 @@
                                 </div>
                                 <form class="form-search flex-grow">
                                     <fieldset class="name">
-                                        <input type="text" placeholder="Search here..." class="show-search" name="name" tabindex="2" value="" aria-required="true" required="">
+                                        <input type="text" placeholder="ここで検索。。。" class="show-search" name="name" tabindex="2" value="" aria-required="true" required="">
                                     </fieldset>
                                     <div class="button-submit">
                                         <button class="" type="submit"><i class="icon-search"></i></button>

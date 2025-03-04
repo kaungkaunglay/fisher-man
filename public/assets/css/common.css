@@ -17,6 +17,7 @@ input[type=number] {-moz-appearance: textfield;}
 @font-face {
   font-family: 'BlinkMacSystemFont' !important;
   src: url('../fonts/BlinkMacSystemFont/blinkmacsystemfont-regular.ttf') format('truetype') !important;
+  font-display: swap;
 }
 
 body {
@@ -82,6 +83,7 @@ main {
 }
 
 .original-price{
+  font-size: 15px;
   text-decoration: line-through;
   color: #ff000062;
 }
@@ -110,6 +112,45 @@ main {
   font-size: 15px;
   font-weight: bold;
   color: #ffffff;
+}
+.bottom-menu{
+  font-size: 15px;
+  font-weight: bold;
+  color: #ffffff;
+  width: 80px;
+}
+
+.mobile-cart-noti,
+.bottom-nav .cart-fx .noti-animation {
+    width: 20px;
+    font-size: 10px;
+    aspect-ratio: 1 / 1;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    padding: 2px;
+    top: 6px;
+    right: 10px;
+}
+
+.mobile-white-list-noti,
+.bottom-nav .white-list-fx .noti-animation {
+  width: 20px;
+  font-size: 10px;
+  aspect-ratio: 1 / 1;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  padding: 2px;
+  top: -18%;
+  right: 24%;
+}
+
+.bottom-nav .bottom-menu>p{
+  font-size: 10px !important;
+}
+.bottom-nav .bottom-menu>.cart-txt{
+  font-size: 12px !important;
 }
 
 .menu-category,
@@ -156,8 +197,21 @@ main {
   margin-bottom: 10px !important;
 }
 
+.h-18px {
+  height: 18px;
+}
+
+.item-card:not(.row-list .item-card) .description {
+  display: none;
+}
+
+.description {
+  font-size: 15px;
+}
+
 .common-btn,
 .common-btn2 {
+  display: block;
   background: transparent;
   border: 1px solid #005B96;
   color: #005B96;
@@ -167,6 +221,7 @@ main {
   border-radius: 10px;
   transition: 0.3s;
   text-align: center;
+  cursor: pointer;
 }
 
 .common-btn2 {
@@ -175,7 +230,8 @@ main {
 }
 
 .common-btn:hover,
-.common-btn2:hover {
+.common-btn2:hover,
+.white-list-btn.active {
     background-color: #005B96;
     color: #fff;
 }
@@ -190,9 +246,11 @@ main {
   color: #fff;
 }
 
+.common-btn2:active,
 .-solid:active {
-  opacity: 0.8;
+  background-color: color-mix(in srgb, #005B96 50%, #000 50%);
 }
+
 
 .icon img {
   width: 46px;
@@ -221,6 +279,10 @@ main {
   text-decoration: none;
 }
 
+.breadcrumb-sp {
+  height: 18px;
+}
+
 .icon-buttons i {
   cursor: pointer;
 }
@@ -240,8 +302,6 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0px;
-
-
 }
 
 .arrows button {
@@ -291,6 +351,11 @@ main {
   margin-right: 10px;
 }
 
+.row-list .item-card {
+  display: flex !important;
+}
+
+.all-products .item-card{display: none;}
 
 .card-border-animate:hover {
   border: 1px solid black;
@@ -555,10 +620,15 @@ li {
   color: white;
 }
 
+.main-search-bar{
+  width: 600px;
+}
+
 @media screen and (max-width: 1350px) {
   #view-list {
     grid-template-columns: 1fr 1fr 1fr;
   }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -640,6 +710,8 @@ li {
   height: 100%;
   background: #005B96;
 }
+
+
 
 @media screen and (max-width: 1150px) {
   .range-slider {
@@ -804,6 +876,15 @@ li {
   justify-content: space-between;
 }
 
+.row-list .card-btn {
+  justify-content: end;
+}
+
+.row-list .card-btn .common-btn,
+.row-list .card-btn .common-btn2 {
+  max-width: 200px;
+}
+
 .product-btn {
   width: 100%;
   max-width: 207px;
@@ -821,7 +902,6 @@ li {
   color: #FFFFFF;
   background-color: #005B96;
 }
-
 
 .row-list .title-category {
   display: flex;
@@ -908,6 +988,7 @@ li {
     justify-content: center;
   }
 
+
 }
 
 @media screen and (max-width: 768px) {
@@ -929,16 +1010,8 @@ li {
   }
 
   .common-btn{
+    width: max-content !important;
     padding: 7px 20px;
   }
-
-}
-@media screen and (max-width: 490px) {
-
-
-  .card-list {
-    grid-template-columns: 1fr !important;
-  }
-
 
 }

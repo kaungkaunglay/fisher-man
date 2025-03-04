@@ -1,5 +1,5 @@
 footer {
-  min-height: 30vh;
+  min-height: 160px;
 }
 
 footer .col-12.col-lg-2 {
@@ -22,7 +22,7 @@ footer .link-list {
   margin: 0 auto !important;
 }
 
-footer .link-list li a, ul li a {
+footer .link-list li a,footer ul li a {
   color: white;
 }
 
@@ -70,5 +70,9 @@ footer .link-list li a, ul li a {
 .nav-item:hover p {
   margin-top: -30px;
   z-index: 1000;
+}
+
+.hv-icon:hover {
+  color: #ffc107;
 }
 /* mobile nav bar end */

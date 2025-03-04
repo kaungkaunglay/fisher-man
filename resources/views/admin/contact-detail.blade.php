@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/style.css') }}">
     <!-- Font -->
     <link rel="stylesheet" href="{{ asset('assets/admin/font/fonts.css') }}">
-    
+
     <!-- Icon -->
     <link rel="stylesheet" href="{{ asset('assets/admin/icon/style.css') }}">
 @endsection
@@ -21,13 +21,13 @@
                 <h3>Users Contact Request</h3>
                 <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                     <li>
-                        <a href="index.html"><div class="text-tiny">Dashboard</div></a>
+                        <a href="{{route('admin.index')}}"><div class="text-tiny">Dashboard</div></a>
                     </li>
                     <li>
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <a href="#"><div class="text-tiny">User Request</div></a>
+                        <a href="{{route('admin.users.contact')}}"><div class="text-tiny">Contact Request</div></a>
                     </li>
                     <li>
                         <i class="icon-chevron-right"></i>
@@ -38,36 +38,39 @@
                 </ul>
             </div>
             <!-- all-user -->
-            <div class="wg-box">
-                <div class="mb-3">
-                    <strong>Name:</strong>
-                    <p>{{ $contact->name }}</p>
+
+                <div class="wg-box">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-20">
+                                <label class="fs-4 fw-bold mb-8">Name:</label>
+                                <p>{{ $contact->name }}</p>
+                            </div>
+
+                            <div class="mb-20">
+                                <label class="fs-4 fw-bold mb-8">Email:</label>
+                                <p>{{ $contact->email }}</p>
+                            </div>
+                            <div class="mb-20">
+                                <label class="fs-4 fw-bold mb-8">Phone:</label>
+                                <p>{{ $contact->phone }}</p>
+                            </div>
+
+                            <div class="mb-20">
+                                <label class="fs-4 fw-bold mb-8">Description:</label>
+                                <p>{{ $contact->description }}</p>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="fs-4 fw-bold mb-8">Submitted At:</label>
+                                <p>{{ $contact->created_at->format('Y-m-d') }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-        
-                <div class="mb-3">
-                    <strong>Email:</strong>
-                    <p>{{ $contact->email }}</p>
-                </div>
-        
-                <div class="mb-3">
-                    <strong>LineID:</strong>
-                    <p>{{ $contact->line_id }}</p>
-                </div>
-        
-                <div class="mb-3">
-                    <strong>Phone:</strong>
-                    <p>{{ $contact->phone }}</p>
-                </div>
-                <div class="mb-3">
-                    <strong>Description:</strong>
-                    <p>{{ $contact->description }}</p>
-                </div>
-        
-                <div class="mb-3">
-                    <strong>Submitted At:</strong>
-                    <p>{{ $contact->created_at->format('Y-m-d H:i') }}</p>
-                </div>
-            </div>
+
+                
+
             <!-- /all-user -->
         </div>
         <!-- /main-content-wrap -->

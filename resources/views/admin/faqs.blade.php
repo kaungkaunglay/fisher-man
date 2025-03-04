@@ -20,10 +20,10 @@
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>FAQs</h3>
+            <h3>{{trans_lang('faqs')}}</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="index.html">
+                    <a href="{{route('admin.index')}}">
                         <div class="text-tiny">Dashboard</div>
                     </a>
                 </li>
@@ -31,15 +31,7 @@
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <a href="#">
-                        <div class="text-tiny">Ecommerce</div>
-                    </a>
-                </li>
-                <li>
-                    <i class="icon-chevron-right"></i>
-                </li>
-                <li>
-                    <div class="text-tiny">FAQs</div>
+                    <div class="text-tiny">{{trans_lang('faqs')}}</div>
                 </li>
             </ul>
         </div>
@@ -51,7 +43,7 @@
             </div> -->
             <div class="flex items-center justify-between gap10 flex-wrap">
                 <div class="wg-filter flex-grow">
-                    <div class="show">
+                    <!-- <div class="show">
                         <div class="text-tiny">Showing</div>
                         <div class="select">
                             <select class="">
@@ -61,31 +53,31 @@
                             </select>
                         </div>
                         <div class="text-tiny">entries</div>
-                    </div>
+                    </div> -->
                     <form class="form-search">
                         <fieldset class="name">
-                            <input type="text" placeholder="Search here..." class="" name="name" tabindex="2" value="" aria-required="true" required="">
+                            <input type="text" placeholder="ここで検索。。。" class="" name="name" tabindex="2" value="" aria-required="true" required="">
                         </fieldset>
                         <div class="button-submit">
                             <button class="" type="submit"><i class="icon-search"></i></button>
                         </div>
                     </form>
                 </div>
-                <a class="tf-button style-1 w208" href="/admin/faq/create"><i class="icon-plus"></i>Add new</a>
+                <a class="tf-button style-1 w208" href="/admin/faq/create"><i class="icon-plus"></i>{{trans_lang('add_faq')}}</a>
             </div>
             <div class="wg-table table-product-list">
-                <ul class="table-title flex gap20 mb-14">
+                <ul class="table-title flex gap20 mb-14 faqs-table">
                     <li>
-                        <div class="body-title">Id</div>
+                        <div class="body-title">ID</div>
                     </li>
                     <li>
-                        <div class="body-title">Question</div>
+                        <div class="body-title">{{trans_lang('question')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Answer</div>
+                        <div class="body-title">{{trans_lang('answer')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Action</div>
+                        <div class="body-title">{{trans_lang('action')}}</div>
                     </li>
                 </ul>
 
@@ -93,18 +85,13 @@
                 <ul class="flex flex-column">
                     <li class="product-item gap14">
 
-                        <div class="flex items-center justify-between gap20 flex-grow">
+                        <div class="flex items-center justify-between gap20 flex-grow faqs-data">
 
                             <div class="body-text">{{ $faq->id }}</div>
                             <div class="body-text">{{ $faq->question }}</div>
-                            <div class="body-text">{{ $faq->answer }}</div>
+                            <div class="body-text answer">{{ $faq->answer }}</div>
                         </div>
                         <div class="list-icon-function">
-                            <div class="item eye">
-                                <a href="">
-                                    <i class="icon-eye"></i>
-                                </a>
-                            </div>
                             <div class="item edit">
                                 <a href="{{ route('admin.faqs.edit', $faq->id) }}">
                                     <i class="icon-edit-3"></i>
@@ -129,7 +116,7 @@
 
         <div class="divider"></div>
         <div class="flex items-center justify-between flex-wrap gap10">
-            <div class="text-tiny">Showing 10 entries</div>
+            <!-- <div class="text-tiny">Showing 10 entries</div> -->
             {{-- <ul class="wg-pagination">
                 <li>
                     <a href="#"><i class="icon-chevron-left"></i></a>

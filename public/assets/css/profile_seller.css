@@ -17,25 +17,43 @@ body {
   box-shadow: none;
 }
 
-.profile-form:not(.active) .cancel,
-.profile-form:not(.active) .save,
-.profile-form:not(.active) .checkbox-list-on {
-  display: none !important;
-}
+.avatar-upload {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.5;
+    top: 0;
+    display: flex;
+  }
 
-.profile-form.active .edit,
-.profile-form.active .cor,
-.profile-form.active .checkbox-list-off {
-  display: none !important;
-}
- 
-.profile-form.active .phone-no-container {
-  flex-direction: column;
-}
+  .avatar-upload div {
+    color: white !important;
+    border: 1px dashed #bcbcbc;
+    width: 80%;
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
 
-.qr-box {
-  max-width: 200px;
-}
+  .avatar-upload i {
+    font-size: 50px;
+  }
+
+  .profile-form:not(.active) .link-contain input {
+    display: none;
+  }
+
+  .profile-form.active .edit,
+  .profile-form.active .link-contain a {
+    display: none;
+  }
+
+  .profile-form.active .phone-no-container {
+    flex-direction: column;
+  }
 
 /* sortBy button start*/
 .sort-container {
@@ -114,9 +132,22 @@ body {
   transition: .5s;
 }
 
+.pagination ul li a{
+  color: #003366;
+}
+
+
 .pagination li:hover {
   background-color: #005B96;
   color:#00CCFF;
+}
+.pagination li.active  {
+  background-color: #005B96 !important;
+  color:#00CCFF !important;
+}
+
+.seller-info output, .seller-detail output{
+  margin-left: 50px;
 }
 
 /* new break point for top section responsive */
@@ -133,3 +164,26 @@ body {
     width: 100%;
   }
 }
+
+@media  screen and (max-width: 767.9px) {
+    .profile-detail,
+    .map {
+      margin-top: 20px;
+    }
+    .history-item div {
+      padding: 5px 20px;
+    }
+    .history-item div:first-child {
+      align-items: start;
+    }
+    .date {
+      text-align: start;
+    }
+    .btn-container {
+      justify-content: center;
+    }
+    .btn-container .btn {
+      width: 100%;
+      padding: 15px ;
+    }
+  }

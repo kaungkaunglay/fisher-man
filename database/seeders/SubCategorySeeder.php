@@ -13,6 +13,19 @@ class SubCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Sub_category::factory()->count(10)->create();
+        $categories = [
+            ['id' => 11, 'name' => '鮮魚', 'image' => 'イカ.jpg', 'category_id' => 9, 'created_at' => '2025-02-23 01:02:16', 'updated_at' => '2025-02-23 01:02:16'],
+            ['id' => 12, 'name' => 'マグロ', 'image' => 'イカ.jpg', 'category_id' => 9, 'created_at' => '2025-02-23 01:03:05', 'updated_at' => '2025-02-23 01:03:05'],
+            ['id' => 13, 'name' => 'イカ・タコ', 'image' => 'イカ.jpg', 'category_id' => 10, 'created_at' => '2025-02-23 01:03:54', 'updated_at' => '2025-02-23 01:03:54'],
+            ['id' => 14, 'name' => '貝類', 'image' => 'イカ.jpg', 'category_id' => 12, 'created_at' => '2025-02-23 01:05:32', 'updated_at' => '2025-02-23 01:05:32'],
+            ['id' => 15, 'name' => 'ウニ・イクラ・白子・魚卵', 'image' => 'イカ.jpg', 'category_id' => 12, 'created_at' => '2025-02-23 01:06:41', 'updated_at' => '2025-02-23 01:06:41'],
+            ['id' => 16, 'name' => '海藻・干物・漬魚・ちりめん・練物類', 'image' => 'イカ.jpg', 'category_id' => 12, 'created_at' => '2025-02-23 01:09:57', 'updated_at' => '2025-02-23 01:09:57'],
+            ['id' => 17, 'name' => '珍味・惣菜・漬物', 'image' => 'イカ.jpg', 'category_id' => 15, 'created_at' => '2025-02-23 01:13:39', 'updated_at' => '2025-02-23 01:13:39'],
+            ['id' => 18, 'name' => '調味料・わさび・飾り物', 'image' => 'イカ.jpg', 'category_id' => 15, 'created_at' => '2025-02-23 01:16:49', 'updated_at' => '2025-02-23 01:16:49'],
+        ];
+
+        foreach ($categories as $category) {
+            Sub_category::create($category);
+        }
     }
 }

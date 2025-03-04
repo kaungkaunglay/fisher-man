@@ -16,20 +16,20 @@
 <div class="main-content-inner">
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>{{ isset($faq) ? 'Edit FAQ' : 'Add FAQ' }}</h3>
+            <h3>{{ isset($faq) ? 'FAQを編集' : 'FAQを追加' }}</h3>
             <!-- {{ isset($faq) ? 'Edit FAQ' : 'Add FAQ' }} -->
 
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
-                <li><a href="index.html">
+                <li><a href="{{route('admin.index')}}">
                         <div class="text-tiny">Dashboard</div>
                     </a></li>
                 <li><i class="icon-chevron-right"></i></li>
-                <li><a href="#">
-                        <div class="text-tiny">Ecommerce</div>
+                <li><a href="{{route('admin.faqs')}}">
+                        <div class="text-tiny">FAQs</div>
                     </a></li>
                 <li><i class="icon-chevron-right"></i></li>
                 <li>
-                    <div class="text-tiny">{{ isset($faq) ? 'Edit FAQ' : 'Add FAQ' }}</div>
+                    <div class="text-tiny">{{ isset($faq) ? 'FAQを編集' : 'FAQを追加' }}</div>
                     <!-- {{ isset($faq) ? 'Edit FAQ' : 'Add FAQ' }} -->
                 </li>
             </ul>
@@ -54,8 +54,8 @@
 
             <div class="wg-box">
                 <fieldset class="name">
-                    <div class="body-title mb-10">FAQ Question <span class="tf-color-1">*</span></div>
-                    <input class="mb-10 @error('question') is-invalid @enderror" type="text" placeholder="Enter faq question" name="question" value="{{ old('question', $faq->question ?? '') }}">
+                    <div class="body-title mb-10">FAQ {{trans_lang('question')}} <span class="tf-color-1">*</span></div>
+                    <input class="mb-10 @error('question') is-invalid @enderror" type="text" placeholder="FAQ 質問" name="question" value="{{ old('question', $faq->question ?? '') }}">
                     @error('question')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -64,8 +64,8 @@
                     <!-- <div class="text-tiny">Do not exceed 255 characters when entering the product name.</div> -->
                 </fieldset>
                 <fieldset class="description">
-                    <div class="body-title mb-10">FAQ Answer</div>
-                    <textarea class="mb-10 @error('answer') is-invalid @enderror" name="answer" placeholder="Enter faq answer">{{ old('answer', $faq->answer ?? '') }}</textarea>
+                    <div class="body-title mb-10">FAQ {{trans_lang('answer')}}</div>
+                    <textarea class="mb-10 @error('answer') is-invalid @enderror" name="answer" placeholder="FAQ 回答">{{ old('answer', $faq->answer ?? '') }}</textarea>
                     @error('answer')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -76,9 +76,8 @@
             </div>
 
             <div class="cols gap10">
-                <button class="tf-button w-full" type="submit">{{ isset($faq) ? 'Update FAQ' : 'Add FAQ' }}</button>
-                <!-- {{ isset($product) ? 'Update Product' : 'Add Product' }} -->
-                <a href="{{ route('admin.products') }}" class="tf-button style-2 w-full">Cancel</a>
+                <button class="tf-button" type="submit">{{ isset($faq) ? 'FAQを更新' : 'FAQを追加' }}</button>
+
             </div>
         </form>
     </div>

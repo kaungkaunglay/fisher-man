@@ -7,7 +7,7 @@
   <!-- Breadcrumbs -->
   <nav aria-label="breadcrumb" class="py-4">
     <ol class="breadcrumb mb-0 bg-transparent">
-      <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
       <li class="breadcrumb-item active" aria-current="page">Search</li>
     </ol>
   </nav>
@@ -59,7 +59,7 @@
             <div class="left">
               <p class="price m-t-b-10">¥1000</p>
               <div class="title-category">
-                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                 <h3 class="title m-t-b-10">真鯛</h3>
               </div>
               <a href="{{ url('/product') }}" class="txt m-b-10 description">
@@ -78,7 +78,7 @@
             <div class="left">
               <p class="price m-t-b-10">¥1000</p>
               <div class="title-category">
-                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                 <h3 class="title m-t-b-10">真鯛</h3>
               </div>
               <a href="{{ url('/product') }}" class="txt m-b-10 description">
@@ -97,7 +97,7 @@
             <div class="left">
               <p class="price m-t-b-10">¥1000</p>
               <div class="title-category">
-                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                 <h3 class="title m-t-b-10">真鯛</h3>
               </div>
               <a href="{{ url('/product') }}" class="txt m-b-10 description">
@@ -116,7 +116,7 @@
             <div class="left">
               <p class="price m-t-b-10">¥1000</p>
               <div class="title-category">
-                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                 <h3 class="title m-t-b-10">真鯛</h3>
               </div>
               <a href="{{ url('/product') }}" class="txt m-b-10 description">
@@ -135,7 +135,7 @@
             <div class="left">
               <p class="price m-t-b-10">¥1000</p>
               <div class="title-category">
-                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                 <h3 class="title m-t-b-10">真鯛</h3>
               </div>
               <a href="{{ url('/product') }}" class="txt m-b-10 description">
@@ -154,7 +154,7 @@
             <div class="left">
               <p class="price m-t-b-10">¥1000</p>
               <div class="title-category">
-                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                 <h3 class="title m-t-b-10">真鯛</h3>
               </div>
               <a href="{{ url('/product') }}" class="txt m-b-10 description">
@@ -173,7 +173,7 @@
             <div class="left">
               <p class="price m-t-b-10">¥1000</p>
               <div class="title-category">
-                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                 <h3 class="title m-t-b-10">真鯛</h3>
               </div>
               <a href="{{ url('/product') }}" class="txt m-b-10 description description">
@@ -192,7 +192,7 @@
             <div class="left">
               <p class="price m-t-b-10">¥1000</p>
               <div class="title-category">
-                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                 <h3 class="title m-t-b-10">真鯛</h3>
               </div>
               <a href="{{ url('/product') }}" class="txt m-b-10 description">
@@ -211,7 +211,7 @@
             <div class="left">
               <p class="price m-t-b-10">¥1000</p>
               <div class="title-category">
-                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                 <h3 class="title m-t-b-10">真鯛</h3>
               </div>
               <a href="{{ url('/product') }}" class="txt m-b-10 description">
@@ -230,7 +230,7 @@
             <div class="left">
               <p class="price m-t-b-10">¥1000</p>
               <div class="title-category">
-                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                 <h3 class="title m-t-b-10">真鯛</h3>
               </div>
               <a href="{{ url('/product') }}" class="txt m-b-10 description">
@@ -249,7 +249,7 @@
             <div class="left">
               <p class="price m-t-b-10">¥1000</p>
               <div class="title-category">
-                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                 <h3 class="title m-t-b-10">真鯛</h3>
               </div>
               <a href="{{ url('/product') }}" class="txt m-b-10 description">
@@ -268,7 +268,7 @@
             <div class="left">
               <p class="price m-t-b-10">¥1000</p>
               <div class="title-category">
-                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
+                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
                 <h3 class="title m-t-b-10">真鯛</h3>
               </div>
               <a href="{{ url('/product') }}" class="txt m-b-10 description">
@@ -295,6 +295,6 @@
 <!-- category list end -->
 </div>
 
-<script src="{{ asset('assets/js/view-list.js') }}"></script>
-<script src="{{ asset('assets/js/words-limit.js') }}"></script>
+<script defer src="{{ asset('assets/js/view-list.js') }}"></script>
+<script defer src="{{ asset('assets/js/words-limit.js') }}"></script>
 @endsection

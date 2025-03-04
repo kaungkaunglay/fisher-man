@@ -271,7 +271,6 @@ var btnQuantity = function () {
     select_colors_theme();
     icon_function();
     box_search();
-    retinaLogos();
     variant_picker();
     btnQuantity();
     preloader();

@@ -1,6 +1,5 @@
 const itemsPerPage = 24; // Number of items to display per batch
 let currentVisible = 0; // Number of currently visible items
-let load = 'more'; // State of load more
 
 const productCards = document.querySelectorAll('.all-products .item-card');
 const loadMoreBtn = document.getElementById('load-more');
@@ -8,7 +7,7 @@ const loadMoreBtn = document.getElementById('load-more');
 // Function to show the next batch of items
 const showItems = () => {
   
-  currentVisible = currentVisible + itemsPerPage * (load == 'more' ? 1 : -1);
+  currentVisible = currentVisible + itemsPerPage;
 
   productCards.forEach((card, index) => {
 
@@ -22,17 +21,18 @@ const showItems = () => {
 
   // Hide the button if all items are displayed
   if (currentVisible >= productCards.length) {
-    loadMoreBtn.querySelector('i').classList.replace('fa-chevron-down', 'fa-chevron-up');
-    load = 'less';
+    loadMoreBtn.classList.add('d-none');
   }
-  if(currentVisible <= 24) {
-    loadMoreBtn.querySelector('i').classList.replace('fa-chevron-up', 'fa-chevron-down');
-    load = 'more';
+
+  if (productCards.length <= itemsPerPage) {
+    loadMoreBtn.classList.add('d-none');
   }
 };
 
 // Initial load
 showItems();
+
+console.log(productCards.length)
 
 // Event listener for "Load More" button
 loadMoreBtn.addEventListener('click', showItems);

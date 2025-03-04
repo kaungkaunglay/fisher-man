@@ -1,3 +1,10 @@
+@php
+    $user = \App\Models\Users::select('users.*','roles.name as role_name')
+                ->join('user_roles','user_roles.user_id','=','users.id')
+                ->join('roles','roles.id','=','user_roles.role_id')
+                ->where('users.id',auth_helper()->user()->id)
+                ->first();
+@endphp
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
@@ -52,7 +59,11 @@
                 <div class="section-menu-left">
                     <div class="box-logo">
                         <a href="{{route('admin.index')}}" id="site-logo-inner">
-                            <img class="" id="logo_header" alt="" src="{{asset('assets/admin/images/logo.png')}}" data-light="{{asset('assets/admin/images/logo.png')}}" data-dark="{{asset('assets/admin/images/logo.png')}}" >
+                            @if (file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
+              <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" id="logo_header" class="logo" alt="logo" style="width: 120px">
+              @else
+              <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" id="logo_header" class="logo" alt="logo" style="width: 120px">
+              @endif
                         </a>
                         <div class="button-show-hide">
                             <i class="icon-menu-left"></i>
@@ -61,31 +72,37 @@
                     <div class="section-menu-left-wrap">
                         <div class="center">
                             <div class="center-item">
-                                <div class="center-heading">Main Home</div>
+                                <div class="center-heading">{{trans_lang('home')}}</div>
                                 <li class="menu-item">
                                     <a href="{{route('admin.index')}}" class="{{ request()->is('admin') ? 'active' : '' }}">
                                         <div class="icon"><i class="icon-grid"></i></div>
-                                        <div class="text">Home</div>
+                                        <div class="text">{{trans_lang('dashboard')}}</div>
+                                    </a>
+                                    <a href="{{ route('home')}}" >
+                                        <div class="icon"><i class="icon-grid"></i></div>
+                                        <div class="text">{{trans_lang('home')}}</div>
                                     </a>
                                 </li>
                             </div>
+                            @if (check_role(2))
                             <div class="center-item">
-                                <div class="center-heading">Product Management</div>
+                                <div class="center-heading">{{trans_lang('product_management')}}</div>
                                 <ul class="menu-list">
                                     <li class="menu-item has-children {{ request()->is('admin/product*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-shopping-cart"></i></div>
-                                            <div class="text">Products</div>
+                                            <div class="text">{{trans_lang('all_products')}}</div>
                                         </a>
                                         <ul class="sub-menu">
                                             <li class="sub-menu-item">
-                                                <a href="{{route('create_product')}}" class="{{ request()->is('admin/product') ? 'active' : '' }}">
-                                                    <div class="text">Add Product</div>
+                                                <a href="{{route('create_product')}}" class="{{ request()->is('admin/products/create') ? 'active' : '' }}">
+                                                    <div class="text">{{trans_lang('add_product')}}</div>
                                                 </a>
                                             </li>
+
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.products')}}" class="{{ request()->is('admin/products') ? 'active' : '' }}">
-                                                    <div class="text">Product List</div>
+                                                    <div class="text">{{trans_lang('all_products')}}</div>
                                                 </a>
                                             </li>
                                         </ul>
@@ -93,92 +110,79 @@
                                     <li class="menu-item has-children {{ request()->is('admin/categ*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-layers"></i></div>
-                                            <div class="text">Category</div>
+                                            <div class="text">{{trans_lang('category')}}</div>
                                         </a>
                                         <ul class="sub-menu">
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.categories')}}" class="{{request()->is('admin/categories') ? 'active' : ''}}">
-                                                    <div class="text">Category list</div>
+                                                    <div class="text">{{trans_lang('all_category')}}</div>
                                                 </a>
                                             </li>
-                                            <li class="sub-menu-item">
-                                                <a href="{{route('create_category')}}" class="{{request()->is('admin/categories/create') ? 'active' : ''}}">
-                                                    <div class="text">New category</div>
-                                                </a>
-                                            </li>
+                                                <li class="sub-menu-item">
+                                                    <a href="{{route('create_category')}}" class="{{request()->is('admin/categories/create') ? 'active' : ''}}">
+                                                        <div class="text">{{trans_lang('add_category')}}</div>
+                                                    </a>
+                                                </li>
+
                                         </ul>
                                     </li>
                                     <li class="menu-item has-children {{ request()->is('admin/sub_categ*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-layers"></i></div>
-                                            <div class="text">Sub Category</div>
+                                            <div class="text">{{trans_lang('sub_category')}}</div>
                                         </a>
                                         <ul class="sub-menu">
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.sub_categories')}}" class="{{request()->is('admin/sub-categories') ? 'active' : ''}}">
-                                                    <div class="text">Sub Category list</div>
+                                                    <div class="text">{{trans_lang('all_sub_category')}}</div>
                                                 </a>
                                             </li>
+
                                             <li class="sub-menu-item">
                                                 <a href="{{route('create_sub_category')}}" class="{{request()->is('admin/sub-categories/create') ? 'active' : ''}}">
-                                                    <div class="text">New sub category</div>
+                                                    <div class="text">{{trans_lang('add_sub_category')}}</div>
                                                 </a>
                                             </li>
+
                                         </ul>
                                     </li>
-                                    <li class="menu-item has-children {{ request()->is('admin/order*') ? 'active' : '' }}">
+                                    {{-- <li class="menu-item has-children {{ request()->is('admin/order*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-file-plus"></i></div>
-                                            <div class="text">Order</div>
+                                            <div class="text">{{trans_lang('order')}}</div>
                                         </a>
                                         <ul class="sub-menu">
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.orders')}}" class="{{request()->is('admin/orders') ? 'active' : ''}}">
-                                                    <div class="text">Order list</div>
+                                                    <div class="text">{{trans_lang('order_list')}}</div>
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
-                            <div class="center-item">
-                                <div class="center-heading">User Management</div>
-                                <ul class="menu-list">
-                                    <li class="menu-item has-children {{ request()->is('admin/user*') ? 'active' : '' }}">
-                                        <a href="javascript:void(0);" class="menu-item-button">
-                                            <div class="icon"><i class="icon-user"></i></div>
-                                            <div class="text">User</div>
-                                        </a>
-                                        <ul class="sub-menu" style="display: block;">
-                                            <li class="sub-menu-item">
-                                                <a href="{{route('admin.users')}}" class="{{request()->is('admin/users') ? 'active' : ''}}">
-                                                    <div class="text">All user</div>
-                                                </a>
-                                            </li>
-                                            <li class="sub-menu-item">
-                                                <a href="{{route('admin.user')}}" class="{{request()->is('admin/user') ? 'active' : ''}}">
-                                                    <div class="text">Add new user</div>
-                                                </a>
-                                            </li>
+                            @endif
 
-                                        </ul>
-                                    </li>
-                                </ul>
+
+                            @if (check_role(1))
+                            <div class="center-item">
+                                <div class="center-heading">{{trans_lang('user_management')}}</div>
+
                                 <ul class="menu-list">
                                     <li class="menu-item has-children {{ request()->is('admin/request*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-user"></i></div>
-                                            <div class="text">User Request</div>
+                                            <div class="text">{{trans_lang('user_request')}}</div>
                                         </a>
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.users.contact')}}" class="{{request()->is('admin/request-contact') ? 'active' : ''}}">
-                                                    <div class="text">Contact</div>
+                                                    <div class="text">{{trans_lang('contact')}}</div>
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.users.wishList')}}" class="{{request()->is('admin/request-wishList') ? 'active' : ''}}">
-                                                    <div class="text">Wish List</div>
+                                                    <div class="text">{{trans_lang('wishlist')}}</div>
                                                 </a>
                                             </li>
 
@@ -187,27 +191,27 @@
                                 </ul>
                             </div>
                             <div class="center-item">
-                                <div class="center-heading">Manage Shop</div>
+                                <div class="center-heading">{{trans_lang('manage_shop')}}</div>
                                 <ul class="menu-list">
                                     <li class="menu-item has-children {{ request()->is('admin/shop*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
-                                            <div class="icon"><i class="icon-user"></i></div>
-                                            <div class="text">Shop List</div>
+                                            <div class="icon"><i class="bi bi-shop"></i></div>
+                                            <div class="text">{{trans_lang('shop_list')}}</div>
                                         </a>
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.shops.approved')}}" class="{{request()->is('admin/shops/approved-shops') ? 'active' : ''}}">
-                                                    <div class="text">Shops</div>
+                                                    <div class="text">{{trans_lang('shops')}}</div>
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.shops.pending')}}" class="{{ request()->is('admin/shops/pending-shops') ? 'active' : '' }}">
-                                                    <div class="text">Requested Shops</div>
+                                                    <div class="text">{{trans_lang('request_shops')}}</div>
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.shops.rejected')}}" class="{{ request()->is('admin/shops/rejected-shops') ? 'active' : '' }}">
-                                                    <div class="text">Rejected Shops</div>
+                                                    <div class="text">{{trans_lang('rejected_shops')}}</div>
                                                 </a>
                                             </li>
                                         </ul>
@@ -215,22 +219,22 @@
                                 </ul>
                             </div>
                             <div class="center-item">
-                                <div class="center-heading">Manage FAQs</div>
+                                <div class="center-heading">{{trans_lang('manage_faqs')}}</div>
                                 <ul class="menu-list">
                                     <li class="menu-item has-children {{ request()->is('admin/faq*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <i class="bi bi-headset fs-3"></i>
-                                            <div class="text">FAQs</div>
+                                            <div class="text">{{trans_lang('faqs')}}</div>
                                         </a>
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.faqs')}}" class="{{request()->is('admin/faqs') ? 'active' : ''}}">
-                                                    <div class="text">All FAQs</div>
+                                                    <div class="text">{{trans_lang('all_faqs')}}</div>
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
                                                 <a href="{{route('create_faq')}}" class="{{ request()->is('admin/faq/create') ? 'active' : '' }}">
-                                                    <div class="text">Add new FAQ</div>
+                                                    <div class="text">{{trans_lang('add_faq')}}</div>
                                                 </a>
                                             </li>
 
@@ -239,22 +243,22 @@
                                 </ul>
                             </div>
                             <div class="center-item">
-                                <div class="center-heading">Manage System Data</div>
+                                <div class="center-heading">{{trans_lang('manage_system_data')}} Data</div>
                                 <ul class="menu-list">
                                     <li class="menu-item has-children {{ request()->is('admin/setting*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-settings"></i></div>
-                                            <div class="text">System Data</div>
+                                            <div class="text">{{trans_lang('system_data')}}</div>
                                         </a>
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.settings')}}" class="{{request()->is('admin/settings') ? 'active' : ''}}">
-                                                    <div class="text">All system Data</div>
+                                                    <div class="text">{{trans_lang('all_system_data')}}</div>
                                                 </a>
                                             </li>
                                             {{-- <li class="sub-menu-item">
                                                 <a href="{{route('create_faq')}}" class="{{ request()->is('admin/faq') ? 'active' : '' }}">
-                                                    <div class="text">Add new FAQ</div>
+                                                    <div class="text">{{trans_lang('add_faq')}}</div>
                                                 </a>
                                             </li> --}}
 
@@ -262,6 +266,9 @@
                                     </li>
                                 </ul>
                             </div>
+
+                            @endif
+
 
                         </div>
 
@@ -275,14 +282,14 @@
                         <div class="wrap">
                             <div class="header-left">
                                 <a href="index.html">
-                                    <img class="" id="logo_header_mobile" alt="" src="{{asset('assets/admin/images/logo.png')}}" data-light="{{asset('assets/admin/images/logo.png')}}" data-dark="{{asset('assets/admin/images/logo.png')}}" data-width="100px" data-height="52px" data-retina="{{asset('assets/admin/images/logo.png')}}">
+                                    <img class="" id="logo_header_mobile" alt="" style="height: 50px" src="{{asset('assets/admin/images/logo.png')}}" data-light="{{asset('assets/admin/images/logo.png')}}" data-dark="{{asset('assets/admin/images/logo.png')}}" data-width="100px" data-height="52px" data-retina="{{asset('assets/admin/images/logo.png')}}">
                                 </a>
                                 <div class="button-show-hide">
                                     <i class="icon-menu-left"></i>
                                 </div>
                                 <form class="form-search flex-grow">
                                     <fieldset class="name">
-                                        <input type="text" placeholder="Search here..." class="show-search" name="name" tabindex="2" value="" aria-required="true" required="">
+                                        <input type="text" placeholder="ここで検索。。。" class="show-search" name="name" tabindex="2" value="" aria-required="true" required="">
                                     </fieldset>
                                     <div class="button-submit">
                                         <button class="" type="submit"><i class="icon-search"></i></button>
@@ -555,8 +562,8 @@
                                                     <img src="{{asset('assets/admin/images/avatar/user-1.png')}}" alt="">
                                                 </span>
                                                 <span class="flex flex-column">
-                                                    <span class="body-title mb-2">Kristin Watson</span>
-                                                    <span class="text-tiny">Admin</span>
+                                                    <span class="body-title mb-2">{{auth_helper()->user()->username}}</span>
+                                                    <span class="text-tiny">{{$user->role_name}}</span>
                                                 </span>
                                             </span>
                                         </button>
@@ -566,48 +573,16 @@
                                                     <div class="icon">
                                                         <i class="icon-user"></i>
                                                     </div>
-                                                    <div class="body-title-2">Account</div>
+                                                    <div class="body-title-2">{{auth_helper()->user()->username}}</div>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="#" class="user-item">
-                                                    <div class="icon">
-                                                        <i class="icon-mail"></i>
-                                                    </div>
-                                                    <div class="body-title-2">Inbox</div>
-                                                    <div class="number">27</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="user-item">
-                                                    <div class="icon">
-                                                        <i class="icon-file-text"></i>
-                                                    </div>
-                                                    <div class="body-title-2">Taskboard</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="setting.html" class="user-item">
-                                                    <div class="icon">
-                                                        <i class="icon-settings"></i>
-                                                    </div>
-                                                    <div class="body-title-2">Setting</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="user-item">
-                                                    <div class="icon">
-                                                        <i class="icon-headphones"></i>
-                                                    </div>
-                                                    <div class="body-title-2">Support</div>
-                                                </a>
-                                            </li>
+
                                             <li>
                                                 <a href="{{route('admin.logout')}}" class="user-item">
                                                     <div class="icon">
                                                         <i class="icon-log-out"></i>
                                                     </div>
-                                                    <div class="body-title-2">Log out</div>
+                                                    <div class="body-title-2">{{trans_lang('logout')}}</div>
                                                 </a>
                                             </li>
                                         </ul>

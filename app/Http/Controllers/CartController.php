@@ -13,36 +13,52 @@ class CartController extends Controller
 {
     public function index()
     {
-        if(AuthHelper::check()){
-
+        if (AuthHelper::check()) {
             $carts = AuthHelper::user()->carts;
-
-            $carts = $carts->transform(function ($cart) {
-                $cart->product = Product::find($cart->product_id);
-                return $cart;
-            });
+            $carts->load('product');
         } else {
-
             $products = session('cart', []);
 
-            $carts = array_map(function($product) {
-                $cart = new Cart();
-                $cart->product = Product::find($product['id']);
-                $cart->quantity = $product['quantity'];
-                return $cart;
-            }, $products);
+            if ($products != []) {
+
+                $productIds = array_column($products, 'id');
+
+
+                $carts = Cart::whereIn('product_id', $productIds)
+                            ->with('product')
+                            ->get()
+                            ->map(function ($cart) use ($products) {
+                                $sessionItem = collect($products)->firstWhere('id', $cart->product_id);
+                                $cart->quantity = $sessionItem['quantity'] ?? $cart->quantity;
+                                return $cart;
+                            });
+
+                if ($carts->isEmpty()) {
+                    $carts = collect($products)->map(function ($product) {
+                        $cart = new Cart();
+                        $cart->product_id = $product['id'];
+                        $cart->quantity = $product['quantity'];
+                        return $cart;
+                    });
+
+                    $productsFromDb = Product::whereIn('id', $productIds)->get()->keyBy('id');
+                    $carts = $carts->map(function ($cart) use ($productsFromDb) {
+                        $cart->product = $productsFromDb->get($cart->product_id);
+                        return $cart;
+                    });
+                }
+            } else {
+                $carts = collect();
+            }
 
         }
 
-        return view('cart',compact('carts'));
-
-
+        return view('cart', compact('carts'));
     }
     public function CartCount() {
         // return cart count
         if(AuthHelper::check()){
-            $cart = new Cart();
-            $count = $cart->where('user_id', AuthHelper::id())->count();
+            $count = AuthHelper::user()->carts()->count();
         } else {
             $count = count(session('cart',[]));
         }
@@ -52,72 +68,60 @@ class CartController extends Controller
     public function add(Request $request)
     {
         $products = $request->input('products');
+
         if (empty($products)) {
-            return response()->json([
-                'status' => false,
-                'message' => "You doesn't choice any product"
-            ]);
+            return response()->json(['status' => false, 'message' => "You haven't chosen any product"]);
         }
 
         if (!AuthHelper::check()) {
-            $this->addToSessionCart($products);
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Products added to cart'
-            ]);
+            $isNotNew = $this->addToSessionCart($products);
+            if(!$isNotNew){
+                return response()->json(['status' => false, 'message' => 'All products are already in the cart']);
+            }
+            return response()->json(['status' => true,'isNotNew' => $isNotNew , 'message' => 'Products added to cart']);
         }
 
         $user = AuthHelper::user();
+
         $existingProductIds = $user->carts()->pluck('product_id')->toArray();
 
         $newProducts = $this->getNewProducts($products, $existingProductIds);
 
         if (empty($newProducts)) {
-            return response()->json([
-                'status' => true,
-                'message' => 'All products are already in the cart'
-            ]);
+            return response()->json(['status' => false, 'message' => 'All products are already in the cart']);
         }
 
-        // add new products to user cart
         $this->addToUserCart($newProducts, $user);
 
-        // remove from user white lists
-        // $this->removeFromUserWhiteLists($newProducts, $user);
-
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Products added to cart'
-        ]);
+        return response()->json(['status' => true, 'message' => 'Products added to cart']);
     }
 
     private function addToSessionCart($products)
     {
         $cart = session('cart', []);
+
+        $allProductsAlreadyInCart = true; // Assume all are already in cart initially
+
         foreach ($products as $product) {
-            if (!in_array($product['id'], array_column($cart, 'id'))) {
-                session()->push('cart', $product);
+            $found = false;
+            foreach ($cart as &$cartItem) {
+                if ($cartItem['id'] === $product['id']) {
+                    $cartItem['quantity'] += $product['quantity'];
+                    $found = true;
+                    $allProductsAlreadyInCart = false; // At least one product was new
+                    break;
+                }
+            }
+            if (!$found) {
+                $cart[] = $product;
+                // $allProductsAlreadyInCart = false; // At least one product was new
             }
         }
+
+        session(['cart' => $cart]);
+
+        return $allProductsAlreadyInCart && !empty($products);
     }
-
-
-    // private function removeFromSessionWhiteLists($products)
-    // {
-    //     $white_lists = session('white_lists', []);
-
-    //     foreach ($products as $product) {
-    //         if (in_array($product['id'], $white_lists)) {
-    //             // Remove from whitelist
-    //             $white_lists = array_filter($white_lists, function ($item) use ($product) {
-    //                 return $item != $product['id'];
-    //             });
-    //             session(['white_lists' => $white_lists]);
-    //         }
-    //     }
-    // }
 
     private function getNewProducts($products, $existingProductIds)
     {
@@ -128,35 +132,73 @@ class CartController extends Controller
 
     private function addToUserCart($newProducts, $user)
     {
+        // Use insert for bulk insert (significantly faster)
+        $dataToInsert = [];
         foreach ($newProducts as $product) {
-            $cart = new Cart();
-            $cart->user_id = $user->id;
-            $cart->product_id = $product['id'];
-            $cart->quantity = $product['quantity'];
-            $cart->save();
+            $dataToInsert[] = [
+                'user_id' => $user->id,
+                'product_id' => $product['id'],
+                'quantity' => $product['quantity'],
+                'created_at' => now(), // Add timestamps if needed
+                'updated_at' => now(),
+            ];
         }
+        Cart::insert($dataToInsert);
     }
 
 
-    // private function removeFromUserWhiteLists($products, $user)
-    // {
-    //     foreach ($products as $product) {
-    //         if ($user->whitelists && $user->whitelists()->where('product_id', $product['id'])->exists()) {
-    //             // Remove from user's whitelist
-    //             $user->whitelists()->detach($product['id']);
-    //         }
-    //     }
-    // }
+    public function addToCartWithLogin(Request $request)
+    {
+        $products = $request->input('products');
+
+        if (empty($products)) {
+            return response()->json(['status' => false, 'message' => "You haven't chosen any product"]);
+        }
+
+        $user = AuthHelper::user();
+
+        if (!$user) {
+            return response()->json(['status' => false, 'message' => "You need to login to process"]);
+        }
+
+        DB::beginTransaction();
+
+        try {
+            $user->carts()->delete();
+
+            $dataToInsert = [];
+            foreach ($products as $product) {
+                $dataToInsert[] = [
+                    'user_id' => $user->id,
+                    'product_id' => $product['id'],
+                    'quantity' => $product['quantity'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+
+            Cart::insert($dataToInsert);
+
+            DB::commit();
+
+            session()->forget('cart');
+
+            return response()->json(['status' => true, 'message' => 'Products added to cart']);
+
+        } catch (\Exception $e) {
+            DB::rollBack();  // Rollback on error
+            logger()->error($e); // Log the error
+            return response()->json(['status' => false, 'message' => 'Error adding products to cart']); //Or a more specific error message.
+        }
+    }
 
     public function delete($product_id)
     {
-
-        if(!Product::where('id',$product_id)->exists()){
+        if (!Product::where('id', $product_id)->exists()) {
             return response()->json(['status' => false, 'message' => 'Product not found']);
         }
 
-        if(!AuthHelper::check()){
-
+        if (!AuthHelper::check()) {
             $cart = session('cart', []);
 
             $cart = array_filter($cart, function ($item) use ($product_id) {
@@ -165,18 +207,17 @@ class CartController extends Controller
 
             session(['cart' => $cart]);
 
-            return response()->json(['status'=> true,'product_id' => $product_id,'message' => 'Product removed from cart']);
+            return response()->json(['status' => true, 'product_id' => $product_id, 'message' => 'Product removed from cart']);
         }
 
         $user = AuthHelper::user();
 
-        if(!$user->carts()->where('product_id',$product_id)->exists()){
+        if (!$user->carts()->where('product_id', $product_id)->exists()) {
             return response()->json(['status' => false, 'message' => 'Product not found in cart']);
         }
 
-        $user->carts()->where('product_id',$product_id)->delete();
+        $user->carts()->where('product_id', $product_id)->delete();
 
-        return response()->json(['status' => true, 'product_id' => $product_id,'message' => 'Product removed from cart']);
-
+        return response()->json(['status' => true, 'product_id' => $product_id, 'message' => 'Product removed from cart']);
     }
 }

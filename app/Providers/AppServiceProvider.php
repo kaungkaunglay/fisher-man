@@ -6,8 +6,10 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Sub_category;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Http\ViewComposers\SubCategoryComposer;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,32 +26,27 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        view()->composer('*', function ($view) {
-            $view->with('categories', Category::all());
-            $view->with('subcategories', Sub_category::all());
-
+            // Cache categories and subcategories for a specified duration (e.g., 60 minutes)
+        $categories = Cache::remember('categories', 60 * 60, function () {
+            return Category::all();
         });
 
-        view()->composer('includes.aside', SubCategoryComposer::class);
+        $subcategories = Cache::remember('subcategories', 60 * 60, function () {
+            return Sub_category::all();
+        });
 
-        $this->preloadProductsToCache();
+        // Share cached data with all views
+        View::composer('*', function ($view) use ($categories, $subcategories) {
+            $view->with('categories', $categories);
+            $view->with('subcategories', $subcategories);
+        });
+
+        View::composer('includes.aside', SubCategoryComposer::class);
+
+        // $this->preloadProductsToCache();
+
+        Paginator::useBootstrap();
     }
 
-    // preload cache for recomended products
-    private function preloadProductsToCache()
-    {
-        // Fetch all products
-        $products = Product::all();
-
-        foreach ($products as $product) {
-            // Save each product’s tracking data with a TTL of 1 day
-            Cache::put("product:{$product->id}:data", [
-                'visits' => 0,
-                'ips'    => []  // Will hold IP addresses that have visited
-            ], );
-
-            //log
-            // logger(Cache::get("product:{$product->id}:data"));
-        }
-    }
+   
 }

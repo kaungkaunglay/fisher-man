@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Models\Sellers; 
+use App\Models\Sellers;
+use App\Models\Users;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +19,6 @@ class SellersController extends Controller
         return view('sellers.login');
     }
     public function register_store(Request $request){
-        logger($request->all());
         $validator = Validator::make($request->all(), [
             'username' => 'required',
             'email' => 'required|email',
@@ -40,11 +41,11 @@ class SellersController extends Controller
             $seller->first_phone = $request->first_phone;
             $seller->second_phone = $request->second_phone;
             $seller->line_id = $request->line_id;
-            $seller->ship_name = $request->ship_name; 
+            $seller->ship_name = $request->ship_name;
             $seller->firt_org = $request->first_org_name;
-            $seller->trans_management = $request->trans_management; 
-            $seller->remember_token = Str::random(60); 
-            $seller->save(); 
+            $seller->trans_management = $request->trans_management;
+            $seller->remember_token = Str::random(60);
+            $seller->save();
             return response()->json(['status' => true, 'message' => 'Register Success']);
         }
     }
@@ -64,6 +65,16 @@ class SellersController extends Controller
             }
             return response()->json(['status' => false, 'message' => 'Login Failed']);
         }
+    }
+
+    public function contact($id){
         
+        $sellerInfo = Users::select('users.*', 'shops.shop_name','shops.id as shop_id')
+            ->join('shops', 'users.id', '=', 'shops.user_id')
+            ->where('users.id', $id)
+            ->first();
+
+        $sellerProducts = Product::where('user_id', $id)->get();
+        return view('seller-profile-public',compact('sellerInfo','sellerProducts'));
     }
 }

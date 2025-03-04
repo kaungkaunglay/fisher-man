@@ -5,9 +5,12 @@
 @endsection
 
 @section('contents')
+    <div class="breadcrumb-sp mt-4 mb-3"></div>
+
     <!-- Hero Section -->
-    <section class="hero mt-5">
+    <section class="hero">
         <div class="container-custom">
+
             <div class="row justify-content-between">
                 <div class="col-lg-4 d-none d-lg-block">
                     @include('includes.aside') <!-- Aside Layout -->
@@ -16,276 +19,47 @@
                     @include('includes.slider') <!-- Slider Layout -->
                 </div>
             </div>
+
         </div>
     </section>
     <!-- /Hero Section -->
 
-<!-- Recommand Products -->
-<section class="bg-second my-3 py-3">
-  <div class="container-custom">
-    <!-- Recomnand HeadLine -->
-    <div>
-      <h6 class="txt-primary fw-bold mb-3">おすすめ商品</h6>
-      <div class="filter d-flex justify-content-between align-items-center mb-3">
-        <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
-          <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
-          <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
-        </div>
-      </div>
-    </div>
-    <!-- /Recomnand HeadLine -->
+    <!-- Recommand Products -->
+    <section class="bg-second my-3 py-3">
+        <div class="container-custom">
+
+            <!-- Recomnand HeadLine -->
+            <div>
+                <h6 class="txt-primary fw-bold mb-3">{{trans_lang('recomended_product')}}</h6>
+                <div class="filter d-flex justify-content-between align-items-center mb-3">
+                    <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
+                        <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
+                        <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- /Recomnand HeadLine -->
 
             <!-- Card List -->
-            <div class="card-list" id="view-list" data-list="fish-list-1">
-                @foreach ($products->take(6) as $product)
-                    <div class="item-card">
+            <div class="card-list" id="view-list">
+                @foreach ($random_products  as $product)
+                @if ($product->status == 'approved')
+                    <div class="item-card mb-2">
                         <a href="{{ route('product.show', $product->id) }}" class="right">
-                            <img src="{{ asset($product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
+                            <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top" alt="{{ $product->name }}">
                         </a>
-                        <div class="left">
-                            <p class="price m-t-b-10">
+                        <div class="left pt-3">
+                            <p class="price">
                                 @if ($product->discount > 0)
-                                    ¥{{ number_format($product->product_price - $product->discount, 2) }}
-                                    <span class="original-price">¥{{ number_format($product->product_price, 2) }}</span>
+                                <span class="format me-2">{{$product->product_price - $product->discount}}</span>
+                                <span class="original-price format">{{ $product->product_price }}</span>
                                 @else
-                                    <span class="">¥{{ number_format($product->product_price, 2) }}</span>
+                                    <span class="">¥{{ number_format($product->product_price) }}</span>
                                 @endif
                             </p>
-                            <div class="title-category">
-                                <a href="" class="menu-category">鮮魚 | 白身魚</a>
-                                <h3 class="title m-t-b-10">{{ $product->name }}</h3>
-                            </div>
-                            <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
-                                {{ $product->description }}
-                            </a>
-                            <div class="d-flex gap-2 card-btn m-t-10">
-                                <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 -solid cart-btn @if ($product->inCart()) active @endif"
-                                    data-id="{{ $product->id }}">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </a>
-                                <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 white-list-btn @if ($product->inWhiteLists()) active @endif"
-                                    data-id="{{ $product->id }}">
-                                    <i class="fa-solid fa-bookmark"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-            <!-- /Card List -->
-        </div>
-    </section>
-    <!-- /Recommand Products -->
-
-<!-- Animation Bar -->
-<section class="m-t-b-20 moving-discount">
-  <div id="moving-text">
-    <p class="title">セール</p>
-    <p class="title">セール</p>
-    <p class="title">セール</p>
-    <p class="title">セール</p>
-    <p class="title">セール</p>
-  </div>
-</section>
-<!-- /Animation Bar -->
-
-    <!-- Porpular Shop -->
-    <section class="popular_top_rate_shop_section mt-3">
-        <div class="container-custom">
-
-    <!-- Porpular Headline -->
-    <div>
-      <h6 class="txt-primary fw-bold mb-3">人気 & 高評価のショップ</h6>
-    </div>
-    <!-- /Porpular Headline -->
-
-            <!-- Shop List  -->
-            <div class="row shop-carts">
-
-                <div class="col-6 col-md-6 col-lg-3 mb-3">
-                    <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
-                        <img src="{{ asset('assets/images/fishes/Rectangle 92 (3).png') }}" class="card-img-top"
-                            alt="..." />
-                        <div class="card-body bg-main">
-                            <p class="card-text text-center text-white">Shop Name</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-6 col-lg-3 mb-3">
-                    <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
-                        <img src="{{ asset('assets/images/fishes/Rectangle 92 (2).png') }}" class="card-img-top"
-                            alt="..." />
-                        <div class="card-body bg-main">
-                            <p class="card-text text-center text-white">Shop Name</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-6 col-lg-3 mb-3">
-                    <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
-                        <img src="{{ asset('assets/images/fishes/Rectangle 92 (1).png') }}" class="card-img-top"
-                            alt="..." />
-                        <div class="card-body bg-main">
-                            <p class="card-text text-center text-white">Shop Name</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-6 col-lg-3 mb-3">
-                    <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
-                        <img src="{{ asset('assets/images/fishes/Rectangle 92.png') }}" class="card-img-top"
-                            alt="..." />
-                        <div class="card-body bg-main">
-                            <p class="card-text text-center text-white">Shop Name</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!-- /Shop List -->
-
-        </div>
-    </section>
-    <!-- /Porpular Shop -->
-
-<!-- セール -->
-<section class="discount-products bg-second py-4">
-  <div class="container-custom">
-
-    <!-- Discount Headline -->
-    <div>
-      <h6 class="txt-primary fw-bold mb-3">セール</h6>
-      <div class="filter d-flex justify-content-between align-items-center mb-3">
-
-                    <!-- display -->
-                    <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
-                        <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
-                        <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
-                    </div>
-
-        <!-- sorting -->
-        <div class="sort-container">
-          <div class="arrows">
-            <button><i class="fa-solid fa-caret-up"></i></button>
-            <button><i class="fa-solid fa-caret-down"></i></button>
-          </div>
-          <div class="dropdown">
-            <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">並べ替え</button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_asc']) }}">価格：安い順</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_desc']) }}">価格：高い順</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">名前：AからZ順</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">名前：ZからA順</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'latest']) }}">最新</a></li>
-            </ul>
-          </div>
-        </div>
-
-                </div>
-            </div>
-            <!-- /Discount Headline -->
-
-            <!-- Products List -->
-            <div class="card-list" id="view-list">
-                @foreach ($products->filter(fn($product) => $product->discount > 0.0)->take(6) as $product)
-                    <div class="item-card">
-                        <a href="{{ route('product.show', $product->id) }}" class="right">
-                            <img src="{{ asset($product->product_image) }}" class="card-img-top"
-                                alt="{{ $product->name }}">
-                        </a>
-                        <div class="left">
-                            <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
-                            <div class="title-category">
-                                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
-                                <h3 class="title m-t-b-10">{{ $product->name }}</h3>
-                            </div>
-                            <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
-                                {{ $product->description }}
-                            </a>
-                            <div class="d-flex gap-2 card-btn m-t-10">
-                                <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 -solid cart-btn
-                  @if ($product->inCart()) active @endif"
-                                    data-id="{{ $product->id }}">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </a>
-                                <a href="#"
-                                    class="py-1 common-btn2 white-list-btn
-                  @if ($product->inWhiteLists()) active @endif"
-                                    data-id="{{ $product->id }}">
-                                    <i class="fa-solid fa-bookmark"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-            <!-- /Products List -->
-
-    <!-- Discount Footline -->
-    <div class="row justify-content-center mx-0 mt-5">
-      <div class="col-5 col-lg-4 text-center">
-        <a class="common-btn see-more-btn w-100" href="{{ route('special-offer') }}">さらに見る</a>
-      </div>
-    </div>
-    <!-- /Discount Footline -->
-
-  </div>
-</section>
-<!-- /セール -->
-
-    <!-- All Products -->
-    <section class="all-products my-3">
-        <div class="container-custom">
-
-    <!-- All Products Headline -->
-    <div>
-      <h6 class="txt-primary fw-bold mb-3">割引商品</h6>
-      <div class="filter d-flex justify-content-between align-items-center mb-3">
-
-                    <!-- display -->
-                    <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
-                        <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
-                        <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
-                    </div>
-
-        <!-- sorting -->
-        <div class="sort-container">
-          <div class="arrows">
-            <button><i class="fa-solid fa-caret-up"></i></button>
-            <button><i class="fa-solid fa-caret-down"></i></button>
-          </div>
-          <div class="dropdown">
-            <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">並べ替え</button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_asc']) }}">価格：安い順</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'price_desc']) }}">価格：高い順</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">名前：AからZ順</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">名前：ZからA順</a></li>
-              <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'latest']) }}">最新</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /All Product Headline -->
-
-            <!-- Products List -->
-            <div class="card-list" id="view-list">
-                @foreach ($products as $product)
-                    <div class="item-card">
-                        <a href="{{ route('product.show', $product->id) }}" class="right">
-                            <img src="{{ asset($product->product_image) }}" class="card-img-top"
-                                alt="{{ $product->name }}">
-                        </a>
-                        <div class="left">
-                            <p class="price m-t-b-10">¥{{ number_format($product->product_price, 2) }}</p>
-                            <div class="title-category">
-                                <a href="" class="menu-category ">鮮魚 | 白身魚</a>
-                                <h3 class="title m-t-b-10">{{ $product->name }}</h3>
+                            <div class="title-categor mb-2">
+                                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
+                                <h3 class="title">{{ $product->name }}</h3>
                             </div>
                             <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
                                 {{ $product->description }}
@@ -304,6 +78,211 @@
                             </div>
                         </div>
                     </div>
+                    @endif
+                @endforeach
+            </div>
+            <!-- /Card List -->
+
+        </div>
+    </section>
+    <!-- /Recommand Products -->
+
+    <!-- Animation Bar -->
+    <section class="m-t-b-20 moving-discount">
+        <div id="moving-text">
+            <p class="title">{{trans_lang('special_offer')}}</p>
+            <p class="title">{{trans_lang('special_offer')}}</p>
+            <p class="title">{{trans_lang('special_offer')}}</p>
+            <p class="title">{{trans_lang('special_offer')}}</p>
+            <p class="title">{{trans_lang('special_offer')}}</p>
+        </div>
+    </section>
+    <!-- /Animation Bar -->
+
+
+
+    <!-- Discount Products -->
+    <section class="discount-products bg-second py-4">
+        <div class="container-custom">
+
+            <!-- Discount Headline -->
+            <div>
+                <h6 class="txt-primary fw-bold mb-3">{{trans_lang('special_offer')}}</h6>
+                <div class="filter d-flex justify-content-between align-items-center mb-3">
+
+                    <!-- display -->
+                    <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
+                        <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
+                        <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
+                    </div>
+
+                    <!-- sorting -->
+                    <div class="sort-container">
+                        <div class="arrows">
+                            <button><i class="fa-solid fa-caret-up"></i></button>
+                            <button><i class="fa-solid fa-caret-down"></i></button>
+                        </div>
+                        <div class="dropdown">
+                            <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">{{trans_lang('sortby')}}</button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item"
+                                        href="{{ route('home', ['sort_by' => 'price_asc']) }}">{{trans_lang('price_l_h')}}</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('home', ['sort_by' => 'price_desc']) }}">{{trans_lang('price_h_l')}}</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">{{trans_lang('name_a_z')}}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">{{trans_lang('name_z_a')}}</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('home', ['sort_by' => 'latest']) }}">{{trans_lang('latest')}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /Discount Headline -->
+
+            <!-- Products List -->
+            <div class="card-list" id="view-list">
+                @foreach ($products->filter(fn($product) => $product->discount > 0.0)->take(6) as $product)
+                @if ($product->status == 'approved')
+                    <div class="item-card mb-2">
+                        <a href="{{ route('product.show', $product->id) }}" class="right">
+                            <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
+                                alt="{{ $product->name }}">
+                        </a>
+                        <div class="left pt-3">
+                            <p class="price">
+                                @if ($product->discount > 0)
+                                    <span class="format me-2">{{$product->product_price - $product->discount}}</span>
+                                    <span class="original-price format">{{ $product->product_price }}</span>
+                                @else
+                                    <span class="format">{{ $product->product_price }}</span>
+                                @endif
+                            </p>
+                            <div class="title-category mb-2">
+                                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
+                                <h3 class="title">{{ $product->name }}</h3>
+                            </div>
+                            <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
+                                {{ $product->description }}
+                            </a>
+                            <div class="d-flex gap-2 card-btn m-t-10">
+                                <a href="javascript:void(0);"
+                                    class="py-1 common-btn2 -solid cart-btn"
+                                    data-id="{{ $product->id }}">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </a>
+                                <a href="#"
+                                    class="py-1 common-btn2 white-list-btn"
+                                    data-id="{{ $product->id }}">
+                                    <i class="fa-solid fa-bookmark"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                @endforeach
+            </div>
+            <!-- /Products List -->
+
+            <!-- Discount Footline -->
+            <div class="row justify-content-center mx-0 mt-5">
+                <div class="col-5 col-lg-4 text-center">
+                    <a class="common-btn see-more-btn w-100" href="{{ route('special-offer') }}">{{trans_lang('seemore')}}</a>
+                </div>
+            </div>
+            <!-- /Discount Footline -->
+
+        </div>
+    </section>
+    <!-- /Discount Products -->
+
+    <!-- All Products -->
+    <section class="all-products my-3">
+        <div class="container-custom">
+
+            <!-- All Products Headline -->
+            <div>
+                <h6 class="txt-primary fw-bold mb-3">{{trans_lang('all_products')}}</h6>
+                <div class="filter d-flex justify-content-between align-items-center mb-3">
+
+                    <!-- display -->
+                    <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
+                        <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
+                        <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
+                    </div>
+
+                    <!-- sorting -->
+                    <div class="sort-container">
+                        <div class="arrows">
+                            <button><i class="fa-solid fa-caret-up"></i></button>
+                            <button><i class="fa-solid fa-caret-down"></i></button>
+                        </div>
+                        <div class="dropdown">
+                            <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">{{trans_lang('sortby')}}</button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item"
+                                        href="{{ route('home', ['sort_by' => 'price_asc']) }}">{{trans_lang('price_l_h')}}</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('home', ['sort_by' => 'price_desc']) }}">{{trans_lang('price_h_l')}}</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">{{trans_lang('name_a_z')}}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">{{trans_lang('name_z_a')}}</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('home', ['sort_by' => 'latest']) }}">{{trans_lang('latest')}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /All Product Headline -->
+
+            <!-- Products List -->
+            <div class="card-list" id="view-list">
+                @foreach ($products as $product)
+                @if ($product->status == 'approved')
+                    <div class="item-card mb-2">
+                        <a href="{{ route('product.show', $product->id) }}" class="right">
+                            <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
+                                alt="{{ $product->name }}">
+                        </a>
+                        <div class="left pt-3">
+                            <p class="price">
+                                @if ($product->discount > 0)
+                                    <span class="format me-2">{{$product->product_price - $product->discount}}</span>
+                                    <span class="original-price format">{{ $product->product_price }}</span>
+                                @else
+                                    <span class="format">{{ $product->product_price }}</span>
+                                @endif
+                            </p>
+                            <div class="title-category mb-2">
+                                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
+                                <h3 class="title">{{ $product->name }}</h3>
+                            </div>
+                            <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
+                                {{ $product->description }}
+                            </a>
+
+                            <div class="d-flex gap-2 card-btn m-t-10">
+                                <a href="javascript:void(0);"
+                                    class="py-1 common-btn2 -solid cart-btn"
+                                    data-id="{{ $product->id }}">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </a>
+                                {{-- <small class="py-1 common-btn2 -solid cart-btn "><i class="fa-solid fa-cart-plus"></i></small> --}}
+                                <a href="javascript:void(0);"
+                                    class="py-1 common-btn2 white-list-btn position-relative"
+                                    data-id="{{ $product->id }}">
+                                    <i class="fa-solid fa-bookmark"></i>
+                                    {{-- <i class="fa-solid fa-check position-absolute top-50 start-50 translate-middle fa-2xs text-white" ></i> --}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                 @endforeach
             </div>
             <!-- /Products List -->
@@ -322,19 +301,49 @@
     </section>
     <!-- /All Products -->
 
+    <!-- Porpular Shop -->
+    <section class="popular_top_rate_shop_section mt-3">
+        <div class="container-custom">
+
+            <!-- Porpular Headline -->
+            <div>
+                <h6 class="txt-primary fw-bold mb-3">{{trans_lang('popular_shop')}}</h6>
+            </div>
+            <!-- /Porpular Headline -->
+
+            <!-- Shop List  -->
+            <div class="row shop-carts mb-3">
+
+               @foreach ($popular_shops as $popular_shop)
+               <div class="col-6 col-md-6 col-lg-3 mb-3">
+               <a href="{{route('shop.detail',$popular_shop->id)}}">
+                <div class="card rounded-4 overflow-hidden w-100 shop-card" style="width: 15rem">
+                    <img loading="lazy" src="{{ asset('assets/images/avatars/'.$popular_shop->avatar) }}" class="card-img-top"
+                        alt="..." />
+                    <div class="card-body bg-main">
+                        <p class="card-text text-center text-white">{{$popular_shop->shop_name}}</p>
+                    </div>
+                </div>
+               </a>
+            </div>
+               @endforeach
+
+            </div>
+            <!-- /Shop List -->
+
+        </div>
+    </section>
+    <!-- /Porpular Shop -->
+
     <!-- All Scripts -->
     <script src="{{ asset('assets/js/loadmore.js') }}"></script>
     <script src="{{ asset('assets/js/view-list.js') }}"></script>
-    <script src="{{ asset('assets/js/words-limit.js') }}"></script>
-
-
     <!-- /All Scripts -->
 
     <!-- Testing Scripts -->
 
     <!-- /Testing Scripts -->
 @endsection
-
 
 @section('script')
     <script>

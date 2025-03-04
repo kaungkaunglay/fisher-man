@@ -68,16 +68,12 @@ header .input-group button{width: 80px;border-radius: 0px 10px 10px 0px;}
 }
 
 .icon:hover {
-    color: #ffc107;
+    color: #ffc107 !important;
     /* text-shadow: 0px 0px .2rem #1c1c1c; */
 }
 
-#bookmark_btn {
-    transition: text-shadow 0.8s ease-out;
-}
-
 #bookmark_btn.active {
-    text-shadow: 0px 0px .7rem #ffc107;
+    color: #ffc107;
 }
 
 header .dropdown {
@@ -96,8 +92,14 @@ header .dropdown a {
     padding: 15px;
 }
 
-header .dropdown li:hover {
+header .dropdown li:hover,
+#side_pannel li:hover {
     background-color: #e2e2e2;
+}
+
+header .dropdown li:hover a,
+#side_pannel li:hover a {
+    color: #ffc107 !important;
 }
 
 header .input-group {
@@ -127,7 +129,9 @@ display: block !important;
     background-color: color-mix(in srgb, #ECF5FB 95%, #000 5%);
   }
 
-.cart-noti {
+.cart-noti,
+
+.noti-animation {
     width: 20px;
     font-size: 10px;
     aspect-ratio: 1/1;
@@ -137,6 +141,23 @@ display: block !important;
     padding: 2px;
     top: -8px;
     right: -13px;
+}
+.noti-animation {
+    opacity: 1;
+    border: 2px solid red;
+}
+
+.cart-fx.active .noti-animation,
+.white-list-fx.active .noti-animation {
+    border-width: 3px !important;
+    transform: scale(160%, 160%);
+    opacity: 0;
+    transition: border 1s ease-out, transform 1s ease-out, opacity 1s linear;
+}
+
+.cart-fx.active .noti-animation.nth-2,
+.white-list-fx.active .noti-animation.nth-2 {
+    transition-delay: 0.6s;
 }
 
 .bottom-header{
@@ -300,7 +321,6 @@ display: block !important;
         gap: 50px;
     } */
 
-    
 }
 
 
