@@ -62,6 +62,7 @@ class AuthController extends Controller
             // 'trans_management.min' => 'The transportation management must be at least 4 characters',
             // 'trans_management.max' => 'The transportation management may not be greater than 20 characters.'
         ];
+       
         $validator = Validator::make($request->all(), [
             'username' => 'required|min:4|max:12|unique:users,username',
             'email' => 'required|email|unique:users,email',
@@ -76,6 +77,7 @@ class AuthController extends Controller
             'first_phone' => 'required|numeric',
             'second_phone' => 'nullable|numeric|different:first_phone',
         ], $messages);
+        $errors = [];
         if($this->is_seller($request))
         {
             $validator->addRules([
@@ -95,9 +97,9 @@ class AuthController extends Controller
             $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
                 // Validate first phone number
             if ($request->input('first_phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('first_phone'))) {
-                    return response()->json(['status' => false, 'errors' => ['first_phone' => 'Invalid phone number.']]);
+                    $errors['first_phone'] = 'Invalid phone number.';
              } elseif ($request->input('first_phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('first_phone'))) {
-                    return response()->json(['status' => false, 'errors' => ['first_phone' => 'Invalid phone number.']]);
+                    $errors['first_phone'] = 'Invalid phone number.';
             }
         }
 
@@ -109,19 +111,17 @@ class AuthController extends Controller
             $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
                 // Validate second phone number
             if ($request->input('second_phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('second_phone'))) {
-                    return response()->json(['status' => false, 'errors' => ['second_phone' => 'Invalid phone number.']]);
+                $errors['second_phone'] = 'Invalid phone number.';
              } elseif ($request->input('second_phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('second_phone'))) {
-                    return response()->json(['status' => false, 'errors' => ['second_phone' => 'Invalid phone number.']]);
+                $errors['second_phone'] = 'Invalid phone number.';
             }
         }
 
-        if($validator->fails()){
-            return response()->json(['status' => false, 'errors' => $validator->errors()]);
+        if($validator->fails() || !empty($errors)){
+            $allErrors = array_merge($validator->errors()->toArray(), $errors);
+            return response()->json(['status' => false, 'errors' => $allErrors]);
         }else{
-
             // need to start checking first phone number is valid for myanmar and japan.
-
-
             $user = new Users();
             $user->username = $request->username;
             $user->email = $request->email;
