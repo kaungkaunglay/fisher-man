@@ -109,11 +109,11 @@
                 //second phone number with extension
                 var secondPhoneExtension = $('select[name="second_phone_extension"]').val();
                 var secondPhoneNumber = $('#second_phone').val();
-                if (secondPhoneNumber) {
-                    formData.set('second_phone', secondPhoneExtension + secondPhoneNumber);
-                } else {
-                    formData.set('second_phone', secondPhoneNumber);
-                }
+                // if (secondPhoneNumber) {
+                //     formData.set('second_phone', secondPhoneExtension + secondPhoneNumber);
+                // } else {
+                //     formData.set('second_phone', secondPhoneNumber);
+                // }
 
                 $.ajax({
                     url: "{{ route('register_store') }}",

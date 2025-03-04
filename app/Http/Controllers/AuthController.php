@@ -31,6 +31,7 @@ class AuthController extends Controller
         return view('login');
     }
     public function register_store(Request $request){
+        logger($request->all() );
         $messages = [
             'username.required' => 'The username field is required.',
             'username.min' => 'The username must be at least 4 characters.',
@@ -62,7 +63,7 @@ class AuthController extends Controller
             // 'trans_management.min' => 'The transportation management must be at least 4 characters',
             // 'trans_management.max' => 'The transportation management may not be greater than 20 characters.'
         ];
-       
+
         $validator = Validator::make($request->all(), [
             'username' => 'required|min:4|max:12|unique:users,username',
             'email' => 'required|email|unique:users,email',
@@ -102,17 +103,19 @@ class AuthController extends Controller
                     $errors['first_phone'] = 'Invalid phone number.';
             }
         }
-
+      
         if($request->input('second_phone') != null ){
             $request->merge([
                 'second_phone' => $request->input('second_phone_extension') . $request->input('second_phone'),
             ]);
+
+
             $phoneRegexJapan = '/^\+81[789]0\d{4}\d{4}$/';
             $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
                 // Validate second phone number
             if ($request->input('second_phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('second_phone'))) {
                 $errors['second_phone'] = 'Invalid phone number.';
-             } elseif ($request->input('second_phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('second_phone'))) {
+            } elseif ($request->input('second_phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('second_phone'))) {
                 $errors['second_phone'] = 'Invalid phone number.';
             }
         }
