@@ -21,8 +21,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}" />
     <link rel="stylesheet" href="{{asset('assets/css/preloader.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/libs/toastr-master/build/toastr.min.css')}}">
     <!-- add jquery -->
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+
     <!-- {{-- favicon --}} -->
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png') }}">
@@ -479,8 +481,24 @@
     <script src="{{asset('assets/js/preloader.js')}}"></script> --}}
     <script defer src="{{ asset('assets/js/moving-text.js') }}"></script>
     <script defer src="{{ asset('assets/js/password.js') }}"></script>
+    <script src="{{ asset('assets\libs\toastr-master\build\toastr.min.js') }}"></script>
     <script>
         $(document).ready(() => {
+
+            toastr.options = {
+                "timeOut": "3000",
+                "extendedTimeOut": "500", 
+                "progressBar": true,
+                "onShown": function () {
+                    var toast = $(this); 
+                    toast.hover(
+                        function () { 
+                            toastr.clear()  
+                        }
+                    );
+                }
+            };
+            
             //dropdown trigger
             $('.btn-login').click(() => {
                 $('.dropdown').toggleClass('active');
@@ -601,6 +619,7 @@
             });
         }
 
+
         // Add to whitelist
         function addToWhiteList(product_id, btn) {
             $.ajax({
@@ -613,7 +632,9 @@
                     } else if (response.status) {
                         let count = getStoredCount("white_list_count") + 1;
                         updateStoredCount("white_list_count", ".white_list_count", count);
-                    }
+                    } 
+
+                    response.status ? toastr.success('',response.message) : toastr.info('',response.message);
 
                 }
             });
@@ -636,11 +657,12 @@
                 type: "POST",
                 data: { products: products },
                 success: function(response) {
-                    if (response.status) {
-                        let count = getStoredCount("cart_count") + 1;
+                    if (response.status) {                        let count = getStoredCount("cart_count") + 1;
                         updateStoredCount("cart_count", "#cart_count, #cart_count_bottom", count);
-                    }
+                    } 
 
+                    response.status ? toastr.success('',response.message) : toastr.info('',response.message);
+                    
                     btn.closest('#btn-message').find('span').html(response.message);
                 }
             });

@@ -7,7 +7,7 @@
 @include('messages.index')
 
 <div class="forgotpass mx-auto rounded-3 overflow-hidden shadow">
-  <h3 class="bg-primary py-2 text-white text-center">{{trans_lang('forget_password')}}<</h3>
+  <h3 class="bg-primary py-2 text-white text-center">{{trans_lang('forget_password')}}</h3>
   <div class="bg-white px-4 py-lg-4 py-3">
     <form method="POST" name="forgot_password" id="forgot_password">
       @csrf

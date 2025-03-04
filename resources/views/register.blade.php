@@ -50,7 +50,7 @@
                             <option value="+81">+81</option>
                             <option value="+95">+95</option>
                         </select>
-                        <input maxlength="10" id="first_phone" name="first_phone" placeholder="90-1234-5678" type="tel"
+                        <input maxlength="10" id="first_phone" name="first_phone" placeholder="90-1234-5678" type="number"
                             class="form-control bg-second" autocomplete="off">
                     </div>
                     <span class="invalid-feedback"></span>
@@ -62,7 +62,7 @@
                             <option value="+81">+81</option>
                             <option value="+95">+95</option>
                         </select>
-                        <input maxlength="10" id="second_phone" name="second_phone" placeholder="90-1234-5678" type="tel"
+                        <input maxlength="10" id="second_phone" name="second_phone" placeholder="90-1234-5678" type="number"
                             class="form-control bg-second" autocomplete="off">
                     </div>
                     <span class="invalid-feedback"></span>

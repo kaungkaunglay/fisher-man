@@ -164,8 +164,11 @@
                     },
                     success: function(response) {
                         if (response.status) {
+                            toastr.warning(response.message,'')
                             removeCart(product_id);
                             netTotal();
+                        } else {
+                            toastr.error(response.message,'')
                         }
                     }
                 });
@@ -200,12 +203,13 @@
                             //     // console.log($(this).val())
                             //     removeCart($(this).val())
                             // });
-
+                            toastr.success(response.message,'')
                             updateCartCount();
+                        } else {
+                            toastr.info(response.message,'')
                         }
 
-                        if (!response.status) {
-                        }
+                        
                     }
                 });
             }

@@ -743,11 +743,15 @@
                     success: function(response) {
                         // location.reload();
                         if (response.status) {
+
+                            // toastr.warning(response.message,'')
                             removeCart(product_id);
                             netTotal();
                             // updateCartCount();
                             let count = Math.max(0, getStoredCount("cart_count") - 1);
                             updateStoredCount("cart_count", "#cart_count, #cart_count_bottom", count);
+                        } else {
+                            toastr.error(response.message,'')
                         }
                     }
                 });
@@ -863,6 +867,7 @@
                     },
                     success: function(response) {
                         // return response.status;
+                        toastr.success(response.message,'')
                     }
                 });
             }
