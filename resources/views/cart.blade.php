@@ -115,7 +115,7 @@
                                 <p class="card-name">{{ $item->product->name }}</p>
                                 <div class="card-text">
                                     <span class="cost"></span>
-                                    <span class="price">¥{{ $item->product->product_price }}</span>
+                                    <span class="price format">¥{{ $item->product->product_price }}</span>
                                 </div>
                                 <div class="quantity d-flex">
                                     <button class="btn decrement">-</button>
@@ -557,7 +557,7 @@
                                     <div class="table-img"><img src="{{ asset('assets/products/' . $item->product->product_image) }}" alt="product img"></div>
                                 </td>
                                 <td clas="col-name">{{ $item->product->name }}</td>
-                                <td class="price">¥{{ $item->product->product_price }}</td>
+                                <td class="price format">¥{{ $item->product->product_price }}</td>
                                 <td class="cost">
                                     <input type="hidden" value="1" class="quantity-value">
                                 </td>
@@ -592,7 +592,7 @@
                                     <span class="cost">
                                         <input type="hidden" value="1" class="quantity-value">
                                     </span>
-                                    <span class="price">{{ $item->product->product_price }}</span>
+                                    <span class="price format">{{ $item->product->product_price }}</span>
                                 </div>
                             </div>
                         </div>
@@ -743,11 +743,15 @@
                     success: function(response) {
                         // location.reload();
                         if (response.status) {
+
+                            // toastr.warning(response.message,'')
                             removeCart(product_id);
                             netTotal();
                             // updateCartCount();
                             let count = Math.max(0, getStoredCount("cart_count") - 1);
                             updateStoredCount("cart_count", "#cart_count, #cart_count_bottom", count);
+                        } else {
+                            toastr.error(response.message,'')
                         }
                     }
                 });
@@ -863,6 +867,7 @@
                     },
                     success: function(response) {
                         // return response.status;
+                        toastr.success(response.message,'')
                     }
                 });
             }

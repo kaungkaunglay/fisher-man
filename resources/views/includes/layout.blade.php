@@ -460,13 +460,15 @@
                 <span class="mobile-white-list-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span>
             </p>
         </a>
-        <a class="bottom-menu hv-icon" data-bs-toggle="offcanvas" href="#side_pannel">
-            <i class="fa-solid fa-user"></i><br>
-            {{ trans_lang('profile') }}
-        </a>
-        {{-- <a href="{{ route('profile') }}" class="bottom-menu hv-icon"><i class="fa-solid fa-user"></i><br>
-            <p>{{ trans_lang('profile') }}</p>
-        </a> --}}
+        @if(auth_helper()->check())
+            <a class="bottom-menu hv-icon" data-bs-toggle="offcanvas" href="#side_pannel">
+                <i class="fa-solid fa-user"></i><br>
+                <p>{{ trans_lang('profile') }}</p>
+            </a>
+        @else
+            <a href="{{ route('login') }}" class="bottom-menu hv-icon"><i class="fa-solid fa-sign-in-alt"></i><br>
+                <p>{{ trans_lang('login') }}</p>
+        @endif
     </div>
     <!-- /Mobile Bottom Nav -->
     @endif
@@ -483,7 +485,20 @@
     <script>
         $(document).ready(() => {
 
-            toastr.success("hello", 'Success');
+            toastr.options = {
+                "timeOut": "3000",
+                "extendedTimeOut": "500", 
+                "progressBar": true,
+                "onShown": function () {
+                    var toast = $(this); 
+                    toast.hover(
+                        function () { 
+                            toastr.clear()  
+                        }
+                    );
+                }
+            };
+            
             //dropdown trigger
             $('.btn-login').click(() => {
                 $('.dropdown').toggleClass('active');
@@ -604,6 +619,7 @@
             });
         }
 
+
         // Add to whitelist
         function addToWhiteList(product_id, btn) {
             $.ajax({
@@ -616,7 +632,9 @@
                     } else if (response.status) {
                         let count = getStoredCount("white_list_count") + 1;
                         updateStoredCount("white_list_count", ".white_list_count", count);
-                    }
+                    } 
+
+                    response.status ? toastr.success('',response.message) : toastr.info('',response.message);
 
                 }
             });
@@ -639,12 +657,12 @@
                 type: "POST",
                 data: { products: products },
                 success: function(response) {
-                    if (response.status) {
-                        window.location.reload();
-                        let count = getStoredCount("cart_count") + 1;
+                    if (response.status) {                        let count = getStoredCount("cart_count") + 1;
                         updateStoredCount("cart_count", "#cart_count, #cart_count_bottom", count);
-                    }
+                    } 
 
+                    response.status ? toastr.success('',response.message) : toastr.info('',response.message);
+                    
                     btn.closest('#btn-message').find('span').html(response.message);
                 }
             });

@@ -96,7 +96,7 @@
                                 <a href="javascript:void(0);" class="btn mobile-del-btn" data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </a>
-                                <input type="checkbox" class="mobile-select mobile-check-product"
+                                <input type="checkbox" class="desktop-check-product"
                                     value="{{ $product->id }}">
                             </div>
                         </div>
@@ -164,8 +164,11 @@
                     },
                     success: function(response) {
                         if (response.status) {
+                            toastr.warning(response.message,'')
                             removeCart(product_id);
                             netTotal();
+                        } else {
+                            toastr.error(response.message,'')
                         }
                     }
                 });
@@ -200,12 +203,13 @@
                             //     // console.log($(this).val())
                             //     removeCart($(this).val())
                             // });
-
+                            toastr.success(response.message,'')
                             updateCartCount();
+                        } else {
+                            toastr.info(response.message,'')
                         }
 
-                        if (!response.status) {
-                        }
+                        
                     }
                 });
             }

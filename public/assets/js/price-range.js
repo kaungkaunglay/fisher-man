@@ -87,6 +87,8 @@ $(document).ready(function () {
     maxInput.on("blur", checkAndSearch);
     sliderOne.on("mouseup", checkAndSearch);
     sliderTwo.on("mouseup", checkAndSearch);
+    sliderOne.on("touchend", checkAndSearch);
+    sliderTwo.on("touchend", checkAndSearch);
 
     // Initialize without searching
     fillColor();
