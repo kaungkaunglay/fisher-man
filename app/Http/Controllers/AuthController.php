@@ -73,8 +73,8 @@ class AuthController extends Controller
             ],
             'confirm_password' => 'required|same:password',
             'g-recaptcha-response' => 'required',
-            'first_phone' => 'required',
-            'second_phone' => 'nullable|different:first_phone',
+            'first_phone' => 'required|numeric',
+            'second_phone' => 'nullable|numeric|different:first_phone',
         ], $messages);
         if($this->is_seller($request))
         {
@@ -101,6 +101,20 @@ class AuthController extends Controller
             }
         }
 
+        if($request->input('second_phone') != null ){
+            $request->merge([
+                'second_phone' => $request->input('second_phone_extension') . $request->input('second_phone'),
+            ]);
+            $phoneRegexJapan = '/^\+81[789]0\d{4}\d{4}$/';
+            $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
+                // Validate first phone number
+            if ($request->input('second_phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('second_phone'))) {
+                    return response()->json(['status' => false, 'errors' => ['second_phone' => 'Invalid phone number.']]);
+             } elseif ($request->input('second_phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('second_phone'))) {
+                    return response()->json(['status' => false, 'errors' => ['second_phone' => 'Invalid phone number.']]);
+            }
+        }
+        
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
         }else{
