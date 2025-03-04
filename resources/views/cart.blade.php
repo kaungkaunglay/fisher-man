@@ -20,7 +20,7 @@
                 <ul class="step-list d-flex text-center">
                     <li class="step active d-flex flex-column align-items-center">
                         <span class="me-2">1</span>
-                        <p class="d-none d-md-block">{{ trans_lang('order_detail') }}s</p>
+                        <p class="d-none d-md-block">{{trans_lang('order_detail')}}</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">2</span>

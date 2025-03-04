@@ -164,7 +164,7 @@
                                     <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
                                         aria-label="Success:"></i>
                                     <div class="text-start">
-                                        Email verification link already sent.
+                                        メール確認リンクはすでに送信されています。
                                     </div>
                                 </div>
                             @elseif(!auth_helper()->isVerified())
@@ -172,9 +172,9 @@
                                     <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
                                         aria-label="Warning:"></i>
                                     <div class="text-start">
-                                        Verify your email
+                                            メールを確認してください
                                         <a href="javascript:void(0);" id="sent_email_verify_link"
-                                            class="text-warning">here</a>
+                                            class="text-warning">こちら</a>
                                     </div>
                                 </div>
                             @endif
