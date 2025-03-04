@@ -140,7 +140,7 @@
             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"></div>
         </div>
     </div>
-    @if (Request::routeIs(patterns: 'login') || Request::routeIs('register'))
+    @if (Request::routeIs(patterns: 'login') || Request::routeIs('register') || Request::routeIs('forgot_password'))
     <header id="main-content">
     </header>
 
@@ -310,7 +310,7 @@
         $socialLinks = \App\Models\Setting::getValue('social_links', []);
     @endphp
 
-    @if (Request::routeIs('login') || Request::routeIs('register') )
+    @if (Request::routeIs('login') || Request::routeIs('register') || Request::routeIs('forgot_password') )
     <footer class="">
     </footer>
 
