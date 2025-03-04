@@ -21,9 +21,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}" />
     <link rel="stylesheet" href="{{asset('assets/css/preloader.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/libs/toastr-master/build/toastr.min.css')}}">
     <!-- add jquery -->
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/toastr-master/build/toastr.min.css') }}"></script>
+
     <!-- {{-- favicon --}} -->
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png') }}">
@@ -478,33 +479,11 @@
     <script src="{{asset('assets/js/preloader.js')}}"></script> --}}
     <script defer src="{{ asset('assets/js/moving-text.js') }}"></script>
     <script defer src="{{ asset('assets/js/password.js') }}"></script>
-    <script src="{{ asset('assets/libs/toastr-master/build/toastr.min.js') }}"></script>
-    @if (session('success'))
-        <script>
-            toastr.success({{ session('success')}}, 'Success');
-        </script>
-    @endif
-
-    @if (session('error'))
-        <script>
-            toastr.success({{ session('error')}}, 'error');
-        </script>
-    @endif
-
-    @if (session('warning'))
-        <script>
-            toastr.success({{ session('warning')}}, 'warning');
-        </script>
-    @endif
-
-    @if (session('info'))
-        <script>
-            toastr.success({{ session('info')}}, 'info');
-        </script>
-    @endif
-    
+    <script src="{{ asset('assets\libs\toastr-master\build\toastr.min.js') }}"></script>
     <script>
         $(document).ready(() => {
+
+            toastr.success("hello", 'Success');
             //dropdown trigger
             $('.btn-login').click(() => {
                 $('.dropdown').toggleClass('active');
@@ -661,6 +640,7 @@
                 data: { products: products },
                 success: function(response) {
                     if (response.status) {
+                        window.location.reload();
                         let count = getStoredCount("cart_count") + 1;
                         updateStoredCount("cart_count", "#cart_count, #cart_count_bottom", count);
                     }

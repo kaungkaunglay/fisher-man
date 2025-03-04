@@ -70,14 +70,17 @@ class CartController extends Controller
         $products = $request->input('products');
 
         if (empty($products)) {
+            session()->flash('error',"You haven't chosen any product");
             return response()->json(['status' => false, 'message' => "You haven't chosen any product"]);
         }
 
         if (!AuthHelper::check()) {
             $isNotNew = $this->addToSessionCart($products);
             if(!$isNotNew){
+                session()->flash('info',"All products are already in the cart");
                 return response()->json(['status' => false, 'message' => 'All products are already in the cart']);
             }
+            session()->flash('success',"Products added to cart");
             return response()->json(['status' => true,'isNotNew' => $isNotNew , 'message' => 'Products added to cart']);
         }
 
@@ -88,11 +91,13 @@ class CartController extends Controller
         $newProducts = $this->getNewProducts($products, $existingProductIds);
 
         if (empty($newProducts)) {
+            session()->flash('info',"All products are already in the cart");
             return response()->json(['status' => false, 'message' => 'All products are already in the cart']);
         }
 
         $this->addToUserCart($newProducts, $user);
 
+        session()->flash('success',"Products added to cart");
         return response()->json(['status' => true, 'message' => 'Products added to cart']);
     }
 
