@@ -140,10 +140,7 @@
             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"></div>
         </div>
     </div>
-    @if (Request::routeIs(patterns: 'login') || Request::routeIs('register'))
-    <header id="main-content">
-    </header>
-
+    @if (Request::routeIs(patterns: 'login') || Request::routeIs('register') || Request::routeIs('forgotpassword'))
     <div class="category-popup" id="category-popup">
     </div>
     @else
@@ -310,9 +307,8 @@
         $socialLinks = \App\Models\Setting::getValue('social_links', []);
     @endphp
 
-    @if (Request::routeIs('login') || Request::routeIs('register') )
-    <footer class="">
-    </footer>
+    @if (Request::routeIs('login') || Request::routeIs('register') || Request::routeIs('forgotpassword') )
+
 
     <div class="bottom-nav d-flex d-md-none">
     </div>
@@ -460,13 +456,15 @@
                 <span class="mobile-white-list-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span>
             </p>
         </a>
-        <a class="bottom-menu hv-icon" data-bs-toggle="offcanvas" href="#side_pannel">
-            <i class="fa-solid fa-user"></i><br>
-            {{ trans_lang('profile') }}
-        </a>
-        {{-- <a href="{{ route('profile') }}" class="bottom-menu hv-icon"><i class="fa-solid fa-user"></i><br>
-            <p>{{ trans_lang('profile') }}</p>
-        </a> --}}
+        @if(auth_helper()->check())
+            <a class="bottom-menu hv-icon" data-bs-toggle="offcanvas" href="#side_pannel">
+                <i class="fa-solid fa-user"></i><br>
+                <p>{{ trans_lang('profile') }}</p>
+            </a>
+        @else
+            <a href="{{ route('login') }}" class="bottom-menu hv-icon"><i class="fa-solid fa-sign-in-alt"></i><br>
+                <p>{{ trans_lang('login') }}</p>
+        @endif
     </div>
     <!-- /Mobile Bottom Nav -->
     @endif

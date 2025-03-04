@@ -96,7 +96,7 @@
                                 <a href="javascript:void(0);" class="btn mobile-del-btn" data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </a>
-                                <input type="checkbox" class="mobile-select mobile-check-product"
+                                <input type="checkbox" class="desktop-check-product"
                                     value="{{ $product->id }}">
                             </div>
                         </div>
