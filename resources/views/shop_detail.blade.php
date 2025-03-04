@@ -121,13 +121,19 @@
                                                 <button><i class="fa-solid fa-caret-down"></i></button>
                                             </div>
                                             <div class="dropdown">
-                                                <button class="sort-button dropdown-toggle" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">Sort by</button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                </ul>
+                                                <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                                aria-expanded="false">{{trans_lang('sortby')}}</button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item sort-option"
+                                                        href="#" data-sort="low_to_high">{{trans_lang('price_l_h')}}</a></li>
+                                                <li><a class="dropdown-item sort-option"
+                                                        href="#" data-sort="high_to_low">{{trans_lang('price_h_l')}}</a>
+                                                </li>
+                                                <li><a class="dropdown-item sort-option" href="#" data-sort="name_asc">{{trans_lang('name_a_z')}}</a></li>
+                                                <li><a class="dropdown-item sort-option" href="#" data-sort="name_desc">{{trans_lang('name_z_a')}}</a></li>
+                                                <li><a class="dropdown-item sort-option"
+                                                        href="#" data-sort="latest">{{trans_lang('latest')}}</a></li>
+                                            </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -368,6 +374,28 @@
         $(document).ready(() => {
             handleAddToCartBtn('cart-btn');
             handleAddToWhiteListBtn('white-list-btn');
+
+            //sort-by
+            $(".sort-option").on("click", function (e) {
+            e.preventDefault();
+            let sortType = $(this).data("sort");
+            
+            $.ajax({
+                url: "{{ route('products.sort') }}",
+                type: "GET",
+                data: { sort: sortType },
+                beforeSend: function () {
+                    $("#product-list").html('<div class="text-center"><span>Loading...</span></div>');
+                },
+                success: function (response) {
+                    console.log(response);
+                    // $("#product-list").html(response.products);
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                }
+            });
+        });
         })
     </script>
 @endsection
