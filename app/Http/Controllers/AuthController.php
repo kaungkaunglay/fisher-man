@@ -31,6 +31,7 @@ class AuthController extends Controller
         return view('login');
     }
     public function register_store(Request $request){
+        logger($request->all() );
         $messages = [
             'username.required' => 'The username field is required.',
             'username.min' => 'The username must be at least 4 characters.',
@@ -102,7 +103,7 @@ class AuthController extends Controller
                     $errors['first_phone'] = 'Invalid phone number.';
             }
         }
-
+      
         if($request->input('second_phone') != null ){
             $request->merge([
                 'second_phone' => $request->input('second_phone_extension') . $request->input('second_phone'),
