@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}" />
     <!-- add jquery -->
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/toastr-master/build/toastr.min.css') }}"></script>
     <!-- {{-- favicon --}} -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon/favicon-32x32.png') }}">
@@ -277,6 +278,31 @@
     <script src="{{ asset('assets/js/moving-text.js') }}"></script>
     <script src="{{ asset('assets/js/password.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/toastr-master/build/toastr.min.js') }}"></script>
+    @if (session('success'))
+        <script>
+            toastr.success({{ session('success')}}, 'Success');
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            toastr.success({{ session('error')}}, 'error');
+        </script>
+    @endif
+
+    @if (session('warning'))
+        <script>
+            toastr.success({{ session('warning')}}, 'warning');
+        </script>
+    @endif
+
+    @if (session('info'))
+        <script>
+            toastr.success({{ session('info')}}, 'info');
+        </script>
+    @endif
+    
     <script>
         $(document).ready(() => {
             //dropdown trigger
