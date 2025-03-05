@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/style.css') }}">
     <!-- Font -->
     <link rel="stylesheet" href="{{ asset('assets/admin/font/fonts.css') }}">
-    
+
     <!-- Icon -->
     <link rel="stylesheet" href="{{ asset('assets/admin/icon/style.css') }}">
 @endsection
@@ -56,7 +56,7 @@
                     <ul class="table-title flex gap20 mb-14">
                         <li class="flex-1">
                             <div class="body-title">Username</div>
-                        </li>    
+                        </li>
                         <li class="flex-1">
                             <div class="body-title">Email</div>
                         </li>
@@ -101,11 +101,6 @@
         <!-- /main-content-wrap -->
     </div>
     <!-- /main-content-wrap -->
-    <!-- bottom-page -->
-    <div class="bottom-page">
-    <div class="body-text">Copyright © 2025 r-mekiki.com, All rights reserved.</div>
-</div>
-    <!-- /bottom-page -->
 @endsection
 @section('script')
     <!-- Javascript -->
@@ -131,7 +126,7 @@
                 .catch(error => console.error('Error:', error));
             }
         }
-    </script>    
+    </script>
     <script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/bootstrap-select.min.js') }}"></script>

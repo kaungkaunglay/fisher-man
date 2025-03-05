@@ -87,7 +87,7 @@
                 <ul class="flex flex-column">
 
                     @foreach($categories as $category)
-              
+
                     <li class="product-item gap14">
                         <div class="image no-bg">
                             <img src="{{ asset('assets/images/categories/'.$category->image) }}" alt="{{ $category->category_name }}">
@@ -132,11 +132,6 @@
     <!-- /main-content-wrap -->
 </div>
 <!-- /main-content-wrap -->
-<!-- bottom-page -->
-<div class="bottom-page">
-    <div class="body-text">Copyright © 2025 r-mekiki.com, All rights reserved.</div>
-</div>
-<!-- /bottom-page -->
 @endsection
 @section('script')
 <!-- Javascript -->

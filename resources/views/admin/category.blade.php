@@ -93,10 +93,7 @@
 </div>
 
 
-<!-- bottom-page -->
-<div class="bottom-page">
-    <div class="body-text">Copyright © 2025 r-mekiki.com, All rights reserved.</div>
-</div>
+
 @endsection
 
 @section('script')
