@@ -35,62 +35,63 @@
                     <h6 class="txt-primary fw-bold mb-3">このカテゴリには商品がありません</h6>
                 @else
                     @foreach ($category->subCategories as $subcategory)
-                        <li class="d-flex flex-column">
-                            <div class="card-head">
-                                <h2 class="title">{{ $subcategory->name }}</h2>
-                                <div class="filter d-flex justify-content-between align-items-center">
-                                    <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
-                                        <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
-                                        <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- card itmes list start -->
-                            <div class="card-list" id="view-list">
-                                @foreach ($subcategory->products->take(4) as $product)
-                                @if ($product->status == 'approved')
-                                    <div class="item-card">
-                                        <a href="{{ route('product.show', $product->id) }}" class="right">
-                                            <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
-                                                alt="{{ $product->name }}">
-                                        </a>
-                                        <div class="left pt-3">
-                                            <p class="price">¥{{ number_format($product->product_price) }}</p>
-                                            <div class="title-category">
-                                                <a href="{{ route('sub-category.show', $product->subCategory->id) }}"
-                                                    class="menu-category">{{ $product->subCategory->name }}</a>
-                                                <h3 class="title">{{ $product->name }}</h3>
-                                            </div>
-                                            <a href="{{ route('product.show', $product->id) }}"
-                                                class="txt m-b-10 description">
-                                                {{ $product->description }}
-                                            </a>
-                                            <div class="d-flex gap-2 card-btn m-t-10">
-                                                <a href="javascript:void(0);"
-                                                    class="py-1 common-btn2 -solid cart-btn "
-                                                    data-id="{{ $product->id }}">
-                                                    <i class="fa-solid fa-cart-shopping"></i>
-                                                </a>
-                                                <a href="javascript:void(0);"
-                                                    class="py-1 common-btn2 white-list-btn
-                                                    @if ($product->inWhiteLists()) active @endif"
-                                                    data-id="{{ $product->id }}">
-                                                    <i class="fa-solid fa-bookmark"></i>
-                                                </a>
-                                            </div>
-
+                        @if ($subcategory->products->isNotEmpty())
+                            <li class="d-flex flex-column">
+                                <div class="card-head">
+                                    <h2 class="title">{{ $subcategory->name }}</h2>
+                                    <div class="filter d-flex justify-content-between align-items-center">
+                                        <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
+                                            <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
+                                            <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
                                         </div>
                                     </div>
-                                    @endif
-                                @endforeach
-                            </div>
-                            <!-- card items list end -->
-                            <div class="see-more-box d-flex m-t-b-20 justify-content-center justify-content-lg-end mt-5">
-                                <a href="{{ route('sub-category.show', $subcategory->id) }}"
-                                    class="common-btn">{{ trans_lang('seemore') }}</a>
-                            </div>
-                        </li>
+                                </div>
+            
+                                <!-- card items list start -->
+                                <div class="card-list" id="view-list">
+                                    @foreach ($subcategory->products->take(4) as $product)
+                                        @if ($product->status == 'approved')
+                                            <div class="item-card">
+                                                <a href="{{ route('product.show', $product->id) }}" class="right">
+                                                    <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
+                                                        alt="{{ $product->name }}">
+                                                </a>
+                                                <div class="left pt-3">
+                                                    <p class="price">¥{{ number_format($product->product_price) }}</p>
+                                                    <div class="title-category">
+                                                        <a href="{{ route('sub-category.show', $product->subCategory->id) }}"
+                                                            class="menu-category">{{ $product->subCategory->name }}</a>
+                                                        <h3 class="title">{{ $product->name }}</h3>
+                                                    </div>
+                                                    <a href="{{ route('product.show', $product->id) }}"
+                                                        class="txt m-b-10 description">
+                                                        {{ $product->description }}
+                                                    </a>
+                                                    <div class="d-flex gap-2 card-btn m-t-10">
+                                                        <a href="javascript:void(0);"
+                                                            class="py-1 common-btn2 -solid cart-btn "
+                                                            data-id="{{ $product->id }}">
+                                                            <i class="fa-solid fa-cart-shopping"></i>
+                                                        </a>
+                                                        <a href="javascript:void(0);"
+                                                            class="py-1 common-btn2 white-list-btn
+                                                            @if ($product->inWhiteLists()) active @endif"
+                                                            data-id="{{ $product->id }}">
+                                                            <i class="fa-solid fa-bookmark"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <!-- card items list end -->
+                                <div class="see-more-box d-flex m-t-b-20 justify-content-center justify-content-lg-end mt-5">
+                                    <a href="{{ route('sub-category.show', $subcategory->id) }}"
+                                        class="common-btn">{{ trans_lang('seemore') }}</a>
+                                </div>
+                            </li>
+                        @endif
                     @endforeach
                 @endif
             </ul>
