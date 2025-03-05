@@ -166,7 +166,7 @@
 
                             @if (check_role(1))
                             <div class="center-item">
-                                <div class="center-heading">{{trans_lang('user_management')}}</div>
+                                <div class="center-heading">{{trans_lang('buyer_management')}}</div>
 
                                 <ul class="menu-list">
                                     <li class="menu-item has-children {{ request()->is('admin/request*') ? 'active' : '' }}">
@@ -188,7 +188,21 @@
 
                                         </ul>
                                     </li>
+                                    <li class="menu-item has-children {{ request()->is('admin/user*') ? 'active' : '' }}">
+                                        <a href="javascript:void(0);" class="menu-item-button">
+                                            <div class="icon"><i class="icon-user"></i></div>
+                                            <div class="text">{{trans_lang('user_management')}}</div>
+                                        </a>
+                                        <ul class="sub-menu" style="display: block;">
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('admin.users')}}" class="{{request()->is('admin/users') ? 'active' : ''}}">
+                                                    <div class="text">{{trans_lang('user_list')}}</div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                 </ul>
+                            
                             </div>
                             <div class="center-item">
                                 <div class="center-heading">{{trans_lang('manage_shop')}}</div>
@@ -218,6 +232,7 @@
                                     </li>
                                 </ul>
                             </div>
+                        
                             <div class="center-item">
                                 <div class="center-heading">{{trans_lang('manage_faqs')}}</div>
                                 <ul class="menu-list">

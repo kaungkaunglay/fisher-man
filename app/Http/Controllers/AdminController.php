@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\Setting;
 use App\Models\wishList;
 use App\Helpers\AuthHelper;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -33,6 +34,17 @@ class AdminController extends Controller
     {
         return view('admin.categories');
     }
+    public function deleteUser($id)
+    {
+        // Validate that the user exists
+        $user = Users::find($id);
+        if (!$user) {
+            return response()->json(['status' => false, 'message' => 'User not found']);
+        }
+        // Delete the user
+        $user->delete();
+        return response()->json(['status' => true, 'message' => 'User deleted successfully']);
+    }
     public function category()
     {
         return view('admin.category');
@@ -54,7 +66,9 @@ class AdminController extends Controller
     }
     public function users()
     {
-        return view('admin.users');
+        $role = Role::where('id',  3)->first(); 
+        $users = $role->users()->paginate(10);
+        return view('admin.users', ['users' => $users]);
     }
     public function user()
     {

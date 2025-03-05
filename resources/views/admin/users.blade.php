@@ -33,7 +33,7 @@
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <div class="text-tiny">All User</div>
+                        <div class="text-tiny">Buyer User Lists</div>
                     </li>
                 </ul>
             </div>
@@ -54,282 +54,46 @@
                 </div>
                 <div class="wg-table table-all-user">
                     <ul class="table-title flex gap20 mb-14">
-                        <li>
-                            <div class="body-title">User</div>
+                        <li class="flex-1">
+                            <div class="body-title">Username</div>
                         </li>    
-                        <li>
-                            <div class="body-title">Phone</div>
-                        </li>
-                        <li>
+                        <li class="flex-1">
                             <div class="body-title">Email</div>
                         </li>
-                        <li>
+                        <li class="flex-1">
+                            <div class="body-title">Created Date</div>
+                        </li>
+                        <li class="flex-1">
                             <div class="body-title">Action</div>
                         </li>
                     </ul>
                     <ul class="flex flex-column">
-                        <li class="user-item gap14">
-                            <div class="image">
-                                <img src="images/avatar/user-6.png" alt="">
-                            </div>
-                            <div class="flex items-center justify-between gap20 flex-grow">
-                                <div class="name">
-                                    <a href="#" class="body-title-2">Kristin Watson</a>
-                                    <div class="text-tiny mt-3">Product name</div>
-                                </div>
-                                <div class="body-text">$1,452.500</div>
-                                <div class="body-text">1,638</div>
-                                <div class="list-icon-function">
-                                    <div class="item eye">
-                                        <i class="icon-eye"></i>
+                        @foreach($users as $user)
+                            <li class="user-item gap14">
+                                <div class="flex items-center justify-between gap20 flex-grow">
+                                    <div class="name flex-1">
+                                        <a href="#" class="body-title-2">{{$user->username}}</a>
                                     </div>
-                                    <div class="item edit">
-                                        <i class="icon-edit-3"></i>
+                                    <div class="name flex-1">
+                                        <a href="#" class="body-title-2">{{$user->email}}</a>
                                     </div>
-                                    <div class="item trash">
-                                        <i class="icon-trash-2"></i>
+                                    <div class="flex-1">
+                                        <a href="#" class="body-title-2">{{ \Carbon\Carbon::parse($user->created_at)->format('Y-m-d') }}</a>
+                                    </div>
+                                    <div class="list-icon-function flex-1">
+                                        {{-- Buyer User Delete --}}
+                                        <div class="item trash">
+                                            <a onclick="deleteUser({{ $user->id }})"><i class="icon-trash-2"></i></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="user-item gap14">
-                            <div class="image">
-                                <img src="images/avatar/user-7.png" alt="">
-                            </div>
-                            <div class="flex items-center justify-between gap20 flex-grow">
-                                <div class="name">
-                                    <a href="#" class="body-title-2">Kristin Watson</a>
-                                    <div class="text-tiny mt-3">Product name</div>
-                                </div>
-                                <div class="body-text">$1,452.500</div>
-                                <div class="body-text">1,638</div>
-                                <div class="list-icon-function">
-                                    <div class="item eye">
-                                        <i class="icon-eye"></i>
-                                    </div>
-                                    <div class="item edit">
-                                        <i class="icon-edit-3"></i>
-                                    </div>
-                                    <div class="item trash">
-                                        <i class="icon-trash-2"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="user-item gap14">
-                            <div class="image">
-                                <img src="images/avatar/user-8.png" alt="">
-                            </div>
-                            <div class="flex items-center justify-between gap20 flex-grow">
-                                <div class="name">
-                                    <a href="#" class="body-title-2">Kristin Watson</a>
-                                    <div class="text-tiny mt-3">Product name</div>
-                                </div>
-                                <div class="body-text">$1,452.500</div>
-                                <div class="body-text">1,638</div>
-                                <div class="list-icon-function">
-                                    <div class="item eye">
-                                        <i class="icon-eye"></i>
-                                    </div>
-                                    <div class="item edit">
-                                        <i class="icon-edit-3"></i>
-                                    </div>
-                                    <div class="item trash">
-                                        <i class="icon-trash-2"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="user-item gap14">
-                            <div class="image">
-                                <img src="images/avatar/user-9.png" alt="">
-                            </div>
-                            <div class="flex items-center justify-between gap20 flex-grow">
-                                <div class="name">
-                                    <a href="#" class="body-title-2">Kristin Watson</a>
-                                    <div class="text-tiny mt-3">Product name</div>
-                                </div>
-                                <div class="body-text">$1,452.500</div>
-                                <div class="body-text">1,638</div>
-                                <div class="list-icon-function">
-                                    <div class="item eye">
-                                        <i class="icon-eye"></i>
-                                    </div>
-                                    <div class="item edit">
-                                        <i class="icon-edit-3"></i>
-                                    </div>
-                                    <div class="item trash">
-                                        <i class="icon-trash-2"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="user-item gap14">
-                            <div class="image">
-                                <img src="images/avatar/user-10.png" alt="">
-                            </div>
-                            <div class="flex items-center justify-between gap20 flex-grow">
-                                <div class="name">
-                                    <a href="#" class="body-title-2">Kristin Watson</a>
-                                    <div class="text-tiny mt-3">Product name</div>
-                                </div>
-                                <div class="body-text">$1,452.500</div>
-                                <div class="body-text">1,638</div>
-                                <div class="list-icon-function">
-                                    <div class="item eye">
-                                        <i class="icon-eye"></i>
-                                    </div>
-                                    <div class="item edit">
-                                        <i class="icon-edit-3"></i>
-                                    </div>
-                                    <div class="item trash">
-                                        <i class="icon-trash-2"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="user-item gap14">
-                            <div class="image">
-                                <img src="images/avatar/user-11.png" alt="">
-                            </div>
-                            <div class="flex items-center justify-between gap20 flex-grow">
-                                <div class="name">
-                                    <a href="#" class="body-title-2">Kristin Watson</a>
-                                    <div class="text-tiny mt-3">Product name</div>
-                                </div>
-                                <div class="body-text">$1,452.500</div>
-                                <div class="body-text">1,638</div>
-                                <div class="list-icon-function">
-                                    <div class="item eye">
-                                        <i class="icon-eye"></i>
-                                    </div>
-                                    <div class="item edit">
-                                        <i class="icon-edit-3"></i>
-                                    </div>
-                                    <div class="item trash">
-                                        <i class="icon-trash-2"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="user-item gap14">
-                            <div class="image">
-                                <img src="images/avatar/user-12.png" alt="">
-                            </div>
-                            <div class="flex items-center justify-between gap20 flex-grow">
-                                <div class="name">
-                                    <a href="#" class="body-title-2">Kristin Watson</a>
-                                    <div class="text-tiny mt-3">Product name</div>
-                                </div>
-                                <div class="body-text">$1,452.500</div>
-                                <div class="body-text">1,638</div>
-                                <div class="list-icon-function">
-                                    <div class="item eye">
-                                        <i class="icon-eye"></i>
-                                    </div>
-                                    <div class="item edit">
-                                        <i class="icon-edit-3"></i>
-                                    </div>
-                                    <div class="item trash">
-                                        <i class="icon-trash-2"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="user-item gap14">
-                            <div class="image">
-                                <img src="images/avatar/user-13.png" alt="">
-                            </div>
-                            <div class="flex items-center justify-between gap20 flex-grow">
-                                <div class="name">
-                                    <a href="#" class="body-title-2">Kristin Watson</a>
-                                    <div class="text-tiny mt-3">Product name</div>
-                                </div>
-                                <div class="body-text">$1,452.500</div>
-                                <div class="body-text">1,638</div>
-                                <div class="list-icon-function">
-                                    <div class="item eye">
-                                        <i class="icon-eye"></i>
-                                    </div>
-                                    <div class="item edit">
-                                        <i class="icon-edit-3"></i>
-                                    </div>
-                                    <div class="item trash">
-                                        <i class="icon-trash-2"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="user-item gap14">
-                            <div class="image">
-                                <img src="images/avatar/user-14.png" alt="">
-                            </div>
-                            <div class="flex items-center justify-between gap20 flex-grow">
-                                <div class="name">
-                                    <a href="#" class="body-title-2">Kristin Watson</a>
-                                    <div class="text-tiny mt-3">Product name</div>
-                                </div>
-                                <div class="body-text">$1,452.500</div>
-                                <div class="body-text">1,638</div>
-                                <div class="list-icon-function">
-                                    <div class="item eye">
-                                        <i class="icon-eye"></i>
-                                    </div>
-                                    <div class="item edit">
-                                        <i class="icon-edit-3"></i>
-                                    </div>
-                                    <div class="item trash">
-                                        <i class="icon-trash-2"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="user-item gap14">
-                            <div class="image">
-                                <img src="images/avatar/user-15.png" alt="">
-                            </div>
-                            <div class="flex items-center justify-between gap20 flex-grow">
-                                <div class="name">
-                                    <a href="#" class="body-title-2">Kristin Watson</a>
-                                    <div class="text-tiny mt-3">Product name</div>
-                                </div>
-                                <div class="body-text">$1,452.500</div>
-                                <div class="body-text">1,638</div>
-                                <div class="list-icon-function">
-                                    <div class="item eye">
-                                        <i class="icon-eye"></i>
-                                    </div>
-                                    <div class="item edit">
-                                        <i class="icon-edit-3"></i>
-                                    </div>
-                                    <div class="item trash">
-                                        <i class="icon-trash-2"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="divider"></div>
                 <div class="flex items-center justify-between flex-wrap gap10">
-                    <div class="text-tiny">Showing 10 entries</div>
-                    <ul class="wg-pagination">
-                        <li>
-                            <a href="#"><i class="icon-chevron-left"></i></a>
-                        </li>
-                        <li>
-                            <a href="#">1</a>
-                        </li>
-                        <li class="active">
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon-chevron-right"></i></a>
-                        </li>
-                    </ul>
+                    {{ $users->links() }}
                 </div>
             </div>
             <!-- /all-user -->
@@ -345,6 +109,29 @@
 @endsection
 @section('script')
     <!-- Javascript -->
+    <script>
+        function deleteUser(userId) {
+            if (confirm('Are you sure you want to delete this user?')) {
+                fetch(`{{ url('/admin/user/delete') }}/${userId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status) {
+                        alert(data.message);
+                        location.reload();
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        }
+    </script>    
     <script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/bootstrap-select.min.js') }}"></script>
@@ -360,4 +147,3 @@
     <script src="{{ asset('assets/admin/js/theme-settings.js') }}"></script>
     <script src="{{ asset('assets/admin/js/main.js') }}"></script>
 @endsection
-
