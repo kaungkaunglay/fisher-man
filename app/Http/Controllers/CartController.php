@@ -16,6 +16,16 @@ class CartController extends Controller
         if (AuthHelper::check()) {
             $carts = AuthHelper::user()->carts;
             $carts->load('product');
+
+            $sessionCart = $carts->map(function ($cart) {
+                return [
+                    'id' => $cart->product_id,
+                    'quantity' => $cart->quantity,
+                ];
+            })->toArray();
+
+            session()->put('cart', $sessionCart);
+
         } else {
             $products = session('cart', []);
 
@@ -105,7 +115,7 @@ class CartController extends Controller
     {
         $cart = session('cart', []);
 
-        $allProductsAlreadyInCart = true; // Assume all are already in cart initially
+        $allProductsAlreadyInCart = true;
 
         foreach ($products as $product) {
             $found = false;
@@ -113,13 +123,13 @@ class CartController extends Controller
                 if ($cartItem['id'] === $product['id']) {
                     $cartItem['quantity'] += $product['quantity'];
                     $found = true;
-                    $allProductsAlreadyInCart = false; // At least one product was new
+                    $allProductsAlreadyInCart = false;
                     break;
                 }
             }
             if (!$found) {
                 $cart[] = $product;
-                // $allProductsAlreadyInCart = false; // At least one product was new
+                // $allProductsAlreadyInCart = false;
             }
         }
 
@@ -137,14 +147,14 @@ class CartController extends Controller
 
     private function addToUserCart($newProducts, $user)
     {
-        // Use insert for bulk insert (significantly faster)
+
         $dataToInsert = [];
         foreach ($newProducts as $product) {
             $dataToInsert[] = [
                 'user_id' => $user->id,
                 'product_id' => $product['id'],
                 'quantity' => $product['quantity'],
-                'created_at' => now(), // Add timestamps if needed
+                'created_at' => now(),
                 'updated_at' => now(),
             ];
         }
@@ -191,10 +201,71 @@ class CartController extends Controller
             return response()->json(['status' => true, 'message' => 'Products added to cart']);
 
         } catch (\Exception $e) {
-            DB::rollBack();  // Rollback on error
-            logger()->error($e); // Log the error
+            DB::rollBack();
+            logger()->error($e);
             return response()->json(['status' => false, 'message' => 'Error adding products to cart']); //Or a more specific error message.
         }
+    }
+
+    public function addQty(Request $request)
+    {
+        logger($request->all());
+        $quantity = $request->input('quantity', 0);
+        $product_id = $request->input('product_id');
+
+        if (!is_numeric($quantity) || $quantity <= 0) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid quantity provided'
+            ]);
+        }
+
+        if (!AuthHelper::check()) {
+
+            $cart = session('cart', []);
+
+            if (empty($cart)) {
+                return response()->json([
+                    'status' => false,
+                    'message' => "Your cart is empty."
+                ]);
+            }
+
+            $updatedCart = array_map(function ($item) use ($product_id, $quantity) {
+                if ($item['id'] == $product_id) {
+                    $item['quantity'] = $quantity;
+                }
+                return $item;
+            }, $cart);
+
+            session(['cart' => $updatedCart]);
+
+            return response()->json([
+                'status' => true,
+                'message' => "Quantity updated."
+            ]);
+        }
+
+        $cart = Cart::where('user_id', AuthHelper::id())
+            ->where('product_id', $product_id)
+            ->first();
+
+        if (!$cart) {
+            return response()->json([
+                'status' => false,
+                'message' => "Product not found in your cart."
+            ]);
+        }
+
+        $cart->quantity = max(0, $quantity);
+        $cart->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Quantity updated.",
+            'quantity' => $cart->quantity
+        ]);
     }
 
     public function delete($product_id)

@@ -192,7 +192,7 @@
                         </div>
                     </div>
                     <!-- /Search Bar -->
-                   
+
 
 
                     {{-- icon counts --}}
@@ -602,7 +602,8 @@
                 },
                 error: function(xhr) {
                     console.error(xhr);
-                }
+                },
+
             });
         }
 
@@ -628,6 +629,7 @@
                 url: `/white-list/${product_id}`,
                 type: "POST",
                 data: { id: product_id },
+                beforeSend: () => btn.prop('disabled', true) ,
                 success: function(response) {
                     if (response.status === "redirect") {
                         window.location.href = response.url;
@@ -639,7 +641,8 @@
 
                     response.status ? toastr.success('',response.message) : toastr.info('',response.message);
 
-                }
+                },
+                complete: () => btn.prop('disabled', false)
             });
         }
 
@@ -659,14 +662,21 @@
                 url: "{{ route('cart.add') }}",
                 type: "POST",
                 data: { products: products },
+                beforeSend: () => {
+                    btn.prop('disabled', true)
+                },
                 success: function(response) {
-                    if (response.status) {                        let count = getStoredCount("cart_count") + 1;
+                    if (response.status) {
+                        let count = getStoredCount("cart_count") + 1;
                         updateStoredCount("cart_count", "#cart_count, #cart_count_bottom", count);
                     }
 
                     response.status ? toastr.success('',response.message) : toastr.info('',response.message);
 
-                    btn.closest('#btn-message').find('span').html(response.message);
+                    // btn.closest('#btn-message').find('span').html(response.message);
+                },
+                complete: () => {
+                    btn.prop('disabled', false)
                 }
             });
         }
