@@ -5,11 +5,15 @@ namespace App\Providers;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Sub_category;
-use Illuminate\Support\Facades\Cache;
+use App\Models\Translations;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use App\Http\ViewComposers\SubCategoryComposer;
-use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -46,7 +50,15 @@ class AppServiceProvider extends ServiceProvider
         // $this->preloadProductsToCache();
 
         Paginator::useBootstrap();
+
+        if (Schema::hasTable('translations')) {
+            $translations = Translations::all()->mapWithKeys(function ($item) {
+                return [$item->key => $item->toArray()];
+            })->toArray();
+
+            Config::set('translations', $translations);
+        }
     }
 
-   
+
 }

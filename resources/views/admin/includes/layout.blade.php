@@ -423,16 +423,16 @@
                                 </form>
                             </div>
                             <div class="header-grid">
-                                <div class="header-item country">
+                                {{-- <div class="header-item country">
                                     <select class="image-select no-text">
                                         <option data-thumbnail="{{asset('assets/admin/images/country/1.png')}}">ENG</option>
                                         <option data-thumbnail="{{asset('assets/admin/images/country/9.png')}}">JAP</option>
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="header-item button-dark-light">
                                     <i class="icon-moon"></i>
                                 </div>
-                                <div class="popup-wrap noti type-header">
+                                {{-- <div class="popup-wrap noti type-header">
                                     <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                             <span class="header-item">
@@ -503,8 +503,8 @@
                                             <li><a href="#" class="tf-button w-full">View all</a></li>
                                         </ul>
                                     </div>
-                                </div>
-                                <div class="popup-wrap message type-header">
+                                </div> --}}
+                                {{-- <div class="popup-wrap message type-header">
                                     <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                                             <span class="header-item">
@@ -563,7 +563,7 @@
                                             <li><a href="#" class="tf-button w-full">View all</a></li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="header-item button-zoom-maximize">
                                     <div class="">
                                         <i class="icon-maximize"></i>
@@ -574,7 +574,7 @@
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
                                             <span class="header-user wg-user">
                                                 <span class="image">
-                                                    <img src="{{asset('assets/admin/images/avatar/user-1.png')}}" alt="">
+                                                    <img src="{{ auth_helper()->getAvatar() }}" alt="">
                                                 </span>
                                                 <span class="flex flex-column">
                                                     <span class="body-title mb-2">{{auth_helper()->user()->username}}</span>
@@ -610,6 +610,12 @@
                     <!-- main-content -->
                     <div class="main-content">
                         @yield('contents')
+
+                        <!-- bottom-page -->
+                        <div class="bottom-page">
+                            <div class="body-text">Copyright © <?php echo date('Y') ?> r-mekiki.com, All rights reserved.</div>
+                        </div>
+                        <!-- /bottom-page -->
                     </div>
                     <!-- /main-content -->
                 </div>
@@ -621,10 +627,11 @@
     </div>
     <!-- /#wrapper -->
     <script>
-        var logoDark = '{{ asset('assets/admin/images/logo.png') }}';
-        var logoLight = '{{ asset('assets/admin/images/logo.png') }}';
+        var logoDark = "{{ asset('assets/admin/images/logo.png') }}";
+        var logoLight = "{{ asset('assets/admin/images/logo.png') }}";
+
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 
     <!-- Javascript -->
     @yield('script')

@@ -71,7 +71,7 @@
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </a>
                                 <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 white-list-btn"
+                                    class="py-1 common-btn2 white-list-btn @if($product->inWhiteLists()) active @endif"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-bookmark"></i>
                                 </a>
@@ -175,7 +175,7 @@
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </a>
                                 <a href="#"
-                                    class="py-1 common-btn2 white-list-btn"
+                                    class="py-1 common-btn2 white-list-btn @if($product->inWhiteLists()) active @endif"
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-bookmark"></i>
                                 </a>
@@ -274,10 +274,9 @@
                                 </a>
                                 {{-- <small class="py-1 common-btn2 -solid cart-btn "><i class="fa-solid fa-cart-plus"></i></small> --}}
                                 <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 white-list-btn position-relative"
+                                    class="py-1 common-btn2 white-list-btn @if($product->inWhiteLists()) active @endif "
                                     data-id="{{ $product->id }}">
                                     <i class="fa-solid fa-bookmark"></i>
-                                    {{-- <i class="fa-solid fa-check position-absolute top-50 start-50 translate-middle fa-2xs text-white" ></i> --}}
                                 </a>
                             </div>
                         </div>

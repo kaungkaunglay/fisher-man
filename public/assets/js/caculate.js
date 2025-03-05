@@ -60,6 +60,7 @@ function quantityChange(target, value) {
         const add = amount + value;
 
         quanity.val(value >= 1 ? add : sub);
+
         caculating(target);
         setPrice(target);
     })
@@ -130,9 +131,9 @@ function netTotal(addtion) {
 
         for (i = 0; i < cost.length; i++) {
 
-            const priceVal = $(price[i]).text().replace('¥', '').replace(/,/g, ''); 
+            const priceVal = $(price[i]).text().replace('¥', '').replace(/,/g, '');
             const quantityVal = $(quantity[i]).val();
-            const price_value = Number(priceVal) * Number(quantityVal); 
+            const price_value = Number(priceVal) * Number(quantityVal);
             if (addtion) $(cost[i]).text(formatPriceJapanese(price_value));
 
             result += Number($(cost[i]).text().replace('¥', '').replace(/,/g, ''));

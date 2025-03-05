@@ -69,18 +69,13 @@
                     </div>
                 </div>
 
-                
+
 
             <!-- /all-user -->
         </div>
         <!-- /main-content-wrap -->
     </div>
     <!-- /main-content-wrap -->
-    <!-- bottom-page -->
-    <div class="bottom-page">
-        <div class="body-text">Copyright © 2025 r-mekiki.com, All rights reserved.</div>
-    </div>
-    <!-- /bottom-page -->
 @endsection
 @section('script')
     <!-- Javascript -->

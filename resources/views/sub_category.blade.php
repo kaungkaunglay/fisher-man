@@ -112,7 +112,7 @@
                                     </a>
                                     <div class="d-flex gap-2 card-btn m-t-10">
                                         <a href="javascript:void(0);"
-                                            class="py-1 common-btn2 -solid cart-btn @if ($product->inCart()) active @endif"
+                                            class="py-1 common-btn2 -solid cart-btn"
                                             data-id="{{ $product->id }}">
                                             <i class="fa-solid fa-cart-shopping"></i>
                                         </a>
@@ -143,7 +143,7 @@
     <script src="{{ asset('assets/js/price-range.js') }}"></script>
     <script src="{{ asset('assets/js/pagination.js') }}"></script>
     <script src="{{ asset('assets/js/notify.js') }}"></script>
-    
+
     <!-- <script>
         const itemsPerPage = 24;
         const items = document.querySelectorAll(".item-card");

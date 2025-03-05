@@ -6372,9 +6372,9 @@ select.h40 {
   background-color: #1F2027;
 }
 
-[data-menu-background=image-menu-background-1] .section-menu-left {
+/* [data-menu-background=image-menu-background-1] .section-menu-left {
   background: url(../images/bg-menu/img-1.jpg);
-}
+} */
 [data-menu-background=image-menu-background-1] .section-menu-left::before {
   opacity: 0.8;
   background-color: #111;
@@ -6397,9 +6397,9 @@ select.h40 {
   background-color: transparent !important;
 }
 
-[data-menu-background=image-menu-background-2] .section-menu-left {
+/* [data-menu-background=image-menu-background-2] .section-menu-left {
   background-image: url(../images/bg-menu/img-2.jpg);
-}
+} */
 [data-menu-background=image-menu-background-2] .section-menu-left::before {
   opacity: 0.8;
   background-color: #111;
@@ -6422,9 +6422,9 @@ select.h40 {
   background-color: transparent !important;
 }
 
-[data-menu-background=image-menu-background-3] .section-menu-left {
+/* [data-menu-background=image-menu-background-3] .section-menu-left {
   background-image: url(../images/bg-menu/img-3.jpg);
-}
+} */
 [data-menu-background=image-menu-background-3] .section-menu-left::before {
   opacity: 0.8;
   background-color: #111;
@@ -6447,9 +6447,9 @@ select.h40 {
   background-color: transparent !important;
 }
 
-[data-menu-background=image-menu-background-4] .section-menu-left {
+/* [data-menu-background=image-menu-background-4] .section-menu-left {
   background-image: url(../images/bg-menu/img-4.jpg);
-}
+} */
 [data-menu-background=image-menu-background-4] .section-menu-left::before {
   opacity: 0.8;
   background-color: #111;
@@ -6472,9 +6472,9 @@ select.h40 {
   background-color: transparent !important;
 }
 
-[data-menu-background=image-menu-background-5] .section-menu-left {
+/* [data-menu-background=image-menu-background-5] .section-menu-left {
   background-image: url(../images/bg-menu/img-5.jpg);
-}
+} */
 [data-menu-background=image-menu-background-5] .section-menu-left::before {
   opacity: 0.8;
   background-color: #111;

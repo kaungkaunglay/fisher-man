@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="{{ asset('assets/admin/icon/style.css') }}">
 @endsection
 @section('contents')
-@include('messages.index')
+{{-- @include('messages.index') --}}
 
 <!-- main-content-wrap -->
 <div class="main-content-inner">
@@ -166,11 +166,6 @@
     <!-- /product-list -->
 </div>
 <!-- /main-content-wrap -->
-<!-- bottom-page -->
-<div class="bottom-page">
-    <div class="body-text">Copyright © 2025 r-mekiki.com, All rights reserved.</div>
-</div>
-<!-- /bottom-page -->
 @endsection
 @section('script')
 <!-- Javascript -->
