@@ -97,14 +97,12 @@
                                     </a>
                                     <div class="d-flex gap-2 card-btn m-t-10">
                                         <a href="javascript:void(0);"
-                                            class="py-1 common-btn2 -solid cart-btn
-                                    @if ($product->inCart()) active @endif"
+                                            class="py-1 common-btn2 -solid cart-btn"
                                             data-id="{{ $product->id }}">
                                             <i class="fa-solid fa-cart-shopping"></i>
                                         </a>
                                         <a href="#"
-                                            class="py-1 common-btn2 white-list-btn
-                                    @if ($product->inWhiteLists()) active @endif"
+                                            class="py-1 common-btn2 white-list-btn @if ($product->inWhiteLists()) active @endif"
                                             data-id="{{ $product->id }}">
                                             <i class="fa-solid fa-bookmark"></i>
                                         </a>

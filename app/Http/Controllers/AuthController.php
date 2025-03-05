@@ -194,7 +194,12 @@ class AuthController extends Controller
 
                 $isSeller = $user->roles->first()->id == 2;
 
-                return response()->json(['status' => true, 'message' => 'login successfull', 'user' => $user , 'isSeller' => $isSeller ]);
+                return response()->json([
+                    'status' => true,
+                    'message' => 'login successfull',
+                    'user' => $user ,
+                    'redirect' =>redirect()-> intended(route( $isSeller ? 'admin.index' : 'home'))->getTargetUrl()
+                ]);
             }
 
             return response()->json(['status' => false, 'message' => 'Username or Password is Incorrect']);

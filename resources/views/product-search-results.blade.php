@@ -50,9 +50,13 @@
                 <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
                     {{ $product->description }}
                 </a>
-                <div class="d-flex card-btn m-t-10">
-                    <!-- <a href="#" class="product-btn"><i class="fa-solid fa-cart-shopping"></i></a> -->
-                    <a href="javascript:void(0);" class="w-100 py-1 common-btn white-list-btn" data-id="{{ $product->id }}"><i class="fa-solid fa-bookmark"></i></a>
+                <div class="d-flex gap-2 card-btn m-t-10">
+                    <a href="javascript:void(0);" class="py-1 common-btn2 -solid cart-btn" data-id="{{ $product->id }}">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="py-1 common-btn2 white-list-btn @if ($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}">
+                        <i class="fa-solid fa-bookmark"></i>
+                    </a>
                 </div>
 
             </div>
@@ -72,50 +76,13 @@
 <script defer src="{{ asset('assets/js/loadmore.js') }}"></script>
 <script defer src="{{ asset('assets/js/view-list.js') }}"></script>
 <script defer src="{{ asset('assets/js/words-limit.js') }}"></script>
-<script>
-    $(document).ready(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
+
+@endsection
+@section('script')
+    <script>
+        $(document).ready(() => {
+            handleAddToCartBtn('cart-btn');
+            handleAddToWhiteListBtn('white-list-btn');
         });
-
-
-        $('.white-list-btn').click(function(e) {
-            e.preventDefault();
-            const getid = $(this).data('id');
-            $.ajax({
-                url: "{{ route('whitelist-count') }}",
-                method: 'GET',
-                success: function(response) {
-                    $('#white_list_count').text(response.white_lists_count);
-                },
-                error: function(xhr) {
-                    console.error(xhr);
-                }
-            });
-            $.ajax({
-                url: `/white-list/${getid}`,
-                type: "POST",
-                data: {
-                    id: getid
-                },
-                success: function(data) {
-                    if (data.status) {
-
-                    }
-                }
-            });
-
-        });
-
-        // disable btn
-        $('.white-list-btn').click((ev) => {
-            ev.preventDefault();
-            const target = ev.currentTarget;
-            $(target).addClass('disable');
-        })
-    });
-</script>
-
+    </script>
 @endsection

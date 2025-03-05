@@ -1,3 +1,10 @@
+/**
+ *
+ * Don't need for currently
+ *
+ * */
+
+/*
 window.console =
   window.console ||
   (function () {
@@ -159,7 +166,7 @@ $(document).ready(function () {
                                     '<div class="item color-7047D6"></div>' +
                                     '<div class="item color-189D72"></div>' +
                                     '<div class="more-select">' +
-                                        '<img src="images/bg-menu/more.png" alt="">' +
+                                        '<img src="'+bg_image_1+'" alt="">' +
                                     '</div>' +
                                 '</div>' +
                             '</fieldset>' +
@@ -180,19 +187,19 @@ $(document).ready(function () {
                                 '<div class="body-title mb-10">Menu with background image</div>' +
                                 '<div class="select-colors-theme image-menu-background mb-10">' +
                                     '<div class="item image img-1">' +
-                                        '<img src="images/bg-menu/img-1.jpg" alt="">' +
+                                        '<img src="{{ asset(`assets/admin/images/bg-menu/img-1.jpg`)}}" alt="">' +
                                     '</div>' +
                                     '<div class="item image img-2">' +
-                                        '<img src="images/bg-menu/img-2.jpg" alt="">' +
+                                        '<img src="{{ asset(`assets/admin/images/bg-menu/img-2.jpg`)}}" alt="">' +
                                     '</div>' +
                                     '<div class="item image img-3">' +
-                                        '<img src="images/bg-menu/img-3.jpg" alt="">' +
+                                        '<img src="{{ asset(`assets/admin/images/bg-menu/img-3.jpg`)}}" alt="">' +
                                     '</div>' +
                                     '<div class="item image img-4">' +
-                                        '<img src="images/bg-menu/img-4.jpg" alt="">' +
+                                        '<img src="{{ asset(`assets/admin/images/bg-menu/img-4.jpg`)}}" alt="">' +
                                     '</div>' +
                                     '<div class="item image img-5">' +
-                                        '<img src="images/bg-menu/img-5.jpg" alt="">' +
+                                        '<img src="{{ asset(`assets/admin/images/bg-menu/img-5.jpg`)}}" alt="">' +
                                     '</div>' +
                                 '</div>' +
                             '</fieldset>' +
@@ -203,7 +210,7 @@ $(document).ready(function () {
             '</div>' +
         '</div>' +
     '</div>';
-    
+
   $("#wrapper").append(e);
 });
 
@@ -226,4 +233,4 @@ window.console =
         function () {};
     return x;
   })();
-
+*/

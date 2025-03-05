@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
                             </label>
-                            <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input" accept="image/*">
+                            <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input" accept="image/*" disabled>
                         </div>
                         <!-- /profile img -->
 

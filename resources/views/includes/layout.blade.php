@@ -483,18 +483,18 @@
 
             toastr.options = {
                 "timeOut": "3000",
-                "extendedTimeOut": "500", 
+                "extendedTimeOut": "500",
                 "progressBar": true,
                 "onShown": function () {
-                    var toast = $(this); 
+                    var toast = $(this);
                     toast.hover(
-                        function () { 
-                            toastr.clear()  
+                        function () {
+                            toastr.clear()
                         }
                     );
                 }
             };
-            
+
             //dropdown trigger
             $('.btn-login').click(() => {
                 $('.dropdown').toggleClass('active');
@@ -626,9 +626,10 @@
                     if (response.status === "redirect") {
                         window.location.href = response.url;
                     } else if (response.status) {
+                        btn.addClass('active');
                         let count = getStoredCount("white_list_count") + 1;
                         updateStoredCount("white_list_count", ".white_list_count", count);
-                    } 
+                    }
 
                     response.status ? toastr.success('',response.message) : toastr.info('',response.message);
 
@@ -655,10 +656,10 @@
                 success: function(response) {
                     if (response.status) {                        let count = getStoredCount("cart_count") + 1;
                         updateStoredCount("cart_count", "#cart_count, #cart_count_bottom", count);
-                    } 
+                    }
 
                     response.status ? toastr.success('',response.message) : toastr.info('',response.message);
-                    
+
                     btn.closest('#btn-message').find('span').html(response.message);
                 }
             });
