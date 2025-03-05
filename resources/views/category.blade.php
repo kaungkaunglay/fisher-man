@@ -49,41 +49,45 @@
             
                                 <!-- card items list start -->
                                 <div class="card-list" id="view-list">
-                                    @foreach ($subcategory->products->take(4) as $product)
-                                        @if ($product->status == 'approved')
-                                            <div class="item-card">
-                                                <a href="{{ route('product.show', $product->id) }}" class="right">
-                                                    <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
-                                                        alt="{{ $product->name }}">
-                                                </a>
-                                                <div class="left pt-3">
-                                                    <p class="price">¥{{ number_format($product->product_price) }}</p>
-                                                    <div class="title-category">
-                                                        <a href="{{ route('sub-category.show', $product->subCategory->id) }}"
-                                                            class="menu-category">{{ $product->subCategory->name }}</a>
-                                                        <h3 class="title">{{ $product->name }}</h3>
-                                                    </div>
-                                                    <a href="{{ route('product.show', $product->id) }}"
-                                                        class="txt m-b-10 description">
-                                                        {{ $product->description }}
+                                    @if ($subcategory->products->isEmpty())
+                                        <h6 class="txt-primary fw-bold mb-3">このサブカテゴリには商品がありません</h6>
+                                    @else
+                                        @foreach ($subcategory->products->take(4) as $product)
+                                            @if ($product->status == 'approved')
+                                                <div class="item-card">
+                                                    <a href="{{ route('product.show', $product->id) }}" class="right">
+                                                        <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
+                                                            alt="{{ $product->name }}">
                                                     </a>
-                                                    <div class="d-flex gap-2 card-btn m-t-10">
-                                                        <a href="javascript:void(0);"
-                                                            class="py-1 common-btn2 -solid cart-btn "
-                                                            data-id="{{ $product->id }}">
-                                                            <i class="fa-solid fa-cart-shopping"></i>
+                                                    <div class="left pt-3">
+                                                        <p class="price">¥{{ number_format($product->product_price) }}</p>
+                                                        <div class="title-category">
+                                                            <a href="{{ route('sub-category.show', $product->subCategory->id) }}"
+                                                                class="menu-category">{{ $product->subCategory->name }}</a>
+                                                            <h3 class="title">{{ $product->name }}</h3>
+                                                        </div>
+                                                        <a href="{{ route('product.show', $product->id) }}"
+                                                            class="txt m-b-10 description">
+                                                            {{ $product->description }}
                                                         </a>
-                                                        <a href="javascript:void(0);"
-                                                            class="py-1 common-btn2 white-list-btn
-                                                            @if ($product->inWhiteLists()) active @endif"
-                                                            data-id="{{ $product->id }}">
-                                                            <i class="fa-solid fa-bookmark"></i>
-                                                        </a>
+                                                        <div class="d-flex gap-2 card-btn m-t-10">
+                                                            <a href="javascript:void(0);"
+                                                                class="py-1 common-btn2 -solid cart-btn "
+                                                                data-id="{{ $product->id }}">
+                                                                <i class="fa-solid fa-cart-shopping"></i>
+                                                            </a>
+                                                            <a href="javascript:void(0);"
+                                                                class="py-1 common-btn2 white-list-btn
+                                                                @if ($product->inWhiteLists()) active @endif"
+                                                                data-id="{{ $product->id }}">
+                                                                <i class="fa-solid fa-bookmark"></i>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 </div>
                                 <!-- card items list end -->
                                 <div class="see-more-box d-flex m-t-b-20 justify-content-center justify-content-lg-end mt-5">
