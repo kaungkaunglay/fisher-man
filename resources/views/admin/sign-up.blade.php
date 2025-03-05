@@ -47,7 +47,7 @@
             <div class="wrap-login-page sign-up">
                 <div class="flex-grow flex flex-column justify-center gap30">
                     <a href="index.html" id="site-logo-inner">
-                        
+
                     </a>
                     <div class="login-box">
                         <div>
@@ -148,6 +148,4 @@
 
 </body>
 
-
-<!-- Mirrored from themesflat.co/html/remos/sign-up.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 22 Jan 2025 01:50:16 GMT -->
 </html>

@@ -212,7 +212,7 @@
 
                         <!-- button group -->
                         <div class="d-flex justify-content-end gap-4">
-                            <button type="submit" class="save d-none">
+                            <button type="button" class="save d-none">
                                 <i class="fa-solid fa-save fs-5 text-white"></i>
                             </button>
                             <button class="edit">
@@ -233,7 +233,7 @@
                     <div class="form-group">
                         <label class="w-25" for="name">{{ trans_lang('name') }}</label>:
                         <output class="form-output" for="name">{{ auth_helper()->user()->username ?? '' }}</output>
-                        <input name="name" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="name" 
+                        <input name="name" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="name"
                         value="{{ auth_helper()->user()->username ?? '' }}" disabled>
                         <span class="invalid-feedback"></span>
                     </div>
@@ -242,7 +242,7 @@
                     <div class="form-group">
                         <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
                         <output class="form-output" for="first_phone">{{ auth_helper()->user()->first_phone ?? '' }}</output>
-                        <input type="tel" name="first_phone" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="first_phone" 
+                        <input type="tel" name="first_phone" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="first_phone"
                         value="{{ auth_helper()->user()->first_phone ?? '' }}" disabled>
                         <span class="invalid-feedback"></span>
                     </div>
@@ -251,7 +251,7 @@
                     <div class="form-group">
                         <label class="w-25" for="zip">{{ trans_lang('postal') }}</label>:
                         <output class="form-output" for="zip">1105</output>
-                        <input type="number" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="zip" 
+                        <input type="number" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="zip"
                         value="1105" disabled>
                         <span class="invalid-feedback"></span>
                     </div>

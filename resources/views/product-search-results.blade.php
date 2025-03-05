@@ -89,50 +89,13 @@
 <script defer src="{{ asset('assets/js/loadmore.js') }}"></script>
 <script defer src="{{ asset('assets/js/view-list.js') }}"></script>
 <script defer src="{{ asset('assets/js/words-limit.js') }}"></script>
-<script>
-    $(document).ready(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
+
+@endsection
+@section('script')
+    <script>
+        $(document).ready(() => {
+            handleAddToCartBtn('cart-btn');
+            handleAddToWhiteListBtn('white-list-btn');
         });
-
-
-        $('.white-list-btn').click(function(e) {
-            e.preventDefault();
-            const getid = $(this).data('id');
-            $.ajax({
-                url: "{{ route('whitelist-count') }}",
-                method: 'GET',
-                success: function(response) {
-                    $('#white_list_count').text(response.white_lists_count);
-                },
-                error: function(xhr) {
-                    console.error(xhr);
-                }
-            });
-            $.ajax({
-                url: `/white-list/${getid}`,
-                type: "POST",
-                data: {
-                    id: getid
-                },
-                success: function(data) {
-                    if (data.status) {
-
-                    }
-                }
-            });
-
-        });
-
-        // disable btn
-        $('.white-list-btn').click((ev) => {
-            ev.preventDefault();
-            const target = ev.currentTarget;
-            $(target).addClass('disable');
-        })
-    });
-</script>
-
+    </script>
 @endsection

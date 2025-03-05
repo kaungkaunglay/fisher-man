@@ -97,12 +97,9 @@
                     processData: false,
                     success: function (response) {
                         if (response.status == true) {
-                            if(response.isSeller){
-                                // console.log("I am seller")
-                                window.location.href = "/admin"
-                            } else {
-                                // console.log("I am buyer")
-                                window.location.href = "{{ route('home') }}";
+                            if(response.redirect)
+                            {
+                                window.location.href = response.redirect;
                             }
                         } else {
 

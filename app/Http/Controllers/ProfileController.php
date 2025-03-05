@@ -132,6 +132,7 @@ class ProfileController extends Controller
 
         $user = AuthHelper::user();
 
+
         $user->update([
             'address' => $request->address ?? $user->address,
             'first_phone' => $request->first_phone ?? $user->first_phone,

@@ -1,7 +1,7 @@
 ; (function ($) {
 
     "use strict";
-                
+
     var tflight =$('#logo_header').data('light');
     var tfdark =$('#logo_header').data('dark');
 
@@ -20,7 +20,7 @@
                 $("#logo_header_mobile").attr({src:tfdark});
             } else {
                 $("body").toggleClass("dark-theme", false);
-                localStorage.toggled = "light-theme";   
+                localStorage.toggled = "light-theme";
                 $(".theme-dark-light").find(".light").find("input").prop("checked", true);
                 $("#logo_header").attr({src:tflight});
                 $("#logo_header_mobile").attr({src:tflight});
@@ -133,7 +133,7 @@
         $(".form-theme-style .button-clear-select").on("click", function () {
             $("body").removeClass("dark-theme");
             $(".theme-dark-light").find(".light").find("input").prop("checked", true);
-            localStorage.toggled = "light-theme";   
+            localStorage.toggled = "light-theme";
             $(".layout-wrap").removeClass("menu-style-icon");
             $(".layout-wrap").removeClass("menu-style-icon-default");
             $(".menu-style").find(".menu-click").prop("checked", true);

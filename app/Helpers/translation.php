@@ -6,8 +6,9 @@ if(!function_exists('trans_lang')){
     function trans_lang($key)
     {
         $lang = app()->getLocale() ?? 'jp';
-        $translation = Translations::where('key', $key)->first();
-        return $translation ? $translation->$lang : $key;
+        $translations = config('translations');
+
+        return $translations[$key][$lang] ?? $key;
     }
 }
 

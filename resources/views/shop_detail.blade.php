@@ -14,7 +14,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 bg-transparent">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans_lang('home') }}</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ trans_lang('shops') }}{{ trans_lang('detail') }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ trans_lang('shop') }} {{ trans_lang('detail') }}</li>
                 </ol>
             </nav>
 
@@ -32,16 +32,29 @@
 
                     <img src="{{ asset('assets/images/avatars/' . $shop->avatar) }}" class="rounded" alt="Shop avatar">
                     <div class="mt-3">
-                        <p class="mb-2 text-center d-flex justify-content-center">
-                            <span>{{ trans_lang('shops') }}{{ trans_lang('name') }} : &nbsp;</span>
-                            <span class="text-muted">{{ $shop->shop_name }}</span>
-                        </p>
-                        <p class="mb-2 text-center d-flex justify-content-center">
-                            <span>{{ trans_lang('username') }} : &nbsp;</span>
-                            <span class="text-muted">{{ $shop->username }}</span>
-                        </p>
+                        <div class="mb-2 text-center d-flex ">
+                            {{-- <span >{{ trans_lang('shop') }} {{ trans_lang('name') }} : &nbsp;</span>
+                            <span class="text-muted">{{ $shop->shop_name }}</span> --}}
+
+                            <div class="me-1">
+                                <span class="fs-6" >{{ trans_lang('shop') }} {{ trans_lang('name') }} : </span>
+                            </div>
+                            <div class="me-1">
+                                <span class="fs-6 text-muted" >{{ $shop->shop_name }}</span>
+                            </div>
+                        </div>
+                        <div class="mb-2 text-center d-flex">
+                            {{-- <span>{{ trans_lang('username') }} : &nbsp;</span>
+                            <span class="text-muted">{{ $shop->username }}</span> --}}
+                            <div class="me-1">
+                                <span class="fs-6" >{{ trans_lang('username') }} : </span>
+                            </div>
+                            <div class="me-1">
+                                <span class="fs-6 text-muted" >{{ $shop->username }}</span>
+                            </div>
+                        </div>
                         <div class="d-grid gap-2">
-                            <a class="common-btn -solid" href="{{ route('seller.contact', $shop->user_id) }}"><i
+                            <a class="common-btn " href="{{ route('seller.contact', $shop->user_id) }}"><i
                                     class="fas fa-envelope me-2"></i>{{ trans_lang('contact') }}</a>
                         </div>
                     </div>
@@ -79,11 +92,11 @@
 
                                 {{-- About Tab --}}
                                 <div class="tab-pane fade show active" id="home" role="tabpanel">
-                                    <h4 class="p-2 border-bottom border-2 fw-bold">{{ trans_lang('about') }}{{ trans_lang('shops') }}</h4>
+                                    <h4 class="p-2 border-bottom border-2 fw-bold">{{ trans_lang('about') }} {{ trans_lang('shop') }}</h4>
                                     <p class="p-2">{{ $shop->description }}</p>
                                     <div class="row mt-4">
                                         <div>
-                                            <h5 class="p-2 border-bottom border-2 fw-bold">{{ trans_lang('shops') }}{{ trans_lang('detail') }}</h5>
+                                            <h5 class="p-2 border-bottom border-2 fw-bold">{{ trans_lang('shop') }} {{ trans_lang('detail') }}</h5>
                                             <ul class="list-unstyled p-2">
                                                 <li><i class="fas fa-phone text-primary mb-3 me-2"></i>
                                                     {{ $shop->phone_number }}
@@ -176,7 +189,7 @@
                                                                 <i class="fa-solid fa-cart-shopping"></i>
                                                             </a>
                                                             <a href="javascript:void(0);"
-                                                                class="py-1 common-btn2 white-list-btn"
+                                                                class="py-1 common-btn2 white-list-btn @if($product->inWhiteLists()) active @endif"
                                                                 data-id="{{ $product->id }}">
                                                                 <i class="fa-solid fa-bookmark"></i>
                                                             </a>
@@ -379,7 +392,7 @@
             $(".sort-option").on("click", function (e) {
             e.preventDefault();
             let sortType = $(this).data("sort");
-            
+
             $.ajax({
                 url: "{{ route('products.sort') }}",
                 type: "GET",
