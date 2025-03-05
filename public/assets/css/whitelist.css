@@ -5,9 +5,15 @@ a{
 .scroller {
   position: relative;
   max-height: 60vh;
-  overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto; /* Show scrollbar only when content overflows */
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
 }
+/* Hide scrollbar for Webkit-based browsers */
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
 
 
 .table thead,

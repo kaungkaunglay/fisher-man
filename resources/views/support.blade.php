@@ -173,11 +173,10 @@
                             if (response.status == true) {
                                 // window.location.href = "{{ route('profile_user') }}";
                                 $('#success-message').text(response.message).removeClass('d-none').addClass('d-block');
-                                // window.location.reload();
+                                // form clear
+                                $('#wishlistForm')[0].reset();
                             } else {
                                 var errors = response.errors ?? {};
-
-
 
                                 var fields = [
                                     'wish_name',
@@ -220,8 +219,8 @@
                             if (response.status == true) {
                                 // Display success message
                                 $('#success-message').text(response.message).removeClass('d-none').addClass('d-block');
-                                // Optionally, clear the form fields
-                                // $('#contact-form')[0].reset();
+                                // Clear form fields
+                                $('#contact-form')[0].reset();
                             } else {
                                 var errors = response.errors ?? {};
 
