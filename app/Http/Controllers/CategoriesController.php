@@ -11,7 +11,7 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        $categories = Category::paginate(10);
+        $categories = Category::all();
         return view('admin.categories', compact('categories'));
     }
 
@@ -37,7 +37,7 @@ class CategoriesController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $folderPath = public_path('storage/categories');
+        $folderPath = public_path('assets/categories');
 
         if (!file_exists($folderPath)) {
             mkdir($folderPath, 0755, true);
@@ -51,7 +51,7 @@ class CategoriesController extends Controller
 
         Category::create([
             'category_name' => $request->category_name,
-            'image' => 'storage/categories/' . $imageName,
+            'image' => 'assets/categories/' . $imageName,
         ]);
 
         return redirect()->route('admin.categories')->with('success', 'Category created successfully.');
@@ -72,7 +72,7 @@ class CategoriesController extends Controller
         $category->category_name = $request->category_name;
 
         if ($request->hasFile('image')) {
-            $folderPath = public_path('storage/categories');
+            $folderPath = public_path('assets/categories');
 
             if (!file_exists($folderPath)) {
                 mkdir($folderPath, 0755, true);
@@ -88,7 +88,7 @@ class CategoriesController extends Controller
 
             $image->move($folderPath, $imageName);
 
-            $category->image = 'storage/categories/' . $imageName;
+            $category->image = 'assets/categories/' . $imageName;
         }
 
         $category->save();
