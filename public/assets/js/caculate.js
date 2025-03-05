@@ -52,14 +52,17 @@ function quantityChange(target, value) {
     $(target).click((ev) => {
 
         const target = ev.currentTarget;
-        const quanity = $(target).siblings('.quantity-value');
-        const amount = Number(quanity.val());
+        // const quanity = $(target).siblings('.quantity-value');
+        // const amount = Number(quanity.val());
 
         // for only sepcific quantity value;
-        const sub = amount > 1 ? amount + value : 1;
-        const add = amount + value;
+        // const sub = amount > 1 ? amount + value : 1;
+        // const add = amount + value;
 
-        quanity.val(value >= 1 ? add : sub);
+
+        // quanity.val(value >= 1 ? add : sub);
+
+        // quanity.val(parseInt(sessionStorage.getItem(key)) || 0);
 
         caculating(target);
         setPrice(target);
@@ -142,4 +145,30 @@ function netTotal(addtion) {
         total.text(formatPriceJapanese(result));
     })
 }
+
+function getStoreCount(cur, value) {
+
+    const product_id = cur.data('id');
+
+    let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+
+    let product = cart.find(item => item.product_id === product_id);
+
+    let quantity = product ? product.quantity : 0;
+    quantity += value;
+
+    quantity = Math.max(1, quantity);
+
+    $(cur).siblings('.quantity-value').val(quantity);
+
+    product.quantity = quantity;
+
+    cart.push({
+        product_id: product_id,
+        quantity: quantity
+    });
+
+    sessionStorage.setItem('cart', JSON.stringify(cart));
+}
+
 

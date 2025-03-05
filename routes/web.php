@@ -228,6 +228,7 @@ Route::get('/email/success/verify',[EmailVerificationController::class,'emailVer
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::post('/cart/add/login',[CartController::class,'addToCartWithLogin'])->name('cart.add.login');
+Route::post('/cart/add-qty', [CartController::class, 'addQty'])->name('cart.add_qty');
 Route::delete('/cart/delete/{product_id}', [CartController::class, 'delete'])->name('cart.delete');
 
 
