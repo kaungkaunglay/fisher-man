@@ -122,18 +122,18 @@
                                             </div>
                                             <div class="dropdown">
                                                 <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                                aria-expanded="false">{{trans_lang('sortby')}}</button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item sort-option"
-                                                        href="#" data-sort="low_to_high">{{trans_lang('price_l_h')}}</a></li>
-                                                <li><a class="dropdown-item sort-option"
-                                                        href="#" data-sort="high_to_low">{{trans_lang('price_h_l')}}</a>
-                                                </li>
-                                                <li><a class="dropdown-item sort-option" href="#" data-sort="name_asc">{{trans_lang('name_a_z')}}</a></li>
-                                                <li><a class="dropdown-item sort-option" href="#" data-sort="name_desc">{{trans_lang('name_z_a')}}</a></li>
-                                                <li><a class="dropdown-item sort-option"
-                                                        href="#" data-sort="latest">{{trans_lang('latest')}}</a></li>
-                                            </ul>
+                                                    aria-expanded="false">{{trans_lang('sortby')}}</button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item"
+                                                            href="{{ route('home', ['sort_by' => 'price_asc']) }}">{{trans_lang('price_l_h')}}</a></li>
+                                                    <li><a class="dropdown-item"
+                                                            href="{{ route('home', ['sort_by' => 'price_desc']) }}">{{trans_lang('price_h_l')}}</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">{{trans_lang('name_a_z')}}</a></li>
+                                                    <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">{{trans_lang('name_z_a')}}</a></li>
+                                                    <li><a class="dropdown-item"
+                                                            href="{{ route('home', ['sort_by' => 'latest']) }}">{{trans_lang('latest')}}</a></li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
