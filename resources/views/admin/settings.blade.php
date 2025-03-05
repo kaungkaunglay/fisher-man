@@ -144,7 +144,7 @@
                                         <div class="drop-zone" id="dropZone">
                                             <span>Choose Banner Images</span>
                                             <input type="file" id="image-upload" name="site_banner_images[]" class="custom-file-input d-none"  multiple>
-                                           
+
                                         </div>
                                     </div>
                                     <div class="image-preview" id="image-preview">
@@ -156,7 +156,7 @@
                                     </div>
                     </fieldset>
 
-                  
+
                     {{-- <fieldset>
                         <div class="body-title mb-10">Social Links</div>
                         <div id="social-links">
@@ -181,9 +181,6 @@
                 </div>
             </form>
         </div>
-    </div>
-    <div class="bottom-page">
-        <div class="body-text">Copyright © 2025 r-mekiki.com, All rights reserved.</div>
     </div>
 @endsection
 @section('script')

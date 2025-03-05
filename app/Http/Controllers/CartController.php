@@ -17,14 +17,14 @@ class CartController extends Controller
             $carts = AuthHelper::user()->carts;
             $carts->load('product');
 
-            $sessionCart = $carts->map(function ($cart) {
-                return [
-                    'id' => $cart->product_id,
-                    'quantity' => $cart->quantity,
-                ];
-            })->toArray();
+            // $sessionCart = $carts->map(function ($cart) {
+            //     return [
+            //         'id' => $cart->product_id,
+            //         'quantity' => $cart->quantity,
+            //     ];
+            // })->toArray();
 
-            session()->put('cart', $sessionCart);
+            // session()->put('cart', $sessionCart);
 
         } else {
             $products = session('cart', []);

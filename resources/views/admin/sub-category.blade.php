@@ -51,7 +51,7 @@
                 @if(isset($subcategory))
                     @method('PUT')
                 @endif
-                
+
                 <fieldset>
                     <div class="body-title">{{trans_lang('select')}}{{trans_lang('category')}}<span class="tf-color-1">*</span></div>
                     <select name="category_id" class="" >
@@ -68,7 +68,7 @@
                     <div class="body-title">{{trans_lang('sub_category')}}{{trans_lang('name')}} <span class="tf-color-1">*</span></div>
                     <input class="flex-grow" type="text" placeholder="サブカテゴリー名前" name="name" value="{{ old('name', isset($subcategory) ? $subcategory->name : '') }}" >
                 </fieldset>
-                
+
                 <fieldset>
                     <div class="body-title">{{trans_lang('upload_img')}} <span class="tf-color-1">*</span></div>
                     <div class="upload-image flex-grow">
@@ -93,7 +93,7 @@
                         </div>
                     </div>
                 </fieldset>
-                
+
                 <div class="bot">
                     <div></div>
                     <button class="tf-button w208" type="submit">{{ isset($subcategory) ? '更新する' : '保存する' }}</button>
@@ -103,9 +103,6 @@
     </div>
 </div>
 
-<div class="bottom-page">
-    <div class="body-text">Copyright © 2025 r-mekiki.com, All rights reserved.</div>
-</div>
 @endsection
 
 @section('script')
