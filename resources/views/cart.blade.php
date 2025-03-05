@@ -187,7 +187,7 @@
                             <span class="mb-3 text-danger" id="message"></span>
                         </div>
                         <div class="form-group d-flex flex-column mt-2 mx-auto">
-                            <div class="g-recaptcha" data-sitekey="{{env('RECAPTCHA_SECRET_KEY')}}"></div>
+                            <div class="g-recaptcha" data-sitekey="{{env('RECAPTCHA_SITE_KEY')}}"></div>
                             <span class="invalid-feedback mt-1"></span>
                         </div>
                         <button type="submit" class="common-btn -solid mx-auto mt-5 rounded-pill w-100">Login</button>

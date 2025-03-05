@@ -331,28 +331,35 @@
                         <!-- address -->
                         <div class="d-flex form-group">
                             <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
-                            <output class="form-output" for="address">{{ $user->address }}</output>
-                            <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea>
-                            <span class="invalid-feedback"></span>
+                                <div>
+                                    <output class="form-output" for="address">{{ $user->address }}</output>
+                                    <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea>
+                                    <span class="invalid-feedback"></span>
+                                </div>
                         </div>
 
                         <!-- phone-number link -->
                         <div class="d-flex align-items-start form-group">
                             <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
                             <div class="ms-1 d-flex flex-column phone-no-container">
-                                <a href="tel:">
-                                    <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
-                                </a>
-                                <input type="tel" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none"
-                                    id="first_phone" value="{{ $user->first_phone }}" disabled>
-                                <a href="tel:">
-                                    <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
-                                </a>
-                                <input type="tel" name="second_phone" class="p-1 mt-2 border-bottom border-2 d-none"
-                                    value="{{ $user->second_phone }}" id="second_phone" disabled>
-                                <span class="invalid-feedback"></span>
+                                <div>
+
+                                    <a href="tel:">
+                                        <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
+                                    </a>
+                                    <input type="tel" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none"
+                                        id="first_phone" value="{{ $user->first_phone }}" disabled>
+                                    <span class="invalid-feedback"></span>
+                                </div>    
+                                <div>
+                                    <a href="tel:">
+                                        <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
+                                    </a>
+                                    <input type="tel" name="second_phone" class="p-1 mt-2 border-bottom border-2 d-none"
+                                        value="{{ $user->second_phone }}" id="second_phone" disabled>
+                                    <span class="invalid-feedback"></span>
+                                </div>
                             </div>
-                            <span class="invalid-feedback"></span>
                         </div>
 
                     </div>

@@ -31,11 +31,13 @@ class AuthController extends Controller
         return view('login');
     }
     public function register_store(Request $request){
+        logger($request->all() );
         $messages = [
             'username.required' => 'The username field is required.',
             'username.min' => 'The username must be at least 4 characters.',
             'username.max' => 'The username may not be greater than 12 characters.',
             'username.unique' => 'The username has already been taken.',
+            'username.regex' => 'The username may only contain letters and numbers.',
             'email.required' => 'The email field is required.',
             'email.email' => 'The email must be a valid email address.',
             'email.unique' => 'The email has already been taken.',
@@ -64,7 +66,13 @@ class AuthController extends Controller
         ];
 
         $validator = Validator::make($request->all(), [
-            'username' => 'required|min:4|max:12|unique:users,username',
+            'username' => [
+                'required',
+                'min:4',
+                'max:20',
+                'unique:users,username',
+                'regex:/^[a-zA-Z0-9]+$/'
+            ],
             'email' => 'required|email|unique:users,email',
             'password' => [
                 'required',
@@ -102,8 +110,7 @@ class AuthController extends Controller
                     $errors['first_phone'] = 'Invalid phone number.';
             }
         }
-
-        // dd($request->input(''));
+      
         if($request->input('second_phone') != null ){
             $request->merge([
                 'second_phone' => $request->input('second_phone_extension') . $request->input('second_phone'),

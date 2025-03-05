@@ -168,25 +168,31 @@
 
 
                     <!-- Search Bar -->
-                    <div class="ms-2 position-relative mt-3 mt-md-0 main-search-bar w-100">
-                        <form action="{{ route('products.search') }}" method="get">
-                            <div class="input-group w-100">
-                                <input type="text" class="form-control bg-second search-bar" id="search"
-                                    placeholder="{{ trans_lang('search_products') }}" name="search_key">
-                                <button type="submit" class="bg-main text-white magnifying-glass">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </button>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-8 col-lg-8">
+                                <div class="ms-2 position-relative mt-3 mt-md-0 main-search-bar w-100">
+                                    <form action="{{ route('products.search') }}" method="get">
+                                        <div class="input-group w-100">
+                                            <input type="text" class="form-control bg-second search-bar" id="search"
+                                                placeholder="{{ trans_lang('search_products') }}" name="search_key">
+                                            <button type="submit" class="bg-main text-white magnifying-glass">
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+
+                                    <!-- Search Box -->
+                                    <div class="search-result-list position-absolute border p-2 rounded-3 shadow" id="product-list">
+                                        <!-- Content here -->
+                                    </div>
+                                    <!-- /Search Box -->
+                                </div>
                             </div>
-                        </form>
-
-                        <!-- Search Box -->
-                        <div class="search-result-list position-absolute border p-2 rounded-3 shadow" id="product-list">
-
                         </div>
-                        <!-- /Search Box -->
-
                     </div>
                     <!-- /Search Bar -->
+                   
 
 
                     {{-- icon counts --}}

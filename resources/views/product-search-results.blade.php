@@ -36,32 +36,45 @@
     <div class="card-list" id="view-list">
         @foreach ($products as $product)
         @if ($product->status == 'approved')
-        <div class="item-card">
-            <a href="{{ route('product.show', $product->id) }}" class="right">
-                <img src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
-                    alt="{{ $product->name }}">
-            </a>
-            <div class="left">
-                <p class="price m-t-b-10">¥{{ number_format($product->product_price) }}</p>
-                <div class="title-category">
-                    <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
-                    <h3 class="title m-t-b-10">{{ $product->name }}</h3>
-                </div>
-                <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
-                    {{ $product->description }}
+            <div class="item-card mb-2">
+                <a href="{{ route('product.show', $product->id) }}" class="right">
+                    <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
+                        alt="{{ $product->name }}">
                 </a>
-                <div class="d-flex gap-2 card-btn m-t-10">
-                    <a href="javascript:void(0);" class="py-1 common-btn2 -solid cart-btn" data-id="{{ $product->id }}">
-                        <i class="fa-solid fa-cart-shopping"></i>
+                <div class="left pt-3">
+                    <p class="price">
+                        @if ($product->discount > 0)
+                            <span class="format me-2">{{$product->product_price - $product->discount}}</span>
+                            <span class="original-price format">{{ $product->product_price }}</span>
+                        @else
+                            <span class="format">{{ $product->product_price }}</span>
+                        @endif
+                    </p>
+                    <div class="title-category mb-2">
+                        <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
+                        <h3 class="title">{{ $product->name }}</h3>
+                    </div>
+                    <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
+                        {{ $product->description }}
                     </a>
-                    <a href="javascript:void(0);" class="py-1 common-btn2 white-list-btn @if ($product->inWhiteLists()) active @endif" data-id="{{ $product->id }}">
-                        <i class="fa-solid fa-bookmark"></i>
-                    </a>
-                </div>
 
+                    <div class="d-flex gap-2 card-btn m-t-10">
+                        <a href="javascript:void(0);"
+                            class="py-1 common-btn2 -solid cart-btn"
+                            data-id="{{ $product->id }}">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                        {{-- <small class="py-1 common-btn2 -solid cart-btn "><i class="fa-solid fa-cart-plus"></i></small> --}}
+                        <a href="javascript:void(0);"
+                            class="py-1 common-btn2 white-list-btn position-relative"
+                            data-id="{{ $product->id }}">
+                            <i class="fa-solid fa-bookmark"></i>
+                            {{-- <i class="fa-solid fa-check position-absolute top-50 start-50 translate-middle fa-2xs text-white" ></i> --}}
+                        </a>
+                    </div>
+                </div>
             </div>
-        </div>
-        @endif
+            @endif
         @endforeach
     </div>
     <div class="row justify-content-center">
