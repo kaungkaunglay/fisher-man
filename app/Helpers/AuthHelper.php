@@ -112,6 +112,9 @@ class AuthHelper
         }
 
         session()->forget('user_id');
+        session()->forget('cart');
+        session()->forget('cart_count');
+        session()->forget('white_list_count');
         Auth::logout();
 
         // Clear any cached OAuth tokens
@@ -120,7 +123,7 @@ class AuthHelper
         }
 
         // Optionally log the logout event
-        \Log::info('User logged out', ['user_id' => self::id()]);
+        // \Log::info('User logged out', ['user_id' => self::id()]);
 
         return true;
     }

@@ -209,7 +209,6 @@ class CartController extends Controller
 
     public function addQty(Request $request)
     {
-        logger($request->all());
         $quantity = $request->input('quantity', 0);
         $product_id = $request->input('product_id');
 
