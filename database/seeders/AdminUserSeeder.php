@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Users;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
+use Faker\Factory as Faker; 
 class AdminUserSeeder extends Seeder
 {
     /**
@@ -13,6 +13,7 @@ class AdminUserSeeder extends Seeder
      */
     public function run(): void
     {
+        $faker = Faker::create(); 
         $users = [
             [
                 'username' => 'Admin',
@@ -28,14 +29,13 @@ class AdminUserSeeder extends Seeder
                 'first_org_name' => 'FishChamp.org',
                 'password' => bcrypt('P@$$w0rd'),
             ],
-        [
+            [
                 'username' => 'buyer',
                 'email' => 'buyer@gmail.com',
                 'address' => 'Cambodia',
                 'password' => bcrypt('P@$$w0rd'),
             ]
         ];
-
         foreach ($users as $idx => $user) {
             $user = Users::create($user);
             $user->roles()->attach($idx + 1);

@@ -30,6 +30,21 @@ class TranslationSeeder extends Seeder
                 'jp' => 'カートに追加されました',
             ],
             [
+                'key' => 'buyer_management',
+                'en' => 'Buyer Management',
+                'jp' => 'バイヤー管理',
+            ],
+            [
+                'key' => 'user_list',
+                'en' => 'User List',
+                'jp' => 'ユーザーリスト',
+            ],
+            [
+                'key' => 'add_user',
+                'en' => 'Add User',
+                'jp' => 'ユーザーを追加',
+            ], 
+            [
                 'key' => 'goodbye',
                 'en' => 'Goodbye',
                 'jp' => 'さようなら',
@@ -280,6 +295,11 @@ class TranslationSeeder extends Seeder
                 'key' => 'line_id',
                 'en' => 'Line ID',
                 'jp' => 'LINE ID',
+            ],
+            [
+                'key' => 'manage_user',
+                'en' => 'Manage User',
+                'jp' => 'ユーザー管理',
             ],
             [
                 'key' => 'postal',
