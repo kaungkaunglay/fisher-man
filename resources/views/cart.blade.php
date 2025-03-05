@@ -880,8 +880,6 @@
                         product_id : product_id,
                         quantity : qty
                     },
-                    contentType: false,
-                    processData: false,
                     success: function(response) {
                         console.log(response.message);
                     },
