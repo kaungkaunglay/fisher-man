@@ -85,7 +85,9 @@
                     </li>
                 </ul>
                 <ul class="flex flex-column">
+
                     @foreach($categories as $category)
+              
                     <li class="product-item gap14">
                         <div class="image no-bg">
                             <img src="{{ asset('assets/images/categories/'.$category->image) }}" alt="{{ $category->category_name }}">
