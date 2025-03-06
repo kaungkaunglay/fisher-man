@@ -248,7 +248,11 @@
                                                 <label for="exampleFormControlInput1"
                                                     class="col-form-label">{{ trans_lang('phone_number') }}</label>
                                             </div>
-                                            <div class="col-lg-7 col-12 input-box">
+                                            <div class="col-lg-7 col-12 d-flex input-box">
+                                                <select name="first_phone_extension" class="form-control" >
+                                                    <option value="+81">+81</option>
+                                                    <option value="+95">+95</option>
+                                                </select disabled>
                                                 <input type="tel" class="form-control" name="phoneNumber"
                                                     id="phoneNumber">
                                                 <span class="invalid-feedback"></span>
@@ -278,7 +282,7 @@
                                         </div>
 
                                         <div class="d-flex">
-                                            <input type="checkbox" class="me-3">
+                                            <input type="checkbox" class="me-3" required>
                                             Privacy Policy
                                         </div>
 

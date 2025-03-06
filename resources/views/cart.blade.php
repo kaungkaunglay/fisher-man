@@ -761,7 +761,7 @@
                             let count = Math.max(0, getStoredCount("cart_count") - 1);
                             updateStoredCount("cart_count", "#cart_count, #cart_count_bottom", count);
                         } else {
-                            toastr.error(response.message,'')
+                            // toastr.error(response.message,'')
                         }
                     }
                 });
@@ -891,7 +891,7 @@
                         quantity : qty
                     },
                     success: function(response) {
-                        console.log(response.message);
+                        // console.log(response.message);
                     },
                     error: function(xhr, status, error) {
                         console.error('AJAX error: ', error);
