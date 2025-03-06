@@ -34,29 +34,18 @@ class CartController extends Controller
                 $productIds = array_column($products, 'id');
 
 
-                $carts = Cart::whereIn('product_id', $productIds)
-                            ->with('product')
-                            ->get()
-                            ->map(function ($cart) use ($products) {
-                                $sessionItem = collect($products)->firstWhere('id', $cart->product_id);
-                                $cart->quantity = $sessionItem['quantity'] ?? $cart->quantity;
-                                return $cart;
-                            });
+                $carts = collect($products)->map(function ($product) {
+                    $cart = new Cart();
+                    $cart->product_id = $product['id'];
+                    $cart->quantity = $product['quantity'];
+                    return $cart;
+                });
 
-                if ($carts->isEmpty()) {
-                    $carts = collect($products)->map(function ($product) {
-                        $cart = new Cart();
-                        $cart->product_id = $product['id'];
-                        $cart->quantity = $product['quantity'];
-                        return $cart;
-                    });
-
-                    $productsFromDb = Product::whereIn('id', $productIds)->get()->keyBy('id');
-                    $carts = $carts->map(function ($cart) use ($productsFromDb) {
-                        $cart->product = $productsFromDb->get($cart->product_id);
-                        return $cart;
-                    });
-                }
+                $productsFromDb = Product::whereIn('id', $productIds)->get()->keyBy('id');
+                $carts = $carts->map(function ($cart) use ($productsFromDb) {
+                    $cart->product = $productsFromDb->get($cart->product_id);
+                    return $cart;
+                });
             } else {
                 $carts = collect();
             }

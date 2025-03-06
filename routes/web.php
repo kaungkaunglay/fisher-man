@@ -202,7 +202,7 @@ Route::get('/policy', function(){
 })->name('policy');
 
 // cart
-Route::middleware(['auth_custom','restore_cart'])->group(function () {
+Route::middleware(['auth_custom'])->group(function () {
 
     Route::get('/', [ProductController::class, 'showallproducts'])->withoutMiddleware('auth_custom')->name('home');
 
