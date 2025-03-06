@@ -30,7 +30,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-            // Cache categories and subcategories for a specified duration (e.g., 60 minutes)
+        if(Schema::hasTable('categories') && Schema::hasTable('sub_categories')){
+             // Cache categories and subcategories for a specified duration (e.g., 60 minutes)
         $categories = Cache::remember('categories', 60 * 60, function () {
             return Category::all();
         });
@@ -39,13 +40,21 @@ class AppServiceProvider extends ServiceProvider
             return Sub_category::all();
         });
 
-        // Share cached data with all views
-        View::composer('*', function ($view) use ($categories, $subcategories) {
+         // Share cached data with all views
+         View::composer('*', function ($view) use ($categories, $subcategories) {
             $view->with('categories', $categories);
             $view->with('subcategories', $subcategories);
         });
 
         View::composer('includes.aside', SubCategoryComposer::class);
+        }
+
+
+           
+
+      
+
+       
 
         // $this->preloadProductsToCache();
 

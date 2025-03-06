@@ -69,13 +69,16 @@
                <a class="tf-button style-1 w208" href="/admin/sub-categories/create"><i class="icon-plus"></i>{{trans_lang('add_sub_category')}}</a>
                @endif
             </div>
-            <div class="wg-table table-all-sub-category">
+            <div class="wg-table table-product-list">
                 <ul class="table-title flex gap20 mb-14">
                     <li>
                         <div class="body-title">{{trans_lang('sub_category')}}</div>
                     </li>
                     <li>
                         <div class="body-title">{{trans_lang('uploaded_date')}}</div>
+                    </li>
+                    <li>
+                        <div class="body-title">{{trans_lang('category')}}</div>
                     </li>
                     <li>
                         <div class="body-title">{{trans_lang('action')}}</div>
@@ -93,6 +96,7 @@
                                 <a href="{{ route('admin.sub_categories.edit', $subCategory) }}" class="body-title-2">{{ $subCategory->name }}</a>
                             </div>
                             <div class="body-text">{{ $subCategory->created_at->format('d M Y') }}</div>
+                            <div class="body-text">{{ $subCategory->category->category_name }}</div>
                             <div class="list-icon-function">
                                 <div class="item eye">
                                     <i class="icon-eye"></i>

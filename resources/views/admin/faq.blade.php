@@ -39,10 +39,10 @@
         <form class="tf-section-custom form-add-product" action="{{ isset($faq) ? route('update_faq', $faq->id) : route('add_faq') }}" method="POST">
 
             @csrf
-            {{-- @if(isset($faq)) @method('PUT') @endif --}}
+            @if(isset($faq)) @method('PUT') @endif 
 
             <!-- Check for validation errors -->
-            {{-- @if ($errors->any())
+            @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -50,7 +50,7 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif --}}
+            @endif
 
             <div class="wg-box">
                 <fieldset class="name">
