@@ -40,7 +40,7 @@ class ProductController extends Controller
 
         $products = $query->get();
 
-        $popular_shops = Shop::inRandomOrder()->take(4)->get();
+        $popular_shops = Shop::where('status','approved')->inRandomOrder()->take(4)->get();
 
         $random_products  = Product::inRandomOrder()->take(6)->get(); // Fetch 6 random products
 
@@ -146,7 +146,7 @@ class ProductController extends Controller
             'size' => $request->size,
             'day_of_caught' => $request->day_of_caught,
             'expiration_date' => $request->expiration_date,
-            'discount' => $request->discount,
+            'discount' => $request->discount ?? 0,
             'description' => $request->description,
             'status' => $request->status,
         ]);
@@ -304,6 +304,6 @@ class ProductController extends Controller
 
         // return response()->json($products);
         return response()->json($products);
-        
+
     }
 }
