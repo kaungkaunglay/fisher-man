@@ -622,14 +622,15 @@
             });
         }
 
-
         // Add to whitelist
         function addToWhiteList(product_id, btn) {
             $.ajax({
                 url: `/white-list/${product_id}`,
                 type: "POST",
                 data: { id: product_id },
-                beforeSend: () => btn.prop('disabled', true) ,
+                beforeSend: () => {
+                    btn.prop('disabled',true)
+                },
                 success: function(response) {
                     if (response.status === "redirect") {
                         window.location.href = response.url;
@@ -642,7 +643,9 @@
                     response.status ? toastr.success('',response.message) : toastr.info('',response.message);
 
                 },
-                complete: () => btn.prop('disabled', false)
+                complete: () => {
+                    btn.prop('disabled',false)
+                }
             });
         }
 
@@ -652,7 +655,10 @@
                 e.preventDefault();
                 const getid = $(this).data('id');
                 const cur_btn = $(`.${class_name}[data-id="${getid}"]`);
-                addToWhiteList(getid, cur_btn);
+                console.log(cur_btn.prop('disabled'))
+                if(cur_btn.prop('disabled')){
+                    addToWhiteList(getid, cur_btn);
+                }
             });
         }
 
@@ -663,7 +669,7 @@
                 type: "POST",
                 data: { products: products },
                 beforeSend: () => {
-                    btn.prop('disabled', true)
+                    btn.prop('disabled',true)
                 },
                 success: function(response) {
                     if (response.status) {
@@ -676,20 +682,24 @@
                     // btn.closest('#btn-message').find('span').html(response.message);
                 },
                 complete: () => {
-                    btn.prop('disabled', false)
+                    btn.prop('disabled',false)
                 }
             });
         }
 
         // Handle add to cart button click
         function handleAddToCartBtn(class_name) {
+
             $(`.${class_name}`).click(function(e) {
                 e.preventDefault();
                 const getid = $(this).data('id');
                 const cur_btn = $(`.${class_name}[data-id="${getid}"]`);
 
+                console.log(cur_btn.prop('disabled'))
                 var products = [{ id: getid, quantity: 1 }];
-                addToCart(products, cur_btn);
+                if(!cur_btn.prop('disabled')){
+                    addToCart(products, cur_btn);
+                }
             });
         }
 
