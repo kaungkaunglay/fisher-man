@@ -190,7 +190,17 @@
                             <div class="g-recaptcha" data-sitekey="{{env('RECAPTCHA_SITE_KEY')}}"></div>
                             <span class="invalid-feedback mt-1"></span>
                         </div>
-                        <button type="submit" class="common-btn -solid mx-auto mt-5 rounded-pill w-100">Login</button>
+                        <button type="submit" class="common-btn -solid mx-auto mt-5 rounded-pill w-100 m-b-20">Login</button>
+                        <div class="line-wpr green-bg">
+                            <a href="{{route('line.login')}}">
+                                <img loading="lazy" class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}" alt="Line">
+                                {{trans_lang('login_line')}}
+                            </a>
+                        </div>
+                        <div class="icon-wpr">
+                            <a loading="lazy" href="{{route('google.login')}}"><img class="icon_social" src="{{ asset('assets/icons/custom/google.png') }}" alt="Google"></a>
+                            <a loading="lazy" href="{{route('facebook.login')}}"><img class="icon_social" src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Facebook"></a>
+                        </div>
                     </div>
                 </form>
             </div>
