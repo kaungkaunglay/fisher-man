@@ -1,4 +1,4 @@
-{{-- @dd(check_role(1)) --}}
+{{-- @dd(check_role()) --}}
 <!DOCTYPE html>
 <html lang="en">
 
