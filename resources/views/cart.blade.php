@@ -83,7 +83,7 @@
                                 <td>
                                     <div class="quantity d-flex justify-content-center">
                                         <button class="btn decrement">-</button>
-                                        <input type="number" value="{{ $item->quantity }}" class="quantity-value">
+                                        <input type="number" value="{{ $item->quantity }}" class="quantity-value" readonly>
                                         <button class="btn increment">+</button>
                                     </div>
                                 </td>
@@ -920,6 +920,9 @@
                     addQty(product_id,quantity);
 
                     quantity_box.val(quantity);
+
+                    caculating(btn);
+                    setPrice(btn);
                 })
 
             }
