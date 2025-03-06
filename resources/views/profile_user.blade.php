@@ -249,8 +249,18 @@
                                                     class="col-form-label">{{ trans_lang('phone_number') }}</label>
                                             </div>
                                             <div class="col-lg-7 col-12 input-box">
-                                                <input type="tel" class="form-control" name="phoneNumber"
-                                                    id="phoneNumber">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <select name="first_phone_extension" class="form-select" >
+                                                            <option value="+81">+81</option>
+                                                            <option value="+95">+95</option>
+                                                        </select >
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <input type="tel" class="form-control" name="phoneNumber"
+                                                        id="phoneNumber">
+                                                    </div>
+                                                </div>
                                                 <span class="invalid-feedback"></span>
                                             </div>
                                         </div>
@@ -277,9 +287,9 @@
                                             </div>
                                         </div>
 
-                                        <div class="d-flex">
-                                            <input type="checkbox" class="me-3">
-                                            Privacy Policy
+                                        <div class="d-flex form-check">
+                                            <input type="checkbox" class="me-3 form-check-input" id="privacy" required>
+                                            <label for="privacy" class="form-check-labe">Privacy Policy</label>
                                         </div>
 
                                 </div>
