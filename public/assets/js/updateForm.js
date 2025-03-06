@@ -1,90 +1,107 @@
 $(document).ready(() => {
 
-  $('.edit').click((ev) => {
-    ev.preventDefault();
-    actionForm(ev, true);
-  })
+    $('.edit').click((ev) => {
+        ev.preventDefault();
+        actionForm(ev, true);
+    })
 
-  $('.cancel').click((ev) => {
-    ev.preventDefault();
-    actionForm(ev)
-    unactiveForm(ev.currentTarget);
-    resetData(ev);
-  })
+    $('.cancel').click((ev) => {
+        ev.preventDefault();
+        actionForm(ev)
+        unactiveForm(ev.currentTarget);
+        resetData(ev);
+    })
 
-  if($('.sec-phone').val() == '') $('.cor').hide();
-  else $('.cor').show();
+    if ($('.sec-phone').val() == '') $('.cor').hide();
+    else $('.cor').show();
 
 });
 
 function actionForm(trig, action) {
 
-  const trigger = trig.currentTarget;
-  const form = trigger.closest('.profile-form');
-  const input = form.querySelectorAll('input:not(.checkbox-list input):not([type="file"])');
-  const textarea = form.querySelectorAll('textarea');
-  const output = form.querySelectorAll('output');
-  const btn = form.querySelectorAll('button');
-  const img = form.querySelector('.avatar-upload');
+    const trigger = trig.currentTarget;
+    const form = trigger.closest('.profile-form');
+    const input = form.querySelectorAll('input:not(.checkbox-list input):not([type="file"])');
+    const selectbox = form.querySelectorAll('select');
+    const textarea = form.querySelectorAll('textarea');
+    const output = form.querySelectorAll('output');
+    const btn = form.querySelectorAll('button');
+    const img = form.querySelector('.avatar-upload');
 
-  if(action) {
-    $(input).attr('disabled', false);
-    $(textarea).attr('disabled', false);
-    $(form.querySelector('input[type="file"]')).attr('disabled', false);
-  }else {
-    $(input).attr('disabled', true);
-    $(textarea).attr('disabled', true);
-    $(form.querySelector('input[type="file"]')).attr('disabled', true);
-  }
-  $(output).toggleClass('d-none');
-  $(input).toggleClass('d-none');
-  $(textarea).toggleClass('d-none');
-  $(btn).toggleClass('d-none');
-  $(img).toggleClass('d-none');
+    if (action) {
+        $(input).attr('disabled', false);
+        $(selectbox).attr('disabled', false);
+        $(textarea).attr('disabled', false);
+        $(form.querySelector('input[type="file"]')).attr('disabled', false);
+    } else {
+        $(input).attr('disabled', true);
+        $(selectbox).attr('disabled', true);
+        $(textarea).attr('disabled', true);
+        $(form.querySelector('input[type="file"]')).attr('disabled', true);
+    }
+    $(output).toggleClass('d-none');
+    $(input).toggleClass('d-none');
+    $(selectbox).toggleClass('d-none');
+    $(textarea).toggleClass('d-none');
+    $(btn).toggleClass('d-none');
+    $(img).toggleClass('d-none');
 }
 
 function updateData(trig) {
-  const trigger = trig.currentTarget;
-  const form = trigger.closest('.profile-form');
-  const output = form.querySelectorAll('output');
+    const trigger = trig.currentTarget;
+    const form = trigger.closest('.profile-form');
+    const output = form.querySelectorAll('output');
 
-  output.forEach(i => {
-
-    const input = $($('#' + $(i).attr('for')));
-    $(i).text($(input).val());
-  })
+    output.forEach(i => {
+        const input = $($('#' + $(i).attr('for')));
+        const selectbox = $($('#' + $(i).attr('for') + "_extension"));
+        $(i).text($(selectbox).val() + $(input).val());
+    })
 }
 
 function resetData(trig) {
-  const trigger = trig.currentTarget;
-  const form = trigger.closest('.profile-form');
-  const input = form.querySelectorAll('input');
-  const textarea = form.querySelectorAll('textarea');
+    const trigger = trig.currentTarget;
+    const form = trigger.closest('.profile-form');
+    const input = form.querySelectorAll('input');
+    const textarea = form.querySelectorAll('textarea');
 
-  input.forEach(i => {
+    input.forEach(i => {
+        const output = $(`output[for="${$(i).attr('id')}"]`);
+        const phone = output.text().trim();
+        const extension = phone.slice(0, 3);
+        const number = phone.slice(3);
 
-    $(i).val($(`output[for="${$(i).attr('id')}"]`).text());
-  })
+        $(i).closest('div').find('select').each(function () {
+            if ($(this).val() === extension) {
+                $(this).prop('selected', true);
+            } else {
+                $(this).prop('selected', false);
+            }
+        });
 
-  textarea.forEach(i => {
+        $(i).val(number);
+    });
 
-    $(i).val($(`output[for="${$(i).attr('id')}"]`).text());
-  })
+
+    textarea.forEach(i => {
+
+        $(i).val($(`output[for="${$(i).attr('id')}"]`).text());
+    })
 
 }
 
 function unactiveForm(cur) {
     cur.removeClass('active');
-    if($('.sec-phone').val() == '') $('.cor').hide();
+    if ($('.sec-phone').val() == '') $('.cor').hide();
     else $('.cor').show();
 }
 
-function checkIfChange(){
+function checkIfChange() {
 
 }
 
 // start image preview
-let previewImage = function(input, outputSelector) {
+let previewImage = function (input, outputSelector) {
     const output = $(outputSelector);
 
     // Clear previous preview
@@ -97,7 +114,7 @@ let previewImage = function(input, outputSelector) {
         if (file.type.match('image.*')) {
             const fileReader = new FileReader();
 
-            fileReader.onload = function(e) {
+            fileReader.onload = function (e) {
                 const img = $('<img>', {
                     src: e.target.result,
                     class: 'preview-image',
@@ -109,7 +126,7 @@ let previewImage = function(input, outputSelector) {
                 output.append(img);
             };
 
-            fileReader.onerror = function(e) {
+            fileReader.onerror = function (e) {
                 console.error('Error reading file:', e);
             };
 
@@ -125,7 +142,7 @@ let previewImage = function(input, outputSelector) {
 }
 
 // Event listener with error handling
-$("#avatar-input").on('change', function() {
+$("#avatar-input").on('change', function () {
     try {
         previewImage(this, ".gallery");
     } catch (error) {

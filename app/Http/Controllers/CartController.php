@@ -120,8 +120,9 @@ class CartController extends Controller
         foreach ($products as $product) {
             $found = false;
             foreach ($cart as &$cartItem) {
+
+
                 if ($cartItem['id'] === $product['id']) {
-                    $cartItem['quantity'] += $product['quantity'];
                     $found = true;
                     $allProductsAlreadyInCart = false;
                     break;
@@ -129,7 +130,6 @@ class CartController extends Controller
             }
             if (!$found) {
                 $cart[] = $product;
-                // $allProductsAlreadyInCart = false;
             }
         }
 
