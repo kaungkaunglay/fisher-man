@@ -66,12 +66,12 @@ class AuthController extends Controller
         ];
 
         $validator = Validator::make($request->all(), [
-            'username' => [
+           'username' => [
                 'required',
                 'min:4',
                 'max:20',
                 'unique:users,username',
-                'regex:/^[a-zA-Z0-9]+$/'
+                'regex:/^[a-zA-Z0-9\s]+$/'
             ],
             'email' => 'required|email|unique:users,email',
             'password' => [
