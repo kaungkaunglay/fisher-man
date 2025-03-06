@@ -913,11 +913,9 @@
 
                     quantity_box = btn.siblings('.quantity-value');
                     quantity = Number(quantity_box.val());
-                    console.log(quantity)
                     quantity += value;
-                    console.log(quantity)
 
-
+                    quantity = Math.max(1,quantity);
 
                     addQty(product_id,quantity);
 
