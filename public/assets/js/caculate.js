@@ -51,9 +51,10 @@ function showPage(target) {
 function quantityChange(target, value) {
     $(target).click((ev) => {
 
-        const target = ev.currentTarget;
-        caculating(target);
-        setPrice(target);
+        // const target = ev.currentTarget;
+
+        // caculating(target);
+        // setPrice(target);
     })
 }
 
