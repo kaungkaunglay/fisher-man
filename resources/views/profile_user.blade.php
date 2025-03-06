@@ -367,11 +367,11 @@
                                     <select name="first_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
                                         <option value="+81" @if($user->firstExtension == '+81') selected @endif>+81</option>
                                         <option value="+95" @if($user->firstExtension == '+95') selected @endif>+95</option>
-                                    </select disabled>
+                                    </select>
                                     <a href="tel:">
                                         <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
                                     </a>
-                                    <input type="tel" name="first_phone" class="mt-2 border-bottom border-2 d-none"
+                                    <input type="tel" name="first_phone" class="mt-2 border-bottom border-2 d-none" style="width: 150px;"
                                         id="first_phone" value="{{ $user->firstNumber }}" disabled>
                                     <span class="invalid-feedback"></span>
                                 </div>
@@ -383,8 +383,7 @@
                                     <a href="tel:">
                                         <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
                                     </a>
-
-                                    <input type="tel" name="second_phone" class="mt-2 border-bottom border-2 d-none"
+                                    <input type="tel" name="second_phone" class="mt-2 border-bottom border-2 d-none" style="width: 150px;"
                                         value="{{ $user->secondNumber }}" id="second_phone" disabled>
                                     <span class="invalid-feedback"></span>
                                 </div>
@@ -551,9 +550,10 @@
                 success: function(response) {
                 if (response.status == true) {
                     window.location.href = "{{ route('profile_user') }}";
+                    
                 } else {
                     var errors = response.errors ?? {};
-                    console.log(errors);
+
                     var fields = [
                     'shopName',
                     'transManagement',

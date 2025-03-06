@@ -18,6 +18,9 @@ class ProfileController extends Controller
         $user = AuthHelper::auth();
         $products = $user->products()->paginate(12);
 
+        [$user->firstExtension, $user->firstNumber] = $this->splitPhoneNumber($user->first_phone ?? '');
+        [$user->secondExtension, $user->secondNumber] = $this->splitPhoneNumber($user->second_phone ?? '');
+
         return view('profile_seller', compact('user', 'products'));
     }
 
@@ -257,8 +260,8 @@ class ProfileController extends Controller
 
         $new = [
             $request->address,
-            $request->input('first_phone_extension') . $request->first_phone,
-            $request->input('second_phone_extension') . $request->second_phone
+            $request->first_phone ? $request->input('first_phone_extension') . $request->first_phone : '',
+            $request->second_phone ? $request->input('second_phone_extension') . $request->second_phone : ''
         ];
 
         return array_diff($current, $new) === [];

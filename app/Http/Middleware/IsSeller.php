@@ -29,7 +29,7 @@ class IsSeller
         $user = AuthHelper::auth();
 
         if ($user->roles->first()->id != 2) {
-            abort(403, 'Unauthorized Access');
+            return redirect()->route('profile');
         }
 
         return $next($request);
