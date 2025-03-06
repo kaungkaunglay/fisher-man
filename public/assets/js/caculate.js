@@ -52,18 +52,6 @@ function quantityChange(target, value) {
     $(target).click((ev) => {
 
         const target = ev.currentTarget;
-        // const quanity = $(target).siblings('.quantity-value');
-        // const amount = Number(quanity.val());
-
-        // for only sepcific quantity value;
-        // const sub = amount > 1 ? amount + value : 1;
-        // const add = amount + value;
-
-
-        // quanity.val(value >= 1 ? add : sub);
-
-        // quanity.val(parseInt(sessionStorage.getItem(key)) || 0);
-
         caculating(target);
         setPrice(target);
     })

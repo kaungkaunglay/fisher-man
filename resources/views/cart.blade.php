@@ -52,6 +52,14 @@
             <!-- Desktop Style -->
             <div class="scroller">
                 <table class="table desktop text-center d-md-table d-none table-item">
+                    <colgroup>
+                        <col width="15%">  <!-- image -->
+                        <col width="25%">  <!-- product name -->
+                        <col width="15%">  <!-- price -->
+                        <col width="20%">  <!-- quantity -->
+                        <col width="15%">  <!-- total -->
+                        <col width="10%">  <!-- remove -->
+                    </colgroup>
                     <thead>
                         <tr>
                             <th scope="col">{{ trans_lang('image') }}</th>
@@ -73,8 +81,7 @@
                                 <td class="col-name">{{ $item->product->name }}</td>
                                 <td class="price format">¥{{ $item->product->product_price }}</td>
                                 <td>
-
-                                    <div class="quantity d-flex">
+                                    <div class="quantity d-flex justify-content-center">
                                         <button class="btn decrement">-</button>
                                         <input type="number" value="{{ $item->quantity }}" class="quantity-value">
                                         <button class="btn increment">+</button>
