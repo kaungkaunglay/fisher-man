@@ -267,7 +267,7 @@ class ProductController extends Controller
     public function ajaxSearch(Request $request)
     {
         $query = $request->input('query');
-        $products = Product::where('name', 'LIKE', "{$query}%")->orderBy('name', 'asc')->get();
+        $products = Product::where('name', 'LIKE', "{$query}%")->where('status', 'approved')->orderBy('name', 'asc')->get();
 
         return response()->json($products);
     }
@@ -275,7 +275,7 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         $query = $request->search_key;
-        $products = Product::where('name', 'LIKE', "{$query}%")->orderBy('name', 'asc')->get();
+        $products = Product::where('name', 'LIKE', "{$query}%")->where('status', 'approved')->orderBy('name', 'asc')->get();
 
         return view('product-search-results', compact('products', 'query'));
     }
