@@ -52,6 +52,14 @@
             <!-- Desktop Style -->
             <div class="scroller">
                 <table class="table desktop text-center d-md-table d-none table-item">
+                    <colgroup>
+                        <col width="15%">  <!-- image -->
+                        <col width="25%">  <!-- product name -->
+                        <col width="15%">  <!-- price -->
+                        <col width="20%">  <!-- quantity -->
+                        <col width="15%">  <!-- total -->
+                        <col width="10%">  <!-- remove -->
+                    </colgroup>
                     <thead>
                         <tr>
                             <th scope="col">{{ trans_lang('image') }}</th>
@@ -73,10 +81,9 @@
                                 <td class="col-name">{{ $item->product->name }}</td>
                                 <td class="price format">¥{{ $item->product->product_price }}</td>
                                 <td>
-
-                                    <div class="quantity d-flex">
+                                    <div class="quantity d-flex justify-content-center">
                                         <button class="btn decrement">-</button>
-                                        <input type="number" value="{{ $item->quantity }}" class="quantity-value">
+                                        <input type="number" value="{{ $item->quantity }}" class="quantity-value" readonly>
                                         <button class="btn increment">+</button>
                                     </div>
                                 </td>
@@ -761,7 +768,7 @@
                             let count = Math.max(0, getStoredCount("cart_count") - 1);
                             updateStoredCount("cart_count", "#cart_count, #cart_count_bottom", count);
                         } else {
-                            toastr.error(response.message,'')
+                            // toastr.error(response.message,'')
                         }
                     }
                 });
@@ -891,7 +898,7 @@
                         quantity : qty
                     },
                     success: function(response) {
-                        console.log(response.message);
+                        // console.log(response.message);
                     },
                     error: function(xhr, status, error) {
                         console.error('AJAX error: ', error);
@@ -906,15 +913,16 @@
 
                     quantity_box = btn.siblings('.quantity-value');
                     quantity = Number(quantity_box.val());
-                    console.log(quantity)
                     quantity += value;
-                    console.log(quantity)
 
-
+                    quantity = Math.max(1,quantity);
 
                     addQty(product_id,quantity);
 
                     quantity_box.val(quantity);
+
+                    caculating(btn);
+                    setPrice(btn);
                 })
 
             }

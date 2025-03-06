@@ -70,7 +70,7 @@
 
                 <fieldset class="product_price">
                     <div class="body-title mb-10">{{trans_lang('price')}} <span class="tf-color-1">*</span></div>
-                    <input class="mb-10" type="number" name="product_price" value="{{ old('product_price', $product->product_price ?? '') }}">
+                    <input min="0" class="mb-10" type="number" name="product_price" value="{{ old('product_price', $product->product_price ?? '') }}">
                 </fieldset>
 
                 <fieldset class="product_price">
@@ -80,7 +80,7 @@
 
                 <fieldset class="stock">
                     <div class="body-title mb-10">{{trans_lang('quanity')}} <span class="tf-color-1">*</span></div>
-                    <input class="mb-10" type="number" name="stock" value="{{ old('stock', $product->stock ?? '') }}">
+                    <input min="1" class="mb-10" type="number" name="stock" value="{{ old('stock', $product->stock ?? '') }}">
                 </fieldset>
 
                 <fieldset class="weight">

@@ -90,7 +90,7 @@
 
                                 <!-- email link -->
                                 <div class="form-group">
-                                    <div class="d-flex align-items-center form-group">
+                                    <div class="d-flex align-items-center">
                                         <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
                                         <output class="form-output" for="email">{{ $user->email }}</output>
                                         <input type="email" name="email"
@@ -255,8 +255,18 @@
                                                     class="col-form-label">{{ trans_lang('phone_number') }}</label>
                                             </div>
                                             <div class="col-lg-7 col-12 input-box">
-                                                <input type="number" class="form-control" name="phoneNumber"
-                                                    id="phoneNumber">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <select name="first_phone_extension" class="form-select" >
+                                                            <option value="+81">+81</option>
+                                                            <option value="+95">+95</option>
+                                                        </select >
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <input type="number" class="form-control" name="phoneNumber"
+                                                        id="phoneNumber">
+                                                    </div>
+                                                </div>
                                                 <span class="invalid-feedback"></span>
                                             </div>
                                         </div>
@@ -339,36 +349,43 @@
                     <div class="px-2 py-3">
 
                         <!-- address -->
-                        <div class="d-flex form-group">
+                        <div class="d-flex">
                             <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
-                            <div>
-                                <output class="form-output" for="address">{{ $user->address }}</output>
+                            <div class="form-group">
+                                <output class="form-output ps-1" for="address">{{ $user->address }}</output>
                                 <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea>
                                 <span class="invalid-feedback"></span>
                             </div>
+
                         </div>
 
                         <!-- phone-number link -->
-                        <div class="d-flex align-items-start form-group">
+                        <div class="d-flex align-items-start">
                             <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
                             <div class="ms-1 d-flex flex-column phone-no-container">
-                                <div>
-
+                                <div class="form-group">
+                                    <select name="first_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
+                                        <option value="+81" @if($user->firstExtension == '+81') selected @endif>+81</option>
+                                        <option value="+95" @if($user->firstExtension == '+95') selected @endif>+95</option>
+                                    </select disabled>
                                     <a href="tel:">
                                         <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
                                     </a>
-                                    <input type="tel" name="first_phone"
-                                        class="p-1 mt-2 border-bottom border-2 d-none" id="first_phone"
-                                        value="{{ $user->first_phone }}" disabled>
+                                    <input type="tel" name="first_phone" class="mt-2 border-bottom border-2 d-none"
+                                        id="first_phone" value="{{ $user->firstNumber }}" disabled>
                                     <span class="invalid-feedback"></span>
                                 </div>
-                                <div>
+                                <div class="form-group">
+                                    <select name="second_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
+                                        <option value="+81" @if($user->secondExtension == '+81') selected @endif>+81</option>
+                                        <option value="+95" @if($user->secondExtension == '+95') selected @endif>+95</option>
+                                    </select>
                                     <a href="tel:">
                                         <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
                                     </a>
-                                    <input type="tel" name="second_phone"
-                                        class="p-1 mt-2 border-bottom border-2 d-none" value="{{ $user->second_phone }}"
-                                        id="second_phone" disabled>
+
+                                    <input type="tel" name="second_phone" class="mt-2 border-bottom border-2 d-none"
+                                        value="{{ $user->secondNumber }}" id="second_phone" disabled>
                                     <span class="invalid-feedback"></span>
                                 </div>
                             </div>
@@ -588,6 +605,8 @@
                     var fieldGroup = $('#' + field).closest('.form-group');
                     var errorSpan = fieldGroup.find('span.invalid-feedback');
 
+                    // console.log(errors);
+
                     if (errors[field]) {
                         errorSpan.addClass('d-block').html(errors[field]);
                     } else {
@@ -656,7 +675,7 @@
 
                 // console.log(formData->getKey('username'));
 
-                var cur = $(this);
+                var cur = $(e.currentTarget);
 
                 if (formData) {
                     // console.log("I work in success")
@@ -675,6 +694,8 @@
                 var formData = new FormData(this);
 
                 var cur = $(this);
+
+
 
                 if (formData) {
                     sendUpdateDetailData(formData, cur);

@@ -164,11 +164,11 @@
                     },
                     success: function(response) {
                         if (response.status) {
-                            toastr.warning(response.message,'')
+                            // toastr.warning(response.message,'')
                             removeCart(product_id);
                             netTotal();
                         } else {
-                            toastr.error(response.message,'')
+                            // toastr.error(response.message,'')
                         }
                     }
                 });
@@ -209,7 +209,7 @@
                             toastr.info(response.message,'')
                         }
 
-                        
+
                     }
                 });
             }

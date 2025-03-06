@@ -82,7 +82,7 @@
                                     </div>
                                     <div class="list-icon-function flex-1">
                                         {{-- Buyer User Delete --}}
-                                        <div class="item trash">
+                                        <div class="item">
                                             <a onclick="deleteUser({{ $user->id }})"><i class="icon-trash-2"></i></a>
                                         </div>
                                     </div>
