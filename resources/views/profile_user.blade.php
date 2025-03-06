@@ -550,9 +550,10 @@
                 success: function(response) {
                 if (response.status == true) {
                     window.location.href = "{{ route('profile_user') }}";
+                    
                 } else {
                     var errors = response.errors ?? {};
-                    console.log(errors);
+
                     var fields = [
                     'shopName',
                     'transManagement',
