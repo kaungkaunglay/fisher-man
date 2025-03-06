@@ -206,7 +206,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            
+
                             </div>
                             <div class="center-item">
                                 <div class="center-heading">{{trans_lang('manage_shop')}}</div>
@@ -236,7 +236,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        
+
                             <div class="center-item">
                                 <div class="center-heading">{{trans_lang('manage_faqs')}}</div>
                                 <ul class="menu-list">
@@ -587,8 +587,9 @@
                                             </span>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end has-content" aria-labelledby="dropdownMenuButton3" >
+                                            @if(check_role(2))
                                             <li>
-                                                <a href="#" class="user-item">
+                                                <a href="{{ route('profile') }}" class="user-item">
                                                     <div class="icon">
                                                         <i class="icon-user"></i>
                                                     </div>
@@ -596,8 +597,10 @@
                                                 </a>
                                             </li>
 
+                                            @endif
+
                                             <li>
-                                                <a href="{{route('admin.logout')}}" class="user-item">
+                                                <a href="{{check_role(1) ? route('admin.logout') : route('logout')}}" class="user-item">
                                                     <div class="icon">
                                                         <i class="icon-log-out"></i>
                                                     </div>
