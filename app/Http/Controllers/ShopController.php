@@ -8,7 +8,7 @@ use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Log;
 
 class ShopController extends Controller
 {
@@ -113,7 +113,19 @@ class ShopController extends Controller
             'phoneNumber.string' => 'Phone number must be string',
             'shopDescription.required' => 'Shop Description field is required',
             'shopDescription.string' => 'Shop Description must be string',
+            'avatar.required' => 'Shop avatar is required',
+            'avatar.image' => 'Shop avatar must be an image',
+            'avatar.mimes' => 'Shop avatar must be a file of type: jpeg, png, jpg',
+            'avatar.max' => 'Shop avatar may not be greater than 1024 kilobytes',
+            'privacyPolicy.required' => 'You must agree to the Privacy Policy.',
         ];
+
+        // if($request->privacyPolicy){
+        //     logger('checked');
+        // }else{
+        //     logger('unchecked');
+        // }
+
 
         // Validate request
         $validator = Validator::make($request->all(), [
@@ -122,8 +134,9 @@ class ShopController extends Controller
             'transEmail' => 'required|email|unique:shops,email',
             'phoneNumber' => 'required|string|min:10',
             'shopDescription' => 'required|string|min:10',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
-        ]);
+            'avatar' => 'required|image|mimes:jpeg,png,jpg|max:1024',
+            'privacyPolicy' => 'required|accepted',
+        ], $messages);
 
 
         if ($validator->fails()) {

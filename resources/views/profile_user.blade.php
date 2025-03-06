@@ -38,7 +38,8 @@
                         <!-- profile img -->
                         <div class="w-100 profile-form d-flex flex-column avatar-input">
                             <label for="avatar-input" class="w-100 d-block position-relative gallery">
-                                <img src="{{ auth_helper()->getAvatar() }}" class="default-preview" id="form-img" alt="{{ $user->username ?? 'Account.png'}}">
+                                <img src="{{ auth_helper()->getAvatar() }}" class="default-preview" id="form-img"
+                                    alt="{{ $user->username ?? 'Account.png' }}">
                                 <div class="avatar-upload position-absolute d-none">
                                     <div class="m-auto">
                                         <i class="fas fa-upload"></i>
@@ -46,7 +47,8 @@
                                     </div>
                                 </div>
                             </label>
-                            <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input" accept="image/*" disabled>
+                            <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input"
+                                accept="image/*" disabled>
                         </div>
                         <!-- /profile img -->
 
@@ -79,8 +81,9 @@
                                     <div class="d-flex align-items-center">
                                         <label class="w-25" for="username">{{ trans_lang('name') }}</label>:
                                         <output class="form-output" for="username">{{ $user->username }}</output>
-                                        <input type="text" name="username" class="p-1 mt-1 ms-1 border-bottom border-2 d-none"
-                                            id="username" value="{{ $user->username }}" disabled>
+                                        <input type="text" name="username"
+                                            class="p-1 mt-1 ms-1 border-bottom border-2 d-none" id="username"
+                                            value="{{ $user->username }}" disabled>
                                     </div>
                                     <span class="invalid-feedback"></span>
                                 </div>
@@ -90,8 +93,9 @@
                                     <div class="d-flex align-items-center">
                                         <label class="w-25" for="email">{{ trans_lang('email') }}</label>:
                                         <output class="form-output" for="email">{{ $user->email }}</output>
-                                        <input type="email" name="email" class="p-1 mt-2 ms-1 border-bottom border-2 d-none"
-                                            id="email" value="{{ $user->email }}" disabled>
+                                        <input type="email" name="email"
+                                            class="p-1 mt-2 ms-1 border-bottom border-2 d-none" id="email"
+                                            value="{{ $user->email }}" disabled>
                                     </div>
                                     <span class="invalid-feedback"></span>
                                 </div>
@@ -150,12 +154,13 @@
                                     </div>
                                 </div>
                             @elseif(!auth_helper()->isVerified())
-                                <div class="alert alert-warning d-flex mb-2 email_verify_box" role="alert" >
+                                <div class="alert alert-warning d-flex mb-2 email_verify_box" role="alert">
                                     <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
                                         aria-label="Warning:"></i>
                                     <div class="text-start">
                                         メールを確認してください
-                                        <a href="javascript:void(0);" id="sent_email_verify_link" class="text-warning">こちら </a>
+                                        <a href="javascript:void(0);" id="sent_email_verify_link"
+                                            class="text-warning">こちら </a>
                                     </div>
                                 </div>
                             @endif
@@ -163,7 +168,8 @@
 
                             @if (!$hasShopRequest)
                                 <!-- alert box -->
-                                <div class="mt-auto modal-btn" data-bs-toggle="modal" data-bs-target="#modal_dialog">
+                                <div class="mt-auto modal-btn" data-bs-toggle="modal"
+                                    data-bs-target="#shop_modal_dialog">
                                     <div class="alert alert-warning d-flex mb-0" role="alert">
                                         <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1"
                                             role="img" aria-label="Warning:"></i>
@@ -179,7 +185,7 @@
                                         <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
                                             aria-label="Success:"></i>
                                         <div class="text-start">
-                                            {{trans_lang('shop_request_sent')}}
+                                            {{ trans_lang('shop_request_sent') }}
                                         </div>
                                     </div>
                                 </div>
@@ -191,7 +197,7 @@
                 <!-- /Profile Info -->
 
                 <!-- Form Modal -->
-                <div class="modal fade" id="modal_dialog">
+                <div class="modal fade" id="shop_modal_dialog">
                     <div class="modal-dialog modal-md">
                         <div class="modal-content bg-white">
 
@@ -257,7 +263,7 @@
                                                         </select >
                                                     </div>
                                                     <div class="col-7">
-                                                        <input type="tel" class="form-control" name="phoneNumber"
+                                                        <input type="number" class="form-control" name="phoneNumber"
                                                         id="phoneNumber">
                                                     </div>
                                                 </div>
@@ -266,8 +272,8 @@
                                         </div>
                                         <div class="mb-2 row">
                                             <div class="col-lg-5 col-12">
-                                                <label for="exampleFormControlInput1"
-                                                    class="col-form-label">Shop Description</label>
+                                                <label for="exampleFormControlInput1" class="col-form-label">Shop
+                                                    Description</label>
                                             </div>
                                             <div class="col-lg-7 col-12 input-box">
                                                 <textarea name="shopDescription" class="form-control" id="shopDescription" cols="30" rows="10"></textarea>
@@ -287,9 +293,12 @@
                                             </div>
                                         </div>
 
-                                        <div class="d-flex form-check">
-                                            <input type="checkbox" class="me-3 form-check-input" id="privacy" required>
-                                            <label for="privacy" class="form-check-labe">Privacy Policy</label>
+                                        <div class="input-box">
+                                            <div class="d-flex">
+                                                <input type="checkbox" class="me-3" name="privacyPolicy" id="privacyPolicy">
+                                                <label for="privacyPolicy">Privacy Policy</label>
+                                            </div>
+                                            <span class="invalid-feedback"></span>
                                         </div>
 
                                 </div>
@@ -298,9 +307,10 @@
 
                             <!-- Modal Footer -->
                             <div class="d-flex gap-2 p-3">
-                                <button class="common-btn -solid w-50 px-0"
+                                <button class="common-btn -solid w-50 px-0" id="cancel-btn" type="button"
                                     data-bs-dismiss="modal">{{ trans_lang('cancle') }}</button>
-                                <button class="common-btn w-50 px-0" type="submit">{{ trans_lang('request') }}</button>
+                                <button class="common-btn w-50 px-0" id="request-btn"
+                                    type="submit">{{ trans_lang('request') }}</button>
                             </div>
 
                             </form>
@@ -400,7 +410,8 @@
 
                 <!-- Map Side -->
                 <div class="h-100 d-flex flex-column gap-4">
-                    <h2 class="fw-bold bg-primary text-white p-2">{{ trans_lang('shops') }}{{ trans_lang('location') }}</h2>
+                    <h2 class="fw-bold bg-primary text-white p-2">{{ trans_lang('shops') }}{{ trans_lang('location') }}
+                    </h2>
                     <iframe class="w-100 border-0 h-100 shop-location"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d250151.16276620553!2d104.72537013378734!3d11.579654014369655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109513dc76a6be3%3A0x9c010ee85ab525bb!2sPhnom%20Penh%2C%20Cambodia!5e0!3m2!1sen!2ssg!4v1736774811619!5m2!1sen!2ssg"
                         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
@@ -522,57 +533,60 @@
     <script>
         $(document).ready(function() {
             $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
             });
             $("#shopRequestForm").submit(function(e) {
-                e.preventDefault();
-                console.log('submitted');
-                var formData = new FormData(this);
-                $.ajax({
-                    url: "/buyer/request-shop",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        console.log(response.status);
-                        if (response.status == true) {
-                            window.location.href = "{{ route('profile_user') }}";
-                        } else {
-                            var errors = response.errors ?? {};
+            e.preventDefault();
+            var formData = new FormData(this);
 
-                            console.log(errors);
+            $.ajax({
+                url: "/buyer/request-shop",
+                type: 'POST',
+                dataType: 'json',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                if (response.status == true) {
+                    window.location.href = "{{ route('profile_user') }}";
+                } else {
+                    var errors = response.errors ?? {};
+                    console.log(errors);
+                    var fields = [
+                    'shopName',
+                    'transManagement',
+                    'transEmail',
+                    'phoneNumber',
+                    'shopDescription',
+                    'avatar',
+                    'privacyPolicy'
+                    ];
 
-                            var fields = [
-                                'shopName',
-                                'transManagement',
-                                'transEmail',
-                                'phoneNumber',
-                                'shopDescription',
-                                'avatar'
-                            ];
-
-                            fields.forEach(function(field) {
-                                if (errors[field]) {
-                                    $('#' + field)
-                                        .closest('.input-box')
-                                        .find('span.invalid-feedback')
-                                        .addClass('d-block')
-                                        .html(errors[field]);
-                                } else {
-                                    $('#' + field)
-                                        .closest('.input-box')
-                                        .find('span.invalid-feedback')
-                                        .removeClass('d-block')
-                                        .html('');
-                                }
-                            });
-                        }
+                    fields.forEach(function(field) {
+                    if (errors[field]) {
+                        $('#' + field)
+                        .closest('.input-box')
+                        .find('span.invalid-feedback')
+                        .addClass('d-block')
+                        .html(errors[field]);
+                    } else {
+                        $('#' + field)
+                        .closest('.input-box')
+                        .find('span.invalid-feedback')
+                        .removeClass('d-block')
+                        .html('');
                     }
-                });
+                    });
+                }
+                }
+            });
+            });
+
+            $('#cancel-btn').click(function() {
+            $('.invalid-feedback').text('');
+            $('#shopRequestForm input[type="checkbox"]').prop('checked', false);
             });
         });
     </script>
@@ -694,9 +708,9 @@
 
             // Function to handle login/logout for OAuth providers
             function handleOAuthLogin(provider) {
-                var checkbox =  $('#' + provider + '_login');
+                var checkbox = $('#' + provider + '_login');
                 if (checkbox.prop('checked')) {
-                    checkbox.prop('checked',false)
+                    checkbox.prop('checked', false)
                     window.location.href = `/login/${provider}`;
                 } else {
                     remove_oauth(provider);
@@ -776,7 +790,8 @@
                         $box.html($originalText);
                         // alert('Failed to send verification link. Please try again.');
                         sessionStorage.setItem('success', 'error');
-                        sessionStorage.setItem('message', 'Failed to send verification link. Please try again.');
+                        sessionStorage.setItem('message',
+                            'Failed to send verification link. Please try again.');
                     },
                     complete: function() {
                         // This will run after success or error
