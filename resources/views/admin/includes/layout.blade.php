@@ -33,6 +33,10 @@
     <!-- custom-css -->
     <link rel="stylesheet" href="{{asset('assets/admin/css/custom.css')}}">
 
+    {{-- sweetalert css --}}
+    <link rel="stylesheet" href="{{asset('assets/sweetalert2/dist/sweetalert2.min.css')}}">
+  
+
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="{{asset('assets/images/Logo only.png')}}">
     <link rel="apple-touch-icon-precomposed" href="{{asset('assets/images/Logo only.png')}}">
@@ -631,7 +635,9 @@
         var logoLight = "{{ asset('assets/admin/images/logo.png') }}";
 
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- sweetalert js --}}
+    <script src="{{asset('assets/sweetalert2/dist/sweetalert2.min.js')}}"></script>
 
     <!-- Javascript -->
     @yield('script')
