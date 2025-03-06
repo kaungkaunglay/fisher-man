@@ -107,9 +107,9 @@
                                     {{ ucfirst($pendingShop->status) }}
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="statusDropdown{{ $pendingShop->id }}">
-                                    <li><a class="dropdown-item change-status" href="#" data-id="{{ $pendingShop->id }}" data-status="approved">✅ Approve</a></li>
-                                    <li><a class="dropdown-item change-status" href="#" data-id="{{ $pendingShop->id }}" data-status="pending">⏳ Pending</a></li>
-                                    <li><a class="dropdown-item change-status" href="#" data-id="{{ $pendingShop->id }}" data-status="rejected">❌ Reject</a></li>
+                                    <li><a class="dropdown-item change-status" href="#" data-id="{{ $pendingShop->id }}" data-status="approved" data-role='2'>✅ Approve</a></li>
+                                    <li><a class="dropdown-item change-status" href="#" data-id="{{ $pendingShop->id }}" data-status="pending" data-role='3'>⏳ Pending</a></li>
+                                    <li><a class="dropdown-item change-status" href="#" data-id="{{ $pendingShop->id }}" data-status="rejected" data-role='3'>❌ Reject</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -191,6 +191,7 @@
 
             let shop_id = $(this).data('id');
             let status = $(this).data('status');
+            let role = $(this).data('role');
 
 
 
@@ -200,7 +201,8 @@
                 data: {
                     _token: "{{ csrf_token() }}",
                     shop_id: shop_id,
-                    status: status
+                    status: status,
+                    role: role,
                 },
                 success: function (response) {
                     if(response.status) {
@@ -219,7 +221,6 @@
             e.preventDefault();
 
             let shop_id = $(this).data('id');
-
 
             Swal.fire({
                 title: 'Are you sure?',

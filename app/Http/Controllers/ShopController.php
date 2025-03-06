@@ -49,7 +49,7 @@ class ShopController extends Controller
              ->where('shops.id', $request->shop_id)
              ->first();
 
-         $user->assignRole(2);
+         $user->assignRole($request->role);
 
          return response()->json(['status' => true, 'message' => 'Shop status updated successfully']);
      }
