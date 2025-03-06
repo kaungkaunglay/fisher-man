@@ -124,6 +124,48 @@ main {
     transition: padding 0.5s linear;
 }
 
+main .line-wpr {
+    margin: 20px auto;
+    width: max-content;
+    border: 1px solid #00C300;
+    border-radius: 10px;
+}
+
+main .line-wpr a {
+    padding: 9px 25px;
+}
+
+main .line-wpr:hover {
+    box-shadow: 0px 0px 3px rgb(26, 98, 0);
+}
+
+main .icon-wpr {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+main .icon_social{
+    width: 30px;
+    height: 30px;
+}
+main .line-wpr a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #00C300;
+    text-decoration: none !important;
+}
+
+main .icon {
+    color: #fbfbfc;
+    font-size: 20px;
+}
+
+main .icon.fa-line {
+    font-size: 25px;
+}
+
 .login-box {
     max-width: 450px;
 }

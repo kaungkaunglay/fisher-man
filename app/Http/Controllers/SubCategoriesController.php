@@ -67,7 +67,7 @@ class SubCategoriesController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $folderPath = public_path('storage/sub_categories');
+        $folderPath = public_path('assets/images/sub_categories');
         if (!file_exists($folderPath)) {
             mkdir($folderPath, 0755, true);
         }
@@ -79,7 +79,7 @@ class SubCategoriesController extends Controller
         Sub_category::create([
             'category_id' => $request->category_id,
             'name' => $request->name,
-            'image' => 'storage/sub_categories/' . $imageName,
+            'image' => $imageName,
         ]);
 
         return redirect()->route('admin.sub_categories')->with('success', 'Sub-category created successfully.');
@@ -106,7 +106,7 @@ class SubCategoriesController extends Controller
         $sub_category->name = $request->name;
 
         if ($request->hasFile('image')) {
-            $folderPath = public_path('storage/sub_categories');
+            $folderPath = public_path('assets/images/sub_categories');
 
             if (!file_exists($folderPath)) {
                 mkdir($folderPath, 0755, true);
@@ -120,7 +120,7 @@ class SubCategoriesController extends Controller
             }
 
             $image->move($folderPath, $imageName);
-            $sub_category->image = 'storage/sub_categories/' . $imageName;
+            $sub_category->image = $imageName;
         }
 
         $sub_category->save();

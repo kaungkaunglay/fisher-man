@@ -86,7 +86,7 @@
                         <!-- Existing Image -->
                         <div class="mt-2">
                             @if(isset($subcategory) && $subcategory->image)
-                                <img id="preview" src="{{ asset($subcategory->image) }}" alt="{{ $subcategory->name }}" width="100" height="100">
+                                <img id="preview" src="{{ asset('assets/images/sub_categories/'.$subcategory->image) }}" alt="{{ $subcategory->name }}" width="100" height="100">
                             @else
                                 <img id="preview" src="" alt="Image Preview" width="100" height="100" style="display: none;">
                             @endif
