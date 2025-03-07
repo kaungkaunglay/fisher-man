@@ -318,13 +318,15 @@ class AuthController extends Controller
     public function reset(Request $request){
         $validator = Validator::make($request->all(), [
             'password' => [
-                'required',
-                'min:6',
-                'max:16',
-                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,16}$/'
+            'required',
+            'min:6',
+            'max:16',
+            'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,16}$/'
             ],
             'confirm_password' => 'required|same:password',
             'token' => 'required'
+        ], [
+            'password.regex' => 'The password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.'
         ]);
 
         if($validator->fails()){
