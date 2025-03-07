@@ -76,6 +76,7 @@ class ShopController extends Controller
          $shop = Shop::find($request->shop_id);
          $shop->delete();
 
+         Product::where('products.user_id', $user->id)->delete();
 
          return response()->json(['success' => true, 'message' => 'Shop deleted successfully.']);
      }
