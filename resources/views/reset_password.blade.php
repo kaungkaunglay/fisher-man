@@ -1,4 +1,4 @@
-@extends('includes.layout')
+@extends('includes.guest')
 @section('style')
 <link rel="stylesheet" href="{{ asset('assets/css/forgot_password.css') }}" />
 @endsection
