@@ -110,7 +110,7 @@ class AuthController extends Controller
                     $errors['first_phone'] = 'Invalid phone number.';
             }
         }
-      
+
         if($request->input('second_phone') != null ){
             $request->merge([
                 'second_phone' => $request->input('second_phone_extension') . $request->input('second_phone'),
@@ -205,7 +205,7 @@ class AuthController extends Controller
                     'status' => true,
                     'message' => 'login successfull',
                     'user' => $user ,
-                    'redirect' =>redirect()-> intended(route( $isSeller ? 'admin.index' : 'home'))->getTargetUrl()
+                    'redirect' =>redirect()-> intended(route( $isSeller ? 'add_product' : 'home'))->getTargetUrl()
                 ]);
             }
 

@@ -56,9 +56,9 @@
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-contact" role="tabpanel"
+                    <div class="tab-pane fade show active row" id="nav-contact" role="tabpanel"
                         aria-labelledby="nav-contact-tab" tabindex="0">
-                        <form method="POST" id="contact-form">
+                        <form method="POST" id="contact-form" class="col-6">
                             @csrf
                             <div class="mb-3 contact-box">
                                 <label for="name" class="form-label">{{ trans_lang('name') }}</label>
@@ -71,11 +71,25 @@
 
                             <div class="mb-3 contact-box">
                                 <label for="phone" class="form-label">{{ trans_lang('phone_number') }}</label>
-                                <input type="tel" name="phone" class="form-control" id="phone"
-                                    value="{{ auth_helper()->check() ? auth_helper()->user()->first_phone : '' }}"
-                                    placeholder="{{ trans_lang('phone_number') }}">
+
+                                <div class="row">
+                                    <div class="col-5">
+                                        <select name="first_phone_extension" class="form-select form-select-lg" >
+                                            <option value="+81">+81</option>
+                                            <option value="+95">+95</option>
+                                        </select >
+                                    </div>
+                                    <div class="col-7">
+                                        <input type="tel" name="phone" class="form-control" id="phone"
+                                        value="{{ auth_helper()->check() ? auth_helper()->user()->first_phone : '' }}"
+                                        placeholder="{{ trans_lang('phone_number') }}">
+                                    </div>
+                                </div>
+
                                 <span class="invalid-feedback"></span>
                             </div>
+
+
 
                             <div class="mb-3 contact-box">
                                 <label for="email" class="form-label">{{ trans_lang('email') }}</label>
@@ -102,9 +116,9 @@
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane fade" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab"
+                    <div class="tab-pane fade row" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab"
                         tabindex="0">
-                        <form method="POST" id="wishlistForm">
+                        <form method="POST" id="wishlistForm" class="col-6">
                             @csrf
                             <div class="mb-3 wish-box">
                                 <label for="name" class="form-label">{{ trans_lang('name') }}</label>
@@ -116,9 +130,19 @@
 
                             <div class="mb-3 wish-box">
                                 <label for="phone" class="form-label">{{ trans_lang('phone_number') }}</label>
-                                <input type="tel" name="wish_phone" class="form-control" id="wish_phone"
-                                    placeholder="{{ trans_lang('phone_number') }}"
-                                    value="{{ auth_helper()->check() ? auth_helper()->user()->first_phone : '' }}">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <select name="first_phone_extension" class="form-select form-select-lg" >
+                                            <option value="+81">+81</option>
+                                            <option value="+95">+95</option>
+                                        </select >
+                                    </div>
+                                    <div class="col-7">
+                                        <input type="tel" name="phone" class="form-control" id="phone"
+                                        value="{{ auth_helper()->check() ? auth_helper()->user()->first_phone : '' }}"
+                                        placeholder="{{ trans_lang('phone_number') }}">
+                                    </div>
+                                </div>
                                 <span class="invalid-feedback"></span>
                             </div>
 
