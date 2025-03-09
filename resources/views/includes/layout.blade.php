@@ -658,10 +658,11 @@
                 e.preventDefault();
                 const getid = $(this).data('id');
                 const cur_btn = $(`.${class_name}[data-id="${getid}"]`);
-                console.log(cur_btn.prop('disabled'))
-                if(cur_btn.prop('disabled')){
-                    addToWhiteList(getid, cur_btn);
-                }
+                // console.log(cur_btn.prop('disabled'))
+                // if(cur_btn.prop('disabled')){
+                //     addToWhiteList(getid, cur_btn);
+                // }
+                addToWhiteList(getid, cur_btn);
             });
         }
 

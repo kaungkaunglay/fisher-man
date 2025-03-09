@@ -39,7 +39,7 @@
             </div>
             <!-- all-user -->
             <div class="wg-box">
-                <div class="flex items-center justify-between gap10 flex-wrap">
+                {{-- <div class="flex items-center justify-between gap10 flex-wrap">
                     <div class="wg-filter flex-grow">
                         <form class="form-search">
                             <fieldset class="name">
@@ -51,7 +51,7 @@
                         </form>
                     </div>
                     <a class="tf-button style-1 w208" href="add-new-user.html"><i class="icon-plus"></i>Add new</a>
-                </div>
+                </div> --}}
                 <div class="wg-table table-all-user">
                     <ul class="table-title flex gap20 mb-14">
                         <li class="flex-1">
