@@ -37,8 +37,25 @@ class ContactController extends Controller
             'g-recaptcha-response' => 'required'
         ], $messages);
 
-        if ($validator->fails()) {
-            return response()->json(['status' => false, 'errors' => $validator->errors()]);
+        $errors = [];
+
+        if($request->input('phone') != null ){
+            $request->merge([
+                'phone' => $request->input('phone_extension') . $request->input('phone'),
+            ]);
+            $phoneRegexJapan = '/^\+81[789]0\d{4}\d{4}$/';
+            $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
+                // Validate first phone number
+            if ($request->input('phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('phone'))) {
+                    $errors['phone'] = 'Invalid phone number.';
+             } elseif ($request->input('phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('phone'))) {
+                    $errors['phone'] = 'Invalid phone number.';
+            }
+        }
+
+        if($validator->fails() || !empty($errors)){
+            $allErrors = array_merge($validator->errors()->toArray(), $errors);
+            return response()->json(['status' => false, 'errors' => $allErrors]);
         }
 
 

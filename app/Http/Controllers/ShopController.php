@@ -96,6 +96,7 @@ class ShopController extends Controller
                 ->orderBy('products.created_at', 'desc')
                 ->get();
 
+
         return view('shop_detail',compact('shop','products'));
     }
 

@@ -35,7 +35,7 @@
 
     {{-- sweetalert css --}}
     <link rel="stylesheet" href="{{asset('assets/sweetalert2/dist/sweetalert2.min.css')}}">
-  
+
 
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="{{asset('assets/images/Logo only.png')}}">
@@ -201,6 +201,19 @@
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.users')}}" class="{{request()->is('admin/users') ? 'active' : ''}}">
                                                     <div class="text">{{trans_lang('user_list')}}</div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item has-children {{ request()->is('admin/user*') ? 'active' : '' }}">
+                                        <a href="javascript:void(0);" class="menu-item-button">
+                                            <div class="icon"><i class="icon-shopping-cart"></i></div>
+                                            <div class="text">{{trans_lang('product_management')}}</div>
+                                        </a>
+                                        <ul class="sub-menu" style="display: block;">
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('pending-products')}}" class="{{request()->is('admin/pending-products') ? 'active' : ''}}">
+                                                    <div class="text">{{trans_lang('pending_product')}}</div>
                                                 </a>
                                             </li>
                                         </ul>
