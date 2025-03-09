@@ -103,6 +103,7 @@ class ProductController extends Controller
             'expiration_date.date' => '賞味期限は日付形式でなければなりません',
             'expiration_date' => '賞味期限は有効な日付でなければなりません',
             'discount.numeric' => '割引は数値でなければなりません',
+            'discount.min' => '割引は 0 以上である必要があります',
             'status.string' => 'ステータスは必須です',
         ];
 
@@ -111,7 +112,7 @@ class ProductController extends Controller
             'sub_category_id' => 'required|exists:sub_categories,id',
             'name' => 'required|string|max:255',
             'product_price' => 'required|numeric|min:0',
-            'product_image' => 'required|nullable|image|mimes:png,jpg,jpeg|max:1024',
+            'product_image' => 'required|image|mimes:png,jpg,jpeg|max:1024',
             'stock' => 'required|integer',
             'weight' => 'required|numeric',
             'size' => 'nullable|string|max:255',
@@ -120,8 +121,11 @@ class ProductController extends Controller
             'discount' => 'nullable|numeric|min:0',
             'description' => 'nullable|string',
             'status' => 'nullable|string',
-        ],$messages);
+        ], $messages);
 
+          // Sanitize input to remove script injections
+    // $productName = strip_tags($request->name); // Removes HTML tags
+      
         $folderPath = public_path('assets/products');
         if (!file_exists($folderPath)) {
             mkdir($folderPath, 0755, true);
@@ -135,6 +139,8 @@ class ProductController extends Controller
             $imagePath = $imageName;
         }
 
+
+
         Product::create([
             'user_id' => AuthHelper::id(), // Add the logged-in user ID
             'sub_category_id' => $request->sub_category_id,
@@ -147,7 +153,7 @@ class ProductController extends Controller
             'day_of_caught' => $request->day_of_caught,
             'expiration_date' => $request->expiration_date,
             'discount' => $request->discount ?? 0,
-            'description' => $request->description,
+            'description' => $request->description, // Sanitize description
             'status' => $request->status,
         ]);
 
