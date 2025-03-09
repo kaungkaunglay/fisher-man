@@ -265,7 +265,7 @@
 
                 <!-- button group -->
                 <div class="buttons d-flex gap-2 mt-3">
-                    <button class="common-btn">{{ trans_lang('upload_product') }}</button>
+                    <a href="{{route('create_product')}}" class="common-btn">{{ trans_lang('upload_product') }}</a>
                     <button class="common-btn">{{ trans_lang('check_order') }}</button>
                 </div>
 

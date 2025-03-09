@@ -131,11 +131,11 @@ class ShopController extends Controller
         // Validate request
         $validator = Validator::make($request->all(), [
             'shopName' => 'required|string|max:255',
-            'transManagement' => 'required|string',
+            'transManagement' => 'required|string|max:255',
             'transEmail' => 'required|email|unique:shops,email',
             'phoneNumber' => 'required|string|min:10',
             'first_phone_extension' => 'sometimes|in:+81,+95',
-            'shopDescription' => 'required|string|min:10',
+            'shopDescription' => 'required|string|min:10|max:255',
             'avatar' => 'required|image|mimes:jpeg,png,jpg|max:1024',
             'privacyPolicy' => 'required|accepted',
         ], $messages);
