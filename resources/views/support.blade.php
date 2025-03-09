@@ -74,7 +74,7 @@
 
                                 <div class="row">
                                     <div class="col-5">
-                                        <select name="first_phone_extension" class="form-select form-select-lg" >
+                                        <select name="phone_extension" class="form-select form-select-lg" >
                                             <option value="+81">+81</option>
                                             <option value="+95">+95</option>
                                         </select >
@@ -132,7 +132,7 @@
                                 <label for="phone" class="form-label">{{ trans_lang('phone_number') }}</label>
                                 <div class="row">
                                     <div class="col-5">
-                                        <select name="first_phone_extension" class="form-select form-select-lg" >
+                                        <select name="wish_phone_extension" class="form-select form-select-lg" >
                                             <option value="+81">+81</option>
                                             <option value="+95">+95</option>
                                         </select >

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Providers;
 
@@ -26,7 +26,7 @@ class SettingServiceProvider extends ServiceProvider
     public function boot()
     {
         if(!Schema::hasTable('settings')) {
-            return; 
+            return;
         }
         $settings = get_settings();
 

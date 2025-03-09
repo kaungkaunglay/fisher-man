@@ -20,7 +20,7 @@
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>{{trans_lang('request_shops')}}</h3>
+            <h3>{{trans_lang('request_product')}}</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
                     <a href="{{route('admin.index')}}">
@@ -188,9 +188,8 @@
     @endif
 </div>
 <!-- /product-list -->
-</div>
 <!-- /main-content-wrap -->
-</div>
+
 <!-- /main-content-wrap -->
 
 @endsection

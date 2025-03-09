@@ -153,7 +153,7 @@
                                     {{-- /Product Headline --}}
 
                                     {{-- Products List --}}
-                                    <div class="scroller">
+                                    <div class="scroller" id="product-list">
                                         <div class="card-list m-3" id="view-list">
 
 
