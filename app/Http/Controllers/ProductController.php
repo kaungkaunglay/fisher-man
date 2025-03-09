@@ -115,7 +115,7 @@ class ProductController extends Controller
             'product_image' => 'required|image|mimes:png,jpg,jpeg|max:1024',
             'stock' => 'required|integer',
             'weight' => 'required|numeric|min:1', // Ensure weight is greater than 0
-            'size' => 'nullable|string|max:255|min:1',
+            'size' => 'nullable|numeric|min:1|max:255',
             'day_of_caught' => ['nullable','date',new ValidDayOfCaught()],
             'expiration_date' => ['nullable','date',new ValidExpireDate()],
             'discount' => 'nullable|numeric|min:0',
