@@ -25,8 +25,7 @@ class DatabaseSeeder extends Seeder
             TranslationSeeder::class,
             PermissionSeeder::class,
             RolePermissionSeeder::class,
-            ContactSeeder::class,
-            WishListSeeder::class,
+            ContactSeeder::class
         ]);
     }
 }
