@@ -21,6 +21,28 @@ class ProductController extends Controller
         return view('admin.products', compact('products'));
     }
 
+    public function sortByProduct(Request $request)
+    {
+        $sortBy = $request->get('sort');
+        $query = Product::query();
+ 
+        if ($sortBy === 'price_l_h') {
+            $query->orderBy('product_price', 'asc');
+        } elseif ($sortBy === 'price_desc') {
+            $query->orderBy('product_price', 'desc');
+        } elseif ($sortBy === 'name_asc') {
+            $query->orderBy('name', 'asc');
+        } elseif ($sortBy === 'name_desc') {
+            $query->orderBy('name', 'desc');
+        } else {
+            $query->latest();
+        }
+
+        $products = $query->get();
+
+        return response()->json($products);
+    }
+
     public function showallproducts(Request $request)
     {
         $sortBy = $request->get('sort_by', 'latest');
@@ -184,6 +206,7 @@ class ProductController extends Controller
 
     public function adminshow($id)
     {
+
         $product = Product::with('subCategory')->findOrFail($id);
         return view('admin.product-detail', compact('product'));
     }
@@ -231,27 +254,29 @@ class ProductController extends Controller
             'size.string' => 'サイズは文字列でなければなりません',
             'size.max' => 'サイズは255文字以内でなければなりません',
             'day_of_caught.date' => '捕獲日付は日付形式でなければなりません',
-            'day_of_caught' => '捕獲日は有効な日付でなければなりません',
+            'day_of_caught' => 'day of caught must be less than or equal to today',
+            'day_of_caught.after_or_equal' => '捕獲日は今日以降でなければなりません',
             'expiration_date.date' => '賞味期限は日付形式でなければなりません',
-            'expiration_date' => '賞味期限は有効な日付でなければなりません',
+            'expiration_date' => 'expiration_date must be greater than or equal to today',
+            'expiration_date.after_or_equal' => '賞味期限は今日以降でなければなりません',
             'discount.numeric' => '割引は数値でなければなりません',
             'description.string' => '説明は文字列でなければなりません',
             'status.string' => 'ステータスは文字列でなければなりません',
         ];
 
-       $request->validate([
-            'name' => 'sometimes|string|max:255',
-            'product_price' => 'sometimes|numeric|min:1',
-            'product_image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
-            'stock' => 'sometimes|integer',
-            'weight' => 'sometimes|numeric|min:1',
-            'size' => 'sometimes|numeric|min:1|max:255',
-            'day_of_caught' => ['sometimes','date',new ValidDayOfCaught()],
-            'expiration_date' => ['sometimes','date',new ValidExpireDate()],
-            'discount' => 'nullable|numeric',
-            'sub_category_id' => 'sometimes|integer|exists:sub_categories,id',
-            'description' => 'nullable|sometimes|string',
-        ], $messages);
+    $request->validate([
+        'name' => 'sometimes|string|max:255',
+        'product_price' => 'sometimes|numeric|min:1',
+        'product_image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
+        'stock' => 'sometimes|integer',
+        'weight' => 'sometimes|numeric|min:1',
+        'size' => 'sometimes|numeric|min:1|max:255',
+        'day_of_caught' => ['sometimes', 'date', new ValidDayOfCaught()],
+        'expiration_date' => ['sometimes', 'date', new ValidExpireDate()],
+        'discount' => 'nullable|numeric',
+        'sub_category_id' => 'sometimes|integer|exists:sub_categories,id',
+        'description' => 'nullable|sometimes|string',
+    ], $messages);
 
 
         if ($request->hasFile('product_image')) {

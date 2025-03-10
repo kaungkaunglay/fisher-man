@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('size', 8, 2)->nullable();
             $table->date('day_of_caught')->nullable();
             $table->date('expiration_date')->nullable();
-            $table->decimal('discount', 8, 2)->default(0)->nullable();
+            $table->decimal('discount', 8, 2)->nullable();
             $table->foreignId('sub_category_id')->constrained('sub_categories')->onDelete('cascade');
             $table->text('description')->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
