@@ -140,7 +140,7 @@ class ProductController extends Controller
         // ], $messages);
 
           // Sanitize input to remove script injections
-    // $productName = strip_tags($request->name); // Removes HTML tags
+    $productName = strip_tags($request->name); // Removes HTML tags
 
         $folderPath = public_path('assets/products');
         if (!file_exists($folderPath)) {
@@ -160,7 +160,7 @@ class ProductController extends Controller
         Product::create([
             'user_id' => AuthHelper::id(), // Add the logged-in user ID
             'sub_category_id' => $request->sub_category_id,
-            'name' => $request->name,
+            'name' => $productName,
             'product_price' => $request->product_price,
             'product_image' => $imagePath,
             'stock' => $request->stock,

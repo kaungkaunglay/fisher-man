@@ -237,7 +237,7 @@
                                     <a href="tel:">
                                         <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
                                     </a>
-                                    <input type="tel" name="first_phone" class="mt-2 border-bottom border-2 d-none" style="width: 150px;"
+                                    <input type="tel" name="first_phone" min="10" class="mt-2 border-bottom border-2 d-none" style="width: 150px;"
                                         id="first_phone" value="{{ $user->firstNumber }}" disabled>
                                     <span class="invalid-feedback"></span>
                                 </div>
@@ -249,7 +249,7 @@
                                     <a href="tel:">
                                         <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
                                     </a>
-                                    <input type="tel" name="second_phone" class="mt-2 border-bottom border-2 d-none" style="width: 150px;"
+                                    <input type="tel" name="second_phone" min="10" class="mt-2 border-bottom border-2 d-none" style="width: 150px;"
                                         value="{{ $user->secondNumber }}" id="second_phone" disabled>
                                     <span class="invalid-feedback"></span>
                                 </div>
