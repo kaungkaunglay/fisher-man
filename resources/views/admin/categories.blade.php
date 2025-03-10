@@ -56,21 +56,21 @@
                         </div>
                         <div class="text-tiny">entries</div>
                     </div> -->
-                    <form class="form-search">
+                    {{-- <form class="form-search">
                         <fieldset class="name">
                             <input type="text" placeholder="ここで検索。。。" class="" name="name" tabindex="2" value="" aria-required="true" required="">
                         </fieldset>
                         <div class="button-submit">
                             <button class="" type="submit"><i class="icon-search"></i></button>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
                 @if (check_role(2))
                 <a class="tf-button style-1 w208" href="/admin/categories/create"><i class="icon-plus"></i>{{trans_lang('add_category')}}</a>
                 @endif
             </div>
             <div class="wg-table table-all-category">
-                <ul class="table-title flex gap20 mb-14">
+                <ul class="table-title flex mb-14">
                     <li>
                         <div class="body-title">{{trans_lang('category')}}</div>
                     </li>
@@ -88,7 +88,7 @@
 
                     @foreach($categories as $category)
 
-                    <li class="product-item gap14">
+                    <li class="product-item">
                         <div class="image no-bg">
                             <img src="{{ asset('assets/images/categories/'.$category->image) }}" alt="{{ $category->category_name }}">
                         </div>
@@ -98,9 +98,7 @@
                             </div>
                             <div class="body-text">{{ $category->created_at->format('d M Y') }}</div>
                             <div class="list-icon-function">
-                                <div class="item eye">
-                                    <i class="icon-eye"></i>
-                                </div>
+                              
                                 @if($category->subCategories->isEmpty()) 
                                 <div class="item edit">
                                     <a href="{{ route('admin.categories.edit', $category) }}">

@@ -30,34 +30,33 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if(Schema::hasTable('categories') && Schema::hasTable('sub_categories')){
-             // Cache categories and subcategories for a specified duration (e.g., 60 minutes)
-        $categories =  Category::all();
+        try {
+            DB::connection()->getPdo();
 
-        $subcategories = Sub_category::all();
+            if (Schema::hasTable('categories') && Schema::hasTable('sub_categories')) {
+                $categories = Category::all();
+                $subcategories = Sub_category::all();
 
-         // Share cached data with all views
-         View::composer('*', function ($view) use ($categories, $subcategories) {
-            $view->with('categories', $categories);
-            $view->with('subcategories', $subcategories);
-        });
+                View::composer('*', function ($view) use ($categories, $subcategories) {
+                    $view->with('categories', $categories);
+                    $view->with('subcategories', $subcategories);
+                });
 
-        View::composer('includes.aside', SubCategoryComposer::class);
+                View::composer('includes.aside', SubCategoryComposer::class);
+            }
+
+            if (Schema::hasTable('translations')) {
+                $translations = Translations::all()->mapWithKeys(function ($item) {
+                    return [$item->key => $item->toArray()];
+                })->toArray();
+
+                Config::set('translations', $translations);
+            }
+        } catch (\Exception $e) {
+            \Log::error('Database connection error: ' . $e->getMessage());
         }
-
-
-
-        // $this->preloadProductsToCache();
 
         Paginator::useBootstrap();
-
-        if (Schema::hasTable('translations')) {
-            $translations = Translations::all()->mapWithKeys(function ($item) {
-                return [$item->key => $item->toArray()];
-            })->toArray();
-
-            Config::set('translations', $translations);
-        }
     }
 
 

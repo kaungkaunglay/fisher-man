@@ -50,7 +50,7 @@
                                 <span class="fs-6" >{{ trans_lang('username') }} : </span>
                             </div>
                             <div class="me-1">
-                                <span class="fs-6 text-muted" >{{ $shop->username }}</span>
+                                <span class="fs-6 text-muted" >{{ $shop->user->username }}</span>
                             </div>
                         </div>
                         <div class="d-grid gap-2">
@@ -105,7 +105,7 @@
                                                     {{ $shop->email }}
                                                 </li>
                                                 <li><i class="fas fa-map-marker-alt text-primary mb-3 me-2"></i>
-                                                    {{ $shop->address }}
+                                                    {{ $shop->user->address }}
                                                 </li>
                                                 <li><i
                                                         class="fas fa-box text-primary mb-3 me-2"></i>{{ $products->count() }}

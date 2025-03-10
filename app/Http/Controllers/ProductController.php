@@ -298,6 +298,8 @@ class ProductController extends Controller
 
         $product->update($request->except('product_image'));
 
+        logger($product);
+
         return redirect()->route('admin.products')->with('success', 'Product updated successfully.');
     }
 
