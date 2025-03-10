@@ -206,9 +206,9 @@ class ProfileController extends Controller
 
             $validationRules = [
                 'address' => 'sometimes|string|max:255',
-                'first_phone' => 'sometimes|nullable|string',
+                'first_phone' => 'sometimes|nullable|string|min:10',
                 'first_phone_extension' => 'sometimes|in:+81,+95',
-                'second_phone' => 'sometimes|nullable|string',
+                'second_phone' => 'sometimes|nullable|string|min:10',
                 'second_phone_extension' => 'sometimes|in:+81,+95',
             ];
 
