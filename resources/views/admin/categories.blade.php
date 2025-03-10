@@ -70,7 +70,7 @@
                 @endif
             </div>
             <div class="wg-table table-all-category">
-                <ul class="table-title flex gap20 mb-14">
+                <ul class="table-title flex mb-14">
                     <li>
                         <div class="body-title">{{trans_lang('category')}}</div>
                     </li>
@@ -88,7 +88,7 @@
 
                     @foreach($categories as $category)
 
-                    <li class="product-item gap14">
+                    <li class="product-item">
                         <div class="image no-bg">
                             <img src="{{ asset('assets/images/categories/'.$category->image) }}" alt="{{ $category->category_name }}">
                         </div>
@@ -98,9 +98,9 @@
                             </div>
                             <div class="body-text">{{ $category->created_at->format('d M Y') }}</div>
                             <div class="list-icon-function">
-                                <div class="item eye">
+                                {{-- <div class="item eye">
                                     <i class="icon-eye"></i>
-                                </div>
+                                </div> --}}
                                 <div class="item edit">
                                     <a href="{{ route('admin.categories.edit', $category) }}">
                                         <i class="icon-edit-3"></i>

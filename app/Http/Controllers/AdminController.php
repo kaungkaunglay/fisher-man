@@ -66,7 +66,7 @@ class AdminController extends Controller
     }
     public function users()
     {
-        $role = Role::where('id',  3)->first(); 
+        $role = Role::where('id',  3)->first();
         $users = $role->users()->paginate(10);
         return view('admin.users', ['users' => $users]);
     }
@@ -115,7 +115,7 @@ class AdminController extends Controller
             'contact_address' => request('contact_address'),
             'slogan' => request('slogan'),
             'policy' => request('policy'),
-    ];
+        ];
 
         foreach ($settings as $key => $value) {
             Setting::updateOrCreate(['key' => $key], ['value' => $value]);
