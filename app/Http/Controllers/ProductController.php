@@ -239,7 +239,7 @@ class ProductController extends Controller
             'status.string' => 'ステータスは文字列でなければなりません',
         ];
 
-       $request->validate([
+        $request->validate([
             'name' => 'sometimes|string|max:255',
             'product_price' => 'sometimes|numeric|min:1',
             'product_image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
@@ -252,7 +252,6 @@ class ProductController extends Controller
             'sub_category_id' => 'sometimes|integer|exists:sub_categories,id',
             'description' => 'nullable|sometimes|string',
         ], $messages);
-
 
         if ($request->hasFile('product_image')) {
             $folderPath = public_path('assets/products');
@@ -272,6 +271,8 @@ class ProductController extends Controller
         }
 
         $product->update($request->except('product_image'));
+
+        logger($product);
 
         return redirect()->route('admin.products')->with('success', 'Product updated successfully.');
     }
