@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="price body-title">{{ $product->created_at->format('d M Y') }}</div>
                             </div>
-                            
+
                         </div>
                         <div class="tf-product-info-variant-picker">
                             <div class="variant-picker-label body-text">
@@ -110,13 +110,7 @@
     <!-- /main-content-wrap -->
 </div>
 <!-- /main-content-wrap -->
-<!-- bottom-page -->
-<div class="bottom-page">
-    <div class="body-text">Copyright © 2024 Remos. Design with</div>
-    <i class="icon-heart"></i>
-    <div class="body-text">by <a href="https://themeforest.net/user/themesflat/portfolio">Themesflat</a> All rights reserved.</div>
-</div>
-<!-- /bottom-page -->
+
 @endsection
 @section('script')
 
@@ -124,9 +118,9 @@
 <script src="{{ asset('assets/admin/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/admin/js/bootstrap-select.min.js') }}"></script>
 <script src="{{ asset('assets/admin/js/zoom.js') }}"></script>
-<script src="{{ asset('assets/admin/js/switcher.js') }}"></script>
-<script src="{{ asset('assets/admin/js/theme-settings.js') }}"></script>
-<script src="{{ asset('assets/admin/js/swiper-bundle.min.js') }}"></script>
-<script src="{{ asset('assets/admin/js/carousel.js') }}"></script>
-<script src="{{ asset('assets/admin/s/main.js') }}j"></script>
+{{-- <script src="{{ asset('assets/admin/js/switcher.js') }}"></script> --}}
+{{-- <script src="{{ asset('assets/admin/js/theme-settings.js') }}"></script> --}}
+{{-- <script src="{{ asset('assets/admin/js/swiper-bundle.min.js') }}"></script> --}}
+{{-- <script src="{{ asset('assets/admin/js/carousel.js') }}"></script> --}}
+<script src="{{ asset('assets/admin/js/main.js') }}"></script>
 @endsection
