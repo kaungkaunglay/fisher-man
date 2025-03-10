@@ -98,9 +98,8 @@
                             </div>
                             <div class="body-text">{{ $category->created_at->format('d M Y') }}</div>
                             <div class="list-icon-function">
-                                {{-- <div class="item eye">
-                                    <i class="icon-eye"></i>
-                                </div> --}}
+                              
+                                @if($category->subCategories->isEmpty()) 
                                 <div class="item edit">
                                     <a href="{{ route('admin.categories.edit', $category) }}">
                                         <i class="icon-edit-3"></i>
@@ -115,6 +114,7 @@
                                         <i class="icon-trash-2"></i>
                                     </a>
                                 </div>
+                                @endif 
                             </div>
                         </div>
                     </li>

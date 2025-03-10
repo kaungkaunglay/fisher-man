@@ -104,34 +104,65 @@ class ShopController extends Controller
     }
 
 
-    public function shop_details($id)
-    {
-        // $shop = Shop::select('shops.*', 'users.username', 'users.address')
-        //     ->join('users', 'shops.user_id',  'users.id')
-        //     ->where('shops.id', '=', $id)
-        //     ->first();
+    // public function shop_details(Request $request,$id){
+    //     $sort = $request->sort_by;
 
-        $shop = Shop::with('user:id,username,address')
-            ->findOrFail($id);
+    //     $shop = Shop::select('shops.*', 'users.username', 'users.address')
+    //     ->join('users', 'shops.user_id',  'users.id')
+    //     ->where('shops.id','=',$id)
+    //     ->first();
 
+    //     $products = Product::select('products.*', 'sub_categories.name as sub_categories_name')
+    //             ->join('users', 'users.id', 'products.user_id')
+    //             ->join('shops', 'shops.user_id', 'users.id')
+    //             ->join('sub_categories', 'sub_categories.id', 'products.sub_category_id')
+    //             ->where('shops.id', '=', $id)
+    //             ->orderBy('products.created_at', 'desc')
+    //             ->get();
 
-        // $products = Product::select('products.*', 'sub_categories.name as sub_categories_name')
-        //     ->join('users', 'users.id', 'products.user_id')
-        //     ->join('shops', 'shops.user_id', 'users.id')
-        //     ->join('sub_categories', 'sub_categories.id', 'products.sub_category_id')
-        //     ->where('shops.id', '=', $id)
-        //     ->orderBy('products.created_at', 'desc')
-        //     ->get();
+    //     return view('shop_detail',compact('shop','products'));
+    // }
 
-        $products = Product::with('subCategory:id,name')
-            ->whereHas('user', function ($query) use ($shop) {
-                $query->where('id', $shop->user_id);
-            })
-            ->latest()->get();
+    public function shop_details(Request $request, $id)
+{   
+    $sort = $request->sort_by; // Get sorting parameter
+    // dd($sort);
 
+    // Fetch shop details
+    $shop = Shop::select('shops.*', 'users.username', 'users.address')
+        ->join('users', 'shops.user_id', '=', 'users.id')
+        ->where('shops.id', '=', $id)
+        ->first();
 
-        return view('shop_detail', compact('shop', 'products'));
+    // // Fetch and sort products
+    $query = Product::select('products.*', 'sub_categories.name as sub_categories_name')
+        ->join('users', 'users.id', '=', 'products.user_id')
+        ->join('shops', 'shops.user_id', '=', 'users.id')
+        ->join('sub_categories', 'sub_categories.id', '=', 'products.sub_category_id')
+        ->where('shops.id', '=', $id);
+
+    // Apply sorting based on user selection
+    if ($sort) {
+    if ($sort == 'price_l_h') {
+        $query->orderByRaw('(products.product_price - products.discount) ASC');
+    } elseif ($sort == 'price_h_l') {
+        $query->orderByRaw('(products.product_price - products.discount) DESC');
+    } elseif ($sort == 'name_a_z') {
+        $query->orderBy('products.name', 'ASC');
+    } elseif ($sort == 'name_z_a') {
+        $query->orderBy('products.name', 'DESC');
+    } elseif ($sort == 'latest') {
+        $query->orderBy('products.created_at', 'DESC');
+    } else {
+        $query->orderBy('products.created_at', 'DESC'); // Default sorting by latest
     }
+}
+
+    $products = $query->get();
+
+    return view('shop_detail', compact('shop', 'products', 'sort'));
+}
+
 
     public function requestShop(Request $request)
     {
