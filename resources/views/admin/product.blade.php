@@ -49,7 +49,7 @@
 
             <div class="wg-box">
                 <fieldset class="name">
-                    <div class="body-title mb-10">{{trans_lang('product')}}{{trans_lang('name')}}<span class="tf-color-1">*</span></div>
+                    <div class="body-title mb-10">{{trans_lang('product_name')}}<span class="tf-color-1">*</span></div>
                     <input class="mb-10 @error('name') is-invalid @enderror" type="text" placeholder="商品名を入力してください" name="name" value="{{ old('name', $product->name ?? '') }}">
                     @error('name')
                     <div class="invalid-feedback">
@@ -61,8 +61,8 @@
 
                 <fieldset class="category">
                     <div class="body-title mb-10">{{trans_lang('category')}} <span class="tf-color-1">*</span></div>
-                    <div class="select @error('sub_category_id') is-invalid @enderror">
-                        <select name="sub_category_id">
+                    <div class="select @error('sub_category_id') is-invalid @enderror" >
+                        <select name="sub_category_id" style="padding:5px 22px;">
                             <option value="">{{trans_lang('select')}}{{trans_lang('category')}}</option>
                             @foreach($subCategories as $subCategory)
                             <option value="{{ $subCategory->id }}" {{ old('sub_category_id', $product->sub_category_id ?? '') == $subCategory->id ? 'selected' : '' }}>
@@ -78,66 +78,63 @@
                     </div>
                 </fieldset>
 
-                <fieldset class="product_price">
-                    <div class="body-title mb-10">{{trans_lang('price')}} <span class="tf-color-1">*</span></div>
-                    <input class="mb-10 @error('product_price') is-invalid @enderror" type="number" name="product_price" value="{{ old('product_price', $product->product_price ?? '') }}">
-                    @error('product_price')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </fieldset>
+                <div class="d-flex gap10">
+                    <fieldset class="product_price">
+                        <div class="body-title mb-10">{{trans_lang('price')}} <span class="tf-color-1">*</span></div>
+                        <input class="mb-10 @error('product_price') is-invalid @enderror" type="number" name="product_price" value="{{ old('product_price', $product->product_price ?? '') }}">
+                        @error('product_price')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </fieldset>
 
-                <fieldset class="product_price">
-                    <div class="body-title mb-10">{{trans_lang('special_offer')}}</div>
-                    <input class="mb-10 @error('discount') is-invalid @enderror" type="number" name="discount" value="{{ old('discount', $product->discount ?? '') }}">
-                    @error('discount')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </fieldset>
+                    <fieldset class="product_price">
+                        <div class="body-title mb-10">セール（希望割引価格を記入）</div>
+                        <input class="mb-10 @error('discount') is-invalid @enderror" type="number" name="discount" value="{{ old('discount', $product->discount ?? '') }}">
+                        @error('discount')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </fieldset>
+                </div>
+                
+                <div class="d-flex gap10">
+                    <fieldset class="stock">
+                        <div class="body-title mb-10">{{trans_lang('quanity')}} <span class="tf-color-1">*</span></div>
+                        <input min="1" class="mb-10 @error('stock') is-invalid @enderror" type="number" name="stock" value="{{ old('stock', $product->stock ?? '') }}">
+                        @error('stock')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </fieldset>
 
-                <fieldset class="stock">
-                    <div class="body-title mb-10">{{trans_lang('quanity')}} <span class="tf-color-1">*</span></div>
-                    <input min="1" class="mb-10 @error('stock') is-invalid @enderror" type="number" name="stock" value="{{ old('stock', $product->stock ?? '') }}">
-                    @error('stock')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </fieldset>
+                    <fieldset class="weight">
+                        <div class="body-title mb-10">{{trans_lang('weight')}} (kg) <span class="tf-color-1">*</span></div>
+                        <input class="mb-10 @error('weight') is-invalid @enderror" type="number" name="weight" step="0.01" value="{{ old('weight', $product->weight ?? '') }}">
+                        @error('weight')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </fieldset>
 
-                <fieldset class="weight">
-                    <div class="body-title mb-10">{{trans_lang('weight')}} (kg) <span class="tf-color-1">*</span></div>
-                    <input class="mb-10 @error('weight') is-invalid @enderror" type="number" name="weight" step="0.01" value="{{ old('weight', $product->weight ?? '') }}">
-                    @error('weight')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </fieldset>
+                    <fieldset class="size">
+                        <div class="body-title mb-10">{{trans_lang('length')}} (cm)<span class="tf-color-1">*</span></div>
+                        <input class="mb-10 @error('size') is-invalid @enderror" type="number" name="size" step="0.01" value="{{ old('size', $product->size ?? '') }}">
+                        @error('size')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </fieldset>
+                </div>
 
-                <fieldset class="size">
-                    <div class="body-title mb-10">{{trans_lang('length')}} (cm)<span class="tf-color-1">*</span></div>
-                    <input class="mb-10 @error('size') is-invalid @enderror" type="number" name="size" step="0.01" value="{{ old('size', $product->size ?? '') }}">
-                    @error('size')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </fieldset>
+                
 
-                <fieldset class="description">
-                    <div class="body-title mb-10">{{trans_lang('description')}}</div>
-                    <textarea class="mb-10 @error('description') is-invalid @enderror" name="description" placeholder="説明">{{ old('description', $product->description ?? '') }}</textarea>
-                    @error('description')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                    <div class="text-tiny">{{trans_lang('limit')}}</div>
-                </fieldset>
+                
             </div>
 
             <div class="wg-box">
@@ -168,24 +165,37 @@
                     </div>
                     <div class="body-text">{{trans_lang('add_product_image')}}</div>
                 </fieldset>
-                <fieldset class="date">
-                    <div class="body-title mb-10">{{trans_lang('day_of_caught')}} <span class="tf-color-1">*</span></div>
-                    <input class="mb-10 @error('day_of_caught') is-invalid @enderror" type="date" name="day_of_caught" step="0.01" value="{{ old('day_of_caught', $product->day_of_caught ?? '') }}">
-                    @error('day_of_caught')
+                <div class="d-flex gap10">
+                    <fieldset class="date">
+                        <div class="body-title mb-10">{{trans_lang('day_of_caught')}} <span class="tf-color-1">*</span></div>
+                        <input class="mb-10 @error('day_of_caught') is-invalid @enderror" type="date" name="day_of_caught" step="0.01" value="{{ old('day_of_caught', $product->day_of_caught ?? '') }}">
+                        @error('day_of_caught')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </fieldset>
+                    <fieldset class="date">
+                        <div class="body-title mb-10">{{trans_lang('expire_date')}}<span class="tf-color-1">*</span></div>
+                        <input class="mb-10 @error('expiration_date') is-invalid @enderror" type="date" name="expiration_date" step="0.01" value="{{ old('expiration_date', $product->expiration_date ?? '') }}">
+                        @error('expiration_date')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </fieldset>
+                </div>
+                <fieldset class="description">
+                    <div class="body-title mb-10">{{trans_lang('description')}}</div>
+                    <textarea class="mb-10 @error('description') is-invalid @enderror" name="description" placeholder="説明">{{ old('description', $product->description ?? '') }}</textarea>
+                    @error('description')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                     @enderror
+                    <div class="text-tiny">{{trans_lang('limit')}}</div>
                 </fieldset>
-                <fieldset class="date">
-                    <div class="body-title mb-10">{{trans_lang('expire_date')}}<span class="tf-color-1">*</span></div>
-                    <input class="mb-10 @error('expiration_date') is-invalid @enderror" type="date" name="expiration_date" step="0.01" value="{{ old('expiration_date', $product->expiration_date ?? '') }}">
-                    @error('expiration_date')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </fieldset>
+                
             </div>
 
             <input type="hidden" name="user_id" value="{{ auth_helper()->user()->id }}">

@@ -1771,7 +1771,7 @@ a:hover, a:focus {
   height: 206px;
 }
 .upload-image .item.up-load {
-  min-height: 208px;
+  min-height: 150px;
   border: 1px dashed var(--Main);
 }
 .upload-image .uploadfile {
@@ -3027,7 +3027,7 @@ form input[type=color] {
   -moz-box-shadow: none;
   box-shadow: none;
   width: 100%;
-  padding: 14px 22px;
+  padding: 5px 22px;
   font-size: 14px;
   font-family: "Inter", sans-serif;
   font-weight: 400;
@@ -3088,7 +3088,7 @@ form input[type=submit]:hover {
   color: var(--primary);
 }
 form textarea {
-  height: 200px !important;
+  height: 50px !important;
 }
 form .cols {
   display: -webkit-box;

@@ -107,7 +107,12 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'all_products',
                 'en' => 'All Products',
-                'jp' => 'すべての商品',
+                'jp' => '商品管理メニュー',
+            ],
+            [
+                'key' => 'product_name',
+                'en' => 'Product Name',
+                'jp' => '商品名',
             ],
             [
                 'key' => 'top_products',
@@ -200,10 +205,18 @@ class TranslationSeeder extends Seeder
                 'jp' => '数量',
             ],
             [
+                'key' => 'pending_product', 
+                'en' => 'Pending Product',
+                'jp' => '保留中の商品'
+            ],
+
+            [
                 'key' => 'shipping_address',
                 'en' => 'Shipping Address',
                 'jp' => '配送先住所',
             ],
+            ['key' => 'banner_image', 'en' => 'Banner Image', 'jp' => 'バナー画像'],
+            ['key' => 'choose_banner_image', 'en' => 'Choose Banner Image', 'jp' => 'バナー画像を選択'],
             [
                 'key' => 'loading_preload',
                 'en' => 'LOADING FRESH CATCH...',
@@ -230,11 +243,7 @@ class TranslationSeeder extends Seeder
                 'en' => 'image',
                 'jp' => '画像',
             ],
-            [
-                'key' => 'product_name',
-                'en' => 'Product Name',
-                'jp' => '商品名',
-            ],
+            
             [
                 'key' => 'price',
                 'en' => 'Price',
@@ -618,6 +627,7 @@ class TranslationSeeder extends Seeder
                 'en' => 'Submit',
                 'jp' => '送信',
             ],
+            ['key' => 'all_user', 'en' => 'All User', 'jp' => 'すべてのユーザー'],
             [
                 'key' => 'request_shops',
                 'en' => 'Request Shops',

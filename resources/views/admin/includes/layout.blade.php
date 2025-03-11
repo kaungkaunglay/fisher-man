@@ -92,10 +92,31 @@
                             <div class="center-item">
                                 <div class="center-heading">{{trans_lang('product_management')}}</div>
                                 <ul class="menu-list">
-                                    <li class="menu-item has-children {{ request()->is('admin/product*') ? 'active' : '' }}">
-                                        <a href="javascript:void(0);" class="menu-item-button">
+                                    <li class="menu-item">
+                                        <a href="{{route('admin.products')}}" class="{{ request()->is('admin/products') ? 'active' : '' }}">
                                             <div class="icon"><i class="icon-shopping-cart"></i></div>
                                             <div class="text">{{trans_lang('all_products')}}</div>
+                                        </a>
+                                    </li>
+                                    <!-- Open later by thahar(Nishimura san request) -->
+                                    <!-- <li class="menu-item">
+                                        <a href="{{route('admin.categories')}}" class="{{ request()->is('admin/categories') ? 'active' : '' }}">
+                                            <div class="icon"><i class="icon-layers"></i></div>
+                                            <div class="text">{{trans_lang('all_category')}}</div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="{{route('admin.sub_categories')}}" class="{{ request()->is('admin/sub-categories') ? 'active' : '' }}">
+                                            <div class="icon"><i class="icon-layers"></i></div>
+                                            <div class="text">{{trans_lang('all_sub_category')}}</div>
+                                        </a>
+                                    </li> -->
+                                    <!-- <li class="menu-item has-children {{ request()->is('admin/product*') ? 'active' : '' }}">
+                                        <a href="javascript:void(0);" class="menu-item-button">
+                                            <div class="icon"><i class="icon-shopping-cart"></i></div>
+                                            <a href="{{route('admin.products')}}" class="{{ request()->is('admin/products') ? 'active' : '' }}">
+                                                <div class="text">{{trans_lang('all_products')}}</div>
+                                            </a>
                                         </a>
                                         <ul class="sub-menu">
                                             <li class="sub-menu-item">
@@ -110,8 +131,8 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li class="menu-item has-children {{ request()->is('admin/categ*') ? 'active' : '' }}">
+                                    </li> -->
+                                    <!-- <li class="menu-item has-children {{ request()->is('admin/categ*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-layers"></i></div>
                                             <div class="text">{{trans_lang('category')}}</div>
@@ -149,7 +170,7 @@
                                             </li>
 
                                         </ul>
-                                    </li>
+                                    </li> -->
                                     {{-- <li class="menu-item has-children {{ request()->is('admin/order*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-file-plus"></i></div>
@@ -221,7 +242,7 @@
                                 </ul>
 
                             </div>
-                            <div class="center-item">
+                            <!-- <div class="center-item">
                                 <div class="center-heading">{{trans_lang('manage_shop')}}</div>
                                 <ul class="menu-list">
                                     <li class="menu-item has-children {{ request()->is('admin/shop*') ? 'active' : '' }}">
@@ -248,7 +269,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
 
                             <div class="center-item">
                                 <div class="center-heading">{{trans_lang('manage_faqs')}}</div>
