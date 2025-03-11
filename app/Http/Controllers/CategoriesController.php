@@ -38,21 +38,18 @@ class CategoriesController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $folderPath = public_path('assets/categories');
-
+        $folderPath = public_path('assets/images/categories');
         if (!file_exists($folderPath)) {
             mkdir($folderPath, 0755, true);
         }
 
         $image = $request->file('image');
-
         $imageName = time() . '_' . $image->getClientOriginalName();
-
         $image->move($folderPath, $imageName);
 
         Category::create([
             'category_name' => $request->category_name,
-            'image' => 'assets/categories/' . $imageName,
+            'image' =>  $imageName,
         ]);
 
         return redirect()->route('admin.categories')->with('success', 'Category created successfully.');

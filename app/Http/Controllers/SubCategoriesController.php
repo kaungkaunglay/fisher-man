@@ -45,6 +45,8 @@ class SubCategoriesController extends Controller
 
         $products = $query->paginate(10);
 
+        // dd($products);
+
         $subCategory = Sub_category::findOrFail($id);
 
         $settings = Setting::pluck('value', 'key')->toArray();
