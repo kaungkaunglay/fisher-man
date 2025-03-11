@@ -20,7 +20,7 @@
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>{{trans_lang('request_product')}}</h3>
+            <h3>未承認の商品</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
                     <a href="{{route('admin.index')}}">
@@ -122,21 +122,27 @@
                                     id="statusDropdown{{ $product->id }}"
                                     data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                    {{ ucfirst($product->status) }}
+                                    @if($product->status == 'pending')
+                                        保留
+                                    @elseif($product->status == 'accepted')
+                                        承認
+                                    @else
+                                        非認証
+                                    @endif
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="statusDropdown{{ $product->id }}">
-                                    <li><a class="dropdown-item change-status" href="#" data-id="{{ $product->id }}" data-status="approved">✅ Approve</a></li>
-                                    <li><a class="dropdown-item change-status" href="#" data-id="{{ $product->id }}" data-status="pending">⏳ Pending</a></li>
-                                    <li><a class="dropdown-item change-status" href="#" data-id="{{ $product->id }}" data-status="rejected">❌ Reject</a></li>
+                                    <li><a class="dropdown-item change-status" href="#" data-id="{{ $product->id }}" data-status="approved">✅ 承認</a></li>
+                                    <li><a class="dropdown-item change-status" href="#" data-id="{{ $product->id }}" data-status="pending">⏳ 保留</a></li>
+                                    <li><a class="dropdown-item change-status" href="#" data-id="{{ $product->id }}" data-status="rejected">❌ 非認証</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="list-icon-function">
-                            <div class="item eye">
+                            <!-- <div class="item eye">
                                 <a href="{{route('admin.product.show',$product->id)}}">
                                     <i class="icon-eye"></i>
                                 </a>
-                            </div>
+                            </div> -->
                             <div class="item trash">
                                 <form id="delete-form-{{ $product->id }}" action="{{ route('admin.products.destroy', $product->id) }}" method="POST" style="display: none;">
                                     @csrf

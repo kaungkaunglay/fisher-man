@@ -27,13 +27,13 @@
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <a href="#"><div class="text-tiny">User</div></a>
+                        <a href="#"><div class="text-tiny">{{trans_lang('user')}}</div></a>
                     </li>
                     <li>
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <div class="text-tiny">Buyer User Lists</div>
+                        <div class="text-tiny">{{trans_lang('all_user')}}</div>
                     </li>
                 </ul>
             </div>
@@ -58,13 +58,13 @@
                             <div class="body-title">{{trans_lang('name')}}</div>
                         </li>
                         <li class="flex-1">
-                            <div class="body-title">Email</div>
+                            <div class="body-title">{{trans_lang('email')}}</div>
                         </li>
                         <li class="flex-1">
-                            <div class="body-title">Created Date</div>
+                            <div class="body-title">{{trans_lang('created_date')}}</div>
                         </li>
                         <li class="flex-1">
-                            <div class="body-title">Action</div>
+                            <div class="body-title">{{trans_lang('action')}}</div>
                         </li>
                     </ul>
                     <ul class="flex flex-column">

@@ -202,7 +202,7 @@
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.users.contact')}}" class="{{request()->is('admin/request-contact') ? 'active' : ''}}">
-                                                    <div class="text">{{trans_lang('contact')}}</div>
+                                                    <div class="text">お問い合わせ内容</div>
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
@@ -221,7 +221,7 @@
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.users')}}" class="{{request()->is('admin/users') ? 'active' : ''}}">
-                                                    <div class="text">{{trans_lang('user_list')}}</div>
+                                                    <div class="text">すべてのユーザー</div>
                                                 </a>
                                             </li>
                                         </ul>
@@ -234,7 +234,7 @@
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
                                                 <a href="{{route('pending-products')}}" class="{{request()->is('admin/pending-products') ? 'active' : ''}}">
-                                                    <div class="text">{{trans_lang('pending_product')}}</div>
+                                                    <div class="text">商品登録依頼</div>
                                                 </a>
                                             </li>
                                         </ul>
@@ -296,17 +296,17 @@
                                 </ul>
                             </div>
                             <div class="center-item">
-                                <div class="center-heading">{{trans_lang('manage_system_data')}} Data</div>
+                                <div class="center-heading">システム環境設定</div>
                                 <ul class="menu-list">
                                     <li class="menu-item has-children {{ request()->is('admin/setting*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-settings"></i></div>
-                                            <div class="text">{{trans_lang('system_data')}}</div>
+                                            <div class="text">システム環境設定</div>
                                         </a>
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.settings')}}" class="{{request()->is('admin/settings') ? 'active' : ''}}">
-                                                    <div class="text">{{trans_lang('all_system_data')}}</div>
+                                                    <div class="text">システムデータの変更</div>
                                                 </a>
                                             </li>
                                             {{-- <li class="sub-menu-item">

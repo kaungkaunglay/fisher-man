@@ -29,7 +29,7 @@
                                 <i class="icon-shopping-bag"></i>
                             </div>
                             <div>
-                                <div class="body-text mb-2">{{trans_lang('total')}}{{trans_lang('product')}}</div>
+                                <div class="body-text mb-2">商品登録済の個数</div>
                                 <h4>{{ $total_product_count }}</h4>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                     <!-- top-product -->
                     <div class="wg-box" style="height: 450px;">
                         <div class="flex items-center justify-between">
-                            <h5>{{trans_lang('top_products')}}</h5>
+                            <h5>売れ筋商品</h5>
                             {{-- <div class="dropdown default">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="view-all">View all<i class="icon-chevron-down"></i></span>
@@ -96,7 +96,7 @@
                     </div>
                     <!-- /top-product -->
                     <!-- product-overview -->
-                    <div class="wg-box">
+                    <div class="wg-box" style="height: 450px;">
                         <div class="flex items-center justify-between">
                             <h5>{{trans_lang('all_products')}}</h5>
                         </div>

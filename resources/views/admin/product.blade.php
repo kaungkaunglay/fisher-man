@@ -202,7 +202,7 @@
             <input type="hidden" name="status" value="pending">
 
             <div class="cols gap10">
-                <button class="tf-button w-full" type="submit">{{ isset($product) ? '商品を更新' : '商品を追加' }}</button>
+                <button class="tf-button w-full" type="submit">{{ isset($product) ? '編集を保存' : '商品を追加' }}</button>
                 <a href="{{ route('admin.products') }}" class="tf-button style-2 w-full">{{trans_lang('cancle')}}</a>
             </div>
         </form>

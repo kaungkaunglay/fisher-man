@@ -119,6 +119,7 @@ class TranslationSeeder extends Seeder
                 'en' => 'Top Products',
                 'jp' => 'トップ製品',
             ],
+            ['key' => 'user', 'en' => 'User', 'jp' => 'ユーザー'],
             [
                 'key' => 'seemore',
                 'en' => 'See More',
@@ -430,6 +431,10 @@ class TranslationSeeder extends Seeder
                 'en' => 'Expire Date',
                 'jp' => '有効期限',
             ],
+            ['key' => 'created_date', 'en' => 'Created Date', 'jp' => '作成日'],
+            ['key' => 'request_product', 'en' => 'Request Product', 'jp' => '商品のリクエスト'],
+            ['key' => 'contact_detail', 'en' => 'Contact Detail', 'jp' => '連絡先詳細'],
+
             [
                 'key' => 'upload_img',
                 'en' => 'Upload Img',
