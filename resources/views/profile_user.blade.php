@@ -255,18 +255,12 @@
                                                     class="col-form-label">{{ trans_lang('phone_number') }}</label>
                                             </div>
                                             <div class="col-lg-7 col-12 input-box">
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <select name="first_phone_extension" class="form-select" >
-                                                            <option value="+81">+81</option>
-                                                            <option value="+95">+95</option>
-                                                        </select >
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <input type="number" class="form-control" name="phoneNumber"
-                                                        id="phoneNumber">
-                                                    </div>
+                                                
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">+81</span>
+                                                    <input type="text" name="phoneNumber" class="form-control" id="phoneNumber"  aria-label="phoneNumber" aria-describedby="basic-addon1">
                                                 </div>
+                                                  
                                                 <span class="invalid-feedback"></span>
                                             </div>
                                         </div>
