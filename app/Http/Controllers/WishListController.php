@@ -40,16 +40,21 @@ class WishListController extends Controller
         $errors = [];
 
         if($request->input('wish_phone') != null ){
-            $request->merge([
-                'wish_phone' => $request->input('wish_phone_extension') . $request->input('wish_phone'),
-            ]);
+            // $request->merge([
+            //     'wish_phone' => $request->input('wish_phone_extension') . $request->input('wish_phone'),
+            // ]);
+            $phone = '+81' . $request->input('wish_phone');
             $phoneRegexJapan = '/^\+81[789]0\d{4}\d{4}$/';
-            $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
+            // $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
                 // Validate first phone number
-            if ($request->input('wish_phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('wish_phone'))) {
-                    $errors['wish_phone'] = 'Invalid phone number.';
-             } elseif ($request->input('wish_phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('wish_phone'))) {
-                    $errors['wish_phone'] = 'Invalid phone number.';
+            // if ($request->input('wish_phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('wish_phone'))) {
+            //         $errors['wish_phone'] = 'Invalid phone number.';
+            //  } elseif ($request->input('wish_phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('wish_phone'))) {
+            //         $errors['wish_phone'] = 'Invalid phone number.';
+            // }
+
+            if (!preg_match($phoneRegexJapan, $phone)) {
+                $errors['wish_phone'] = 'Invalid phone number.';
             }
         }
 
@@ -61,7 +66,7 @@ class WishListController extends Controller
 
         $wishList = wishList::create([
             'name' => $request->wish_name,
-            'phone' => $request->wish_phone,
+            'phone' => "+81" . $request->wish_phone,
             'email' => $request->wish_email,
             'description' => $request->wish_description,
         ]);

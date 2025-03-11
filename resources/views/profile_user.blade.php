@@ -255,18 +255,12 @@
                                                     class="col-form-label">{{ trans_lang('phone_number') }}</label>
                                             </div>
                                             <div class="col-lg-7 col-12 input-box">
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <select name="first_phone_extension" class="form-select" >
-                                                            <option value="+81">+81</option>
-                                                            <option value="+95">+95</option>
-                                                        </select >
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <input type="number" class="form-control" name="phoneNumber"
-                                                        id="phoneNumber">
-                                                    </div>
+                                                
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">+81</span>
+                                                    <input type="text" name="phoneNumber" class="form-control" id="phoneNumber"  aria-label="phoneNumber" aria-describedby="basic-addon1">
                                                 </div>
+                                                  
                                                 <span class="invalid-feedback"></span>
                                             </div>
                                         </div>
@@ -364,26 +358,32 @@
                             <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
                             <div class="ms-1 d-flex flex-column phone-no-container">
                                 <div class="form-group">
-                                    <select name="first_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
+                                    {{-- <select name="first_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
                                         <option value="+81" @if($user->firstExtension == '+81') selected @endif>+81</option>
                                         <option value="+95" @if($user->firstExtension == '+95') selected @endif>+95</option>
-                                    </select>
+                                    </select> --}}
+                                    <input type="text" name="first_phone_extension" 
+                                        class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" 
+                                        style="width: 40px;"  value="+81" readonly />
                                     <a href="tel:">
                                         <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
                                     </a>
-                                    <input type="tel" name="first_phone" class="mt-2 border-bottom border-2 d-none" style="width: 150px;"
+                                    <input type="number" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;"
                                         id="first_phone" value="{{ $user->firstNumber }}" disabled>
                                     <span class="invalid-feedback"></span>
                                 </div>
                                 <div class="form-group">
-                                    <select name="second_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
+                                    {{-- <select name="second_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
                                         <option value="+81" @if($user->secondExtension == '+81') selected @endif>+81</option>
                                         <option value="+95" @if($user->secondExtension == '+95') selected @endif>+95</option>
-                                    </select>
+                                    </select> --}}
+                                    <input type="text" name="second_phone_extension" 
+                                        class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" 
+                                        style="width: 40px;"  value="+81" readonly />
                                     <a href="tel:">
                                         <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
                                     </a>
-                                    <input type="tel" name="second_phone" class="mt-2 border-bottom border-2 d-none" style="width: 150px;"
+                                    <input type="number" name="second_phone" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;"
                                         value="{{ $user->secondNumber }}" id="second_phone" disabled>
                                     <span class="invalid-feedback"></span>
                                 </div>

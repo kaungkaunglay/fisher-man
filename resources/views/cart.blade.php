@@ -79,7 +79,7 @@
                                             alt="{{ $item->product->name }}"></div>
                                 </td>
                                 <td class="col-name">{{ $item->product->name }}</td>
-                                <td class="price format">¥{{ $item->product->product_price }}</td>
+                                <td class="price format">¥{{ $item->product->getSellPrice() }}</td>
                                 <td>
                                     <div class="quantity d-flex justify-content-center">
                                         <button class="btn decrement">-</button>

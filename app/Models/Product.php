@@ -82,4 +82,8 @@ class Product extends Model
 
         return $user && $user->carts()->where('product_id', $this->id)->first();
     }
+
+    public function getSellPrice(){
+        return $this->product_price - ($this->discount ?? 0);
+    }
 }
