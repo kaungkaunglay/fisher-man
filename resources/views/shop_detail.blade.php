@@ -50,7 +50,7 @@
                                 <span class="fs-6" >{{ trans_lang('username') }} : </span>
                             </div>
                             <div class="me-1">
-                                <span class="fs-6 text-muted" >{{ $shop->username }}</span>
+                                <span class="fs-6 text-muted" >{{ $shop->user->username }}</span>
                             </div>
                         </div>
                         <div class="d-grid gap-2">
@@ -105,7 +105,7 @@
                                                     {{ $shop->email }}
                                                 </li>
                                                 <li><i class="fas fa-map-marker-alt text-primary mb-3 me-2"></i>
-                                                    {{ $shop->address }}
+                                                    {{ $shop->user->address }}
                                                 </li>
                                                 <li><i
                                                         class="fas fa-box text-primary mb-3 me-2"></i>{{ $products->count() }}
@@ -133,29 +133,32 @@
                                                 <button><i class="fa-solid fa-caret-up"></i></button>
                                                 <button><i class="fa-solid fa-caret-down"></i></button>
                                             </div>
-                                            <div class="dropdown">
+                                            <form class="dropdown" id="sortForm" method="get" action="{{ route('shop.detail',$shop->id) }}">
+
                                                 <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                                     aria-expanded="false">{{trans_lang('sortby')}}</button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item"
-                                                            href="{{ route('home', ['sort_by' => 'price_asc']) }}">{{trans_lang('price_l_h')}}</a></li>
-                                                    <li><a class="dropdown-item"
-                                                            href="{{ route('home', ['sort_by' => 'price_desc']) }}">{{trans_lang('price_h_l')}}</a>
-                                                    </li>
-                                                    <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">{{trans_lang('name_a_z')}}</a></li>
-                                                    <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">{{trans_lang('name_z_a')}}</a></li>
-                                                    <li><a class="dropdown-item"
-                                                            href="{{ route('home', ['sort_by' => 'latest']) }}">{{trans_lang('latest')}}</a></li>
-                                                </ul>
-                                            </div>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item sort-option"
+                                                                    href="" onclick="sortBy('price_l_h')">{{trans_lang('price_l_h')}}</a></li>
+                                                            <li><a class="dropdown-item sort-option"
+                                                                    href="" onclick="sortBy('price_h_l')">{{trans_lang('price_h_l')}}</a>
+                                                            </li>
+                                                            <li><a class="dropdown-item sort-option" href="" onclick="sortBy('name_a_z')">{{trans_lang('name_a_z')}}</a></li>
+                                                            <li><a class="dropdown-item sort-option" href="" onclick="sortBy('name_z_a')">{{trans_lang('name_z_a')}}</a></li>
+                                                            <li><a class="dropdown-item sort-option"
+                                                                    href="" onclick="sortBy('latest')">{{trans_lang('latest')}}</a></li>
+                                                            </ul>
+
+                                                            <input type="hidden" name="sort_by" id="sortInput">
+
+                                                    </form>
                                         </div>
                                     </div>
                                     {{-- /Product Headline --}}
 
                                     {{-- Products List --}}
-                                    <div class="scroller">
+                                    <div class="scroller" id="product-list">
                                         <div class="card-list m-3" id="view-list">
-
 
                                             @foreach ($products as $product)
                                             @if ($product->status == 'approved')
@@ -383,7 +386,7 @@
 @endsection
 
 @section('script')
-    <script>
+    {{-- <script>
         $(document).ready(() => {
             handleAddToCartBtn('cart-btn');
             handleAddToWhiteListBtn('white-list-btn');
@@ -410,5 +413,70 @@
             });
         });
         })
-    </script>
+    </script> --}}
+
+<script>
+    $(document).ready(function () {
+        $(".sort-option").on("click", function (e) {
+            e.preventDefault();
+            // console.log('sorted');
+            let sortType = $(this).data("sort");
+
+            $.ajax({
+                url: "{{route('shopdetail.products.sort')}}",
+                type: "GET",
+                data: { sort: sortType  
+                 },
+                beforeSend: function () {
+                    $("#product-list").html('<div class="text-center"><span>Loading...</span></div>');
+                },
+                success: function (response) {
+                    console.log(response);
+                    // $("#product-list").html(response.products);
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+    function sortBy(sortType) {
+        document.getElementById('sortInput').value = sortType;
+        document.getElementById('sortForm').submit();
+    }
+</script>
+
+<script>
+    function sortBy(sortType) {
+        document.getElementById('sortInput').value = sortType;
+        document.getElementById('sortForm').submit();
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        let urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has("sort_by")) {
+            // Activate the "Products" tab when sorting is applied
+            let productsTab = document.getElementById("products-tab");
+            let productsPane = document.getElementById("products");
+            let homeTab = document.getElementById("home-tab");
+            let homePane = document.getElementById("home");
+
+            if (productsTab && productsPane && homeTab && homePane) {
+                // Remove active class from "About" tab and content
+                homeTab.classList.remove("active");
+                homePane.classList.remove("show", "active");
+
+                // Add active class to "Products" tab and content
+                productsTab.classList.add("active");
+                productsPane.classList.add("show", "active");
+            }
+        }
+    });
+</script>
+
+
+
 @endsection

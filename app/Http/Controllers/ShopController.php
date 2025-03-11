@@ -13,90 +13,156 @@ use Illuminate\Support\Facades\Log;
 class ShopController extends Controller
 {
 
-     //Manage Shop
-     public function approvedShopList()
-     {
-         $approvedShops = Shop::select('shops.*', 'users.username')
-             ->join('users', 'shops.user_id', '=', 'users.id')
-             ->where('status', 'approved')
-             ->paginate(10);
-         return view('admin.approved-shops', compact('approvedShops'));
-     }
-     public function pendingShopList()
-     {
-         $pendingShops = Shop::select('shops.*', 'users.username')
-             ->join('users', 'shops.user_id', '=', 'users.id')
-             ->where('status', 'pending')
-             ->paginate(10);
-         return view('admin.pending-shops', compact('pendingShops'));
-     }
-     public function rejectedShopList()
-     {
-         $rejectedShops = Shop::select('shops.*', 'users.username')
-             ->join('users', 'shops.user_id', '=', 'users.id')
-             ->where('status', 'rejected')
-             ->paginate(10);
-         return view('admin.rejected-shops', compact('rejectedShops'));
-     }
+    //Manage Shop
+    public function approvedShopList()
+    {
+        //  $approvedShops = Shop::select('shops.*', 'users.username')
+        //      ->join('users', 'shops.user_id', '=', 'users.id')
+        //      ->where('status', 'approved')
+        //      ->paginate(10);
 
-     public function updateStatus(Request $request)
-     {
-         $shop = Shop::findOrFail($request->shop_id);
-         $shop->status = $request->status;
-         $shop->save();
-         $user = Users::select('users.*')
-             ->join('shops', 'users.id', '=', 'shops.user_id')
-             ->where('shops.id', $request->shop_id)
-             ->first();
+        $approvedShops = Shop::with('user:id,username')
+            ->where('status', 'approved')
+            ->paginate(10);
 
-         $user->assignRole(2);
+        return view('admin.approved-shops', compact('approvedShops'));
+    }
+    public function pendingShopList()
+    {
+        // $pendingShops = Shop::select('shops.*', 'users.username')
+        //     ->join('users', 'shops.user_id', '=', 'users.id')
+        //     ->where('status', 'pending')
+        //     ->paginate(10);
 
-         return response()->json(['status' => true, 'message' => 'Shop status updated successfully']);
-     }
+        $pendingShops = Shop::with('user:id,username')
+            ->where('status', 'approved')
+            ->paginate(10);
+        return view('admin.pending-shops', compact('pendingShops'));
+    }
+    public function rejectedShopList()
+    {
+        // $rejectedShops = Shop::select('shops.*', 'users.username')
+        //     ->join('users', 'shops.user_id', '=', 'users.id')
+        //     ->where('status', 'rejected')
+        //     ->paginate(10);
 
-     public function shopDetail($shopID)
-     {
-         $shop = Shop::select('shops.*', 'users.username', 'users.email')
-             ->join('users', 'shops.user_id', '=', 'users.id')
-             ->where('shops.id', $shopID)
-             ->firstOrFail();
+        $rejectedShops = Shop::with('user:id,username')
+            ->where('status', 'rejected')
+            ->paginate(10);
+        return view('admin.rejected-shops', compact('rejectedShops'));
+    }
 
-         return view('admin.seller-shop-detail', compact('shop'));
-     }
+    public function updateStatus(Request $request)
+    {
+        $shop = Shop::findOrFail($request->shop_id);
+        $shop->status = $request->status;
+        $shop->save();
+        $user = Users::select('users.*')
+            ->join('shops', 'users.id', '=', 'shops.user_id')
+            ->where('shops.id', $request->shop_id)
+            ->first();
 
-     public function deleteShop(Request $request)
-     {
+        $user->assignRole($request->role);
 
-         $user = Users::select('users.*')
-             ->join('shops', 'users.id', '=', 'shops.user_id')
-             ->where('shops.id', $request->shop_id)
-             ->first();
+        return response()->json(['status' => true, 'message' => 'Shop status updated successfully']);
+    }
 
-         $user->assignRole(3);
-         $shop = Shop::find($request->shop_id);
-         $shop->delete();
+    public function shopDetail($shopID)
+    {
+        // $shop = Shop::select('shops.*', 'users.username', 'users.email')
+        //     ->join('users', 'shops.user_id', '=', 'users.id')
+        //     ->where('shops.id', $shopID)
+        //     ->firstOrFail();
+
+        $shop = Shop::with('user:id,username,email')
+            ->findOrFail($shopID);
+
+        return view('admin.seller-shop-detail', compact('shop'));
+    }
+
+    public function deleteShop(Request $request)
+    {
+        $shop = Shop::find($request->shop_id);
+        $user = $shop->user;
+        $user->assignRole(3);
+        $shop->delete();
+
+        // $user = Users::select('users.*')
+        //     ->join('shops', 'users.id', '=', 'shops.user_id')
+        //     ->where('shops.id', $request->shop_id)
+        //     ->first();
+
+        // $user->assignRole(3);
+        // $shop = Shop::find($request->shop_id);
+        // $shop->delete();
 
 
-         return response()->json(['success' => true, 'message' => 'Shop deleted successfully.']);
-     }
+
+        Product::where('products.user_id', $user->id)->delete();
+
+        return response()->json(['success' => true, 'message' => 'Shop deleted successfully.']);
+    }
 
 
-    public function shop_details($id){
-        $shop = Shop::select('shops.*', 'users.username', 'users.address')
-        ->join('users', 'shops.user_id',  'users.id')
-        ->where('shops.id','=',$id)
+    // public function shop_details(Request $request,$id){
+    //     $sort = $request->sort_by;
+
+    //     $shop = Shop::select('shops.*', 'users.username', 'users.address')
+    //     ->join('users', 'shops.user_id',  'users.id')
+    //     ->where('shops.id','=',$id)
+    //     ->first();
+
+    //     $products = Product::select('products.*', 'sub_categories.name as sub_categories_name')
+    //             ->join('users', 'users.id', 'products.user_id')
+    //             ->join('shops', 'shops.user_id', 'users.id')
+    //             ->join('sub_categories', 'sub_categories.id', 'products.sub_category_id')
+    //             ->where('shops.id', '=', $id)
+    //             ->orderBy('products.created_at', 'desc')
+    //             ->get();
+
+    //     return view('shop_detail',compact('shop','products'));
+    // }
+
+    public function shop_details(Request $request, $id)
+{   
+    $sort = $request->sort_by; // Get sorting parameter
+    // dd($sort);
+
+    // Fetch shop details
+    $shop = Shop::select('shops.*', 'users.username', 'users.address')
+        ->join('users', 'shops.user_id', '=', 'users.id')
+        ->where('shops.id', '=', $id)
         ->first();
 
-        $products = Product::select('products.*', 'sub_categories.name as sub_categories_name')
-                ->join('users', 'users.id', 'products.user_id')
-                ->join('shops', 'shops.user_id', 'users.id')
-                ->join('sub_categories', 'sub_categories.id', 'products.sub_category_id')
-                ->where('shops.id', '=', $id)
-                ->orderBy('products.created_at', 'desc')
-                ->get();
+    // // Fetch and sort products
+    $query = Product::select('products.*', 'sub_categories.name as sub_categories_name')
+        ->join('users', 'users.id', '=', 'products.user_id')
+        ->join('shops', 'shops.user_id', '=', 'users.id')
+        ->join('sub_categories', 'sub_categories.id', '=', 'products.sub_category_id')
+        ->where('shops.id', '=', $id);
 
-        return view('shop_detail',compact('shop','products'));
+    // Apply sorting based on user selection
+    if ($sort) {
+    if ($sort == 'price_l_h') {
+        $query->orderByRaw('(products.product_price - products.discount) ASC');
+    } elseif ($sort == 'price_h_l') {
+        $query->orderByRaw('(products.product_price - products.discount) DESC');
+    } elseif ($sort == 'name_a_z') {
+        $query->orderBy('products.name', 'ASC');
+    } elseif ($sort == 'name_z_a') {
+        $query->orderBy('products.name', 'DESC');
+    } elseif ($sort == 'latest') {
+        $query->orderBy('products.created_at', 'DESC');
+    } else {
+        $query->orderBy('products.created_at', 'DESC'); // Default sorting by latest
     }
+}
+
+    $products = $query->get();
+
+    return view('shop_detail', compact('shop', 'products', 'sort'));
+}
+
 
     public function requestShop(Request $request)
     {
@@ -130,17 +196,35 @@ class ShopController extends Controller
         // Validate request
         $validator = Validator::make($request->all(), [
             'shopName' => 'required|string|max:255',
-            'transManagement' => 'required|string',
+            'transManagement' => 'required|string|max:255',
             'transEmail' => 'required|email|unique:shops,email',
             'phoneNumber' => 'required|string|min:10',
-            'shopDescription' => 'required|string|min:10',
+            'first_phone_extension' => 'sometimes|in:+81,+95',
+            'shopDescription' => 'required|string|min:10|max:255',
             'avatar' => 'required|image|mimes:jpeg,png,jpg|max:1024',
             'privacyPolicy' => 'required|accepted',
         ], $messages);
 
+        $errors = [];
 
-        if ($validator->fails()) {
-            return response()->json(['status' => false, 'errors' => $validator->errors()]);
+        if ($request->input('first_phone') != null) {
+            $request->merge([
+                'first_phone' => $request->input('first_phone_extension') . $request->input('first_phone'),
+            ]);
+            $phoneRegexJapan = '/^\+81[789]0\d{4}\d{4}$/';
+            $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
+            // Validate first phone number
+            if ($request->input('first_phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('first_phone'))) {
+                $errors['first_phone'] = 'Invalid phone number.';
+            } elseif ($request->input('first_phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('first_phone'))) {
+                $errors['first_phone'] = 'Invalid phone number.';
+            }
+        }
+
+
+        if ($validator->fails() || !empty($errors)) {
+            $allErrors = array_merge($validator->errors()->toArray(), $errors);
+            return response()->json(['status' => false, 'errors' => $allErrors]);
         }
 
 
@@ -148,7 +232,7 @@ class ShopController extends Controller
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
             $imageName = time() . '.' . $file->getClientOriginalExtension(); // Generate unique name
-            $file->move(public_path('assets/images/avatars'),$imageName);
+            $file->move(public_path('assets/images/avatars'), $imageName);
         }
 
 

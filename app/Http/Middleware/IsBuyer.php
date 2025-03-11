@@ -26,7 +26,7 @@ class IsBuyer
         $user = AuthHelper::auth();
 
         if ($user->roles->first()->id != 3) {
-            abort(403, 'Unauthorized Access');
+            return redirect()->route('profile');
         }
 
         return $next($request);

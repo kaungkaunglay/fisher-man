@@ -20,7 +20,7 @@
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>{{trans_lang('request_shops')}}</h3>
+            <h3>{{trans_lang('request_product')}}</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
                     <a href="{{route('admin.index')}}">
@@ -31,7 +31,7 @@
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">{{trans_lang('request_shops')}}</div>
+                    <div class="text-tiny">{{trans_lang('request_product')}}</div>
                 </li>
             </ul>
         </div>
@@ -54,14 +54,14 @@
                         </div>
                         <div class="text-tiny">entries</div>
                     </div> -->
-                    <form class="form-search">
+                    {{-- <form class="form-search">
                         <fieldset class="name">
                             <input type="text" placeholder="ここで検索。。。" class="" name="name" tabindex="2" value="" aria-required="true" required="">
                         </fieldset>
                         <div class="button-submit">
                             <button class="" type="submit"><i class="icon-search"></i></button>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
                 {{-- <a class="tf-button style-1 w208" href="/admin/faq/create"><i class="icon-plus"></i>Add new</a> --}}
             </div>
@@ -188,9 +188,8 @@
     @endif
 </div>
 <!-- /product-list -->
-</div>
 <!-- /main-content-wrap -->
-</div>
+
 <!-- /main-content-wrap -->
 
 @endsection

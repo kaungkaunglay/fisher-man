@@ -33,6 +33,10 @@
     <!-- custom-css -->
     <link rel="stylesheet" href="{{asset('assets/admin/css/custom.css')}}">
 
+    {{-- sweetalert css --}}
+    <link rel="stylesheet" href="{{asset('assets/sweetalert2/dist/sweetalert2.min.css')}}">
+
+
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="{{asset('assets/images/Logo only.png')}}">
     <link rel="apple-touch-icon-precomposed" href="{{asset('assets/images/Logo only.png')}}">
@@ -201,8 +205,21 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li class="menu-item has-children {{ request()->is('admin/user*') ? 'active' : '' }}">
+                                        <a href="javascript:void(0);" class="menu-item-button">
+                                            <div class="icon"><i class="icon-shopping-cart"></i></div>
+                                            <div class="text">{{trans_lang('product_management')}}</div>
+                                        </a>
+                                        <ul class="sub-menu" style="display: block;">
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('pending-products')}}" class="{{request()->is('admin/pending-products') ? 'active' : ''}}">
+                                                    <div class="text">{{trans_lang('pending_product')}}</div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                 </ul>
-                            
+
                             </div>
                             <div class="center-item">
                                 <div class="center-heading">{{trans_lang('manage_shop')}}</div>
@@ -232,7 +249,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        
+
                             <div class="center-item">
                                 <div class="center-heading">{{trans_lang('manage_faqs')}}</div>
                                 <ul class="menu-list">
@@ -583,8 +600,9 @@
                                             </span>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end has-content" aria-labelledby="dropdownMenuButton3" >
+                                            @if(check_role(2))
                                             <li>
-                                                <a href="#" class="user-item">
+                                                <a href="{{ route('profile') }}" class="user-item">
                                                     <div class="icon">
                                                         <i class="icon-user"></i>
                                                     </div>
@@ -592,8 +610,10 @@
                                                 </a>
                                             </li>
 
+                                            @endif
+
                                             <li>
-                                                <a href="{{route('admin.logout')}}" class="user-item">
+                                                <a href="{{check_role(1) ? route('admin.logout') : route('logout')}}" class="user-item">
                                                     <div class="icon">
                                                         <i class="icon-log-out"></i>
                                                     </div>
@@ -631,7 +651,9 @@
         var logoLight = "{{ asset('assets/admin/images/logo.png') }}";
 
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- sweetalert js --}}
+    <script src="{{asset('assets/sweetalert2/dist/sweetalert2.min.js')}}"></script>
 
     <!-- Javascript -->
     @yield('script')

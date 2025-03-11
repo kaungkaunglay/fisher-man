@@ -174,6 +174,9 @@
                                 <div class="ms-2 position-relative mt-3 mt-md-0 main-search-bar w-100">
                                     <form action="{{ route('products.search') }}" method="get">
                                         <div class="input-group w-100">
+                                            {{-- <input type="text" class="form-control bg-second search-bar" id="search"
+                                            placeholder="{{ trans_lang('search_products') }}" name="search_key"
+                                            oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"> --}}
                                             <input type="text" class="form-control bg-second search-bar" id="search"
                                                 placeholder="{{ trans_lang('search_products') }}" name="search_key">
                                             <button type="submit" class="bg-main text-white magnifying-glass">
@@ -655,10 +658,11 @@
                 e.preventDefault();
                 const getid = $(this).data('id');
                 const cur_btn = $(`.${class_name}[data-id="${getid}"]`);
-                console.log(cur_btn.prop('disabled'))
-                if(cur_btn.prop('disabled')){
-                    addToWhiteList(getid, cur_btn);
-                }
+                // console.log(cur_btn.prop('disabled'))
+                // if(cur_btn.prop('disabled')){
+                //     addToWhiteList(getid, cur_btn);
+                // }
+                addToWhiteList(getid, cur_btn);
             });
         }
 

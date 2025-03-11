@@ -4694,7 +4694,7 @@ select.h40 {
   background: var(--bg-table);
 }
 .wg-table.table-all-category > * {
-  min-width: 1515px;
+  min-width: 800px;
 }
 .wg-table.table-all-category ul.table-title {
   padding: 12px;

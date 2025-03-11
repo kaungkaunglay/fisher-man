@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Providers;
 
@@ -25,22 +25,30 @@ class SettingServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if(!Schema::hasTable('settings')) {
-            return; 
+        try {
+            DB::connection()->getPdo();
+
+            if( !Schema::hasTable('settings') ) {
+                return;
+            }
+            $settings = get_settings();
+
+            // Remove double quotes from keys and values
+            $settings = array_map(function($value) {
+                return trim($value, '"');
+            }, $settings);
+
+            $settings = array_combine(
+                array_map(function($key) {
+                    return trim($key, '"');
+                }, array_keys($settings)),
+                $settings
+            );
+            config()->set('settings', $settings);
+
+        } catch (\Exception $e) {
+            \Log::error('Database connection error: ' . $e->getMessage());
         }
-        $settings = get_settings();
 
-        // Remove double quotes from keys and values
-        $settings = array_map(function($value) {
-            return trim($value, '"');
-        }, $settings);
-
-        $settings = array_combine(
-            array_map(function($key) {
-                return trim($key, '"');
-            }, array_keys($settings)),
-            $settings
-        );
-        config()->set('settings', $settings);
     }
 }

@@ -38,7 +38,7 @@
                     <div class="col-lg-6">
                         <div class="mb-20">
                             <label class="fs-4 fw-bold mb-8">Owner Name:</label>
-                            <p>{{ $shop->username }}</p>
+                            <p>{{ $shop->user->username }}</p>
                         </div>
 
                         <div class="mb-20">

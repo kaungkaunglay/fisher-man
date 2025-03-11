@@ -179,6 +179,8 @@ Route::middleware(['is_admin'])->group(function () {
     Route::post('/admin/shops/update-status', [ShopController::class, 'updateStatus'])->name('admin.shops.updateStatus');
     Route::get('/admin/shop-detail/{shopID}', [ShopController::class, 'shopDetail'])->name('admin.seller.shop.detail');
     Route::post('/admin/shops/delete', [ShopController::class, 'deleteShop'])->name('admin.shops.delete');
+
+    Route::get('/admin/products/detail/{product}', [ProductController::class, 'adminshow'])->name('admin.product.show');
 });
 
 
@@ -186,6 +188,8 @@ Route::middleware(['is_admin'])->group(function () {
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/shop/{id}', [ShopController::class, 'shop_details'])->name('shop.detail');
 Route::get('/seller/contact/{id}', [SellersController::class, 'contact'])->name('seller.contact');
+
+Route::get('/shopdetail/products/sortby', [ProductController::class, 'sortByProduct'])->name('shopdetail.products.sort');
 
 // Route::get('/cart', function () {
 //     return view('cart');

@@ -21,6 +21,28 @@ class ProductController extends Controller
         return view('admin.products', compact('products'));
     }
 
+    public function sortByProduct(Request $request)
+    {
+        $sortBy = $request->get('sort');
+        $query = Product::query();
+ 
+        if ($sortBy === 'price_l_h') {
+            $query->orderBy('product_price', 'asc');
+        } elseif ($sortBy === 'price_desc') {
+            $query->orderBy('product_price', 'desc');
+        } elseif ($sortBy === 'name_asc') {
+            $query->orderBy('name', 'asc');
+        } elseif ($sortBy === 'name_desc') {
+            $query->orderBy('name', 'desc');
+        } else {
+            $query->latest();
+        }
+
+        $products = $query->get();
+
+        return response()->json($products);
+    }
+
     public function showallproducts(Request $request)
     {
         $sortBy = $request->get('sort_by', 'latest');
@@ -40,7 +62,7 @@ class ProductController extends Controller
 
         $products = $query->get();
 
-        $popular_shops = Shop::inRandomOrder()->take(4)->get();
+        $popular_shops = Shop::where('status','approved')->inRandomOrder()->take(4)->get();
 
         $random_products  = Product::inRandomOrder()->take(6)->get(); // Fetch 6 random products
 
@@ -87,7 +109,7 @@ class ProductController extends Controller
             'name.max' => '名前は255文字以内でなければなりません',
             'product_price.required' => '価格フィールドは必須です',
             'product_price.numeric' => '価格は数値でなければなりません',
-            'product_price.min' => '価格は0以上でなければなりません',
+            'product_price.min' => '価格は1以上でなければなりません',
             'product_image.required' => '商品画像フィールドは必須です',
             'product_image.image' => '商品画像は画像でなければなりません',
             'product_image.mimes' => '商品画像はjpgまたはpngタイプでなければなりません',
@@ -96,31 +118,51 @@ class ProductController extends Controller
             'stock.integer' => '在庫は整数でなければなりません',
             'weight.required' => '重量フィールドは必須です',
             'weight.numeric' => '重量は数値でなければなりません',
+            'weight.min' => '重量は1以上でなければなりません',
             'size.string' => 'サイズは文字列でなければなりません',
             'size.max' => 'サイズは255文字以内でなければなりません',
+            'size.min' => 'サイズは1文字以上でなければなりません',
             'day_of_caught.date' => '捕獲日付は日付形式でなければなりません',
             'day_of_caught' => '捕獲日は有効な日付でなければなりません',
             'expiration_date.date' => '賞味期限は日付形式でなければなりません',
             'expiration_date' => '賞味期限は有効な日付でなければなりません',
             'discount.numeric' => '割引は数値でなければなりません',
+            'discount.min' => '割引は 0 以上である必要があります',
             'status.string' => 'ステータスは必須です',
         ];
-
-
         $request->validate([
             'sub_category_id' => 'required|exists:sub_categories,id',
             'name' => 'required|string|max:255',
-            'product_price' => 'required|numeric|min:0',
-            'product_image' => 'required|nullable|image|mimes:png,jpg,jpeg|max:1024',
+            'product_price' => 'required|numeric|min:1', // Ensure price is greater than 0
+            'product_image' => 'required|image|mimes:png,jpg,jpeg|max:1024',
             'stock' => 'required|integer',
-            'weight' => 'required|numeric',
-            'size' => 'nullable|string|max:255',
+            'weight' => 'required|numeric|min:1', // Ensure weight is greater than 0
+            'size' => 'nullable|numeric|min:1|max:255',
             'day_of_caught' => ['nullable','date',new ValidDayOfCaught()],
             'expiration_date' => ['nullable','date',new ValidExpireDate()],
             'discount' => 'nullable|numeric|min:0',
             'description' => 'nullable|string',
             'status' => 'nullable|string',
-        ],$messages);
+        ], $messages);
+
+
+        // $request->validate([
+        //     'sub_category_id' => 'required|exists:sub_categories,id',
+        //     'name' => 'required|string|max:255',
+        //     'product_price' => 'required|numeric|min:0',
+        //     'product_image' => 'required|image|mimes:png,jpg,jpeg|max:1024',
+        //     'stock' => 'required|integer',
+        //     'weight' => 'required|numeric',
+        //     'size' => 'nullable|string|max:255',
+        //     'day_of_caught' => ['nullable','date',new ValidDayOfCaught()],
+        //     'expiration_date' => ['nullable','date',new ValidExpireDate()],
+        //     'discount' => 'nullable|numeric|min:0',
+        //     'description' => 'nullable|string',
+        //     'status' => 'nullable|string',
+        // ], $messages);
+
+          // Sanitize input to remove script injections
+    $productName = strip_tags($request->name); // Removes HTML tags
 
         $folderPath = public_path('assets/products');
         if (!file_exists($folderPath)) {
@@ -135,10 +177,12 @@ class ProductController extends Controller
             $imagePath = $imageName;
         }
 
+
+
         Product::create([
             'user_id' => AuthHelper::id(), // Add the logged-in user ID
             'sub_category_id' => $request->sub_category_id,
-            'name' => $request->name,
+            'name' => $productName,
             'product_price' => $request->product_price,
             'product_image' => $imagePath,
             'stock' => $request->stock,
@@ -146,8 +190,8 @@ class ProductController extends Controller
             'size' => $request->size,
             'day_of_caught' => $request->day_of_caught,
             'expiration_date' => $request->expiration_date,
-            'discount' => $request->discount,
-            'description' => $request->description,
+            'discount' => $request->discount ?? 0,
+            'description' => $request->description, // Sanitize description
             'status' => $request->status,
         ]);
 
@@ -162,6 +206,7 @@ class ProductController extends Controller
 
     public function adminshow($id)
     {
+
         $product = Product::with('subCategory')->findOrFail($id);
         return view('admin.product-detail', compact('product'));
     }
@@ -209,27 +254,30 @@ class ProductController extends Controller
             'size.string' => 'サイズは文字列でなければなりません',
             'size.max' => 'サイズは255文字以内でなければなりません',
             'day_of_caught.date' => '捕獲日付は日付形式でなければなりません',
-            'day_of_caught' => '捕獲日は有効な日付でなければなりません',
+            'day_of_caught' => 'day of caught must be less than or equal to today',
+            'day_of_caught.after_or_equal' => '捕獲日は今日以降でなければなりません',
             'expiration_date.date' => '賞味期限は日付形式でなければなりません',
-            'expiration_date' => '賞味期限は有効な日付でなければなりません',
+            'expiration_date' => 'expiration_date must be greater than or equal to today',
+            'expiration_date.after_or_equal' => '賞味期限は今日以降でなければなりません',
             'discount.numeric' => '割引は数値でなければなりません',
             'description.string' => '説明は文字列でなければなりません',
             'status.string' => 'ステータスは文字列でなければなりません',
         ];
 
-        $request->validate([
-            'name' => 'sometimes|string|max:255',
-            'product_price' => 'sometimes|numeric',
-            'product_image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
-            'stock' => 'sometimes|integer',
-            'weight' => 'sometimes|numeric',
-            'size' => 'sometimes|string|max:255',
-            'day_of_caught' => ['sometimes','date',new ValidDayOfCaught()],
-            'expiration_date' => ['sometimes','date',new ValidExpireDate()],
-            'discount' => 'nullable|numeric',
-            'sub_category_id' => 'sometimes|integer|exists:sub_categories,id',
-            'description' => 'sometimes|string',
-        ]);
+    $request->validate([
+        'name' => 'sometimes|string|max:255',
+        'product_price' => 'sometimes|numeric|min:1',
+        'product_image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
+        'stock' => 'sometimes|integer',
+        'weight' => 'sometimes|numeric|min:1',
+        'size' => 'sometimes|numeric|min:1|max:255',
+        'day_of_caught' => ['sometimes', 'date', new ValidDayOfCaught()],
+        'expiration_date' => ['sometimes', 'date', new ValidExpireDate()],
+        'discount' => 'nullable|numeric',
+        'sub_category_id' => 'sometimes|integer|exists:sub_categories,id',
+        'description' => 'nullable|sometimes|string',
+    ], $messages);
+
 
         if ($request->hasFile('product_image')) {
             $folderPath = public_path('assets/products');
@@ -249,6 +297,8 @@ class ProductController extends Controller
         }
 
         $product->update($request->except('product_image'));
+
+        logger($product);
 
         return redirect()->route('admin.products')->with('success', 'Product updated successfully.');
     }
@@ -304,6 +354,6 @@ class ProductController extends Controller
 
         // return response()->json($products);
         return response()->json($products);
-        
+
     }
 }

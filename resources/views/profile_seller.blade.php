@@ -37,12 +37,12 @@
                         <!-- profile img -->
                         <div class="w-100 profile-form d-flex flex-column avatar-input">
                             <label for="avatar-input" class="w-100 d-block position-relative gallery">
-                                <img src="{{ $user->avatar 
-                                            ? (Str::startsWith($user->avatar, 'https://') 
-                                                ? $user->avatar 
-                                                : asset('assets/avatars/' . $user->avatar)) 
-                                            : asset('assets/avatars/default_avatar.png') }}" 
-                                    class="default-preview" id="form-img" 
+                                <img src="{{ $user->avatar
+                                            ? (Str::startsWith($user->avatar, 'https://')
+                                                ? $user->avatar
+                                                : asset('assets/avatars/' . $user->avatar))
+                                            : asset('assets/avatars/default_avatar.png') }}"
+                                    class="default-preview" id="form-img"
                                     alt="{{ $user->username ?? 'Account.png' }}">
                                     <div class="avatar-upload position-absolute d-none">
                                         <div class="m-auto">
@@ -229,17 +229,30 @@
                         <div class="d-flex align-items-start form-group">
                             <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
                             <div class="ms-1 d-flex flex-column phone-no-container">
-                                <a href="tel:">
-                                    <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
-                                </a>
-                                <input type="tel" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none"
-                                    id="first_phone" value="{{ $user->first_phone }}" disabled>
-                                <a href="tel:">
-                                    <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
-                                </a>
-                                <input type="tel" name="second_phone" class="p-1 mt-2 border-bottom border-2 d-none"
-                                    value="{{ $user->second_phone }}" id="second_phone" disabled>
-                                <span class="invalid-feedback"></span>
+                                <div class="form-group">
+                                    <select name="first_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
+                                        <option value="+81" @if($user->firstExtension == '+81') selected @endif>+81</option>
+                                        <option value="+95" @if($user->firstExtension == '+95') selected @endif>+95</option>
+                                    </select>
+                                    <a href="tel:">
+                                        <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
+                                    </a>
+                                    <input type="tel" name="first_phone" min="10" class="mt-2 border-bottom border-2 d-none" style="width: 150px;"
+                                        id="first_phone" value="{{ $user->firstNumber }}" disabled>
+                                    <span class="invalid-feedback"></span>
+                                </div>
+                                <div class="form-group">
+                                    <select name="second_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
+                                        <option value="+81" @if($user->secondExtension == '+81') selected @endif>+81</option>
+                                        <option value="+95" @if($user->secondExtension == '+95') selected @endif>+95</option>
+                                    </select>
+                                    <a href="tel:">
+                                        <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
+                                    </a>
+                                    <input type="tel" name="second_phone" min="10" class="mt-2 border-bottom border-2 d-none" style="width: 150px;"
+                                        value="{{ $user->secondNumber }}" id="second_phone" disabled>
+                                    <span class="invalid-feedback"></span>
+                                </div>
                             </div>
                             <span class="invalid-feedback"></span>
                         </div>
@@ -252,7 +265,7 @@
 
                 <!-- button group -->
                 <div class="buttons d-flex gap-2 mt-3">
-                    <button class="common-btn">{{ trans_lang('upload_product') }}</button>
+                    <a href="{{route('create_product')}}" class="common-btn">{{ trans_lang('upload_product') }}</a>
                     <button class="common-btn">{{ trans_lang('check_order') }}</button>
                 </div>
 
@@ -371,7 +384,7 @@
     <script defer src="{{ asset('assets/js/updateForm.js') }}"></script>
 
     {{-- Testing --}}
-    
+
     {{-- /Testing --}}
 @endsection
 

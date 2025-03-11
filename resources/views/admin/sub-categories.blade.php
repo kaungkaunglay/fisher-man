@@ -56,14 +56,14 @@
                         </div>
                         <div class="text-tiny">entries</div>
                     </div> -->
-                    <form class="form-search">
+                    {{-- <form class="form-search">
                         <fieldset class="name">
                             <input type="text" placeholder="ここで検索。。。" class="" name="name" tabindex="2" value="" aria-required="true" required="">
                         </fieldset>
                         <div class="button-submit">
                         <button class="" type="submit"><i class="icon-search"></i></button>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
                @if (check_role(2))
                <a class="tf-button style-1 w208" href="/admin/sub-categories/create"><i class="icon-plus"></i>{{trans_lang('add_sub_category')}}</a>
@@ -98,9 +98,8 @@
                             <div class="body-text">{{ $subCategory->created_at->format('d M Y') }}</div>
                             <div class="body-text">{{ $subCategory->category->category_name }}</div>
                             <div class="list-icon-function">
-                                <div class="item eye">
-                                    <i class="icon-eye"></i>
-                                </div>
+                         
+                                @if($subCategory->products->isEmpty()) 
                                 <div class="item edit">
                                     <a href="{{ route('admin.sub_categories.edit', $subCategory) }}">
                                         <i class="icon-edit-3"></i>
@@ -115,6 +114,7 @@
                                         <i class="icon-trash-2"></i>
                                     </a>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </li>

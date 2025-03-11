@@ -42,7 +42,7 @@
             @if(isset($faq)) @method('PUT') @endif 
 
             <!-- Check for validation errors -->
-            @if ($errors->any())
+            {{-- @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -50,7 +50,7 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
+            @endif --}}
 
             <div class="wg-box">
                 <fieldset class="name">
