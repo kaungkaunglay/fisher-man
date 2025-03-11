@@ -125,7 +125,6 @@
             <div class="flex items-center justify-between flex-wrap gap10">
                 <div class="text-tiny">{{trans_lang('showing_10_entries')}}</div>
 
-
             </div>
         </div>
         <!-- /all-category -->

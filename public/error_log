@@ -1,0 +1,9 @@
+[26-Feb-2025 03:19:39 UTC] PHP Warning:  require(/home/zpflpszw/public_html/r-mekiki.com/vendor/composer/../symfony/deprecation-contracts/function.php): Failed to open stream: No such file or directory in /home/zpflpszw/public_html/r-mekiki.com/vendor/composer/autoload_real.php on line 41
+[26-Feb-2025 03:19:39 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/zpflpszw/public_html/r-mekiki.com/vendor/composer/../symfony/deprecation-contracts/function.php' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/zpflpszw/public_html/r-mekiki.com/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/zpflpszw/public_html/r-mekiki.com/vendor/composer/autoload_real.php(45): {closure}()
+#1 /home/zpflpszw/public_html/r-mekiki.com/vendor/autoload.php(25): ComposerAutoloaderInitf051fa44349f592296efef423990199c::getLoader()
+#2 /home/zpflpszw/public_html/r-mekiki.com/public/index.php(34): require('/home/zpflpszw/...')
+#3 {main}
+  thrown in /home/zpflpszw/public_html/r-mekiki.com/vendor/composer/autoload_real.php on line 41
+[04-Mar-2025 03:39:52 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zpflpszw/public_html/r-mekiki.com/vendor/nunomaduro/collision/src/Adapters/Phpunit/Subscribers/EnsurePrinterIsRegisteredSubscriber.php on line 62

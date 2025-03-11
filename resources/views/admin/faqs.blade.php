@@ -54,14 +54,6 @@
                         </div>
                         <div class="text-tiny">entries</div>
                     </div> -->
-                    <form class="form-search">
-                        <fieldset class="name">
-                            <input type="text" placeholder="ここで検索。。。" class="" name="name" tabindex="2" value="" aria-required="true" required="">
-                        </fieldset>
-                        <div class="button-submit">
-                            <button class="" type="submit"><i class="icon-search"></i></button>
-                        </div>
-                    </form>
                 </div>
                 <a class="tf-button style-1 w208" href="/admin/faq/create"><i class="icon-plus"></i>{{trans_lang('add_faq')}}</a>
             </div>
