@@ -139,23 +139,28 @@ class ProfileController extends Controller
     //     $errors = [];
 
     //     if($request->input('first_phone') != null ){
-    //         $request->merge([
-    //             'first_phone' => $request->input('first_phone_extension') . $request->input('first_phone'),
-    //         ]);
+    //         // $request->merge([
+    //         //     'first_phone' => $request->input('first_phone_extension') . $request->input('first_phone'),
+    //         // ]);
+    //         $first_phone = "+81". $request->input('first_phone');
     //         $phoneRegexJapan = '/^\+81[789]0\d{4}\d{4}$/';
-    //         $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
+    //         // $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
     //             // Validate first phone number
-    //         if ($request->input('first_phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('first_phone'))) {
+    //         // if ($request->input('first_phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('first_phone'))) {
+    //         //     $errors['first_phone'] = 'Invalid phone number.';
+    //         //  } elseif ($request->input('first_phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('first_phone'))) {
+    //         //     $errors['first_phone'] = 'Invalid phone number.';
+    //         // }
+
+    //         if (!preg_match($phoneRegexJapan, $first_phone)) {
     //             $errors['first_phone'] = 'Invalid phone number.';
-    //          } elseif ($request->input('first_phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('first_phone'))) {
-    //             $errors['first_phone'] = 'Invalid phone number.';
-    //         }
+    //          }
     //     }
 
     //     if($request->input('second_phone') != null ){
-    //         $request->merge([
-    //             'second_phone' => $request->input('second_phone_extension') . $request->input('second_phone'),
-    //         ]);
+    //         // $request->merge([
+    //         //     'second_phone' => $request->input('second_phone_extension') . $request->input('second_phone'),
+    //         // ]);
 
 
     //         $phoneRegexJapan = '/^\+81[789]0\d{4}\d{4}$/';
@@ -202,13 +207,14 @@ class ProfileController extends Controller
                     'status' => true,
                     'message' => 'No change',
                 ]);
+    
             }
 
             $validationRules = [
                 'address' => 'sometimes|string|max:255',
-                'first_phone' => 'sometimes|nullable|string|min:10',
+                'first_phone' => 'sometimes|nullable|numeric|min:10',
                 'first_phone_extension' => 'sometimes|in:+81,+95',
-                'second_phone' => 'sometimes|nullable|string|min:10',
+                'second_phone' => 'sometimes|nullable|numeric|min:10|different:first_phone',
                 'second_phone_extension' => 'sometimes|in:+81,+95',
             ];
 
@@ -252,19 +258,24 @@ class ProfileController extends Controller
 
     private function hasNoChanges($user, Request $request)
     {
-        $current = [
-            $user->address,
-            $user->first_phone,
-            $user->second_phone
-        ];
+        // $current = [
+        //     $user->address,
+        //     $user->first_phone,
+        //     $user->second_phone
+        // ];
 
-        $new = [
-            $request->address,
-            $request->first_phone ? $request->input('first_phone_extension') . $request->first_phone : '',
-            $request->second_phone ? $request->input('second_phone_extension') . $request->second_phone : ''
-        ];
+        // $new = [
+        //     $request->address,
+        //     $request->input('first_phone') ? true: '',
+        //     $request->input('second_phone') ?  true : ''
+        // ];
 
-        return array_diff($current, $new) === [];
+        // return array_diff($current, $new) === [];
+
+        $firstPhone = $request->input('first_phone') != null ?'+81' .  $request->input('first_phone') : null;
+        $secondPhone = $request->input('second_phone') != null ? '+81' . $request->input('second_phone') : null;
+
+        return $user->address === $request->address && $user->first_phone === $firstPhone && $user->second_phone === $secondPhone ;
     }
 
     private function processPhoneNumbers(Request $request)
@@ -287,18 +298,21 @@ class ProfileController extends Controller
     private function validatePhoneNumbers(Request $request)
     {
         $errors = [];
-        $phoneRules = [
-            '+81' => '/^\+81[789]0\d{8}$/',
-            '+95' => '/^\+95[6-9]\d{6,9}$/'
-        ];
+        // $phoneRules = [
+        //     '+81' => '/^\+81[789]0\d{8}$/',
+        //     '+95' => '/^\+95[6-9]\d{6,9}$/'
+        // ];
+
+        $phoneRegexJapan = '/^\+81[789]0\d{4}\d{4}$/';
 
         foreach (['first_phone', 'second_phone'] as $field) {
-            $phone = $request->input($field);
-            $extension = $request->input("{$field}_extension");
+            $phone =  $request->input($field);
+            // $extension = $request->input("{$field}_extension");
 
-            if ($phone && $extension && isset($phoneRules[$extension])) {
-                if (!preg_match($phoneRules[$extension], $phone)) {
-                    $errors[$field] = ['Invalid phone number format for ' . ($extension === '+81' ? 'Japan' : 'Myanmar')];
+            if ($phone ) {
+
+                if (!preg_match($phoneRegexJapan, $phone)) {
+                    $errors[$field] = ['Invalid phone number'];
                 }
             }
         }
@@ -310,8 +324,8 @@ class ProfileController extends Controller
     {
         $user->update([
             'address' => $request->address ?? $user->address,
-            'first_phone' => $request->first_phone ?? $user->first_phone,
-            'second_phone' => $request->second_phone ?? $user->second_phone,
+            'first_phone' => $request->first_phone ?? null,
+            'second_phone' => $request->second_phone ?? null,
         ]);
 
         session()->flash('status', 'success');

@@ -40,17 +40,21 @@ class ContactController extends Controller
         $errors = [];
 
         if($request->input('phone') != null ){
-            $request->merge([
-                'phone' => $request->input('phone_extension') . $request->input('phone'),
-            ]);
+            // $request->merge([
+            //     'phone' => $request->input('phone_extension') . $request->input('phone'),
+            // ]);
+            $phone = "+81" . $request->input('phone');
             $phoneRegexJapan = '/^\+81[789]0\d{4}\d{4}$/';
-            $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
+            // $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
                 // Validate first phone number
-            if ($request->input('phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('phone'))) {
-                    $errors['phone'] = 'Invalid phone number.';
-             } elseif ($request->input('phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('phone'))) {
-                    $errors['phone'] = 'Invalid phone number.';
-            }
+            // if ($request->input('phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('phone'))) {
+            //         $errors['phone'] = 'Invalid phone number.';
+            //  } elseif ($request->input('phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('phone'))) {
+            //         $errors['phone'] = 'Invalid phone number.';
+            // }
+            if (!preg_match($phoneRegexJapan, $phone)) {
+                $errors['phone'] = 'Invalid phone number.';
+             }
         }
 
         if($validator->fails() || !empty($errors)){
@@ -61,7 +65,7 @@ class ContactController extends Controller
 
         $contact = Contact::create([
         'name' => $request->name,
-        'phone' => $request->phone,
+        'phone' => "+81" . $request->phone,
         'email' => $request->email,
         'description' => $request->description,
         ]);

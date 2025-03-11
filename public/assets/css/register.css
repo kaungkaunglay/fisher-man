@@ -70,6 +70,10 @@ main .input-box input {
     border-radius: 0.5em;
 }
 
+main .input-box input.extension {
+    width: 50px;
+}
+
 main .input-group .btn {
     border: none;
     color: #5a5a5a;

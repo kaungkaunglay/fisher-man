@@ -13,7 +13,7 @@ class SubCategoriesController extends Controller
 {
     public function index()
     {
-        $sub_categories = Sub_category::paginate(10);
+        $sub_categories = Sub_category::where('status','approved')->paginate(10);
         
         return view('admin.sub-categories', compact('sub_categories'));
     }
@@ -44,6 +44,8 @@ class SubCategoriesController extends Controller
         }
 
         $products = $query->paginate(10);
+
+        // dd($products);
 
         $subCategory = Sub_category::findOrFail($id);
 

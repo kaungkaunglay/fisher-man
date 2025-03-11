@@ -232,6 +232,7 @@
                         $("#statusDropdown" + productId)
                             .removeClass("btn-success btn-warning btn-danger")
                             .addClass(status === "approved" ? "btn-success" : status === "pending" ? "btn-warning" : "btn-danger");
+                            window.location.reload();
                     } else {
                         alert("Failed to update status.");
                     }
