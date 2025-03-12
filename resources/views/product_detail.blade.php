@@ -63,7 +63,7 @@
                             <p class="m-0">{{ $product->created_at->format('d M Y') }}</p>
                         </div>
                         <div class="product-price">
-                            <p class="m-b-10 price ">¥ {{ number_format($product->product_price) }}</p>
+                            <p class="m-b-10 price ">¥ {{ number_format($product->getSellPrice() ) }}</p>
                             <p class="m-0 category-txt"><a
                                     href="{{ route('sub-category.show', $product->subCategory->id) }}">{{ $product->subCategory->name }}</a>
                             </p>
