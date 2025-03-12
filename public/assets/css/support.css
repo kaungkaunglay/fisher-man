@@ -37,5 +37,17 @@
     .contact-form h2, .wish-list-form h2{
         text-align: center; 
     }
+
+    .nav-tabs{
+        font-size: 15px;
+    }
+    
+}
+@media screen and (max-width: 576px){
+  
+
+    .nav-tabs{
+        font-size: 10px;
+    }
     
 }
