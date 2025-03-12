@@ -19,4 +19,8 @@ class Sub_category extends Model
     {
         return $this->hasMany(Product::class, 'sub_category_id');
     }
+
+    public function isCategory($id){
+        return $this->category_id === $id;
+    }
 }

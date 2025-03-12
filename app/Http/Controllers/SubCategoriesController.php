@@ -52,7 +52,11 @@ class SubCategoriesController extends Controller
         $settings = Setting::pluck('value', 'key')->toArray();
         $bannerImages = isset($settings['site_banner_images']) ? json_decode($settings['site_banner_images']) : [];
 
-        return view('sub_category', compact('subCategory', 'products','bannerImages'));
+        $menu_category_id = $subCategory->category_id;
+
+        // dd($category);
+
+        return view('sub_category', compact('subCategory', 'products','bannerImages','menu_category_id'));
     }
 
     public function create()

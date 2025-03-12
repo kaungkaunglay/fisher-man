@@ -293,12 +293,29 @@
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </li>
-            @foreach ($subcategories as $subcategory)
-                <li>
-                    <a href="{{ route('sub-category.show', $subcategory->id) }}"
-                        class="menu-category">{{ $subcategory->name }}</a>
-                </li>
-            @endforeach
+            
+            @if (Request::routeIs(patterns: 'sub-category.show') || Request::routeIs(patterns: 'category'))
+                @foreach ($subcategories as $subcategory)
+                    @if($subcategory->isCategory($menu_category_id))
+                        <li>
+                            <a href="{{ route('sub-category.show', $subcategory->id) }}" class="menu-category">
+                                {{ $subcategory->name }}
+                            </a>
+                        </li>
+                    @endif
+                @endforeach
+
+            @else
+
+                @foreach ($subcategories as $subcategory)
+                    <li>
+                        <a href="{{ route('sub-category.show', $subcategory->id) }}"
+                            class="menu-category">{{ $subcategory->name }}</a>
+                    </li>
+                @endforeach
+
+            @endif
+            
         </ul>
     </div>
     @endif
