@@ -43,7 +43,7 @@ class SubCategoriesController extends Controller
             $query->latest();
         }
 
-        $products = $query->paginate(10);
+        $products = $query->paginate(2);
 
         // dd($products);
 
