@@ -313,7 +313,7 @@ class ProductController extends Controller
         }
         $product->delete();
 
-        return redirect()->route('admin.products')->with('success', 'Product deleted successfully.');
+        return back()->with('success', 'Product deleted successfully.');
     }
 
     public function ajaxSearch(Request $request)
