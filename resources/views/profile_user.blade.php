@@ -242,11 +242,13 @@
                                                 <label for="exampleFormControlInput1"
                                                     class="col-form-label">{{ trans_lang('email') }}</label>
                                             </div>
+
                                             <div class="col-lg-7 col-12 input-box">
                                                 <input type="email" class="form-control" name="transEmail"
                                                     id="transEmail">
                                                 <span class="invalid-feedback"></span>
                                             </div>
+                                            
                                         </div>
 
                                         <div class="mb-2 row align-items-center">
