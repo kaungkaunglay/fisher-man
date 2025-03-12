@@ -47,10 +47,10 @@
             <div class="row">
                 <nav class="mb-3">
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-contact-tab" data-bs-toggle="tab"
+                        <button class="nav-link active " id="nav-contact-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact"
                             aria-selected="true">{{ trans_lang('contact') }}</button>
-                        <button class="nav-link" id="nav-wishlist-tab" data-bs-toggle="tab"
+                        <button class="nav-link " id="nav-wishlist-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-wishlist" type="button" role="tab" aria-controls="nav-wishlist"
                             aria-selected="false">{{ trans_lang('wishlist') }}</button>
                     </div>
@@ -198,7 +198,7 @@
                                 $('#success-message').text(response.message).removeClass('d-none').addClass('d-block');
 
                                 // Clear the form
-                                $('#wishlistForm').reset();
+                                $('#wishlistForm')[0].reset();
                             } else {
                                 var errors = response.errors ?? {};
 
@@ -249,7 +249,7 @@
                                 $('#success-message').text(response.message).removeClass('d-none').addClass('d-block');
 
                                 // Clear the form
-                                $('#contact-form').reset();
+                                $('#contact-form')[0].reset();
                             } else {
                                 var errors = response.errors ?? {};
 
@@ -285,10 +285,10 @@
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 var form = document.querySelector("form");
-                var g - recaptcha = document.querySelector(".g-recaptcha");
+                var g_recaptcha = document.querySelector(".g-recaptcha");
                 // console.log(form);
                 form.addEventListener("submit", function() {
-                    g - recaptcha.reset(); // Reset reCAPTCHA every time the form is submitted
+                    g_recaptcha.reset(); // Reset reCAPTCHA every time the form is submitted
                 });
             });
         </script>

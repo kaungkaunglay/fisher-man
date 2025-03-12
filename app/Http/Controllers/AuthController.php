@@ -148,8 +148,8 @@ class AuthController extends Controller
             $user->username = $request->username;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
-            $user->first_phone = $request->first_phone;
-            $user->second_phone = $request->second_phone;
+            $user->first_phone = '+81'.$request->first_phone;
+            $user->second_phone = '+81'. $request->second_phone;
             // $user->line_id = $request->line_id;
 
             // if($this->is_seller($request))
