@@ -1,10 +1,10 @@
 .hero-section{
   gap: 20px;
 }
-.pagination{
+/* .pagination{
   display: flex;
   justify-content: center;
-}
+} */
 
 input[type='range'] {
   top: 0;
@@ -15,7 +15,7 @@ input[type='range'] {
   width: 0;
 }
 
-.pagination a{
+/* .pagination a{
   background-color: transparent;
   border: 1px solid #3498DB;
   border-radius: 5px;
@@ -27,7 +27,50 @@ input[type='range'] {
 
 .pagination a:hover{
 border: 1px solid #3498DB;
+} */
+
+/* pagination start */
+
+/* pagination start */
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 8px;
+  padding: 0;
 }
+
+.pagination li {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #005B96;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #005B96;
+  cursor: pointer;
+  background-color: #fff;
+  transition: .5s;
+}
+
+.pagination ul li a{
+  color: #003366;
+}
+
+
+.pagination li:hover {
+  background-color: #005B96;
+  color:#00CCFF;
+}
+.pagination li.active  {
+  background-color: #005B96 !important;
+  color:#00CCFF !important;
+}
+
+/* pagination end */
 
 @media screen and (max-width:768px) {
   .product-btn{
