@@ -47,10 +47,10 @@
             <div class="row">
                 <nav class="mb-3">
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-contact-tab" data-bs-toggle="tab"
+                        <button class="nav-link active " id="nav-contact-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact"
                             aria-selected="true">{{ trans_lang('contact') }}</button>
-                        <button class="nav-link" id="nav-wishlist-tab" data-bs-toggle="tab"
+                        <button class="nav-link " id="nav-wishlist-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-wishlist" type="button" role="tab" aria-controls="nav-wishlist"
                             aria-selected="false">{{ trans_lang('wishlist') }}</button>
                     </div>
@@ -58,7 +58,7 @@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active row" id="nav-contact" role="tabpanel"
                         aria-labelledby="nav-contact-tab" tabindex="0">
-                        <form method="POST" id="contact-form" class="col-6">
+                        <form method="POST" id="contact-form" class="col-12 col-md-6">
                             @csrf
                             <div class="mb-3 contact-box">
                                 <label for="name" class="form-label">{{ trans_lang('name') }}</label>
@@ -72,18 +72,9 @@
                             <div class="mb-3 contact-box">
                                 <label for="phone" class="form-label">{{ trans_lang('phone_number') }}</label>
 
-                                <div class="row">
-                                    <div class="col-5">
-                                        <select name="phone_extension" class="form-select form-select-lg" >
-                                            <option value="+81">+81</option>
-                                            <option value="+95">+95</option>
-                                        </select >
-                                    </div>
-                                    <div class="col-7">
-                                        <input type="tel" name="phone" class="form-control" id="phone"
-                                        value="{{ auth_helper()->check() ? auth_helper()->user()->first_phone : '' }}"
-                                        placeholder="{{ trans_lang('phone_number') }}">
-                                    </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">+81</span>
+                                    <input type="number" maxlength="10" class="form-control" name="phone" id="phone" value="{{ \Str::substr(auth_helper()->user()?->first_phone, 3) ?? ''}}" @if(auth_helper()->check()) readonly @endif>
                                 </div>
 
                                 <span class="invalid-feedback"></span>
@@ -118,7 +109,7 @@
                     </div>
                     <div class="tab-pane fade row" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab"
                         tabindex="0">
-                        <form method="POST" id="wishlistForm" class="col-6">
+                        <form method="POST" id="wishlistForm" class="col-12 col-md-6">
                             @csrf
                             <div class="mb-3 wish-box">
                                 <label for="name" class="form-label">{{ trans_lang('name') }}</label>
@@ -130,7 +121,7 @@
 
                             <div class="mb-3 wish-box">
                                 <label for="phone" class="form-label">{{ trans_lang('phone_number') }}</label>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-5">
                                         <select name="wish_phone_extension" class="form-select form-select-lg" >
                                             <option value="+81">+81</option>
@@ -142,6 +133,10 @@
                                         value="{{ auth_helper()->check() ? auth_helper()->user()->first_phone : '' }}"
                                         placeholder="{{ trans_lang('phone_number') }}">
                                     </div>
+                                </div> --}}
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">+81</span>
+                                    <input type="number" class="form-control" name="phone" id="phone" value="{{ \Str::substr(auth_helper()->user()?->first_phone, 3) ?? ''}}" placeholder="{{ trans_lang('phone_number') }}" aria-label="phoneNumber" aria-describedby="basic-addon1" @if(auth_helper()->check()) readonly @endif>
                                 </div>
                                 <span class="invalid-feedback"></span>
                             </div>
@@ -290,10 +285,10 @@
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 var form = document.querySelector("form");
-                var g - recaptcha = document.querySelector(".g-recaptcha");
+                var g_recaptcha = document.querySelector(".g-recaptcha");
                 // console.log(form);
                 form.addEventListener("submit", function() {
-                    g - recaptcha.reset(); // Reset reCAPTCHA every time the form is submitted
+                    g_recaptcha.reset(); // Reset reCAPTCHA every time the form is submitted
                 });
             });
         </script>

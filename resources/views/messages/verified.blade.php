@@ -121,7 +121,7 @@
                     verified.</p>
                 <p class="text-muted mb-4 fade-in">You can now enjoy all the features of your account.</p>
                 <a href="" class="btn btn-primary px-4 py-2 fade-in" style="animation-delay: 0.8s;">Continue to
-                    Dashboard</a>
+                    {{trans_lang('home')}}</a>
             </div>
             <div class="card-footer text-center py-3 text-muted">
                 <small>Thank you for completing the verification process.</small>

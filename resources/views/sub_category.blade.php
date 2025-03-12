@@ -101,7 +101,15 @@
                                         class="card-img-top" alt="{{ $product->name }}">
                                 </a>
                                 <div class="left pt-3">
-                                    <p class="price">¥{{ number_format($product->product_price) }}</p>
+                                    {{-- <p class="price">¥{{ number_format($product->product_price) }}</p> --}}
+                                    <p class="price">
+                                        @if ($product->discount > 0)
+                                            <span class="format me-2">{{ number_format($product->product_price - $product->discount, 0) }}</span>
+                                            <span class="original-price format">{{ number_format($product->product_price, 0) }}</span>
+                                        @else
+                                            <span class="format">{{ number_format($product->product_price, 0) }}</span>
+                                        @endif
+                                    </p>
                                     <div class="title-category mb-2">
                                         <a href="{{ route('sub-category.show', $product->subCategory->id) }}"
                                             class="menu-category">{{ $product->subCategory->name }}</a>
@@ -133,9 +141,41 @@
             </div>
 
             <!-- Pagination -->
-            <div class="pagination mt-2">
-                {{ $products->links('vendor.pagination.bootstrap-4') }}
+            <div class="row mt-4">
+                @if ($products->hasPages())
+                    <ul class="pagination">
+                        <!-- Previous Page Link -->
+                        @if ($products->onFirstPage())
+                            <li class="disabled">&lt;</li>
+                        @else
+                            <li><a href="{{ $products->previousPageUrl() }}" class="">&lt;</a></li>
+                        @endif
+
+                        <!-- Page Numbers (Only Show 3 Pages at a Time) -->
+                        @php
+                            $start = max(1, $products->currentPage() - 1);
+                            $end = min($start + 2, $products->lastPage());
+                        @endphp
+
+                        @for ($i = $start; $i <= $end; $i++)
+                            <li class="{{ $products->currentPage() == $i ? 'active' : '' }}">
+                                <a href="{{ $products->url($i) }}" class="">{{ $i }}</a>
+                            </li>
+                        @endfor
+
+                        <!-- Next Page Link -->
+                        @if ($products->hasMorePages())
+                            <li><a href="{{ $products->nextPageUrl() }}" class="">&gt;</a></li>
+                        @else
+                            <li class="disabled">&gt;</li>
+                        @endif
+                    </ul>
+                @endif
             </div>
+            {{-- <div class="pagination mt-2">
+                {{ $products->links('vendor.pagination.bootstrap-4') }}
+            </div> --}}
+            {{-- {{ $products->links() }} --}}
         </div>
     </div>
 

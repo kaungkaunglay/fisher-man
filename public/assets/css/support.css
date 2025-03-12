@@ -8,10 +8,10 @@
     border-radius: 50px !important;
 }
 
-.support-form input{
+/* .support-form input{
     height: 50px !important;
     border-radius: 10px !important;
-}
+} */
 
 .support-icon{
     margin-bottom: 1rem;
@@ -36,6 +36,18 @@
 
     .contact-form h2, .wish-list-form h2{
         text-align: center; 
+    }
+
+    .nav-tabs{
+        font-size: 15px;
+    }
+    
+}
+@media screen and (max-width: 576px){
+  
+
+    .nav-tabs{
+        font-size: 10px;
     }
     
 }

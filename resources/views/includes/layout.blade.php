@@ -287,7 +287,7 @@
 
     <!-- /Search Menu -->
     <div class="category-popup" id="category-popup">
-        <ul>
+        <ul class="">
             <li class="close-popup">
                 <button id="close-popup">
                     <i class="fa-solid fa-xmark"></i>

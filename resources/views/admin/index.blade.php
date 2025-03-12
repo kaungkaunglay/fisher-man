@@ -29,7 +29,7 @@
                                 <i class="icon-shopping-bag"></i>
                             </div>
                             <div>
-                                <div class="body-text mb-2">{{trans_lang('total')}}{{trans_lang('product')}}</div>
+                                <div class="body-text mb-2">商品登録済の個数</div>
                                 <h4>{{ $total_product_count }}</h4>
                             </div>
                         </div>
@@ -44,164 +44,165 @@
                 </div>
                 <!-- /chart-default -->
             </div>
-            <div class="tf-section-5 mb-30">
-                <!-- top-product -->
-                <div class="wg-box">
-                    <div class="flex items-center justify-between">
-                        <h5>{{trans_lang('top_products')}}</h5>
-                        {{-- <div class="dropdown default">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="view-all">View all<i class="icon-chevron-down"></i></span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end">
+            <div class="d-flex justify-content-center">
+                <div class="tf-section-2 mb-30">
+                    <!-- top-product -->
+                    <div class="wg-box" style="height: 450px;">
+                        <div class="flex items-center justify-between">
+                            <h5>売れ筋商品</h5>
+                            {{-- <div class="dropdown default">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="view-all">View all<i class="icon-chevron-down"></i></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <a href="javascript:void(0);">3 days</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">7 days</a>
+                                    </li>
+                                </ul>
+                            </div> --}}
+                        </div>
+                        <div class="wg-table table-top-product">
+                            <ul class="flex flex-column gap14">
+                            @foreach($top_products as $top_product)
+                            <li class="product-item">
+                                <div class="image">
+                                    <img src="{{asset('assets/products/'.$top_product->product_image)}}" alt="">
+                                </div>
+                                <div class="flex items-center justify-between flex-grow">
+                                    <div class="name">
+                                        <a href="product-list.html" class="body-title-2">{{$top_product->name}}</a>
+                                        <div class="text-tiny mt-3">¥ {{number_format($top_product->product_price)}}</div>
+                                    </div>
+                                    <div>
+                                        <div class="body-title-2 mb-3">{{trans_lang('special_offer')}}</div>
+                                        <div class="text-tiny">¥ {{number_format($top_product->discount)}}</div>
+                                    </div>
+                                    <div class="seller-name">
+                                        <div class="text-tiny mb-3">Seller</div>
+                                        <div class="body-text">{{$top_product->username}}</div>
+                                    </div>
+                                    <div class="stock">
+                                        <div class="text-tiny mb-3">Stock</div>
+                                        <div class="body-text">{{$top_product->stock}}</div>
+                                    </div>
+                                </div>
+                            </li>
+                            @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /top-product -->
+                    <!-- product-overview -->
+                    <div class="wg-box" style="height: 450px;">
+                        <div class="flex items-center justify-between">
+                            <h5>{{trans_lang('all_products')}}</h5>
+                        </div>
+                        <div class="wg-table table-product-overview">
+                            <ul class="table-title flex gap20 mb-14">
                                 <li>
-                                    <a href="javascript:void(0);">3 days</a>
+                                    <div class="body-title">{{trans_lang('name')}}</div>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);">7 days</a>
+                                    <div class="body-title">{{trans_lang('price')}}</div>
+                                </li>
+                                <li>
+                                    <div class="body-title">{{trans_lang('quanity')}}</div>
+                                </li>
+                                <li>
+                                    <div class="body-title">{{trans_lang('sale')}}</div>
+                                </li>
+                                <li>
+                                    <div class="body-title">{{trans_lang('shop')}}{{trans_lang('name')}}</div>
+                                </li>
+                                <li>
+                                    <div class="body-title">{{trans_lang('created_date')}}</div>
+                                </li>
+                            </ul>
+                            <ul class="flex flex-column gap10">
+                                @foreach($all_products as $product)
+                                <li class="product-item gap14">
+                                    <div class="image">
+                                        <img src="{{asset('assets/products/'.$product->product_image)}}" alt="">
+                                    </div>
+                                    <div class="flex items-center justify-between flex-grow">
+                                        <div class="name">
+                                            <a href="#" class="body-text">{{$product->name}}</a>
+                                        </div>
+                                        <div class="body-text">¥{{number_format($product->product_price)}}</div>
+                                        <div class="body-text">{{$product->stock}}</div>
+                                        <div class="body-text">On sale</div>
+                                        <div class="body-text">{{$product->username}}</div>
+                                        <div class="body-text">{{$product->created_at->format('Y-m-d')}}</div>
+                                    </div>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="divider"></div>
+                        {{-- <div class="d-flex justify-content-center">
+                            {{ $all_products->links() }}
+                        </div> --}}
+                        <!-- Custom Pagination -->
+                        @if ($all_products->hasPages())
+                        <div class="flex items-center justify-between flex-wrap gap10">
+                            <!-- <div class="text-tiny">
+                                Showing {{ $all_products->firstItem() }} to {{ $all_products->lastItem() }} of {{ $all_products->total() }} entries
+                            </div> -->
+                            <ul class="wg-pagination">
+                                <!-- Previous Page -->
+                                <li class="{{ $all_products->onFirstPage() ? 'disabled' : '' }}">
+                                    <a href="{{ $all_products->previousPageUrl() }}">
+                                        <i class="icon-chevron-left"></i>
+                                    </a>
+                                </li>
+
+                                <!-- Page Numbers -->
+                                @foreach ($all_products->links()->elements[0] as $page => $url)
+                                    <li class="{{ $page == $all_products->currentPage() ? 'active' : '' }}">
+                                        <a href="{{ $url }}">{{ $page }}</a>
+                                    </li>
+                                @endforeach
+
+                                <!-- Next Page -->
+                                <li class="{{ $all_products->hasMorePages() ? '' : 'disabled' }}">
+                                    <a href="{{ $all_products->nextPageUrl() }}">
+                                        <i class="icon-chevron-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        @endif
+
+
+
+                        {{-- <div class="flex items-center justify-between flex-wrap gap10">
+                            <!-- <div class="text-tiny">Showing 5 entries</div> -->
+                            <ul class="wg-pagination">
+                                <li>
+                                    <a href="#"><i class="icon-chevron-left"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#">1</a>
+                                </li>
+                                <li class="active">
+                                    <a href="#">2</a>
+                                </li>
+                                <li>
+                                    <a href="#">3</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="icon-chevron-right"></i></a>
                                 </li>
                             </ul>
                         </div> --}}
                     </div>
-                    <div class="wg-table table-top-product">
-                        <ul class="flex flex-column gap14">
-                           @foreach($top_products as $top_product)
-                           <li class="product-item">
-                            <div class="image">
-                                <img src="{{asset('assets/products/'.$top_product->product_image)}}" alt="">
-                            </div>
-                            <div class="flex items-center justify-between flex-grow">
-                                <div class="name">
-                                    <a href="product-list.html" class="body-title-2">{{$top_product->name}}</a>
-                                    <div class="text-tiny mt-3">¥ {{$top_product->product_price}}</div>
-                                </div>
-                                <div>
-                                    <div class="body-title-2 mb-3">{{trans_lang('special_offer')}}</div>
-                                    <div class="text-tiny">{{$top_product->discount}}</div>
-                                </div>
-                                <div class="seller-name">
-                                    <div class="text-tiny mb-3">Seller</div>
-                                    <div class="body-text">{{$top_product->username}}</div>
-                                </div>
-                                <div class="stock">
-                                    <div class="text-tiny mb-3">Stock</div>
-                                    <div class="body-text">{{$top_product->stock}}</div>
-                                </div>
-                            </div>
-                        </li>
-                           @endforeach
-                        </ul>
-                    </div>
+                    <!-- /product-overview -->
                 </div>
-                <!-- /top-product -->
             </div>
-            <div class="tf-section-5 mb-30">
-                <!-- product-overview -->
-                <div class="wg-box">
-                    <div class="flex items-center justify-between">
-                        <h5>{{trans_lang('all_products')}}</h5>
-                    </div>
-                    <div class="wg-table table-product-overview">
-                        <ul class="table-title flex gap20 mb-14">
-                            <li>
-                                <div class="body-title">{{trans_lang('name')}}</div>
-                            </li>
-                            <li>
-                                <div class="body-title">{{trans_lang('price')}}</div>
-                            </li>
-                            <li>
-                                <div class="body-title">{{trans_lang('quanity')}}</div>
-                            </li>
-                            <li>
-                                <div class="body-title">{{trans_lang('sale')}}</div>
-                            </li>
-                            <li>
-                                <div class="body-title">{{trans_lang('shop')}}{{trans_lang('name')}}</div>
-                            </li>
-                            <li>
-                                <div class="body-title">{{trans_lang('created_date')}}</div>
-                            </li>
-                        </ul>
-                        <ul class="flex flex-column gap10">
-                            @foreach($all_products as $product)
-                            <li class="product-item gap14">
-                                <div class="image">
-                                    <img src="{{asset('assets/products/'.$product->product_image)}}" alt="">
-                                </div>
-                                <div class="flex items-center justify-between flex-grow">
-                                    <div class="name">
-                                        <a href="#" class="body-text">{{$product->name}}</a>
-                                    </div>
-                                    <div class="body-text">¥{{$product->product_price}}</div>
-                                    <div class="body-text">{{$product->stock}}</div>
-                                    <div class="body-text">On sale</div>
-                                    <div class="body-text">{{$product->username}}</div>
-                                    <div class="body-text">{{$product->created_at->format('Y-m-d')}}</div>
-                                </div>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="divider"></div>
-                    {{-- <div class="d-flex justify-content-center">
-                        {{ $all_products->links() }}
-                    </div> --}}
-                    <!-- Custom Pagination -->
-                    @if ($all_products->hasPages())
-                    <div class="flex items-center justify-between flex-wrap gap10">
-                        <!-- <div class="text-tiny">
-                            Showing {{ $all_products->firstItem() }} to {{ $all_products->lastItem() }} of {{ $all_products->total() }} entries
-                        </div> -->
-                        <ul class="wg-pagination">
-                            <!-- Previous Page -->
-                            <li class="{{ $all_products->onFirstPage() ? 'disabled' : '' }}">
-                                <a href="{{ $all_products->previousPageUrl() }}">
-                                    <i class="icon-chevron-left"></i>
-                                </a>
-                            </li>
-
-                            <!-- Page Numbers -->
-                            @foreach ($all_products->links()->elements[0] as $page => $url)
-                                <li class="{{ $page == $all_products->currentPage() ? 'active' : '' }}">
-                                    <a href="{{ $url }}">{{ $page }}</a>
-                                </li>
-                            @endforeach
-
-                            <!-- Next Page -->
-                            <li class="{{ $all_products->hasMorePages() ? '' : 'disabled' }}">
-                                <a href="{{ $all_products->nextPageUrl() }}">
-                                    <i class="icon-chevron-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    @endif
-
-
-
-                    {{-- <div class="flex items-center justify-between flex-wrap gap10">
-                        <!-- <div class="text-tiny">Showing 5 entries</div> -->
-                        <ul class="wg-pagination">
-                            <li>
-                                <a href="#"><i class="icon-chevron-left"></i></a>
-                            </li>
-                            <li>
-                                <a href="#">1</a>
-                            </li>
-                            <li class="active">
-                                <a href="#">2</a>
-                            </li>
-                            <li>
-                                <a href="#">3</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="icon-chevron-right"></i></a>
-                            </li>
-                        </ul>
-                    </div> --}}
-                </div>
-                <!-- /product-overview -->
-            </div>
+            
         </div>
         <!-- /main-content-wrap -->
     </div>

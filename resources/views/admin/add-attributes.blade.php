@@ -71,7 +71,7 @@
                                     <li class="menu-item has-children">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-grid"></i></div>
-                                            <div class="text">Dashboard</div>
+                                            <div class="text">{{trans_lang('home')}}</div>
                                         </a>
                                         <ul class="sub-menu">
                                             <li class="sub-menu-item">
@@ -216,7 +216,7 @@
                                         <ul class="sub-menu">
                                             <li class="sub-menu-item">
                                                 <a href="all-user.html" class="">
-                                                    <div class="text">All user</div>
+                                                    <div class="text">{{trans_lang('all_user')}}</div>
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
@@ -860,7 +860,7 @@
                                     <h3>Add Attribute</h3>
                                     <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                                         <li>
-                                            <a href="index.html"><div class="text-tiny">Dashboard</div></a>
+                                            <a href="index.html"><div class="text-tiny">{{trans_lang('home')}}</div></a>
                                         </li>
                                         <li>
                                             <i class="icon-chevron-right"></i>

@@ -29,7 +29,7 @@
                 <div class="input-group">
                     <input name="password" placeholder="********" type="password" id="password"
                         class="form-control bg-second">
-                    <button class="btn password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
+                    <button type="button" class="btn password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
                 </div>
                 <span class="invalid-feedback"></span>
             </div>
@@ -38,7 +38,7 @@
                 <div class="input-group">
                     <input id="confirm_password" name="confirm_password" placeholder="********" type="password"
                         class="form-control bg-second">
-                    <button class="btn password" tabindex="-1" autocomplete="off"><i class="fa-solid fa-eye"></i></button>
+                    <button type="button" class="btn password" tabindex="-1" autocomplete="off"><i class="fa-solid fa-eye"></i></button>
                 </div>
                 <span class="invalid-feedback"></span>
             </div>
@@ -46,10 +46,11 @@
                 <div class="input-box col-md-6 col-xs-12 d-flex flex-column">
                     <label for="first_phone">{{trans_lang('first_ph')}}</label>
                     <div class="input-group">
-                        <select name="first_phone_extension">
+                        {{-- <select name="first_phone_extension">
                             <option value="+81">+81</option>
                             <option value="+95">+95</option>
-                        </select>
+                        </select> --}}
+                        <input type="text" name="first_phone_extension" value="+81" class="extension bg-second" readonly/>
                         <input maxlength="10" id="first_phone" name="first_phone" placeholder="90-1234-5678" type="number"
                             class="form-control bg-second" autocomplete="off">
                     </div>
@@ -58,10 +59,11 @@
                 <div class="input-box col-md-6 col-xs-12 d-flex flex-column">
                     <label for="second_phone">{{trans_lang('second_ph')}}</label>
                     <div class="input-group">
-                        <select name="second_phone_extension">
+                        {{-- <select name="second_phone_extension">
                             <option value="+81">+81</option>
                             <option value="+95">+95</option>
-                        </select>
+                        </select> --}}
+                        <input type="text" name="second_phone_extension" value="+81" class="extension bg-second" readonly/>
                         <input maxlength="10" id="second_phone" name="second_phone" placeholder="90-1234-5678" type="number"
                             class="form-control bg-second" autocomplete="off">
                     </div>

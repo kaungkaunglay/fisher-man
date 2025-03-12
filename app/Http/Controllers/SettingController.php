@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Encoders\PngEncoder;
 
 class SettingController extends Controller
 {
@@ -78,11 +81,27 @@ class SettingController extends Controller
 
         // Handle site banner images upload
         if ($request->hasFile('site_banner_images')) {
+            $manager = new ImageManager(new Driver());
             $bannerPaths = [];
-            foreach ($request->file('site_banner_images') as $image) {
-                $fileName = time() . '_' . $image->getClientOriginalName(); // Generate a unique file name
-                $image->move(public_path('assets/banner-images'), $fileName); // Save the image to public/assets
-                $bannerPaths[] =  $fileName; // Store the relative path
+            foreach ($request->file('site_banner_images') as $uploadedImage) {
+                // $fileName = time() . '_' . $image->getClientOriginalName(); // Generate a unique file name
+
+                // $image->move(public_path('assets/banner-images'), $fileName); // Save the image to public/assets
+
+                // $bannerPaths[] =  $fileName; // Store the relative path
+
+                $originalFileName = time() . '_' . $uploadedImage->getClientOriginalName();
+                $fileExtension = $uploadedImage->getClientOriginalExtension();
+                $pngFileName = str_replace('.' . $fileExtension, '.png', $originalFileName);
+
+                $destinationPath = public_path('assets/banner-images/' . $pngFileName);
+
+                $image = $manager->read($uploadedImage->getRealPath());
+                $image->scale(866, 415); 
+                $encoder = new PngEncoder(9); 
+                $image->encode($encoder)->save($destinationPath); 
+
+                $bannerPaths[] = $pngFileName;
             }
             $this->updateOrCreateSetting('site_banner_images', json_encode($bannerPaths));
         }

@@ -92,10 +92,31 @@
                             <div class="center-item">
                                 <div class="center-heading">{{trans_lang('product_management')}}</div>
                                 <ul class="menu-list">
-                                    <li class="menu-item has-children {{ request()->is('admin/product*') ? 'active' : '' }}">
-                                        <a href="javascript:void(0);" class="menu-item-button">
+                                    <li class="menu-item">
+                                        <a href="{{route('admin.products')}}" class="{{ request()->is('admin/products') ? 'active' : '' }}">
                                             <div class="icon"><i class="icon-shopping-cart"></i></div>
                                             <div class="text">{{trans_lang('all_products')}}</div>
+                                        </a>
+                                    </li>
+                                    <!-- Open later by thahar(Nishimura san request) -->
+                                    <!-- <li class="menu-item">
+                                        <a href="{{route('admin.categories')}}" class="{{ request()->is('admin/categories') ? 'active' : '' }}">
+                                            <div class="icon"><i class="icon-layers"></i></div>
+                                            <div class="text">{{trans_lang('all_category')}}</div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="{{route('admin.sub_categories')}}" class="{{ request()->is('admin/sub-categories') ? 'active' : '' }}">
+                                            <div class="icon"><i class="icon-layers"></i></div>
+                                            <div class="text">{{trans_lang('all_sub_category')}}</div>
+                                        </a>
+                                    </li> -->
+                                    <!-- <li class="menu-item has-children {{ request()->is('admin/product*') ? 'active' : '' }}">
+                                        <a href="javascript:void(0);" class="menu-item-button">
+                                            <div class="icon"><i class="icon-shopping-cart"></i></div>
+                                            <a href="{{route('admin.products')}}" class="{{ request()->is('admin/products') ? 'active' : '' }}">
+                                                <div class="text">{{trans_lang('all_products')}}</div>
+                                            </a>
                                         </a>
                                         <ul class="sub-menu">
                                             <li class="sub-menu-item">
@@ -110,8 +131,8 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li class="menu-item has-children {{ request()->is('admin/categ*') ? 'active' : '' }}">
+                                    </li> -->
+                                    <!-- <li class="menu-item has-children {{ request()->is('admin/categ*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-layers"></i></div>
                                             <div class="text">{{trans_lang('category')}}</div>
@@ -149,7 +170,7 @@
                                             </li>
 
                                         </ul>
-                                    </li>
+                                    </li> -->
                                     {{-- <li class="menu-item has-children {{ request()->is('admin/order*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-file-plus"></i></div>
@@ -181,7 +202,7 @@
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.users.contact')}}" class="{{request()->is('admin/request-contact') ? 'active' : ''}}">
-                                                    <div class="text">{{trans_lang('contact')}}</div>
+                                                    <div class="text">お問い合わせ内容</div>
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
@@ -200,7 +221,7 @@
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.users')}}" class="{{request()->is('admin/users') ? 'active' : ''}}">
-                                                    <div class="text">{{trans_lang('user_list')}}</div>
+                                                    <div class="text">すべてのユーザー</div>
                                                 </a>
                                             </li>
                                         </ul>
@@ -213,7 +234,7 @@
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
                                                 <a href="{{route('pending-products')}}" class="{{request()->is('admin/pending-products') ? 'active' : ''}}">
-                                                    <div class="text">{{trans_lang('pending_product')}}</div>
+                                                    <div class="text">商品登録依頼</div>
                                                 </a>
                                             </li>
                                         </ul>
@@ -221,7 +242,7 @@
                                 </ul>
 
                             </div>
-                            <div class="center-item">
+                            <!-- <div class="center-item">
                                 <div class="center-heading">{{trans_lang('manage_shop')}}</div>
                                 <ul class="menu-list">
                                     <li class="menu-item has-children {{ request()->is('admin/shop*') ? 'active' : '' }}">
@@ -248,7 +269,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
 
                             <div class="center-item">
                                 <div class="center-heading">{{trans_lang('manage_faqs')}}</div>
@@ -275,17 +296,17 @@
                                 </ul>
                             </div>
                             <div class="center-item">
-                                <div class="center-heading">{{trans_lang('manage_system_data')}} Data</div>
+                                <div class="center-heading">システム環境設定</div>
                                 <ul class="menu-list">
                                     <li class="menu-item has-children {{ request()->is('admin/setting*') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-settings"></i></div>
-                                            <div class="text">{{trans_lang('system_data')}}</div>
+                                            <div class="text">システム環境設定</div>
                                         </a>
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
                                                 <a href="{{route('admin.settings')}}" class="{{request()->is('admin/settings') ? 'active' : ''}}">
-                                                    <div class="text">{{trans_lang('all_system_data')}}</div>
+                                                    <div class="text">システムデータの変更</div>
                                                 </a>
                                             </li>
                                             {{-- <li class="sub-menu-item">
@@ -313,131 +334,7 @@
                     <div class="header-dashboard">
                         <div class="wrap">
                             <div class="header-left">
-                                <a href="index.html">
-                                    <img class="" id="logo_header_mobile" alt="" style="height: 50px" src="{{asset('assets/admin/images/logo.png')}}" data-light="{{asset('assets/admin/images/logo.png')}}" data-dark="{{asset('assets/admin/images/logo.png')}}" data-width="100px" data-height="52px" data-retina="{{asset('assets/admin/images/logo.png')}}">
-                                </a>
-                                <div class="button-show-hide">
-                                    <i class="icon-menu-left"></i>
-                                </div>
-                                <form class="form-search flex-grow">
-                                    <fieldset class="name">
-                                        <input type="text" placeholder="ここで検索。。。" class="show-search" name="name" tabindex="2" value="" aria-required="true" required="">
-                                    </fieldset>
-                                    <div class="button-submit">
-                                        <button class="" type="submit"><i class="icon-search"></i></button>
-                                    </div>
-                                    <div class="box-content-search" id="box-content-search">
-                                        <ul class="mb-24">
-                                            <li class="mb-14">
-                                                <div class="body-title">Top selling product</div>
-                                            </li>
-                                            <li class="mb-14">
-                                                <div class="divider"></div>
-                                            </li>
-                                            <li>
-                                                <ul>
-                                                    <li class="product-item gap14 mb-10">
-                                                        <div class="image no-bg">
-                                                            <img src="{{asset('assets/admin/images/products/17.png')}}" alt="">
-                                                        </div>
-                                                        <div class="flex items-center justify-between gap20 flex-grow">
-                                                            <div class="name">
-                                                                <a href="product-list.html" class="body-text">Dog Food Rachael Ray Nutrish®</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="mb-10">
-                                                        <div class="divider"></div>
-                                                    </li>
-                                                    <li class="product-item gap14 mb-10">
-                                                        <div class="image no-bg">
-                                                            <img src="{{asset('assets/admin/images/products/18.png')}}" alt="">
-                                                        </div>
-                                                        <div class="flex items-center justify-between gap20 flex-grow">
-                                                            <div class="name">
-                                                                <a href="product-list.html" class="body-text">Natural Dog Food Healthy Dog Food</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="mb-10">
-                                                        <div class="divider"></div>
-                                                    </li>
-                                                    <li class="product-item gap14">
-                                                        <div class="image no-bg">
-                                                            <img src="{{asset('assets/admin/images/products/19.png')}}" alt="">
-                                                        </div>
-                                                        <div class="flex items-center justify-between gap20 flex-grow">
-                                                            <div class="name">
-                                                                <a href="product-list.html" class="body-text">Freshpet Healthy Dog Food and Cat</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                        <ul class="">
-                                            <li class="mb-14">
-                                                <div class="body-title">Order product</div>
-                                            </li>
-                                            <li class="mb-14">
-                                                <div class="divider"></div>
-                                            </li>
-                                            <li>
-                                                <ul>
-                                                    <li class="product-item gap14 mb-10">
-                                                        <div class="image no-bg">
-                                                            <img src="{{asset('assets/admin/images/products/20.png')}}" alt="">
-                                                        </div>
-                                                        <div class="flex items-center justify-between gap20 flex-grow">
-                                                            <div class="name">
-                                                                <a href="product-list.html" class="body-text">Sojos Crunchy Natural Grain Free...</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="mb-10">
-                                                        <div class="divider"></div>
-                                                    </li>
-                                                    <li class="product-item gap14 mb-10">
-                                                        <div class="image no-bg">
-                                                            <img src="{{asset('assets/admin/images/products/21.png')}}" alt="">
-                                                        </div>
-                                                        <div class="flex items-center justify-between gap20 flex-grow">
-                                                            <div class="name">
-                                                                <a href="product-list.html" class="body-text">Kristin Watson</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="mb-10">
-                                                        <div class="divider"></div>
-                                                    </li>
-                                                    <li class="product-item gap14 mb-10">
-                                                        <div class="image no-bg">
-                                                            <img src="{{asset('assets/admin/images/products/22.png')}}" alt="">
-                                                        </div>
-                                                        <div class="flex items-center justify-between gap20 flex-grow">
-                                                            <div class="name">
-                                                                <a href="product-list.html" class="body-text">Mega Pumpkin Bone</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="mb-10">
-                                                        <div class="divider"></div>
-                                                    </li>
-                                                    <li class="product-item gap14">
-                                                        <div class="image no-bg">
-                                                            <img src="{{asset('assets/admin/images/products/23.png')}}" alt="">
-                                                        </div>
-                                                        <div class="flex items-center justify-between gap20 flex-grow">
-                                                            <div class="name">
-                                                                <a href="product-list.html" class="body-text">Mega Pumpkin Bone</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </form>
+                          
                             </div>
                             <div class="header-grid">
                                 {{-- <div class="header-item country">

@@ -18,17 +18,17 @@
     <div class="main-content-inner">
         <div class="main-content-wrap">
             <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-                <h3>{{trans_lang('add_setting')}}</h3>
+                <h3>システムデータの変更</h3>
 
 
                 <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                     <li><a href="{{route('admin.index')}}">
-                            <div class="text-tiny">Dashboard</div>
+                            <div class="text-tiny">{{trans_lang('home')}}</div>
                         </a></li>
                     <li><i class="icon-chevron-right"></i></li>
 
                     <li>
-                        <div class="text-tiny">{{trans_lang('add_setting')}}</div>
+                        <div class="text-tiny">システムデータの変更</div>
 
                     </li>
                 </ul>
@@ -106,7 +106,7 @@
                 </div>
 
                 <div class="wg-box">
-                    <fieldset>
+                    <!-- <fieldset>
                         <div class="body-title mb-10">ロゴ</div>
                         <div class="upload-image mb-16">
                             <div class="item">
@@ -135,14 +135,14 @@
                             </div>
                         </div>
 
-                    </fieldset>
+                    </fieldset> -->
                     <fieldset>
-                        <div class="body-title mb-10">Banner Image</div>
+                        <div class="body-title mb-10">{{trans_lang('banner_image')}}</div>
                         <div class="card">
                             <div class="card-body">
                                     <div class="file-input-container">
                                         <div class="drop-zone" id="dropZone">
-                                            <span>Choose Banner Images</span>
+                                            <span>{{trans_lang('choose_banner_image')}}</span>
                                             <input type="file" id="image-upload" name="site_banner_images[]" class="custom-file-input d-none"  multiple>
 
                                         </div>
@@ -177,7 +177,7 @@
                 </div>
 
                 <div class="cols mt-4">
-                    <button class="tf-button " type="submit">{{trans_lang('save')}}</button>
+                    <button class="tf-button " type="submit">{{trans_lang('submit')}}</button>
                 </div>
             </form>
         </div>

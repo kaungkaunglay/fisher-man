@@ -17,6 +17,7 @@ class CartController extends Controller
             $carts = AuthHelper::user()->carts;
             $carts->load('product');
 
+
             // $sessionCart = $carts->map(function ($cart) {
             //     return [
             //         'id' => $cart->product_id,

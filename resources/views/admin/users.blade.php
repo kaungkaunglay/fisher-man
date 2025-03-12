@@ -18,22 +18,22 @@
         <!-- main-content-wrap -->
         <div class="main-content-wrap">
             <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-                <h3>All User</h3>
+                <h3>{{trans_lang('all_user')}}</h3>
                 <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                     <li>
-                        <a href="index.html"><div class="text-tiny">Dashboard</div></a>
+                        <a href="index.html"><div class="text-tiny">{{trans_lang('home')}}</div></a>
                     </li>
                     <li>
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <a href="#"><div class="text-tiny">User</div></a>
+                        <a href="#"><div class="text-tiny">{{trans_lang('user')}}</div></a>
                     </li>
                     <li>
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <div class="text-tiny">Buyer User Lists</div>
+                        <div class="text-tiny">{{trans_lang('all_user')}}</div>
                     </li>
                 </ul>
             </div>
@@ -55,16 +55,16 @@
                 <div class="wg-table table-all-user">
                     <ul class="table-title flex gap20 mb-14">
                         <li class="flex-1">
-                            <div class="body-title">Username</div>
+                            <div class="body-title">{{trans_lang('name')}}</div>
                         </li>
                         <li class="flex-1">
-                            <div class="body-title">Email</div>
+                            <div class="body-title">{{trans_lang('email')}}</div>
                         </li>
                         <li class="flex-1">
-                            <div class="body-title">Created Date</div>
+                            <div class="body-title">{{trans_lang('created_date')}}</div>
                         </li>
                         <li class="flex-1">
-                            <div class="body-title">Action</div>
+                            <div class="body-title">{{trans_lang('action')}}</div>
                         </li>
                     </ul>
                     <ul class="flex flex-column">

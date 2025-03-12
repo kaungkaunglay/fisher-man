@@ -120,14 +120,17 @@ class ProductController extends Controller
             'weight.numeric' => '重量は数値でなければなりません',
             'weight.min' => '重量は1以上でなければなりません',
             'size.string' => 'サイズは文字列でなければなりません',
-            'size.max' => 'サイズは255文字以内でなければなりません',
+            'size.max' => '小数点以下は入力できません',
             'size.min' => 'サイズは1文字以上でなければなりません',
             'day_of_caught.date' => '捕獲日付は日付形式でなければなりません',
+            'day_of_caught.required' => 'キャプチャ日付フィールドは必須です。',
             'day_of_caught' => '捕獲日は有効な日付でなければなりません',
             'expiration_date.date' => '賞味期限は日付形式でなければなりません',
+            'expiration_date.required' => '有効期限フィールドは必須です。',
             'expiration_date' => '賞味期限は有効な日付でなければなりません',
             'discount.numeric' => '割引は数値でなければなりません',
             'discount.min' => '割引は 0 以上である必要があります',
+            'discount.max' => '割引フィールドは商品価格より大きくすることはできません。',
             'status.string' => 'ステータスは必須です',
         ];
         $request->validate([
@@ -138,9 +141,9 @@ class ProductController extends Controller
             'stock' => 'required|integer',
             'weight' => 'required|numeric|min:1', // Ensure weight is greater than 0
             'size' => 'nullable|numeric|min:1|max:255',
-            'day_of_caught' => ['nullable','date',new ValidDayOfCaught()],
-            'expiration_date' => ['nullable','date',new ValidExpireDate()],
-            'discount' => 'nullable|numeric|min:0',
+            'day_of_caught' => ['required','date',new ValidDayOfCaught()],
+            'expiration_date' => ['required','date',new ValidExpireDate()],
+            'discount' => 'nullable|numeric|min:0|max:' . $request->product_price, // Ensure discount is not greater than price
             'description' => 'nullable|string',
             'status' => 'nullable|string',
         ], $messages);
@@ -214,7 +217,7 @@ class ProductController extends Controller
     public function discountProducts(Request $request)
     {
         $sortBy = $request->get('sort_by', 'latest');
-        $query = Product::where('discount', '>', 0.00);
+        $query = Product::where('discount', '>', 0.00)->where('status','approved');
 
         if ($sortBy === 'price_asc') {
             $query->orderBy('product_price', 'asc');
@@ -252,15 +255,18 @@ class ProductController extends Controller
             'stock.integer' => '在庫は整数でなければなりません',
             'weight.numeric' => '重量は数値でなければなりません',
             'size.string' => 'サイズは文字列でなければなりません',
-            'size.max' => 'サイズは255文字以内でなければなりません',
+            'size.max' => '小数点以下は入力できません',
             'day_of_caught.date' => '捕獲日付は日付形式でなければなりません',
-            'day_of_caught' => 'day of caught must be less than or equal to today',
+            'day_of_caught.required' => 'キャプチャ日付フィールドは必須です。',
+            'day_of_caught' => '捕獲日は今日以前である必要があります',
             'day_of_caught.after_or_equal' => '捕獲日は今日以降でなければなりません',
             'expiration_date.date' => '賞味期限は日付形式でなければなりません',
-            'expiration_date' => 'expiration_date must be greater than or equal to today',
+            'expiration_date.required' => '有効期限フィールドは必須です。',
+            'expiration_date' => '有効期限は今日以降である必要があります',
             'expiration_date.after_or_equal' => '賞味期限は今日以降でなければなりません',
             'discount.numeric' => '割引は数値でなければなりません',
             'description.string' => '説明は文字列でなければなりません',
+            'discount.max' => '割引フィールドは商品価格より大きくすることはできません。',
             'status.string' => 'ステータスは文字列でなければなりません',
         ];
 
@@ -271,9 +277,9 @@ class ProductController extends Controller
         'stock' => 'sometimes|integer',
         'weight' => 'sometimes|numeric|min:1',
         'size' => 'sometimes|numeric|min:1|max:255',
-        'day_of_caught' => ['sometimes', 'date', new ValidDayOfCaught()],
-        'expiration_date' => ['sometimes', 'date', new ValidExpireDate()],
-        'discount' => 'nullable|numeric',
+        'day_of_caught' => ['sometimes','required', 'date', new ValidDayOfCaught()],
+        'expiration_date' => ['sometimes','required', 'date', new ValidExpireDate()],
+        'discount' => 'nullable|numeric|min:0|max:' . $request->product_price, // Ensure discount is not greater than price',
         'sub_category_id' => 'sometimes|integer|exists:sub_categories,id',
         'description' => 'nullable|sometimes|string',
     ], $messages);
@@ -311,7 +317,7 @@ class ProductController extends Controller
         }
         $product->delete();
 
-        return redirect()->route('admin.products')->with('success', 'Product deleted successfully.');
+        return back()->with('success', 'Product deleted successfully.');
     }
 
     public function ajaxSearch(Request $request)
