@@ -97,7 +97,7 @@
                                 <span class="invalid-feedback"></span>
                             </div>
                             <div class="mb-3 contact-box">
-                                <label for="recaptcha" class="form-label">ReCaptcha:</label>
+                                <label for="recaptcha" class="form-label">{{ trans_lang('reCaptcha') }}:</label>
                                 <div class="g-recaptcha" data-sitekey="6Leh4t8qAAAAAOWxMlheFOxzPhOL8STyf9FsI7WE">
                                 </div>
                             </div>
@@ -136,7 +136,7 @@
                                 </div> --}}
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1">+81</span>
-                                    <input type="number" class="form-control" name="phone" id="phone" value="{{ \Str::substr(auth_helper()->user()?->first_phone, 3) ?? ''}}" placeholder="{{ trans_lang('phone_number') }}" aria-label="phoneNumber" aria-describedby="basic-addon1" @if(auth_helper()->check()) readonly @endif>
+                                    <input type="number" class="form-control" name="wish_phone" id="wish_phone" value="{{ \Str::substr(auth_helper()->user()?->first_phone, 3) ?? ''}}" placeholder="{{ trans_lang('phone_number') }}" aria-label="phoneNumber" aria-describedby="basic-addon1" @if(auth_helper()->check()) readonly @endif>
                                 </div>
                                 <span class="invalid-feedback"></span>
                             </div>
@@ -156,7 +156,7 @@
                                 <span class="invalid-feedback"></span>
                             </div>
                             <div class="mb-3 wish-box">
-                                <label for="recaptcha" class="form-label">ReCaptcha:</label>
+                                <label for="recaptcha" class="form-label">{{ trans_lang('reCaptcha') }}:</label>
                                 <div class="g-recaptcha" id="g-recaptcha-response"
                                     data-sitekey="6Leh4t8qAAAAAOWxMlheFOxzPhOL8STyf9FsI7WE"></div>
                                 <span class="invalid-feedback"></span>

@@ -386,7 +386,7 @@
                 {{-- /Useful Link --}}
 
                 {{-- Contact Us --}}
-                <div class="col-12 col-lg-2 mt-3 ">
+                <div class="col-12 col-lg-3 mt-3 ">
                     <h6 class="text-center text-warning mb-2">{{ trans_lang('contact_us') }}</h6>
                     <ul class="list-unstyled text-white txt-15 text-center">
                         <li>{{ trans_lang('address') }} :

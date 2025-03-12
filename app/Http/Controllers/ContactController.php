@@ -21,12 +21,12 @@ class ContactController extends Controller
 
     public function contact(Request $request){
         $messages = [
-            'name.required' => 'The name field is required.',
-            'phone.required' => 'The phone field is required.',
-            'email.required' => 'The email field is required.',
-            'email.email' => 'The email must be a valid email address.',
-            'description.required' => 'The description field is required.',
-            'g-recaptcha-response.required' => 'The reCAPTCHA field is required.',
+            'name.required' => '名前は必須です。',
+            'phone.required' => '電話番号は必須です。',
+            'email.required' => 'メールアドレスは必須です。',
+            'email.email' => '有効なメールアドレスを入力してください。',
+            'description.required' => '説明は必須です。',
+            'g-recaptcha-response.required' => 'reCAPTCHAは必須です。',
         ];
 
         $validator = Validator::make($request->all(), [
