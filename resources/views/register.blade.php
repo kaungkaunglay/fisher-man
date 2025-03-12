@@ -29,7 +29,7 @@
                 <div class="input-group">
                     <input name="password" placeholder="********" type="password" id="password"
                         class="form-control bg-second">
-                    <button class="btn password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
+                    <button type="button" class="btn password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
                 </div>
                 <span class="invalid-feedback"></span>
             </div>
@@ -38,7 +38,7 @@
                 <div class="input-group">
                     <input id="confirm_password" name="confirm_password" placeholder="********" type="password"
                         class="form-control bg-second">
-                    <button class="btn password" tabindex="-1" autocomplete="off"><i class="fa-solid fa-eye"></i></button>
+                    <button type="button" class="btn password" tabindex="-1" autocomplete="off"><i class="fa-solid fa-eye"></i></button>
                 </div>
                 <span class="invalid-feedback"></span>
             </div>

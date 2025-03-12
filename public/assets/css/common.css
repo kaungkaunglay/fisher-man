@@ -798,7 +798,7 @@ li {
   z-index: 1000;
   height: 100vh;
   width: 0;
-  overflow: hidden;
+  overflow: scroll;
   transition: width 1s ease-in-out;
   white-space: nowrap;
 }
