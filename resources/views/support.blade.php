@@ -47,10 +47,10 @@
             <div class="row">
                 <nav class="mb-3">
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-contact-tab" data-bs-toggle="tab"
+                        <button class="nav-link active " id="nav-contact-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact"
                             aria-selected="true">{{ trans_lang('contact') }}</button>
-                        <button class="nav-link" id="nav-wishlist-tab" data-bs-toggle="tab"
+                        <button class="nav-link " id="nav-wishlist-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-wishlist" type="button" role="tab" aria-controls="nav-wishlist"
                             aria-selected="false">{{ trans_lang('wishlist') }}</button>
                     </div>
