@@ -14,8 +14,7 @@ class SubCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = [Category::where('name','鮮魚')->first()->id,Category::where('name','貝類')->first()->id];
-    
+        
         $categories = [
             ['スルメ','水イカ','アマダイ','レンコ','ブリ','ワラサ','ヤズ','ヒラス','平子','タイ','マグロ（30kg以上）','ヨコワ（30kg以上）','ハガツオ','スジカツオ','ビンナガ','丸トビ','角トビ','アジ','サバ','クエ','イサキ','アカムツ','ナメル','チカメキントキ','ヒラメ','メンボ','イシダイ','イシガキダイ','タチウオ','サワラ','沖メバル','ダルマ','カマス','活きアナゴ'],
             ['サザエ','アワビ']
@@ -24,7 +23,7 @@ class SubCategorySeeder extends Seeder
         foreach ($categories as $index => $category) {
             foreach($category as $subcategory){
                 Sub_category::create([
-                    'category_id'=> $categories[$index],
+                    'category_id'=> $index + 1,
                     'name' => $subcategory
                 ]);
             }
