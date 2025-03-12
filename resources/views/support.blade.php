@@ -198,7 +198,7 @@
                                 $('#success-message').text(response.message).removeClass('d-none').addClass('d-block');
 
                                 // Clear the form
-                                $('#wishlistForm').reset();
+                                $('#wishlistForm')[0].reset();
                             } else {
                                 var errors = response.errors ?? {};
 
@@ -249,7 +249,7 @@
                                 $('#success-message').text(response.message).removeClass('d-none').addClass('d-block');
 
                                 // Clear the form
-                                $('#contact-form').reset();
+                                $('#contact-form')[0].reset();
                             } else {
                                 var errors = response.errors ?? {};
 
@@ -285,10 +285,10 @@
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 var form = document.querySelector("form");
-                var g - recaptcha = document.querySelector(".g-recaptcha");
+                var g_recaptcha = document.querySelector(".g-recaptcha");
                 // console.log(form);
                 form.addEventListener("submit", function() {
-                    g - recaptcha.reset(); // Reset reCAPTCHA every time the form is submitted
+                    g_recaptcha.reset(); // Reset reCAPTCHA every time the form is submitted
                 });
             });
         </script>

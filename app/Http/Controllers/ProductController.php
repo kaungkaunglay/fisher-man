@@ -215,7 +215,7 @@ class ProductController extends Controller
     public function discountProducts(Request $request)
     {
         $sortBy = $request->get('sort_by', 'latest');
-        $query = Product::where('discount', '>', 0.00);
+        $query = Product::where('discount', '>', 0.00)->where('status','approved');
 
         if ($sortBy === 'price_asc') {
             $query->orderBy('product_price', 'asc');
