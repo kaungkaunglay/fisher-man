@@ -21,12 +21,12 @@ class WishListController extends Controller
 
     public function wishList(Request $request){
         $messages = [
-            'wish_name.required' => 'The name field is required.',
-            'wish_phone.required' => 'The phone field is required.',
-            'wish_email.required' => 'The email field is required.',
-            'wish_email.email' => 'The email must be a valid email address.',
-            'wish_description.required' => 'The description field is required.',
-            'g-recaptcha-response.required' => 'The reCAPTCHA field is required.',
+            'wish_name.required' => '名前は必須項目です。',
+            'wish_phone.required' => '電話番号は必須項目です。',
+            'wish_email.required' => 'メールアドレスは必須項目です。',
+            'wish_email.email' => '有効なメールアドレスを入力してください。',
+            'wish_description.required' => '説明は必須項目です。',
+            'g-recaptcha-response.required' => 'reCAPTCHAは必須項目です。',
         ];
 
         $validator = Validator::make($request->all(), [
