@@ -258,7 +258,7 @@
                                                 
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">+81</span>
-                                                    <input type="text" name="phoneNumber" class="form-control" id="phoneNumber"  aria-label="phoneNumber" aria-describedby="basic-addon1">
+                                                    <input type="text" maxlength="10" name="phoneNumber" class="form-control" id="phoneNumber"  aria-label="phoneNumber" aria-describedby="basic-addon1">
                                                 </div>
                                                   
                                                 <span class="invalid-feedback"></span>
@@ -362,13 +362,13 @@
                                         <option value="+81" @if($user->firstExtension == '+81') selected @endif>+81</option>
                                         <option value="+95" @if($user->firstExtension == '+95') selected @endif>+95</option>
                                     </select> --}}
-                                    <input type="text" name="first_phone_extension" 
+                                    <input type="text"  name="first_phone_extension" 
                                         class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" 
                                         style="width: 40px;"  value="+81" readonly />
                                     <a href="tel:">
                                         <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
                                     </a>
-                                    <input type="number" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;"
+                                    <input type="number" maxlength="10" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;"
                                         id="first_phone" value="{{ $user->firstNumber }}" disabled>
                                     <span class="invalid-feedback"></span>
                                 </div>
@@ -383,7 +383,7 @@
                                     <a href="tel:">
                                         <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
                                     </a>
-                                    <input type="number" name="second_phone" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;"
+                                    <input type="number" maxlength="10" name="second_phone" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;"
                                         value="{{ $user->secondNumber }}" id="second_phone" disabled>
                                     <span class="invalid-feedback"></span>
                                 </div>
