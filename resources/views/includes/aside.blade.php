@@ -1,7 +1,7 @@
 <!-- aside start -->
 
 <ul class="sidebar-menu rounded fw-bold p-4 txt-primary">
-    @foreach($subcategories as $subcategory)
+    @foreach($subcategories->take(12) as $subcategory)
         <li><a href="{{ route('sub-category.show', $subcategory->id) }}">{{ $subcategory->name }}</a></li>
     @endforeach
     <div class="d-flex">
