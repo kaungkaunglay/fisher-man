@@ -303,16 +303,13 @@
     <!-- /All Products -->
 
     <!-- Porpular Shop -->
-    <section class="popular_top_rate_shop_section mt-3">
+    <!-- <section class="popular_top_rate_shop_section mt-3">
         <div class="container-custom">
 
-            <!-- Porpular Headline -->
             <div>
                 <h6 class="txt-primary fw-bold mb-3">{{trans_lang('popular_shop')}}</h6>
             </div>
-            <!-- /Porpular Headline -->
 
-            <!-- Shop List  -->
             <div class="row shop-carts mb-3">
 
                @foreach ($popular_shops as $popular_shop)
@@ -330,11 +327,9 @@
                @endforeach
 
             </div>
-            <!-- /Shop List -->
 
         </div>
-    </section>
-    <!-- /Porpular Shop -->
+    </section> -->
 
     <!-- All Scripts -->
     <script src="{{ asset('assets/js/loadmore.js') }}"></script>
