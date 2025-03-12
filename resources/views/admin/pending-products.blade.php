@@ -15,6 +15,14 @@
 @section('contents')
 @include('messages.index')
 
+<div class="col-6 m-auto mt-3">
+    @if(session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
+</div>
+
 <!-- main-content-wrap -->
 <div class="main-content-inner">
     <!-- main-content-wrap -->
@@ -144,11 +152,11 @@
                                 </a>
                             </div> -->
                             <div class="item trash">
-                                <form id="delete-form-{{ $product->id }}" action="{{ route('admin.products.destroy', $product->id) }}" method="POST" style="display: none;">
+                                <form id="delete-form-{{$product->id}}" action="{{ route('admin.products.destroy', $product->id) }}" method="POST" style="display: none;">
                                     @csrf
                                     @method('DELETE')
                                 </form>
-                                <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $product->id }}').submit();" class="btn-trash">
+                                <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{$product->id}}').submit();" class="btn-trash">
                                     <i class="icon-trash-2"></i>
                                 </a>
                             </div>
