@@ -215,7 +215,7 @@
 
     <!-- Product Section -->
     <section class="discount-products bg-second py-3 mt-3">
-        <div class="container-custom">
+        <div class="py-3">
             <h6 class="txt-primary fw-bold mb-3">{{ trans_lang('uploaded_products') }}</h6>
             <div class="filter d-flex justify-content-between align-items-center mb-3">
 
