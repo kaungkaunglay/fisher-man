@@ -735,6 +735,21 @@ class TranslationSeeder extends Seeder
                 'jp' => '質問',
             ],
             [
+                'key'=> 'payment_policy',
+                'en' => 'Payment Policy',
+                'jp' => '支払いポリシー',
+            ],
+            [
+                'key' => 'aggree_payment_policy',
+                'en' => 'Agreement to the payment policy',
+                'jp' => '支払いポリシーに同意する',
+            ],
+            [
+                'key' => 'aggrement_payment_policy',
+                'en' => 'Agreement to the payment policy',
+                'jp' => '支払いポリシーに同意する',
+            ],
+            [
                 'key' => 'answer',
                 'en' => 'Answer',
                 'jp' => '回答',

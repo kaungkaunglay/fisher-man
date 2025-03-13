@@ -79,7 +79,7 @@
                                             alt="{{ $item->product->name }}"></div>
                                 </td>
                                 <td class="col-name">{{ $item->product->name }}</td>
-                                <td class="price format">¥{{ $item->product->getSellPrice() }}</td>
+                                <td class="price format">¥{{ number_format($item->product->getSellPrice(), 0) }}</td>
                                 <td>
                                     <div class="quantity d-flex justify-content-center">
                                         <button class="btn decrement">-</button>
@@ -122,7 +122,7 @@
                                 <p class="card-name">{{ $item->product->name }}</p>
                                 <div class="card-text">
                                     <span class="cost"></span>
-                                    <span class="price format">¥{{ $item->product->product_price }}</span>
+                                    <span class="price format">¥{{ number_format($item->product->product_price, 0) }}</span>
                                 </div>
                                 <div class="quantity d-flex">
                                     <button class="btn decrement">-</button>
@@ -574,7 +574,7 @@
                                     <div class="table-img"><img src="{{ asset('assets/products/' . $item->product->product_image) }}" alt="product img"></div>
                                 </td>
                                 <td clas="col-name">{{ $item->product->name }}</td>
-                                <td class="price format">¥{{ $item->product->product_price }}</td>
+                                <td class="price format">¥{{ number_format($item->product->getSellPrice(), 0) }}</td>
                                 <td class="cost">
                                     <input type="hidden" value="1" class="quantity-value">
                                 </td>
@@ -609,7 +609,7 @@
                                     <span class="cost">
                                         <input type="hidden" value="1" class="quantity-value">
                                     </span>
-                                    <span class="price format">{{ $item->product->product_price }}</span>
+                                    <span class="price format">¥{{ number_format($item->product->product_price, 0) }}</span>
                                 </div>
                             </div>
                         </div>
@@ -626,9 +626,20 @@
             </div>
             <!-- ./Mobile Style -->
 
+            {{-- Payment Policy Aggrement --}}
+            <div>
+                <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">{{trans_lang('aggrement_payment_policy')}}</h2>
+                <div class="d-flex gap-3 py-3 px-3">
+                    <input required type="checkbox" id="select-payment">
+                    <label for="select-payment"><a href="{{route('payment_policy')}}">{{trans_lang('aggree_payment_policy')}}</a></label>
+                    <div class="ms-auto text-danger" id="warning-msg">{{ trans_lang('check_mark') }}</div>
+                </div>
+            </div>
+            {{-- Payment Policy Aggrement --}}
+
             {{-- Check Payment --}}
             <div>
-                <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">{{ trans_lang('selet_payment') }}</h2>
+                <h2 class="py-3 px-3 mt-3 bg-primary text-white" id="payment-check-sec">{{ trans_lang('selet_payment') }}</h2>
                 <div class="d-flex gap-3 py-3 px-3">
                     <input type="checkbox" id="select-payment">
                     <label for="select-payment">{{ trans_lang('credit_card') }}</label>
@@ -699,7 +710,6 @@
         </div>
     </section>
     <!-- /Payment Step -->
-
     <!-- Complete Step -->
     <section class="page mt-5" id="complete" data-step="5">
         <div class="container-custom">
