@@ -79,7 +79,7 @@
                                             alt="{{ $item->product->name }}"></div>
                                 </td>
                                 <td class="col-name">{{ $item->product->name }}</td>
-                                <td class="price format">¥{{ $item->product->getSellPrice() }}</td>
+                                <td class="price format">¥{{ number_format($item->product->getSellPrice(), 0) }}</td>
                                 <td>
                                     <div class="quantity d-flex justify-content-center">
                                         <button class="btn decrement">-</button>
@@ -122,7 +122,7 @@
                                 <p class="card-name">{{ $item->product->name }}</p>
                                 <div class="card-text">
                                     <span class="cost"></span>
-                                    <span class="price format">¥{{ $item->product->product_price }}</span>
+                                    <span class="price format">¥{{ number_format($item->product->product_price, 0) }}</span>
                                 </div>
                                 <div class="quantity d-flex">
                                     <button class="btn decrement">-</button>
@@ -574,7 +574,7 @@
                                     <div class="table-img"><img src="{{ asset('assets/products/' . $item->product->product_image) }}" alt="product img"></div>
                                 </td>
                                 <td clas="col-name">{{ $item->product->name }}</td>
-                                <td class="price format">¥{{ $item->product->product_price }}</td>
+                                <td class="price format">¥{{ number_format($item->product->getSellPrice(), 0) }}</td>
                                 <td class="cost">
                                     <input type="hidden" value="1" class="quantity-value">
                                 </td>
@@ -609,7 +609,7 @@
                                     <span class="cost">
                                         <input type="hidden" value="1" class="quantity-value">
                                     </span>
-                                    <span class="price format">{{ $item->product->product_price }}</span>
+                                    <span class="price format">¥{{ number_format($item->product->product_price, 0) }}</span>
                                 </div>
                             </div>
                         </div>
