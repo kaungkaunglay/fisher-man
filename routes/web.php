@@ -206,6 +206,10 @@ Route::get('/policy', function(){
     return view('policy'); //privacy policy
 })->name('policy');
 
+Route::get('/payment-policy', function(){
+    return view('payment_policy');
+})->name('payment_policy');
+
 // cart
 Route::middleware(['auth_custom','restore_cart'])->group(function () {
 
