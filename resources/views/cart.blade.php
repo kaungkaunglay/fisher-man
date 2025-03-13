@@ -626,9 +626,20 @@
             </div>
             <!-- ./Mobile Style -->
 
+            {{-- Payment Policy Aggrement --}}
+            <div>
+                <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">{{trans_lang('aggrement_payment_policy')}}</h2>
+                <div class="d-flex gap-3 py-3 px-3">
+                    <input required type="checkbox" id="select-payment">
+                    <label for="select-payment"><a href="{{route('payment_policy')}}">{{trans_lang('aggree_payment_policy')}}</a></label>
+                    <div class="ms-auto text-danger" id="warning-msg">{{ trans_lang('check_mark') }}</div>
+                </div>
+            </div>
+            {{-- Payment Policy Aggrement --}}
+
             {{-- Check Payment --}}
             <div>
-                <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">{{ trans_lang('selet_payment') }}</h2>
+                <h2 class="py-3 px-3 mt-3 bg-primary text-white" id="payment-check-sec">{{ trans_lang('selet_payment') }}</h2>
                 <div class="d-flex gap-3 py-3 px-3">
                     <input type="checkbox" id="select-payment">
                     <label for="select-payment">{{ trans_lang('credit_card') }}</label>
@@ -699,7 +710,6 @@
         </div>
     </section>
     <!-- /Payment Step -->
-
     <!-- Complete Step -->
     <section class="page mt-5" id="complete" data-step="5">
         <div class="container-custom">
