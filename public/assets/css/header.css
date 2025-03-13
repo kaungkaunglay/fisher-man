@@ -324,9 +324,13 @@ display: block !important;
         padding: 0 10px;
     }
 
-    /* .bottom-header nav{
-        gap: 50px;
-    } */
+    .bottom-header nav{
+        gap: 0px !important;
+    }
+
+    .bottom-header nav ul{
+        padding: 3px 0px;
+    }
 
 }
 

@@ -21,19 +21,34 @@
     <!-- ./Breadcrumbs -->
 
     <div class="container-custom row">
+        @if ($category->subCategories->isEmpty())
 
+            <div class="side-menu col-4">
+            </div>
+        @else
         <!-- aside start -->
-        <div class="side-menu col-4">
-            @include('includes.aside')
-        </div>
-        <!-- aside end -->
-
+            <div class="side-menu col-4">
+                @include('includes.aside')
+            </div>
+            <!-- aside end -->
+        @endif
         <!-- category list start -->
         <div class="category col-8">
             <ul class="list-group category-list">
-                @if ($category->subCategories->isEmpty())
-                    <h6 class="txt-primary fw-bold mb-3">このカテゴリには商品がありません</h6>
-                @else
+            @php
+                $hasProducts = false;
+                foreach ($category->subCategories as $subcategory) {
+                    if ($subcategory->products->isNotEmpty()) {
+                        $hasProducts = true;
+                        break;
+                    }
+                }
+            @endphp
+
+            @if ($category->subCategories->isEmpty() || !$hasProducts)
+                <h6 class="txt-primary fw-bold mb-3">このカテゴリには商品がありません</h6>
+            @else
+
                     @foreach ($category->subCategories as $subcategory)
                         @if ($subcategory->products->isNotEmpty())
                             <li class="d-flex flex-column">
