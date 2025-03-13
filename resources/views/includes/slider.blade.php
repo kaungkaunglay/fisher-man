@@ -7,7 +7,7 @@
             </div>
         @endforeach
     </div>
-
+    
     <!-- Circle Indicators -->
     <div class="carousel-indicators">
         @foreach($bannerImages as $index => $image)

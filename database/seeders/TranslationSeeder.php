@@ -803,6 +803,11 @@ class TranslationSeeder extends Seeder
                 'key'=> 'dashboard',
                 'en' => 'Dashboard',
                 'jp' => 'ダッシュボード',
+            ],
+            [
+                'key'=> 'reCaptcha',
+                'en' => 'ReCaptcha',
+                'jp' => 'リキャプチャ',
             ]
         ];
         foreach($translations as $translation) {

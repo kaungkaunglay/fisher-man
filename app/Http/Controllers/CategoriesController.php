@@ -22,7 +22,10 @@ class CategoriesController extends Controller
             $query->with('products');
         }])->findOrFail($id);
 
-        return view('category', compact('category'));
+        $menu_category_id = $category->id;
+
+        // dd($category);
+        return view('category', compact('category','menu_category_id' ));
     }
 
 

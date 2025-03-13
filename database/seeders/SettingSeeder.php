@@ -14,8 +14,8 @@ class SettingSeeder extends Seeder
      */
     public function run(): void
     {
-        Setting::updateOrCreate(['key' => 'contact_email', 'value' => 'r-mekiki@gmail.com']);
-        Setting::updateOrCreate(['key' => 'contact_phone', 'value' => '+959796593367']);
+        Setting::updateOrCreate(['key' => 'contact_email', 'value' => 'support@r-mekiki.com']);
+        Setting::updateOrCreate(['key' => 'contact_phone', 'value' => '+819012345678']);
         Setting::updateOrCreate(['key' => 'contact_address', 'value' => 'Cambodia']);
         Setting::updateOrCreate(['key' => 'logo', 'value' => 'logo.png']);
         Setting::updateOrCreate(['key' => 'slogan', 'value' => '私たちについて: 信頼出来る新鮮な海産物を提供します']);

@@ -3612,11 +3612,13 @@ select.h40 {
 .layout-wrap .section-menu-left .section-menu-left-wrap {
   width: 100%;
   overflow-y: auto;
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
   position: relative;
   z-index: 5;
 }
 .layout-wrap .section-menu-left .section-menu-left-wrap::-webkit-scrollbar {
-  width: 3px;
+  width: none;
 }
 .layout-wrap .section-menu-left .center {
   padding: 20px;

@@ -293,12 +293,29 @@
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </li>
-            @foreach ($subcategories as $subcategory)
-                <li>
-                    <a href="{{ route('sub-category.show', $subcategory->id) }}"
-                        class="menu-category">{{ $subcategory->name }}</a>
-                </li>
-            @endforeach
+            
+            @if (Request::routeIs(patterns: 'sub-category.show') || Request::routeIs(patterns: 'category'))
+                @foreach ($subcategories as $subcategory)
+                    @if($subcategory->isCategory($menu_category_id))
+                        <li>
+                            <a href="{{ route('sub-category.show', $subcategory->id) }}" class="menu-category">
+                                {{ $subcategory->name }}
+                            </a>
+                        </li>
+                    @endif
+                @endforeach
+
+            @else
+
+                @foreach ($subcategories as $subcategory)
+                    <li>
+                        <a href="{{ route('sub-category.show', $subcategory->id) }}"
+                            class="menu-category">{{ $subcategory->name }}</a>
+                    </li>
+                @endforeach
+
+            @endif
+            
         </ul>
     </div>
     @endif
@@ -369,7 +386,7 @@
                 {{-- /Useful Link --}}
 
                 {{-- Contact Us --}}
-                <div class="col-12 col-lg-2 mt-3 ">
+                <div class="col-12 col-lg-3 mt-3 ">
                     <h6 class="text-center text-warning mb-2">{{ trans_lang('contact_us') }}</h6>
                     <ul class="list-unstyled text-white txt-15 text-center">
                         <li>{{ trans_lang('address') }} :
