@@ -16,24 +16,12 @@ class CartController extends Controller
         if (AuthHelper::check()) {
             $carts = AuthHelper::user()->carts;
             $carts->load('product');
-
-
-            // $sessionCart = $carts->map(function ($cart) {
-            //     return [
-            //         'id' => $cart->product_id,
-            //         'quantity' => $cart->quantity,
-            //     ];
-            // })->toArray();
-
-            // session()->put('cart', $sessionCart);
-
         } else {
             $products = session('cart', []);
 
             if ($products != []) {
 
                 $productIds = array_column($products, 'id');
-
 
                 $carts = collect($products)->map(function ($product) {
                     $cart = new Cart();
@@ -55,8 +43,9 @@ class CartController extends Controller
 
         return view('cart', compact('carts'));
     }
+
     public function CartCount() {
-        // return cart count
+        // カートの数を返す
         if(AuthHelper::check()){
             $count = AuthHelper::user()->carts()->count();
         } else {
@@ -70,18 +59,18 @@ class CartController extends Controller
         $products = $request->input('products');
 
         if (empty($products)) {
-            session()->flash('error',"You haven't chosen any product");
-            return response()->json(['status' => false, 'message' => "You haven't chosen any product"]);
+            session()->flash('error',"商品が選択されていません");
+            return response()->json(['status' => false, 'message' => "商品が選択されていません"]);
         }
 
         if (!AuthHelper::check()) {
             $isNotNew = $this->addToSessionCart($products);
             if(!$isNotNew){
-                session()->flash('info',"All products are already in the cart");
-                return response()->json(['status' => false, 'message' => 'All products are already in the cart']);
+                session()->flash('info',"すべての製品はすでにカートにあります");
+                return response()->json(['status' => false, 'message' => 'すべての製品はすでにカートにあります']);
             }
-            session()->flash('success',"Products added to cart");
-            return response()->json(['status' => true,'isNotNew' => $isNotNew , 'message' => 'Products added to cart']);
+            session()->flash('success',"製品がカートに追加されました");
+            return response()->json(['status' => true,'isNotNew' => $isNotNew , 'message' => '製品がカートに追加されました']);
         }
 
         $user = AuthHelper::user();
@@ -91,14 +80,14 @@ class CartController extends Controller
         $newProducts = $this->getNewProducts($products, $existingProductIds);
 
         if (empty($newProducts)) {
-            session()->flash('info',"All products are already in the cart");
-            return response()->json(['status' => false, 'message' => 'All products are already in the cart']);
+            session()->flash('info',"すべての製品はすでにカートにあります");
+            return response()->json(['status' => false, 'message' => 'すべての製品はすでにカートにあります']);
         }
 
         $this->addToUserCart($newProducts, $user);
 
-        session()->flash('success',"Products added to cart");
-        return response()->json(['status' => true, 'message' => 'Products added to cart']);
+        session()->flash('success',"製品がカートに追加されました");
+        return response()->json(['status' => true, 'message' => '製品がカートに追加されました']);
     }
 
     private function addToSessionCart($products)
@@ -110,8 +99,6 @@ class CartController extends Controller
         foreach ($products as $product) {
             $found = false;
             foreach ($cart as &$cartItem) {
-
-
                 if ($cartItem['id'] === $product['id']) {
                     $found = true;
                     $allProductsAlreadyInCart = false;
@@ -137,7 +124,6 @@ class CartController extends Controller
 
     private function addToUserCart($newProducts, $user)
     {
-
         $dataToInsert = [];
         foreach ($newProducts as $product) {
             $dataToInsert[] = [
@@ -151,19 +137,18 @@ class CartController extends Controller
         Cart::insert($dataToInsert);
     }
 
-
     public function addToCartWithLogin(Request $request)
     {
         $products = $request->input('products');
 
         if (empty($products)) {
-            return response()->json(['status' => false, 'message' => "You haven't chosen any product"]);
+            return response()->json(['status' => false, 'message' => "商品が選択されていません"]);
         }
 
         $user = AuthHelper::user();
 
         if (!$user) {
-            return response()->json(['status' => false, 'message' => "You need to login to process"]);
+            return response()->json(['status' => false, 'message' => "ログインする必要があります"]);
         }
 
         DB::beginTransaction();
@@ -188,12 +173,12 @@ class CartController extends Controller
 
             session()->forget('cart');
 
-            return response()->json(['status' => true, 'message' => 'Products added to cart']);
+            return response()->json(['status' => true, 'message' => '製品がカートに追加されました']);
 
         } catch (\Exception $e) {
             DB::rollBack();
             logger()->error($e);
-            return response()->json(['status' => false, 'message' => 'Error adding products to cart']); //Or a more specific error message.
+            return response()->json(['status' => false, 'message' => 'カートに製品を追加する際にエラーが発生しました']);
         }
     }
 
@@ -203,10 +188,9 @@ class CartController extends Controller
         $product_id = $request->input('product_id');
 
         if (!is_numeric($quantity) || $quantity <= 0) {
-
             return response()->json([
                 'status' => false,
-                'message' => 'Invalid quantity provided'
+                'message' => '無効な数量が提供されました'
             ]);
         }
 
@@ -217,7 +201,7 @@ class CartController extends Controller
             if (empty($cart)) {
                 return response()->json([
                     'status' => false,
-                    'message' => "Your cart is empty."
+                    'message' => "カートが空です"
                 ]);
             }
 
@@ -232,7 +216,7 @@ class CartController extends Controller
 
             return response()->json([
                 'status' => true,
-                'message' => "Quantity updated."
+                'message' => "数量が更新されました"
             ]);
         }
 
@@ -243,7 +227,7 @@ class CartController extends Controller
         if (!$cart) {
             return response()->json([
                 'status' => false,
-                'message' => "Product not found in your cart."
+                'message' => "カートに製品が見つかりません"
             ]);
         }
 
@@ -252,7 +236,7 @@ class CartController extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => "Quantity updated.",
+            'message' => "数量が更新されました",
             'quantity' => $cart->quantity
         ]);
     }
@@ -260,7 +244,7 @@ class CartController extends Controller
     public function delete($product_id)
     {
         if (!Product::where('id', $product_id)->exists()) {
-            return response()->json(['status' => false, 'message' => 'Product not found']);
+            return response()->json(['status' => false, 'message' => '製品が見つかりません']);
         }
 
         if (!AuthHelper::check()) {
@@ -272,17 +256,17 @@ class CartController extends Controller
 
             session(['cart' => $cart]);
 
-            return response()->json(['status' => true, 'product_id' => $product_id, 'message' => 'Product removed from cart']);
+            return response()->json(['status' => true, 'product_id' => $product_id, 'message' => '製品がカートから削除されました']);
         }
 
         $user = AuthHelper::user();
 
         if (!$user->carts()->where('product_id', $product_id)->exists()) {
-            return response()->json(['status' => false, 'message' => 'Product not found in cart']);
+            return response()->json(['status' => false, 'message' => 'カートに製品が見つかりません']);
         }
 
         $user->carts()->where('product_id', $product_id)->delete();
 
-        return response()->json(['status' => true, 'product_id' => $product_id, 'message' => 'Product removed from cart']);
+        return response()->json(['status' => true, 'product_id' => $product_id, 'message' => '製品がカートから削除されました']);
     }
 }

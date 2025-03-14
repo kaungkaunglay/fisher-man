@@ -1,11 +1,11 @@
-<p>Dear {{ $wishList->name }},</p>
+<p>親愛なる {{ $wishList->name }} 様,</p>
 
-<p>Thank you for reaching out to us! We have received your message and will get back to you as soon as possible.</p>
+<p>お問い合わせいただきありがとうございます！ メッセージを受け取りましたので、できるだけ早くお返事いたします。</p>
 
-<p><strong>Your Message:</strong></p>
+<p><strong>ご送信いただいたメッセージ:</strong></p>
 <p>{{ $wishList->description }}</p>
 
-<p>If you have any urgent concerns, please contact us directly at support@example.com.</p>
+<p>お急ぎのご用件がございましたら、support@example.com まで直接ご連絡ください。</p>
 
-<p>Best Regards,</p>
-<p>The Support Team</p>
+<p>よろしくお願い申し上げます。</p>
+<p>サポートチームより</p>

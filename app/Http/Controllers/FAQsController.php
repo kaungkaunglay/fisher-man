@@ -23,10 +23,17 @@ class FAQsController extends Controller
       // Store new FAQ
       public function store(Request $request)
       {
+        $message = [
+            'question.required' => '質問は必須です。',
+            'question.string' => '質問は文字列で入力してください。',
+            'question.max' => '質問は255文字以内で入力してください。',
+            'answer.required' => '回答は必須です。',
+            'answer.string' => '回答は文字列で入力してください。',
+        ];
           $request->validate([
               'question' => 'required|string|max:255',
               'answer' => 'required|string',
-          ]);
+          ],$message);
   
           FAQs::create($request->all());
   
@@ -42,10 +49,17 @@ class FAQsController extends Controller
   
       public function update(Request $request, $id)
       {
+        $message = [
+            'question.required' => '質問は必須です。',
+            'question.string' => '質問は文字列で入力してください。',
+            'question.max' => '質問は255文字以内で入力してください。',
+            'answer.required' => '回答は必須です。',
+            'answer.string' => '回答は文字列で入力してください。',
+        ];
           $request->validate([
               'question' => 'required|string|max:255',
               'answer' => 'required|string',
-          ]);
+          ],$message);
   
           $faq = FAQs::findOrFail($id);
           $faq->update($request->all());
