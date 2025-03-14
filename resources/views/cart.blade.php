@@ -249,7 +249,7 @@
                     <!-- name -->
                     <div class="form-group">
                         <label class="w-25" for="name">{{ trans_lang('name') }}</label>:
-                        <output class="form-output" for="name">{{ auth_helper()->user()->username ?? '' }}</output>
+                        <output class="form-output ms-3" for="name">{{ auth_helper()->user()->username ?? '' }}</output>
                         <input name="name" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="name"
                         value="{{ auth_helper()->user()->username ?? '' }}" disabled>
                         <span class="invalid-feedback"></span>
@@ -258,7 +258,7 @@
                     {{-- pohne-number link --}}
                     <div class="form-group">
                         <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
-                        <output class="form-output" for="first_phone">{{ auth_helper()->user()->first_phone ?? '' }}</output>
+                        <output class="form-output ms-3" for="first_phone">{{ auth_helper()->user()->first_phone ?? '' }}</output>
                         <input type="tel" name="first_phone" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="first_phone"
                         value="{{ auth_helper()->user()->first_phone ?? '' }}" disabled>
                         <span class="invalid-feedback"></span>
@@ -267,7 +267,7 @@
                     <!-- postal link -->
                     <div class="form-group">
                         <label class="w-25" for="zip">{{ trans_lang('postal') }}</label>:
-                        <output class="form-output" for="zip">1105</output>
+                        <output class="form-output ms-3" for="zip">1105</output>
                         <input type="number" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="zip"
                         value="1105" disabled>
                         <span class="invalid-feedback"></span>
@@ -276,7 +276,7 @@
                     <!-- country link -->
                     <div class="form-group">
                         <label class="w-25" for="country">{{ trans_lang('country') }}</label>:
-                        <output class="form-output" for="country">Cambodia</output>
+                        <output class="form-output ms-3" for="country">Cambodia</output>
                         <input type="text" name="country" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="country"
                         value="Cambodia" disabled>
                         <span class="invalid-feedback"></span>
@@ -285,7 +285,7 @@
                     <!-- address link -->
                     <div class="form-group d-flex align-items-start">
                         <label class="w-25" for="address">{{ trans_lang('shipping_address') }}</label>:
-                        <output class="form-output" for="address">Cambodia</output>
+                        <output class="form-output ms-3" for="address">Cambodia</output>
                         <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ auth_helper()->user()->address ?? '' }}</textarea>
                         <span class="invalid-feedback"></span>
                     </div>
@@ -665,7 +665,7 @@
                     <!-- name -->
                     <div class="form-group d-flex">
                         <h3 class="w-25">{{ trans_lang('name') }}</h3>:
-                        <output class="form-output">{{ auth_helper()->user()->username ?? '' }}</output>
+                        <output class="form-output ms-">{{ auth_helper()->user()->username ?? '' }}</output>
                         <span class="invalid-feedback"></span>
                     </div>
 
