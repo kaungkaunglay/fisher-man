@@ -38,8 +38,9 @@
 
 
     <!-- Favicon and Touch Icons  -->
-    <link rel="shortcut icon" href="{{asset('assets/images/Logo only.png')}}">
-    <link rel="apple-touch-icon-precomposed" href="{{asset('assets/images/Logo only.png')}}">
+    <link rel="icon" href="{{asset('assets/images/favicon/favicon.png')}}" type="image/png">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{asset('assets/images/favicon/apple-touch-icon.png')}}" type="image/png">
+    {{-- <link rel="apple-touch-icon-precomposed" href="{{asset('assets/images/Logo only.png')}}"> --}}
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>

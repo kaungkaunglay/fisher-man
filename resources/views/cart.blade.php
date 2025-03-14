@@ -628,10 +628,10 @@
 
             {{-- Payment Policy Aggrement --}}
             <div>
-                <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">{{trans_lang('aggrement_payment_policy')}}</h2>
+                <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">{{trans_lang('agrement_payment_policy')}}</h2>
                 <div class="d-flex gap-3 py-3 px-3">
                     <input required type="checkbox" id="select-payment">
-                    <label for="select-payment"><a href="{{route('payment_policy')}}">{{trans_lang('aggree_payment_policy')}}</a></label>
+                    <label for="select-payment"><a href="{{route('payment_policy')}}">{{trans_lang('agree_payment_policy')}}</a></label>
                     <div class="ms-auto text-danger" id="warning-msg">{{ trans_lang('check_mark') }}</div>
                 </div>
             </div>
@@ -734,15 +734,18 @@
 
             function checkIfEmpty() {
                 var dskbody = $('.dsk-cart-body');
-                if (dskbody.find('tr').length === 0) {
+                var mbbody = $('.mb-cart-body');
+                if (dskbody.find('tr').length === 0 || mbbody.find('.card').length === 0) {
                     dskbody.html(
                         `<tr><td colspan="6" class="text-center">{{ trans_lang('no_product') }}</td></tr>`);
-                }
-                var mbbody = $('.mb-cart-body');
-                if (mbbody.find('.card').length === 0) {
+                    
                     mbbody.find('.no-cart').html(
                         `<div class="text-center my-3">{{ trans_lang('no_product') }}</div>`)
+
+                    $('#checkout .btn-next').data('page', '#checkout');
+                    
                 }
+                
             }
 
             checkIfEmpty();

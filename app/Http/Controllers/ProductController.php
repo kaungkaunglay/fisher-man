@@ -133,6 +133,7 @@ class ProductController extends Controller
             'discount.max' => '割引フィールドは商品価格より大きくすることはできません。',
             'status.string' => 'ステータスは必須です',
         ];
+
         $request->validate([
             'sub_category_id' => 'required|exists:sub_categories,id',
             'name' => 'required|string|max:255',
@@ -148,6 +149,7 @@ class ProductController extends Controller
             'status' => 'nullable|string',
         ], $messages);
 
+       
 
         // $request->validate([
         //     'sub_category_id' => 'required|exists:sub_categories,id',
@@ -163,9 +165,9 @@ class ProductController extends Controller
         //     'description' => 'nullable|string',
         //     'status' => 'nullable|string',
         // ], $messages);
-
+        
           // Sanitize input to remove script injections
-    $productName = strip_tags($request->name); // Removes HTML tags
+        $productName = strip_tags($request->name); // Removes HTML tags
 
         $folderPath = public_path('assets/products');
         if (!file_exists($folderPath)) {

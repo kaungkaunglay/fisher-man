@@ -61,21 +61,22 @@
 
                 <fieldset class="category">
                     <div class="body-title mb-10">{{trans_lang('category')}} <span class="tf-color-1">*</span></div>
-                    <div class="select @error('sub_category_id') is-invalid @enderror" >
+                    <div class="select mb-10 @error('sub_category_id') is-invalid @enderror" >
                         <select name="sub_category_id" style="padding:5px 22px;">
-                            <option value="">{{trans_lang('select')}}{{trans_lang('category')}}</option>
+                            <option disabled selected value="">{{trans_lang('select')}}{{trans_lang('category')}}</option>
                             @foreach($subCategories as $subCategory)
                             <option value="{{ $subCategory->id }}" {{ old('sub_category_id', $product->sub_category_id ?? '') == $subCategory->id ? 'selected' : '' }}>
                                 {{ $subCategory->name }}
                             </option>
                             @endforeach
                         </select>
-                        @error('sub_category_id')
-                    <div class="invalid-feedback">
-                        {{ $message }}
+                    
                     </div>
+                    @error('sub_category_id')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
                     @enderror
-                    </div>
                 </fieldset>
 
                 <div class="d-flex gap10">
