@@ -21,7 +21,7 @@
             </div>
             <div class="input-box d-flex flex-column">
                 <label for="email">{{trans_lang('email')}}</label>
-                <input id="email" name="email" placeholder="example@domain.com" type="text" spellcheck="false">
+                <input id="email" name="email" placeholder="support@r-mekiki.com" type="text" spellcheck="false">
                 <span class="invalid-feedback"></span>
             </div>
             <div class="input-box d-flex flex-column">
