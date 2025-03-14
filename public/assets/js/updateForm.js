@@ -64,22 +64,21 @@ function resetData(trig) {
     const form = trigger.closest('.profile-form');
     const input = form.querySelectorAll('input');
     const textarea = form.querySelectorAll('textarea');
+    const errors = form.querySelectorAll('span.invalid-feedback');
+
 
     input.forEach(i => {
         const output = $(`output[for="${$(i).attr('id')}"]`);
-        const phone = output.text().trim();
-        const extension = phone.slice(0, 3);
-        const number = phone.slice(3);
+        const val = output.text().trim();
+        const number = val.slice(3);
 
-        $(i).closest('div').find('select').each(function () {
-            if ($(this).val() === extension) {
-                $(this).prop('selected', true);
-            } else {
-                $(this).prop('selected', false);
-            }
-        });
+        if ($(i).attr('id').includes('phone')) {
+            $(i).val(number);
+            $(`#${$(i).attr('id')}_extension`).val('+81');    
+        } else {
+            $(i).val(val);
+        }
 
-        $(i).val(number);
     });
 
 
@@ -88,10 +87,14 @@ function resetData(trig) {
         $(i).val($(`output[for="${$(i).attr('id')}"]`).text());
     })
 
+    errors.forEach(i => {
+        $(i).text('');
+    })
+
 }
 
 function unactiveForm(cur) {
-    cur.removeClass('active');
+    $(cur).removeClass('active');
     if ($('.sec-phone').val() == '') $('.cor').hide();
     else $('.cor').show();
 }
