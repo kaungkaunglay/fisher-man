@@ -364,7 +364,7 @@
                                         <option value="+81" @if($user->firstExtension == '+81') selected @endif>+81</option>
                                         <option value="+95" @if($user->firstExtension == '+95') selected @endif>+95</option>
                                     </select> --}}
-                                    <input type="text"  name="first_phone_extension" 
+                                    <input type="text" id="first_phone_extension"  name="first_phone_extension" 
                                         class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" 
                                         style="width: 40px;"  value="+81" readonly />
                                     <a href="tel:">
@@ -379,7 +379,7 @@
                                         <option value="+81" @if($user->secondExtension == '+81') selected @endif>+81</option>
                                         <option value="+95" @if($user->secondExtension == '+95') selected @endif>+95</option>
                                     </select> --}}
-                                    <input type="text" name="second_phone_extension" 
+                                    <input type="text" id="second_phone_extension" name="second_phone_extension" 
                                         class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" 
                                         style="width: 40px;"  value="+81" readonly />
                                     <a href="tel:">

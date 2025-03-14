@@ -2,6 +2,9 @@
 @section('title', 'home')
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" />
+    @foreach($bannerImages as $image)
+        <link rel="preload" as="image" href="{{ asset('assets/banner-images/'.$image) }}" type="image/png" />
+    @endforeach
 @endsection
 
 @section('contents')

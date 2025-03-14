@@ -734,15 +734,18 @@
 
             function checkIfEmpty() {
                 var dskbody = $('.dsk-cart-body');
-                if (dskbody.find('tr').length === 0) {
+                var mbbody = $('.mb-cart-body');
+                if (dskbody.find('tr').length === 0 || mbbody.find('.card').length === 0) {
                     dskbody.html(
                         `<tr><td colspan="6" class="text-center">{{ trans_lang('no_product') }}</td></tr>`);
-                }
-                var mbbody = $('.mb-cart-body');
-                if (mbbody.find('.card').length === 0) {
+                    
                     mbbody.find('.no-cart').html(
                         `<div class="text-center my-3">{{ trans_lang('no_product') }}</div>`)
+
+                    $('#checkout .btn-next').data('page', '#checkout');
+                    
                 }
+                
             }
 
             checkIfEmpty();

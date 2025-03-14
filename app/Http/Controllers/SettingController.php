@@ -107,7 +107,7 @@ class SettingController extends Controller
         }
 
 
-        return back()->with('success', 'Settings updated successfully.');
+        return back()->with('success', '設定が正常に更新されました。');
     }
 
     // Helper function to update or create a setting
