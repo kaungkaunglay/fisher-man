@@ -21,7 +21,7 @@
             </div>
             <div class="input-box d-flex flex-column">
                 <label for="email">Email</label>
-                <input name="email" placeholder="example@domain.com" type="text" id="email" spellcheck="false"
+                <input name="email" placeholder="support@r-mekiki.com" type="text" id="email" spellcheck="false"
                     autofocus required>
                 <span class="invalid-feedback"></span>
             </div>
