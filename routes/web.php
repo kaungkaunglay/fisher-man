@@ -222,8 +222,6 @@ Route::middleware(['auth_custom','restore_cart'])->group(function () {
 
 Route::middleware(['auth_custom_api','restore_cart'])->group(function () {
 
-
-
     Route::delete('/white-list/delete/{product_id}', [WhiteListController::class, 'delete'])->name('white_list.delete');
     Route::post('/white-list/{product_id}', [WhiteListController::class, 'store'])->name('white_list.store');
 

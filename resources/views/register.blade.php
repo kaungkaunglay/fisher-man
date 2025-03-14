@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="input-box d-flex flex-column mx-auto">
-                <div class="g-recaptcha" data-sitekey="{{env('RECAPTCHA_SITE_KEY')}}"></div>
+                <div class="g-recaptcha" data-sitekey="6Leh4t8qAAAAAOWxMlheFOxzPhOL8STyf9FsI7WE"></div>
                 <span class="invalid-feedback"></span>
             </div>
 

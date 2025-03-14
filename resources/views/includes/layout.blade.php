@@ -660,7 +660,11 @@
                         updateStoredCount("white_list_count", ".white_list_count", count);
                     }
 
-                    response.status ? toastr.success('',response.message) : toastr.info('',response.message);
+                    if (response.status === "redirect") {
+                        toastr.clear();
+                    } else {
+                        response.status ? toastr.success('', response.message) : toastr.info('', response.message);
+                    }
 
                 },
                 complete: () => {

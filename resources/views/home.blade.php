@@ -105,102 +105,104 @@
 
 
     <!-- Discount Products -->
-    <section class="discount-products bg-second py-4">
-        <div class="container-custom">
+@if(count($discount_products) > 0)
+   <section class="discount-products bg-second py-4">
+    <div class="container-custom">
 
-            <!-- Discount Headline -->
-            <div>
-                <h6 class="txt-primary fw-bold mb-3">{{trans_lang('special_offer')}}</h6>
-                <div class="filter d-flex justify-content-between align-items-center mb-3">
+        <!-- Discount Headline -->
+        <div>
+            <h6 class="txt-primary fw-bold mb-3">{{trans_lang('special_offer')}}</h6>
+            <div class="filter d-flex justify-content-between align-items-center mb-3">
 
-                    <!-- display -->
-                    <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
-                        <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
-                        <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
-                    </div>
-
-                    <!-- sorting -->
-                    <div class="sort-container">
-                        <div class="arrows">
-                            <button><i class="fa-solid fa-caret-up"></i></button>
-                            <button><i class="fa-solid fa-caret-down"></i></button>
-                        </div>
-                        <div class="dropdown">
-                            <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">{{trans_lang('sortby')}}</button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item"
-                                        href="{{ route('home', ['sort_by' => 'price_asc']) }}">{{trans_lang('price_l_h')}}</a></li>
-                                <li><a class="dropdown-item"
-                                        href="{{ route('home', ['sort_by' => 'price_desc']) }}">{{trans_lang('price_h_l')}}</a>
-                                </li>
-                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">{{trans_lang('name_a_z')}}</a></li>
-                                <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">{{trans_lang('name_z_a')}}</a></li>
-                                <li><a class="dropdown-item"
-                                        href="{{ route('home', ['sort_by' => 'latest']) }}">{{trans_lang('latest')}}</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
+                <!-- display -->
+                <div class="icon-buttons txt-primary d-flex gap-3 align-items-center">
+                    <i class="fa-solid fa-grip fs-2 fw-bold" id="card-list-btn"></i>
+                    <i class="fa-solid fa-list fs-3 fw-bold" id="row-list-btn"></i>
                 </div>
-            </div>
-            <!-- /Discount Headline -->
 
-            <!-- Products List -->
-            <div class="card-list" id="view-list">
-                @foreach ($products->filter(fn($product) => $product->discount > 0.0)->take(6) as $product)
-                @if ($product->status == 'approved')
-                    <div class="item-card mb-2">
-                        <a href="{{ route('product.show', $product->id) }}" class="right">
-                            <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
-                                alt="{{ $product->name }}">
-                        </a>
-                        <div class="left pt-3">
-                        <p class="price">
-                            @if ($product->discount > 0)
-                                <span class="format me-2">{{ number_format($product->product_price - $product->discount, 0) }}</span>
-                                <span class="original-price format">{{ number_format($product->product_price, 0) }}</span>
-                            @else
-                                <span class="format">{{ number_format($product->product_price, 0) }}</span>
-                            @endif
-                        </p>
-
-                            <div class="title-category mb-2">
-                                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
-                                <h3 class="title">{{ $product->name }}</h3>
-                            </div>
-                            <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
-                                {{ $product->description }}
-                            </a>
-                            <div class="d-flex gap-2 card-btn m-t-10">
-                                <a href="javascript:void(0);"
-                                    class="py-1 common-btn2 -solid cart-btn"
-                                    data-id="{{ $product->id }}">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </a>
-                                <a href="#"
-                                    class="py-1 common-btn2 white-list-btn @if($product->inWhiteLists()) active @endif"
-                                    data-id="{{ $product->id }}">
-                                    <i class="fa-solid fa-bookmark"></i>
-                                </a>
-                            </div>
-                        </div>
+                <!-- sorting -->
+                <div class="sort-container">
+                    <div class="arrows">
+                        <button><i class="fa-solid fa-caret-up"></i></button>
+                        <button><i class="fa-solid fa-caret-down"></i></button>
                     </div>
-                    @endif
-                @endforeach
-            </div>
-            <!-- /Products List -->
-
-            <!-- Discount Footline -->
-            <div class="row justify-content-center mx-0 mt-5">
-                <div class="col-5 col-lg-4 text-center">
-                    <a class="common-btn see-more-btn w-100" href="{{ route('special-offer') }}">{{trans_lang('seemore')}}</a>
+                    <div class="dropdown">
+                        <button class="sort-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">{{trans_lang('sortby')}}</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item"
+                                    href="{{ route('home', ['sort_by' => 'price_asc']) }}">{{trans_lang('price_l_h')}}</a></li>
+                            <li><a class="dropdown-item"
+                                    href="{{ route('home', ['sort_by' => 'price_desc']) }}">{{trans_lang('price_h_l')}}</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_asc']) }}">{{trans_lang('name_a_z')}}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('home', ['sort_by' => 'name_desc']) }}">{{trans_lang('name_z_a')}}</a></li>
+                            <li><a class="dropdown-item"
+                                    href="{{ route('home', ['sort_by' => 'latest']) }}">{{trans_lang('latest')}}</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <!-- /Discount Footline -->
 
+            </div>
         </div>
-    </section>
+        <!-- /Discount Headline -->
+
+        <!-- Products List -->
+        <div class="card-list" id="view-list">
+            @foreach ($discount_products as $product)
+            @if ($product->status == 'approved')
+                <div class="item-card mb-2">
+                    <a href="{{ route('product.show', $product->id) }}" class="right">
+                        <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
+                            alt="{{ $product->name }}">
+                    </a>
+                    <div class="left pt-3">
+                    <p class="price">
+                        @if ($product->discount > 0)
+                            <span class="format me-2">{{ number_format($product->product_price - $product->discount, 0) }}</span>
+                            <span class="original-price format">{{ number_format($product->product_price, 0) }}</span>
+                        @else
+                            <span class="format">{{ number_format($product->product_price, 0) }}</span>
+                        @endif
+                    </p>
+
+                        <div class="title-category mb-2">
+                            <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
+                            <h3 class="title">{{ $product->name }}</h3>
+                        </div>
+                        <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
+                            {{ $product->description }}
+                        </a>
+                        <div class="d-flex gap-2 card-btn m-t-10">
+                            <a href="javascript:void(0);"
+                                class="py-1 common-btn2 -solid cart-btn"
+                                data-id="{{ $product->id }}">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                            <a href="#"
+                                class="py-1 common-btn2 white-list-btn @if($product->inWhiteLists()) active @endif"
+                                data-id="{{ $product->id }}">
+                                <i class="fa-solid fa-bookmark"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endif
+            @endforeach
+        </div>
+        <!-- /Products List -->
+
+        <!-- Discount Footline -->
+        <div class="row justify-content-center mx-0 mt-5">
+            <div class="col-5 col-lg-4 text-center">
+                <a class="common-btn see-more-btn w-100" href="{{ route('special-offer') }}">{{trans_lang('seemore')}}</a>
+            </div>
+        </div>
+        <!-- /Discount Footline -->
+
+    </div>
+</section>
+   @endif
     <!-- /Discount Products -->
 
     <!-- All Products -->
