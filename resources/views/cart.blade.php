@@ -628,7 +628,7 @@
 
             {{-- Payment Policy Aggrement --}}
             <div>
-                <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">{{trans_lang('agrement_payment_policy')}}</h2>
+                <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">{{trans_lang('agreement_payment_policy')}}</h2>
                 <div class="d-flex gap-3 py-3 px-3">
                     <input required type="checkbox" id="select-payment">
                     <label for="select-payment"><a href="{{route('payment_policy')}}">{{trans_lang('agree_payment_policy')}}</a></label>
