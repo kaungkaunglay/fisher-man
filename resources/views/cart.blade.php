@@ -148,7 +148,7 @@
 
             <div class="d-flex my-4">
                 <button class="common-btn btn-next ms-auto"
-                    data-page="{{ auth_helper()->check() ? '#address' : '#login' }}">{{ trans_lang('next') }}</button>
+                    data-page="{{ $carts->count() > 0 ? (auth_helper()->check() ? '#address' : '#login') : '#checkout' }}" >{{ trans_lang('next') }}</button>
             </div>
 
         </div>
@@ -742,8 +742,7 @@
                     mbbody.find('.no-cart').html(
                         `<div class="text-center my-3">{{ trans_lang('no_product') }}</div>`)
 
-                    $('#checkout .btn-next').data('page', '#checkout');
-                    
+                    $('[data-page]').attr('data-page', '#checkout');
                 }
                 
             }
