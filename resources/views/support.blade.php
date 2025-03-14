@@ -100,6 +100,7 @@
                                 <label for="recaptcha" class="form-label">{{ trans_lang('reCaptcha') }}:</label>
                                 <div class="g-recaptcha" data-sitekey="6Leh4t8qAAAAAOWxMlheFOxzPhOL8STyf9FsI7WE">
                                 </div>
+                                <span class="invalid-feedback"></span>
                             </div>
 
                             <div class="text-center mb-mobile-3 mb-3">
@@ -157,8 +158,8 @@
                             </div>
                             <div class="mb-3 wish-box">
                                 <label for="recaptcha" class="form-label">{{ trans_lang('reCaptcha') }}:</label>
-                                <div class="g-recaptcha" id="g-recaptcha-response"
-                                    data-sitekey="6Leh4t8qAAAAAOWxMlheFOxzPhOL8STyf9FsI7WE"></div>
+                                <div class="g-recaptcha" data-sitekey="6Leh4t8qAAAAAOWxMlheFOxzPhOL8STyf9FsI7WE">
+                                </div>
                                 <span class="invalid-feedback"></span>
                             </div>
                             <div class="text-center mb-mobile-3">
@@ -200,6 +201,7 @@
                                 // Clear the form
                                 $('#wishlistForm')[0].reset();
                             } else {
+                                console.log(response.errors);
                                 var errors = response.errors ?? {};
 
                                 var fields = [
@@ -207,24 +209,37 @@
                                     'wish_phone',
                                     'wish_email',
                                     'wish_description',
-                                    'g-recaptcha-response',
                                 ];
 
                                 fields.forEach(function(field) {
                                     if (errors[field]) {
-                                        $('#' + field)
+                                        console.log($('#wishlistForm #' + field).attr('id'));
+                                        $('#wishlistForm #' + field)
                                             .closest('.wish-box')
                                             .find('span.invalid-feedback')
                                             .addClass('d-block')
                                             .html(errors[field]);
                                     } else {
-                                        $('#' + field)
+                                        $('#wishlistForm #' + field)
                                             .closest('.wish-box')
                                             .find('span.invalid-feedback')
                                             .removeClass('d-block')
                                             .html('');
                                     }
                                 });
+                                if(errors['g-recaptcha-response']){
+                                    $('#wishlistForm .g-recaptcha')
+                                        .closest('.wish-box')
+                                        .find('span.invalid-feedback')
+                                        .addClass('d-block')
+                                        .html(errors['g-recaptcha-response']);
+                                } else {
+                                    $('#wishlistForm .g-recaptcha')
+                                        .closest('.wish-box')
+                                        .find('span.invalid-feedback')
+                                        .removeClass('d-block')
+                                        .html('');
+                                }
                             }
                         }
                     });
@@ -263,13 +278,14 @@
 
                                 fields.forEach(function(field) {
                                     if (errors[field]) {
-                                        $('#' + field)
+                                        console.log($('#contact-form #' + field).attr('id'));
+                                        $('#contact-form #' + field)
                                             .closest('.contact-box')
                                             .find('span.invalid-feedback')
                                             .addClass('d-block')
                                             .html(errors[field]);
                                     } else {
-                                        $('#' + field)
+                                        $('#contact-form #' + field)
                                             .closest('.contact-box')
                                             .find('span.invalid-feedback')
                                             .removeClass('d-block')

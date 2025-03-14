@@ -18,7 +18,7 @@
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
             <h3>{{ isset($product) ? '商品を編集' : '商品を追加' }}</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
-                <li><a href="index.html">
+                <li><a href="{{route('admin.index')}}">
                         <div class="text-tiny">{{trans_lang('home')}}</div>
                     </a></li>
                 <li><i class="icon-chevron-right"></i></li>

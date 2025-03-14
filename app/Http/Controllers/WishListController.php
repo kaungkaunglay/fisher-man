@@ -20,6 +20,7 @@ class WishListController extends Controller
     }
 
     public function wishList(Request $request){
+        logger($request->all());
         $messages = [
             'wish_name.required' => '名前は必須項目です。',
             'wish_phone.required' => '電話番号は必須項目です。',
@@ -34,7 +35,7 @@ class WishListController extends Controller
             'wish_phone' => 'required',
             'wish_email' => 'required|email',
             'wish_description' => 'required',
-            'g-recaptcha-response' => 'required'
+            'g-recaptcha-response' => 'required',
         ], $messages);
 
         $errors = [];
