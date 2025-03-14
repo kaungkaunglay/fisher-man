@@ -21,7 +21,7 @@
                 <label for="username">{{trans_lang('username')}}</label>
                 <div class="input-group">
                     <input id="username" name="username" placeholder="{{trans_lang('username')}} or {{trans_lang('email')}}" type="text" class="form-control">
-                    <button class="btn" tabindex="-1"><i class="fa-solid fa-user"></i></button>
+                    <button class="btn" type="button" tabindex="-1"><i class="fa-solid fa-user"></i></button>
                 </div>
                 <span class="invalid-feedback"></span>
             </div>
