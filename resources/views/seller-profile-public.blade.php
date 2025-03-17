@@ -187,7 +187,7 @@
                 <!-- button group -->
                 {{-- <div class="buttons d-flex gap-2 mt-3">
                     <button class="common-btn">{{ trans_lang('upload_product') }}</button>
-                    <button class="common-btn">{{ trans_lang('check_order') }}</button>
+                    <button class="common-btn">注文履歴を確認</button>
                 </div> --}}
 
             </div>

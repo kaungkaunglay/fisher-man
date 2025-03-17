@@ -72,7 +72,7 @@
                 <div class="range-slider mx-auto">
                     <input type="number" name="min_price" class="min-price" value="{{ request('min_price', 1) }}"
                         min="1" max="50000">
-                    <h3 class="txt">{{ trans_lang('price_range') }}</h3>
+                    <h3 class="txt">価格で絞り込み</h3>
                     <input type="number" name="max_price" class="max-price" value="{{ request('max_price', 10000) }}"
                         min="1" max="50000">
 

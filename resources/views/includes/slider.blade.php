@@ -2,7 +2,7 @@
     <!-- Carousel Items -->
     <div class="carousel-inner rounded">
         @foreach($bannerImages as $index => $image)
-            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}"  data-bs-interval="2000">
+            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}"  data-bs-interval="10000">
                 <img src="{{ asset('assets/banner-images/'.$image) }}" class="d-block w-100" alt="Banner Image {{ $index + 1 }}" @if($index !== 0) loading="lazy" @endif>
             </div>
         @endforeach

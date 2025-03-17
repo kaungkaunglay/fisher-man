@@ -164,7 +164,7 @@
 
                             </div>
 
-                            @if (!auth_helper()->isEmailLinkInvalid())
+                            <!-- @if (!auth_helper()->isEmailLinkInvalid())
                                 <div class="alert alert-success d-flex mb-2 mt-auto" role="alert">
                                     <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
                                         aria-label="Success:"></i>
@@ -182,7 +182,7 @@
                                             class="text-warning">こちら</a>
                                     </div>
                                 </div>
-                            @endif
+                            @endif -->
                             <!-- /Form Content -->
 
                         </div>
@@ -266,7 +266,7 @@
                 <!-- button group -->
                 <div class="buttons d-flex gap-2 mt-3">
                     <a href="{{route('create_product')}}" class="common-btn">{{ trans_lang('upload_product') }}</a>
-                    <button class="common-btn">{{ trans_lang('check_order') }}</button>
+                    <button class="common-btn">注文履歴を確認</button>
                 </div>
 
             </div>
