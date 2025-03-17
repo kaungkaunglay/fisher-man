@@ -3,10 +3,10 @@
     <img src="https://r-mekiki.com/assets/images/logo.png" alt="Company Logo" class="logo" style="width: 150px; height: 100px;">
 </div>
 
-<h1 style="font-size: 24px; color: #333; text-align: center; margin-top: 20px;">Hello <strong>{{ $user->username }}</strong>,</h1>
+<h1 style="font-size: 24px; color: #333; text-align: center; margin-top: 20px;">こんにちは <strong>{{ $user->username }}</strong>,</h1>
 
 <p style="font-size: 16px; color: #555; text-align: center; margin: 20px 0;">
-    We received a request to reset the password for your account. To proceed with the password reset, please click the button below:
+お客様のアカウントのパスワードリセットのリクエストを受け取りました。パスワードをリセットするには、以下のボタンをクリックしてください。
 </p>
 
 <div style="text-align: center; margin: 30px 0;">
@@ -16,11 +16,11 @@
 </div>
 
 <p style="font-size: 16px; color: #555; text-align: center; margin: 20px 0;">
-    If you did not request a password reset, no further action is required.
+パスワードリセットをリクエストしていない場合は、特に対応は不要です。
 </p>
 <footer style="font-size: 10px; color: #555; margin: 20px 0;">
-    <strong>Address: {{config('settings.contact_address')}}</strong><br>
-    <strong>Email: {{ config('settings.contact_email')}}</strong><br>
-    <strong>Phone Number: {{config(key: 'settings.contact_phone')}}</strong>
+    <strong>住所: {{config('settings.contact_address')}}</strong><br>
+    <strong>メール: {{ config('settings.contact_email')}}</strong><br>
+    <strong>電話番号: {{config(key: 'settings.contact_phone')}}</strong>
 </footer>
 @endcomponent

@@ -32,7 +32,7 @@ class SettingSeeder extends Seeder
         // Add default banner image
         Setting::updateOrCreate(
             ['key' => 'site_banner_images'],
-            ['value' => json_encode(['Rectangle_90.jpg','Rectangle_90.jpg','Rectangle_90.jpg'])]
+            ['value' => json_encode(['banner1.jpg','banner2.jpg'])]
         );
         
     }

@@ -23,12 +23,12 @@
     <section>
         <div class="profile_seller container-custom row">
 
-            <div class="col-12">
+            <!-- <div class="col-12">
                 @include('messages.index')
-            </div>
+            </div> -->
 
             <!-- Profile Side -->
-            <div class="col-12 col-lg-7 h-100 profile-side">
+            <div class="col-12 col-lg-12 h-100 profile-side">
 
                 <form action="#" id="update_basic_profile" class="profile-form" method="POST">
 
@@ -166,8 +166,8 @@
                             @endif
                             <!-- /Form Content -->
 
-                            @if (!$hasShopRequest)
-                                <!-- alert box -->
+                            <!-- @if (!$hasShopRequest)
+                                alert box
                                 <div class="mt-auto modal-btn" data-bs-toggle="modal"
                                     data-bs-target="#shop_modal_dialog">
                                     <div class="alert alert-warning d-flex mb-0" role="alert">
@@ -178,7 +178,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            @else
+                            @else -->
                                 <!-- alert box -->
                                 <div>
                                     <div class="alert alert-success d-flex mb-0 mt-auto" role="alert">
@@ -208,7 +208,7 @@
                             <!-- /Modal Header -->
 
                             <!-- Modal Body -->
-                            <div class="row modal-body p-3">
+                            <!-- <div class="row modal-body p-3">
 
                                 <div class="col-12">
                                     <form method="post" id="shopRequestForm" enctype="multipart/form-data">
@@ -298,7 +298,7 @@
                                         </div>
 
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- /Modal Body -->
 
                             <!-- Modal Footer -->
@@ -428,7 +428,7 @@
     <!-- /Profile Section -->
 
     <!-- History Table -->
-    <section>
+    <!-- <section>
         <div class="container-custom">
 
             <div class="history rounded-2">
@@ -513,7 +513,7 @@
 
         </div>
 
-    </section>
+    </section> -->
     <!-- ./History Table -->
 
     <!-- All Scripts -->
@@ -776,7 +776,7 @@
 
                 $box.html(`<div class="spinner-border text-primary me-2" role="status">
                                 <span class="visually-hidden">Loading...</span>
-                            </div> Sending Verification Link...`);
+                            </div> 確認リンクを送信中...`);
                 $.ajax({
                     url: `/email/verify/send`,
                     method: 'POST',
