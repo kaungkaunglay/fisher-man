@@ -740,7 +740,7 @@ class TranslationSeeder extends Seeder
                 'jp' => '支払いポリシー',
             ],
             [
-                'key' => 'agrement_payment_policy',
+                'key' => 'agreement_payment_policy',
                 'en' => 'Agreement to the payment policy',
                 'jp' => '支払いポリシーに同意する',
             ],
