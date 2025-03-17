@@ -86,11 +86,8 @@ class CartController extends Controller
 
         $this->addToUserCart($newProducts, $user);
 
-<<<<<<< HEAD
-        session()->flash('success',"製品がカートに追加されました");
-        return response()->json(['status' => true, 'message' => '製品がカートに追加されました']);
-=======
         session()->flash('success',"カートに商品が追加されました");
+    }
     private function addToSessionCart($products)
     {
 
@@ -173,11 +170,7 @@ class CartController extends Controller
 
             session()->forget('cart');
 
-<<<<<<< HEAD
-            return response()->json(['status' => true, 'message' => '製品がカートに追加されました']);
-=======
             return response()->json(['status' => true, 'message' => 'カートに商品が追加されました。']);
->>>>>>> 73103bb5a8c56a3780638bebaff72470d514a208
 
         } catch (\Exception $e) {
             DB::rollBack();
