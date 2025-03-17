@@ -834,7 +834,7 @@ li {
 
 @media screen and (max-width: 1100px) {
   .category-popup.active {
-    width: 80%;
+    width: 50%;
   }
 }
 

@@ -77,11 +77,11 @@ class CartController extends Controller
         if (!AuthHelper::check()) {
             $isNotNew = $this->addToSessionCart($products);
             if(!$isNotNew){
-                session()->flash('info',"All products are already in the cart");
-                return response()->json(['status' => false, 'message' => 'All products are already in the cart']);
+                session()->flash('info',"商品はカートに追加されています。");
+                return response()->json(['status' => false, 'message' => '商品はカートに追加されています。']);
             }
-            session()->flash('success',"Products added to cart");
-            return response()->json(['status' => true,'isNotNew' => $isNotNew , 'message' => 'Products added to cart']);
+            session()->flash('success',"カートに商品が追加されました");
+            return response()->json(['status' => true,'isNotNew' => $isNotNew , 'message' => 'カートに商品が追加されました。']);
         }
 
         $user = AuthHelper::user();
@@ -91,14 +91,14 @@ class CartController extends Controller
         $newProducts = $this->getNewProducts($products, $existingProductIds);
 
         if (empty($newProducts)) {
-            session()->flash('info',"All products are already in the cart");
-            return response()->json(['status' => false, 'message' => 'All products are already in the cart']);
+            session()->flash('info',"商品はカートに追加されています");
+            return response()->json(['status' => false, 'message' => '商品はカートに追加されています。']);
         }
 
         $this->addToUserCart($newProducts, $user);
 
-        session()->flash('success',"Products added to cart");
-        return response()->json(['status' => true, 'message' => 'Products added to cart']);
+        session()->flash('success',"カートに商品が追加されました");
+        return response()->json(['status' => true, 'message' => 'カートに商品が追加されました。']);
     }
 
     private function addToSessionCart($products)
@@ -188,7 +188,7 @@ class CartController extends Controller
 
             session()->forget('cart');
 
-            return response()->json(['status' => true, 'message' => 'Products added to cart']);
+            return response()->json(['status' => true, 'message' => 'カートに商品が追加されました。']);
 
         } catch (\Exception $e) {
             DB::rollBack();
