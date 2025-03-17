@@ -6,8 +6,7 @@ input[type=number] {-moz-appearance: textfield;}
 .address-form,
 .mobile .cost,
 #warning-msg,
-.popup,
-.page:not(#checkout) {
+.popup{
     display: none;
 }
 

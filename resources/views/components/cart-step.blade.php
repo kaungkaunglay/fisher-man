@@ -1,3 +1,5 @@
-<div>
-    <!-- Live as if you were to die tomorrow. Learn as if you were to live forever. - Mahatma Gandhi -->
-</div>
+@if($isActive)
+    <section class="page {{ $extraClass }}" id="{{ $id }}" data-step="{{ $step }}">
+        {{ $slot }}
+    </section>
+@endif

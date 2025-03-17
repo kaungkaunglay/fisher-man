@@ -14,28 +14,28 @@
             <div class="position-relative">
                 <div class="progress-box position-absolute w-100 d-flex">
                     <div class="progress-bar-2 mx-auto">
-                        <div class="progress-2"></div>
+                        <div class="progress-2" style="{{ 'width:'.((100/4) * ($step - 1) )."%;" }}"></div>
                     </div>
                 </div>
 
                 <ul class="step-list d-flex text-center">
-                    <li class="step active d-flex flex-column align-items-center">
+                    <li class="step @if($step >= 1) active @endif d-flex flex-column align-items-center">
                         <span class="me-2">1</span>
                         <p class="d-none d-md-block">{{ trans_lang('order_detail') }}</p>
                     </li>
-                    <li class="step d-flex flex-column align-items-center">
+                    <li class="step @if($step >= 2) active @endif d-flex flex-column align-items-center">
                         <span class="me-2">2</span>
                         <p class="d-none d-md-block">{{ trans_lang('login') }}</p>
                     </li>
-                    <li class="step d-flex flex-column align-items-center">
+                    <li class="step @if($step >= 3) active @endif  d-flex flex-column align-items-center">
                         <span class="me-2">3</span>
                         <p class="d-none d-md-block">{{ trans_lang('shipping_address') }}</p>
                     </li>
-                    <li class="step d-flex flex-column align-items-center">
+                    <li class="step @if($step >= 4) active @endif d-flex flex-column align-items-center">
                         <span class="me-2">4</span>
                         <p class="d-none d-md-block">{{ trans_lang('payment') }}</p>
                     </li>
-                    <li class="step d-flex flex-column align-items-center">
+                    <li class="step @if($step >= 5) active @endif d-flex flex-column align-items-center">
                         <span class="me-2">5</span>
                         <p class="d-none d-md-block">{{ trans_lang('complete') }}</p>
                     </li>
@@ -47,7 +47,7 @@
     <!-- /Step List -->
 
     <!-- Checkout Step -->
-    <section class="page" id="checkout" data-step="1">
+    <x-cart-step step="1" class="mt-5 mb-3" id="checkout">
         <div class="container-custom">
 
             <!-- Desktop Style -->
@@ -155,12 +155,12 @@
             </div>
 
         </div>
-    </section>
+    </x-cart-step>
     <!-- /Checkout Step -->
 
     {{-- welcome login start --}}
 
-    <section class="page my-5" id="login" data-step="2">
+    <x-cart-step class="my-5" id="login" step="2">
         <div class="container-custom">
 
             <div class="login-box d-flex flex-column">
@@ -241,78 +241,12 @@
             </div>
 
         </div>
-    </section>
+    </x-cart-step>
 
     {{-- welcome login end --}}
 
-    <!-- Login Step -->
-    {{-- <section class="page mt-5" id="login" data-step="2">
-        <div class="container-custom">
-
-            <div class="border w-75 mx-auto px-5 py-3 rounded shadow login-box">
-                <h2 class="text-center mb-3">{{ trans_lang('login') }}</h2>
-                <form action="#" id="login_form" method="POST">
-                    @csrf
-                    <div class="d-flex flex-column">
-                        <div class="form-group row mt-3 align-items-center">
-                            <label for="username" class="col-12 col-md-4">{{ trans_lang('name') }}</label>
-                            <div class="col-12 col-md-8 mt-2">
-                                <div class="input-group border border-2 rounded px-0">
-                                    <input type="text" name="username" id="username" class="form-control border-0"
-                                        placeholder="Username or Email">
-                                    <button class="btn" tabindex="-1">
-                                        <i class="fa-solid fa-user"></i>
-                                    </button>
-                                </div>
-                                @error('username')
-                                    <div class="invalid-feedback">
-                                        {{ $messages }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        
-                        <div class="form-group row mt-3 align-item-center">
-                            <label for="password" class="col-12 col-md-4">{{ trans_lang('password') }}</label>
-                            <div class="col-12 col-md-8 mt-2">
-                                <div class="input-group border border-2 rounded px-0">
-                                    <input type="password" name="password" id="password" class="form-control border-0"
-                                        placeholder="********">
-                                    <button class="btn password" tabindex="-1">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </button>
-                                </div>
-                                <span class="invalid-feedback"></span>
-                            </div>
-                        </div>
-                        <div class="input-box text-center">
-                            <span class="mb-3 text-danger" id="message"></span>
-                        </div>
-                        <div class="form-group d-flex flex-column mt-2 mx-auto">
-                            <div class="g-recaptcha" data-sitekey="{{env('RECAPTCHA_SITE_KEY')}}"></div>
-                            <span class="invalid-feedback mt-1"></span>
-                        </div>
-                        <button type="submit" class="common-btn -solid mx-auto mt-5 rounded-pill w-100 m-b-20">Login</button>
-                        <div class="line-wpr green-bg">
-                            <a href="{{route('line.login')}}">
-                                <img loading="lazy" class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}" alt="Line">
-                                {{trans_lang('login_line')}}
-                            </a>
-                        </div>
-                        <div class="icon-wpr">
-                            <a loading="lazy" href="{{route('google.login')}}"><img class="icon_social" src="{{ asset('assets/icons/custom/google.png') }}" alt="Google"></a>
-                            <a loading="lazy" href="{{route('facebook.login')}}"><img class="icon_social" src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Facebook"></a>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </section> --}}
-    <!-- /Login Step -->
-
     {{-- Address Step --}}
-    <section class="page mt-3" id="address" data-step="3">
+    <x-cart-step class="mt-3" id="address" step="3">
         <div class="container-custom">
 
             <form action="#" class="w-100 mt-3 profile-form">
@@ -401,7 +335,7 @@
             </form>
 
         </div>
-    </section>
+    </x-cart-step>
     {{-- /Address Step --}}
 
     <!-- Address Step -->
@@ -565,7 +499,7 @@
     <!-- /Address Step -->
 
     <!-- Payment Step -->
-    <section class="page mt-3" id="payment" data-step="4">
+    <x-cart-step class="mt-3" id="payment" step="4">
         <div class="container-custom">
 
             <!-- Payment Method Form -->
@@ -814,10 +748,11 @@
                     class="btn btn-outline-primary common-btn btn-payment">{{ trans_lang('check_out') }}</button>
             </div>
         </div>
-    </section>
+    </x-cart-step>
     <!-- /Payment Step -->
+
     <!-- Complete Step -->
-    <section class="page mt-5" id="complete" data-step="5">
+    <x-cart-step class="mt-5" id="complete" step="5">
         <div class="container-custom">
             <p class="text-center">
                 {{ trans_lang('paymnet_success_msg') }}
@@ -828,14 +763,14 @@
                 <a href="{{ route('home') }}" class="btn btn-outline-primary common-btn">{{ trans_lang('home') }}</a>
             </div>
         </div>
-    </section>
+    </x-cart-step>
     <!-- /Complete Step -->
 
     <!-- All Scripts -->
-    <script src="{{ asset('assets/js/caculate.js') }}"></script>
-    <script src="{{ asset('assets/js/pageChange.js') }}"></script>
-    <script src="{{ asset('assets/js/updateForm.js') }}"></script>
-    <script>
+    {{-- <script src="{{ asset('assets/js/caculate.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/pageChange.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/updateForm.js') }}"></script> --}}
+    {{-- <script>
         $(document).ready(function() {
 
             $('button.save').click(function(ev) {
@@ -1062,7 +997,7 @@
             });
 
         });
-    </script>
+    </script> --}}
     <!-- /All Scripts -->
 
     {{-- Test Scripts --}}

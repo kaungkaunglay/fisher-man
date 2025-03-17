@@ -8,18 +8,27 @@ use Illuminate\View\Component;
 
 class CartStep extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public $step;
+    public $id;
+    public $extraClass;
+    public $isActive;
+
+    public function __construct($step, $id, $extraClass = '')
     {
-        //
+        $this->step = $step;
+        $this->id = $id;
+        $this->extraClass = $extraClass;
+
+        $currentStep = min(request()->query('step', 1),5); 
+
+        $this->isActive = $currentStep == $this->step;
+
+        logger('Current Step: ' . $currentStep);
+        logger('Step: ' . $this->step);
+        logger('Is Active: ' . $this->isActive);
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
+    public function render()
     {
         return view('components.cart-step');
     }

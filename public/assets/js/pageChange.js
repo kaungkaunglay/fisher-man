@@ -14,7 +14,6 @@ function PageChange() {
     $(curPage).hide();
     $(getPage).show();
     $('html, body').animate({
-      
       scrollTop: $('main').offset().top - header
     }, 500);
 

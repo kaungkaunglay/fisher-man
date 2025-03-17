@@ -41,7 +41,9 @@ class CartController extends Controller
 
         }
 
-        return view('cart', compact('carts'));
+        $step = min(request()->query('step', 1),5); 
+
+        return view('cart', compact('carts', 'step'));
     }
 
     public function CartCount() {
