@@ -200,7 +200,7 @@
                 <div class="h-100 d-flex flex-column gap-4">
                     <h2 class="fw-bold bg-primary text-white p-2">{{ trans_lang('address') }}</h2>
                     <iframe class="w-100 border-0 h-100 shop-location"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d250151.16276620553!2d104.72537013378734!3d11.579654014369655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109513dc76a6be3%3A0x9c010ee85ab525bb!2sPhnom%20Penh%2C%20Cambodia!5e0!3m2!1sen!2ssg!4v1736774811619!5m2!1sen!2ssg"
+                        src="https://maps.app.goo.gl/PFhiyUZbgwNDZnL37"
                         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
