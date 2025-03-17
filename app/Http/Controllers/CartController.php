@@ -87,9 +87,12 @@ class CartController extends Controller
         $this->addToUserCart($newProducts, $user);
 
         session()->flash('success',"カートに商品が追加されました");
+        return response()->json(['status' => true, 'message' => '製品がカートに追加されました']);
     }
     private function addToSessionCart($products)
     {
+
+        $cart = session('cart', []);
 
         $allProductsAlreadyInCart = true;
 
