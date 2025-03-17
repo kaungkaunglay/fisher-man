@@ -38,7 +38,7 @@
 
 
     <!-- Favicon and Touch Icons  -->
-    <link rel="icon" href="{{asset('assets/images/favicon/favicon.png')}}" type="image/png">
+    <link rel="icon" href="{{asset('assets/images/fish-logo.jpg')}}" type="image/png">
     <link rel="apple-touch-icon" sizes="57x57" href="{{asset('assets/images/favicon/apple-touch-icon.png')}}" type="image/png">
     {{-- <link rel="apple-touch-icon-precomposed" href="{{asset('assets/images/Logo only.png')}}"> --}}
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -65,9 +65,9 @@
                     <div class="box-logo">
                         <a href="{{route('admin.index')}}" id="site-logo-inner">
                             @if (file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
-              <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" id="logo_header" class="logo" alt="logo" style="width: 120px">
+              <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" id="logo_header" class="logo" alt="logo" style="width: 60px;">
               @else
-              <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" id="logo_header" class="logo" alt="logo" style="width: 120px">
+              <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" id="logo_header" class="logo" alt="logo" style="width: 60px;">
               @endif
                         </a>
                         <div class="button-show-hide">
