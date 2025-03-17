@@ -194,7 +194,7 @@ class ProfileController extends Controller
     //     session()->flash('status', 'success');
     //     session()->flash('message', 'Contact details updated successfully.'); // More specific message
 
-    //     return response()->json(['status' => true, 'message' => 'Contact details updated successfully.']);
+    //     return response()->json(['status' => true, 'message' => '連絡先の詳細が正常に更新されました。.']);
     // }
 
     public function update_contact_details(Request $request)
@@ -219,10 +219,10 @@ class ProfileController extends Controller
             ];
 
             $validationMessages = [
-                'address.max' => 'The address may not be greater than 255 characters.',
-                'address.string' => 'The address must be text.',
-                'first_phone_extension.in' => 'Invalid country code for first phone.',
-                'second_phone_extension.in' => 'Invalid country code for second phone.',
+                'address.max' => '住所は255文字を超えることはできません。',
+                'address.string' => '住所はテキストでなければなりません。',
+                'first_phone_extension.in' => '最初の電話番号の国コードが無効です。',
+                'second_phone_extension.in' => '2番目の電話番号の国コードが無効です。'
             ];
 
             $processedData = $this->processPhoneNumbers($request);
@@ -244,14 +244,14 @@ class ProfileController extends Controller
 
             return response()->json([
                 'status' => true,
-                'message' => 'Contact details updated successfully'
+                'message' => '連絡先の詳細が正常に更新されました。'
             ]);
 
         } catch (\Exception $e) {
             Log::error('Contact update failed: ' . $e->getMessage());
             return response()->json([
                 'status' => false,
-                'message' => 'An error occurred while updating contact details',
+                'message' => '連絡先の詳細の更新中にエラーが発生しました',
             ]);
         }
     }
@@ -329,7 +329,7 @@ class ProfileController extends Controller
         ]);
 
         session()->flash('status', 'success');
-        session()->flash('message', 'Contact details updated successfully');
+        session()->flash('message', '連絡先の詳細が正常に更新されました。');
     }
 
     private function splitPhoneNumber(string $phone)

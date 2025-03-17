@@ -227,7 +227,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item has-children {{ request()->is('admin/user*') ? 'active' : '' }}">
+                                    <li class="menu-item has-children {{ request()->is('admin/pending-products') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-shopping-cart"></i></div>
                                             <div class="text">{{trans_lang('product_management')}}</div>

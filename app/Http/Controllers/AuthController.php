@@ -33,25 +33,31 @@ class AuthController extends Controller
     public function register_store(Request $request){
         logger($request->all() );
         $messages = [
-            'username.required' => 'The username field is required.',
-            'username.min' => 'The username must be at least 4 characters.',
-            'username.max' => 'The username may not be greater than 12 characters.',
-            'username.unique' => 'The username has already been taken.',
-            'username.regex' => 'The username may only contain letters and numbers.',
-            'email.required' => 'The email field is required.',
-            'email.email' => 'The email must be a valid email address.',
-            'email.unique' => 'The email has already been taken.',
-            'g-recaptcha-response.required' => 'The recaptcha field is required.',
-            'password.required' => 'The password field is required.',
-            'password.min' => 'The password must be at least 6 characters.',
-            'password.max' => 'The password may not be greater than 16 characters.',
-            'password.regex' => 'The password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.',
-            'confirm_password.required' => 'The confirm password field is required.',
-            'confirm_password.same' => 'The confirm password and password must match.',
-            'first_phone.required' => 'The first phone field is required.',
-            'first_phone.regex' => 'The first phone format is invalid.',
-            'second_phone.regex' => 'The second phone format is invalid.',
-            'second_phone.different' => 'The second phone and first phone must be different.',
+            'username.required' => 'ユーザー名は必須です。',
+            'username.min' => 'ユーザー名は最低4文字以上で入力してください。',
+            'username.max' => 'ユーザー名は12文字以内で入力してください。',
+            'username.unique' => 'このユーザー名は既に使用されています。',
+            'username.regex' => 'ユーザー名は英数字のみ使用できます。',
+            
+            'email.required' => 'メールアドレスは必須です。',
+            'email.email' => '有効なメールアドレスを入力してください。',
+            'email.unique' => 'このメールアドレスは既に使用されています。',
+            
+            'g-recaptcha-response.required' => 'reCAPTCHAの確認が必要です。',
+            
+            'password.required' => 'パスワードは必須です。',
+            'password.min' => 'パスワードは最低6文字以上で入力してください。',
+            'password.max' => 'パスワードは16文字以内で入力してください。',
+            'password.regex' => 'パスワードは、大文字、小文字、数字、特殊文字をそれぞれ1つ以上含める必要があります。',
+            
+            'confirm_password.required' => '確認用パスワードは必須です。',
+            'confirm_password.same' => '確認用パスワードが一致しません。',
+            
+            'first_phone.required' => '第一電話番号は必須です。',
+            'first_phone.regex' => '第一電話番号の形式が無効です。',
+            
+            'second_phone.regex' => '第二電話番号の形式が無効です。',
+            'second_phone.different' => '第二電話番号は第一電話番号と異なる必要があります。',
             // 'line_id.min' => 'The line ID must be at least 4 characters.',
             // 'line_id.max' => 'The line ID may not be greater than 20 characters.',
             // 'ship_name.required' => 'The ship name field is required.',

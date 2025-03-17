@@ -25,7 +25,7 @@ class WhiteListController extends Controller
     public function store($product_id)
     {
         if (!Product::where('id', $product_id)->exists()) {
-            return response()->json(['status' => false, 'message' => 'Product not found']);
+            return response()->json(['status' => false, 'message' => '商品が見つかりません']);
         }
 
         $user = AuthHelper::user();
@@ -44,15 +44,15 @@ class WhiteListController extends Controller
         $user = AuthHelper::user();
 
         if (!Product::where('id', $product_id)->exists()) {
-            return response()->json(['status' => false, 'message' => 'Product not found']);
+            return response()->json(['status' => false, 'message' => '商品が見つかりません']);
         }
 
         if (!$user->whitelists()->where('product_id', $product_id)->exists()) {
-            return response()->json(['status' => false, 'message' => 'Product is not in your whitelist']);
+            return response()->json(['status' => false, 'message' => '商品はあなたのホワイトリストにありません']);
         }
 
         $user->whitelists()->detach($product_id);
 
-        return response()->json(['status' => true, 'message' => 'Product removed from whitelist']);
+        return response()->json(['status' => true, 'message' => '商品がホワイトリストから削除されました']);
     }
 }

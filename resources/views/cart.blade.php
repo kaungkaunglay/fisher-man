@@ -264,9 +264,14 @@
                                         <i class="fa-solid fa-user"></i>
                                     </button>
                                 </div>
-                                <span class="invalid-feedback"></span>
+                                @error('username')
+                                    <div class="invalid-feedback">
+                                        {{ $messages }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
+                        
                         <div class="form-group row mt-3 align-item-center">
                             <label for="password" class="col-12 col-md-4">{{ trans_lang('password') }}</label>
                             <div class="col-12 col-md-8 mt-2">
