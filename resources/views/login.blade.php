@@ -30,7 +30,7 @@
                 <label for="password">{{trans_lang('password')}}</label>
                 <div class="input-group">
                     <input name="password" placeholder="********" type="password" id="password" class="form-control">
-                    <button class="btn password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn password" type="button" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
                 </div>
                 <span class="invalid-feedback"></span>
             </div>
