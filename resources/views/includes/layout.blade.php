@@ -343,7 +343,7 @@
     <!-- filepath: /C:/fisherman/laravel/fisherman/resources/views/includes/layout.blade.php -->
     <footer class="bg-main d-flex flex-column justify-content-between">
         <div class="">
-            <div class="row justify-content-between w-100 pb-3 container-custom">
+            <div class="row justify-content-between w-100 py-3 container-custom">
 
                 {{-- Footer Logo --}}
                 <div class="col-12 col-lg-2 d-flex flex-column align-items-center text-white">
@@ -386,18 +386,17 @@
                 {{-- /Useful Link --}}
 
                 {{-- Contact Us --}}
-                <div class="col-12 col-lg-3 mt-3 ">
+                <div class="col-12 col-lg-3 mt-3 d-flex flex-column justify-content-center">
                     <h6 class="text-center text-warning mb-2">{{ trans_lang('contact_us') }}</h6>
                     <ul class="list-unstyled text-white txt-15 text-center">
-                        <li>{{ trans_lang('address') }} :
-                            {{config('settings.contact_address')}}
+                        <li>
+                            {!! nl2br(str_replace(' ', "\n", config('settings.contact_address'))) !!}
+                        </li>
 
                         <li>{{ trans_lang('phone_number') }} :
                             {{config('settings.contact_phone')}}
                                 </li>
-                        <li>{{ trans_lang('email') }} :
-                            {{config('settings.contact_email')}}
-                                </li>
+                       
                     </ul>
                 </div>
                 {{-- /Contact Us --}}
