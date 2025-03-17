@@ -3,6 +3,7 @@
 @section('title', 'cart')
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/cart.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}" /> --}}
 @endsection
 @section('contents')
 
@@ -20,7 +21,7 @@
                 <ul class="step-list d-flex text-center">
                     <li class="step active d-flex flex-column align-items-center">
                         <span class="me-2">1</span>
-                        <p class="d-none d-md-block">{{trans_lang('order_detail')}}</p>
+                        <p class="d-none d-md-block">{{ trans_lang('order_detail') }}</p>
                     </li>
                     <li class="step d-flex flex-column align-items-center">
                         <span class="me-2">2</span>
@@ -53,12 +54,12 @@
             <div class="scroller">
                 <table class="table desktop text-center d-md-table d-none table-item">
                     <colgroup>
-                        <col width="15%">  <!-- image -->
-                        <col width="25%">  <!-- product name -->
-                        <col width="15%">  <!-- price -->
-                        <col width="20%">  <!-- quantity -->
-                        <col width="15%">  <!-- total -->
-                        <col width="10%">  <!-- remove -->
+                        <col width="15%"> <!-- image -->
+                        <col width="25%"> <!-- product name -->
+                        <col width="15%"> <!-- price -->
+                        <col width="20%"> <!-- quantity -->
+                        <col width="15%"> <!-- total -->
+                        <col width="10%"> <!-- remove -->
                     </colgroup>
                     <thead>
                         <tr>
@@ -83,7 +84,8 @@
                                 <td>
                                     <div class="quantity d-flex justify-content-center">
                                         <button class="btn decrement">-</button>
-                                        <input type="number" value="{{ $item->quantity }}" class="quantity-value" readonly>
+                                        <input type="number" value="{{ $item->quantity }}" class="quantity-value"
+                                            readonly>
                                         <button class="btn increment">+</button>
                                     </div>
                                 </td>
@@ -122,7 +124,8 @@
                                 <p class="card-name">{{ $item->product->name }}</p>
                                 <div class="card-text">
                                     <span class="cost"></span>
-                                    <span class="price format">¥{{ number_format($item->product->product_price, 0) }}</span>
+                                    <span
+                                        class="price format">¥{{ number_format($item->product->product_price, 0) }}</span>
                                 </div>
                                 <div class="quantity d-flex">
                                     <button class="btn decrement">-</button>
@@ -148,15 +151,102 @@
 
             <div class="d-flex my-4">
                 <button class="common-btn btn-next ms-auto"
-                    data-page="{{ $carts->count() > 0 ? (auth_helper()->check() ? '#address' : '#login') : '#checkout' }}" >{{ trans_lang('next') }}</button>
+                    data-page="{{ $carts->count() > 0 ? (auth_helper()->check() ? '#address' : '#login') : '#checkout' }}">{{ trans_lang('next') }}</button>
             </div>
 
         </div>
     </section>
     <!-- /Checkout Step -->
 
+    {{-- welcome login start --}}
+
+    <section class="page my-5" id="login" data-step="2">
+        <div class="container-custom">
+
+            <div class="login-box d-flex flex-column">
+                <div class="login-header">
+                    <h2> {{ trans_lang('login') }}
+                        <p> {{ trans_lang('welcome') }}</p>
+                    </h2>
+                </div>
+
+                <!-- form start -->
+                <form action="#" id="login_form" method="POST" name="login_form"
+                    class="input-container d-flex flex-column">
+                    @csrf
+                    <div class="input-box d-flex flex-column">
+                        <label for="username">{{ trans_lang('username') }}</label>
+                        <div class="input-group">
+                            <input id="username" name="username"
+                                placeholder="{{ trans_lang('username') }} or {{ trans_lang('email') }}" type="text"
+                                class="form-control">
+                            <button class="btn" type="button" tabindex="-1"><i
+                                    class="fa-solid fa-user"></i></button>
+                        </div>
+                        <span class="invalid-feedback"></span>
+                    </div>
+
+                    <div class="input-box d-flex flex-column">
+                        <label for="password">{{ trans_lang('password') }}</label>
+                        <div class="input-group">
+                            <input name="password" placeholder="********" type="password" id="password"
+                                class="form-control">
+                            <button class="btn password" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
+                        </div>
+                        <span class="invalid-feedback"></span>
+                    </div>
+
+                    <div>
+                        <div class="input-box d-flex flex-column mx-auto">
+                            <div class="g-recaptcha" data-sitekey="6Leh4t8qAAAAAOWxMlheFOxzPhOL8STyf9FsI7WE"></div>
+                            <span class="invalid-feedback"></span>
+                        </div>
+                        <div class="input-box d-flex flex-column">
+                            <span class="text-danger" id="message"></span>
+                        </div>
+                    </div>
+
+                    <button name="submit" id="submit" type="submit"
+                        class="input-submit">{{ trans_lang('login') }}</button>
+                    {{-- <div class="line-wpr green-bg">
+                        <a href="{{ route('line.login') }}">
+                            <img loading="lazy" class="icon_social" src="{{ asset('assets/icons/custom/line.png') }}"
+                                alt="Line">
+                            {{ trans_lang('login_line') }}
+                        </a>
+                    </div>
+                    <div class="icon-wpr">
+                        <a loading="lazy" href="{{ route('google.login') }}"><img class="icon_social"
+                                src="{{ asset('assets/icons/custom/google.png') }}" alt="Google"></a>
+                        <a loading="lazy" href="{{ route('facebook.login') }}"><img class="icon_social"
+                                src="{{ asset('assets/icons/custom/facebook.png') }}" alt="Facebook"></a>
+                    </div>
+                    <div class="register">
+                        <span>{{ trans_lang('no_have_account_msg') }}
+                            <a href="{{ route('register') }}" class="ms-1">{{ trans_lang('register') }}</a>
+                        </span>
+                    </div>
+                    <div class="pw-setting d-flex flex-column gap-3 align-items-center">
+                        <div class="remember">
+                            <input type="checkbox" name="remember" id="remember" value="1">
+                            <label for="remember">{{ trans_lang('remember') }}</label>
+                        </div>
+
+                        <div class="forgot-pw">
+                            <a href="{{ route('forgotpassword') }}">{{ trans_lang('forget_password') }}</a>
+                        </div>
+                    </div> --}}
+                </form>
+                <!-- form end -->
+            </div>
+
+        </div>
+    </section>
+
+    {{-- welcome login end --}}
+
     <!-- Login Step -->
-    <section class="page mt-5" id="login" data-step="2">
+    {{-- <section class="page mt-5" id="login" data-step="2">
         <div class="container-custom">
 
             <div class="border w-75 mx-auto px-5 py-3 rounded shadow login-box">
@@ -218,7 +308,7 @@
             </div>
 
         </div>
-    </section>
+    </section> --}}
     <!-- /Login Step -->
 
     {{-- Address Step --}}
@@ -254,18 +344,21 @@
                     <!-- name -->
                     <div class="form-group">
                         <label class="w-25" for="name">{{ trans_lang('name') }}</label>:
-                        <output class="form-output ms-3" for="name">{{ auth_helper()->user()->username ?? '' }}</output>
+                        <output class="form-output ms-3"
+                            for="name">{{ auth_helper()->user()->username ?? '' }}</output>
                         <input name="name" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="name"
-                        value="{{ auth_helper()->user()->username ?? '' }}" disabled>
+                            value="{{ auth_helper()->user()->username ?? '' }}" disabled>
                         <span class="invalid-feedback"></span>
                     </div>
 
                     {{-- pohne-number link --}}
                     <div class="form-group">
                         <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
-                        <output class="form-output ms-3" for="first_phone">{{ auth_helper()->user()->first_phone ?? '' }}</output>
-                        <input type="tel" name="first_phone" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="first_phone"
-                        value="{{ auth_helper()->user()->first_phone ?? '' }}" disabled>
+                        <output class="form-output ms-3"
+                            for="first_phone">{{ auth_helper()->user()->first_phone ?? '' }}</output>
+                        <input type="tel" name="first_phone"
+                            class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="first_phone"
+                            value="{{ auth_helper()->user()->first_phone ?? '' }}" disabled>
                         <span class="invalid-feedback"></span>
                     </div>
 
@@ -274,7 +367,7 @@
                         <label class="w-25" for="zip">{{ trans_lang('postal') }}</label>:
                         <output class="form-output ms-3" for="zip">1105</output>
                         <input type="number" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="zip"
-                        value="1105" disabled>
+                            value="1105" disabled>
                         <span class="invalid-feedback"></span>
                     </div>
 
@@ -282,8 +375,8 @@
                     <div class="form-group">
                         <label class="w-25" for="country">{{ trans_lang('country') }}</label>:
                         <output class="form-output ms-3" for="country">Cambodia</output>
-                        <input type="text" name="country" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="country"
-                        value="Cambodia" disabled>
+                        <input type="text" name="country" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none"
+                            id="country" value="Cambodia" disabled>
                         <span class="invalid-feedback"></span>
                     </div>
 
@@ -576,7 +669,9 @@
                         @foreach ($carts as $item)
                             <tr class="table-row cart-{{ $item->product->id }}">
                                 <td>
-                                    <div class="table-img"><img src="{{ asset('assets/products/' . $item->product->product_image) }}" alt="product img"></div>
+                                    <div class="table-img"><img
+                                            src="{{ asset('assets/products/' . $item->product->product_image) }}"
+                                            alt="product img"></div>
                                 </td>
                                 <td clas="col-name">{{ $item->product->name }}</td>
                                 <td class="price format">¥{{ number_format($item->product->getSellPrice(), 0) }}</td>
@@ -614,7 +709,8 @@
                                     <span class="cost">
                                         <input type="hidden" value="1" class="quantity-value">
                                     </span>
-                                    <span class="price format">¥{{ number_format($item->product->product_price, 0) }}</span>
+                                    <span
+                                        class="price format">¥{{ number_format($item->product->product_price, 0) }}</span>
                                 </div>
                             </div>
                         </div>
@@ -633,10 +729,12 @@
 
             {{-- Payment Policy Aggrement --}}
             <div>
-                <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">{{trans_lang('agrement_payment_policy')}}</h2>
+                <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">
+                    {{ trans_lang('agrement_payment_policy') }}</h2>
                 <div class="d-flex gap-3 py-3 px-3">
                     <input required type="checkbox" id="select-payment">
-                    <label for="select-payment"><a href="{{route('payment_policy')}}">{{trans_lang('agree_payment_policy')}}</a></label>
+                    <label for="select-payment"><a
+                            href="{{ route('payment_policy') }}">{{ trans_lang('agree_payment_policy') }}</a></label>
                     <div class="ms-auto text-danger" id="warning-msg">{{ trans_lang('check_mark') }}</div>
                 </div>
             </div>
@@ -644,7 +742,8 @@
 
             {{-- Check Payment --}}
             <div>
-                <h2 class="py-3 px-3 mt-3 bg-primary text-white" id="payment-check-sec">{{ trans_lang('selet_payment') }}</h2>
+                <h2 class="py-3 px-3 mt-3 bg-primary text-white" id="payment-check-sec">{{ trans_lang('selet_payment') }}
+                </h2>
                 <div class="d-flex gap-3 py-3 px-3">
                     <input type="checkbox" id="select-payment">
                     <label for="select-payment">{{ trans_lang('credit_card') }}</label>
@@ -709,8 +808,10 @@
             {{-- /Address --}}
 
             <div class="d-flex gap-3 my-4 justify-content-end">
-                <a data-page="#address"class="btn btn-outline-primary common-btn btn-back">{{ trans_lang('go_back') }}</a>
-                <button data-page="#complete" class="btn btn-outline-primary common-btn btn-payment">{{ trans_lang('check_out') }}</button>
+                <a
+                    data-page="#address"class="btn btn-outline-primary common-btn btn-back">{{ trans_lang('go_back') }}</a>
+                <button data-page="#complete"
+                    class="btn btn-outline-primary common-btn btn-payment">{{ trans_lang('check_out') }}</button>
             </div>
         </div>
     </section>
@@ -743,13 +844,13 @@
                 if (dskbody.find('tr').length === 0 || mbbody.find('.card').length === 0) {
                     dskbody.html(
                         `<tr><td colspan="6" class="text-center">{{ trans_lang('no_product') }}</td></tr>`);
-                    
+
                     mbbody.find('.no-cart').html(
                         `<div class="text-center my-3">{{ trans_lang('no_product') }}</div>`)
 
                     $('[data-page]').attr('data-page', '#checkout');
                 }
-                
+
             }
 
             checkIfEmpty();
@@ -880,7 +981,7 @@
 
                 var fields = ['username', 'password', 'g-recaptcha-response'];
                 fields.forEach(function(field) {
-                    var fieldGroup = $('#' + field).closest('.form-group');
+                    var fieldGroup = $('#' + field).closest('.input-box');
                     var errorSpan = fieldGroup.find('span.invalid-feedback');
 
                     if (errors[field]) {
@@ -900,19 +1001,19 @@
                     },
                     success: function(response) {
                         // return response.status;
-                        toastr.success(response.message,'')
+                        toastr.success(response.message, '')
                     }
                 });
             }
 
-            function addQty(product_id,qty){
+            function addQty(product_id, qty) {
                 $.ajax({
-                    url: '{{ route('cart.add_qty')}}',
+                    url: '{{ route('cart.add_qty') }}',
                     type: 'POST',
                     dataType: 'json',
                     data: {
-                        product_id : product_id,
-                        quantity : qty
+                        product_id: product_id,
+                        quantity: qty
                     },
                     success: function(response) {
                         // console.log(response.message);
@@ -923,8 +1024,8 @@
                 });
             }
 
-            function handleQty(class_name,value){
-                $(class_name).click(function(e){
+            function handleQty(class_name, value) {
+                $(class_name).click(function(e) {
                     btn = $(e.currentTarget);
                     product_id = btn.closest('tr.table-row').data('id');
 
@@ -932,9 +1033,9 @@
                     quantity = Number(quantity_box.val());
                     quantity += value;
 
-                    quantity = Math.max(1,quantity);
+                    quantity = Math.max(1, quantity);
 
-                    addQty(product_id,quantity);
+                    addQty(product_id, quantity);
 
                     quantity_box.val(quantity);
 
@@ -944,8 +1045,8 @@
 
             }
 
-            handleQty('.increment',1);
-            handleQty('.decrement',-1);
+            handleQty('.increment', 1);
+            handleQty('.decrement', -1);
 
             $(document).on('keyup', '.address_input', function() {
                 var resultId = '#' + $(this).attr('id') + '-result';
