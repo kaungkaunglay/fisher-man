@@ -198,7 +198,7 @@
 
                     <div>
                         <div class="input-box d-flex flex-column mx-auto">
-                            <div class="g-recaptcha" data-sitekey="6Leh4t8qAAAAAOWxMlheFOxzPhOL8STyf9FsI7WE"></div>
+                            <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
                             <span class="invalid-feedback"></span>
                         </div>
                         <div class="input-box d-flex flex-column">
@@ -346,7 +346,7 @@
                         <label class="w-25" for="name">{{ trans_lang('name') }}</label>:
                         <output class="form-output ms-3"
                             for="name">{{ auth_helper()->user()->username ?? '' }}</output>
-                        <input name="name" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="name"
+                        <input name="name" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="username"
                             value="{{ auth_helper()->user()->username ?? '' }}" disabled>
                         <span class="invalid-feedback"></span>
                     </div>
@@ -848,6 +848,12 @@
     <script>
         $(document).ready(function() {
 
+            $('button.save').click(function(ev) {
+                console.log('save');
+                updateData(ev);
+                unactiveForm(ev);
+            });
+
             function checkIfEmpty() {
                 var dskbody = $('.dsk-cart-body');
                 var mbbody = $('.mb-cart-body');
@@ -975,10 +981,12 @@
             }
 
             function updatePageWithUserInfo(user) {
-                $(".address_input#username").val(user.username);
-                $(".address_input#tel").val(user.first_phone);
-                $(".address_input#line_id").val(user.line_id);
-                $(".address_input#delivery").val(user.address);
+                console.log(user['username']);
+                console.log(user['first_phone']);
+                console.log(user['address']);
+                $("#username").val(user.username);
+                $("#first_phone").val(user.first_phone);
+                $("#address").val(user.address);
 
                 $('#name-result').html(user.username);
                 $('#tel-result').html(user.first_phone);

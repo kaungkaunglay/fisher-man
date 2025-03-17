@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/icon/style.css') }}">
 
     <!-- Favicon and Touch Icons  -->
-    <link rel="icon" href="{{asset('assets/images/favicon/favicon.png')}}" type="image/png">
+    <link rel="icon" href="{{asset('assets/images/fish-logo.jpg')}}" type="image/png">
     <link rel="apple-touch-icon" sizes="57x57" href="{{asset('assets/images/favicon/apple-touch-icon.png')}}" type="image/png">
 
 </head>
