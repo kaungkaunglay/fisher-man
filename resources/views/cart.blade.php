@@ -63,7 +63,7 @@
                     </colgroup>
                     <thead>
                         <tr>
-                            <th scope="col">{{ trans_lang('image') }}</th>
+                            <th scope="col">画像 </th>
                             <th scope="col">{{ trans_lang('product_name') }}</th>
                             <th scope="col">{{ trans_lang('price') }}</th>
                             <th scope="col">{{ trans_lang('quantity') }}</th>
@@ -150,8 +150,12 @@
             <!-- ./Mobile Style -->
 
             <div class="d-flex my-4">
+                @if (auth_helper()->check())
                 <button class="common-btn btn-next ms-auto"
                     data-page="{{ $carts->count() > 0 ? (auth_helper()->check() ? '#address' : '#login') : '#checkout' }}">{{ trans_lang('next') }}</button>
+                @else
+                 <a href="{{route('login')}}" class="common-btn btn-next ms-auto">サイトへログイン</a>
+                @endif
             </div>
 
         </div>
@@ -730,11 +734,11 @@
             {{-- Payment Policy Aggrement --}}
             <div>
                 <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">
-                    {{ trans_lang('agrement_payment_policy') }}</h2>
+                特定商取引に関する表記</h2>
                 <div class="d-flex gap-3 py-3 px-3">
                     <input required type="checkbox" id="select-payment">
                     <label for="select-payment"><a
-                            href="{{ route('payment_policy') }}">{{ trans_lang('agree_payment_policy') }}</a></label>
+                            href="{{ route('payment_policy') }}">支払いポリシーに同意する</a></label>
                     <div class="ms-auto text-danger" id="warning-msg">{{ trans_lang('check_mark') }}</div>
                 </div>
             </div>
@@ -745,8 +749,18 @@
                 <h2 class="py-3 px-3 mt-3 bg-primary text-white" id="payment-check-sec">{{ trans_lang('selet_payment') }}
                 </h2>
                 <div class="d-flex gap-3 py-3 px-3">
-                    <input type="checkbox" id="select-payment">
-                    <label for="select-payment">{{ trans_lang('credit_card') }}</label>
+                    <input type="checkbox" id="credit_card">
+                    <label for="credit_card">{{ trans_lang('credit_card') }}</label>
+                    <div class="ms-auto text-danger" id="warning-msg">{{ trans_lang('check_mark') }}</div>
+                </div>
+                <div class="d-flex gap-3 py-3 px-3">
+                    <input type="checkbox" id="cashondelivery">
+                    <label for="cashondelivery">代引き</label>
+                    <div class="ms-auto text-danger" id="warning-msg">{{ trans_lang('check_mark') }}</div>
+                </div>
+                <div class="d-flex gap-3 py-3 px-3">
+                    <input type="checkbox" id="banktransfer">
+                    <label for="banktransfer">銀行振込</label>
                     <div class="ms-auto text-danger" id="warning-msg">{{ trans_lang('check_mark') }}</div>
                 </div>
             </div>
@@ -788,11 +802,6 @@
                     </div>
 
                     <!-- country link -->
-                    <div class="form-group d-flex">
-                        <h3 class="w-25">{{ trans_lang('country') }}</h3>:
-                        <output class="form-output">Cambodia</output>
-                        <span class="invalid-feedback"></span>
-                    </div>
 
                     <!-- address link -->
                     <div class="form-group d-flex align-items-start">
@@ -811,7 +820,7 @@
                 <a
                     data-page="#address"class="btn btn-outline-primary common-btn btn-back">{{ trans_lang('go_back') }}</a>
                 <button data-page="#complete"
-                    class="btn btn-outline-primary common-btn btn-payment">{{ trans_lang('check_out') }}</button>
+                    class="btn btn-outline-primary common-btn btn-payment">注文確定</button>
             </div>
         </div>
     </section>

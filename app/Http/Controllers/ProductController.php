@@ -144,7 +144,7 @@ class ProductController extends Controller
             'size' => 'nullable|numeric|min:1|max:255',
             'day_of_caught' => ['required','date',new ValidDayOfCaught()],
             'expiration_date' => ['required','date',new ValidExpireDate()],
-            'discount' => 'nullable|numeric|min:0|max:' . $request->product_price, // Ensure discount is not greater than price
+            'discount' => 'nullable|numeric|min:0|max:' . ($request->product_price ?? 0), // Ensure discount is not greater than price
             'description' => 'nullable|string',
             'status' => 'nullable|string',
         ], $messages);
@@ -200,7 +200,7 @@ class ProductController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->route('admin.products')->with('success', 'Product created successfully.');
+        return redirect()->route('admin.products')->with('success', '商品が正常に作成されました。');
     }
 
     public function show($id)
@@ -281,7 +281,7 @@ class ProductController extends Controller
         'size' => 'sometimes|numeric|min:1|max:255',
         'day_of_caught' => ['sometimes','required', 'date', new ValidDayOfCaught()],
         'expiration_date' => ['sometimes','required', 'date', new ValidExpireDate()],
-        'discount' => 'nullable|numeric|min:0|max:' . $request->product_price, // Ensure discount is not greater than price',
+        'discount' => 'nullable|numeric|min:0|max:' . ($request->product_price ?? 0), // Ensure discount is not greater than price',
         'sub_category_id' => 'sometimes|integer|exists:sub_categories,id',
         'description' => 'nullable|sometimes|string',
     ], $messages);
@@ -308,7 +308,7 @@ class ProductController extends Controller
 
         logger($product);
 
-        return redirect()->route('admin.products')->with('success', 'Product updated successfully.');
+        return redirect()->route('admin.products')->with('success', '商品が正常に更新されました。');
     }
 
     public function destroy($id)
@@ -319,7 +319,7 @@ class ProductController extends Controller
         }
         $product->delete();
 
-        return back()->with('success', 'Product deleted successfully.');
+        return back()->with('success', '商品が正常に削除されました。');
     }
 
     public function ajaxSearch(Request $request)

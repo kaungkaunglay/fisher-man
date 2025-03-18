@@ -37,9 +37,9 @@
                     <div class="w-100 h-100 d-md-flex gap-3">
                         <!-- profile img -->
                         <div class="w-100 profile-form d-flex flex-column avatar-input">
-                            <label for="avatar-input" class="w-100 d-block position-relative gallery">
+                            <label for="avatar-input" class="w-100 d-flex align-center position-relative gallery">
                                 <img src="{{ auth_helper()->getAvatar() }}" class="default-preview" id="form-img"
-                                    alt="{{ $user->username ?? 'Account.png' }}">
+                                    alt="{{ $user->username ?? 'Account.png' }}" style="width:40%;">
                                 <div class="avatar-upload position-absolute d-none">
                                     <div class="m-auto">
                                         <i class="fas fa-upload"></i>
@@ -145,7 +145,7 @@
 
                             </div>
 
-                            @if (!auth_helper()->isEmailLinkInvalid())
+                            <!-- @if (!auth_helper()->isEmailLinkInvalid())
                                 <div class="alert alert-success d-flex mb-2 mt-auto" role="alert">
                                     <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
                                         aria-label="Success:"></i>
@@ -163,7 +163,7 @@
                                             class="text-warning">こちら </a>
                                     </div>
                                 </div>
-                            @endif
+                            @endif -->
                             <!-- /Form Content -->
 
                             <!-- @if (!$hasShopRequest)
@@ -411,16 +411,15 @@
 
                 <!-- button group -->
                 <div class="buttons d-flex mt-3">
-                    <button class="common-btn">{{ trans_lang('check_order') }}</button>
+                    <button class="common-btn">注文履歴を確認</button>
                 </div>
 
             </div>
             <!-- /Profile Side -->
 
             <!-- Map Side -->
-            <div class="col-12 col-lg-5 mt-3 mt-lg-0 map-side">
+            <!-- <div class="col-12 col-lg-5 mt-3 mt-lg-0 map-side">
 
-                <!-- Map Side -->
                 <div class="h-100 d-flex flex-column gap-4">
                     <h2 class="fw-bold bg-primary text-white p-2">{{ trans_lang('shops') }}{{ trans_lang('location') }}
                     </h2>
@@ -429,9 +428,8 @@
                         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
-                <!-- /Map-->
 
-            </div>
+            </div> -->
             <!-- /Map Side -->
 
         </div>
