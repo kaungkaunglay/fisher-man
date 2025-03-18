@@ -63,7 +63,7 @@
                     </colgroup>
                     <thead>
                         <tr>
-                            <th scope="col">{{ trans_lang('image') }}</th>
+                            <th scope="col">画像 </th>
                             <th scope="col">{{ trans_lang('product_name') }}</th>
                             <th scope="col">{{ trans_lang('price') }}</th>
                             <th scope="col">{{ trans_lang('quantity') }}</th>
@@ -150,8 +150,12 @@
             <!-- ./Mobile Style -->
 
             <div class="d-flex my-4">
+                @if (auth_helper()->check())
                 <button class="common-btn btn-next ms-auto"
                     data-page="{{ $carts->count() > 0 ? (auth_helper()->check() ? '#address' : '#login') : '#checkout' }}">{{ trans_lang('next') }}</button>
+                @else
+                 <a href="{{route('login')}}" class="common-btn btn-next ms-auto">サイトへログイン</a>
+                @endif
             </div>
 
         </div>
@@ -798,11 +802,6 @@
                     </div>
 
                     <!-- country link -->
-                    <div class="form-group d-flex">
-                        <h3 class="w-25">{{ trans_lang('country') }}</h3>:
-                        <output class="form-output">Cambodia</output>
-                        <span class="invalid-feedback"></span>
-                    </div>
 
                     <!-- address link -->
                     <div class="form-group d-flex align-items-start">
