@@ -30,6 +30,7 @@ class Users extends Authenticatable implements CanResetPassword,MustVerifyEmail
         'avatar',
         'location',
         'address',
+        'postal_code',
     ];
 
     protected $hidden = [
