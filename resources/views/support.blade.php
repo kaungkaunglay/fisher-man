@@ -50,9 +50,9 @@
                         <button class="nav-link active " id="nav-contact-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact"
                             aria-selected="true">{{ trans_lang('contact') }}</button>
-                        <button class="nav-link " id="nav-wishlist-tab" data-bs-toggle="tab"
+                        <!-- <button class="nav-link " id="nav-wishlist-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-wishlist" type="button" role="tab" aria-controls="nav-wishlist"
-                            aria-selected="false">{{ trans_lang('wishlist') }}</button>
+                            aria-selected="false">{{ trans_lang('wishlist') }}</button> -->
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -91,9 +91,9 @@
                             </div>
 
                             <div class="mb-3 contact-box">
-                                <label for="description" class="form-label">{{ trans_lang('description') }}</label>
+                                <label for="description" class="form-label">お問い合わせ内容</label>
                                 <textarea class="form-control" name="description" id="description" rows="3"
-                                    placeholder="{{ trans_lang('description') }}"></textarea>
+                                    placeholder="{{ trans_lang('お問い合わせ内容') }}"></textarea>
                                 <span class="invalid-feedback"></span>
                             </div>
                             <div class="mb-3 contact-box">
@@ -108,7 +108,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane fade row" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab"
+                    <!-- <div class="tab-pane fade row" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab"
                         tabindex="0">
                         <form method="POST" id="wishlistForm" class="col-12 col-md-6">
                             @csrf
@@ -167,7 +167,7 @@
                             </div>
 
                         </form>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

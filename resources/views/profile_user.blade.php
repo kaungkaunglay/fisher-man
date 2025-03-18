@@ -37,9 +37,9 @@
                     <div class="w-100 h-100 d-md-flex gap-3">
                         <!-- profile img -->
                         <div class="w-100 profile-form d-flex flex-column avatar-input">
-                            <label for="avatar-input" class="w-100 d-block position-relative gallery">
+                            <label for="avatar-input" class="w-100 d-flex align-center position-relative gallery">
                                 <img src="{{ auth_helper()->getAvatar() }}" class="default-preview" id="form-img"
-                                    alt="{{ $user->username ?? 'Account.png' }}">
+                                    alt="{{ $user->username ?? 'Account.png' }}" style="width:40%;">
                                 <div class="avatar-upload position-absolute d-none">
                                     <div class="m-auto">
                                         <i class="fas fa-upload"></i>
@@ -145,7 +145,7 @@
 
                             </div>
 
-                            @if (!auth_helper()->isEmailLinkInvalid())
+                            <!-- @if (!auth_helper()->isEmailLinkInvalid())
                                 <div class="alert alert-success d-flex mb-2 mt-auto" role="alert">
                                     <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
                                         aria-label="Success:"></i>
@@ -163,7 +163,7 @@
                                             class="text-warning">こちら </a>
                                     </div>
                                 </div>
-                            @endif
+                            @endif -->
                             <!-- /Form Content -->
 
                             <!-- @if (!$hasShopRequest)
@@ -354,16 +354,27 @@
                             </div>
 
                         </div>
+                        {{-- postal code --}}
+                        <div class="d-flex">
+                            <label class="w-25" for="postalCode">Postal Code</label>:
+                            <div class="form-group">
+                                <output class="form-output ps-1" for="postalCode">{{ $user->postal_code }}</output>
+                                <input type="text" name="postalCode" id="postalCode" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;" value="{{ $user->postal_code }}">
+                                {{-- <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea> --}}
+                                <span class="invalid-feedback"></span>
+                            </div>
+
+                        </div>
 
                         <!-- phone-number link -->
-                        <div class="d-flex align-items-start">
+                        {{-- <div class="d-flex align-items-start">
                             <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
                             <div class="ms-1 d-flex flex-column phone-no-container">
                                 <div class="form-group">
-                                    {{-- <select name="first_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
+                                    <select name="first_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
                                         <option value="+81" @if($user->firstExtension == '+81') selected @endif>+81</option>
                                         <option value="+95" @if($user->firstExtension == '+95') selected @endif>+95</option>
-                                    </select> --}}
+                                    </select>
                                     <input type="text" id="first_phone_extension"  name="first_phone_extension" 
                                         class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" 
                                         style="width: 40px;"  value="+81" readonly />
@@ -375,10 +386,10 @@
                                     <span class="invalid-feedback"></span>
                                 </div>
                                 <div class="form-group">
-                                    {{-- <select name="second_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
+                                    <select name="second_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
                                         <option value="+81" @if($user->secondExtension == '+81') selected @endif>+81</option>
                                         <option value="+95" @if($user->secondExtension == '+95') selected @endif>+95</option>
-                                    </select> --}}
+                                    </select>
                                     <input type="text" id="second_phone_extension" name="second_phone_extension" 
                                         class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" 
                                         style="width: 40px;"  value="+81" readonly />
@@ -390,7 +401,7 @@
                                     <span class="invalid-feedback"></span>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                     </div>
                     <!-- /Form Content -->
@@ -400,16 +411,15 @@
 
                 <!-- button group -->
                 <div class="buttons d-flex mt-3">
-                    <button class="common-btn">{{ trans_lang('check_order') }}</button>
+                    <button class="common-btn">注文履歴を確認</button>
                 </div>
 
             </div>
             <!-- /Profile Side -->
 
             <!-- Map Side -->
-            <div class="col-12 col-lg-5 mt-3 mt-lg-0 map-side">
+            <!-- <div class="col-12 col-lg-5 mt-3 mt-lg-0 map-side">
 
-                <!-- Map Side -->
                 <div class="h-100 d-flex flex-column gap-4">
                     <h2 class="fw-bold bg-primary text-white p-2">{{ trans_lang('shops') }}{{ trans_lang('location') }}
                     </h2>
@@ -418,9 +428,8 @@
                         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
-                <!-- /Map-->
 
-            </div>
+            </div> -->
             <!-- /Map Side -->
 
         </div>
@@ -661,7 +670,7 @@
                             // unactiveForm(cur);
 
                         } else {
-                            var fields = ['address', 'first_phone', 'second_phone'];
+                            var fields = ['address', 'postalCode'];
                             handleErrorMessages(fields, response.errors, response.message);
                         }
                     }

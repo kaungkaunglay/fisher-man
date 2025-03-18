@@ -87,6 +87,9 @@
                                     @endif
                                 </button>
                             </div>
+                            <button class="common-btn ms-5 m-t-10">
+                              買い物を続ける
+                            </button>
                         </div>
                         <div class="detail">
                             <h3 class="m-b-20 title">{{ trans_lang('detail') }}</h3>

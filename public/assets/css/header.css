@@ -169,7 +169,7 @@ display: block !important;
 
 .bottom-header{
     position: absolute;
-    bottom: -47px;
+    bottom: -30px;
     width: 90%;
     left: 50%;
     transform: translateX(-50%); 

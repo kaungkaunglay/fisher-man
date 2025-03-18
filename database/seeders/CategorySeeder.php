@@ -15,7 +15,8 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             ['category_name' => '鮮魚'],
-            ['category_name' => '貝類']
+            ['category_name' => '貝類'],
+            ['category_name' => '加工品']
         ];
 
         foreach ($categories as $category) {
