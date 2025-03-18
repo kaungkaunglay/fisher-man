@@ -354,16 +354,27 @@
                             </div>
 
                         </div>
+                        {{-- postal code --}}
+                        <div class="d-flex">
+                            <label class="w-25" for="postalCode">Postal Code</label>:
+                            <div class="form-group">
+                                <output class="form-output ps-1" for="postalCode">{{ $user->postal_code }}</output>
+                                <input type="text" name="postalCode" id="postalCode" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;" value="{{ $user->postal_code }}">
+                                {{-- <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea> --}}
+                                <span class="invalid-feedback"></span>
+                            </div>
+
+                        </div>
 
                         <!-- phone-number link -->
-                        <div class="d-flex align-items-start">
+                        {{-- <div class="d-flex align-items-start">
                             <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
                             <div class="ms-1 d-flex flex-column phone-no-container">
                                 <div class="form-group">
-                                    {{-- <select name="first_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
+                                    <select name="first_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
                                         <option value="+81" @if($user->firstExtension == '+81') selected @endif>+81</option>
                                         <option value="+95" @if($user->firstExtension == '+95') selected @endif>+95</option>
-                                    </select> --}}
+                                    </select>
                                     <input type="text" id="first_phone_extension"  name="first_phone_extension" 
                                         class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" 
                                         style="width: 40px;"  value="+81" readonly />
@@ -375,10 +386,10 @@
                                     <span class="invalid-feedback"></span>
                                 </div>
                                 <div class="form-group">
-                                    {{-- <select name="second_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
+                                    <select name="second_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
                                         <option value="+81" @if($user->secondExtension == '+81') selected @endif>+81</option>
                                         <option value="+95" @if($user->secondExtension == '+95') selected @endif>+95</option>
-                                    </select> --}}
+                                    </select>
                                     <input type="text" id="second_phone_extension" name="second_phone_extension" 
                                         class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" 
                                         style="width: 40px;"  value="+81" readonly />
@@ -390,7 +401,7 @@
                                     <span class="invalid-feedback"></span>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                     </div>
                     <!-- /Form Content -->
@@ -659,7 +670,7 @@
                             // unactiveForm(cur);
 
                         } else {
-                            var fields = ['address', 'first_phone', 'second_phone'];
+                            var fields = ['address', 'postalCode'];
                             handleErrorMessages(fields, response.errors, response.message);
                         }
                     }

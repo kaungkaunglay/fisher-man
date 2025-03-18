@@ -199,6 +199,7 @@ class ProfileController extends Controller
 
     public function update_contact_details(Request $request)
     {
+        logger($request->all());
         try {
             $user = AuthHelper::user();
 
@@ -212,30 +213,48 @@ class ProfileController extends Controller
 
             $validationRules = [
                 'address' => 'sometimes|string|max:255',
-                'first_phone' => 'sometimes|nullable|numeric|min:10',
-                'first_phone_extension' => 'sometimes|in:+81,+95',
-                'second_phone' => 'sometimes|nullable|numeric|min:10|different:first_phone',
-                'second_phone_extension' => 'sometimes|in:+81,+95',
+                'postalCode' => 'nullable|regex:/^\d{3}-?\d{4}$/',
+                // ^\d{3}-\d{4}$
+                // 'first_phone' => 'sometimes|nullable|numeric|min:10',
+                // 'first_phone_extension' => 'sometimes|in:+81,+95',
+                // 'second_phone' => 'sometimes|nullable|numeric|min:10|different:first_phone',
+                // 'second_phone_extension' => 'sometimes|in:+81,+95',
             ];
 
             $validationMessages = [
                 'address.max' => '住所は255文字を超えることはできません。',
                 'address.string' => '住所はテキストでなければなりません。',
-                'first_phone_extension.in' => '最初の電話番号の国コードが無効です。',
-                'second_phone_extension.in' => '2番目の電話番号の国コードが無効です。'
+                'postalCode.regex' => '郵便番号は123-4567または1234567の形式でなければなりません。',
+                // 'postalCode.regex' => 'postal code must be in the format 123-4567 or 1234567.',
+                // 'postalCode.'
+                // 'first_phone_extension.in' => '最初の電話番号の国コードが無効です。',
+                // 'second_phone_extension.in' => '2番目の電話番号の国コードが無効です。'
             ];
 
-            $processedData = $this->processPhoneNumbers($request);
-            $request->merge($processedData);
+            // $request->merge([
+            //     'postalCode' => str_replace('-', '', $request->postal_code),
+            // ]);
+
+            // logger($request->postalCode);
+
+            // $processedData = $this->processPhoneNumbers($request);
+            // $request->merge($processedData);
 
             $validator = Validator::make($request->all(), $validationRules, $validationMessages);
 
-            $phoneErrors = $this->validatePhoneNumbers($request);
+            // $phoneErrors = $this->validatePhoneNumbers($request);
 
-            if ($validator->fails() || !empty($phoneErrors)) {
+            // if ($validator->fails() || !empty($phoneErrors)) {
+            //     return response()->json([
+            //         'status' => false,
+            //         'errors' => array_merge($validator->errors()->toArray(), $phoneErrors),
+            //     ]);
+            // }
+            if ($validator->fails()) {
+                logger($validator->errors());
                 return response()->json([
                     'status' => false,
-                    'errors' => array_merge($validator->errors()->toArray(), $phoneErrors),
+                    'errors' => array_merge($validator->errors()->toArray()),
                 ]);
             }
 
@@ -275,7 +294,8 @@ class ProfileController extends Controller
         $firstPhone = $request->input('first_phone') != null ?'+81' .  $request->input('first_phone') : null;
         $secondPhone = $request->input('second_phone') != null ? '+81' . $request->input('second_phone') : null;
 
-        return $user->address === $request->address && $user->first_phone === $firstPhone && $user->second_phone === $secondPhone ;
+        // return $user->address === $request->address && $user->first_phone === $firstPhone && $user->second_phone === $secondPhone ;
+        return $user->address === $request->address && $user->postal_code === $request->postalCode;
     }
 
     private function processPhoneNumbers(Request $request)
@@ -324,8 +344,9 @@ class ProfileController extends Controller
     {
         $user->update([
             'address' => $request->address ?? $user->address,
-            'first_phone' => $request->first_phone ?? null,
-            'second_phone' => $request->second_phone ?? null,
+            'postal_code' => $request->postalCode ?? $user->postal_code,
+            // 'first_phone' => $request->first_phone ?? null,
+            // 'second_phone' => $request->second_phone ?? null,
         ]);
 
         session()->flash('status', 'success');
