@@ -19,13 +19,15 @@ class CartStep extends Component
         $this->id = $id;
         $this->extraClass = $extraClass;
 
-        $currentStep = min(request()->query('step', 1),5); 
+        $currentStep = min(session('cart_step', 1),5); 
 
+        if($currentStep == 5 && $step == 5)
+        {
+            session(['cart_step' => 1]);
+        }
+        
         $this->isActive = $currentStep == $this->step;
 
-        logger('Current Step: ' . $currentStep);
-        logger('Step: ' . $this->step);
-        logger('Is Active: ' . $this->isActive);
     }
 
     public function render()

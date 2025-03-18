@@ -84,6 +84,6 @@ class Product extends Model
     }
 
     public function getSellPrice(){
-        return $this->product_price - ($this->discount ?? 0);
+        return ceil($this->product_price - ($this->discount ?? 0));
     }
 }

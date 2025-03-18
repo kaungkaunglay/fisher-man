@@ -44,9 +44,9 @@ class RestoreCartFromSession
 
                 session()->forget('cart');
 
-                Log::info("Successfully restored cart from session to database for user: $user_id");
+                // Log::info("Successfully restored cart from session to database for user: $user_id");
             } else {
-                Log::info("No cart found in session or user not authenticated.");
+                // Log::info("No cart found in session or user not authenticated.");
             }
         } catch (\Exception $e) {
             // Log the exception with detailed message

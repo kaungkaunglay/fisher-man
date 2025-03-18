@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\Mime\Part\Multipart\RelatedPart;
 
 class CartController extends Controller
 {
@@ -41,10 +42,188 @@ class CartController extends Controller
 
         }
 
-        $step = min(request()->query('step', 1),5); 
+        $step = min(session('cart_step',1),5);
+        
+        $total = $carts->sum(function ($cart) {
+            return $cart->product->getSellPrice() * $cart->quantity;
+        }) ?? 0;
 
-        return view('cart', compact('carts', 'step'));
+        return view('cart', compact('carts', 'step', 'total'));
     }
+
+    public function hasProductCart()
+    {
+        if(AuthHelper::check()){
+            $count = AuthHelper::user()->carts()->count();
+        } else {
+            $count = count(session('cart',[]));
+        }
+
+        return $count > 0;
+    }
+
+    public function checkout(){
+        $step = 1;
+        session(['cart_step' => $step]);
+        return redirect()->route('cart');
+    }
+
+    public function login()
+    {
+
+        if(!$this->hasProductCart()){
+            session()->flash('status',"error");
+            session()->flash('message',"カートに商品がありません");
+
+            return redirect()->back();
+        }
+
+        if(AuthHelper::check()){
+            return redirect()->route('cart.address');
+        }
+
+        session(['cart_login' => true]);
+        return redirect()->route('login');
+    }
+
+    public function finished_login()
+    {
+
+
+        $products = session('cart', []);
+
+        if (empty($products)) {
+
+            session()->flash('status',"error");
+            session()->flash('message',"商品が選択されていません");
+
+            return redirect()->back();
+        }
+
+        $user = AuthHelper::user();
+
+        DB::beginTransaction();
+
+        try {
+            $user->carts()->delete();
+
+            $dataToInsert = [];
+            foreach ($products as $product) {
+                $dataToInsert[] = [
+                    'user_id' => $user->id,
+                    'product_id' => $product['id'],
+                    'quantity' => $product['quantity'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+
+            Cart::insert($dataToInsert);
+
+            DB::commit();
+
+            session()->forget('cart');
+            session()->forget('cart_login');
+
+            return redirect()->route('cart.address');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            logger()->error($e);
+            session()->flash('status',"error");
+            session()->flash('message',"カートに製品を追加する際にエラーが発生しました");
+        }
+
+    }
+
+    public function address()
+    {
+        if(!$this->hasProductCart()){
+            session()->flash('status',"error");
+            session()->flash('message',"カートに商品がありません");
+
+            return redirect()->back();
+        }
+
+        if (!AuthHelper::check()) {
+            session(['cart_login' => true]);
+            return redirect()->route('login');
+        }
+
+
+        $step = 3;
+        session(['cart_step' => $step]);
+        return redirect()->route('cart');
+    }
+
+    public function finished_address(Request $request)
+    {
+        $messages = [
+            'username.required' => 'ユーザー名は必須です。',
+            'username.string' => 'ユーザー名は文字列である必要があります。',
+            'phone.numeric' => '電話番号は数字である必要があります。',
+            'phone.required' => '電話番号を入力してください。',
+            'phone.regex' => '有効な電話番号を入力してください。（70, 80, 90 で始まる10桁の番号）',
+            'phone.max' => '電話番号は10桁以内で入力してください。',
+            'postal.required' => '郵便番号は必須です。',
+            'postal.numeric' => '郵便番号は数字である必要があります。',
+            'country.required' => '国は必須です。',
+            'country.string' => '国は文字列である必要があります。',
+            'address.required' => '住所は必須です。',
+            'address.string' => '住所は文字列である必要があります。',
+        ];
+        $request->validate([
+            'username' => 'required|string',
+            'phone' => 'required|numeric|regex:/^[789]0\d{8}$/',
+            'postal' => 'required|numeric',
+            'country' => 'required|string',
+            'address' => 'required|string',
+        ],$messages);
+
+        session(['address' => $request->all()]);
+
+        // logger(session('address'));
+
+        return redirect()->route('cart.payment');
+    }
+    
+    public function payment()
+    {
+        if (!AuthHelper::check() || !$this->hasProductCart()) {
+            return redirect()->back();
+        }
+        $step = 4;
+        session(['cart_step' => $step]);
+        return redirect()->route('cart');
+    }
+
+    public function finished_payment()
+    {
+        if (!$this->hasProductCart()) {
+            return redirect()->route('cart.checkout');
+        }
+
+        session()->forget('cart');
+        session()->forget('address');
+
+        $step = 5;
+        session(['cart_step' => $step]);
+        return redirect()->route('cart');
+    }
+
+    public function complete()
+    {
+        if (!AuthHelper::check() || !$this->hasProductCart()) {
+            return redirect()->route('cart.login');
+        }
+
+        session()->forget('address');
+        
+        $step = 5;
+        session(['cart_step' => $step]);
+        return redirect()->route('cart');
+    }
+
+
 
     public function CartCount() {
         // カートの数を返す
@@ -55,6 +234,7 @@ class CartController extends Controller
         }
         return response()->json(['cart_count' => $count]);
     }
+
 
     public function add(Request $request)
     {

@@ -93,7 +93,7 @@ class OAuthController extends Controller
 
             session()->flash('status','success');
             session()->flash('message',`{$provider} OAuth added successfully`);
-            return $this->isProfileUpdated ? redirect()->route('profile') : redirect()->route('home');
+            return $this->isProfileUpdated ? redirect()->route('profile') : ( session('cart_login') ? redirect()->route('cart.login.finished')  :redirect()->route('home'));
         } catch (\Exception $e) {
             Log::error("Error in handle{$provider}Callback: " . $e->getMessage(), ['exception' => $e]);
             return redirect()->route('login')->with('error', "Failed to authenticate with " . ucfirst($provider));

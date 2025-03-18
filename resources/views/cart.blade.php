@@ -45,7 +45,11 @@
         </div>
     </section>
     <!-- /Step List -->
-
+    <section class="my-2">
+        <div class="container-custom">
+            @include('messages.index')
+        </div>
+    </section>
     <!-- Checkout Step -->
     <x-cart-step step="1" class="mt-5 mb-3" id="checkout">
         <div class="container-custom">
@@ -104,7 +108,7 @@
                             <td colspan="4"></td>
                             <td>{{ trans_lang('total') }}</td>
                             <td>
-                                <span class="total"></span>
+                                <span class="total">¥{{ number_format($total, 0) }}</span>
                             </td>
                         </tr>
                     </tfoot>
@@ -143,15 +147,14 @@
                 <div class="d-flex justify-content-between bg-primary text-white p-2 mt-3">
                     <p>Total :</p>
                     <p>
-                        <span class="total"></span>
+                        <span class="total">¥{{ number_format($total, 0) }}</span>
                     </p>
                 </div>
             </div>
             <!-- ./Mobile Style -->
 
             <div class="d-flex my-4">
-                <button class="common-btn btn-next ms-auto"
-                    data-page="{{ $carts->count() > 0 ? (auth_helper()->check() ? '#address' : '#login') : '#checkout' }}">{{ trans_lang('next') }}</button>
+                <a href="{{ route('cart.login') }}" class="common-btn btn-next ms-auto" >{{ trans_lang('next') }}</a>
             </div>
 
         </div>
@@ -249,25 +252,12 @@
     <x-cart-step class="mt-3" id="address" step="3">
         <div class="container-custom">
 
-            <form action="#" class="w-100 mt-3 profile-form">
-
-                <!-- Form Headline -->
+            <form action="{{ route('cart.address.finished')}}" method="POST" class="w-100 mt-3 profile-form">
+                @csrf
+                <!-- Form eadline -->
                 <div>
                     <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2 form-headline">
                         {{ trans_lang('detail') }}
-
-                        <!-- button group -->
-                        <div class="d-flex justify-content-end gap-4">
-                            <button type="button" class="save d-none">
-                                <i class="fa-solid fa-save fs-5 text-white"></i>
-                            </button>
-                            <button class="edit">
-                                <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
-                            </button>
-                            <button class="cancel d-none">
-                                <i class="fa-solid fa-x fs-5 text-white"></i>
-                            </button>
-                        </div>
                     </h2>
                 </div>
                 <!-- /Form Headline -->
@@ -276,17 +266,99 @@
                 <div class="px-2 py-3">
 
                     <!-- name -->
-                    <div class="form-group">
-                        <label class="w-25" for="name">{{ trans_lang('name') }}</label>:
+                    <div class="input-group mb-2  shadow-none ">
+                        <span class="input-group-text t-blue w-25 text-wrap" style="min-width: 120px">{{ trans_lang('name') }}</span>
+                        <input type="text" 
+                            id="username" 
+                            name="username" 
+                            value="{{ old('username',(session('address') ? session('address')['username'] : auth_helper()?->user()->username ?? '')) }}" 
+                            class="form-control t-blue shadow-none @error('username') is-invalid border border-danger @enderror " 
+                        />
+                        @error('username')
+                            <div class="invalid-feedback text-center">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    
+                    
+
+                    <!-- phone -->
+                    <div class="input-group mb-2 shadow-none">
+                        <span class="input-group-text t-blue w-25 text-wrap" style="min-width: 120px">{{ trans_lang('phone_number') }}</span>
+                        <span class="input-group-text t-blue">+81</span>
+                        <input type="text" 
+                            id="phone" 
+                            name="phone" 
+                            maxlength="10"
+                            value="{{ old('phone',( session('address') ? session('address')['phone'] : substr(auth_helper()?->user()->first_phone ?? auth_helper()?->user()->second_phone ?? '',3))) }}" 
+                            class="form-control t-blue shadow-none  @error('phone') is-invalid border border-danger @enderror"
+                        />
+                        @error('phone')
+                            <div class="invalid-feedback text-center">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    
+
+                    <!-- postal -->
+                    <div class="input-group mb-2  shadow-none">
+                        <span class="input-group-text t-blue w-25 text-wrap" style="min-width: 120px">{{ trans_lang('postal') }}</span>
+                        <input type="text" 
+                            id="postal" 
+                            name="postal" 
+                            value="{{ old('postal',session('address') ? session('address')['postal'] : '')}}" 
+                            class="form-control t-blue shadow-none  @error('postal') is-invalid border border-danger @enderror"
+                        />
+                        @error('postal')
+                        <div class="invalid-feedback text-center">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <!-- country -->
+                    <div class="input-group mb-2  shadow-none">
+                        <span class="input-group-text t-blue w-25 text-wrap " style="min-width: 120px">{{ trans_lang('country') }}</span>
+                        <input type="text" 
+                            id="country" 
+                            name="country" 
+                            value="{{ old('country',session('address') ? session('address')['country'] : '')}}" 
+                            class="form-control t-blue shadow-none  @error('country') is-invalid border border-danger @enderror"
+                        />
+                        @error('country')
+                        <div class="invalid-feedback text-center">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <!-- address -->
+                    <div class="input-group mb-2  shadow-none">
+                        <span class="input-group-text t-blue w-25 text-wrap" style="min-width: 120px">{{ trans_lang('shipping_address') }}</span>
+                        <textarea id="address" name="address" class="form-control t-blue shadow-none  @error('address') is-invalid border border-danger @enderror" rows="3">{{ old('address',( session('address') ? session('address')['address'] : auth_helper()?->user()->address ?? '')) }}</textarea>
+                        @error('address')
+                        <div class="invalid-feedback text-center">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+
+
+                    <!-- name -->
+                    {{-- <div class="form-group">
+                        <label class="w-25" for="name"></label>:
                         <output class="form-output ms-3"
                             for="name">{{ auth_helper()->user()->username ?? '' }}</output>
                         <input name="name" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="username"
                             value="{{ auth_helper()->user()->username ?? '' }}" disabled>
                         <span class="invalid-feedback"></span>
-                    </div>
+                    </div> --}}
 
                     {{-- pohne-number link --}}
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
                         <output class="form-output ms-3"
                             for="first_phone">{{ auth_helper()->user()->first_phone ?? '' }}</output>
@@ -294,42 +366,40 @@
                             class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="first_phone"
                             value="{{ auth_helper()->user()->first_phone ?? '' }}" disabled>
                         <span class="invalid-feedback"></span>
-                    </div>
+                    </div> --}}
 
                     <!-- postal link -->
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label class="w-25" for="zip">{{ trans_lang('postal') }}</label>:
                         <output class="form-output ms-3" for="zip">1105</output>
                         <input type="number" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none" id="zip"
                             value="1105" disabled>
                         <span class="invalid-feedback"></span>
-                    </div>
+                    </div> --}}
 
                     <!-- country link -->
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label class="w-25" for="country">{{ trans_lang('country') }}</label>:
                         <output class="form-output ms-3" for="country">Cambodia</output>
                         <input type="text" name="country" class="p-1 mt-2 ms-1 border-0 border-bottom border-2 d-none"
                             id="country" value="Cambodia" disabled>
                         <span class="invalid-feedback"></span>
-                    </div>
+                    </div> --}}
 
                     <!-- address link -->
-                    <div class="form-group d-flex align-items-start">
+                    {{-- <div class="form-group d-flex align-items-start">
                         <label class="w-25" for="address">{{ trans_lang('shipping_address') }}</label>:
                         <output class="form-output ms-3" for="address">Cambodia</output>
                         <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ auth_helper()->user()->address ?? '' }}</textarea>
                         <span class="invalid-feedback"></span>
-                    </div>
+                    </div> --}}
 
                 </div>
                 <!-- /Form Content -->
 
                 <div class="d-flex gap-3 my-4 justify-content-end address-btn-group">
-                    <button class="btn btn-outline-primary common-btn btn-back"
-                        data-page="#checkout">{{ trans_lang('go_back') }}</button>
-                    <button class="btn btn-outline-primary common-btn btn-next"
-                        data-page="#payment">{{ trans_lang('next') }}</button>
+                    <a href="{{ route('cart.checkout')}}" class="btn btn-outline-primary common-btn btn-back" >{{ trans_lang('go_back') }}</a>
+                    <button type="submit" class="btn btn-outline-primary common-btn btn-next" >{{ trans_lang('next') }}</button>
                 </div>
 
             </form>
@@ -580,8 +650,7 @@
                         <div class="d-flex gap-3 text-center justify-content-center">
                             <button class="common-btn btn btn-outline-primary"
                                 id="cancel">{{ trans_lang('cancle') }}</button>
-                            <button class="common-btn btn btn-outline-primary btn-next"
-                                data-page="#complete">{{ trans_lang('save') }}</button>
+                            <a href="{{ route('cart.complete')}}" class="common-btn btn btn-outline-primary btn-next" >{{ trans_lang('save') }}</a>
                         </div>
                     </form>
                 </div>
@@ -608,11 +677,8 @@
                                             alt="product img"></div>
                                 </td>
                                 <td clas="col-name">{{ $item->product->name }}</td>
-                                <td class="price format">¥{{ number_format($item->product->getSellPrice(), 0) }}</td>
-                                <td class="cost">
-                                    <input type="hidden" value="1" class="quantity-value">
-                                </td>
-                                </td>
+                                <td class="">¥{{ number_format($item->product->getSellPrice(), 0) }}</td>
+                                <td class="">¥{{ number_format(($item->product->getSellPrice() * $item->quantity), 0) }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -621,7 +687,7 @@
                             <td colspan="2"></td>
                             <td>{{ trans_lang('total') }}</td>
                             <td>
-                                <span class="total"></span>
+                                <span class="">¥{{ number_format($total, 0) }}</span>
                             </td>
                         </tr>
                     </tfoot>
@@ -640,9 +706,7 @@
                             <div class="table-row">
                                 <p class="card-name">{{ $item->product->name }}</p>
                                 <div class="card-text">
-                                    <span class="cost">
-                                        <input type="hidden" value="1" class="quantity-value">
-                                    </span>
+                                    <span class¥{{ number_format(($item->product->getSellPrice() * $item->quantity), 0) }}span>
                                     <span
                                         class="price format">¥{{ number_format($item->product->product_price, 0) }}</span>
                                 </div>
@@ -655,7 +719,7 @@
                 <div class="d-flex justify-content-between bg-primary text-white p-2 mt-3">
                     <p>Total :</p>
                     <p>
-                        <span class="total"></span>
+                        <span class="">¥{{ number_format($total, 0) }}</span>
                     </p>
                 </div>
             </div>
@@ -702,37 +766,32 @@
 
                     <!-- name -->
                     <div class="form-group d-flex">
-                        <h3 class="w-25">{{ trans_lang('name') }}</h3>:
-                        <output class="form-output ms-">{{ auth_helper()->user()->username ?? '' }}</output>
-                        <span class="invalid-feedback"></span>
+                        <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('name') }}</h3>:
+                        <h3 class="form-output ms-1">{{ session('address') ?  session('address')['username'] : ''}}</h3>
                     </div>
 
                     {{-- pohne-number link --}}
                     <div class="form-group d-flex">
-                        <h3 class="w-25">{{ trans_lang('phone_number') }}</h3>:
-                        <output class="form-output">{{ auth_helper()->user()->first_phone ?? '' }}</output>
-                        <span class="invalid-feedback"></span>
+                        <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('phone_number') }}</h3>:
+                        <h3 class="form-output ms-1">+81{{session('address') ? session('address')['phone'] :''}}</h3>
                     </div>
 
                     <!-- postal link -->
                     <div class="form-group d-flex">
-                        <h3 class="w-25">{{ trans_lang('postal') }}</h3>:
-                        <output class="form-output">1105</output>
-                        <span class="invalid-feedback"></span>
+                        <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('postal') }}</h3>:
+                        <h3 class="form-output ms-1">{{ session('address') ? session('address')['postal'] :''}}</h3>
                     </div>
 
                     <!-- country link -->
                     <div class="form-group d-flex">
-                        <h3 class="w-25">{{ trans_lang('country') }}</h3>:
-                        <output class="form-output">Cambodia</output>
-                        <span class="invalid-feedback"></span>
+                        <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('country') }}</h3>:
+                        <h3 class="form-output ms-1">{{ session('address') ? session('address')['country'] : '' }}</h3>
                     </div>
 
                     <!-- address link -->
                     <div class="form-group d-flex align-items-start">
-                        <h3 class="w-25">{{ trans_lang('shipping_address') }}</h3>:
-                        <output class="form-output">{{ auth_helper()->user()->address ?? '' }}</output>
-                        <span class="invalid-feedback"></span>
+                        <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('shipping_address') }}</h3>:
+                        <h3 class="form-output ms-1">{{ session('address') ? session('address')['address'] : '' }}</h3>
                     </div>
 
                 </div>
@@ -742,8 +801,7 @@
             {{-- /Address --}}
 
             <div class="d-flex gap-3 my-4 justify-content-end">
-                <a
-                    data-page="#address"class="btn btn-outline-primary common-btn btn-back">{{ trans_lang('go_back') }}</a>
+                <a href="{{ route('cart.address')}}" class="btn btn-outline-primary common-btn btn-back">{{ trans_lang('go_back') }}</a>
                 <button data-page="#complete"
                     class="btn btn-outline-primary common-btn btn-payment">{{ trans_lang('check_out') }}</button>
             </div>
@@ -763,14 +821,16 @@
                 <a href="{{ route('home') }}" class="btn btn-outline-primary common-btn">{{ trans_lang('home') }}</a>
             </div>
         </div>
+
+        {{-- {{ session(['cart_step' => 1])}} --}}
     </x-cart-step>
     <!-- /Complete Step -->
 
     <!-- All Scripts -->
-    {{-- <script src="{{ asset('assets/js/caculate.js') }}"></script> --}}
+    <script src="{{ asset('assets/js/caculate.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/pageChange.js') }}"></script> --}}
-    {{-- <script src="{{ asset('assets/js/updateForm.js') }}"></script> --}}
-    {{-- <script>
+    <script src="{{ asset('assets/js/updateForm.js') }}"></script>
+    <script>
         $(document).ready(function() {
 
             $('button.save').click(function(ev) {
@@ -808,7 +868,6 @@
             });
 
             // for desktop
-
             function deleteCart(product_id) {
                 $.ajax({
                     url: `/cart/delete/${product_id}`,
@@ -894,30 +953,26 @@
 
             function handleLoginResponse(response, products) {
                 if (response.status) {
-                    $(".btn-next[data-page='#login']").attr('data-page', '#address');
-
-                    updatePageWithUserInfo(response.user);
-                    $('#login').closest('.page').hide();
-                    $('#address').fadeIn();
-                    addCart(products);
+                    toastr.success(response.message, '')
+                    window.location.href = 'cart/login/finished';
                 } else {
                     handleErrorMessages(response.errors, response.message);
                 }
             }
 
-            function updatePageWithUserInfo(user) {
-                console.log(user['username']);
-                console.log(user['first_phone']);
-                console.log(user['address']);
-                $("#username").val(user.username);
-                $("#first_phone").val(user.first_phone);
-                $("#address").val(user.address);
+            // function updatePageWithUserInfo(user) {
+            //     console.log(user['username']);
+            //     console.log(user['first_phone']);
+            //     console.log(user['address']);
+            //     $("#username").val(user.username);
+            //     $("#first_phone").val(user.first_phone);
+            //     $("#address").val(user.address);
 
-                $('#name-result').html(user.username);
-                $('#tel-result').html(user.first_phone);
-                $('#line_id-result').html(user.line_id);
-                $('#delivery-result').html(user.address);
-            }
+            //     $('#name-result').html(user.username);
+            //     $('#tel-result').html(user.first_phone);
+            //     $('#line_id-result').html(user.line_id);
+            //     $('#delivery-result').html(user.address);
+            // }
 
             function handleErrorMessages(errors, message) {
                 $('#message').html(message ?? '');
@@ -935,19 +990,19 @@
                 });
             }
 
-            function addCart(products) {
-                $.ajax({
-                    url: '/cart/add/login',
-                    type: "POST",
-                    data: {
-                        products: products
-                    },
-                    success: function(response) {
-                        // return response.status;
-                        toastr.success(response.message, '')
-                    }
-                });
-            }
+            // function addCart(products) {
+            //     $.ajax({
+            //         url: '/cart/add/login',
+            //         type: "POST",
+            //         data: {
+            //             products: products
+            //         },
+            //         success: function(response) {
+            //             // return response.status;
+            //             toastr.success(response.message, '')
+            //         }
+            //     });
+            // }
 
             function addQty(product_id, qty) {
                 $.ajax({
@@ -997,7 +1052,7 @@
             });
 
         });
-    </script> --}}
+    </script>
     <!-- /All Scripts -->
 
     {{-- Test Scripts --}}

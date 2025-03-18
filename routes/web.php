@@ -237,6 +237,14 @@ Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::post('/cart/add/login',[CartController::class,'addToCartWithLogin'])->name('cart.add.login');
 Route::post('/cart/add-qty', [CartController::class, 'addQty'])->name('cart.add_qty');
 Route::delete('/cart/delete/{product_id}', [CartController::class, 'delete'])->name('cart.delete');
+Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::get('/cart/login', [CartController::class, 'login'])->name('cart.login');
+Route::get('/cart/login/finished', [CartController::class, 'finished_login'])->name('cart.login.finished');
+Route::get('/cart/address', [CartController::class, 'address'])->name('cart.address');
+Route::post('/cart/address/finished', [CartController::class, 'finished_address'])->name('cart.address.finished');
+Route::get('/cart/payment', [CartController::class, 'payment'])->name('cart.payment');
+Route::get('/cart/complete', [CartController::class, 'complete'])->name('cart.complete');
+
 
 
 // Admin auth

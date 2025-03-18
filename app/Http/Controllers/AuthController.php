@@ -219,11 +219,13 @@ class AuthController extends Controller
 
                 $isSeller = $user->roles->first()->id == 2;
 
+                logger(redirect()-> intended(route( $isSeller ? 'add_product' : 'home'))->getTargetUrl());
+
                 return response()->json([
                     'status' => true,
-                    'message' => 'login successfull',
+                    'message' => 'ログインに成功しました',
                     'user' => $user ,
-                    'redirect' =>redirect()-> intended(route( $isSeller ? 'add_product' : 'home'))->getTargetUrl()
+                    'redirect' => session('cart_login') ? redirect()->route('cart.login.finished')->getTargetUrl() :   redirect()-> intended(route( $isSeller ? 'add_product' : 'home'))->getTargetUrl()
                 ]);
             }
 

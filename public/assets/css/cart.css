@@ -16,6 +16,10 @@ body {
     scroll-behavior: smooth;
 }
 
+.t-blue{
+    color: #005B96;
+}
+
 main {
     min-height: 100vh;
 }
@@ -62,7 +66,7 @@ main {
     position: relative;
     max-height: 60vh;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .table thead,

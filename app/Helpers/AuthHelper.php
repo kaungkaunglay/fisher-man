@@ -115,6 +115,10 @@ class AuthHelper
         session()->forget('cart');
         session()->forget('cart_count');
         session()->forget('white_list_count');
+        session()->forget('cart_step');
+        session()->forget('cart_login');
+        session()->forget('address');
+
         Auth::logout();
 
         // Clear any cached OAuth tokens
