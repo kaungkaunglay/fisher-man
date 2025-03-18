@@ -144,3 +144,7 @@ input[type="range"]:active::-webkit-slider-thumb{
   background-color: #ffffff;
   border: 3px solid #005B96;
 }
+
+.min-price, .max-price {
+  width: 89px;
+}
