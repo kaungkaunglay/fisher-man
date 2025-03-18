@@ -281,7 +281,7 @@
                         <input type="text" 
                             id="postal" 
                             name="postal" 
-                            value="{{ old('postal',session('address') ? session('address')['postal'] : '')}}" 
+                            value="{{ old('postal',session('address') ? session('address')['postal'] : auth_helper()->user()->postal_code ?? '')}}" 
                             class="form-control t-blue shadow-none  @error('postal') is-invalid border border-danger @enderror"
                         />
                         @error('postal')
