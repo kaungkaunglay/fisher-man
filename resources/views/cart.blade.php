@@ -798,11 +798,6 @@
                     </div>
 
                     <!-- country link -->
-                    <div class="form-group d-flex">
-                        <h3 class="w-25">{{ trans_lang('country') }}</h3>:
-                        <output class="form-output">Cambodia</output>
-                        <span class="invalid-feedback"></span>
-                    </div>
 
                     <!-- address link -->
                     <div class="form-group d-flex align-items-start">
