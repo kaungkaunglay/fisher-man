@@ -87,7 +87,7 @@ class CartController extends Controller
         $this->addToUserCart($newProducts, $user);
 
         session()->flash('success',"カートに商品が追加されました");
-        return response()->json(['status' => true, 'message' => '製品がカートに追加されました']);
+        return response()->json(['status' => true, 'message' => '商品がカートに追加されました']);
     }
     private function addToSessionCart($products)
     {
@@ -178,7 +178,7 @@ class CartController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             logger()->error($e);
-            return response()->json(['status' => false, 'message' => 'カートに製品を追加する際にエラーが発生しました']);
+            return response()->json(['status' => false, 'message' => 'カートに商品を追加する際にエラーが発生しました']);
         }
     }
 
@@ -227,7 +227,7 @@ class CartController extends Controller
         if (!$cart) {
             return response()->json([
                 'status' => false,
-                'message' => "カートに製品が見つかりません"
+                'message' => "カートに商品が見つかりません"
             ]);
         }
 
@@ -244,7 +244,7 @@ class CartController extends Controller
     public function delete($product_id)
     {
         if (!Product::where('id', $product_id)->exists()) {
-            return response()->json(['status' => false, 'message' => '製品が見つかりません']);
+            return response()->json(['status' => false, 'message' => '商品が見つかりません']);
         }
 
         if (!AuthHelper::check()) {
@@ -256,17 +256,17 @@ class CartController extends Controller
 
             session(['cart' => $cart]);
 
-            return response()->json(['status' => true, 'product_id' => $product_id, 'message' => '製品がカートから削除されました']);
+            return response()->json(['status' => true, 'product_id' => $product_id, 'message' => '商品がカートから削除されました']);
         }
 
         $user = AuthHelper::user();
 
         if (!$user->carts()->where('product_id', $product_id)->exists()) {
-            return response()->json(['status' => false, 'message' => 'カートに製品が見つかりません']);
+            return response()->json(['status' => false, 'message' => 'カートに商品が見つかりません']);
         }
 
         $user->carts()->where('product_id', $product_id)->delete();
 
-        return response()->json(['status' => true, 'product_id' => $product_id, 'message' => '製品がカートから削除されました']);
+        return response()->json(['status' => true, 'product_id' => $product_id, 'message' => '商品がカートから削除されました']);
     }
 }

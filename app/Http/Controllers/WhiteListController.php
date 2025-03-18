@@ -31,12 +31,12 @@ class WhiteListController extends Controller
         $user = AuthHelper::user();
 
         if ($user->whitelists()->where('product_id', $product_id)->exists()) {
-            return response()->json(['status' => false, 'message' => '"製品はすでにホワイトリストに追加されています。"']); // Or a more appropriate message
+            return response()->json(['status' => false, 'message' => '"商品はすでにホワイトリストに追加されています。"']); // Or a more appropriate message
         }
 
         $user->whitelists()->attach($product_id);
 
-        return response()->json(['status' => true, 'message' => '商品がタグ付けされました']);
+        return response()->json(['status' => true, 'message' => '商品は既にタグ付けされています']);
     }
 
     public function delete($product_id)
