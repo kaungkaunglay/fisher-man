@@ -297,7 +297,7 @@
                         <input type="text" 
                             id="country" 
                             name="country" 
-                            value="{{ old('country',session('address') ? session('address')['country'] : '')}}" 
+                            value="{{ old('country',session('address') ? session('address')['country'] : 'Japan')}}" 
                             class="form-control t-blue shadow-none  @error('country') is-invalid border border-danger @enderror"
                         />
                         @error('country')
