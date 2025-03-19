@@ -102,12 +102,14 @@ Route::middleware(['is_seller'])->group(function () {
 
      // Product Routes
      Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products');
+     Route::get('/admin/products/time-sale', [ProductController::class, 'timeSaleProducts'])->name('admin.products.time_sale');
      Route::get('/admin/products/detail/{product}', [ProductController::class, 'adminshow'])->name('admin.product.show');
      Route::get('/admin/products/create', [ProductController::class, 'create'])->name('create_product');
      Route::post('/admin/products', [ProductController::class, 'store'])->name('add_product');
      Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
      Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('update_product');
      Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+     Route::get('/admin/products/add-time-sale', [ProductController::class, 'addTimeSale'])->name('admin.products.addTimeSale');
 
       // Categories Controller
 
