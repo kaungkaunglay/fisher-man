@@ -21,6 +21,8 @@
 
     <meta name="author" content="themesflat.com">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -42,6 +44,9 @@
     <link rel="apple-touch-icon" sizes="57x57" href="{{asset('assets/images/favicon/apple-touch-icon.png')}}" type="image/png">
     {{-- <link rel="apple-touch-icon-precomposed" href="{{asset('assets/images/Logo only.png')}}"> --}}
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <!-- add jquery -->
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
 
 </head>
 
@@ -97,6 +102,12 @@
                                         <a href="{{route('admin.products')}}" class="{{ request()->is('admin/products') ? 'active' : '' }}">
                                             <div class="icon"><i class="icon-shopping-cart"></i></div>
                                             <div class="text">{{trans_lang('all_products')}}</div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="{{route('admin.products.time_sale')}}" class="{{ request()->is('admin/products/time-sale') ? 'active' : '' }}">
+                                            <div class="icon"><i class="icon-shopping-cart"></i></div>
+                                            <div class="text">{{trans_lang('special_offer')}}</div>
                                         </a>
                                     </li>
                                     <!-- Open later by thahar(Nishimura san request) -->

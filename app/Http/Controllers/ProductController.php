@@ -12,6 +12,7 @@ use App\Rules\ValidExpireDate;
 use App\Rules\ValidDayOfCaught;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Validator;
 
 class ProductController extends Controller
 {
@@ -219,7 +220,7 @@ class ProductController extends Controller
     public function discountProducts(Request $request)
     {
         $sortBy = $request->get('sort_by', 'latest');
-        $query = Product::where('discount', '>', 0.00)->where('status','approved');
+        $query = Product::where('is_time_sale',1)->where('status','approved');
 
         if ($sortBy === 'price_asc') {
             $query->orderBy('product_price', 'asc');
@@ -235,6 +236,12 @@ class ProductController extends Controller
 
         $products = $query->get();
         return view('special-offer', compact('products'));
+    }
+
+    public function timeSaleProducts(Request $request)
+    {
+        $products = Product::where('is_time_sale',1)->where('status','approved')->paginate(10);
+        return view('admin.time-sale-products', compact('products'));
     }
 
     public function edit(Product $product)
@@ -363,5 +370,39 @@ class ProductController extends Controller
         // return response()->json($products);
         return response()->json($products);
 
+    }
+
+    public function addTimeSale(Request $request)
+    {
+        try {
+
+            $validate = Validator::make($request->all(),[
+                'product_id' => 'required|exists:products,id',
+                'status' => 'required',
+            ]);
+
+            if ($validate->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => "Add time sale failed",
+                    'errors' => $validate->errors()
+                ]);
+            }
+
+            $product = Product::find($request->product_id);
+            $product->is_time_sale = $request->status;
+            $product->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'product time sale status updated successfully',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ]);
+        }
+        
     }
 }
