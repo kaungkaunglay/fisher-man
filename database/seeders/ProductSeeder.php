@@ -124,18 +124,21 @@ class ProductSeeder extends Seeder
 
         // $statuses = ["pending","approved"];
 
-        foreach ($product_names as $index => $product) {
-            
-            Product::create([
-                'name' => $product,
-                'product_price' => 127.5,
-                'product_image' => $product."/".$product.".jpg",
-                'stock' => (int) $product_units[$index],
-                'description' => $product_descriptions[$index],
-                'user_id' => $this->faker->randomElement($user_ids ?? [2]),
-                'sub_category_id' => $index + 1,
-                'status' => 'approved'
-            ]);
-        }
+        // Set the total number of sub-categories
+$total_subcategories = 10;  // Adjust this number as needed
+
+foreach ($product_names as $index => $product) {
+    Product::create([
+        'name' => $product,
+        'product_price' => 127.5,
+        'product_image' => $product . "/" . $product . ".jpg",
+        'stock' => (int) $product_units[$index],
+        'description' => $product_descriptions[$index],
+        'user_id' => $this->faker->randomElement($user_ids ?? [2]),
+        'sub_category_id' => ($index % $total_subcategories) + 1,  // Distribute products evenly
+        'status' => 'approved'
+    ]);
+}
+
     }
 }
