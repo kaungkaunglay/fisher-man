@@ -30,9 +30,156 @@
             <!-- Profile Side -->
             <div class="col-12 col-lg-12 h-100 profile-side">
 
-                <form action="#" id="update_basic_profile" class="profile-form" method="POST">
+                <div class="row">
+                    <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-3">
+                        <div class="p-6 d-flex justify-content-center align-items-center">
+                            <div class="w-75 d-flex align-center border p-2  ">
+                                <label for="avatar-input" class="w-100 d-flex align-center position-relative  overflow-hidden gallery">
+                                    <img src="{{ auth_helper()->getAvatar() }}" class="default-preview img-fluid " id="form-img"
+                                        alt="{{ $user->username ?? 'Account.png' }}" >
+                                    <div class="d-flex justify-content-center align-items-center position-absolute text-black bg-white rounded-5 px-4 py-2" style="right: 10px; bottom: 10px;">
+                                        <i class="fas fa-plus fs-6 me-2" ></i>
+                                        <h3>Upload</h3>
+                                    </div>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex flex-column gap-5">
+                        <div class="w-100">
+                            <!-- Form Headline -->
+                            <div class="bg-primary text-white p-2 form-headline mb-2">
+                                <h2 class="fw-bold d-flex justify-content-between">{{ trans_lang('info') }}
+                                    <div class="d-flex justify-content-end gap-4">
+                                        <button type="submit" class="save d-none">
+                                            <i class="fa-solid fa-save fs-5 text-white"></i>
+                                        </button>
+                                        <button class="edit">
+                                            <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
+                                        </button>
+                                        <button class="cancel d-none">
+                                            <i class="fa-solid fa-x fs-5 text-white"></i>
+                                        </button>
+                                    </div>
+                                </h2>
+                            </div>
+                            <!-- /Form Headline -->
+
+                            <!-- /Form Content -->
+                            <div class="">
+                                <div class="input-group mb-2 shadow-none">
+                                    <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('name') }}</span>
+                                    <input type="text" class="form-control shadow-none" name="username" id="username"
+                                        value="{{ $user->username }}" readonly/>
+                                </div>
+
+                                <div class="input-group mb-2 shadow-none">
+                                    <span class="input-group-text w-25"  style="min-width: 130px;">{{ trans_lang('email') }}</span>
+                                    <input type="text" class="form-control shadow-none" name="email" id="email"
+                                        value="{{ $user->email }}" readonly/>
+                                </div>
+
+                                <div class="d-flex gap-2">
+                                    <div class="d-flex border rounded-3 overflow-hidden">
+                                        <label class="d-flex justify-content-center align-items-center border p-2 " for="line_login">
+                                            <i class="fa-brands fa-line fs-2"></i>
+                                        </label>
+                                        <div class="d-flex justify-content-center align-items-center p-2">
+                                            <div class="form-check form-switch align-self-center">
+                                                <input type="checkbox" id="line_login" class="border form-check-input"
+                                                    role="switch" @if ($user->checkProvider('line')) checked @endif />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex border rounded-3 overflow-hidden">
+                                        <label class="d-flex justify-content-center align-items-center border p-2 " for="line_login">
+                                            <i class="fa-brands fa-facebook fs-2"></i>
+                                        </label>
+                                        <div class="d-flex justify-content-center align-items-center p-2">
+                                            <div class="form-check form-switch align-self-center">
+                                                <input type="checkbox" id="facebook_login"
+                                                    class="border form-check-input" role="switch"
+                                                    @if ($user->checkProvider('facebook')) checked @endif />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex border rounded-3 overflow-hidden">
+                                        <label class="d-flex justify-content-center align-items-center border p-2 " for="line_login">
+                                            <i class="fa-brands fa-google fs-2"></i>
+                                        </label>
+                                        <div class="d-flex justify-content-center align-items-center p-2">
+                                            <div class="form-check form-switch align-self-center">
+                                                <input type="checkbox" id="google_login" class="border form-check-input"
+                                                    role="switch" @if ($user->checkProvider('google')) checked @endif />
+                                            </div>
+                                        </div>
+                                    </div>
+                        
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-100">
+                            <!-- Form Headline -->
+                            <div>
+                                <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2 form-headline mb-2">
+                                    {{ trans_lang('detail') }}
+
+                                    <!-- button group -->
+                                    <div class="d-flex justify-content-end gap-4">
+                                        <button type="submit" class="save d-none">
+                                            <i class="fa-solid fa-save fs-5 text-white"></i>
+                                        </button>
+                                        <button class="edit">
+                                            <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
+                                        </button>
+                                        <button class="cancel d-none">
+                                            <i class="fa-solid fa-x fs-5 text-white"></i>
+                                        </button>
+                                    </div>
+                                </h2>
+                            </div>
+                            <!-- /Form Headline -->
+
+                            <div class="">
+                                <div class="input-group mb-2 shadow-none">
+                                    <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('postal') }}</span>
+                                    <input type="text" class="form-control shadow-none" name="postal_code" id="postal_code"
+                                        value="{{ $user->postal_code }}" readonly/>
+                                </div>
+
+                                <div class="input-group mb-2 shadow-none">
+                                    <span class="input-group-text w-25"  style="min-width: 130px;">{{ trans_lang('address') }}</span>
+                                    <textarea class="form-control shadow-none" name="address" id="address" readonly>{{ $user->address }}</textarea>
+                                </div>
+
+                                <div class="input-group mb-2 shadow-none">
+                                    <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('first_ph') }}</span>
+                                    <input type="text" class="form-control shadow-none" name="first_phone" id="first_phone"
+                                        value="{{ $user->first_phone }}" readonly/>
+                                </div>
+
+                                <div class="input-group mb-2 shadow-none">
+                                    <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('second_ph') }}</span>
+                                    <input type="text" class="form-control shadow-none" name="second_phone" id="second_phone"
+                                        value="{{ $user->second_phone }}" readonly/>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                {{-- <form action="#" id="update_basic_profile" class="profile-form" method="POST">
 
                     @csrf
+
+                    <!-- Profile Info -->
+                    
 
                     <div class="w-100 h-100 d-md-flex gap-3">
                         <!-- profile img -->
@@ -193,11 +340,11 @@
 
                         </div>
                     </div>
-                </form>
+                </form> --}}
                 <!-- /Profile Info -->
 
                 <!-- Form Modal -->
-                <div class="modal fade" id="shop_modal_dialog">
+                {{-- <div class="modal fade" id="shop_modal_dialog">
                     <div class="modal-dialog modal-md">
                         <div class="modal-content bg-white">
 
@@ -314,11 +461,11 @@
 
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- /Form Modal -->
 
                 <!-- Detail Info -->
-                <form action="" id="update_contact_details" method="POST" class="w-100 mt-3 profile-form">
+                {{-- <form action="" id="update_contact_details" method="POST" class="w-100 mt-3 profile-form">
 
                     <!-- Form Headline -->
                     <div>
@@ -344,13 +491,12 @@
                     <!-- Form Content -->
                     <div class="px-2 py-3">
 
-                        {{-- postal code --}}
                         <div class="d-flex">
-                            <label class="w-25" for="postalCode">Postal Code</label>:
+                            <label class="w-25" for="postalCode">{{ trans_lang('postal') }}</label>:
                             <div class="form-group">
                                 <output class="form-output ps-1" for="postalCode">{{ $user->postal_code }}</output>
                                 <input type="text" name="postalCode" id="postalCode" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;" value="{{ $user->postal_code }}">
-                                {{-- <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea> --}}
+                                <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea>
                                 <span class="invalid-feedback"></span>
                             </div>
                         </div>
@@ -372,33 +518,33 @@
                             <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
                             <div class="ms-1 d-flex flex-column phone-no-container">
                                 <div class="form-group">
-                                    {{-- <select name="first_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
+                                    <select name="first_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
                                         <option value="+81" @if($user->firstExtension == '+81') selected @endif>+81</option>
                                         <option value="+95" @if($user->firstExtension == '+95') selected @endif>+95</option>
-                                    </select> --}}
-                                    {{-- <input type="text" id="first_phone_extension"  name="first_phone_extension" 
+                                    </select>
+                                    <input type="text" id="first_phone_extension"  name="first_phone_extension" 
                                         class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" 
-                                        style="width: 40px;"  value="+81" readonly /> --}}
+                                        style="width: 40px;"  value="+81" readonly />
                                     <a href="tel:">
                                         <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
                                     </a>
                                     <input type="number" maxlength="10" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;"
-                                        id="first_phone" value="{{ $user->firstNumber }}" disabled>
+                                        id="first_phone" value="{{ $user->first_phone }}" disabled>
                                     <span class="invalid-feedback"></span>
                                 </div>
                                 <div class="form-group">
-                                    {{-- <select name="second_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
+                                    <select name="second_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
                                         <option value="+81" @if($user->secondExtension == '+81') selected @endif>+81</option>
                                         <option value="+95" @if($user->secondExtension == '+95') selected @endif>+95</option>
                                     </select>
                                     <input type="text" id="second_phone_extension" name="second_phone_extension" 
                                         class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" 
-                                        style="width: 40px;"  value="+81" readonly /> --}}
+                                        style="width: 40px;"  value="+81" readonly />
                                     <a href="tel:">
                                         <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
                                     </a>
                                     <input type="number" maxlength="10" name="second_phone" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;"
-                                        value="{{ $user->secondNumber }}" id="second_phone" disabled>
+                                        value="{{ $user->second_phone }}" id="second_phone" disabled>
                                     <span class="invalid-feedback"></span>
                                 </div>
                             </div>
@@ -407,13 +553,13 @@
                     </div>
                     <!-- /Form Content -->
 
-                </form>
+                </form> --}}
                 <!-- /Detail Info -->
 
                 <!-- button group -->
-                <div class="buttons d-flex mt-3">
+                {{-- <div class="buttons d-flex mt-3">
                     <button class="common-btn">注文履歴を確認</button>
-                </div>
+                </div> --}}
 
             </div>
             <!-- /Profile Side -->

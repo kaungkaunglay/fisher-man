@@ -6,11 +6,11 @@ body {
   color: #005B96;
 }
 
-.profile-form:not(.active) input {
+/* .profile-form:not(.active) input {
   border: none;
   outline: none;
   box-shadow: none;
-}
+} */
 
 .shop-location {
   min-height: 300px;
@@ -25,8 +25,9 @@ body {
   display: flex;
 }
 
-.avatar-upload div {
+/* .avatar-upload div {
   color: white !important;
+  border-radius: 50%;
   border: 1px dashed #bcbcbc;
   width: 80%;
   aspect-ratio: 1/1;
@@ -35,7 +36,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 10px;
-}
+} */
 
 .avatar-upload i {
   font-size: 50px;
