@@ -62,7 +62,7 @@ class ProductController extends Controller
         }
 
         $products = $query->get();
-        $discount_products = $query->where('discount', '>', 0.00)->take(6)->get();
+        $discount_products = $query->where('is_time_sale',1)->where('status','approved')->latest()->limit(6)->get();
         $popular_shops = Shop::where('status','approved')->inRandomOrder()->take(4)->get();
 
         $random_products  = Product::inRandomOrder()->take(6)->get(); // Fetch 6 random products
