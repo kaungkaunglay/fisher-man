@@ -147,34 +147,49 @@
                         </div> --}}
                         <!-- Custom Pagination -->
                         @if ($all_products->hasPages())
-                        <div class="flex items-center justify-between flex-wrap gap10">
-                            <!-- <div class="text-tiny">
-                                Showing {{ $all_products->firstItem() }} to {{ $all_products->lastItem() }} of {{ $all_products->total() }} entries
-                            </div> -->
-                            <ul class="wg-pagination">
-                                <!-- Previous Page -->
-                                <li class="{{ $all_products->onFirstPage() ? 'disabled' : '' }}">
-                                    <a href="{{ $all_products->previousPageUrl() }}">
-                                        <i class="icon-chevron-left"></i>
-                                    </a>
-                                </li>
+    <div class="flex items-center justify-between flex-wrap gap10">
+        <ul class="wg-pagination">
+            <!-- Previous Page -->
+            <li class="{{ $all_products->onFirstPage() ? 'disabled' : '' }}">
+                <a href="{{ $all_products->previousPageUrl() }}">
+                    <i class="icon-chevron-left"></i>
+                </a>
+            </li>
 
-                                <!-- Page Numbers -->
-                                @foreach ($all_products->links()->elements[0] as $page => $url)
-                                    <li class="{{ $page == $all_products->currentPage() ? 'active' : '' }}">
-                                        <a href="{{ $url }}">{{ $page }}</a>
-                                    </li>
-                                @endforeach
+            <!-- Page Numbers (Show 5 buttons) -->
+            @php
+                $currentPage = $all_products->currentPage();
+                $lastPage = $all_products->lastPage();
+                $start = max(1, $currentPage - 2); // Show 2 pages before current
+                $end = min($lastPage, $currentPage + 2); // Show 2 pages after current
 
-                                <!-- Next Page -->
-                                <li class="{{ $all_products->hasMorePages() ? '' : 'disabled' }}">
-                                    <a href="{{ $all_products->nextPageUrl() }}">
-                                        <i class="icon-chevron-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        @endif
+                // Adjust to always show 5 buttons if possible
+                if ($end - $start < 4 && $lastPage > 5) {
+                    if ($currentPage <= 3) {
+                        $end = 5;
+                    } else {
+                        $start = max(1, $lastPage - 4);
+                    }
+                }
+
+                $pages = range($start, $end);
+            @endphp
+
+            @foreach ($pages as $page)
+                <li class="{{ $page == $currentPage ? 'active' : '' }}">
+                    <a href="{{ $all_products->url($page) }}">{{ $page }}</a>
+                </li>
+            @endforeach
+
+            <!-- Next Page -->
+            <li class="{{ $all_products->hasMorePages() ? '' : 'disabled' }}">
+                <a href="{{ $all_products->nextPageUrl() }}">
+                    <i class="icon-chevron-right"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+@endif
 
 
 

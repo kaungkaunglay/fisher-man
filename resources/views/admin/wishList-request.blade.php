@@ -85,35 +85,52 @@
                 </div>
                 <div class="divider"></div>
                  {{-- pagination --}}
-                 @if ($wishLists->hasPages())
-                 <div class="flex items-center justify-between flex-wrap gap10">
-                     <!-- <div class="text-tiny">
-                         Showing {{ $wishLists->firstItem() }} to {{ $wishLists->lastItem() }} of {{ $wishLists->total() }} entries
-                     </div> -->
-                     <ul class="wg-pagination">
-                         <!-- Previous Page -->
-                         <li class="{{ $wishLists->onFirstPage() ? 'disabled' : '' }}">
-                             <a href="{{ $wishLists->previousPageUrl() }}">
-                                 <i class="icon-chevron-left"></i>
-                             </a>
-                         </li>
+                @if ($wishLists->hasPages())
+                <div class="flex items-center justify-between flex-wrap gap10">
+                    <div class="text-tiny">{{trans_lang('showing_10_entries')}}</div>
+                    <ul class="wg-pagination">
+                        <!-- Previous Page -->
+                        <li class="{{ $wishLists->onFirstPage() ? 'disabled' : '' }}">
+                            <a href="{{ $wishLists->previousPageUrl() }}">
+                                <i class="icon-chevron-left"></i>
+                            </a>
+                        </li>
 
-                         <!-- Page Numbers -->
-                         @foreach ($wishLists->links()->elements[0] as $page => $url)
-                             <li class="{{ $page == $wishLists->currentPage() ? 'active' : '' }}">
-                                 <a href="{{ $url }}">{{ $page }}</a>
-                             </li>
-                         @endforeach
+                        <!-- Page Numbers (Show 5 buttons) -->
+                        @php
+                            $currentPage = $wishLists->currentPage();
+                            $lastPage = $wishLists->lastPage();
+                            $start = max(1, $currentPage - 2); // Show 2 pages before current
+                            $end = min($lastPage, $currentPage + 2); // Show 2 pages after current
 
-                         <!-- Next Page -->
-                         <li class="{{ $wishLists->hasMorePages() ? '' : 'disabled' }}">
-                             <a href="{{ $wishLists->nextPageUrl() }}">
-                                 <i class="icon-chevron-right"></i>
-                             </a>
-                         </li>
-                     </ul>
-                 </div>
-                 @endif
+                            // Adjust to always show 5 buttons if possible
+                            if ($end - $start < 4 && $lastPage > 5) {
+                                if ($currentPage <= 3) {
+                                    $end = 5;
+                                } else {
+                                    $start = max(1, $lastPage - 4);
+                                }
+                            }
+
+                            $pages = range($start, $end);
+                        @endphp
+
+                        @foreach ($pages as $page)
+                            <li class="{{ $page == $currentPage ? 'active' : '' }}">
+                                <a href="{{ $wishLists->url($page) }}">{{ $page }}</a>
+                            </li>
+                        @endforeach
+
+                        <!-- Next Page -->
+                        <li class="{{ $wishLists->hasMorePages() ? '' : 'disabled' }}">
+                            <a href="{{ $wishLists->nextPageUrl() }}">
+                                <i class="icon-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            @endif
+            {{-- pagination --}}
             </div>
             <!-- /all-user -->
         </div>
