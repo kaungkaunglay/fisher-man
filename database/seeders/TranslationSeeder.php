@@ -240,8 +240,8 @@ class TranslationSeeder extends Seeder
                 'jp' => '完了',
             ],
             [
-                'key' => 'Image',
-                'en' => 'image',
+                'key' => 'image',
+                'en' => 'Image',
                 'jp' => '画像',
             ],
             

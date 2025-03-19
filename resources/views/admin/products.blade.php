@@ -151,10 +151,10 @@
         </div>
 
         <div class="divider"></div>
-        <div class="flex items-center justify-between flex-wrap gap10">
+        {{-- <div class="flex items-center justify-between flex-wrap gap10">
             <div class="text-tiny">{{trans_lang('showing_10_entries')}}</div>
             <ul class="wg-pagination">
-                {{-- Previous Page Link --}}
+                Previous Page Link
                 @if ($products->onFirstPage())
                 <li class="disabled">
                     <span><i class="icon-chevron-left"></i></span>
@@ -165,14 +165,14 @@
                 </li>
                 @endif
 
-                {{-- Pagination Elements --}}
+                Pagination Elements
                 @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
                 <li class="{{ $products->currentPage() == $page ? 'active' : '' }}">
                     <a href="{{ $url }}">{{ $page }}</a>
                 </li>
                 @endforeach
 
-                {{-- Next Page Link --}}
+                Next Page Link
                 @if ($products->hasMorePages())
                 <li>
                     <a href="{{ $products->nextPageUrl() }}"><i class="icon-chevron-right"></i></a>
@@ -184,7 +184,54 @@
                 @endif
             </ul>
 
+        </div> --}}
+        {{-- pagination --}}
+        @if ($products->hasPages())
+        <div class="flex items-center justify-between flex-wrap gap10 mt-4">
+            {{-- <div class="text-tiny">{{trans_lang('showing_10_entries')}}</div> --}}
+            <ul class="wg-pagination">
+                <!-- Previous Page -->
+                <li class="{{ $products->onFirstPage() ? 'disabled' : '' }}">
+                    <a href="{{ $products->previousPageUrl() }}">
+                        <i class="icon-chevron-left"></i>
+                    </a>
+                </li>
+
+                <!-- Page Numbers (Show 5 buttons) -->
+                @php
+                    $currentPage = $products->currentPage();
+                    $lastPage = $products->lastPage();
+                    $start = max(1, $currentPage - 2); // Show 2 pages before current
+                    $end = min($lastPage, $currentPage + 2); // Show 2 pages after current
+
+                    // Adjust to always show 5 buttons if possible
+                    if ($end - $start < 4 && $lastPage > 5) {
+                        if ($currentPage <= 3) {
+                            $end = 5;
+                        } else {
+                            $start = max(1, $lastPage - 4);
+                        }
+                    }
+
+                    $pages = range($start, $end);
+                @endphp
+
+                @foreach ($pages as $page)
+                    <li class="{{ $page == $currentPage ? 'active' : '' }}">
+                        <a href="{{ $products->url($page) }}">{{ $page }}</a>
+                    </li>
+                @endforeach
+
+                <!-- Next Page -->
+                <li class="{{ $products->hasMorePages() ? '' : 'disabled' }}">
+                    <a href="{{ $products->nextPageUrl() }}">
+                        <i class="icon-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
+    @endif
+    {{-- pagination --}}
     </div>
     <!-- /product-list -->
 </div>

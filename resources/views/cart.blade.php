@@ -145,7 +145,7 @@
                 @endforeach
                 <div class="no-cart"></div>
                 <div class="d-flex justify-content-between bg-primary text-white p-2 mt-3">
-                    <p>Total :</p>
+                    <p>{{ trans_lang('total') }} :</p>
                     <p>
                         <span class="total">¥{{ number_format($total, 0) }}</span>
                     </p>
@@ -690,7 +690,7 @@
                 <div class="no-cart"></div>
 
                 <div class="d-flex justify-content-between bg-primary text-white p-2 mt-3">
-                    <p>Total :</p>
+                    <p>{{ trans_lang('total') }} :</p>
                     <p>
                         <span class="">¥{{ number_format($total, 0) }}</span>
                     </p>

@@ -120,8 +120,9 @@ class ProductController extends Controller
             'weight.numeric' => '重量は数値でなければなりません',
             'weight.min' => '重量は1以上でなければなりません',
             'size.string' => 'サイズは文字列でなければなりません',
-            'size.max' => '小数点以下は入力できません',
+            'size.integer' => '小数点以下は入力できません',
             'size.min' => 'サイズは1文字以上でなければなりません',
+            'size.max' => 'サイズは999999文字以内でなければなりません',
             'day_of_caught.date' => '捕獲日付は日付形式でなければなりません',
             'day_of_caught.required' => 'キャプチャ日付フィールドは必須です。',
             'day_of_caught' => '捕獲日は有効な日付でなければなりません',
@@ -133,7 +134,7 @@ class ProductController extends Controller
             'discount.max' => '割引フィールドは商品価格より大きくすることはできません。',
             'status.string' => 'ステータスは必須です',
         ];
-
+        
         $request->validate([
             'sub_category_id' => 'required|exists:sub_categories,id',
             'name' => 'required|string|max:255',
@@ -141,13 +142,15 @@ class ProductController extends Controller
             'product_image' => 'required|image|mimes:png,jpg,jpeg|max:1024',
             'stock' => 'required|integer',
             'weight' => 'required|numeric|min:1', // Ensure weight is greater than 0
-            'size' => 'nullable|numeric|min:1|max:255',
+            'size' => 'nullable|integer|min:1|max:999999',
             'day_of_caught' => ['required','date',new ValidDayOfCaught()],
             'expiration_date' => ['required','date',new ValidExpireDate()],
             'discount' => 'nullable|numeric|min:0|max:' . ($request->product_price ?? 0), // Ensure discount is not greater than price
             'description' => 'nullable|string',
             'status' => 'nullable|string',
         ], $messages);
+
+    // dd($request->errors()->all());
 
        
 
@@ -257,7 +260,8 @@ class ProductController extends Controller
             'stock.integer' => '在庫は整数でなければなりません',
             'weight.numeric' => '重量は数値でなければなりません',
             'size.string' => 'サイズは文字列でなければなりません',
-            'size.max' => '小数点以下は入力できません',
+            'size.min' => 'サイズは1文字以上でなければなりません',
+            'size.max' => 'サイズは999999.99文字以内でなければなりません',
             'day_of_caught.date' => '捕獲日付は日付形式でなければなりません',
             'day_of_caught.required' => 'キャプチャ日付フィールドは必須です。',
             'day_of_caught' => '捕獲日は今日以前である必要があります',
@@ -278,7 +282,7 @@ class ProductController extends Controller
         'product_image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
         'stock' => 'sometimes|integer',
         'weight' => 'sometimes|numeric|min:1',
-        'size' => 'sometimes|numeric|min:1|max:255',
+        'size' => 'nullable|numeric|min:1|max:999999.99',
         'day_of_caught' => ['sometimes','required', 'date', new ValidDayOfCaught()],
         'expiration_date' => ['sometimes','required', 'date', new ValidExpireDate()],
         'discount' => 'nullable|numeric|min:0|max:' . ($request->product_price ?? 0), // Ensure discount is not greater than price',

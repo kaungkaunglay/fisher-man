@@ -21,7 +21,9 @@
                 <h3>お問い合わせ内容</h3>
                 <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                     <li>
-                        <a href="{{route('admin.index')}}"><div class="text-tiny">{{trans_lang('home')}}</div></a>
+                        <a href="{{ route('admin.index') }}">
+                            <div class="text-tiny">{{ trans_lang('home') }}</div>
+                        </a>
                     </li>
                     <li>
                         <i class="icon-chevron-right"></i>
@@ -49,70 +51,88 @@
                 <div class="wg-table table-all-user">
                     <ul class="table-title flex gap20 mb-14">
                         <li>
-                            <div class="body-title">{{trans_lang('name')}}</div>
+                            <div class="body-title">{{ trans_lang('name') }}</div>
                         </li>
                         <li>
-                            <div class="body-title">{{trans_lang('email')}}</div>
+                            <div class="body-title">{{ trans_lang('email') }}</div>
                         </li>
                         <li>
-                            <div class="body-title">{{trans_lang('action')}}</div>
+                            <div class="body-title">{{ trans_lang('action') }}</div>
                         </li>
                     </ul>
-                  @foreach($contacts as $contact)
-                  <ul class="flex flex-column">
-                    <li class="user-item gap14">
-                        {{-- <div class="image">
+                    @foreach ($contacts as $contact)
+                        <ul class="flex flex-column">
+                            <li class="user-item gap14">
+                                {{-- <div class="image">
                             <img src="images/avatar/user-6.png" alt="">
                         </div> --}}
-                        <div class="flex items-center justify-between gap20 flex-grow">
-                            <div class="name">
-                                <a href="#" class="body-title-2">{{$contact->name}}</a>
+                                <div class="flex items-center justify-between gap20 flex-grow">
+                                    <div class="name">
+                                        <a href="#" class="body-title-2">{{ $contact->name }}</a>
 
-                            </div>
-                            <div class="body-text">{{$contact->email}}</div>
-                            <div class="list-icon-function">
-                                <div class="item eye">
-                                   <a href="{{route('admin.contact.detail',$contact->id)}}"><i class="icon-eye"></i></a>
+                                    </div>
+                                    <div class="body-text">{{ $contact->email }}</div>
+                                    <div class="list-icon-function">
+                                        <div class="item eye">
+                                            <a href="{{ route('admin.contact.detail', $contact->id) }}"><i
+                                                    class="icon-eye"></i></a>
+                                        </div>
+
+
+                                    </div>
                                 </div>
-
-
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                  @endforeach
+                            </li>
+                        </ul>
+                    @endforeach
                 </div>
                 <div class="divider"></div>
                 {{-- pagination --}}
                 @if ($contacts->hasPages())
-                <div class="flex items-center justify-between flex-wrap gap10">
-                    <!-- <div class="text-tiny">
-                        Showing {{ $contacts->firstItem() }} to {{ $contacts->lastItem() }} of {{ $contacts->total() }} entries
-                    </div> -->
-                    <ul class="wg-pagination">
-                        <!-- Previous Page -->
-                        <li class="{{ $contacts->onFirstPage() ? 'disabled' : '' }}">
-                            <a href="{{ $contacts->previousPageUrl() }}">
-                                <i class="icon-chevron-left"></i>
-                            </a>
-                        </li>
-
-                        <!-- Page Numbers -->
-                        @foreach ($contacts->links()->elements[0] as $page => $url)
-                            <li class="{{ $page == $contacts->currentPage() ? 'active' : '' }}">
-                                <a href="{{ $url }}">{{ $page }}</a>
+                    <div class="flex items-center justify-between flex-wrap gap10">
+                        <div class="text-tiny">{{trans_lang('showing_10_entries')}}</div>
+                        <ul class="wg-pagination">
+                            <!-- Previous Page -->
+                            <li class="{{ $contacts->onFirstPage() ? 'disabled' : '' }}">
+                                <a href="{{ $contacts->previousPageUrl() }}">
+                                    <i class="icon-chevron-left"></i>
+                                </a>
                             </li>
-                        @endforeach
 
-                        <!-- Next Page -->
-                        <li class="{{ $contacts->hasMorePages() ? '' : 'disabled' }}">
-                            <a href="{{ $contacts->nextPageUrl() }}">
-                                <i class="icon-chevron-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                            <!-- Page Numbers (Show 5 buttons) -->
+                            @php
+                                $currentPage = $contacts->currentPage();
+                                $lastPage = $contacts->lastPage();
+                                $start = max(1, $currentPage - 2); // Show 2 pages before current
+                                $end = min($lastPage, $currentPage + 2); // Show 2 pages after current
+
+                                // Adjust to always show 5 buttons if possible
+                                if ($end - $start < 4 && $lastPage > 5) {
+                                    if ($currentPage <= 3) {
+                                        $end = 5;
+                                    } else {
+                                        $start = max(1, $lastPage - 4);
+                                    }
+                                }
+
+                                $pages = range($start, $end);
+                            @endphp
+
+                            @foreach ($pages as $page)
+                                <li class="{{ $page == $currentPage ? 'active' : '' }}">
+                                    <a href="{{ $contacts->url($page) }}">{{ $page }}</a>
+                                </li>
+                            @endforeach
+
+                            <!-- Next Page -->
+                            <li class="{{ $contacts->hasMorePages() ? '' : 'disabled' }}">
+                                <a href="{{ $contacts->nextPageUrl() }}">
+                                    <i class="icon-chevron-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 @endif
+                {{-- pagination --}}
             </div>
             <!-- /all-user -->
         </div>
@@ -137,4 +157,3 @@
     <script src="{{ asset('assets/admin/js/theme-settings.js') }}"></script>
     <script src="{{ asset('assets/admin/js/main.js') }}"></script>
 @endsection
-
