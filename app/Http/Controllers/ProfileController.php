@@ -18,8 +18,8 @@ class ProfileController extends Controller
         $user = AuthHelper::auth();
         $products = $user->products()->paginate(12);
 
-        [$user->firstExtension, $user->firstNumber] = $this->splitPhoneNumber($user->first_phone ?? '');
-        [$user->secondExtension, $user->secondNumber] = $this->splitPhoneNumber($user->second_phone ?? '');
+        // [$user->firstExtension, $user->firstNumber] = $this->splitPhoneNumber($user->first_phone ?? '');
+        // [$user->secondExtension, $user->secondNumber] = $this->splitPhoneNumber($user->second_phone ?? '');
 
         return view('profile_seller', compact('user', 'products'));
     }
@@ -29,8 +29,8 @@ class ProfileController extends Controller
         $user = AuthHelper::auth();
         $hasShopRequest = $user->shop()->exists();
 
-        [$user->firstExtension, $user->firstNumber] = $this->splitPhoneNumber($user->first_phone ?? '');
-        [$user->secondExtension, $user->secondNumber] = $this->splitPhoneNumber($user->second_phone ?? '');
+        // [$user->firstExtension, $user->firstNumber] = $this->splitPhoneNumber($user->first_phone ?? '');
+        // [$user->secondExtension, $user->secondNumber] = $this->splitPhoneNumber($user->second_phone ?? '');
 
 
 
@@ -199,25 +199,25 @@ class ProfileController extends Controller
 
     public function update_contact_details(Request $request)
     {
-        logger($request->all());
+        // logger($request->all());
         try {
             $user = AuthHelper::user();
 
             if ($this->hasNoChanges($user, $request)) {
+                logger('No change');
                 return response()->json([
                     'status' => true,
                     'message' => 'No change',
                 ]);
-    
             }
 
             $validationRules = [
                 'address' => 'sometimes|string|max:255',
                 'postalCode' => 'nullable|regex:/^\d{3}-?\d{4}$/',
                 // ^\d{3}-\d{4}$
-                // 'first_phone' => 'sometimes|nullable|numeric|min:10',
+                'first_phone' => 'sometimes|nullable|numeric',
                 // 'first_phone_extension' => 'sometimes|in:+81,+95',
-                // 'second_phone' => 'sometimes|nullable|numeric|min:10|different:first_phone',
+                'second_phone' => 'sometimes|nullable|numeric|different:first_phone',
                 // 'second_phone_extension' => 'sometimes|in:+81,+95',
             ];
 
@@ -291,11 +291,11 @@ class ProfileController extends Controller
 
         // return array_diff($current, $new) === [];
 
-        $firstPhone = $request->input('first_phone') != null ?'+81' .  $request->input('first_phone') : null;
-        $secondPhone = $request->input('second_phone') != null ? '+81' . $request->input('second_phone') : null;
+        // $firstPhone = $request->input('first_phone') != null ? $request->input('first_phone') : null;
+        // $secondPhone = $request->input('second_phone') != null ?  $request->input('second_phone') : null;
 
         // return $user->address === $request->address && $user->first_phone === $firstPhone && $user->second_phone === $secondPhone ;
-        return $user->address === $request->address && $user->postal_code === $request->postalCode;
+        return $user->address === $request->address && $user->postal_code === $request->postalCode && $user->first_phone === $request->first_phone && $user->second_phone === $request->second_phone; ;
     }
 
     private function processPhoneNumbers(Request $request)
@@ -345,8 +345,8 @@ class ProfileController extends Controller
         $user->update([
             'address' => $request->address ?? $user->address,
             'postal_code' => $request->postalCode ?? $user->postal_code,
-            // 'first_phone' => $request->first_phone ?? null,
-            // 'second_phone' => $request->second_phone ?? null,
+            'first_phone' => $request->first_phone ?? null,
+            'second_phone' => $request->second_phone ?? null,
         ]);
 
         session()->flash('status', 'success');
