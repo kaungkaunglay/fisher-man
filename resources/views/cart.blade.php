@@ -259,7 +259,6 @@
                     <!-- phone -->
                     <div class="input-group mb-2 shadow-none">
                         <span class="input-group-text t-blue w-25 text-wrap" style="min-width: 120px">{{ trans_lang('phone_number') }}</span>
-                        <span class="input-group-text t-blue">+81</span>
                         <input type="text" 
                             id="phone" 
                             name="phone" 
@@ -290,9 +289,8 @@
                         </div>
                         @enderror
                     </div>
-
                     <!-- country -->
-                    <div class="input-group mb-2  shadow-none">
+                    <div class="input-group mb-2  shadow-none d-none">
                         <span class="input-group-text t-blue w-25 text-wrap " style="min-width: 120px">{{ trans_lang('country') }}</span>
                         <input type="text" 
                             id="country" 
@@ -635,7 +633,6 @@
                 <table class="table desktop text-center d-md-table d-none table-item pannel pannel-default ">
                     <thead>
                         <tr>
-                            <th scope="col">{{ trans_lang('image') }}</th>
                             <th scope="col">{{ trans_lang('product_name') }}</th>
                             <th scope="col">{{ trans_lang('price') }}</th>
                             <th scope="col">{{ trans_lang('total') }}</th>
@@ -644,11 +641,6 @@
                     <tbody class="dsk-cart-body">
                         @foreach ($carts as $item)
                             <tr class="table-row cart-{{ $item->product->id }}">
-                                <td>
-                                    <div class="table-img"><img
-                                            src="{{ asset('assets/products/' . $item->product->product_image) }}"
-                                            alt="product img"></div>
-                                </td>
                                 <td clas="col-name">{{ $item->product->name }}</td>
                                 <td class="">¥{{ number_format($item->product->getSellPrice(), 0) }}</td>
                                 <td class="">¥{{ number_format(($item->product->getSellPrice() * $item->quantity), 0) }}</td>
@@ -657,7 +649,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="2"></td>
+                            <td colspan="1"></td>
                             <td>{{ trans_lang('total') }}</td>
                             <td>
                                 <span class="">¥{{ number_format($total, 0) }}</span>
@@ -669,27 +661,23 @@
             <!-- ./Desktop Style -->
 
             <!-- Mobile Style -->
-            <div class="mobile d-md-none d-flex flex-column gap-3 table-item mb-cart-body">
+            <div class="mobile d-md-none d-flex flex-column table-item mb-cart-body">
                 @foreach ($carts as $item)
-                    <div class="card cart-{{ $item->product->id }}">
-                        <div class="card-img align-content-center me-2">
-                            <img src="{{ asset('assets/products/' . $item->product->product_image) }}" alt="product img">
-                        </div>
-                        <div class="card-body">
-                            <div class="table-row">
+                    <div class="card cart-{{ $item->product->id }}  justify-content-between">
+                        
+                        <div class="card-body ">
                                 <p class="card-name">{{ $item->product->name }}</p>
                                 <div class="card-text">
                                     <span class¥{{ number_format(($item->product->getSellPrice() * $item->quantity), 0) }}span>
                                     <span
                                         class="price format">¥{{ number_format($item->product->product_price, 0) }}</span>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 @endforeach
                 <div class="no-cart"></div>
 
-                <div class="d-flex justify-content-between bg-primary text-white p-2 mt-3">
+                <div class="d-flex justify-content-between bg-primary text-white mb-3">
                     <p>{{ trans_lang('total') }} :</p>
                     <p>
                         <span class="">¥{{ number_format($total, 0) }}</span>
@@ -697,82 +685,113 @@
                 </div>
             </div>
             <!-- ./Mobile Style -->
+             <div class="d-flex display-block">
+                <div class="col-md-6">
+                    
 
-            {{-- Payment Policy Aggrement --}}
-            <div>
-                <h2 class="py-3 px-3 mt-5 bg-primary text-white" id="payment-check-sec">
-                    {{ trans_lang('agrement_payment_policy') }}</h2>
-                <div class="d-flex gap-3 py-3 px-3">
-                    <input required type="checkbox" id="select-payment">
-                    <label for="select-payment"><a
-                            href="{{ route('payment_policy') }}">{{ trans_lang('agree_payment_policy') }}</a></label>
-                    <div class="ms-auto text-danger" id="warning-msg">{{ trans_lang('check_mark') }}</div>
+                    {{-- Check Payment --}}
+                    <div class="">
+                        <h2 class="bg-primary text-white" id="payment-check-sec">
+                            {{ trans_lang('selet_payment') }}
+                        </h2>
+                        <div class="d-flex gap-3">
+                            <input type="checkbox" id="credit_card" name="payment_method" class="payment-checkbox">
+                            <label for="credit_card">{{ trans_lang('credit_card') }}</label>
+                        </div>
+                        <div class="d-flex gap-3">
+                            <input type="checkbox" id="cod" name="payment_method" class="payment-checkbox">
+                            <label for="cod">{{ trans_lang('代引き') }}</label>
+                        </div>
+                        <div class="d-flex gap-3">
+                            <input type="checkbox" id="banktransfer" name="payment_method" class="payment-checkbox">
+                            <label for="banktransfer">{{ trans_lang('銀行振込') }}</label>
+                        </div>
+                        <div class="ms-auto text-danger warning-msg">{{ trans_lang('check_mark') }}</div>
+                    </div>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            const checkboxes = document.querySelectorAll(".payment-checkbox");
+
+                            checkboxes.forEach(checkbox => {
+                                checkbox.addEventListener("change", function() {
+                                    if (this.checked) {
+                                        checkboxes.forEach(cb => {
+                                            if (cb !== this) {
+                                                cb.checked = false;
+                                            }
+                                        });
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                    {{-- /Check Payment --}}
                 </div>
-            </div>
-            {{-- Payment Policy Aggrement --}}
+                
 
-            {{-- Check Payment --}}
-            <div>
-                <h2 class="py-3 px-3 mt-3 bg-primary text-white" id="payment-check-sec">{{ trans_lang('selet_payment') }}
-                </h2>
-                <div class="d-flex gap-3 py-3 px-3">
-                    <input type="checkbox" id="select-payment">
-                    <label for="select-payment">{{ trans_lang('credit_card') }}</label>
-                    <div class="ms-auto text-danger" id="warning-msg">{{ trans_lang('check_mark') }}</div>
-                </div>
-            </div>
-            {{-- /Check Payment --}}
+                {{-- Address --}}
+                <div class="col-md-6">
 
-            {{-- Address --}}
-            <div>
-
-                <!-- Form Headline -->
-                <div>
-                    <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2 form-headline">
-                        {{ trans_lang('detail') }}
-                    </h2>
-                </div>
-                <!-- /Form Headline -->
-
-                <!-- Form Content -->
-                <div class="px-2 py-3">
-
-                    <!-- name -->
-                    <div class="form-group d-flex">
-                        <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('name') }}</h3>:
-                        <h3 class="form-output ms-1">{{ session('address') ?  session('address')['username'] : ''}}</h3>
+                    <!-- Form Headline -->
+                    <div>
+                        <h2 class="fw-bold d-flex justify-content-between bg-primary text-white form-headline">
+                            {{ trans_lang('detail') }}
+                        </h2>
                     </div>
+                    <!-- /Form Headline -->
 
-                    {{-- pohne-number link --}}
-                    <div class="form-group d-flex">
-                        <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('phone_number') }}</h3>:
-                        <h3 class="form-output ms-1">+81{{session('address') ? session('address')['phone'] :''}}</h3>
-                    </div>
+                    <!-- Form Content -->
+                    <div class="">
 
-                    <!-- postal link -->
-                    <div class="form-group d-flex">
-                        <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('postal') }}</h3>:
-                        <h3 class="form-output ms-1">{{ session('address') ? session('address')['postal'] :''}}</h3>
-                    </div>
+                        <!-- name -->
+                        <div class="form-group d-flex">
+                            <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('name') }}</h3>:
+                            <h3 class="form-output ms-1">{{ session('address') ?  session('address')['username'] : ''}}</h3>
+                        </div>
 
-                    <!-- country link -->
-                    <div class="form-group d-flex">
-                        <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('country') }}</h3>:
-                        <h3 class="form-output ms-1">{{ session('address') ? session('address')['country'] : '' }}</h3>
-                    </div>
+                        {{-- pohne-number link --}}
+                        <div class="form-group d-flex">
+                            <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('phone_number') }}</h3>:
+                            <h3 class="form-output ms-1">{{session('address') ? session('address')['phone'] :''}}</h3>
+                        </div>
 
-                    <!-- address link -->
-                    <div class="form-group d-flex align-items-start">
-                        <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('shipping_address') }}</h3>:
-                        <h3 class="form-output ms-1">{{ session('address') ? session('address')['address'] : '' }}</h3>
+                        <!-- postal link -->
+                        <div class="form-group d-flex">
+                            <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('postal') }}</h3>:
+                            <h3 class="form-output ms-1">{{ session('address') ? session('address')['postal'] :''}}</h3>
+                        </div>
+
+                        <!-- country link -->
+                        <!-- <div class="form-group d-flex">
+                            <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('country') }}</h3>:
+                            <h3 class="form-output ms-1">{{ session('address') ? session('address')['country'] : '' }}</h3>
+                        </div> -->
+
+                        <!-- address link -->
+                        <div class="form-group d-flex align-items-start">
+                            <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('shipping_address') }}</h3>:
+                            <h3 class="form-output ms-1">{{ session('address') ? session('address')['address'] : '' }}</h3>
+                        </div>
+
                     </div>
+                    <!-- /Form Content -->
 
                 </div>
-                <!-- /Form Content -->
-
-            </div>
-            {{-- /Address --}}
-
+                {{-- /Address --}}
+             </div>
+            
+             {{-- Payment Policy Aggrement --}}
+                    <div class="">
+                        <h2 class="bg-primary text-white" id="payment-check-sec">
+                        支払いポリシーに同意する</h2>
+                        <div class="d-flex gap-3">
+                            <input required type="checkbox" id="select-payment">
+                            <label for="select-payment"><a
+                                    href="{{ route('payment_policy') }}">支払いポリシーに同意する</a></label>
+                            <div class="ms-auto text-danger" id="warning-msg">{{ trans_lang('check_mark') }}</div>
+                        </div>
+                    </div>
+                    {{-- Payment Policy Aggrement --}}
             <div class="d-flex gap-3 my-4 justify-content-end">
                 <a href="{{ route('cart.address')}}" class="btn btn-outline-primary common-btn btn-back">{{ trans_lang('go_back') }}</a>
                 <button data-page="#complete"
