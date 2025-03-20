@@ -143,7 +143,7 @@ class ProductController extends Controller
             'product_price' => 'required|numeric|min:1|max:99999999.99', // Ensure price is greater than 0
             'product_image' => 'required|image|mimes:png,jpg,jpeg|max:1024',
             'stock' => 'required|integer',
-            'weight' => 'required|numeric|min:1', // Ensure weight is greater than 0
+            'weight' => 'required|min:1', // Ensure weight is greater than 0
             'size' => 'nullable|integer|min:1|max:999999',
             'day_of_caught' => ['required','date',new ValidDayOfCaught()],
             'expiration_date' => ['required','date',new ValidExpireDate()],
@@ -295,7 +295,7 @@ class ProductController extends Controller
         'product_price' => 'sometimes|numeric|min:1|max:99999999.99',
         'product_image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
         'stock' => 'sometimes|integer',
-        'weight' => 'sometimes|numeric|min:1',
+        'weight' => 'sometimes|min:1',
         'size' => 'nullable|numeric|min:1|max:999999.99',
         'day_of_caught' => ['sometimes','required', 'date', new ValidDayOfCaught()],
         'expiration_date' => ['sometimes','required', 'date', new ValidExpireDate()],

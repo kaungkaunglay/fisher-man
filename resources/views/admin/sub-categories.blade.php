@@ -87,10 +87,10 @@
                 <ul class="flex flex-column">
                     @foreach($sub_categories as $subCategory)
                     <li class="product-item gap14">
-                        <div class="image no-bg">
+                        <!-- <div class="image no-bg">
 
                             <img src="{{ asset('assets/images/sub_categories/'.$subCategory->image) }}" alt="{{ $subCategory->name }}">
-                        </div>
+                        </div> -->
                         <div class="flex items-center justify-between gap20 flex-grow">
                             <div class="name">
                                 <a href="{{ route('admin.sub_categories.edit', $subCategory) }}" class="body-title-2">{{ $subCategory->name }}</a>

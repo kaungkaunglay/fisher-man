@@ -80,7 +80,7 @@
                         <div class="body-title">{{trans_lang('product')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Time Sale</div>
+                        <div class="body-title">タイムセール</div>
                     </li>
                     <li>
                         <div class="body-title">{{trans_lang('product')}} ID</div>
@@ -130,8 +130,7 @@
                                     {{ $product->status }}
                                 @endif
                             </div>                            
-                            <div class="body-text">{{ number_format($product->discount ?? 0) }}</div>
-                            <div>
+\                            <div>
                                 @if($product->stock <= 0)
                                     <div class="block-not-available">Out of stock</div>
                             @else

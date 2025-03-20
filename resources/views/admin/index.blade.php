@@ -81,11 +81,11 @@
                                         <div class="text-tiny">¥ {{number_format($top_product->discount)}}</div>
                                     </div>
                                     <div class="seller-name">
-                                        <div class="text-tiny mb-3">Seller</div>
+                                        <div class="text-tiny mb-3">A company</div>
                                         <div class="body-text">{{$top_product->username}}</div>
                                     </div>
                                     <div class="stock">
-                                        <div class="text-tiny mb-3">Stock</div>
+                                        <div class="text-tiny mb-3">在庫数</div>
                                         <div class="body-text">{{$top_product->stock}}</div>
                                     </div>
                                 </div>

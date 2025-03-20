@@ -79,7 +79,7 @@
                                     @endphp
 
                                     <input type="number" maxlength="10" class="form-control" name="phone" id="phone" value="{{ $phone }}" 
-                                        @if($user && $user->first_phone) readonly @endif>
+                                        @if($user && $user->first_phone)  @endif>
                                 </div>
 
                                 <span class="invalid-feedback"></span>
