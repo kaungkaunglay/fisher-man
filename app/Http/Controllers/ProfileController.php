@@ -37,6 +37,47 @@ class ProfileController extends Controller
         return view('profile_user', compact('user','hasShopRequest'));
     }
 
+    public function update_avatar(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'sometimes|image|mimes:jpeg,jpg,png|max:2048'
+        ]);
+
+        if ($request->hasFile('avatar')) {
+
+            $user = AuthHelper::user();
+
+            $existing_avatar = 'assets/avatars/'.$user->avatar;
+
+            $avatar = $request->file('avatar');
+            $avatarName = time() . '_' . $avatar->getClientOriginalName();
+
+
+            if ($user->avatar && file_exists(public_path($existing_avatar))) {
+
+                unlink(public_path($existing_avatar));
+
+            }
+
+            $avatar = $request->file('avatar');
+
+            $destinationPath = public_path('assets/avatars');
+
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            $avatarName = time() . '_' . $avatar->getClientOriginalName();
+
+            $avatar->move($destinationPath, $avatarName);
+
+            $user->avatar = $avatarName;
+            $user->save();
+
+        }
+
+    }
+
     public function update_basic_profile(Request $request)
     {
         $messages = [

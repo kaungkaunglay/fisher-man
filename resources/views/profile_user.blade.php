@@ -34,14 +34,20 @@
                     <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-3">
                         <div class="p-6 d-flex justify-content-center align-items-center">
                             <div class="w-75 d-flex align-center border p-2  ">
-                                <label for="avatar-input" class="w-100 d-flex align-center position-relative  overflow-hidden gallery">
+                                <div class="w-100 d-flex align-center position-relative  overflow-hidden gallery">
                                     <img src="{{ auth_helper()->getAvatar() }}" class="default-preview img-fluid " id="form-img"
                                         alt="{{ $user->username ?? 'Account.png' }}" >
-                                    <div class="d-flex justify-content-center align-items-center position-absolute text-black bg-white rounded-5 px-4 py-2" style="right: 10px; bottom: 10px;">
-                                        <i class="fas fa-plus fs-6 me-2" ></i>
-                                        <h3>Upload</h3>
-                                    </div>
-                                </label>
+                                    <form action="" method="POST">
+                                        @csrf 
+                                        @method('PUT')
+                                        <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input"
+                                            accept="image/*" hidden>
+                                        <label for="avatar-input" class="d-flex justify-content-center align-items-center position-absolute text-black bg-white rounded-5 px-4 py-2" style="right: 10px; bottom: 10px;">
+                                            <i class="fa-solid fa-upload" ></i>
+                                            <small class="fs-6 d-none d-md-inline ms-2">アップロード</small>
+                                        </label>
+                                    </form>
+                                </div>
                             </div>
 
                         </div>
@@ -170,6 +176,21 @@
 
                             </div>
                         </div>
+
+                        
+                        {{-- <div class="w-100">
+                            @if (!auth_helper()->isEmailLinkInvalid())
+                               
+                                <div class="input-group">
+                                    <span class="input-group-text">メール確認リンクはすでに送信されています。</span>
+                                </div>
+                            @elseif(!auth_helper()->isVerified())
+                                <div class="input-group">
+                                    <span class="input-group-text">メールアドレスを確認できません。メールアドレスを確認してください。</span>
+                                    <a href="javascript:void(0);" class="btn btn-outline-secondary" id="sent_email_verify_link">こちら</a>
+                                </div>
+                            @endif 
+                        </div> --}}
 
                     </div>
                 </div>
