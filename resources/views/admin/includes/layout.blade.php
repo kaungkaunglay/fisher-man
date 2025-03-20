@@ -346,7 +346,9 @@
                     <div class="header-dashboard">
                         <div class="wrap">
                             <div class="header-left">
-                          
+                                <div class="button-show-hide">
+                                    <i class="icon-menu-left"></i>
+                                </div>
                             </div>
                             <div class="header-grid">
                                 {{-- <div class="header-item country">
