@@ -414,13 +414,13 @@ class ProductController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Product time sale status updated successfully.',
+                'message' => 'タイムセールに商品が追加されました',
             ]);
 
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'An error occurred while updating time sale status.',
+                'message' => 'タイムセールのステータスを更新中にエラーが発生しました。',
                 'error' => $e->getMessage(),
             ]);
         }
@@ -435,14 +435,13 @@ class ProductController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Time sale status updated successfully',
-                'status' => $setting->value == 'active' ? 'deactivate' : 'activate',
+                'message' => 'Success',
             ]);
 
         }catch(\Exception $e){
             return response()->json([
                 'success' => false,
-                'message' => $e->getMessage(),
+                'message' => 'An error occur',
             ]);
         }
     }
