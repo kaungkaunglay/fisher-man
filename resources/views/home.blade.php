@@ -209,7 +209,7 @@
 
             <!-- All Products Headline -->
             <div>
-                <h6 class="txt-primary fw-bold mb-3">{{trans_lang('all_products')}}</h6>
+                <h6 class="txt-primary fw-bold mb-3">{{trans_lang('すべての商品')}}</h6>
                 <div class="filter d-flex justify-content-between align-items-center mb-3">
 
                     <!-- display -->
