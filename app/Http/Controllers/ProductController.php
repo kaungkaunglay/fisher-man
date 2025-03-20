@@ -111,6 +111,7 @@ class ProductController extends Controller
             'product_price.required' => '価格フィールドは必須です',
             'product_price.numeric' => '価格は数値でなければなりません',
             'product_price.min' => '価格は1以上でなければなりません',
+            'product_price.max' => '価格は99999999.99以下でなければなりません',
             'product_image.required' => '商品画像フィールドは必須です',
             'product_image.image' => '商品画像は画像でなければなりません',
             'product_image.mimes' => '商品画像はjpgまたはpngタイプでなければなりません',
@@ -139,7 +140,7 @@ class ProductController extends Controller
         $request->validate([
             'sub_category_id' => 'required|exists:sub_categories,id',
             'name' => 'required|string|max:255',
-            'product_price' => 'required|numeric|min:1', // Ensure price is greater than 0
+            'product_price' => 'required|numeric|min:1|max:99999999.99', // Ensure price is greater than 0
             'product_image' => 'required|image|mimes:png,jpg,jpeg|max:1024',
             'stock' => 'required|integer',
             'weight' => 'required|numeric|min:1', // Ensure weight is greater than 0
@@ -265,6 +266,8 @@ class ProductController extends Controller
             'name.string' => '名前は文字列でなければなりません',
             'name.max' => '名前は255文字以内でなければなりません',
             'product_price.numeric' => '価格は数値でなければなりません',
+            'product_price.min' => '価格は1以上でなければなりません',
+            'product_price.max' => '価格は99999999.99以下でなければなりません',
             'product_image.image' => '商品画像は画像でなければなりません',
             'product_image.mimes' => '商品画像はjpeg、jpg、pngタイプでなければなりません',
             'product_image.max' => '商品画像は1024KB以下でなければなりません',
@@ -289,7 +292,7 @@ class ProductController extends Controller
 
     $request->validate([
         'name' => 'sometimes|string|max:255',
-        'product_price' => 'sometimes|numeric|min:1',
+        'product_price' => 'sometimes|numeric|min:1|max:99999999.99',
         'product_image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
         'stock' => 'sometimes|integer',
         'weight' => 'sometimes|numeric|min:1',
