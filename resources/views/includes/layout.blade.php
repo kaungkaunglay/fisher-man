@@ -475,7 +475,7 @@
             </a>
         </div>
         <a href="{{ route('white_list.index') }}" class="bottom-menu position-relative hv-icon white-list-fx"><i class="fa-solid fa-bookmark"></i><br>
-            <p>{{ trans_lang('whitelist') }}
+            <p>{{ trans_lang('タグ') }}
                 <span class="noti-animation nth-1 position-absolute rounded-circle"></span>
                 <span class="noti-animation nth-2 position-absolute rounded-circle cart-item-btn"></span>
                 <span class="mobile-white-list-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span>
