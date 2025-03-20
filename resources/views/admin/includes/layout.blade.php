@@ -38,6 +38,8 @@
     {{-- sweetalert css --}}
     <link rel="stylesheet" href="{{asset('assets/sweetalert2/dist/sweetalert2.min.css')}}">
 
+    {{-- toastr  --}}
+    <link rel="stylesheet" href="{{asset('assets/libs/toastr-master/build/toastr.min.css')}}">
 
     <!-- Favicon and Touch Icons  -->
     <link rel="icon" href="{{asset('assets/images/fish-logo.jpg')}}" type="image/png">
@@ -565,6 +567,25 @@
 
     {{-- sweetalert js --}}
     <script src="{{asset('assets/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+
+    {{-- toastr  --}}
+    <script src="{{ asset('assets\libs\toastr-master\build\toastr.min.js') }}"></script>
+
+    <script>
+        toastr.options = {
+            "timeOut": "3000",
+            "extendedTimeOut": "500",
+            "progressBar": true,
+            "onShown": function () {
+                var toast = $(this);
+                toast.hover(
+                    function () {
+                        toastr.clear()
+                    }
+                );
+            }
+        };
+    </script>
 
     <!-- Javascript -->
     @yield('script')

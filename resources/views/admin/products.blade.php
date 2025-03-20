@@ -331,11 +331,12 @@
                     'time_sale_products': time_sale_products
                 },
                 success: function(response) {
-                    console.log('response');
-                    console.log( response.message);
-                    if(!response.success){
-                        console.log( response.message);
-                    }  
+                    
+                    if(response.success){
+                        toastr.success('',response.message)
+                    } else {
+                        toastr.error('',response.message)
+                    }
                 }
             });
         });
