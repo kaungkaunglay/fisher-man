@@ -62,7 +62,7 @@ class ProductController extends Controller
         }
 
         $products = $query->get();
-        $discount_products = $query->where('is_time_sale',1)->where('status','approved')->latest()->limit(6)->get();
+        $discount_products = setting('is_time_sale') == 'active'  ?$query->where('is_time_sale',1)->where('status','approved')->latest()->limit(6)->get() : collect();
         $popular_shops = Shop::where('status','approved')->inRandomOrder()->take(4)->get();
 
         $random_products  = Product::inRandomOrder()->take(6)->get(); // Fetch 6 random products
@@ -222,22 +222,26 @@ class ProductController extends Controller
 
     public function discountProducts(Request $request)
     {
-        $sortBy = $request->get('sort_by', 'latest');
-        $query = Product::where('is_time_sale',1)->where('status','approved');
-
-        if ($sortBy === 'price_asc') {
-            $query->orderBy('product_price', 'asc');
-        } elseif ($sortBy === 'price_desc') {
-            $query->orderBy('product_price', 'desc');
-        } elseif ($sortBy === 'name_asc') {
-            $query->orderBy('name', 'asc');
-        } elseif ($sortBy === 'name_desc') {
-            $query->orderBy('name', 'desc');
+        if(setting('is_time_sale') != 'active'){
+            $products = collect();
         } else {
-            $query->latest();
-        }
+            $sortBy = $request->get('sort_by', 'latest');
+            $query = Product::where('is_time_sale',1)->where('status','approved');
 
-        $products = $query->get();
+            if ($sortBy === 'price_asc') {
+                $query->orderBy('product_price', 'asc');
+            } elseif ($sortBy === 'price_desc') {
+                $query->orderBy('product_price', 'desc');
+            } elseif ($sortBy === 'name_asc') {
+                $query->orderBy('name', 'asc');
+            } elseif ($sortBy === 'name_desc') {
+                $query->orderBy('name', 'desc');
+            } else {
+                $query->latest();
+            }
+
+            $products = $query->get();
+        }
         return view('special-offer', compact('products'));
     }
 
@@ -375,6 +379,71 @@ class ProductController extends Controller
         return response()->json($products);
 
     }
+
+    public function updateTimeSale(Request $request)
+    {
+        try {
+            $time_sale_products = $request->input('time_sale_products', []);
+
+            $validator = Validator::make($request->all(), [
+                'time_sale_products' => 'required|array',
+                'time_sale_products.*.id' => 'required|exists:products,id',
+                'time_sale_products.*.is_time_sale' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => "Update time sale failed",
+                    'errors' => $validator->errors(),
+                ]);
+            }
+
+            $productIds = collect($time_sale_products)->pluck('id')->toArray();
+
+            $products = Product::whereIn('id', $productIds)->get()->keyBy('id');
+
+            foreach ($time_sale_products as $data) {
+                if (isset($products[$data['id']])) {
+                    $products[$data['id']]->update(['is_time_sale' => $data['is_time_sale']]);
+                }
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Product time sale status updated successfully.',
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred while updating time sale status.',
+                'error' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function toggleTimeSale()
+    {
+        try{
+            $setting = Setting::where('key','is_time_sale')->first();
+            $setting->value = $setting->value == 'active' ? 'inactive' : 'active';
+            $setting->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Time sale status updated successfully',
+                'status' => $setting->value == 'active' ? 'deactivate' : 'activate',
+            ]);
+
+        }catch(\Exception $e){
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ]);
+        }
+    }
+
 
     public function addTimeSale(Request $request)
     {
