@@ -77,7 +77,7 @@
                                         <span class="">¥{{ number_format($product->product_price) }}</span>
                                     @endif
                                 </div>
-                                <div class="price body-title">{{ $product->created_at->format('d M Y') }}</div>
+                                <div class="price body-title">{{ $product->created_at->locale('ja')->isoFormat('YYYY年MM月DD日') }}</div>
                             </div>
 
                         </div>

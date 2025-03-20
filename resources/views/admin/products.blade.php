@@ -70,7 +70,7 @@
                     </form>
                 </div> --}}
                 @if (check_role(2))
-                <a class="tf-button style-1 w208" id="update_time_sale" href="javascript:void(0);" disabled><i class="icon-edit"></i>{{trans_lang('update_time_sale')}}</a>
+                <a class="tf-button style-1 w208" id="update_time_sale" href="javascript:void(0);" disabled><i class="icon-edit"></i>{{trans_lang('タイムセールに追加')}}</a>
                 <a class="tf-button style-1 w208" href="/admin/products/create"><i class="icon-plus"></i>{{trans_lang('add_product')}}</a>
                 @endif
             </div>
@@ -120,8 +120,17 @@
                             </div>
                             <div class="body-text">{{ $product->id }}</div>
                             <div class="body-text">¥{{ number_format($product->product_price) }}</div>
-                            <div class="body-text">{{ $product->status }}</div>
-                            <div class="body-text">{{ $product->sale_percentage ?? 'N/A' }}</div>
+                            <div class="body-text">
+                                @if ($product->status == 'approved')
+                                    承認済み
+                                @elseif ($product->status == 'pending')
+                                    保留中
+                                @else
+                                    <!-- Optionally, you can show something else if the status is neither approved nor pending -->
+                                    {{ $product->status }}
+                                @endif
+                            </div>                            
+                            <div class="body-text">{{ number_format($product->discount ?? 0) }}</div>
                             <div>
                                 @if($product->stock <= 0)
                                     <div class="block-not-available">Out of stock</div>
@@ -129,7 +138,7 @@
                             <div class="body-text">{{ $product->stock }}</div>
                             @endif
                         </div>
-                        <div class="body-text">{{ $product->created_at->format('d M Y') }}</div>
+                        <div class="body-text">{{ $product->created_at->locale('ja')->isoFormat('YYYY年MM月DD日') }}</div>
                         <div class="list-icon-function">
                             <div class="item eye">
                                 <a href="{{ route('admin.product.show', $product->id) }}">

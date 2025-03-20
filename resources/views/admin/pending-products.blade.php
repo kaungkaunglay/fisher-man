@@ -117,7 +117,7 @@
                             <div class="body-text">¥{{ number_format($product->product_price) }}</div>
                             <div class="body-text">{{ $product->stock }}</div>
                             <div class="body-text">{{ $product->sale_percentage ?? 'N/A' }}</div>
-                            <div class="body-text">{{ $product->created_at->format('d M Y') }}</div>
+                            <div class="body-text">{{ $product->created_at->locale('ja')->isoFormat('YYYY年MM月DD日') }}</div>
                             <div class="body-text">{{ $product->expiration_date }}</div>
                             <div class="dropdown">
                                 {{-- <div class="block-pending">Pending</div> --}}

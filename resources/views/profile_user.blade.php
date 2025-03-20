@@ -346,7 +346,7 @@
 
                         {{-- postal code --}}
                         <div class="d-flex">
-                            <label class="w-25" for="postalCode">Postal Code</label>:
+                            <label class="w-25" for="postalCode">郵便番号</label>:
                             <div class="form-group">
                                 <output class="form-output ps-1" for="postalCode">{{ $user->postal_code }}</output>
                                 <input type="text" name="postalCode" id="postalCode" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;" value="{{ $user->postal_code }}">

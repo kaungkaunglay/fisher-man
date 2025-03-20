@@ -71,7 +71,7 @@
                 </div>
                 @if (check_role(2))
                 
-                <a class="tf-button style-1 w208" id="toggle_time_sale" href="javascript:void(0);">{{ setting('is_time_sale') == 'active' ? trans_lang('deactivate') : trans_lang('activate')}}</a>
+                <a class="tf-button style-1 w208" id="toggle_time_sale" href="javascript:void(0);">{{ setting('is_time_sale') == 'active' ? trans_lang('無効化する') : trans_lang('有効化する')}}</a>
                 @endif
             </div>
             <div class="wg-table table-product-list">
@@ -84,9 +84,6 @@
                     </li>
                     <li>
                         <div class="body-title">{{trans_lang('price')}}</div>
-                    </li>
-                    <li>
-                        <div class="body-title">{{trans_lang('status')}}</div>
                     </li>
                     <li>
                         <div class="body-title">{{trans_lang('sale')}}</div>
@@ -114,8 +111,7 @@
                             </div>
                             <div class="body-text">{{ $product->id }}</div>
                             <div class="body-text">¥{{ number_format($product->product_price) }}</div>
-                            <div class="body-text">{{ $product->status }}</div>
-                            <div class="body-text">{{ $product->sale_percentage ?? 'N/A' }}</div>
+                            <div class="body-text">{{ number_format($product->discount ?? 0) }}</div>
                             <div>
                                 @if($product->stock <= 0)
                                     <div class="block-not-available">Out of stock</div>
@@ -123,7 +119,7 @@
                             <div class="body-text">{{ $product->stock }}</div>
                             @endif
                         </div>
-                        <div class="body-text">{{ $product->created_at->format('d M Y') }}</div>
+                        <div class="body-text">{{ $product->created_at->locale('ja')->isoFormat('YYYY年MM月DD日') }}</div>
                         <div class="list-icon-function">
                             {{-- <div class="item eye">
                                 <a href="{{ route('admin.product.show', $product->id) }}">

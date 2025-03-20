@@ -217,11 +217,11 @@
                                                     <div class="text">お問い合わせ内容</div>
                                                 </a>
                                             </li>
-                                            <li class="sub-menu-item">
+                                            <!-- <li class="sub-menu-item">
                                                 <a href="{{route('admin.users.wishList')}}" class="{{request()->is('admin/request-wishList') ? 'active' : ''}}">
                                                     <div class="text">{{trans_lang('wishlist')}}</div>
                                                 </a>
-                                            </li>
+                                            </li> -->
 
                                         </ul>
                                     </li>

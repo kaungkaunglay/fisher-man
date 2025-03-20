@@ -114,7 +114,7 @@
                     @endforeach
                 </div>
                 @else
-                <h3 class="title text-center">There is no product.</h3>
+                <h3 class="title text-center">商品がありません。</h3>
                    @endif
                 </li>
             </ul>

@@ -73,12 +73,18 @@
                                 <label for="phone" class="form-label">{{ trans_lang('phone_number') }}</label>
 
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1">+81</span>
-                                    <input type="number" maxlength="10" class="form-control" name="phone" id="phone" value="{{ \Str::substr(auth_helper()->user()?->first_phone, 3) ?? ''}}" @if(auth_helper()->check()) readonly @endif>
+                                    @php
+                                        $user = auth_helper()->user();
+                                        $phone = $user?->first_phone ? \Str::substr($user->first_phone, 3) : '';
+                                    @endphp
+
+                                    <input type="number" maxlength="10" class="form-control" name="phone" id="phone" value="{{ $phone }}" 
+                                        @if($user && $user->first_phone) readonly @endif>
                                 </div>
 
                                 <span class="invalid-feedback"></span>
                             </div>
+
 
 
 
