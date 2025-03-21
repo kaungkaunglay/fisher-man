@@ -471,7 +471,7 @@ li {
 }
 
 .carousel-item img {
-  height: 415px !important;
+  height: auto !important;
 }
 
 /* breadcrumb style overwrite */

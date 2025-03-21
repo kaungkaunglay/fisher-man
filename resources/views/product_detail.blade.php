@@ -60,7 +60,7 @@
                     <div class="product-descraption col-6">
                         <div class="product-title&date d-flex justify-content-between align-items-center">
                             <h2 class="m-0 title">{{ $product->name }}</h2>
-                            <p class="m-0">{{ $product->created_at->format('d M Y') }}</p>
+                            <p class="m-0">{{ $product->created_at->locale('ja')->isoFormat('YYYY年MM月DD日') }}</p>
                         </div>
                         <div class="product-price">
                             <p class="m-b-10 price ">¥ {{ number_format($product->getSellPrice()) }}</p>

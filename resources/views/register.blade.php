@@ -16,7 +16,7 @@
             @csrf
             <div class="input-box d-flex flex-column">
                 <label for="username">{{trans_lang('username')}}</label>
-                <input id="username" name="username" placeholder="John Doe" type="text" spellcheck="false" autofocus>
+                <input id="username" name="username" placeholder="{{trans_lang('username')}}" type="text" spellcheck="false" autofocus>
                 <span class="invalid-feedback"></span>
             </div>
             <div class="input-box d-flex flex-column">
@@ -50,8 +50,7 @@
                             <option value="+81">+81</option>
                             <option value="+95">+95</option>
                         </select> --}}
-                        <input type="text" name="first_phone_extension" value="+81" class="extension bg-second" readonly/>
-                        <input maxlength="10" id="first_phone" name="first_phone" placeholder="90-1234-5678" type="number"
+                        <input maxlength="10" id="first_phone" name="first_phone" placeholder="000-0000-0000" type="number"
                             class="form-control bg-second" autocomplete="off">
                     </div>
                     <span class="invalid-feedback"></span>
@@ -63,8 +62,7 @@
                             <option value="+81">+81</option>
                             <option value="+95">+95</option>
                         </select> --}}
-                        <input type="text" name="second_phone_extension" value="+81" class="extension bg-second" readonly/>
-                        <input maxlength="10" id="second_phone" name="second_phone" placeholder="90-1234-5678" type="number"
+                        <input maxlength="10" id="second_phone" name="second_phone" placeholder="000-0000-0000" type="number"
                             class="form-control bg-second" autocomplete="off">
                     </div>
                     <span class="invalid-feedback"></span>

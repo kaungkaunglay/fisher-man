@@ -110,6 +110,8 @@ Route::middleware(['is_seller'])->group(function () {
      Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('update_product');
      Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
      Route::get('/admin/products/add-time-sale', [ProductController::class, 'addTimeSale'])->name('admin.products.addTimeSale');
+     Route::post('/admin/products/update-time-sale', [ProductController::class, 'updateTimeSale'])->name('admin.products.updateTimeSale');
+    Route::post('/admin/products/toggle-time-slae',[ProductController::class,'toggleTimeSale'])->name('admin.products.toggledTimeSale');
 
       // Categories Controller
 

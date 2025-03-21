@@ -162,7 +162,7 @@ class CartController extends Controller
             'username.string' => 'ユーザー名は文字列である必要があります。',
             'phone.numeric' => '電話番号は数字である必要があります。',
             'phone.required' => '電話番号を入力してください。',
-            'phone.regex' => '有効な電話番号を入力してください。（70, 80, 90 で始まる10桁の番号）',
+            'phone.regex' => '有効な電話番号を入力してください。（070, 80, 90 で始まる10桁の番号）',
             'phone.max' => '電話番号は10桁以内で入力してください。',
             'postal.required' => '郵便番号は必須です。',
             'postal.regex' => '有効な郵便番号を入力してください。',
@@ -173,7 +173,7 @@ class CartController extends Controller
         ];
         $request->validate([
             'username' => 'required|string',
-            'phone' => 'required|numeric|regex:/^[789]0\d{8}$/',
+            'phone' => 'required|numeric',
             'postal' => 'required|regex:/^\d{3}-?\d{4}$/', 
             'country' => 'required|string',
             'address' => 'required|string',

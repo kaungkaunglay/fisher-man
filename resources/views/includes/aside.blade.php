@@ -1,8 +1,8 @@
 <!-- aside start -->
 {{-- @dd($category) --}}
 <ul class="sidebar-menu rounded fw-bold p-4 txt-primary">
-    @if (Request::routeIs(patterns: 'sub-category.show') || Request::routeIs(patterns: 'category'))
-    @foreach ($category->subCategories->take(9) as $subcategory)
+    @if (Request::routeIs(patterns: 'category'))
+        @foreach ($subcategories as $subcategory)
         @if($subcategory->isCategory($menu_category_id))
         {{-- @dd($subcategory) --}}
         <li>
