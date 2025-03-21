@@ -210,6 +210,11 @@ class TranslationSeeder extends Seeder
                 'en' => 'Pending Product',
                 'jp' => '保留中の商品'
             ],
+            [
+                'key' => 'uploade_img', 
+                'en' => 'Upload Image',
+                'jp' => '画像をアップロード',
+            ],
 
             [
                 'key' => 'shipping_address',
@@ -512,13 +517,18 @@ class TranslationSeeder extends Seeder
                 'jp' => 'パスワード',
             ],
             [
+                'key' => 'reset_password',
+                'en' => 'Reset Password',
+                'jp' => 'パスワードをリセット',
+            ],
+            [
                 'key' => 'remember',
                 'en' => 'Remember me',
                 'jp' => 'ログイン情報を保存',
             ],
             [
                 'key' => 'forget_password',
-                'en' => 'Forget Password',
+                'en' => 'Forgot Password',
                 'jp' => 'パスワードを忘れた場合',
             ],
             [
@@ -797,12 +807,12 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'send_link',
                 'en' => 'Send Reset a Link',
-                'jp' => 'リセット用リンクを送信',
+                'jp' => '再設定リンクを再送信',
             ],
             [
                 'key' => 'back_to_login',
                 'en' => 'Back to Login',
-                'jp' => 'ログインページに戻る',
+                'jp' => 'ログイン画面に戻る',
             ],
             [
                 'key' => 'add_setting',

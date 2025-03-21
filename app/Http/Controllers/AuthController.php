@@ -39,21 +39,21 @@ class AuthController extends Controller
             'username.unique' => 'このユーザー名は既に使用されています。',
             'username.regex' => 'ユーザー名は英数字のみ使用できます。',
             
-            'email.required' => 'メールアドレスは必須です。',
+            'email.required' => 'e-mailアドレスは必須です。',
             'email.email' => '有効なメールアドレスを入力してください。',
             'email.unique' => 'このメールアドレスは既に使用されています。',
             
-            'g-recaptcha-response.required' => 'reCAPTCHAの確認が必要です。',
+            'g-recaptcha-response.required' => 'チェックは必須です。',
             
             'password.required' => 'パスワードは必須です。',
             'password.min' => 'パスワードは最低6文字以上で入力してください。',
             'password.max' => 'パスワードは16文字以内で入力してください。',
             'password.regex' => 'パスワードは、大文字、小文字、数字、特殊文字をそれぞれ1つ以上含める必要があります。',
             
-            'confirm_password.required' => '確認用パスワードは必須です。',
+            'confirm_password.required' => '再パスワード入力は必須です。',
             'confirm_password.same' => '確認用パスワードが一致しません。',
             
-            'first_phone.required' => '第一電話番号は必須です。',
+            'first_phone.required' => '電話番号入力は必須です。',
             'first_phone.regex' => '第一電話番号の形式が無効です。',
             
             'second_phone.regex' => '第二電話番号の形式が無効です。',
@@ -141,7 +141,7 @@ class AuthController extends Controller
             // }
 
             if (!preg_match($phoneRegexJapan, $phone)) {
-                $errors['second_phone'] = 'Invalid phone number.';
+                $errors['second_phone'] = 'この電話番号は入力できません。';
             }
         }
 
@@ -201,7 +201,9 @@ class AuthController extends Controller
             'password' => 'required',
             'g-recaptcha-response' => 'required',
         ], [
-            'g-recaptcha-response.required' => 'The recaptcha field is required.'
+            'username.required' => 'ユーザー名は必須です。',
+            'password.required' => 'パスワードは必須です。',
+            'g-recaptcha-response.required' => 'チェックは必須です。'
         ]);
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
@@ -241,6 +243,9 @@ class AuthController extends Controller
     public function sendResetLinkEmail(Request $request){
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
+        ],[
+            'email.required' => 'e-mailアドレスは必須です。',
+            'email.email' => '有効なメールアドレスを入力してください。',
         ]);
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
@@ -346,7 +351,12 @@ class AuthController extends Controller
             'confirm_password' => 'required|same:password',
             'token' => 'required'
         ], [
-            'password.regex' => 'The password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.'
+            'password.min' => 'パスワードは最低6文字以上で入力してください。',
+            'password.max' => 'パスワードは16文字以内で入力してください。',
+            'password.required' => 'パスワードは必須です。',
+            'password.regex' => 'パスワードには少なくとも1つの大文字、1つの小文字、1つの数字、および1つの特殊文字が含まれている必要があります。',
+            'confirm_password.required' => '再パスワード入力は必須です。',
+            'confirm_password.same' => 'パスワードを再入力してください。',
         ]);
 
         if($validator->fails()){

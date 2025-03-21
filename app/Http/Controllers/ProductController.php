@@ -121,6 +121,7 @@ class ProductController extends Controller
             'weight.required' => '重量フィールドは必須です',
             'weight.numeric' => '重量は数値でなければなりません',
             'weight.min' => '重量は1以上でなければなりません',
+            'size.required' => '長さのフィールドは必須です',
             'size.string' => 'サイズは文字列でなければなりません',
             'size.integer' => '小数点以下は入力できません',
             'size.min' => 'サイズは1文字以上でなければなりません',
@@ -144,7 +145,7 @@ class ProductController extends Controller
             'product_image' => 'required|image|mimes:png,jpg,jpeg|max:1024',
             'stock' => 'required|integer',
             'weight' => 'required|min:1', // Ensure weight is greater than 0
-            'size' => 'nullable|integer|min:1|max:999999',
+            'size' => 'required|integer|min:1|max:999999',
             'day_of_caught' => ['required','date',new ValidDayOfCaught()],
             'expiration_date' => ['required','date',new ValidExpireDate()],
             'discount' => 'nullable|numeric|min:0|max:' . ($request->product_price ?? 0), // Ensure discount is not greater than price
@@ -273,6 +274,7 @@ class ProductController extends Controller
             'product_image.max' => '商品画像は1024KB以下でなければなりません',
             'stock.integer' => '在庫は整数でなければなりません',
             'weight.numeric' => '重量は数値でなければなりません',
+            'size.required' => '長さのフィールドは必須です',
             'size.string' => 'サイズは文字列でなければなりません',
             'size.min' => 'サイズは1文字以上でなければなりません',
             'size.max' => 'サイズは999999.99文字以内でなければなりません',
@@ -296,7 +298,7 @@ class ProductController extends Controller
         'product_image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
         'stock' => 'sometimes|integer',
         'weight' => 'sometimes|min:1',
-        'size' => 'nullable|numeric|min:1|max:999999.99',
+        'size' => 'required|numeric|min:1|max:999999.99',
         'day_of_caught' => ['sometimes','required', 'date', new ValidDayOfCaught()],
         'expiration_date' => ['sometimes','required', 'date', new ValidExpireDate()],
         'discount' => 'nullable|numeric|min:0|max:' . ($request->product_price ?? 0), // Ensure discount is not greater than price',

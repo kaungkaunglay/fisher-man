@@ -576,7 +576,7 @@
                                     `);
                                 });
                             } else {
-                                $('#product-list').html('<p>No products found.</p>');
+                                $('#product-list').html('<p>検索されませんでした。</p>');
                             }
                         }
                     });

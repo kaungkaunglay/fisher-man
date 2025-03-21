@@ -24,7 +24,6 @@ class CategoriesController extends Controller
 
         $menu_category_id = $category->id;
 
-        // dd($category);
         return view('category', compact('category','menu_category_id' ));
     }
 
@@ -39,6 +38,14 @@ class CategoriesController extends Controller
         $request->validate([
             'category_name' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ],[
+            'category_name.required' => 'カテゴリ名は必須です。',
+            'category_name.string' => 'カテゴリ名は文字列でなければなりません。',
+            'category_name.max' => 'カテゴリ名は255文字以内で入力してください。',
+            'image.required' => '画像は必須です。',
+            'image.image' => '画像ファイルを指定してください。',
+            'image.mimes' => '画像はjpeg、png、jpg、gif、svg形式である必要があります。',
+            'image.max' => '画像のサイズは2048キロバイト以下である必要があります。',
         ]);
 
         $folderPath = public_path('assets/images/categories');
@@ -67,7 +74,15 @@ class CategoriesController extends Controller
     {
         $request->validate([
             'category_name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+        ],[
+            'category_name.required' => 'カテゴリ名は必須です。',
+            'category_name.string' => 'カテゴリ名は文字列でなければなりません。',
+            'category_name.max' => 'カテゴリ名は255文字以内で入力してください。',
+            'image.required' => '画像は必須です。',
+            'image.image' => '画像ファイルを指定してください。',
+            'image.mimes' => '画像はjpeg、png、jpg、gif、svg形式である必要があります。',
+            'image.max' => '画像のサイズは2048キロバイト以下である必要があります。',
         ]);
 
         $category->category_name = $request->category_name;

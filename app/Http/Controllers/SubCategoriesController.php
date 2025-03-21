@@ -45,8 +45,6 @@ class SubCategoriesController extends Controller
 
         $products = $query->paginate(2);
 
-        // dd($products);
-
         $subCategory = Sub_category::findOrFail($id);
 
         $settings = Setting::pluck('value', 'key')->toArray();
@@ -54,9 +52,11 @@ class SubCategoriesController extends Controller
 
         $menu_category_id = $subCategory->category_id;
 
-        // dd($category);
+        $category_id = Category::select('id')->where('id', $menu_category_id)->first();
+       
+        $subCategories = Sub_category::where('category_id', $category_id->id)->get();
 
-        return view('sub_category', compact('subCategory', 'products','bannerImages','menu_category_id'));
+        return view('sub_category', compact('subCategory', 'products','bannerImages','menu_category_id','subCategories'));
     }
 
     public function create()
@@ -71,6 +71,17 @@ class SubCategoriesController extends Controller
             'category_id' => 'required|exists:categories,id',
             'name' => 'required|string|max:255|unique:sub_categories,name',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ],[
+            'category_id.required' => 'カテゴリ名は必須です。',
+            'category_id.exists' => 'カテゴリIDが存在しません。',
+            'name.required' => 'サブカテゴリ名は必須です。',
+            'name.string' => 'サブカテゴリ名は文字列でなければなりません。',
+            'name.max' => 'サブカテゴリ名は255文字以内で入力してください。',
+            'name.unique' => 'サブカテゴリ名は一意である必要があります。',
+            'image.required' => '画像は必須です。',
+            'image.image' => '画像ファイルを指定してください。',
+            'image.mimes' => '画像はjpeg、png、jpg、gif、svg形式である必要があります。',
+            'image.max' => '画像のサイズは2048キロバイト以下である必要があります。',
         ]);
 
         $folderPath = public_path('assets/images/sub_categories');
@@ -105,7 +116,18 @@ class SubCategoriesController extends Controller
         $request->validate([
             'category_id' => 'required|exists:categories,id',
             'name' => 'required|string|max:255|unique:sub_categories,name',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+        ],[
+            'category_id.required' => 'カテゴリIDは必須です。',
+            'category_id.exists' => 'カテゴリIDが存在しません。',
+            'name.required' => 'サブカテゴリ名は必須です。',
+            'name.string' => 'サブカテゴリ名は文字列でなければなりません。',
+            'name.max' => 'サブカテゴリ名は255文字以内で入力してください。',
+            'name.unique' => 'サブカテゴリ名は一意である必要があります。',
+            'image.required' => '画像ファイルを指定してください。',
+            'image.image' => '画像ファイルを指定してください。',
+            'image.mimes' => '画像はjpeg、png、jpg、gif、svg形式である必要があります。',
+            'image.max' => '画像のサイズは2048キロバイト以下である必要があります。',
         ]);
 
         $sub_category->category_id = $request->category_id;

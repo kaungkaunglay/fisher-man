@@ -53,7 +53,7 @@ class ContactController extends Controller
             //         $errors['phone'] = 'Invalid phone number.';
             // }
             if (!preg_match($phoneRegexJapan, $phone)) {
-                $errors['phone'] = 'Invalid phone number.';
+                $errors['phone'] = 'この電話番号は入力できません';
              }
         }
 
@@ -73,6 +73,6 @@ class ContactController extends Controller
 
         Mail::to($request->email)->send(new ThankYouMail($contact));
 
-        return response()->json(['status' => true, 'message' => 'Your message has been sent successfully!']);
+        return response()->json(['status' => true, 'message' => 'メッセージは正常に送信されました']);
     }
 }
