@@ -262,7 +262,8 @@
                         <input type="text" 
                             id="phone" 
                             name="phone" 
-                            maxlength="10"
+                            maxlength="11"
+                            placeholder="—（ハイフン）なしで入力してください"
                             value="{{ old('phone',( session('address') ? session('address')['phone'] : substr(auth_helper()?->user()->first_phone ?? auth_helper()?->user()->second_phone ?? '',3))) }}" 
                             class="form-control t-blue shadow-none  @error('phone') is-invalid border border-danger @enderror"
                         />
@@ -280,6 +281,8 @@
                         <input type="text" 
                             id="postal" 
                             name="postal" 
+                            maxlength="7"
+                            placeholder="—（ハイフン）なしで入力してください"
                             value="{{ old('postal',session('address') ? session('address')['postal'] : auth_helper()->user()->postal_code ?? '')}}" 
                             class="form-control t-blue shadow-none  @error('postal') is-invalid border border-danger @enderror"
                         />
@@ -621,7 +624,7 @@
                         <div class="d-flex gap-3 text-center justify-content-center">
                             <button class="common-btn btn btn-outline-primary"
                                 id="cancel">{{ trans_lang('cancle') }}</button>
-                            <a href="{{ route('cart.complete')}}" class="common-btn btn btn-outline-primary btn-next" >{{ trans_lang('save') }}</a>
+                            <a href="{{ route('cart.complete')}}" class="common-btn btn btn-outline-primary btn-next-" >{{ trans_lang('save') }}</a>
                         </div>
                     </form>
                 </div>
@@ -788,15 +791,45 @@
                             <input required type="checkbox" id="select-payment">
                             <label for="select-payment"><a
                                     href="{{ route('payment_policy') }}">支払いポリシーに同意する</a></label>
-                            <div class="ms-auto text-danger" id="warning-msg">{{ trans_lang('check_mark') }}</div>
+                            <div class="ms-auto text-danger" id="warning-msg">支払いポリシーに同意してください</div>
                         </div>
                     </div>
                     {{-- Payment Policy Aggrement --}}
             <div class="d-flex gap-3 my-4 justify-content-end">
                 <a href="{{ route('cart.address')}}" class="btn btn-outline-primary common-btn btn-back">{{ trans_lang('go_back') }}</a>
-                <button data-page="#complete"
-                    class="btn btn-outline-primary common-btn btn-payment">{{ trans_lang('check_out') }}</button>
+                <!-- Checkout Button (Hidden by Default) -->
+                <button data-page="#complete" 
+                        class="btn btn-outline-primary common-btn btn-payment d-none">
+                    {{ trans_lang('check_out') }}
+                </button>
+
+                <!-- Save Button (Shown by Default) -->
+                <a href="{{ route('cart.complete') }}" 
+                class="common-btn btn btn-outline-primary btn-next">
+                    {{ trans_lang('check_out') }}
+                </a>
             </div>
+            <script>
+                $(document).ready(function () {
+                    function toggleButtons() {
+                        if ($('#credit_card').is(':checked')) {
+                            $('.btn-payment').removeClass('d-none'); // Show "Check Out"
+                            $('.btn-next').addClass('d-none'); // Hide "Save"
+                        } else {
+                            $('.btn-payment').addClass('d-none'); // Hide "Check Out"
+                            $('.btn-next').removeClass('d-none'); // Show "Save"
+                        }
+                    }
+
+                    // Trigger on checkbox change
+                    $('.payment-checkbox').on('change', function () {
+                        toggleButtons();
+                    });
+
+                    // Initial check on page load
+                    toggleButtons();
+                });
+            </script>
         </div>
     </x-cart-step>
     <!-- /Payment Step -->
