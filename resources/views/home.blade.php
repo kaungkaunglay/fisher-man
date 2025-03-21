@@ -13,8 +13,13 @@
         <div class="container-custom">
 
             <div class="row justify-content-between">
-                <div class="col-lg-4 d-none d-lg-block">
+                <div class="col-lg-4">
                     @include('includes.aside') <!-- Aside Layout -->
+                    <div class="r-buzz mt-3">
+                        <a href="https://fisherman-myanmar.com/" target="_blank">
+                            <img src="{{ asset('assets/images/r-buzz.jpg')}}" alt="r-buzz" style="border-radius: 10px;">
+                        </a>
+                    </div>
                 </div>
                 <div class="col-lg-8 col-md-12">
                     @include('includes.slider') <!-- Slider Layout -->
