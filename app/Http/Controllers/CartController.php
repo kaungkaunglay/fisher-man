@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Mime\Part\Multipart\RelatedPart;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderCompletedMail;
+use App\Mail\OrderCompletedBuyerMail; // Import Buyer Mail class
+use App\Mail\OrderCompletedAdminMail;
 
 class CartController extends Controller
 {
@@ -211,17 +215,29 @@ class CartController extends Controller
     }
 
     public function complete()
-    {
-        if (!AuthHelper::check() || !$this->hasProductCart()) {
-            return redirect()->route('cart.login');
-        }
-
-        session()->forget('address');
-        
-        $step = 5;
-        session(['cart_step' => $step]);
-        return redirect()->route('cart');
+{
+    if (!AuthHelper::check() || !$this->hasProductCart()) {
+        return redirect()->route('cart.login');
     }
+
+    $user = AuthHelper::user();
+    $carts = Cart::where('user_id', $user->id)->get(); // Get the user's cart items
+
+    if ($user && $user->email) {
+        // Send email to the buyer
+        Mail::to($user->email)->send(new OrderCompletedBuyerMail($user, $carts));
+
+        // Send email to the admin
+        Mail::to('sthahar896@gmail.com')->send(new OrderCompletedAdminMail($user, $carts));
+    }
+
+    session()->forget('address');
+
+    $step = 5;
+    session(['cart_step' => $step]);
+
+    return redirect()->route('cart')->with('success', 'Checkout completed, and emails sent!');
+}
 
 
 
