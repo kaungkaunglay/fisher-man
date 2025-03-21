@@ -1039,3 +1039,13 @@ li {
   }
 
 }
+
+@media  screen and (max-width:991px) {
+  .rowreverce{
+    flex-direction: column-reverse;
+  }
+
+  .carousel-inner{
+    height: 179px;
+  }
+}

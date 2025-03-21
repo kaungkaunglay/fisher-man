@@ -801,7 +801,7 @@
 
             <!-- Save Button (Shown by Default) -->
             <a href="{{ route('cart.complete') }}"
-                class="common-btn btn btn-outline-primary btn-next">
+                class="common-btn btn btn-outline-primary btn-next btn-payment">
                 {{ trans_lang('check_out') }}
             </a>
         </div>

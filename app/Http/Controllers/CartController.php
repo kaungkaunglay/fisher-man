@@ -134,7 +134,7 @@ class CartController extends Controller
             DB::rollBack();
             logger()->error($e);
             session()->flash('status',"error");
-            session()->flash('message',"カートに製品を追加する際にエラーが発生しました");
+            session()->flash('message',"カートに商品を追加する際にエラーが発生しました");
         }
 
     }
@@ -228,7 +228,7 @@ class CartController extends Controller
         Mail::to($user->email)->send(new OrderCompletedBuyerMail($user, $carts));
 
         // Send email to the admin
-        Mail::to('sthahar896@gmail.com')->send(new OrderCompletedAdminMail($user, $carts));
+        Mail::to('kado@and-fun.com')->send(new OrderCompletedAdminMail($user, $carts));
     }
 
     session()->forget('address');

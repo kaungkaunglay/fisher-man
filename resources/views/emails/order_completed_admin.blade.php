@@ -1,36 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>New Order Completed</title>
+    <title>以下ユーザーから購入連絡がありました。</title>
 </head>
 <body>
-    <h1>{{ trans_lang('new_order_completed') }}</h1>
-    <p><strong>{{ trans_lang('order_received') }}!</strong></p>
+    <h1>{{ trans_lang('以下ユーザーから購入連絡がありました。') }}</h1>
 
-    <h2>Buyer Information</h2>
-    <p><strong>Name:</strong> {{ $user->username }}</p>
-    <p><strong>Email:</strong> {{ $user->email }}</p>
+    <p><strong>名前 :</strong> {{ $user->username }}</p>
+    <p><strong>メールアドレス :</strong> {{ $user->email }}</p>
+    <p><strong>郵便番号 :</strong> {{ session('address') ? session('address')['postal'] :''}}</p>
+    <p><strong>住所 :</strong> {{ $user->address }}</p>
+    <p><strong>電話番号 :</strong> {{session('address') ? session('address')['phone'] :''}}</p>
 
-    <h2>Order Details</h2>
-    <table border="1" width="100%" style="border-collapse: collapse; text-align: left;">
-        <thead>
-            <tr>
-                <th scope="col">{{ trans_lang('product_name') }}</th>
-                <th scope="col">{{ trans_lang('price') }}</th>
-                <th scope="col">{{ trans_lang('小計') }}</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($carts as $item)
-            <tr>
-                <td>{{ $item->product->name }}</td>
-                <td>¥{{ number_format($item->product->getSellPrice(), 0) }}</td>
-                <td>¥{{ number_format(($item->product->getSellPrice() * $item->quantity), 0) }}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <h2>購入詳細</h2>
+    <p style="color: red;">{{ trans_lang('product_name') }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ trans_lang('price') }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ trans_lang('小計') }}</p>
+    @foreach ($carts as $item)
 
-    <p>{{ trans_lang('thank_you_for_processing_the_order') }}!</p>
+    <p>{{ $item->product->name }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;¥{{ number_format($item->product->getSellPrice(), 0) }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;¥{{ number_format(($item->product->getSellPrice() * $item->quantity), 0) }}</p>
+
+    @endforeach
+    @php
+        $total = $carts->sum(function ($cart) {
+            return $cart->product->getSellPrice() * $cart->quantity;
+        }) ?? 0;
+    @endphp
+    <p>{{ trans_lang('total') }} : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;¥{{ number_format($total, 0) }}</p>
+
+
+    <p>購入方法：銀行振込</p>
+    <p>ユーザーとのやり取りをお願いします。</p>
 </body>
 </html>

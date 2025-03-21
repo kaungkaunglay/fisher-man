@@ -175,10 +175,10 @@
                                     <form action="{{ route('products.search') }}" method="get">
                                         <div class="input-group w-100">
                                             {{-- <input type="text" class="form-control bg-second search-bar" id="search"
-                                            placeholder="{{ trans_lang('search_products') }}" name="search_key"
+                                            placeholder="商品を検索" name="search_key"
                                             oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"> --}}
                                             <input type="text" class="form-control bg-second search-bar" id="search"
-                                                placeholder="{{ trans_lang('search_products') }}" name="search_key">
+                                                placeholder="商品を検索" name="search_key">
                                             <button type="submit" class="bg-main text-white magnifying-glass">
                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                             </button>

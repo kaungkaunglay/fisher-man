@@ -117,7 +117,7 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'top_products',
                 'en' => 'Top Products',
-                'jp' => 'トップ製品',
+                'jp' => 'トップ商品',
             ],
             ['key' => 'user', 'en' => 'User', 'jp' => 'ユーザー'],
             [
@@ -193,7 +193,7 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'search_products',
                 'en' => 'Search your Products',
-                'jp' => '製品を検索',
+                'jp' => '商品を検索',
             ],
             [
                 'key' => 'showing_10_entries',
@@ -354,7 +354,7 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'product',
                 'en' => 'Product',
-                'jp' => '製品',
+                'jp' => '商品',
             ],
             [
                 'key' => 'profile',

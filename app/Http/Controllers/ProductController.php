@@ -18,7 +18,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = AuthHelper::user()->products()->paginate(10);
+        $products = AuthHelper::user()->products()->orderBy('created_at', 'desc')->paginate(10);
         return view('admin.products', compact('products'));
     }
 
@@ -120,7 +120,7 @@ class ProductController extends Controller
             'stock.integer' => '在庫は整数でなければなりません',
             'weight.required' => '重量フィールドは必須です',
             'weight.numeric' => '重量は数値でなければなりません',
-            'weight.min' => '重量は1以上でなければなりません',
+            'weight.min' => '重量は0より大きい数字でなくてはなりません',
             'size.required' => '長さのフィールドは必須です',
             'size.string' => 'サイズは文字列でなければなりません',
             'size.integer' => '小数点以下は入力できません',
@@ -274,6 +274,7 @@ class ProductController extends Controller
             'product_image.max' => '商品画像は1024KB以下でなければなりません',
             'stock.integer' => '在庫は整数でなければなりません',
             'weight.numeric' => '重量は数値でなければなりません',
+            'weight.min' => '重量は0より大きい数字でなくてはなりません',
             'size.required' => '長さのフィールドは必須です',
             'size.string' => 'サイズは文字列でなければなりません',
             'size.min' => 'サイズは1文字以上でなければなりません',
@@ -430,8 +431,19 @@ class ProductController extends Controller
 
     public function toggleTimeSale()
     {
-        try{
-            $setting = Setting::where('key','is_time_sale')->first();
+        try {
+            $setting = Setting::where('key', 'is_time_sale')->first();
+
+            // Check if the setting exists
+            if (!$setting) {
+                // Create the setting if it doesn't exist
+                $setting = new Setting();
+                $setting->key = 'is_time_sale';
+                $setting->value = 'inactive'; // Default to inactive
+                $setting->save();
+            }
+
+            // Toggle the value between active and inactive
             $setting->value = $setting->value == 'active' ? 'inactive' : 'active';
             $setting->save();
 
@@ -439,14 +451,14 @@ class ProductController extends Controller
                 'success' => true,
                 'message' => 'Success',
             ]);
-
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'An error occur',
+                'message' => 'An error occurred',
             ]);
         }
     }
+
 
 
     public function addTimeSale(Request $request)

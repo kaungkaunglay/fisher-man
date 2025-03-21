@@ -75,10 +75,10 @@
                                 <div class="input-group mb-3">
                                     @php
                                         $user = auth_helper()->user();
-                                        $phone = $user?->first_phone ? \Str::substr($user->first_phone, 3) : '';
+                                        $phone = $user->first_phone;
                                     @endphp
 
-                                    <input type="number" maxlength="10" class="form-control" name="phone" id="phone" value="{{ $phone }}" 
+                                    <input type="number" maxlength="10" class="form-control" name="phone" id="phone" placeholder="—（ハイフン）なしで入力してください" value="{{ $phone }}" 
                                         @if($user && $user->first_phone)  @endif>
                                 </div>
 

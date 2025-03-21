@@ -116,7 +116,7 @@
                                 <a href="{{ route('admin.products', $product->id) }}" class="body-title-2">{{ $product->name }}</a>
                             </div>
                             <div class="body-text">
-                                <input type="checkbox" class="timesale" id="timesale-{{ $product->id }}" data-id="{{ $product->id }}" {{ $product->is_time_sale == 1 ? 'checked' : '' }}>
+                                <input type="checkbox" class="timesale" id="timesale-{{ $product->id }} myCheckbox" data-id="{{ $product->id }}" {{ $product->is_time_sale == 1 ? 'checked' : '' }}>
                             </div>
                             <div class="body-text">{{ $product->id }}</div>
                             <div class="body-text">¥{{ number_format($product->product_price) }}</div>
@@ -132,7 +132,7 @@
                             </div>                            
 \                            <div>
                                 @if($product->stock <= 0)
-                                    <div class="block-not-available">Out of stock</div>
+                                    <div class="block-not-available">在庫切れ</div>
                             @else
                             <div class="body-text">{{ $product->stock }}</div>
                             @endif
@@ -256,6 +256,25 @@
 @endsection
 @section('script')
 <!-- Javascript -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".timesale").forEach(function (checkbox) {
+        let productId = checkbox.dataset.id;
+        let storageKey = "timesale-" + productId;
+
+        // Load saved checkbox state from localStorage
+        if (localStorage.getItem(storageKey) === "1") {
+            checkbox.checked = true;
+        }
+
+        // Listen for checkbox changes and update localStorage
+        checkbox.addEventListener("change", function () {
+            localStorage.setItem(storageKey, this.checked ? "1" : "0");
+        });
+    });
+});
+
+</script>
 <script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/admin/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/admin/js/bootstrap-select.min.js') }}"></script>
