@@ -91,9 +91,9 @@
                     <li>
                         <div class="body-title">{{trans_lang('status')}}</div>
                     </li>
-                    <li>
+                    <!-- <li>
                         <div class="body-title">{{trans_lang('sale')}}</div>
-                    </li>
+                    </li> -->
                     <li>
                         <div class="body-title">{{trans_lang('quanity')}}</div>
                     </li>
