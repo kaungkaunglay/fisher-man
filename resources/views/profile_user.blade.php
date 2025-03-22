@@ -349,7 +349,7 @@
                             <label class="w-25" for="postalCode">郵便番号</label>:
                             <div class="form-group">
                                 <output class="form-output ps-1" for="postalCode">{{ $user->postal_code }}</output>
-                                <input type="text" name="postalCode" id="postalCode" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;" value="{{ $user->postal_code }}">
+                                <input type="text" name="postalCode" id="postalCode" maxlength="7" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;" value="{{ $user->postal_code }}">
                                 {{-- <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea> --}}
                                 <span class="invalid-feedback"></span>
                             </div>
@@ -360,7 +360,7 @@
                             <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
                             <div class="form-group">
                                 <output class="form-output ps-1" for="address">{{ $user->address }}</output>
-                                <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea>
+                                <textarea name="address" class="p-1 mt-2 ms-1 border-0 outline-0 border-bottom border-2 d-none" id="address" disabled>{{ $user->address }}</textarea>
                                 <span class="invalid-feedback"></span>
                             </div>
 
@@ -382,8 +382,10 @@
                                     <a href="tel:">
                                         <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
                                     </a>
-                                    <input type="number" maxlength="10" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;"
-                                        id="first_phone" value="{{ $user->firstNumber }}" disabled>
+                                    <input type="text" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none" 
+                                        style="width: 150px;" id="first_phone" maxlength="11" 
+                                        value="{{ $user->firstNumber }}" disabled pattern="\d{0,11}">
+
                                     <span class="invalid-feedback"></span>
                                 </div>
                                 <div class="form-group">
@@ -397,8 +399,9 @@
                                     <a href="tel:">
                                         <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
                                     </a>
-                                    <input type="number" maxlength="10" name="second_phone" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;"
-                                        value="{{ $user->secondNumber }}" id="second_phone" disabled>
+                                    <input type="text" name="second_phone" class="p-1 mt-2 border-bottom border-2 d-none" 
+                                        style="width: 150px;" id="second_phone" maxlength="11" 
+                                        value="{{ $user->secondNumber }}" disabled pattern="\d{0,11}">
                                     <span class="invalid-feedback"></span>
                                 </div>
                             </div>
