@@ -75,7 +75,15 @@
                                                             alt="{{ $product->name }}">
                                                     </a>
                                                     <div class="left pt-3">
-                                                        <p class="price">¥{{ number_format($product->product_price) }}</p>
+                                                        <p class="price">
+                                                            @if ($product->discount > 0)
+                                                                ¥{{ number_format($product->product_price - $product->discount) }}
+                                                                <span
+                                                                    class="original-price ms-2">¥{{ number_format($product->product_price) }}</span>
+                                                            @else
+                                                                <span>¥{{ number_format($product->product_price) }}</span>
+                                                            @endif
+                                                        </p>  
                                                         <div class="title-category">
                                                             <a href="{{ route('sub-category.show', $product->subCategory->id) }}"
                                                                 class="menu-category">{{ $product->subCategory->name }}</a>
