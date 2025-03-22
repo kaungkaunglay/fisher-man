@@ -349,7 +349,7 @@
                             <label class="w-25" for="postalCode">郵便番号</label>:
                             <div class="form-group">
                                 <output class="form-output ps-1" for="postalCode">{{ $user->postal_code }}</output>
-                                <input type="text" name="postalCode" placeholder="—（ハイフン）なし" id="postalCode" maxlength="7" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 200px;" value="{{ $user->postal_code }}">
+                                <input type="text" name="postalCode" placeholder="—（ハイフン）なし" id="postalCode" maxlength="7" class="p-1 mt-2 border-bottom border-2 d-none" value="{{ $user->postal_code }}">
                                 {{-- <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea> --}}
                                 <span class="invalid-feedback"></span>
                             </div>
