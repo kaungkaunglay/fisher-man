@@ -132,7 +132,7 @@
                             </div>                            
 \                            <div>
                                 @if($product->stock <= 0)
-                                    <div class="block-not-available">&nbsp;&nbsp;&nbsp;&nbsp;在庫切れ</div>
+                                    <div class="block-not-available">在庫切れ</div>
                                 @else
                                 <div class="body-text">{{ $product->stock }}</div>
                                 @endif
