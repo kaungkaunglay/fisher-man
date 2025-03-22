@@ -129,7 +129,7 @@
                         <div class="card-text">
                             <span class="cost"></span>
                             <span
-                                class="price format">¥{{ number_format($item->product->product_price, 0) }}</span>
+                                class="price format">¥{{ number_format($item->product->getSellPrice(), 0) }}</span>
                         </div>
                         <div class="quantity d-flex">
                             <button class="btn decrement">-</button>
@@ -669,7 +669,7 @@
                     <div class="card-text">
                         <span class¥{{ number_format(($item->product->getSellPrice() * $item->quantity), 0) }}span>
                             <span
-                                class="price format">¥{{ number_format($item->product->product_price, 0) }}</span>
+                                class="price format">¥{{ number_format($item->product->getSellPrice(), 0) }}</span>
                     </div>
                 </div>
             </div>
@@ -834,7 +834,7 @@
 <x-cart-step class="mt-5" id="complete" step="5">
     <div class="container-custom">
         <p class="text-center">
-            {{ trans_lang('paymnet_success_msg') }}
+            お支払い処理が完了しました。販売元からメールが届きますので、ご確認下さい。
         </p>
         <div class="d-flex gap-3 py-5 justify-content-center">
             <a href="{{ route('support') }}"
