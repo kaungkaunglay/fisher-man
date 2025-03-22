@@ -36,7 +36,7 @@
                     <div class="w-100 h-100 d-md-flex gap-3">
                         <!-- profile img -->
                         <div class="w-100 profile-form d-flex flex-column avatar-input">
-                            <label for="avatar-input" class="w-100 d-block position-relative gallery">
+                            <label for="avatar-input" class="w-100 d-block position-relative gallery justify-content-center">
                                 <img src="{{ $user->avatar
                                             ? (Str::startsWith($user->avatar, 'https://')
                                                 ? $user->avatar
@@ -47,7 +47,7 @@
                                     <div class="avatar-upload position-absolute d-none">
                                         <div class="m-auto">
                                         <i class="fas fa-upload"></i>
-                                        <p>Upload Profile Image</p>
+                                        <p>プロフィール画像をアップロード</p>
                                     </div>
                                 </div>
                             </label>
