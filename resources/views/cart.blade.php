@@ -783,12 +783,23 @@
         <div class="">
             <h2 class="bg-primary text-white" id="payment-check-sec">
                 支払いポリシーに同意する</h2>
-            <div class="d-flex gap-3">
-                <input required type="checkbox" id="select-payment">
-                <label for="select-payment"><a
-                        href="{{ route('payment_policy') }}">支払いポリシーに同意する</a></label>
-                <div class="ms-auto text-danger" id="warning-msg">支払いポリシーに同意してください</div>
-            </div>
+                <div class="d-flex gap-3">
+                    <input required type="checkbox" id="select-payment">
+                    <label for="select-payment">
+                        <a href="{{ route('payment_policy') }}">支払いポリシーに同意する</a>
+                    </label>
+                    <div class="ms-auto text-danger" id="warning-msg">支払いポリシーに同意してください</div>
+                </div>
+
+                <script>
+                    document.getElementById('select-payment').addEventListener('change', function () {
+                        if (this.checked) {
+                            $('#warning-msg').addClass('d-none');
+                        } else {
+                            $('#warning-msg').removeClass('d-none'); // Show "Check Out"
+                        }
+                    });
+                </script>
         </div>
         {{-- Payment Policy Aggrement --}}
         <div class="d-flex gap-3 my-4 justify-content-end">
@@ -806,7 +817,7 @@
             </a>
         </div>
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
                 function toggleButtons() {
                     if ($('#credit_card').is(':checked')) {
                         $('.btn-payment').removeClass('d-none'); // Show "Check Out"
@@ -818,12 +829,22 @@
                 }
 
                 // Trigger on checkbox change
-                $('.payment-checkbox').on('change', function() {
+                $('.payment-checkbox').on('change', function () {
                     toggleButtons();
                 });
 
                 // Initial check on page load
                 toggleButtons();
+
+                // Handle "Check Out" button click
+                $('.btn-payment').on('click', function (e) {
+                    if (!$('#select-payment').is(':checked')) {
+                        e.preventDefault(); // Prevent form submission or navigation
+                        $('#warning-msg').show(); // Show the warning message
+                    } else {
+                        $('#warning-msg').hide(); // Hide the warning message if checkbox is selected
+                    }
+                });
             });
         </script>
     </div>
