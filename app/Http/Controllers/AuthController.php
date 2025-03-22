@@ -165,7 +165,7 @@ class AuthController extends Controller
                 ]);
             }
 
-            return response()->json(['status' => false, 'message' => 'Username or Password is Incorrect']);
+            return response()->json(['status' => false, 'message' => 'ユーザー名またはパスワードが正しくありません']);
         }
     }
 
