@@ -76,8 +76,8 @@ class CartController extends Controller
     {
 
         if(!$this->hasProductCart()){
-            session()->flash('status',"error");
-            session()->flash('message',"カートに商品がありません");
+            // session()->flash('status',"error");
+            // session()->flash('message',"カートに商品がありません");
 
             return redirect()->back();
         }
@@ -142,8 +142,8 @@ class CartController extends Controller
     public function address()
     {
         if(!$this->hasProductCart()){
-            session()->flash('status',"error");
-            session()->flash('message',"カートに商品がありません");
+            // session()->flash('status',"error");
+            // session()->flash('message',"カートに商品がありません");
 
             return redirect()->back();
         }
@@ -236,7 +236,13 @@ class CartController extends Controller
     $step = 5;
     session(['cart_step' => $step]);
 
-    return redirect()->route('cart')->with('success', 'Checkout completed, and emails sent!');
+    // Clear the cart after completing the order
+    if ($user) {
+        $user->carts()->delete(); // Ensure $user is not null before calling carts()
+    }
+
+    // Redirect to the complete page
+    return view('cart.complete');
 }
 
 
