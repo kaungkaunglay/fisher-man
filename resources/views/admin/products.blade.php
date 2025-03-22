@@ -132,11 +132,11 @@
                             </div>                            
 \                            <div>
                                 @if($product->stock <= 0)
-                                    <div class="block-not-available">在庫切れ</div>
-                            @else
-                            <div class="body-text">{{ $product->stock }}</div>
-                            @endif
-                        </div>
+                                    <div class="block-not-available">&nbsp;&nbsp;&nbsp;&nbsp;在庫切れ</div>
+                                @else
+                                <div class="body-text">{{ $product->stock }}</div>
+                                @endif
+                            </div>
                         <div class="body-text">{{ $product->created_at->locale('ja')->isoFormat('YYYY年MM月DD日') }}</div>
                         <div class="list-icon-function">
                             <div class="item eye">
