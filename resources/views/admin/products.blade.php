@@ -119,7 +119,7 @@
                                 <input type="checkbox" class="timesale" id="timesale-{{ $product->id }} myCheckbox" data-id="{{ $product->id }}" {{ $product->is_time_sale == 1 ? 'checked' : '' }}>
                             </div>
                             <div class="body-text">{{ $product->id }}</div>
-                            <div class="body-text">¥{{ number_format($product->product_price) }}</div>
+                            <div class="body-text">¥{{ number_format($product->product_price - $product->discount, 0) }} <span style="text-decoration: line-through; opacity: 0.5;">¥{{ number_format($product->product_price)}}</span></div>
                             <div class="body-text">
                                 @if ($product->status == 'approved')
                                     承認済み
