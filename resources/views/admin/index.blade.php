@@ -33,15 +33,82 @@
                                 <h4>{{ $total_product_count }}</h4>
                             </div>
                         </div>
+
+                        
                         {{-- <div class="box-icon-trending up">
                             <i class="icon-trending-up"></i>
                             <div class="body-title number">1.56%</div>
                         </div> --}}
                     </d5iv>
+
+                    
                     <div class="wrap-chart">
                         <div id="line-chart-1"></div>
                     </div>
                 </div>
+
+ 
+                <div style="background: #ffffff; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);">
+    <!-- Header -->
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <div>
+                <div style="font-size: 16px; font-weight: 600; color: #374151; margin-bottom: 0.5rem;">
+                    トップ5売れ筋商品
+                </div>
+                <div style="font-size: 12px; color: #6b7280;">
+                    トップセールス商品
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div style="margin-top: 1.5rem; border-radius: 8px; overflow: hidden;">
+        <table style="width: 100%;border-collapse: collapse;border: none;">
+            <thead style="background: #f9fafb;">
+                <tr>
+                    <th style="padding: 14px; text-align: left; font-size: 13px; font-weight: 600; color: #6b7280;border: none;">
+                        商品画像 
+                    </th>
+                    <th style="padding: 14px; text-align: left; font-size: 13px; font-weight: 600; color: #6b7280;border: none;">
+                        商品名 
+                    </th>
+                    <th style="padding: 14px; text-align: left; font-size: 13px; font-weight: 600; color: #6b7280;border: none;">
+                        販売数量 
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($top_selling_products as $product)
+                <tr style="transition: background 0.3s ease-in-out;border: none;">
+                    <td style="padding: 16px;border: none;">
+                        <img src="{{ asset('assets/products/' . $product->product_image) }}" 
+                            alt="{{ $product->name }}" 
+                            style="width: 60px; height: 60px; object-fit: cover; border-radius: 10px;">
+                    </td>
+                    <td style="padding: 16px; font-size: 15px; font-weight: 500; color: #111827;border: none;">
+                        {{ $product->name }}
+                    </td>
+                    <td style="padding: 16px; font-size: 14px; color: #6b7280;border: none;">
+                        {{ number_format($product->total_quantity_sold) }} 
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+   
+    <div style="margin-top: 1.5rem;">
+        <div id="line-chart-1"></div>
+    </div>
+</div>
+
+
+
+
+
                 <!-- /chart-default -->
             </div>
             <div class="d-flex justify-content-center">

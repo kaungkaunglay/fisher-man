@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FAQs;
 use App\Models\Shop;
 use App\Models\Users;
+use App\Models\Cart;
 use App\Models\Contact;
 use App\Models\Product;
 use App\Models\Setting;
@@ -14,22 +15,38 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+
 
 class AdminController extends Controller
 {
-    public function home(Request $request){
+        
+    public function home(Request $request)
+{
+        $top_selling_products = Cart::join('products', 'carts.product_id', '=', 'products.id')
+            ->select(
+                'products.id',
+                'products.name',
+                'products.product_image', 
+                DB::raw('SUM(carts.quantity) as total_quantity_sold')
+            )
+            ->groupBy('products.id', 'products.name', 'products.product_image')
+            ->orderByDesc('total_quantity_sold')
+            ->take(5)
+            ->get();
         $top_products = Product::with('user:id,username')
-                        ->inRandomOrder()
-                        ->take(5)
-                        ->get();
-
+            ->inRandomOrder()
+            ->take(5)
+            ->get();
         $all_products = Product::with('user:id,username')
-                        ->paginate(10);
-
+            ->paginate(10);
         $total_product_count = Product::count();
-        return view('admin.index',compact('top_products','all_products','total_product_count'));
-    }
+
+
+    return view('admin.index', compact('top_selling_products', 'top_products', 'all_products', 'total_product_count'));
+}
+
     public function categoreis()
     {
         return view('admin.categories');
