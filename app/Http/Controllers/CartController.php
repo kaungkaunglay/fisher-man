@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderCompletedMail;
 use App\Mail\OrderCompletedBuyerMail; // Import Buyer Mail class
 use App\Mail\OrderCompletedAdminMail;
+use App\Models\Order;
 
 class CartController extends Controller
 {
@@ -214,7 +215,7 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
-    public function complete()
+    public function complete(Request $request)
 {
     if (!AuthHelper::check() || !$this->hasProductCart()) {
         return redirect()->route('cart.login');
@@ -222,6 +223,19 @@ class CartController extends Controller
 
     $user = AuthHelper::user();
     $carts = Cart::where('user_id', $user->id)->get(); // Get the user's cart items
+
+    $paymentMethod = $request->input('payment_method');
+
+    // logger($paymentMethod);
+
+     // Create the order
+     $order = Order::create([
+        'user_id' => $user->id,
+        'order_date' => now(),
+        'payment_type' => $paymentMethod,
+    ]);
+
+    
 
     if ($user && $user->email) {
         // Send email to the buyer
