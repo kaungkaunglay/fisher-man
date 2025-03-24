@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             TranslationSeeder::class,
             PermissionSeeder::class,
             RolePermissionSeeder::class,
-            ContactSeeder::class
+            ContactSeeder::class,
+            PaymentSeeder::class
         ]);
     }
 }

@@ -621,7 +621,7 @@
                         <div class="d-flex gap-3 text-center justify-content-center">
                             <button class="common-btn btn btn-outline-primary"
                                 id="cancel">{{ trans_lang('cancle') }}</button>
-                            <a href="{{ route('cart.complete') }}" class="common-btn btn btn-outline-primary btn-next-">{{ trans_lang('save') }}</a>
+                            <a href="" class="common-btn btn btn-outline-primary btn-next-">{{ trans_lang('save') }}</a>
                         </div>
                     </form>
                 </div>
@@ -705,11 +705,11 @@
                             <label for="credit_card" style="margin-left: 25px;">{{ trans_lang('credit_card') }}</label>
                         </div>
                         <div class="d-flex gap-3">
-                            <input type="checkbox" id="cod" name="payment_method" class="payment-checkbox" value="Cash On Delivery">
+                            <input type="checkbox" id="cod" name="payment_method" class="payment-checkbox" value="1">
                             <label for="cod">{{ trans_lang('代引き') }}</label>
                         </div>
                         <div class="d-flex gap-3">
-                            <input type="checkbox" id="banktransfer" name="payment_method" class="payment-checkbox" value="Bank Transfer">
+                            <input type="checkbox" id="banktransfer" name="payment_method" class="payment-checkbox" value="2">
                             <label for="banktransfer">{{ trans_lang('銀行振込') }}</label>
                         </div>
                         <div class="ms-auto text-danger warning-msg">{{ trans_lang('check_mark') }}</div>
@@ -866,7 +866,7 @@
 
     <!-- Complete Step -->
     <!-- Moved to cart/complete.blade.php -->
-    <!-- <x-cart-step class="mt-5" id="complete" step="5">
+    <x-cart-step class="mt-5" id="complete" step="5">
         <div class="container-custom">
             <p class="text-center">
                 お支払い処理が完了しました。販売元からメールが届きますので、ご確認下さい。
@@ -879,7 +879,7 @@
         </div>
 
         {{-- {{ session(['cart_step' => 1])}} --}}
-    </x-cart-step> -->
+    </x-cart-step> 
     <!-- /Complete Step -->
 
     <!-- All Scripts -->
@@ -1135,7 +1135,7 @@
             e.preventDefault();
 
             // Get the checked checkbox
-            const checkedCheckbox = document.querySelector('.payment-checkbox:checked');
+            const checkedCheckbox = $('.payment-checkbox:checked')
 
             if (!checkedCheckbox) {
                 alert('Please select a payment method.');
@@ -1143,21 +1143,21 @@
             }
 
             // Extract data from the checked checkbox
-            const checkboxData = checkedCheckbox.value ;// Example: value attribute
+            const checkboxData = checkedCheckbox[0].value ;// Example: value attribute
+            
            
-
+            console.log(checkboxData);
 
 
             $.ajax({
                 url: "{{ route('cart.complete') }}",
-                type: "GET",
+                type: "POST",
                 data: {
-                    _token: "{{ csrf_token() }}",
-                    payment_method: checkboxData 
+                    payment_id: checkboxData 
                 },
                 success: function(response) {
                     if (response.status) {
-                        // location.reload(); // Refresh the page to update UI
+                        location.href = response.redirect; // Refresh the page to update UI
                     } else {
                         // alert('Failed to update status');
                     }

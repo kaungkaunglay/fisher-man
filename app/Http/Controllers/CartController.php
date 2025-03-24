@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\AuthHelper;
+use App\Mail\BankTransferMail;
+use App\Mail\CashOnDeliveryMail;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -189,6 +191,7 @@ class CartController extends Controller
         // logger(session('address'));
 
         return redirect()->route('cart.payment');
+    
     }
     
     public function payment()
@@ -216,48 +219,69 @@ class CartController extends Controller
     }
 
     public function complete(Request $request)
-{
-    if (!AuthHelper::check() || !$this->hasProductCart()) {
-        return redirect()->route('cart.login');
+    {
+        logger($request->all());
+        if (!AuthHelper::check() || !$this->hasProductCart()) {
+            return redirect()->route('cart.login');
+        }
+
+        $user = AuthHelper::user();
+        $carts = $user->carts;
+
+        $payment_id = $request->input('payment_id');
+
+        
+
+        // logger($paymentMethod);
+
+        // Create the order
+        $order = Order::create([
+            'user_id' => $user->id,
+            'order_date' => now(),
+            'payment_id' => $payment_id,
+        ]);
+
+        logger($carts);
+
+        foreach($carts as $cart)
+        {
+            logger($cart);
+            $order->products()->attach($cart->product_id);
+        }
+
+        $address = session('address', []);
+
+        if ($user && $user->email) {
+            // Send email to the buyer
+            // Mail::to($user->email)->send(new OrderCompletedBuyerMail($user, $carts));
+
+            // Send email to the admin
+            Mail::to('kado@and-fun.com')->send(new OrderCompletedAdminMail($user, $carts));
+            
+            Mail::to($user->email)->send( $payment_id == 1 ? new CashOnDeliveryMail($address,$carts) : new BankTransferMail($address,$carts));
+            
+        }
+
+        session()->forget('address');
+
+        $step = 5;
+        session(['cart_step' => $step]);
+
+        // Clear the cart after completing the order
+        if ($user) {
+            $user->carts()->delete(); // Ensure $user is not null before calling carts()
+        }
+
+        // Redirect to the complete page
+        // return view('cart.complete');
+        return response()->json([
+            'status' => true,
+            'redirect' => route('cart')
+        ]);
     }
 
-    $user = AuthHelper::user();
-    $carts = Cart::where('user_id', $user->id)->get(); // Get the user's cart items
-
-    $paymentMethod = $request->input('payment_method');
-
-    // logger($paymentMethod);
-
-     // Create the order
-     $order = Order::create([
-        'user_id' => $user->id,
-        'order_date' => now(),
-        'payment_type' => $paymentMethod,
-    ]);
 
     
-
-    if ($user && $user->email) {
-        // Send email to the buyer
-        Mail::to($user->email)->send(new OrderCompletedBuyerMail($user, $carts));
-
-        // Send email to the admin
-        Mail::to('kado@and-fun.com')->send(new OrderCompletedAdminMail($user, $carts));
-    }
-
-    session()->forget('address');
-
-    $step = 5;
-    session(['cart_step' => $step]);
-
-    // Clear the cart after completing the order
-    if ($user) {
-        $user->carts()->delete(); // Ensure $user is not null before calling carts()
-    }
-
-    // Redirect to the complete page
-    return view('cart.complete');
-}
 
 
 
