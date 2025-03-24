@@ -805,15 +805,16 @@
         </div>
         {{-- Payment Policy Aggrement --}}
         <div class="d-flex gap-3 my-4 justify-content-end">
-            <a href="{{ route('cart.address')}}" class="btn btn-outline-primary common-btn btn-back">{{ trans_lang('go_back') }}/a>
+            <a href="{{ route('cart.address')}}" class="btn btn-outline-primary common-btn btn-back">{{ trans_lang('go_back') }}</a>
             <!-- Checkout Button (Hidden by Default) -->
             <button data-page="#complete"
                 class="btn btn-outline-primary common-btn btn-payment d-none">
-                {{ trans_lang('check_out') }} 
+                {{ trans_lang('check_out') }} sss
             </button>
 
             <!-- Save Button (Shown by Default) -->
-            <a href="{{ route('cart.complete') }}" class="common-btn btn btn-outline-primary btn-next btn-payment">
+            <a href="{{ route('cart.complete') }}"
+                class="common-btn btn btn-outline-primary btn-next">
                 {{ trans_lang('check_out') }}
             </a>
         </div>
