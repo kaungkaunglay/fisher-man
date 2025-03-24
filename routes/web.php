@@ -250,7 +250,7 @@ Route::get('/cart/login/finished', [CartController::class, 'finished_login'])->n
 Route::get('/cart/address', [CartController::class, 'address'])->name('cart.address');
 Route::post('/cart/address/finished', [CartController::class, 'finished_address'])->name('cart.address.finished');
 Route::get('/cart/payment', [CartController::class, 'payment'])->name('cart.payment');
-Route::get('/cart/complete', [CartController::class, 'complete'])->name('cart.complete');
+Route::post('/cart/complete', [CartController::class, 'complete'])->name('cart.complete');
 
 
 

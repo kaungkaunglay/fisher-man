@@ -191,6 +191,7 @@ class CartController extends Controller
         // logger(session('address'));
 
         return redirect()->route('cart.payment');
+    
     }
     
     public function payment()
@@ -218,42 +219,47 @@ class CartController extends Controller
     }
 
     public function complete(Request $request)
-{
-    if (!AuthHelper::check() || !$this->hasProductCart()) {
-        return redirect()->route('cart.login');
-    }
+    {
+        logger($request->all());
+        if (!AuthHelper::check() || !$this->hasProductCart()) {
+            return redirect()->route('cart.login');
+        }
 
-    $user = AuthHelper::user();
-    $carts = Cart::where('user_id', $user->id)->get(); // Get the user's cart items
+        $user = AuthHelper::user();
+        $carts = $user->carts;
 
-    $paymentMethod = $request->input('payment_method');
+        $payment_id = $request->input('payment_id');
 
-    // logger($paymentMethod);
+        
 
-     // Create the order
-     $order = Order::create([
-        'user_id' => $user->id,
-        'order_date' => now(),
-        'payment_type' => $paymentMethod,
-    ]);
+        // logger($paymentMethod);
 
-    
+        // Create the order
+        $order = Order::create([
+            'user_id' => $user->id,
+            'order_date' => now(),
+            'payment_id' => $payment_id,
+        ]);
+
+        logger($carts);
+
+        foreach($carts as $cart)
+        {
+            logger($cart);
+            $order->products()->attach($cart->product_id);
+        }
+
+        $address = session('address', []);
 
         if ($user && $user->email) {
             // Send email to the buyer
-            Mail::to($user->email)->send(new OrderCompletedBuyerMail($user, $carts));
+            // Mail::to($user->email)->send(new OrderCompletedBuyerMail($user, $carts));
 
             // Send email to the admin
             Mail::to('kado@and-fun.com')->send(new OrderCompletedAdminMail($user, $carts));
             
-            if($payment) {
-                if($payment == 'cob'){
-                    Mail::to($user->email)->send(new CashOnDeliveryMail($address, $carts));
-                } else if($payment == 'bt') {
-                    Mail::to($user->email)->send(new BankTransferMail($address, $carts));
-                }
-
-            }
+            Mail::to($user->email)->send( $payment_id == 1 ? new CashOnDeliveryMail($address,$carts) : new BankTransferMail($address,$carts));
+            
         }
 
         session()->forget('address');
@@ -267,8 +273,15 @@ class CartController extends Controller
         }
 
         // Redirect to the complete page
-        return view('cart.complete');
+        // return view('cart.complete');
+        return response()->json([
+            'status' => true,
+            'redirect' => route('cart')
+        ]);
     }
+
+
+    
 
 
 

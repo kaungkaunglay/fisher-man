@@ -7,7 +7,7 @@
 
 <body>
     <h1>Order Confirmation</h1>
-    <p>Dear {{ $address->username }},</p>
+    <p>Dear {{ $address['username']}},</p>
 
     <p>Thank you for shopping with us! Your order has been successfully placed and will be delivered to you soon.</p>
     <p><strong>Payment Method:</strong> Cash on Delivery (COD)</p>
@@ -28,9 +28,9 @@
     <p><strong>Total Amount:</strong> ¥{{ number_format($total, 0) }}</p>
 
     <h2>Delivery Information</h2>
-    <p><strong>Recipient:</strong> {{ $address->username }}</p>
-    <p><strong>Shipping Address:</strong> {{ $address->address }}</p>
-    <p><strong>Contact Number:</strong> {{ $address->phone }}</p>
+    <p><strong>Recipient:</strong> {{ $address['username'] }}</p>
+    <p><strong>Shipping Address:</strong> {{ $address['address'] }}</p>
+    <p><strong>Contact Number:</strong> {{ $address['phone'] }}</p>
 
     <h2>Important Information</h2>
     <p>Please ensure you have the total amount ready in cash at the time of delivery.</p>

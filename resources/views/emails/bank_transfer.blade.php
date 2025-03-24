@@ -7,7 +7,7 @@
 
 <body>
     <h1>Order Confirmation</h1>
-    <p>Dear {{ $address->username }},</p>
+    <p>Dear {{ $address['username'] }},</p>
 
     <p>Thank you for your purchase! Your order has been successfully placed. Please complete the payment via bank transfer to proceed with the shipping.</p>
     
