@@ -176,7 +176,7 @@ class AdminController extends Controller
     //user request
     public function contact()
     {
-        $contacts = Contact::paginate(10);
+        $contacts = Contact::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.contact-request', compact('contacts'));
     }
 

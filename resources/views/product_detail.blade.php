@@ -87,6 +87,7 @@
                                     @endif
                                 </button>
                             </div>
+                            <p class="text-danger mt-2 stock-error" style="display: none;">{{ trans_lang('在庫超過') }}</p>
                             <button class="common-btn ms-5 m-t-10">
                               買い物を続ける
                             </button>
@@ -245,13 +246,19 @@
             });
 
             const countityChange = (element, value) => {
-              let quantity = + element.siblings('.quantity-value').val();
-              quantity += value;
-              if (quantity < 1) {
-                  quantity = 1;
-              }
-              element.siblings('.quantity-value').val(quantity);
-            }
+                let quantity = +element.siblings('.quantity-value').val();
+                const stock = {{ $product->stock }};
+                quantity += value;
+                if (quantity < 1) {
+                    quantity = 1;
+                } else if (quantity > stock) {
+                    quantity = stock;
+                    $('.stock-error').show(); // Show error message
+                } else {
+                    $('.stock-error').hide(); // Hide error message
+                }
+                element.siblings('.quantity-value').val(quantity);
+            };
 
             $('.decrement').click(function() {
                 countityChange($(this), -1);
@@ -278,12 +285,8 @@
                     },
                     success: function(response) {
                         if (response.status) {
-                            // location.href="{{ route('cart') }}";
                             cur.prop('disabled', true); // Disable the button
-
-                            cur.siblings('.quantity').find('.decrement, .increment').prop(
-                                'disabled', true);
-
+                            cur.siblings('.quantity').find('.decrement, .increment').prop('disabled', true);
                             cur.html("{{ trans_lang('added_cart') }}");
                         }
                     }

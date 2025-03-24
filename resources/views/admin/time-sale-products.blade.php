@@ -83,7 +83,7 @@
                         <div class="body-title">{{trans_lang('product')}} ID</div>
                     </li>
                     <li>
-                        <div class="body-title">{{trans_lang('price')}}</div>
+                        <div class="body-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{trans_lang('price')}}</div>
                     </li>
                     <li>
                         <div class="body-title">{{trans_lang('sale')}}</div>
@@ -110,11 +110,11 @@
                                 <a href="{{ route('admin.products', $product->id) }}" class="body-title-2">{{ $product->name }}</a>
                             </div>
                             <div class="body-text">{{ $product->id }}</div>
-                            <div class="body-text">¥{{ number_format($product->product_price) }}</div>
+                            <div class="body-text">¥{{ number_format($product->product_price - $product->discount, 0) }} <span style="text-decoration: line-through; opacity: 0.5;">¥{{ number_format($product->product_price)}}</span></div>
                             <div class="body-text">{{ number_format($product->discount ?? 0) }}</div>
                             <div>
                                 @if($product->stock <= 0)
-                                    <div class="block-not-available">Out of stock</div>
+                                    <div class="block-not-available">在庫切れ</div>
                             @else
                             <div class="body-text">{{ $product->stock }}</div>
                             @endif

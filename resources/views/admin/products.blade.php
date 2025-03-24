@@ -91,9 +91,9 @@
                     <li>
                         <div class="body-title">{{trans_lang('status')}}</div>
                     </li>
-                    <li>
+                    <!-- <li>
                         <div class="body-title">{{trans_lang('sale')}}</div>
-                    </li>
+                    </li> -->
                     <li>
                         <div class="body-title">{{trans_lang('quanity')}}</div>
                     </li>
@@ -116,10 +116,10 @@
                                 <a href="{{ route('admin.products', $product->id) }}" class="body-title-2">{{ $product->name }}</a>
                             </div>
                             <div class="body-text">
-                                <input type="checkbox" class="timesale" id="timesale-{{ $product->id }}" data-id="{{ $product->id }}" {{ $product->is_time_sale == 1 ? 'checked' : '' }}>
+                                <input type="checkbox" class="timesale" id="timesale-{{ $product->id }} myCheckbox" data-id="{{ $product->id }}" {{ $product->is_time_sale == 1 ? 'checked' : '' }}>
                             </div>
                             <div class="body-text">{{ $product->id }}</div>
-                            <div class="body-text">¥{{ number_format($product->product_price) }}</div>
+                            <div class="body-text">¥{{ number_format($product->product_price - $product->discount, 0) }} <span style="text-decoration: line-through; opacity: 0.5;">¥{{ number_format($product->product_price)}}</span></div>
                             <div class="body-text">
                                 @if ($product->status == 'approved')
                                     承認済み
@@ -132,11 +132,11 @@
                             </div>                            
 \                            <div>
                                 @if($product->stock <= 0)
-                                    <div class="block-not-available">Out of stock</div>
-                            @else
-                            <div class="body-text">{{ $product->stock }}</div>
-                            @endif
-                        </div>
+                                    <div class="block-not-available">在庫切れ</div>
+                                @else
+                                <div class="body-text">{{ $product->stock }}</div>
+                                @endif
+                            </div>
                         <div class="body-text">{{ $product->created_at->locale('ja')->isoFormat('YYYY年MM月DD日') }}</div>
                         <div class="list-icon-function">
                             <div class="item eye">
@@ -256,6 +256,25 @@
 @endsection
 @section('script')
 <!-- Javascript -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".timesale").forEach(function (checkbox) {
+        let productId = checkbox.dataset.id;
+        let storageKey = "timesale-" + productId;
+
+        // Load saved checkbox state from localStorage
+        if (localStorage.getItem(storageKey) === "1") {
+            checkbox.checked = true;
+        }
+
+        // Listen for checkbox changes and update localStorage
+        checkbox.addEventListener("change", function () {
+            localStorage.setItem(storageKey, this.checked ? "1" : "0");
+        });
+    });
+});
+
+</script>
 <script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/admin/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/admin/js/bootstrap-select.min.js') }}"></script>

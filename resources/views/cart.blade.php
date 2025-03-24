@@ -77,7 +77,7 @@
                 </thead>
                 <tbody class="dsk-cart-body">
                     @foreach ($carts as $item)
-                    <tr class="table-row cart-{{ $item->product->id }}" data-id="{{ $item->product->id }}">
+                    <tr class="table-row cart-{{ $item->product->id }}" data-id="{{ $item->product->id }}" data-stock="{{ $item->product->stock }}">
                         <td>
                             <div class="table-img"><img
                                     src="{{ asset('assets/products/' . $item->product->product_image) }}"
@@ -129,7 +129,7 @@
                         <div class="card-text">
                             <span class="cost"></span>
                             <span
-                                class="price format">¥{{ number_format($item->product->product_price, 0) }}</span>
+                                class="price format">¥{{ number_format($item->product->getSellPrice(), 0) }}</span>
                         </div>
                         <div class="quantity d-flex">
                             <button class="btn decrement">-</button>
@@ -543,7 +543,8 @@
     <div class="container-custom">
 
         <!-- Payment Method Form -->
-        <div class="popup">
+         <!-- No need to use said by customer -->
+        <!-- <div class="popup">
             <div class="bg-white rounded-3 border text-black mx-auto" id="payment-form">
                 <h2 class="title">{{ trans_lang('payment') }}</h2>
                 <form class="d-flex flex-column" action="">
@@ -624,7 +625,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> -->
         <!-- ./Payment Method Form -->
 
         <!-- Desktop Style -->
@@ -669,7 +670,7 @@
                     <div class="card-text">
                         <span class¥{{ number_format(($item->product->getSellPrice() * $item->quantity), 0) }}span>
                             <span
-                                class="price format">¥{{ number_format($item->product->product_price, 0) }}</span>
+                                class="price format">¥{{ number_format($item->product->getSellPrice(), 0) }}</span>
                     </div>
                 </div>
             </div>
@@ -694,8 +695,9 @@
                         {{ trans_lang('selet_payment') }}
                     </h2>
                     <div class="d-flex gap-3">
-                        <input type="checkbox" id="credit_card" name="payment_method" class="payment-checkbox">
-                        <label for="credit_card">{{ trans_lang('credit_card') }}</label>
+                        <!-- customer said to comment out creadit card input  -->
+                        <!-- <input type="checkbox" id="credit_card" name="payment_method" class="payment-checkbox"> -->
+                        <label for="credit_card" style="margin-left: 25px;">{{ trans_lang('credit_card') }}</label>
                     </div>
                     <div class="d-flex gap-3">
                         <input type="checkbox" id="cod" name="payment_method" class="payment-checkbox" checked>
@@ -783,30 +785,40 @@
         <div class="">
             <h2 class="bg-primary text-white" id="payment-check-sec">
                 支払いポリシーに同意する</h2>
-            <div class="d-flex gap-3">
-                <input required type="checkbox" id="select-payment">
-                <label for="select-payment"><a
-                        href="{{ route('payment_policy') }}">支払いポリシーに同意する</a></label>
-                <div class="ms-auto text-danger" id="warning-msg">支払いポリシーに同意してください</div>
-            </div>
+                <div class="d-flex gap-3">
+                    <input required type="checkbox" id="select-payment">
+                    <label for="select-payment">
+                        <a href="{{ route('payment_policy') }}">支払いポリシーに同意する</a>
+                    </label>
+                    <div class="ms-auto text-danger" id="warning-msg">支払いポリシーに同意してください</div>
+                </div>
+
+                <script>
+                    document.getElementById('select-payment').addEventListener('change', function () {
+                        if (this.checked) {
+                            $('#warning-msg').addClass('d-none');
+                        } else {
+                            $('#warning-msg').removeClass('d-none'); // Show "Check Out"
+                        }
+                    });
+                </script>
         </div>
         {{-- Payment Policy Aggrement --}}
         <div class="d-flex gap-3 my-4 justify-content-end">
-            <a href="{{ route('cart.address')}}" class="btn btn-outline-primary common-btn btn-back">{{ trans_lang('go_back') }}sss</a>
+            <a href="{{ route('cart.address')}}" class="btn btn-outline-primary common-btn btn-back">{{ trans_lang('go_back') }}/a>
             <!-- Checkout Button (Hidden by Default) -->
             <button data-page="#complete"
                 class="btn btn-outline-primary common-btn btn-payment d-none">
-                {{ trans_lang('check_out') }} sss
+                {{ trans_lang('check_out') }} 
             </button>
 
             <!-- Save Button (Shown by Default) -->
-            <a href="{{ route('cart.complete') }}"
-                class="common-btn btn btn-outline-primary btn-next">
-                {{ trans_lang('check_out') }}saaa
+            <a href="{{ route('cart.complete') }}" class="common-btn btn btn-outline-primary btn-next btn-payment">
+                {{ trans_lang('check_out') }}
             </a>
         </div>
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
                 function toggleButtons() {
                     if ($('#credit_card').is(':checked')) {
                         $('.btn-payment').removeClass('d-none'); // Show "Check Out"
@@ -818,12 +830,22 @@
                 }
 
                 // Trigger on checkbox change
-                $('.payment-checkbox').on('change', function() {
+                $('.payment-checkbox').on('change', function () {
                     toggleButtons();
                 });
 
                 // Initial check on page load
                 toggleButtons();
+
+                // Handle "Check Out" button click
+                $('.btn-payment').on('click', function (e) {
+                    if (!$('#select-payment').is(':checked')) {
+                        e.preventDefault(); // Prevent form submission or navigation
+                        $('#warning-msg').show(); // Show the warning message
+                    } else {
+                        $('#warning-msg').hide(); // Hide the warning message if checkbox is selected
+                    }
+                });
             });
         </script>
     </div>
@@ -831,10 +853,11 @@
 <!-- /Payment Step -->
 
 <!-- Complete Step -->
-<x-cart-step class="mt-5" id="complete" step="5">
+ <!-- Moved to cart/complete.blade.php -->
+<!-- <x-cart-step class="mt-5" id="complete" step="5">
     <div class="container-custom">
         <p class="text-center">
-            {{ trans_lang('paymnet_success_msg') }}
+            お支払い処理が完了しました。販売元からメールが届きますので、ご確認下さい。
         </p>
         <div class="d-flex gap-3 py-5 justify-content-center">
             <a href="{{ route('support') }}"
@@ -844,13 +867,18 @@
     </div>
 
     {{-- {{ session(['cart_step' => 1])}} --}}
-</x-cart-step>
+</x-cart-step> -->
 <!-- /Complete Step -->
 
 <!-- All Scripts -->
 <script src="{{ asset('assets/js/caculate.js') }}"></script>
 {{-- <script src="{{ asset('assets/js/pageChange.js') }}"></script> --}}
 <script src="{{ asset('assets/js/updateForm.js') }}"></script>
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 <script>
     $(document).ready(function() {
 
@@ -1025,7 +1053,11 @@
         //     });
         // }
 
-        function addQty(product_id, qty) {
+        function addQty(product_id, qty, stock) {
+            if (qty > stock) {
+                toastr.warning("{{ trans_lang('在庫超過') }}");
+                return;
+            }
             $.ajax({
                 url: `{{ route('cart.add_qty') }}`,
                 type: 'POST',
@@ -1047,6 +1079,7 @@
             $(class_name).click(function(e) {
                 btn = $(e.currentTarget);
                 product_id = btn.closest('tr.table-row').data('id');
+                stock = btn.closest('tr.table-row').data('stock'); // Add stock data attribute
 
                 quantity_box = btn.siblings('.quantity-value');
                 quantity = Number(quantity_box.val());
@@ -1054,14 +1087,14 @@
 
                 quantity = Math.max(1, quantity);
 
-                addQty(product_id, quantity);
+                addQty(product_id, quantity, stock);
 
-                quantity_box.val(quantity);
-
-                caculating(btn);
-                setPrice(btn);
-            })
-
+                if (quantity <= stock) {
+                    quantity_box.val(quantity);
+                    caculating(btn);
+                    setPrice(btn);
+                }
+            });
         }
 
         handleQty('.increment', 1);
@@ -1070,6 +1103,18 @@
         $(document).on('keyup', '.address_input', function() {
             var resultId = '#' + $(this).attr('id') + '-result';
             $(resultId).html($(this).val());
+        });
+
+        $('.update-cart').click(function() {
+            const quantity = $(this).siblings('.quantity-value').val();
+            const stock = $(this).data('stock');
+
+            if (quantity > stock) {
+                alert("{{ trans_lang('在庫超過') }}");
+                return false;
+            }
+
+            // ...existing code for updating the cart...
         });
 
     });

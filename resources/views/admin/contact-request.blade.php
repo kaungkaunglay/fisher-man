@@ -60,8 +60,8 @@
                             <div class="body-title">{{ trans_lang('action') }}</div>
                         </li>
                     </ul>
+                    <ul class="flex flex-column">
                     @foreach ($contacts as $contact)
-                        <ul class="flex flex-column">
                             <li class="user-item gap14">
                                 {{-- <div class="image">
                             <img src="images/avatar/user-6.png" alt="">
@@ -71,7 +71,7 @@
                                         <a href="#" class="body-title-2">{{ $contact->name }}</a>
 
                                     </div>
-                                    <div class="body-text">{{ $contact->email }}</div>
+                                    <div class="body-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $contact->email }}</div>
                                     <div class="list-icon-function">
                                         <div class="item eye">
                                             <a href="{{ route('admin.contact.detail', $contact->id) }}"><i
@@ -82,8 +82,8 @@
                                     </div>
                                 </div>
                             </li>
-                        </ul>
                     @endforeach
+                    </ul>
                 </div>
                 <div class="divider"></div>
                 {{-- pagination --}}

@@ -6,13 +6,13 @@
 @endsection
 
 @section('contents')
-    <div class="breadcrumb-sp mt-4 mb-3"></div>
+    <div class="mt-4 mb-3"></div>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="container-custom">
 
-            <div class="row justify-content-between">
+            <div class="row justify-content-between rowreverce">
                 <div class="col-lg-4">
                     @include('includes.aside') <!-- Aside Layout -->
                     <div class="r-buzz mt-3">

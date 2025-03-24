@@ -112,9 +112,9 @@ class ProfileController extends Controller
 
 
         session()->flash('status', 'success');
-        session()->flash('message', 'Profile updated successfully.');
+        session()->flash('message', 'プロフィールが正常に更新されました。');
 
-        return response()->json(['status' => true, 'message' => 'Profile updated successfully.']);
+        return response()->json(['status' => true, 'message' => 'プロフィールが正常に更新されました。']);
     }
 
 

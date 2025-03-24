@@ -47,6 +47,16 @@
 
                 <div class="wg-box">
                     <fieldset class="name">
+                        <div class="body-title mb-10">{{trans_lang('会社名')}}<span class="tf-color-1">*</span></div>
+                        <input class="mb-10" type="text" placeholder="会社名"
+                            name="contact_email" value="株式会社Acompany">
+                        <!-- @error('contact_email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror -->
+                    </fieldset>
+                    <fieldset class="name">
                         <div class="body-title mb-10">{{trans_lang('email')}}<span class="tf-color-1">*</span></div>
                         <input class="mb-10 @error('contact_email') is-invalid @enderror" type="email" placeholder=""
                             name="contact_email" value="{{ old('contact_email', $settings['contact_email']) }}">
