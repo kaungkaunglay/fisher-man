@@ -19,6 +19,15 @@ class Product extends Model
         return $this->belongsToMany(Users::class, 'white_lists', 'product_id', 'user_id');
     }
 
+    public function orderproduct() {
+        return $this->hasMany(OrderProduct::class,'id');
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
+    }
+
     public function carts()
     {
         return $this->hasMany(Cart::class);
