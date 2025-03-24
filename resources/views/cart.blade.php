@@ -635,6 +635,7 @@
                         <tr>
                             <th scope="col">{{ trans_lang('product_name') }}</th>
                             <th scope="col">{{ trans_lang('price') }}</th>
+                            <th scope="col">{{ trans_lang('quantity') }}</th>
                             <th scope="col">{{ trans_lang('小計') }}</th>
                         </tr>
                     </thead>
@@ -643,6 +644,7 @@
                             <tr class="table-row cart-{{ $item->product->id }}">
                                 <td clas="col-name">{{ $item->product->name }}</td>
                                 <td class="">¥{{ number_format($item->product->getSellPrice(), 0) }}</td>
+                                <td clas="col-name">{{ $item->quantity }}</td>
                                 <td class="">
                                     ¥{{ number_format($item->product->getSellPrice() * $item->quantity, 0) }}</td>
                             </tr>
@@ -650,6 +652,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
+                            <td colspan="1"></td>
                             <td colspan="1"></td>
                             <td>{{ trans_lang('total') }}</td>
                             <td>
@@ -666,8 +669,9 @@
                 @foreach ($carts as $item)
                     <div class="card cart-{{ $item->product->id }}  justify-content-between">
 
-                        <div class="card-body ">
-                            <p class="card-name">{{ $item->product->name }}</p>
+                        <div class="card-body">
+                            <p class="card-name w-25">{{ $item->product->name }}</p>
+                            <p class="card-qty w-25 text-center">{{ $item->quantity }}</p>
                             <div class="card-text">
                                 <span class¥{{ number_format($item->product->getSellPrice() * $item->quantity, 0) }}span>
                                     <span
