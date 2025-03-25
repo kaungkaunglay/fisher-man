@@ -230,8 +230,6 @@ class CartController extends Controller
 
         $payment_id = $request->input('payment_id');
 
-        
-
         // logger($paymentMethod);
 
         // Create the order
@@ -241,12 +239,21 @@ class CartController extends Controller
             'payment_id' => $payment_id,
         ]);
 
+
+
         logger($carts);
 
         foreach($carts as $cart)
         {
-            logger($cart);
+            // logger($cart);
             $order->products()->attach($cart->product_id);
+            $product = $cart->product;
+            $qty = $product->stock;
+            if($qty >= $cart->quantity){
+                $qty -= $cart->quantity;
+            }
+            $product->stock = $qty;
+            $product->save();
         }
 
         $address = session('address', []);
