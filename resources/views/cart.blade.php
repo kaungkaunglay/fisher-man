@@ -545,87 +545,87 @@
             <!-- Payment Method Form -->
             <!-- No need to use said by customer -->
             <!-- <div class="popup">
-                <div class="bg-white rounded-3 border text-black mx-auto" id="payment-form">
-                    <h2 class="title">{{ trans_lang('payment') }}</h2>
-                    <form class="d-flex flex-column" action="">
-                        <div>
-                            <label for="card-number">Card number</label>
-                            <div class="input-group border bg-white rounded">
-                                <input type="number" name="" id="card-number"
-                                    class="form-control border-0 p-2 shadow-none" placeholder="1234 1234 1234 1234">
-                                <div class="input-group-append d-flex gap-1 p-2 align-item-center">
-                                    <div class="card-bank-img align-content-center">
-                                        <img src="{{ asset('assets/icons/custom/visa.svg') }}" alt="visa.svg">
-                                    </div>
-                                    <div class="card-bank-img align-content-center">
-                                        <img src="{{ asset('assets/icons/custom/mastercard.svg') }}"
-                                            alt="mastercard.svg">
-                                    </div>
-                                    <div class="card-bank-img align-content-center">
-                                        <img src="{{ asset('assets/icons/custom/visa.svg') }}" alt="amex.svg">
-                                    </div>
-                                    <div class="card-bank-img align-content-center">
-                                        <img src="{{ asset('assets/icons/custom/discover.svg') }}" alt="discover.svg">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-column flex-sm-row input-wpr">
-                            <div class="w-100">
-                                <label for="expire">Expiration</label>
-                                <input type="date" name="" id="expire" class="w-100 p-2 border rounded">
-                            </div>
-                            <div class="w-100">
-                                <label for="cvc">CVC</label>
+                    <div class="bg-white rounded-3 border text-black mx-auto" id="payment-form">
+                        <h2 class="title">{{ trans_lang('payment') }}</h2>
+                        <form class="d-flex flex-column" action="">
+                            <div>
+                                <label for="card-number">Card number</label>
                                 <div class="input-group border bg-white rounded">
-                                    <input type="number" name="" id="cvc"
-                                        class="form-control border-0 p-2 shadow-none" placeholder="CVC">
-                                    <div class="input-group-append p-2 align-content-center">
-                                        <div class="card-bank-img">
-                                            <img src="{{ asset('assets/icons/custom/discover.svg') }}" alt="visa.svg">
+                                    <input type="number" name="" id="card-number"
+                                        class="form-control border-0 p-2 shadow-none" placeholder="1234 1234 1234 1234">
+                                    <div class="input-group-append d-flex gap-1 p-2 align-item-center">
+                                        <div class="card-bank-img align-content-center">
+                                            <img src="{{ asset('assets/icons/custom/visa.svg') }}" alt="visa.svg">
+                                        </div>
+                                        <div class="card-bank-img align-content-center">
+                                            <img src="{{ asset('assets/icons/custom/mastercard.svg') }}"
+                                                alt="mastercard.svg">
+                                        </div>
+                                        <div class="card-bank-img align-content-center">
+                                            <img src="{{ asset('assets/icons/custom/visa.svg') }}" alt="amex.svg">
+                                        </div>
+                                        <div class="card-bank-img align-content-center">
+                                            <img src="{{ asset('assets/icons/custom/discover.svg') }}" alt="discover.svg">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="d-flex flex-column flex-sm-row input-wpr">
-                            <div class="w-100">
-                                <label for="count">{{ trans_lang('country') }}</label>
-                                <select id="count" class="w-100 p-2 border rounded">
-                                    <option value="jpn" selected>Japan</option>
-                                </select>
+                            <div class="d-flex flex-column flex-sm-row input-wpr">
+                                <div class="w-100">
+                                    <label for="expire">Expiration</label>
+                                    <input type="date" name="" id="expire" class="w-100 p-2 border rounded">
+                                </div>
+                                <div class="w-100">
+                                    <label for="cvc">CVC</label>
+                                    <div class="input-group border bg-white rounded">
+                                        <input type="number" name="" id="cvc"
+                                            class="form-control border-0 p-2 shadow-none" placeholder="CVC">
+                                        <div class="input-group-append p-2 align-content-center">
+                                            <div class="card-bank-img">
+                                                <img src="{{ asset('assets/icons/custom/discover.svg') }}" alt="visa.svg">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="w-100">
-                                <label for="zp">{{ trans_lang('postal') }}</label>
-                                <input name="" type="number" id="zp" class="w-100 p-2 border rounded"
-                                    placeholder="104-0044">
+
+                            <div class="d-flex flex-column flex-sm-row input-wpr">
+                                <div class="w-100">
+                                    <label for="count">{{ trans_lang('country') }}</label>
+                                    <select id="count" class="w-100 p-2 border rounded">
+                                        <option value="jpn" selected>Japan</option>
+                                    </select>
+                                </div>
+                                <div class="w-100">
+                                    <label for="zp">{{ trans_lang('postal') }}</label>
+                                    <input name="" type="number" id="zp" class="w-100 p-2 border rounded"
+                                        placeholder="104-0044">
+                                </div>
                             </div>
-                        </div>
 
-                        <p class="content">
-                            By providing your card information, you allow Awardco, Inc. to charge your card for future
-                            payments in
-                            accordance with their terms.
-                        </p>
-                        <div class="d-flex align-items-start gap-2">
-                            <input type="checkbox" id="agree" class=" mt-2">
-                            <label for="agree">
-                                I agree that by saving this payment method it will be available for use to all who have
-                                access to this
-                                page or to processing funding deposits.
-                            </label>
-                        </div>
+                            <p class="content">
+                                By providing your card information, you allow Awardco, Inc. to charge your card for future
+                                payments in
+                                accordance with their terms.
+                            </p>
+                            <div class="d-flex align-items-start gap-2">
+                                <input type="checkbox" id="agree" class=" mt-2">
+                                <label for="agree">
+                                    I agree that by saving this payment method it will be available for use to all who have
+                                    access to this
+                                    page or to processing funding deposits.
+                                </label>
+                            </div>
 
-                        <div class="d-flex gap-3 text-center justify-content-center">
-                            <button class="common-btn btn btn-outline-primary"
-                                id="cancel">{{ trans_lang('cancle') }}</button>
-                            <a href="" class="common-btn btn btn-outline-primary btn-next-">{{ trans_lang('save') }}</a>
-                        </div>
-                    </form>
-                </div>
-            </div> -->
+                            <div class="d-flex gap-3 text-center justify-content-center">
+                                <button class="common-btn btn btn-outline-primary"
+                                    id="cancel">{{ trans_lang('cancle') }}</button>
+                                <a href="" class="common-btn btn btn-outline-primary btn-next-">{{ trans_lang('save') }}</a>
+                            </div>
+                        </form>
+                    </div>
+                </div> -->
             <!-- ./Payment Method Form -->
 
             <!-- Desktop Style -->
@@ -705,11 +705,13 @@
                             <label for="credit_card" style="margin-left: 25px;">{{ trans_lang('credit_card') }}</label>
                         </div>
                         <div class="d-flex gap-3">
-                            <input type="checkbox" id="cod" name="payment_method" class="payment-checkbox" value="1">
+                            <input type="checkbox" id="cod" name="payment_method" class="payment-checkbox"
+                                value="1">
                             <label for="cod">{{ trans_lang('代引き') }}</label>
                         </div>
                         <div class="d-flex gap-3">
-                            <input type="checkbox" id="banktransfer" name="payment_method" class="payment-checkbox" value="2">
+                            <input type="checkbox" id="banktransfer" name="payment_method" class="payment-checkbox"
+                                value="2">
                             <label for="banktransfer">{{ trans_lang('銀行振込') }}</label>
                         </div>
                         <div class="ms-auto text-danger warning-msg">{{ trans_lang('check_mark') }}</div>
@@ -775,9 +777,9 @@
 
                         <!-- country link -->
                         <!-- <div class="form-group d-flex">
-                                <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('country') }}</h3>:
-                                <h3 class="form-output ms-1">{{ session('address') ? session('address')['country'] : '' }}</h3>
-                            </div> -->
+                                    <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('country') }}</h3>:
+                                    <h3 class="form-output ms-1">{{ session('address') ? session('address')['country'] : '' }}</h3>
+                                </div> -->
 
                         <!-- address link -->
                         <div class="form-group d-flex align-items-start">
@@ -879,7 +881,7 @@
         </div>
 
         {{-- {{ session(['cart_step' => 1])}} --}}
-    </x-cart-step> 
+    </x-cart-step>
     <!-- /Complete Step -->
 
     <!-- All Scripts -->
@@ -1131,8 +1133,15 @@
 
         });
 
+
         $('#checkout_btn').click(function(e) {
             e.preventDefault();
+
+            // Check if payment method is selected
+            if (!$('#select-payment').is(':checked')) {
+                $('#warning-msg').removeClass('d-none'); // Show warning message
+                return false; // Stop execution
+            }
 
             // Get the checked checkbox
             const checkedCheckbox = $('.payment-checkbox:checked')
@@ -1143,17 +1152,13 @@
             }
 
             // Extract data from the checked checkbox
-            const checkboxData = checkedCheckbox[0].value ;// Example: value attribute
-            
-           
-            console.log(checkboxData);
-
+            const checkboxData = checkedCheckbox[0].value; // Example: value attribute
 
             $.ajax({
                 url: "{{ route('cart.complete') }}",
                 type: "POST",
                 data: {
-                    payment_id: checkboxData 
+                    payment_id: checkboxData
                 },
                 success: function(response) {
                     if (response.status) {
