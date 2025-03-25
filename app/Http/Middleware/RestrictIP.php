@@ -15,12 +15,12 @@ class RestrictIP
      */
     public function handle(Request $request, Closure $next)
     {
-        $allowed_ips = ['127.0.0.1', '150.95.27.152']; 
+        // $allowed_ips = ['127.0.0.1', '150.95.27.152']; 
 
-        if (!in_array($request->ip(), $allowed_ips)) {
-            abort(403, 'Access denied');
-        }
+        // if (!in_array($request->ip(), $allowed_ips)) {
+        //     abort(403, 'Access denied');
+        // }
 
-        return $next($request);
+        // return $next($request);
     }
 }
