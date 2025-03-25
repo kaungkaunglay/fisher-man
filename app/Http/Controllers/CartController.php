@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderCompletedMail;
 use App\Mail\OrderCompletedBuyerMail; // Import Buyer Mail class
 use App\Mail\OrderCompletedAdminMail;
+use App\Mail\TestingPDFMail;
 use App\Models\Order;
 
 class CartController extends Controller
@@ -266,6 +267,8 @@ class CartController extends Controller
             Mail::to('kado@and-fun.com')->send(new OrderCompletedAdminMail($user, $carts));
             
             Mail::to($user->email)->send( $payment_id == 1 ? new CashOnDeliveryMail($address,$carts) : new BankTransferMail($address,$carts));
+
+            // Mail::to($user->email)->send(new TestingPDFMail());
             
         }
 

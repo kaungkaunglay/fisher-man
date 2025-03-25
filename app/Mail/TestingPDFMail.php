@@ -5,26 +5,24 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class CashOnDeliveryMail extends Mailable
+class TestingPDFMail extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $pdf;
 
     /**
      * Create a new message instance.
      */
-
-    public $address;
-    public $carts;
-    
-    public function __construct($address,$carts)
+    public function __construct()
     {
-        $this->address = $address;
-        $this->carts = $carts;
-       
+        //
+        
     }
 
     /**
@@ -32,8 +30,9 @@ class CashOnDeliveryMail extends Mailable
      */
     public function envelope(): Envelope
     {
+        
         return new Envelope(
-            subject: 'Cash On Delivery Mail',
+            subject: 'Testing P D F Mail',
         );
     }
 
@@ -42,15 +41,12 @@ class CashOnDeliveryMail extends Mailable
      */
     public function content(): Content
     {
+        $this->pdf = Pdf::loadView('emails.testingpdfmail');
 
         return new Content(
-            view: 'emails.cash_on_delivery',
-            with: [
-                'address' => $this->address,
-                'carts' => $this->carts
-            ],
-        );
-        
+            view: 'emails.testingpdfmail',
+
+        )->attach(Attachment::);
     }
 
     /**

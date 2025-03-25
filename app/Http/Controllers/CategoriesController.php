@@ -19,7 +19,9 @@ class CategoriesController extends Controller
     public function show($id)
     {
         $category = Category::with(['subCategories' => function ($query) {
-            $query->with('products');
+            $query->with(['products' => function($productQuery){
+                $productQuery->where('stock','>',0);
+            }]);
         }])->findOrFail($id);
 
         $menu_category_id = $category->id;
