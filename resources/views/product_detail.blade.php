@@ -253,7 +253,8 @@
                     quantity = 1;
                 } else if (quantity > stock) {
                     quantity = stock;
-                    $('.stock-error').show(); // Show error message
+                    toastr.error($('.stock-error').html(),'')
+                    // $('.stock-error').show(); // Show error message
                 } else {
                     $('.stock-error').hide(); // Hide error message
                 }
