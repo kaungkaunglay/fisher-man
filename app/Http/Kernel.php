@@ -74,4 +74,8 @@ class Kernel extends HttpKernel
         'guest_custom' => \App\Http\Middleware\GuestCustom::class,
         // 'doNotCacheResponse' => \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class,
     ];
+
+    protected $routeMiddleware = [
+        'restrict.ip' => \App\Http\Middleware\RestrictIP::class,
+    ];
 }
