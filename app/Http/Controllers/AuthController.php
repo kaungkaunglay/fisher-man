@@ -66,6 +66,7 @@ class AuthController extends Controller
                 'min:4',
                 'max:20',
                 'unique:users,username',
+                'regex:/^[\p{L}\p{N}\s]+$/u'
                 // 'regex:/^[a-zA-Z0-9\s]+$/'
             ],
             'email' => 'required|email|unique:users,email',
@@ -73,7 +74,8 @@ class AuthController extends Controller
                 'required',
                 'min:6',
                 'max:16',
-                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,16}$/'
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}])[A-Za-z\d@$!%*?&#\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]{6,16}$/u',
+                // 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,16}$/'
             ],
             'confirm_password' => 'required|same:password',
             'g-recaptcha-response' => 'required',
