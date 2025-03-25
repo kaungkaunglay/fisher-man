@@ -34,7 +34,7 @@ use App\Http\Controllers\SellersController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::middleware(['restrict.ip'])->group(function () {
 Route::middleware(['guest_custom'])->group(function(){
     // login for Customer and Seller
     Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -284,3 +284,5 @@ Route::get('/login/facebook/callback', [OAuthController::class, 'handleFacebookC
 Route::get('/whitelist-count', [WhiteListController::class, 'WhiteListCount'])->name('whitelist-count');
 Route::get('/cart-count', [CartController::class, 'CartCount'])->name('cart-count');
 
+
+});
