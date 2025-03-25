@@ -20,9 +20,9 @@ class RestrictIP
                   : $request->ip();
 
 		logger($client_ip);
-         $allowed_ips = [ '150.95.27.152']; 
-         if (!in_array($request->ip(), $allowed_ips)) {
-             abort(403, 'Access denied');
+         $allowed_ips = ['150.95.27.152']; 
+         if (!in_array($client_ip, $allowed_ips)) {
+            abort(403, 'Access denied');
          }
 
          return $next($request);
