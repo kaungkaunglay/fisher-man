@@ -804,10 +804,10 @@
                     <label for="select-payment">
                         <a href="{{ route('payment_policy') }}">支払いポリシーに同意する</a>
                     </label>
-                    <div class="ms-auto text-danger" id="warning-msg">支払いポリシーに同意してください</div>
+                    <div class="ms-auto text-danger d-none" id="warning-msg">支払いポリシーに同意してください</div>
                 </div>
 
-                <script>
+                {{-- <script>
                     document.getElementById('select-payment').addEventListener('change', function() {
                         if (this.checked) {
                             $('#warning-msg').addClass('d-none');
@@ -815,7 +815,7 @@
                             $('#warning-msg').removeClass('d-none'); // Show "Check Out"
                         }
                     });
-                </script>
+                </script> --}}
             </div>
             {{-- Payment Policy Aggrement --}}
             <div class="d-flex gap-3 my-4 justify-content-end">
@@ -852,14 +852,15 @@
                     toggleButtons();
 
                     // Handle "Check Out" button click
-                    $('.btn-payment').on('click', function(e) {
-                        if (!$('#select-payment').is(':checked')) {
-                            e.preventDefault(); // Prevent form submission or navigation
-                            $('#warning-msg').show(); // Show the warning message
-                        } else {
-                            $('#warning-msg').hide(); // Hide the warning message if checkbox is selected
-                        }
-                    });
+                    // $('.btn-payment').on('click', function(e) {
+                    //     if (!$('#select-payment').is(':checked')) {
+                    //         e.preventDefault(); // Prevent form submission or navigation
+                    //         $('#warning-msg').show(); // Show the warning message
+                    //     } else {
+                    //         console.log('checked');
+                    //         $('#warning-msg').hide(); // Hide the warning message if checkbox is selected
+                    //     }
+                    // });
                 });
             </script>
         </div>
@@ -1139,20 +1140,25 @@
 
             // Check if payment method is selected
             if (!$('#select-payment').is(':checked')) {
+                // console.log('not-checked');
                 $('#warning-msg').removeClass('d-none'); // Show warning message
                 return false; // Stop execution
+            }else{
+                $('#warning-msg').addClass('d-none');
             }
 
             // Get the checked checkbox
-            const checkedCheckbox = $('.payment-checkbox:checked')
+            const checkedCheckbox = $('.payment-checkbox:checked');
 
-            if (!checkedCheckbox) {
+            if (checkedCheckbox.length == 0) {
                 alert('Please select a payment method.');
-                return; // Stop execution if no checkbox is checked
+                return false; // Stop execution if no checkbox is checked
             }
 
             // Extract data from the checked checkbox
             const checkboxData = checkedCheckbox[0].value; // Example: value attribute
+
+            // console.log(checkboxData);
 
             $.ajax({
                 url: "{{ route('cart.complete') }}",
