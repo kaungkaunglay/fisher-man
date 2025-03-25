@@ -17,7 +17,7 @@
                     @include('includes.aside') <!-- Aside Layout -->
                     <div class="r-buzz mt-3">
                         <a href="https://fisherman-myanmar.com/" target="_blank">
-                            <img src="{{ asset('assets/images/r-buzz.jpg')}}" alt="r-buzz" style="border-radius: 10px;">
+                            <img src="{{ asset('assets/images/r-buzz.jpg')}}" alt="r-buzz" loading="lazy" style="border-radius: 10px;">
                         </a>
                     </div>
                 </div>
