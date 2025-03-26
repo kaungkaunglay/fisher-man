@@ -47,7 +47,7 @@ class ProductController extends Controller
     public function showallproducts(Request $request)
     {
         $sortBy = $request->get('sort_by', 'latest');
-        $query = Product::query();
+        $query = Product::query()->where('stock','>',0);
 
         if ($sortBy === 'price_asc') {
             $query->orderBy('product_price', 'asc');
@@ -62,10 +62,10 @@ class ProductController extends Controller
         }
 
         $products = $query->get();
-        $discount_products = setting('is_time_sale') == 'active'  ?$query->where('is_time_sale',1)->where('status','approved')->latest()->limit(6)->get() : collect();
+        $discount_products = setting('is_time_sale') == 'active'  ?$query->where('is_time_sale',1)->where('status','approved')->where('stock','>',0)->latest()->limit(6)->get() : collect();
         $popular_shops = Shop::where('status','approved')->inRandomOrder()->take(4)->get();
 
-        $random_products  = Product::inRandomOrder()->take(6)->get(); // Fetch 6 random products
+        $random_products  = Product::where('stock', '>', 0)->inRandomOrder()->take(6)->get(); // Fetch 6 random products
 
         $settings = Setting::pluck('value', 'key')->toArray();
         $bannerImages = isset($settings['site_banner_images']) ? json_decode($settings['site_banner_images']) : [];
@@ -228,7 +228,7 @@ class ProductController extends Controller
             $products = collect();
         } else {
             $sortBy = $request->get('sort_by', 'latest');
-            $query = Product::where('is_time_sale',1)->where('status','approved');
+            $query = Product::where('is_time_sale',1)->where('status','approved') ->where('stock', '>', 0);
 
             if ($sortBy === 'price_asc') {
                 $query->orderBy('product_price', 'asc');

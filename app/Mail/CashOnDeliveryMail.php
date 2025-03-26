@@ -5,6 +5,7 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -17,12 +18,15 @@ class CashOnDeliveryMail extends Mailable
      * Create a new message instance.
      */
 
-    public $address;
-    public $carts;
-    public function __construct($address,$carts)
+    // public $address;
+    // public $carts;
+    public $mailData;
+    
+    public function __construct($mailData)
     {
-        $this->address = $address;
-        $this->carts = $carts;
+        // logger($mailData);
+        $this->mailData = $mailData;
+       
     }
 
     /**
@@ -40,13 +44,16 @@ class CashOnDeliveryMail extends Mailable
      */
     public function content(): Content
     {
+        // logger($this->mailData);
         return new Content(
-            view: 'emails.cash_on_delivery',
-            with: [
-                'address' => $this->address,
-                'carts' => $this->carts
-            ],
+            view: 'emails.empty',
+            // with: $this->mailData
+            // with: [
+            //     'address' => $this->mailData['address'],
+            //     'carts' => $this->mailData['carts']
+            // ],
         );
+        
     }
 
     /**
@@ -56,6 +63,9 @@ class CashOnDeliveryMail extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            Attachment::fromData(fn () => $this->mailData['codpdf']->output(), 'cash_on_delivery.pdf')
+            ->withMime('application/pdf'),
+        ];
     }
 }
