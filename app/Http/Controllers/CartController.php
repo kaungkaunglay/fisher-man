@@ -16,6 +16,7 @@ use App\Mail\OrderCompletedMail;
 use App\Mail\OrderCompletedBuyerMail; // Import Buyer Mail class
 use App\Mail\OrderCompletedAdminMail;
 use App\Mail\TestingPDFMail;
+use Barryvdh\DomPDF\Facade\Pdf; // Import the correct Pdf namespace
 use App\Models\Order;
 
 class CartController extends Controller
@@ -242,7 +243,7 @@ class CartController extends Controller
 
 
 
-        logger($carts);
+        // logger($carts);
 
         foreach($carts as $cart)
         {
@@ -260,16 +261,29 @@ class CartController extends Controller
         $address = session('address', []);
 
         if ($user && $user->email) {
+
+            $data['address'] = $address;
+            $data['carts'] = $carts;
+
+            // logger($data);
             // Send email to the buyer
             // Mail::to($user->email)->send(new OrderCompletedBuyerMail($user, $carts));
 
             // Send email to the admin
             Mail::to('kado@and-fun.com')->send(new OrderCompletedAdminMail($user, $carts));
             
-            Mail::to($user->email)->send( $payment_id == 1 ? new CashOnDeliveryMail($address,$carts) : new BankTransferMail($address,$carts));
+            $CODpdf = PDF::loadView('emails.cash_on_delivery',$data)->setOption('defaultFont', 'Noto Sans JP')->setOption('fontDir', public_path('assets/fonts/NotoSanJP/'))
+            ->setOption('isHtml5ParserEnabled', true);
+            $data["codpdf"] = $CODpdf;
 
-            // Mail::to($user->email)->send(new TestingPDFMail());
+            $BTpdf = PDF::loadView('emails.bank_transfer',$data)->setOption('defaultFont', 'Noto Sans JP')->setOption('fontDir', public_path('assets/fonts/NotoSanJP/'))
+            ->setOption('isHtml5ParserEnabled', true);
+            $data["btpdf"] = $BTpdf;
+
+            // logger($pdfData);
             
+            Mail::to($user->email)->send($payment_id == 1 ? new CashOnDeliveryMail($data) : new BankTransferMail($data));
+     
         }
 
         session()->forget('address');
