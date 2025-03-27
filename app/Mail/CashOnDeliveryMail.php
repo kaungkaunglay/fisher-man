@@ -47,11 +47,6 @@ class CashOnDeliveryMail extends Mailable
         // logger($this->mailData);
         return new Content(
             view: 'emails.empty',
-            // with: $this->mailData
-            // with: [
-            //     'address' => $this->mailData['address'],
-            //     'carts' => $this->mailData['carts']
-            // ],
         );
         
     }

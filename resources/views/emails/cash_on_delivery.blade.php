@@ -25,15 +25,16 @@
         <p>Thank you for shopping with us! Your order has been successfully placed and will be delivered to you soon.</p>
     </div>
 
-    <p><strong>Payment Method:</strong>  Cash on Delivery (COD)</p>
+    <p><strong>Payment Method:</strong> Cash on Delivery (COD)</p>
 
     <h3>Order Details</h3>
     <table class="order-details">
         <thead>
             <tr>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Subtotal</th>
+                <th>{{ trans_lang('product_name') }}</th>
+                <th>{{ trans_lang('price') }}</th>
+                <th>{{ trans_lang('quantity') }}</th>
+                <th>{{ trans_lang('sub_total') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -41,6 +42,7 @@
                 <tr>
                     <td>{{ $item->product->name }}</td>
                     <td>¥{{ number_format($item->product->getSellPrice(), 0) }}</td>
+                    <td>{{ $item->quantity }}</td>
                     <td>¥{{ number_format($item->product->getSellPrice() * $item->quantity, 0) }}</td>
                 </tr>
             @endforeach
@@ -51,7 +53,7 @@
         }) ?? 0;
     @endphp
             <tr class="total">
-                <td colspan="2">Total Amount:</td>
+                <td colspan="3">{{ trans_lang('total_amount') }}:</td>
                 <td>¥{{ number_format($total, 0) }}</td>
             </tr>
         </tbody>
@@ -64,15 +66,17 @@
 
     <h3>Important Information</h3>
     <p>Please ensure you have the total amount ready in cash at the time of delivery.</p>
-    <p>If you have any questions or need to make changes to your order, please contact us at support@example.com or call +81-123-456-7890.</p>
+    <p>If you have any questions or need to make changes to your order, please contact us at {{config('settings.contact_email')}} or call {{config('settings.contact_phone')}}.</p>
 
     <div class="footer">
         <p>Thank you for choosing us!</p>
         <p>Best regards,</p>
-        <p>Acompany Co., Ltd.</p>
-        <p>〒817-0702</p>
+        <p>{{config('settings.contact_address')}}</p>
+        <p>{{config('settings.contact_phone')}}</p>
+        {{-- <p>Acompany Co., Ltd.</p> --}}
+        {{-- <p>〒817-0702</p>
         <p>13-3 Furusato, Kamitsushima-cho, Tsushima City, Nagasaki Prefecture</p>
-        <p>Phone: 0920-86-4516</p>
+        <p>Phone: 0920-86-4516</p> --}}
     </div>
 </body>
 </html>
