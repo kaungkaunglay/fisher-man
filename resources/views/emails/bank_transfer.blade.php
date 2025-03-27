@@ -30,9 +30,10 @@
     <table class="order-details">
         <thead>
             <tr>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Subtotal</th>
+                <th>{{ trans_lang('product_name') }}</th>
+                <th>{{ trans_lang('price') }}</th>
+                <th>{{ trans_lang('quantity') }}</th>
+                <th>{{ trans_lang('sub_total') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -40,6 +41,7 @@
                 <tr>
                     <td>{{ $item->product->name }}</td>
                     <td>¥{{ number_format($item->product->getSellPrice(), 0) }}</td>
+                    <td>¥{{ $item->quantity }}</td>
                     <td>¥{{ number_format($item->product->getSellPrice() * $item->quantity, 0) }}</td>
                 </tr>
             @endforeach
@@ -50,7 +52,7 @@
                 }) ?? 0;
             @endphp
             <tr class="total">
-                <td colspan="2">Total Amount:</td>
+                <td colspan="3">{{ trans_lang('total_amount') }}:</td>
                 <td>¥{{ number_format($total, 0) }}</td>
             </tr>
         </tbody>
