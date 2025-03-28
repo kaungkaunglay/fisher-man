@@ -130,7 +130,7 @@
                                     {{ $product->status }}
                                 @endif
                             </div>                            
-\                            <div>
+                            <div>
                                 @if($product->stock <= 0)
                                     <div class="block-not-available">在庫切れ</div>
                                 @else

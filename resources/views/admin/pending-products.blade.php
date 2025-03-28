@@ -260,7 +260,7 @@
                 },
                 success: function (response) {
                     if (response.success) {
-                        $("#statusDropdown" + productId).text(status.charAt(0).toUpperCase() + status.slice(1));
+                        // $("#statusDropdown" + productId).text(status.charAt(0).toUpperCase() + status.slice(1));
                         $("#statusDropdown" + productId)
                             .removeClass("btn-success btn-warning btn-danger")
                             .addClass(status === "approved" ? "btn-success" : status === "pending" ? "btn-warning" : "btn-danger");
