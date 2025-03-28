@@ -253,7 +253,7 @@
                                             </li>
                                             <li class="sub-menu-item">
                                                 <a href="{{route('pending-time-sale')}}" class="{{request()->is('admin/pending-time-sale') ? 'active' : ''}}">
-                                                    <div class="text">商品登録依頼</div>
+                                                    <div class="text">保留中のタイムセール</div>
                                                 </a>
                                             </li>
                                         </ul>

@@ -69,9 +69,9 @@
                         </div>
                     </form> --}}
                 </div>
-                @if (check_role(2))
+                @if (check_role(1))
                 
-                <a class="tf-button style-1 w208" id="toggle_time_sale" href="javascript:void(0);">{{ setting('is_time_sale') == 'active' ? trans_lang('実行する') : trans_lang('実行しない')}}</a>
+                <a class="tf-button style-1 w208" id="approved_time_sale" href="javascript:void(0);" disabled>承認されたタイムセール</a>
                 @endif
             </div>
             <div class="wg-table table-product-list">
@@ -80,34 +80,63 @@
                         <div class="body-title">{{trans_lang('product')}}</div>
                     </li>
                     <li>
+                        <div class="body-title">タイムセール</div>
+                    </li>
+                    <li>
                         <div class="body-title">{{trans_lang('product')}} ID</div>
                     </li>
-                        
+                    <li>
+                        <div class="body-title">{{trans_lang('price')}}</div>
+                    </li>
+                    <li>
+                        <div class="body-title">{{trans_lang('status')}}</div>
+                    </li>
+                    <!-- <li>
+                        <div class="body-title">{{trans_lang('sale')}}</div>
+                    </li> -->
+                    <li>
+                        <div class="body-title">{{trans_lang('quanity')}}</div>
+                    </li>
                     <li>
                         <div class="body-title">{{trans_lang('uploaded_date')}}</div>
                     </li>
                     <li>
                         <div class="body-title">{{trans_lang('action')}}</div>
                     </li>
-                    <li>
-                        <div class="body-title">
-                            <input type="checkbox" class="bulk_select" id="bulk_select" />
-                        </div>
-                    </li>
                 </ul>
 
                 @foreach($products as $product)
                 <ul class="flex flex-column">
-                    <li class="product-item gap20">
+                    <li class="product-item gap14">
                         <div class="image no-bg">
                             <img src="{{ asset('assets/products/'.$product->product_image) }}" alt="{{ $product->name }}">
                         </div>
-                        <div class="name">
-                            <a href="{{ route('admin.products', $product->id) }}" class="body-title-2">{{ $product->name }}</a>
-                        </div>
-                        <div class="flex items-center justify-between gap20 flex-grow">                      
-                            <div class="body-text">{{ $product->id }}</div>                      
-                        </div>
+                        <div class="flex items-center justify-between gap20 flex-grow">
+                            <div class="name">
+                                <a href="{{ route('admin.products', $product->id) }}" class="body-title-2">{{ $product->name }}</a>
+                            </div>
+                            <div class="body-text">
+                                <input type="checkbox" class="timesale" id="timesale-{{ $product->id }} myCheckbox" data-id="{{ $product->id }}" >
+                            </div>
+                            <div class="body-text">{{ $product->id }}</div>
+                            <div class="body-text">¥{{ number_format($product->product_price - $product->discount, 0) }} <span style="text-decoration: line-through; opacity: 0.5;">¥{{ number_format($product->product_price)}}</span></div>
+                            <div class="body-text">
+                                @if ($product->status == 'approved')
+                                    承認済み
+                                @elseif ($product->status == 'pending')
+                                    保留中
+                                @else
+                                    <!-- Optionally, you can show something else if the status is neither approved nor pending -->
+                                    {{ $product->status }}
+                                @endif
+                            </div>                            
+                            <div>
+                                @if($product->stock <= 0)
+                                    <div class="block-not-available">在庫切れ</div>
+                                @else
+                                <div class="body-text">{{ $product->stock }}</div>
+                                @endif
+                            </div>
                         <div class="body-text">{{ $product->created_at->locale('ja')->isoFormat('YYYY年MM月DD日') }}</div>
                         <div class="list-icon-function">
                             <div class="item eye">
@@ -129,9 +158,6 @@
                                     <i class="icon-trash-2"></i>
                                 </a>
                             </div> --}}
-                        </div>
-                        <div class="body-text">
-                            <input type="checkbox" class="timesale" id="timesale-{{ $product->id }} myCheckbox" data-id="{{ $product->id }}" {{ $product->is_time_sale == 1 ? 'checked' : '' }}>
                         </div>
                     </li>
                 </ul>
@@ -196,25 +222,54 @@
     $(document).ready(function() {
         $.ajaxSetup({
             headers: {
-                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
 
-        $('#toggle_time_sale').on('click', function() {
-            var cur = $(this);
+        // Function to get time sale products
+        function getTimeSaleProducts() {
+            let timeSaleProducts = [];
+            $('.timesale').each(function() {
+                timeSaleProducts.push({
+                    id: $(this).data('id'),
+                    is_time_sale: $(this).prop('checked') ? 2 : 1
+                });
+            });
+            return timeSaleProducts;
+        }
+
+        // Enable the approve button when checkbox changes
+        $(document).on('change', '.timesale', function() {
+            $('#approved_time_sale').prop('disabled', false);
+        });
+
+        // Handle approve button click
+        $(document).on('click', '#approved_time_sale', function() {
+            if ($(this).prop('disabled')) return;
+
+            let timeSaleProducts = getTimeSaleProducts();
+            
             $.ajax({
-                url: "{{ route('admin.products.toggledTimeSale') }}",
-                type: 'POST',
-                data: {
-                   
-                },
+                type: "POST",
+                url: '/admin/products/update-time-sale',
+                data: { time_sale_products: timeSaleProducts },
+                dataType: "json",
                 success: function(response) {
                     if (response.success) {
+                        // toastr.success('', response.message);
                         location.reload();
+                    } else {
+                        toastr.error('', response.message);
                     }
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX Error:", xhr.responseText);
+                    console.error('AJAX Error:', error);
+                    toastr.error('', 'Something went wrong. Please try again.');
                 }
             });
         });
     });
+
 </script>
 @endsection
