@@ -262,6 +262,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
 
+        logger($request->all());
         $messages = [
             'sub_category_id.exists' => 'サブカテゴリーは存在しません',
             'name.string' => '名前は文字列でなければなりません',
