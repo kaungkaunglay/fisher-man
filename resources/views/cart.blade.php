@@ -546,87 +546,87 @@
             <!-- Payment Method Form -->
             <!-- No need to use said by customer -->
             <!-- <div class="popup">
-                                    <div class="bg-white rounded-3 border text-black mx-auto" id="payment-form">
-                                        <h2 class="title">{{ trans_lang('payment') }}</h2>
-                                        <form class="d-flex flex-column" action="">
-                                            <div>
-                                                <label for="card-number">Card number</label>
-                                                <div class="input-group border bg-white rounded">
-                                                    <input type="number" name="" id="card-number"
-                                                        class="form-control border-0 p-2 shadow-none" placeholder="1234 1234 1234 1234">
-                                                    <div class="input-group-append d-flex gap-1 p-2 align-item-center">
-                                                        <div class="card-bank-img align-content-center">
-                                                            <img src="{{ asset('assets/icons/custom/visa.svg') }}" alt="visa.svg">
-                                                        </div>
-                                                        <div class="card-bank-img align-content-center">
-                                                            <img src="{{ asset('assets/icons/custom/mastercard.svg') }}"
-                                                                alt="mastercard.svg">
-                                                        </div>
-                                                        <div class="card-bank-img align-content-center">
-                                                            <img src="{{ asset('assets/icons/custom/visa.svg') }}" alt="amex.svg">
-                                                        </div>
-                                                        <div class="card-bank-img align-content-center">
-                                                            <img src="{{ asset('assets/icons/custom/discover.svg') }}" alt="discover.svg">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="d-flex flex-column flex-sm-row input-wpr">
-                                                <div class="w-100">
-                                                    <label for="expire">Expiration</label>
-                                                    <input type="date" name="" id="expire" class="w-100 p-2 border rounded">
-                                                </div>
-                                                <div class="w-100">
-                                                    <label for="cvc">CVC</label>
+                                        <div class="bg-white rounded-3 border text-black mx-auto" id="payment-form">
+                                            <h2 class="title">{{ trans_lang('payment') }}</h2>
+                                            <form class="d-flex flex-column" action="">
+                                                <div>
+                                                    <label for="card-number">Card number</label>
                                                     <div class="input-group border bg-white rounded">
-                                                        <input type="number" name="" id="cvc"
-                                                            class="form-control border-0 p-2 shadow-none" placeholder="CVC">
-                                                        <div class="input-group-append p-2 align-content-center">
-                                                            <div class="card-bank-img">
-                                                                <img src="{{ asset('assets/icons/custom/discover.svg') }}" alt="visa.svg">
+                                                        <input type="number" name="" id="card-number"
+                                                            class="form-control border-0 p-2 shadow-none" placeholder="1234 1234 1234 1234">
+                                                        <div class="input-group-append d-flex gap-1 p-2 align-item-center">
+                                                            <div class="card-bank-img align-content-center">
+                                                                <img src="{{ asset('assets/icons/custom/visa.svg') }}" alt="visa.svg">
+                                                            </div>
+                                                            <div class="card-bank-img align-content-center">
+                                                                <img src="{{ asset('assets/icons/custom/mastercard.svg') }}"
+                                                                    alt="mastercard.svg">
+                                                            </div>
+                                                            <div class="card-bank-img align-content-center">
+                                                                <img src="{{ asset('assets/icons/custom/visa.svg') }}" alt="amex.svg">
+                                                            </div>
+                                                            <div class="card-bank-img align-content-center">
+                                                                <img src="{{ asset('assets/icons/custom/discover.svg') }}" alt="discover.svg">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="d-flex flex-column flex-sm-row input-wpr">
-                                                <div class="w-100">
-                                                    <label for="count">{{ trans_lang('country') }}</label>
-                                                    <select id="count" class="w-100 p-2 border rounded">
-                                                        <option value="jpn" selected>Japan</option>
-                                                    </select>
+                                                <div class="d-flex flex-column flex-sm-row input-wpr">
+                                                    <div class="w-100">
+                                                        <label for="expire">Expiration</label>
+                                                        <input type="date" name="" id="expire" class="w-100 p-2 border rounded">
+                                                    </div>
+                                                    <div class="w-100">
+                                                        <label for="cvc">CVC</label>
+                                                        <div class="input-group border bg-white rounded">
+                                                            <input type="number" name="" id="cvc"
+                                                                class="form-control border-0 p-2 shadow-none" placeholder="CVC">
+                                                            <div class="input-group-append p-2 align-content-center">
+                                                                <div class="card-bank-img">
+                                                                    <img src="{{ asset('assets/icons/custom/discover.svg') }}" alt="visa.svg">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="w-100">
-                                                    <label for="zp">{{ trans_lang('postal') }}</label>
-                                                    <input name="" type="number" id="zp" class="w-100 p-2 border rounded"
-                                                        placeholder="104-0044">
+
+                                                <div class="d-flex flex-column flex-sm-row input-wpr">
+                                                    <div class="w-100">
+                                                        <label for="count">{{ trans_lang('country') }}</label>
+                                                        <select id="count" class="w-100 p-2 border rounded">
+                                                            <option value="jpn" selected>Japan</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="w-100">
+                                                        <label for="zp">{{ trans_lang('postal') }}</label>
+                                                        <input name="" type="number" id="zp" class="w-100 p-2 border rounded"
+                                                            placeholder="104-0044">
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <p class="content">
-                                                By providing your card information, you allow Awardco, Inc. to charge your card for future
-                                                payments in
-                                                accordance with their terms.
-                                            </p>
-                                            <div class="d-flex align-items-start gap-2">
-                                                <input type="checkbox" id="agree" class=" mt-2">
-                                                <label for="agree">
-                                                    I agree that by saving this payment method it will be available for use to all who have
-                                                    access to this
-                                                    page or to processing funding deposits.
-                                                </label>
-                                            </div>
+                                                <p class="content">
+                                                    By providing your card information, you allow Awardco, Inc. to charge your card for future
+                                                    payments in
+                                                    accordance with their terms.
+                                                </p>
+                                                <div class="d-flex align-items-start gap-2">
+                                                    <input type="checkbox" id="agree" class=" mt-2">
+                                                    <label for="agree">
+                                                        I agree that by saving this payment method it will be available for use to all who have
+                                                        access to this
+                                                        page or to processing funding deposits.
+                                                    </label>
+                                                </div>
 
-                                            <div class="d-flex gap-3 text-center justify-content-center">
-                                                <button class="common-btn btn btn-outline-primary"
-                                                    id="cancel">{{ trans_lang('cancle') }}</button>
-                                                <a href="" class="common-btn btn btn-outline-primary btn-next-">{{ trans_lang('save') }}</a>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div> -->
+                                                <div class="d-flex gap-3 text-center justify-content-center">
+                                                    <button class="common-btn btn btn-outline-primary"
+                                                        id="cancel">{{ trans_lang('cancle') }}</button>
+                                                    <a href="" class="common-btn btn btn-outline-primary btn-next-">{{ trans_lang('save') }}</a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div> -->
             <!-- ./Payment Method Form -->
 
             <!-- Desktop Style -->
@@ -778,9 +778,9 @@
 
                         <!-- country link -->
                         <!-- <div class="form-group d-flex">
-                                                    <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('country') }}</h3>:
-                                                    <h3 class="form-output ms-1">{{ session('address') ? session('address')['country'] : '' }}</h3>
-                                                </div> -->
+                                                        <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('country') }}</h3>:
+                                                        <h3 class="form-output ms-1">{{ session('address') ? session('address')['country'] : '' }}</h3>
+                                                    </div> -->
 
                         <!-- address link -->
                         <div class="form-group d-flex align-items-start">
@@ -1210,6 +1210,13 @@
             quantityInputs.forEach(input => {
                 input.addEventListener('change', validateAndUpdate);
                 input.addEventListener('blur', validateAndUpdate); // Update when focus leaves the input
+
+                // Prevent decimal input on keypress
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === '.' || e.key === ',') {
+                        e.preventDefault();
+                    }
+                });
             });
 
             function addQty(product_id, qty, stock) {
@@ -1240,6 +1247,9 @@
                 const stock = +(row.getAttribute('data-stock')); // Get stock value
                 const quantity = +(this.value); // Get entered quantity
 
+                // Remove any decimal places
+                // quantity = Math.floor(quantity);
+
                 // Validate the input value
                 if (this.value <= 0 || isNaN(this.value)) {
                     this.value = 1; // Set to minimum quantity if value is <= 0 or not a number
@@ -1262,7 +1272,7 @@
                     const priceVal = priceElement ? priceElement.textContent.replace('¥', '').replace(/,/g,
                         '') : 0;
                     const quantity = +(row.querySelector('.quantity-value')
-                    .value); // Convert quantity to integer
+                        .value); // Convert quantity to integer
 
                     addQty(product_id, quantity, stock);
 
