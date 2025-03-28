@@ -38,6 +38,8 @@
     {{-- sweetalert css --}}
     <link rel="stylesheet" href="{{asset('assets/sweetalert2/dist/sweetalert2.min.css')}}">
 
+    {{-- toastr  --}}
+    <link rel="stylesheet" href="{{asset('assets/libs/toastr-master/build/toastr.min.css')}}">
 
     <!-- Favicon and Touch Icons  -->
     <link rel="icon" href="{{asset('assets/images/fish-logo.jpg')}}" type="image/png">
@@ -217,11 +219,11 @@
                                                     <div class="text">お問い合わせ内容</div>
                                                 </a>
                                             </li>
-                                            <li class="sub-menu-item">
+                                            <!-- <li class="sub-menu-item">
                                                 <a href="{{route('admin.users.wishList')}}" class="{{request()->is('admin/request-wishList') ? 'active' : ''}}">
                                                     <div class="text">{{trans_lang('wishlist')}}</div>
                                                 </a>
-                                            </li>
+                                            </li> -->
 
                                         </ul>
                                     </li>
@@ -247,6 +249,11 @@
                                             <li class="sub-menu-item">
                                                 <a href="{{route('pending-products')}}" class="{{request()->is('admin/pending-products') ? 'active' : ''}}">
                                                     <div class="text">商品登録依頼</div>
+                                                </a>
+                                            </li>
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('pending-time-sale')}}" class="{{request()->is('admin/pending-time-sale') ? 'active' : ''}}">
+                                                    <div class="text">保留中のタイムセール</div>
                                                 </a>
                                             </li>
                                         </ul>
@@ -346,7 +353,9 @@
                     <div class="header-dashboard">
                         <div class="wrap">
                             <div class="header-left">
-                          
+                                <div class="button-show-hide">
+                                    <i class="icon-menu-left"></i>
+                                </div>
                             </div>
                             <div class="header-grid">
                                 {{-- <div class="header-item country">
@@ -563,6 +572,25 @@
 
     {{-- sweetalert js --}}
     <script src="{{asset('assets/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+
+    {{-- toastr  --}}
+    <script src="{{ asset('assets\libs\toastr-master\build\toastr.min.js') }}"></script>
+
+    <script>
+        toastr.options = {
+            "timeOut": "3000",
+            "extendedTimeOut": "500",
+            "progressBar": true,
+            "onShown": function () {
+                var toast = $(this);
+                toast.hover(
+                    function () {
+                        toastr.clear()
+                    }
+                );
+            }
+        };
+    </script>
 
     <!-- Javascript -->
     @yield('script')

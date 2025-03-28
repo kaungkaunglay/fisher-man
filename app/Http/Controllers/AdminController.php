@@ -15,10 +15,24 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use App\Models\OrderProduct;
 
 class AdminController extends Controller
 {
     public function home(Request $request){
+        $top_selling_products = Product::select(
+            'products.id',
+            'products.name',
+            'products.product_image',
+            DB::raw('COUNT(order_products.product_id) as total_quantity_sold')
+        )
+            ->join('order_products', 'products.id', '=', 'order_products.product_id')
+            ->groupBy('products.id', 'products.name', 'products.product_image')
+            ->orderByDesc('total_quantity_sold')
+            ->limit(5)
+            ->get();
+
         $top_products = Product::with('user:id,username')
                         ->inRandomOrder()
                         ->take(5)
@@ -159,7 +173,7 @@ class AdminController extends Controller
     //user request
     public function contact()
     {
-        $contacts = Contact::paginate(10);
+        $contacts = Contact::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.contact-request', compact('contacts'));
     }
 

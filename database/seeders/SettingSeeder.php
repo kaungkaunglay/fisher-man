@@ -21,6 +21,7 @@ class SettingSeeder extends Seeder
         Setting::updateOrCreate(['key' => 'slogan', 'value' => '私たちについて: 信頼出来る新鮮な海産物を提供します']);
         Setting::updateOrCreate(['key' => 'policy', 'value' => 'This is our policy.']);
         Setting::updateOrCreate(['key' => 'cache_time_out', 'value' => '3600']);
+        Setting::updateOrCreate(['key' => 'is_time_sale', 'value' => 'active']);
         Setting::updateOrCreate(
             ['key' => 'social_links'],
             ['value' => json_encode([

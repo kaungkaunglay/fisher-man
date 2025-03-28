@@ -471,7 +471,7 @@ li {
 }
 
 .carousel-item img {
-  height: 415px !important;
+  height: auto !important;
 }
 
 /* breadcrumb style overwrite */
@@ -1038,4 +1038,14 @@ li {
     padding: 7px 20px;
   }
 
+}
+
+@media  screen and (max-width:991px) {
+  .rowreverce{
+    flex-direction: column-reverse;
+  }
+
+  .carousel-inner{
+    height: 179px;
+  }
 }

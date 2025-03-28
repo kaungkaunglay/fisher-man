@@ -31,7 +31,7 @@ class AuthController extends Controller
         return view('login');
     }
     public function register_store(Request $request){
-        logger($request->all() );
+        logger($request->all());
         $messages = [
             'username.required' => 'ユーザー名は必須です。',
             'username.min' => 'ユーザー名は最低4文字以上で入力してください。',
@@ -39,137 +39,73 @@ class AuthController extends Controller
             'username.unique' => 'このユーザー名は既に使用されています。',
             'username.regex' => 'ユーザー名は英数字のみ使用できます。',
             
-            'email.required' => 'メールアドレスは必須です。',
+            'email.required' => 'e-mailアドレスは必須です。',
             'email.email' => '有効なメールアドレスを入力してください。',
             'email.unique' => 'このメールアドレスは既に使用されています。',
             
-            'g-recaptcha-response.required' => 'reCAPTCHAの確認が必要です。',
+            'g-recaptcha-response.required' => 'チェックは必須です。',
             
             'password.required' => 'パスワードは必須です。',
             'password.min' => 'パスワードは最低6文字以上で入力してください。',
             'password.max' => 'パスワードは16文字以内で入力してください。',
             'password.regex' => 'パスワードは、大文字、小文字、数字、特殊文字をそれぞれ1つ以上含める必要があります。',
             
-            'confirm_password.required' => '確認用パスワードは必須です。',
+            'confirm_password.required' => '再パスワード入力は必須です。',
             'confirm_password.same' => '確認用パスワードが一致しません。',
             
-            'first_phone.required' => '第一電話番号は必須です。',
+            'first_phone.required' => '電話番号入力は必須です。',
             'first_phone.regex' => '第一電話番号の形式が無効です。',
             
             'second_phone.regex' => '第二電話番号の形式が無効です。',
             'second_phone.different' => '第二電話番号は第一電話番号と異なる必要があります。',
-            // 'line_id.min' => 'The line ID must be at least 4 characters.',
-            // 'line_id.max' => 'The line ID may not be greater than 20 characters.',
-            // 'ship_name.required' => 'The ship name field is required.',
-            // 'ship_name.min' => 'The ship name must be at least 4 characters.',
-            // 'ship_name.max' => 'The ship name may not be greater than 20 characters.',
-            // 'first_org_name.required' => 'The first organization name field is required',
-            // 'first_org_name.min' => 'The first organization name must be at least 4 characters.',
-            // 'first_org_name.max' => 'The first organization name may not be greater than 20 characters.',
-            // 'trans_management.required' => 'The transportation management field is required.',
-            // 'trans_management.min' => 'The transportation management must be at least 4 characters',
-            // 'trans_management.max' => 'The transportation management may not be greater than 20 characters.'
         ];
-
+    
         $validator = Validator::make($request->all(), [
-           'username' => [
+            'username' => [
                 'required',
-                'min:4',
+                'min:2',
                 'max:20',
                 'unique:users,username',
-                'regex:/^[a-zA-Z0-9\s]+$/'
+                // 'regex:/^[\p{L}\s-]+$/u'
+                // 'regex:/^[a-zA-Z0-9\s]+$/'
             ],
             'email' => 'required|email|unique:users,email',
             'password' => [
                 'required',
                 'min:6',
                 'max:16',
-                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,16}$/'
+                // 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}])[A-Za-z\d@$!%*?&#\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]{6,16}$/u',
+                // 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,16}$/'
             ],
             'confirm_password' => 'required|same:password',
             'g-recaptcha-response' => 'required',
-            'first_phone' => 'required|numeric',
-            'second_phone' => 'nullable|numeric|different:first_phone',
+            'first_phone' => 'required|regex:/^\d{11}$/',
+            'second_phone' => 'nullable|regex:/^\d{11}$/|different:first_phone',
         ], $messages);
+    
         $errors = [];
-        if($this->is_seller($request))
-        {
+        if ($this->is_seller($request)) {
             $validator->addRules([
                 'ship_name' => 'required|min:4|max:20',
                 'first_org_name' => 'required|min:4|max:20',
                 'trans_management' => 'required|min:4|max:20'
             ]);
         }
-
-        // Define regex patterns for phone numbers
-
-        if($request->input('first_phone') != null ){
-            // $request->merge([
-            //     'first_phone' => $request->input('first_phone_extension') . $request->input('first_phone'),
-            // ]);
-            $phone = "+81" . $request->input('first_phone');
-
-            if(Users::pluck('first_phone'))
-
-            $phoneRegexJapan = '/^\+81[789]0\d{4}\d{4}$/';
-            // $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
-                // Validate first phone number
-            // if ($request->input('first_phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('first_phone'))) {
-            //         $errors['first_phone'] = 'Invalid phone number.';
-            //  } elseif ($request->input('first_phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('first_phone'))) {
-            //         $errors['first_phone'] = 'Invalid phone number.';
-            // }
-
-            if (!preg_match($phoneRegexJapan, $phone)) {
-                $errors['first_phone'] = 'Invalid phone number.';
-            }
-        }
-
-        if($request->input('second_phone') != null ){
-            // $request->merge([
-            //     'second_phone' => $request->input('second_phone_extension') . $request->input('second_phone'),
-            // ]);
-
-            $phone = "+81" . $request->input('second_phone');
-            $phoneRegexJapan = '/^\+81[789]0\d{4}\d{4}$/';
-            // $phoneRegexMyanmar = '/^\+95[6-9]\d{6,9}$/';
-                // Validate second phone number
-            // if ($request->input('second_phone_extension') === '+81' && !preg_match($phoneRegexJapan, $request->input('second_phone'))) {
-            //     $errors['second_phone'] = 'Invalid phone number.';
-            // } elseif ($request->input('second_phone_extension') === '+95' && !preg_match($phoneRegexMyanmar, $request->input('second_phone'))) {
-            //     $errors['second_phone'] = 'Invalid phone number.';
-            // }
-
-            if (!preg_match($phoneRegexJapan, $phone)) {
-                $errors['second_phone'] = 'Invalid phone number.';
-            }
-        }
-
-        if($validator->fails() || !empty($errors)){
+    
+        if ($validator->fails() || !empty($errors)) {
             $allErrors = array_merge($validator->errors()->toArray(), $errors);
             return response()->json(['status' => false, 'errors' => $allErrors]);
-        }else{
-            // need to start checking first phone number is valid for myanmar and japan.
+        } else {
             $user = new Users();
             $user->username = $request->username;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
-            $user->first_phone = '+81'.$request->first_phone;
-            $user->second_phone = '+81'. $request->second_phone;
-            // $user->line_id = $request->line_id;
-
-            // if($this->is_seller($request))
-            // {
-            //     $user->ship_name = $request->ship_name;
-            //     $user->first_org_name = $request->first_org_name;
-            //     $user->trans_management = $request->trans_management;
-            // }
-
+            $user->first_phone = $request->first_phone;
+            $user->second_phone = $request->second_phone;
             $user->save();
-
-            // $this->is_seller($request) ? $user->assignRole(2) : $user->assignRole(3);
+    
             $user->assignRole(3);
-
+    
             return response()->json(['status' => true, 'message' => 'Register Success']);
         }
     }
@@ -201,7 +137,9 @@ class AuthController extends Controller
             'password' => 'required',
             'g-recaptcha-response' => 'required',
         ], [
-            'g-recaptcha-response.required' => 'The recaptcha field is required.'
+            'username.required' => 'ユーザー名は必須です。',
+            'password.required' => 'パスワードは必須です。',
+            'g-recaptcha-response.required' => 'チェックは必須です。'
         ]);
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
@@ -229,7 +167,7 @@ class AuthController extends Controller
                 ]);
             }
 
-            return response()->json(['status' => false, 'message' => 'Username or Password is Incorrect']);
+            return response()->json(['status' => false, 'message' => 'ユーザー名またはパスワードが正しくありません']);
         }
     }
 
@@ -241,6 +179,9 @@ class AuthController extends Controller
     public function sendResetLinkEmail(Request $request){
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
+        ],[
+            'email.required' => 'e-mailアドレスは必須です。',
+            'email.email' => '有効なメールアドレスを入力してください。',
         ]);
         if($validator->fails()){
             return response()->json(['status' => false, 'errors' => $validator->errors()]);
@@ -346,7 +287,12 @@ class AuthController extends Controller
             'confirm_password' => 'required|same:password',
             'token' => 'required'
         ], [
-            'password.regex' => 'The password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.'
+            'password.min' => 'パスワードは最低6文字以上で入力してください。',
+            'password.max' => 'パスワードは16文字以内で入力してください。',
+            'password.required' => 'パスワードは必須です。',
+            'password.regex' => 'パスワードには少なくとも1つの大文字、1つの小文字、1つの数字、および1つの特殊文字が含まれている必要があります。',
+            'confirm_password.required' => '再パスワード入力は必須です。',
+            'confirm_password.same' => 'パスワードを再入力してください。',
         ]);
 
         if($validator->fails()){

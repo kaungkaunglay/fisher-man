@@ -110,6 +110,8 @@ Route::middleware(['is_seller'])->group(function () {
      Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('update_product');
      Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
      Route::get('/admin/products/add-time-sale', [ProductController::class, 'addTimeSale'])->name('admin.products.addTimeSale');
+    
+    Route::post('/admin/products/toggle-time-slae',[ProductController::class,'toggleTimeSale'])->name('admin.products.toggledTimeSale');
 
       // Categories Controller
 
@@ -143,6 +145,9 @@ Route::put('/profile/update/avatar',[ProfileController::class,'update_avatar'])-
 Route::post('/profile/update_contact', [ProfileController::class, 'update_contact_details'])->name('update_contact_details');
 
 Route::middleware(['is_admin'])->group(function () {
+    Route::get('admin/components',function(){
+        return view('admin.components');
+    })->name('admin.components');
 
     //FAQs
     Route::get('/admin/faqs', [FAQsController::class, 'all_faqs'])->name('admin.faqs');
@@ -169,6 +174,7 @@ Route::middleware(['is_admin'])->group(function () {
     Route::get('/admin/pending-products', [ProductController::class, 'pendingProducts'])->name('pending-products');
     Route::post('/admin/products/updateStatus', [ProductController::class , 'updateStatus'])->name('admin.products.updateStatus');
     Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+    Route::get('/admin/pending-time-sale',[ProductController::class,'pendingTimeSale'])->name('pending-time-sale');
 
     //User Request
     Route::get('/admin/request-contact', [AdminController::class, 'contact'])->name('admin.users.contact');
@@ -190,6 +196,7 @@ Route::middleware(['is_admin'])->group(function () {
 
 // Product detail
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
+Route::post('/admin/products/update-time-sale', [ProductController::class, 'updateTimeSale'])->name('admin.products.updateTimeSale');
 Route::get('/shop/{id}', [ShopController::class, 'shop_details'])->name('shop.detail');
 Route::get('/seller/contact/{id}', [SellersController::class, 'contact'])->name('seller.contact');
 
@@ -246,7 +253,7 @@ Route::get('/cart/login/finished', [CartController::class, 'finished_login'])->n
 Route::get('/cart/address', [CartController::class, 'address'])->name('cart.address');
 Route::post('/cart/address/finished', [CartController::class, 'finished_address'])->name('cart.address.finished');
 Route::get('/cart/payment', [CartController::class, 'payment'])->name('cart.payment');
-Route::get('/cart/complete', [CartController::class, 'complete'])->name('cart.complete');
+Route::post('/cart/complete', [CartController::class, 'complete'])->name('cart.complete');
 
 
 

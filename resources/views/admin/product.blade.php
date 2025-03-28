@@ -104,7 +104,7 @@
                 <div class="d-flex gap10">
                     <fieldset class="stock">
                         <div class="body-title mb-10">{{trans_lang('quanity')}} <span class="tf-color-1">*</span></div>
-                        <input min="1" class="mb-10 @error('stock') is-invalid @enderror" type="number" name="stock" value="{{ old('stock', $product->stock ?? '') }}">
+                        <input class="mb-10 @error('stock') is-invalid @enderror" type="number" name="stock" value="{{ old('stock', $product->stock ?? '') }}">
                         @error('stock')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -139,33 +139,32 @@
             </div>
 
             <div class="wg-box">
-                <fieldset>
-                    <div class="body-title mb-10">{{trans_lang('upload_img')}}</div>
-                    <div class="upload-image mb-16">
-                        <div class="item">
-                            @if(isset($product) && $product->product_image)
-                            <img id="preview" src="{{ asset('assets/products/'.$product->product_image) }}" alt="{{ $product->name }}" style="display: block;">
-                            @else
-                            <img id="preview" src="" alt="Image Preview" style="display: none;">
-                            @endif
-                        </div>
-                        <div class="item up-load">
-                            <label class="uploadfile" for="product_image">
-                                <span class="icon"><i class="icon-upload-cloud"></i></span>
-                                <span class="text-tiny">{{trans_lang('drop_image')}} <span class="tf-color">{{trans_lang('click_browse')}}</span></span>
-                                <input type="file" class="@error('product_image') is-invalid @enderror" id="product_image" name="product_image" accept="image/*">
-                                @error('product_image')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                            </label>
-                            <p id="file-name"></p> <!-- To show the file name -->
-                        </div>
-                        
+            <fieldset>
+                <div class="body-title mb-10">{{trans_lang('upload_img')}}</div>
+                <div class="upload-image mb-16" id="drop-area">
+                    <div class="item">
+                        @if(isset($product) && $product->product_image)
+                        <img id="preview" src="{{ asset('assets/products/'.$product->product_image) }}" alt="{{ $product->name }}" style="display: block;">
+                        @else
+                        <img id="preview" src="" alt="Image Preview" style="display: none;">
+                        @endif
                     </div>
-                    <div class="body-text">{{trans_lang('add_product_image')}}</div>
-                </fieldset>
+                    <div class="item up-load">
+                        <label class="uploadfile" for="product_image">
+                            <span class="icon"><i class="icon-upload-cloud"></i></span>
+                            <span class="text-tiny">{{trans_lang('drop_image')}} <span class="tf-color">{{trans_lang('click_browse')}}</span></span>
+                            <input type="file" class="@error('product_image') is-invalid @enderror" id="product_image" name="product_image" accept="image/*" style="display:none;">
+                            @error('product_image')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </label>
+                    </div>
+                </div>
+                <p id="file-name"></p> <!-- To show the file name -->
+                <div class="body-text">{{trans_lang('add_product_image')}}</div>
+            </fieldset>
                 <div class="d-flex gap10">
                     <fieldset class="date">
                         <div class="body-title mb-10">{{trans_lang('day_of_caught')}} <span class="tf-color-1">*</span></div>
@@ -228,11 +227,46 @@
 <script src="{{ asset('assets/admin/js/theme-settings.js') }}"></script>
 <script src="{{ asset('assets/admin/js/main.js') }}"></script>
 <script>
-    document.getElementById('product_image').addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        const preview = document.getElementById('preview');
-        const fileNameDisplay = document.getElementById('file-name');
+    const dropArea = document.getElementById('drop-area');
+    const fileInput = document.getElementById('product_image');
+    const preview = document.getElementById('preview');
+    const fileNameDisplay = document.getElementById('file-name');
 
+    // Trigger the file input when the drop area is clicked
+    dropArea.addEventListener('click', function() {
+        fileInput.click();
+    });
+
+    // Handle the file dragover event to allow the drop
+    dropArea.addEventListener('dragover', function(event) {
+        event.preventDefault();
+        dropArea.classList.add('dragging');
+    });
+
+    // Handle the file drop event
+    dropArea.addEventListener('drop', function(event) {
+        event.preventDefault();
+        dropArea.classList.remove('dragging');
+
+        const file = event.dataTransfer.files[0];
+        if (file) {
+            // Update the file input with the dropped file
+            fileInput.files = event.dataTransfer.files;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+
+            fileNameDisplay.textContent = "Selected file: " + file.name;
+        }
+    });
+
+    // Handle the file selection from input
+    fileInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
@@ -242,10 +276,9 @@
             reader.readAsDataURL(file);
 
             fileNameDisplay.textContent = "Selected file: " + file.name;
-        } else {
-            preview.style.display = "none";
-            fileNameDisplay.textContent = "";
         }
     });
+
+
 </script>
 @endsection

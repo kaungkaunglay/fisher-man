@@ -6,15 +6,20 @@
 @endsection
 
 @section('contents')
-    <div class="breadcrumb-sp mt-4 mb-3"></div>
+    <div class="mt-4 mb-3"></div>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero mt-5">
         <div class="container-custom">
 
-            <div class="row justify-content-between">
-                <div class="col-lg-4 d-none d-lg-block">
+            <div class="row justify-content-between rowreverce">
+                <div class="col-lg-4">
                     @include('includes.aside') <!-- Aside Layout -->
+                    <div class="r-buzz mt-3">
+                        <a href="https://fisherman-myanmar.com/" target="_blank">
+                            <img src="{{ asset('assets/images/r-buzz.jpg')}}" alt="r-buzz" loading="lazy" style="border-radius: 10px;">
+                        </a>
+                    </div>
                 </div>
                 <div class="col-lg-8 col-md-12">
                     @include('includes.slider') <!-- Slider Layout -->
@@ -209,7 +214,7 @@
 
             <!-- All Products Headline -->
             <div>
-                <h6 class="txt-primary fw-bold mb-3">{{trans_lang('all_products')}}</h6>
+                <h6 class="txt-primary fw-bold mb-3">{{trans_lang('すべての商品')}}</h6>
                 <div class="filter d-flex justify-content-between align-items-center mb-3">
 
                     <!-- display -->
@@ -253,34 +258,38 @@
                             <img loading="lazy" src="{{ asset('assets/products/'.$product->product_image) }}" class="card-img-top"
                                 alt="{{ $product->name }}">
                         </a>
-                        <div class="left pt-3">
-                         <p class="price">
-                            @if ($product->discount > 0)
-                                <span class="format me-2">{{ number_format($product->product_price - $product->discount, 0) }}</span>
-                                <span class="original-price format">{{ number_format($product->product_price, 0) }}</span>
-                            @else
-                                <span class="format">{{ number_format($product->product_price, 0) }}</span>
-                            @endif
-                        </p>
+                        <div class="left pt-3 d-flex justify-content-between align-item-center">
+                            <div>
+                                <p class="price">
+                                    @if ($product->discount > 0)
+                                        <span class="format me-2">{{ number_format($product->product_price - $product->discount, 0) }}</span>
+                                        <span class="original-price format">{{ number_format($product->product_price, 0) }}</span>
+                                    @else
+                                        <span class="format">{{ number_format($product->product_price, 0) }}</span>
+                                    @endif
+                                </p>
 
-                            <div class="title-category mb-2">
-                                <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a>
-                                <h3 class="title">{{ $product->name }}</h3>
+                                <div class="title-category mb-2">
+                                    <!-- <a href="{{ route('sub-category.show', $product->subCategory->id) }}" class="menu-category">{{ $product->subCategory->name }}</a> -->
+                                    <h3 class="title">{{ $product->name }}</h3>
+                                </div>
+                                <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
+                                    {{ $product->description }}
+                                </a>
                             </div>
-                            <a href="{{ route('product.show', $product->id) }}" class="txt m-b-10 description">
-                                {{ $product->description }}
-                            </a>
-
-                            <div class="d-flex gap-2 card-btn m-t-10">
+                            <div class="d-flex align-items-center">
                                 <a href="javascript:void(0);"
                                     class="py-1 common-btn2 -solid cart-btn"
-                                    data-id="{{ $product->id }}">
+                                    data-id="{{ $product->id }}"
+                                     style="margin-top: 0px !important; width: 50px;">
+                                    
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </a>
                                 {{-- <small class="py-1 common-btn2 -solid cart-btn "><i class="fa-solid fa-cart-plus"></i></small> --}}
                                 <a href="javascript:void(0);"
                                     class="py-1 common-btn2 white-list-btn @if($product->inWhiteLists()) active @endif "
-                                    data-id="{{ $product->id }}">
+                                    data-id="{{ $product->id }}"
+                                    style="margin-top: 0px !important; width: 50px;">
                                     <i class="fa-solid fa-bookmark"></i>
                                 </a>
                             </div>

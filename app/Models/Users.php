@@ -86,5 +86,10 @@ class Users extends Authenticatable implements CanResetPassword,MustVerifyEmail
             ->exists();
     }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
 
 }

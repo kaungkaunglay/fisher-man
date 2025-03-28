@@ -89,9 +89,9 @@
                     @foreach($categories as $category)
 
                     <li class="product-item">
-                        <div class="image no-bg">
+                        <!-- <div class="image no-bg">
                             <img src="{{ asset('assets/images/categories/'.$category->image) }}" alt="{{ $category->category_name }}">
-                        </div>
+                        </div> -->
                         <div class="flex items-center justify-between gap20 flex-grow">
                             <div class="name">
                                 <a href="{{ route('admin.categories.edit', $category) }}" class="body-title-2">{{ $category->category_name }}</a>

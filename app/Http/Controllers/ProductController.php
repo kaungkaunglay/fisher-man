@@ -18,7 +18,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = AuthHelper::user()->products()->paginate(10);
+        $products = AuthHelper::user()->products()->orderBy('created_at', 'desc')->paginate(10);
         return view('admin.products', compact('products'));
     }
 
@@ -47,7 +47,7 @@ class ProductController extends Controller
     public function showallproducts(Request $request)
     {
         $sortBy = $request->get('sort_by', 'latest');
-        $query = Product::query();
+        $query = Product::query()->where('stock','>',0);
 
         if ($sortBy === 'price_asc') {
             $query->orderBy('product_price', 'asc');
@@ -62,10 +62,10 @@ class ProductController extends Controller
         }
 
         $products = $query->get();
-        $discount_products = $query->where('is_time_sale', 1)->latest()->limit(6)->get();
+        $discount_products = setting('is_time_sale') == 'active'  ?$query->where('is_time_sale',2)->where('status','approved')->where('stock','>',0)->latest()->limit(6)->get() : collect();
         $popular_shops = Shop::where('status','approved')->inRandomOrder()->take(4)->get();
 
-        $random_products  = Product::inRandomOrder()->take(6)->get(); // Fetch 6 random products
+        $random_products  = Product::where('stock', '>', 0)->inRandomOrder()->take(6)->get(); // Fetch 6 random products
 
         $settings = Setting::pluck('value', 'key')->toArray();
         $bannerImages = isset($settings['site_banner_images']) ? json_decode($settings['site_banner_images']) : [];
@@ -99,6 +99,11 @@ class ProductController extends Controller
         return view('admin.pending-products', compact('products'));
     }
 
+    public function pendingTimeSale(){
+        $products = Product::where('is_time_sale' ,1)->where('status', 'approved')->paginate(10);
+        return view('admin.time-sale-pending-products',compact('products'));
+    }
+
     public function store(Request $request)
     {
 
@@ -111,6 +116,7 @@ class ProductController extends Controller
             'product_price.required' => '価格フィールドは必須です',
             'product_price.numeric' => '価格は数値でなければなりません',
             'product_price.min' => '価格は1以上でなければなりません',
+            'product_price.max' => '価格は99999999.99以下でなければなりません',
             'product_image.required' => '商品画像フィールドは必須です',
             'product_image.image' => '商品画像は画像でなければなりません',
             'product_image.mimes' => '商品画像はjpgまたはpngタイプでなければなりません',
@@ -119,7 +125,8 @@ class ProductController extends Controller
             'stock.integer' => '在庫は整数でなければなりません',
             'weight.required' => '重量フィールドは必須です',
             'weight.numeric' => '重量は数値でなければなりません',
-            'weight.min' => '重量は1以上でなければなりません',
+            'weight.min' => '重量は0より大きい数字でなくてはなりません',
+            'size.required' => '長さのフィールドは必須です',
             'size.string' => 'サイズは文字列でなければなりません',
             'size.integer' => '小数点以下は入力できません',
             'size.min' => 'サイズは1文字以上でなければなりません',
@@ -139,11 +146,11 @@ class ProductController extends Controller
         $request->validate([
             'sub_category_id' => 'required|exists:sub_categories,id',
             'name' => 'required|string|max:255',
-            'product_price' => 'required|numeric|min:1', // Ensure price is greater than 0
+            'product_price' => 'required|numeric|min:1|max:99999999.99', // Ensure price is greater than 0
             'product_image' => 'required|image|mimes:png,jpg,jpeg|max:1024',
             'stock' => 'required|integer',
-            'weight' => 'required|numeric|min:1', // Ensure weight is greater than 0
-            'size' => 'nullable|integer|min:1|max:999999',
+            'weight' => 'required|min:1', // Ensure weight is greater than 0
+            'size' => 'required|integer|min:1|max:999999',
             'day_of_caught' => ['required','date',new ValidDayOfCaught()],
             'expiration_date' => ['required','date',new ValidExpireDate()],
             'discount' => 'nullable|numeric|min:0|max:' . ($request->product_price ?? 0), // Ensure discount is not greater than price
@@ -222,28 +229,32 @@ class ProductController extends Controller
 
     public function discountProducts(Request $request)
     {
-        $sortBy = $request->get('sort_by', 'latest');
-        $query = Product::where('is_time_sale',1)->where('status','approved');
-
-        if ($sortBy === 'price_asc') {
-            $query->orderBy('product_price', 'asc');
-        } elseif ($sortBy === 'price_desc') {
-            $query->orderBy('product_price', 'desc');
-        } elseif ($sortBy === 'name_asc') {
-            $query->orderBy('name', 'asc');
-        } elseif ($sortBy === 'name_desc') {
-            $query->orderBy('name', 'desc');
+        if(setting('is_time_sale') != 'active'){
+            $products = collect();
         } else {
-            $query->latest();
-        }
+            $sortBy = $request->get('sort_by', 'latest');
+            $query = Product::where('is_time_sale',2)->where('status','approved') ->where('stock', '>', 0);
 
-        $products = $query->get();
+            if ($sortBy === 'price_asc') {
+                $query->orderBy('product_price', 'asc');
+            } elseif ($sortBy === 'price_desc') {
+                $query->orderBy('product_price', 'desc');
+            } elseif ($sortBy === 'name_asc') {
+                $query->orderBy('name', 'asc');
+            } elseif ($sortBy === 'name_desc') {
+                $query->orderBy('name', 'desc');
+            } else {
+                $query->latest();
+            }
+
+            $products = $query->get();
+        }
         return view('special-offer', compact('products'));
     }
 
     public function timeSaleProducts(Request $request)
     {
-        $products = Product::where('is_time_sale',1)->where('status','approved')->paginate(10);
+        $products = Product::where('is_time_sale','>',0)->where('status','approved')->paginate(10);
         return view('admin.time-sale-products', compact('products'));
     }
 
@@ -256,16 +267,21 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
 
+        // logger($request->all());
         $messages = [
             'sub_category_id.exists' => 'サブカテゴリーは存在しません',
             'name.string' => '名前は文字列でなければなりません',
             'name.max' => '名前は255文字以内でなければなりません',
             'product_price.numeric' => '価格は数値でなければなりません',
+            'product_price.min' => '価格は1以上でなければなりません',
+            'product_price.max' => '価格は99999999.99以下でなければなりません',
             'product_image.image' => '商品画像は画像でなければなりません',
             'product_image.mimes' => '商品画像はjpeg、jpg、pngタイプでなければなりません',
             'product_image.max' => '商品画像は1024KB以下でなければなりません',
             'stock.integer' => '在庫は整数でなければなりません',
             'weight.numeric' => '重量は数値でなければなりません',
+            'weight.min' => '重量は0より大きい数字でなくてはなりません',
+            'size.required' => '長さのフィールドは必須です',
             'size.string' => 'サイズは文字列でなければなりません',
             'size.min' => 'サイズは1文字以上でなければなりません',
             'size.max' => 'サイズは999999.99文字以内でなければなりません',
@@ -285,11 +301,11 @@ class ProductController extends Controller
 
     $request->validate([
         'name' => 'sometimes|string|max:255',
-        'product_price' => 'sometimes|numeric|min:1',
+        'product_price' => 'sometimes|numeric|min:1|max:99999999.99',
         'product_image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
         'stock' => 'sometimes|integer',
-        'weight' => 'sometimes|numeric|min:1',
-        'size' => 'nullable|numeric|min:1|max:999999.99',
+        'weight' => 'sometimes|min:1',
+        'size' => 'required|numeric|min:1|max:999999.99',
         'day_of_caught' => ['sometimes','required', 'date', new ValidDayOfCaught()],
         'expiration_date' => ['sometimes','required', 'date', new ValidExpireDate()],
         'discount' => 'nullable|numeric|min:0|max:' . ($request->product_price ?? 0), // Ensure discount is not greater than price',
@@ -375,6 +391,81 @@ class ProductController extends Controller
         return response()->json($products);
 
     }
+
+    public function updateTimeSale(Request $request)
+    {
+        try {
+            $time_sale_products = $request->input('time_sale_products', []);
+
+            $validator = Validator::make($request->all(), [
+                'time_sale_products' => 'required|array',
+                'time_sale_products.*.id' => 'required|exists:products,id',
+                'time_sale_products.*.is_time_sale' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => "Update time sale failed",
+                    'errors' => $validator->errors(),
+                ]);
+            }
+
+            $productIds = collect($time_sale_products)->pluck('id')->toArray();
+
+            $products = Product::whereIn('id', $productIds)->get()->keyBy('id');
+
+            foreach ($time_sale_products as $data) {
+                if (isset($products[$data['id']])) {
+                    $products[$data['id']]->update(['is_time_sale' => $data['is_time_sale']]);
+                }
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'タイムセールに商品が追加されました',
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'タイムセールのステータスを更新中にエラーが発生しました。',
+                'error' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function toggleTimeSale()
+    {
+        try {
+            $setting = Setting::where('key', 'is_time_sale')->first();
+
+            // Check if the setting exists
+            if (!$setting) {
+                // Create the setting if it doesn't exist
+                $setting = new Setting();
+                $setting->key = 'is_time_sale';
+                $setting->value = 'inactive'; // Default to inactive
+                $setting->save();
+            }
+
+            // Toggle the value between active and inactive
+            $setting->value = $setting->value == 'active' ? 'inactive' : 'active';
+            $setting->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Success',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred',
+            ]);
+        }
+    }
+
+
 
     public function addTimeSale(Request $request)
     {

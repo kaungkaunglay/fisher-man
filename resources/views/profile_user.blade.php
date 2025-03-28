@@ -211,14 +211,14 @@
 
                     <div class="w-100 h-100 d-md-flex gap-3">
                         <!-- profile img -->
-                        <div class="w-100 profile-form d-flex flex-column avatar-input">
-                            <label for="avatar-input" class="w-100 d-flex align-center position-relative gallery">
+                        <div class="w-100 profile-form d-flex flex-column avatar-input justify-content-center">
+                            <label for="avatar-input" class="w-100 d-flex align-center position-relative gallery  justify-content-center">
                                 <img src="{{ auth_helper()->getAvatar() }}" class="default-preview" id="form-img"
                                     alt="{{ $user->username ?? 'Account.png' }}" style="width:40%;">
                                 <div class="avatar-upload position-absolute d-none">
                                     <div class="m-auto">
                                         <i class="fas fa-upload"></i>
-                                        <p>Upload Profile Image</p>
+                                        <p>プロフィール画像をアップロード</p>
                                     </div>
                                 </div>
                             </label>
@@ -534,7 +534,7 @@
                             <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
                             <div class="form-group">
                                 <output class="form-output ps-1" for="address">{{ $user->address }}</output>
-                                <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea>
+                                <textarea name="address" class="p-1 mt-2 ms-1 border-0 outline-0 border-bottom border-2 d-none" id="address" disabled>{{ $user->address }}</textarea>
                                 <span class="invalid-feedback"></span>
                             </div>
 

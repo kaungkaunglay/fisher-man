@@ -117,7 +117,7 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'top_products',
                 'en' => 'Top Products',
-                'jp' => 'トップ製品',
+                'jp' => 'トップ商品',
             ],
             ['key' => 'user', 'en' => 'User', 'jp' => 'ユーザー'],
             [
@@ -193,7 +193,7 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'search_products',
                 'en' => 'Search your Products',
-                'jp' => '製品を検索',
+                'jp' => '商品を検索',
             ],
             [
                 'key' => 'showing_10_entries',
@@ -209,6 +209,11 @@ class TranslationSeeder extends Seeder
                 'key' => 'pending_product', 
                 'en' => 'Pending Product',
                 'jp' => '保留中の商品'
+            ],
+            [
+                'key' => 'uploade_img', 
+                'en' => 'Upload Image',
+                'jp' => '画像をアップロード',
             ],
 
             [
@@ -269,12 +274,22 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'quanity',
                 'en' => 'Quanity',
+                'jp' => '小計',
+            ],
+            [
+                'key' => 'sub_total',
+                'en' => 'Subtotal',
                 'jp' => '数量',
             ],
             [
                 'key' => 'total',
                 'en' => 'Total',
                 'jp' => '合計',
+            ],
+            [
+                'key' => 'total_amount',
+                'en' => 'Total Amount',
+                'jp' => '合計金額',
             ],
             [
                 'key' => 'remove',
@@ -349,7 +364,7 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'product',
                 'en' => 'Product',
-                'jp' => '製品',
+                'jp' => '商品',
             ],
             [
                 'key' => 'profile',
@@ -512,13 +527,18 @@ class TranslationSeeder extends Seeder
                 'jp' => 'パスワード',
             ],
             [
+                'key' => 'reset_password',
+                'en' => 'Reset Password',
+                'jp' => 'パスワードをリセット',
+            ],
+            [
                 'key' => 'remember',
                 'en' => 'Remember me',
                 'jp' => 'ログイン情報を保存',
             ],
             [
                 'key' => 'forget_password',
-                'en' => 'Forget Password',
+                'en' => 'Forgot Password',
                 'jp' => 'パスワードを忘れた場合',
             ],
             [
@@ -797,12 +817,12 @@ class TranslationSeeder extends Seeder
             [
                 'key' => 'send_link',
                 'en' => 'Send Reset a Link',
-                'jp' => 'リセット用リンクを送信',
+                'jp' => '再設定リンクを再送信',
             ],
             [
                 'key' => 'back_to_login',
                 'en' => 'Back to Login',
-                'jp' => 'ログインページに戻る',
+                'jp' => 'ログイン画面に戻る',
             ],
             [
                 'key' => 'add_setting',

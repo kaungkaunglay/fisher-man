@@ -47,7 +47,7 @@
                 <i class="icon-coffee"></i>
                 <div class="body-text">Tip search by Product ID: Each product is provided with a unique ID, which you can rely on to find the exact product you need.</div>
             </div> -->
-            {{-- <div class="flex items-center justify-between gap10 flex-wrap">
+            <div class="flex items-center justify-between gap10 flex-wrap">
                 <div class="wg-filter flex-grow">
                     <!-- <div class="show">
                         <div class="text-tiny">Showing</div>
@@ -60,19 +60,20 @@
                         </div>
                         <div class="text-tiny">entries</div>
                     </div> -->
-                    <form class="form-search">
+                    {{-- <form class="form-search">
                         <fieldset class="name">
                             <input type="text" placeholder="ここで検索。。。" class="" name="name" tabindex="2" value="" aria-required="true" required="">
                         </fieldset>
                         <div class="button-submit">
                             <button class="" type="submit"><i class="icon-search"></i></button>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
                 @if (check_role(2))
-                <a class="tf-button style-1 w208" href="/admin/products/create"><i class="icon-plus"></i>{{trans_lang('add_product')}}</a>
+                
+                <a class="tf-button style-1 w208" id="toggle_time_sale" href="javascript:void(0);">{{ setting('is_time_sale') == 'active' ? trans_lang('実行する') : trans_lang('実行しない')}}</a>
                 @endif
-            </div> --}}
+            </div>
             <div class="wg-table table-product-list">
                 <ul class="table-title flex gap20 mb-14">
                     <li>
@@ -82,13 +83,10 @@
                         <div class="body-title">{{trans_lang('product')}} ID</div>
                     </li>
                     <li>
-                        <div class="body-title">{{trans_lang('price')}}</div>
+                        <div class="body-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{trans_lang('price')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">{{trans_lang('status')}}</div>
-                    </li>
-                    <li>
-                        <div class="body-title">{{trans_lang('sale')}}</div>
+                        <div class="body-title">リクエストステータス</div>
                     </li>
                     <li>
                         <div class="body-title">{{trans_lang('quanity')}}</div>
@@ -112,17 +110,21 @@
                                 <a href="{{ route('admin.products', $product->id) }}" class="body-title-2">{{ $product->name }}</a>
                             </div>
                             <div class="body-text">{{ $product->id }}</div>
-                            <div class="body-text">¥{{ number_format($product->product_price) }}</div>
-                            <div class="body-text">{{ $product->status }}</div>
-                            <div class="body-text">{{ $product->sale_percentage ?? 'N/A' }}</div>
-                            <div>
-                                @if($product->stock <= 0)
-                                    <div class="block-not-available">Out of stock</div>
+                            <div class="body-text">¥{{ number_format($product->product_price - $product->discount, 0) }} <span style="text-decoration: line-through; opacity: 0.5;">¥{{ number_format($product->product_price)}}</span></div>
+                            <div class="body-text">
+                                @if($product->is_time_sale == 1)
+                                    保留中
+                                @else
+                                    承認済み
+                                @endif
+                            </div>
+                            @if($product->stock <= 0)
+                                <div class="block-not-available">在庫切れ</div>
                             @else
-                            <div class="body-text">{{ $product->stock }}</div>
+                                <div class="body-text">{{ $product->stock }}</div>
                             @endif
                         </div>
-                        <div class="body-text">{{ $product->created_at->format('d M Y') }}</div>
+                        <div class="body-text">{{ $product->created_at->locale('ja')->isoFormat('YYYY年MM月DD日') }}</div>
                         <div class="list-icon-function">
                             {{-- <div class="item eye">
                                 <a href="{{ route('admin.product.show', $product->id) }}">
@@ -203,5 +205,29 @@
 <script src="{{ asset('assets/admin/js/switcher.js') }}"></script>
 <script src="{{ asset('assets/admin/js/theme-settings.js') }}"></script>
 <script src="{{ asset('assets/admin/js/main.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
+        $('#toggle_time_sale').on('click', function() {
+            var cur = $(this);
+            $.ajax({
+                url: "{{ route('admin.products.toggledTimeSale') }}",
+                type: 'POST',
+                data: {
+                   
+                },
+                success: function(response) {
+                    if (response.success) {
+                        location.reload();
+                    }
+                }
+            });
+        });
+    });
+</script>
 @endsection

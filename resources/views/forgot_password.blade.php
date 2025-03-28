@@ -15,7 +15,7 @@
       <!-- Forgot -->
       <div class="mb-3">
         <label for="email" class="form-label">{{trans_lang('email')}}</label>
-        <input type="email" name="email" id="email" class="form-control border-2" placeholder="email@gmail.com" autofocus>
+        <input type="email" name="email" id="email" class="form-control border-2" placeholder="support@r-mekiki.com" autofocus>
         <p></p>
         <div class="input-box d-flePx flex-column">
             <span class="mb-2 pt-2 text-danger" id="message"></span>

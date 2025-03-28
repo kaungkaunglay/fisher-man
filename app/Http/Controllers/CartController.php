@@ -3,12 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\AuthHelper;
+use App\Mail\BankTransferMail;
+use App\Mail\CashOnDeliveryMail;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Mime\Part\Multipart\RelatedPart;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderCompletedMail;
+use App\Mail\OrderCompletedBuyerMail; // Import Buyer Mail class
+use App\Mail\OrderCompletedAdminMail;
+use App\Mail\TestingPDFMail;
+use Barryvdh\DomPDF\Facade\Pdf; // Import the correct Pdf namespace
+use App\Models\Order;
 
 class CartController extends Controller
 {
@@ -72,8 +81,8 @@ class CartController extends Controller
     {
 
         if(!$this->hasProductCart()){
-            session()->flash('status',"error");
-            session()->flash('message',"カートに商品がありません");
+            // session()->flash('status',"error");
+            // session()->flash('message',"カートに商品がありません");
 
             return redirect()->back();
         }
@@ -130,7 +139,7 @@ class CartController extends Controller
             DB::rollBack();
             logger()->error($e);
             session()->flash('status',"error");
-            session()->flash('message',"カートに製品を追加する際にエラーが発生しました");
+            session()->flash('message',"カートに商品を追加する際にエラーが発生しました");
         }
 
     }
@@ -138,8 +147,8 @@ class CartController extends Controller
     public function address()
     {
         if(!$this->hasProductCart()){
-            session()->flash('status',"error");
-            session()->flash('message',"カートに商品がありません");
+            // session()->flash('status',"error");
+            // session()->flash('message',"カートに商品がありません");
 
             return redirect()->back();
         }
@@ -162,7 +171,7 @@ class CartController extends Controller
             'username.string' => 'ユーザー名は文字列である必要があります。',
             'phone.numeric' => '電話番号は数字である必要があります。',
             'phone.required' => '電話番号を入力してください。',
-            'phone.regex' => '有効な電話番号を入力してください。（70, 80, 90 で始まる10桁の番号）',
+            'phone.regex' => '有効な電話番号を入力してください。（070, 80, 90 で始まる10桁の番号）',
             'phone.max' => '電話番号は10桁以内で入力してください。',
             'postal.required' => '郵便番号は必須です。',
             'postal.regex' => '有効な郵便番号を入力してください。',
@@ -173,7 +182,7 @@ class CartController extends Controller
         ];
         $request->validate([
             'username' => 'required|string',
-            'phone' => 'required|numeric|regex:/^[789]0\d{8}$/',
+            'phone' => 'required|numeric',
             'postal' => 'required|regex:/^\d{3}-?\d{4}$/', 
             'country' => 'required|string',
             'address' => 'required|string',
@@ -184,6 +193,7 @@ class CartController extends Controller
         // logger(session('address'));
 
         return redirect()->route('cart.payment');
+    
     }
     
     public function payment()
@@ -210,18 +220,92 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
-    public function complete()
+    public function complete(Request $request)
     {
+        logger($request->all());
         if (!AuthHelper::check() || !$this->hasProductCart()) {
             return redirect()->route('cart.login');
         }
 
+        $user = AuthHelper::user();
+        $carts = $user->carts;
+
+        $payment_id = $request->input('payment_id');
+
+        // logger($paymentMethod);
+
+        // Create the order
+        $order = Order::create([
+            'user_id' => $user->id,
+            'order_date' => now(),
+            'payment_id' => $payment_id,
+        ]);
+
+
+
+        // logger($carts);
+
+        foreach($carts as $cart)
+        {
+            // logger($cart);
+            $order->products()->attach($cart->product_id);
+            $product = $cart->product;
+            $qty = $product->stock;
+            if($qty >= $cart->quantity){
+                $qty -= $cart->quantity;
+            }
+            $product->stock = $qty;
+            $product->save();
+        }
+
+        $address = session('address', []);
+
+        if ($user && $user->email) {
+
+            $data['address'] = $address;
+            $data['carts'] = $carts;
+
+            // logger($data);
+            // Send email to the buyer
+            // Mail::to($user->email)->send(new OrderCompletedBuyerMail($user, $carts));
+
+            // Send email to the admin
+            // Mail::to('kado@and-fun.com')->send(new OrderCompletedAdminMail($user, $carts));
+            
+            $CODpdf = PDF::loadView('emails.cash_on_delivery',$data)->setOption('defaultFont', 'Noto Sans JP')->setOption('fontDir', public_path('assets/fonts/NotoSanJP/'))
+            ->setOption('isHtml5ParserEnabled', true);
+            $data["codpdf"] = $CODpdf;
+
+            $BTpdf = PDF::loadView('emails.bank_transfer',$data)->setOption('defaultFont', 'Noto Sans JP')->setOption('fontDir', public_path('assets/fonts/NotoSanJP/'))
+            ->setOption('isHtml5ParserEnabled', true);
+            $data["btpdf"] = $BTpdf;
+
+            // logger($pdfData);
+            
+            Mail::to($user->email)->send($payment_id == 1 ? new CashOnDeliveryMail($data) : new BankTransferMail($data));
+     
+        }
+
         session()->forget('address');
-        
+
         $step = 5;
         session(['cart_step' => $step]);
-        return redirect()->route('cart');
+
+        // Clear the cart after completing the order
+        if ($user) {
+            $user->carts()->delete(); // Ensure $user is not null before calling carts()
+        }
+
+        // Redirect to the complete page
+        // return view('cart.complete');
+        return response()->json([
+            'status' => true,
+            'redirect' => route('cart')
+        ]);
     }
+
+
+    
 
 
 

@@ -81,11 +81,11 @@
                                         <div class="text-tiny">¥ {{number_format($top_product->discount)}}</div>
                                     </div>
                                     <div class="seller-name">
-                                        <div class="text-tiny mb-3">Seller</div>
+                                        <div class="text-tiny mb-3">A company</div>
                                         <div class="body-text">{{$top_product->username}}</div>
                                     </div>
                                     <div class="stock">
-                                        <div class="text-tiny mb-3">Stock</div>
+                                        <div class="text-tiny mb-3">在庫数</div>
                                         <div class="body-text">{{$top_product->stock}}</div>
                                     </div>
                                 </div>
@@ -217,7 +217,11 @@
                     <!-- /product-overview -->
                 </div>
             </div>
-            
+            <div class="tf-section-1  rounded-5">
+                <div class="wg-box">
+                    <iframe src="https://www.market.jafic.or.jp/today.htm" frameborder="0" class="w-100" style="height: 75vh;border-radius: 20px;"></iframe>
+                </div>
+            </div>
         </div>
         <!-- /main-content-wrap -->
     </div>

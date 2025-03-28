@@ -116,8 +116,8 @@
                             <div class="body-text">{{ $product->id }}</div>
                             <div class="body-text">¥{{ number_format($product->product_price) }}</div>
                             <div class="body-text">{{ $product->stock }}</div>
-                            <div class="body-text">{{ $product->sale_percentage ?? 'N/A' }}</div>
-                            <div class="body-text">{{ $product->created_at->format('d M Y') }}</div>
+                            <div class="body-text">{{ number_format($product->discount ?? 0) }}</div>
+                            <div class="body-text">{{ $product->created_at->locale('ja')->isoFormat('YYYY年MM月DD日') }}</div>
                             <div class="body-text">{{ $product->expiration_date }}</div>
                             <div class="dropdown">
                                 {{-- <div class="block-pending">Pending</div> --}}
@@ -260,7 +260,7 @@
                 },
                 success: function (response) {
                     if (response.success) {
-                        $("#statusDropdown" + productId).text(status.charAt(0).toUpperCase() + status.slice(1));
+                        // $("#statusDropdown" + productId).text(status.charAt(0).toUpperCase() + status.slice(1));
                         $("#statusDropdown" + productId)
                             .removeClass("btn-success btn-warning btn-danger")
                             .addClass(status === "approved" ? "btn-success" : status === "pending" ? "btn-warning" : "btn-danger");

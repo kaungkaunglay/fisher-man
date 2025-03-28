@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        // \App\Http\Middleware\RestrictIP::class,
     ];
 
     /**
@@ -38,6 +39,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             // \Spatie\ResponseCache\Middlewares\CacheResponse::class,
+            \App\Http\Middleware\RestrictIP::class
         ],
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
@@ -73,5 +75,10 @@ class Kernel extends HttpKernel
         'restore_cart' => \App\Http\Middleware\RestoreCart::class,
         'guest_custom' => \App\Http\Middleware\GuestCustom::class,
         // 'doNotCacheResponse' => \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class,
+        'restrict_ip' =>  \App\Http\Middleware\RestrictIP::class
+    ];
+
+    protected $routeMiddleware = [
+        'restrict.ip' => \App\Http\Middleware\RestrictIP::class,
     ];
 }

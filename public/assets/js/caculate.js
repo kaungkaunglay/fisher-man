@@ -2,17 +2,19 @@
 $(document).ready(() => {
 
     // for popup
-    $(document).on('click', '#payment:has(#select-payment:checked) .btn-payment', () => {
-        $('#warning-msg').hide();
-        $('#payment .popup').fadeIn();
+    $(document).on('click', '.btn-payment', function () {
+        if ($('#credit_card').is(':checked')) {
+            $('#warning-msg').hide();
+            $('#payment .popup').fadeIn();
+        } else {
+            $('#warning-msg').show();
+            const header = $('header').outerHeight() || 0;
+            $('html, body').animate({
+                scrollTop: $('#payment-check-sec').offset().top - (header + 30)
+            }, 1000);
+        }
     });
-    $(document).on('click', '#payment:has(#select-payment:not(:checked)) .btn-payment', () => {
-        $('#warning-msg').show();
-        const header = $('header').outerHeight() || 0;
-        $('html, body').animate({
-            scrollTop: $('#payment-check-sec').offset().top - (header + 30)
-        }, 1000)
-    });
+
     $('#payment #cancel').click((ev) => {
         ev.preventDefault();
         $('.popup').fadeOut();

@@ -36,7 +36,7 @@
                     <div class="w-100 h-100 d-md-flex gap-3">
                         <!-- profile img -->
                         <div class="w-100 profile-form d-flex flex-column avatar-input">
-                            <label for="avatar-input" class="w-100 d-block position-relative gallery">
+                            <label for="avatar-input" class="w-100 d-block position-relative gallery justify-content-center">
                                 <img src="{{ $user->avatar
                                             ? (Str::startsWith($user->avatar, 'https://')
                                                 ? $user->avatar
@@ -47,7 +47,7 @@
                                     <div class="avatar-upload position-absolute d-none">
                                         <div class="m-auto">
                                         <i class="fas fa-upload"></i>
-                                        <p>Upload Profile Image</p>
+                                        <p>プロフィール画像をアップロード</p>
                                     </div>
                                 </div>
                             </label>
@@ -108,7 +108,7 @@
                                 <div class="form-group">
                                     <div class="d-flex align-items-center form-group">
                                         <label class="w-25 me-5"
-                                            for="first_org_name">{{ trans_lang('first_org_name') }}</label>:
+                                            for="first_org_name">{{ trans_lang('組織名') }}</label>:
                                         <output class="form-output"
                                             for="first_org_name">{{ $user->first_org_name }}</output>
                                         <input type="text" name="first_org_name"
@@ -230,27 +230,20 @@
                             <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
                             <div class="ms-1 d-flex flex-column phone-no-container">
                                 <div class="form-group">
-                                    <select name="first_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
-                                        <option value="+81" @if($user->firstExtension == '+81') selected @endif>+81</option>
-                                        <option value="+95" @if($user->firstExtension == '+95') selected @endif>+95</option>
-                                    </select>
                                     <a href="tel:">
                                         <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
                                     </a>
-                                    <input type="tel" name="first_phone" min="10" class="mt-2 border-bottom border-2 d-none" style="width: 150px;"
-                                        id="first_phone" value="{{ $user->firstNumber }}" disabled>
+                                    <input type="tel" name="first_phone" min="10" maxlength="11" class="mt-2 border-bottom border-2 d-none" style="width: 359px;"
+                                        id="first_phone" value="{{ $user->firstNumber }}" placeholder="—（ハイフン）なしで入力してください" disabled>
                                     <span class="invalid-feedback"></span>
                                 </div>
                                 <div class="form-group">
-                                    <select name="second_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
-                                        <option value="+81" @if($user->secondExtension == '+81') selected @endif>+81</option>
-                                        <option value="+95" @if($user->secondExtension == '+95') selected @endif>+95</option>
-                                    </select>
+                                    
                                     <a href="tel:">
                                         <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
                                     </a>
-                                    <input type="tel" name="second_phone" min="10" class="mt-2 border-bottom border-2 d-none" style="width: 150px;"
-                                        value="{{ $user->secondNumber }}" id="second_phone" disabled>
+                                    <input type="tel" name="second_phone" min="10" maxlength="11" class="mt-2 border-bottom border-2 d-none" style="width: 359px;"
+                                        value="{{ $user->secondNumber }}" id="second_phone" placeholder="—（ハイフン）なしで入力してください" disabled>
                                     <span class="invalid-feedback"></span>
                                 </div>
                             </div>

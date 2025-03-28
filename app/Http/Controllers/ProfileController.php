@@ -34,7 +34,7 @@ class ProfileController extends Controller
 
 
 
-        return view('profile_user', compact('user','hasShopRequest'));
+        return view('profile_user', compact('user', 'hasShopRequest'));
     }
 
     public function update_avatar(Request $request)
@@ -87,14 +87,14 @@ class ProfileController extends Controller
     public function update_basic_profile(Request $request)
     {
         $messages = [
-            'username.min' => 'The username must be at least 4 characters.',
-            'username.max' => 'The username may not be greater than 20 characters.',
-            'username.unique' => 'The username has already been taken.',
-            'email.email' => 'The email must be a valid email address.',
-            'email.unique' => 'The email has already been taken.',
-            'avatar.image' => 'The avatar must be an image.',
-            'avatar.mimes' => 'The avatar must be a JPEG, JPG, or PNG image.',
-            'avatar.max' => 'The avatar must be less than 2MB.',
+            'username.min' => '４文字以上で入力ください',
+            'username.max' => 'ユーザー名は20文字以内で入力してください。', // The username may not be greater than 20 characters.
+            'username.unique' => 'このユーザー名は既に使用されています。', // The username has already been taken.
+            'email.email' => 'e-mailアドレスは必須です',
+            'email.unique' => 'このメールアドレスは既に使用されています。', // The email has already been taken.
+            'avatar.image' => 'アバターは画像ファイルである必要があります。', // The avatar must be an image.
+            'avatar.mimes' => 'アバターはJPEG、JPG、またはPNG形式である必要があります。', // The avatar must be a JPEG, JPG, or PNG image.
+            'avatar.max' => 'アバターは2MB未満である必要があります。', // The avatar must be less than 2MB.
         ];
 
         $validator = Validator::make($request->all(), [
@@ -111,7 +111,7 @@ class ProfileController extends Controller
 
         if ($request->hasFile('avatar')) {
 
-            $existing_avatar = 'assets/avatars/'.$user->avatar;
+            $existing_avatar = 'assets/avatars/' . $user->avatar;
 
             $avatar = $request->file('avatar');
             $avatarName = time() . '_' . $avatar->getClientOriginalName();
@@ -120,7 +120,6 @@ class ProfileController extends Controller
             if ($user->avatar && file_exists(public_path($existing_avatar))) {
 
                 unlink(public_path($existing_avatar));
-
             }
 
             $avatar = $request->file('avatar');
@@ -137,7 +136,6 @@ class ProfileController extends Controller
 
             $user->avatar = $avatarName;
             $user->save();
-
         }
 
         $verification = EmailVerification::where('user_id', $user->id)->latest()->first();
@@ -161,9 +159,9 @@ class ProfileController extends Controller
 
 
         session()->flash('status', 'success');
-        session()->flash('message', 'Profile updated successfully.');
+        session()->flash('message', 'プロフィールが正常に更新されました。');
 
-        return response()->json(['status' => true, 'message' => 'Profile updated successfully.']);
+        return response()->json(['status' => true, 'message' => 'プロフィールが正常に更新されました。']);
     }
 
 
@@ -270,7 +268,7 @@ class ProfileController extends Controller
 
             $validationMessages = [
                 'address.max' => '住所は255文字を超えることはできません。',
-                'address.string' => '住所はテキストでなければなりません。',
+                'address.string' => '住所を入力してください。',
                 'postalCode.regex' => '郵便番号は123-4567または1234567の形式でなければなりません。',
                 // 'postalCode.regex' => 'postal code must be in the format 123-4567 or 1234567.',
                 // 'postalCode.'
@@ -312,7 +310,6 @@ class ProfileController extends Controller
                 'status' => true,
                 'message' => '連絡先の詳細が正常に更新されました。'
             ]);
-
         } catch (\Exception $e) {
             Log::error('Contact update failed: ' . $e->getMessage());
             return response()->json([
@@ -342,7 +339,7 @@ class ProfileController extends Controller
         // $secondPhone = $request->input('second_phone') != null ?  $request->input('second_phone') : null;
 
         // return $user->address === $request->address && $user->first_phone === $firstPhone && $user->second_phone === $secondPhone ;
-        return $user->address === $request->address && $user->postal_code === $request->postalCode && $user->first_phone === $request->first_phone && $user->second_phone === $request->second_phone; ;
+        return $user->address === $request->address && $user->postal_code === $request->postalCode && $user->first_phone === $request->first_phone && $user->second_phone === $request->second_phone;;
     }
 
     private function processPhoneNumbers(Request $request)
@@ -376,7 +373,7 @@ class ProfileController extends Controller
             $phone =  $request->input($field);
             // $extension = $request->input("{$field}_extension");
 
-            if ($phone ) {
+            if ($phone) {
 
                 if (!preg_match($phoneRegexJapan, $phone)) {
                     $errors[$field] = ['Invalid phone number'];

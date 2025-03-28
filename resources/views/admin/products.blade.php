@@ -48,7 +48,7 @@
                 <div class="body-text">Tip search by Product ID: Each product is provided with a unique ID, which you can rely on to find the exact product you need.</div>
             </div> -->
             <div class="flex items-center justify-between gap10 flex-wrap">
-                <div class="wg-filter flex-grow">
+                {{-- <div class="wg-filter flex-grow">
                     <!-- <div class="show">
                         <div class="text-tiny">Showing</div>
                         <div class="select">
@@ -60,16 +60,17 @@
                         </div>
                         <div class="text-tiny">entries</div>
                     </div> -->
-                    {{-- <form class="form-search">
+                    <form class="form-search">
                         <fieldset class="name">
                             <input type="text" placeholder="ここで検索。。。" class="" name="name" tabindex="2" value="" aria-required="true" required="">
                         </fieldset>
                         <div class="button-submit">
                             <button class="" type="submit"><i class="icon-search"></i></button>
                         </div>
-                    </form> --}}
-                </div>
+                    </form>
+                </div> --}}
                 @if (check_role(2))
+                <a class="tf-button style-1 w208" id="update_time_sale" href="javascript:void(0);" disabled><i class="icon-edit"></i>{{trans_lang('タイムセールに追加')}}</a>
                 <a class="tf-button style-1 w208" href="/admin/products/create"><i class="icon-plus"></i>{{trans_lang('add_product')}}</a>
                 @endif
             </div>
@@ -79,7 +80,7 @@
                         <div class="body-title">{{trans_lang('product')}}</div>
                     </li>
                     <li>
-                        <div class="body-title">Time Sale</div>
+                        <div class="body-title">タイムセール</div>
                     </li>
                     <li>
                         <div class="body-title">{{trans_lang('product')}} ID</div>
@@ -90,9 +91,9 @@
                     <li>
                         <div class="body-title">{{trans_lang('status')}}</div>
                     </li>
-                    <li>
+                    <!-- <li>
                         <div class="body-title">{{trans_lang('sale')}}</div>
-                    </li>
+                    </li> -->
                     <li>
                         <div class="body-title">{{trans_lang('quanity')}}</div>
                     </li>
@@ -115,20 +116,28 @@
                                 <a href="{{ route('admin.products', $product->id) }}" class="body-title-2">{{ $product->name }}</a>
                             </div>
                             <div class="body-text">
-                                <input type="checkbox" class="timesale" id="timesale-{{ $product->id }}" data-id="{{ $product->id }}" {{ $product->is_time_sale == 1 ? 'checked' : '' }}>
+                                <input type="checkbox" class="timesale" id="timesale-{{ $product->id }} myCheckbox" data-id="{{ $product->id }}" {{ $product->is_time_sale >  0 ? 'checked' : '' }}>
                             </div>
                             <div class="body-text">{{ $product->id }}</div>
-                            <div class="body-text">¥{{ number_format($product->product_price) }}</div>
-                            <div class="body-text">{{ $product->status }}</div>
-                            <div class="body-text">{{ $product->sale_percentage ?? 'N/A' }}</div>
+                            <div class="body-text">¥{{ number_format($product->product_price - $product->discount, 0) }} <span style="text-decoration: line-through; opacity: 0.5;">¥{{ number_format($product->product_price)}}</span></div>
+                            <div class="body-text">
+                                @if ($product->status == 'approved')
+                                    承認済み
+                                @elseif ($product->status == 'pending')
+                                    保留中
+                                @else
+                                    <!-- Optionally, you can show something else if the status is neither approved nor pending -->
+                                    {{ $product->status }}
+                                @endif
+                            </div>                            
                             <div>
                                 @if($product->stock <= 0)
-                                    <div class="block-not-available">Out of stock</div>
-                            @else
-                            <div class="body-text">{{ $product->stock }}</div>
-                            @endif
-                        </div>
-                        <div class="body-text">{{ $product->created_at->format('d M Y') }}</div>
+                                    <div class="block-not-available">在庫切れ</div>
+                                @else
+                                <div class="body-text">{{ $product->stock }}</div>
+                                @endif
+                            </div>
+                        <div class="body-text">{{ $product->created_at->locale('ja')->isoFormat('YYYY年MM月DD日') }}</div>
                         <div class="list-icon-function">
                             <div class="item eye">
                                 <a href="{{ route('admin.product.show', $product->id) }}">
@@ -247,6 +256,25 @@
 @endsection
 @section('script')
 <!-- Javascript -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".timesale").forEach(function (checkbox) {
+        let productId = checkbox.dataset.id;
+        let storageKey = "timesale-" + productId;
+
+        // Load saved checkbox state from localStorage
+        if (localStorage.getItem(storageKey) === "1") {
+            checkbox.checked = true;
+        }
+
+        // Listen for checkbox changes and update localStorage
+        checkbox.addEventListener("change", function () {
+            localStorage.setItem(storageKey, this.checked ? "1" : "0");
+        });
+    });
+});
+
+</script>
 <script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/admin/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/admin/js/bootstrap-select.min.js') }}"></script>
@@ -264,7 +292,7 @@
 
 <script>
 
-    console.log('ready');
+    // console.log('ready');
 
     $(document).ready(function() {
         
@@ -274,24 +302,59 @@
             }
         });
 
-        $('.timesale').change(function() {
-            var id = $(this).data('id');
-            // console.log('change at = ' + id);
-            var status = $(this).prop('checked') == true ? 1 : 0;
-            var cur = $(this);
+        $('.timesale').change(function(){
+            $('#update_time_sale').removeAttr('disabled');
+        });
+
+        // $('.timesale').change(function() {
+        //     var id = $(this).data('id');
+        //     // console.log('change at = ' + id);
+        //     var status = $(this).prop('checked') == true ? 1 : 0;
+        //     var cur = $(this);
+        //     $.ajax({
+        //         type: "GET",
+        //         dataType: "json",
+        //         url: '/admin/products/add-time-sale',
+        //         data: {
+        //             'status': status,
+        //             'product_id': id
+        //         },
+        //         success: function(response) {
+        //             if(!response.success){
+        //                 cur.prop('checked', !status);
+        //                 console.log( response.message);
+        //             }  
+        //         }
+        //     });
+        // });
+        
+
+        $('#update_time_sale').click(function() {
+            if($(this).attr('disabled')) return;
+
+            console.log('update_time_sale');
+            var time_sale_products = [];
+            $('.timesale').each(function() {
+                time_sale_products.push({
+                    id: $(this).data('id'),
+                    is_time_sale : $(this).prop('checked') == true ? 1 : 0
+                });
+            });
+
             $.ajax({
-                type: "GET",
+                type: "POST",
                 dataType: "json",
-                url: '/admin/products/add-time-sale',
+                url: '/admin/products/update-time-sale',
                 data: {
-                    'status': status,
-                    'product_id': id
+                    'time_sale_products': time_sale_products
                 },
                 success: function(response) {
-                    if(!response.success){
-                        cur.prop('checked', !status);
-                        console.log( response.message);
-                    }  
+                    
+                    if(response.success){
+                        toastr.success('',response.message)
+                    } else {
+                        toastr.error('',response.message)
+                    }
                 }
             });
         });

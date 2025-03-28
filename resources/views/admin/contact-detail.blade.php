@@ -52,7 +52,7 @@
                                 <p>{{ $contact->email }}</p>
                             </div>
                             <div class="mb-20">
-                                <label class="fs-4 fw-bold mb-8">{{trans_lang('phone')}}:</label>
+                                <label class="fs-4 fw-bold mb-8">{{trans_lang('phone_number')}}:</label>
                                 <p>{{ $contact->phone_number }}</p>
                             </div>
 

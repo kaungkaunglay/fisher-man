@@ -5,7 +5,6 @@ input[type=number] {-moz-appearance: textfield;}
 
 .address-form,
 .mobile .cost,
-#warning-msg,
 .popup{
     display: none;
 }
@@ -94,11 +93,13 @@ main {
 
 .table td,
 .table th {
-    font-size: 20px;
+    font-size: 15px;
     background: #005B96;
     color: white;
     font-weight: bold;
     vertical-align: middle;
+    padding: 0px;
+    text-align: center;
 }
 
 .table tbody td {
@@ -106,14 +107,14 @@ main {
     background-color: #ECF5FB;
 }
 
-.table tbody td:first-child {
+/* .table tbody td:first-child {
     padding: 30px 0;
-}
+} */
 
-.table thead th:nth-child(2),
+/* .table thead th:nth-child(2),
 .table tbody td:nth-child(2) {
     text-align: start;
-}
+} */
 
 .popup {
     height: 100vh;
@@ -550,6 +551,11 @@ main .icon {
 
 main .icon.fa-line {
     font-size: 25px;
+}
+@media  screen and (max-width: 767px) {
+    .display-block{
+        display: block !important;
+    }
 }
 
 @media  screen and (max-width: 576px) {

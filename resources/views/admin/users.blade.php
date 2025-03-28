@@ -92,9 +92,51 @@
                     </ul>
                 </div>
                 <div class="divider"></div>
-                <div class="flex items-center justify-between flex-wrap gap10">
-                    {{ $users->links() }}
-                </div>
+                @if ($users->hasPages())
+        <div class="flex items-center justify-between flex-wrap gap10 mt-4">
+            {{-- <div class="text-tiny">{{trans_lang('showing_10_entries')}}</div> --}}
+            <ul class="wg-pagination">
+                <!-- Previous Page -->
+                <li class="{{ $users->onFirstPage() ? 'disabled' : '' }}">
+                    <a href="{{ $users->previousPageUrl() }}">
+                        <i class="icon-chevron-left"></i>
+                    </a>
+                </li>
+
+                <!-- Page Numbers (Show 5 buttons) -->
+                @php
+                    $currentPage = $users->currentPage();
+                    $lastPage = $users->lastPage();
+                    $start = max(1, $currentPage - 2); // Show 2 pages before current
+                    $end = min($lastPage, $currentPage + 2); // Show 2 pages after current
+
+                    // Adjust to always show 5 buttons if possible
+                    if ($end - $start < 4 && $lastPage > 5) {
+                        if ($currentPage <= 3) {
+                            $end = 5;
+                        } else {
+                            $start = max(1, $lastPage - 4);
+                        }
+                    }
+
+                    $pages = range($start, $end);
+                @endphp
+
+                @foreach ($pages as $page)
+                    <li class="{{ $page == $currentPage ? 'active' : '' }}">
+                        <a href="{{ $users->url($page) }}">{{ $page }}</a>
+                    </li>
+                @endforeach
+
+                <!-- Next Page -->
+                <li class="{{ $users->hasMorePages() ? '' : 'disabled' }}">
+                    <a href="{{ $users->nextPageUrl() }}">
+                        <i class="icon-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    @endif
             </div>
             <!-- /all-user -->
         </div>

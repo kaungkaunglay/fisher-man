@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Sub_category;
 use App\Models\Role;
 use App\Models\Users;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 
@@ -31,7 +32,10 @@ class ProductSeeder extends Seeder
         //  return;
         // }
 
-        $product_names = ['スルメ', '水イカ', 'アマダイ', 'レンコ鯛', 'ブリ', 'ワラサ', 'ヤズ', 'ヒラス', 'ヒラコ', '鯛', 'マグロ', 'ヨコワ', 'ハガツオ', 'スジカツオ', 'ビンナガ', '丸トビ', '角トビ', 'アジ', 'サバ', 'クエ', 'イサキ', 'アカムツ', 'ナメル', 'チカメキントキ', 'ヒラメ', 'メンボ', 'イシダイ', 'イシガキダイ', 'タチウオ', 'サワラ', '沖メバル', 'ダルマ', 'カマス', '活きアナゴ', 'サザエ', 'アワビ',];
+        $product_names = ['スルメ', 'アカムツ', 'アマダイ', 'レンコ鯛', 'ブリ', 'ワラサ', 'ヤズ', 'ヒラス', 'ヒラコ', '鯛', 'マグロ', 'ヨコワ', 'ハガツオ', 'スジカツオ', 'ビンナガ', '丸トビ', '角トビ', 'アジ', 'サバ', 'クエ', 'イサキ', 'アカムツ', 'ナメル', 'チカメキントキ', 'ヒラメ', 'メンボ', 'イシダイ', 'イシガキダイ', 'タチウオ', 'サワラ', '沖メバル', 'ダルマ', 'カマス', '活きアナゴ', 'サザエ', 'アワビ',];
+
+       
+
 
 
         $product_descriptions = [
@@ -130,12 +134,16 @@ $total_subcategories = 10;  // Adjust this number as needed
 foreach ($product_names as $index => $product) {
     Product::create([
         'name' => $product,
-        'product_price' => 127.5,
+        'product_price' => (int) 128,
         'product_image' => $product . "/" . $product . ".jpg",
         'stock' => (int) $product_units[$index],
+        'weight' =>  124,
+        'size' => (int) 120,
         'description' => $product_descriptions[$index],
         'user_id' => $this->faker->randomElement($user_ids ?? [2]),
         'sub_category_id' => ($index % $total_subcategories) + 1,  // Distribute products evenly
+        'day_of_caught' => Carbon::now(),
+        'expiration_date' => Carbon::now()->addWeeks(4),
         'status' => 'approved'
     ]);
 }

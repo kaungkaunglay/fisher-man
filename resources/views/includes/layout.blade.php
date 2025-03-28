@@ -175,10 +175,10 @@
                                     <form action="{{ route('products.search') }}" method="get">
                                         <div class="input-group w-100">
                                             {{-- <input type="text" class="form-control bg-second search-bar" id="search"
-                                            placeholder="{{ trans_lang('search_products') }}" name="search_key"
+                                            placeholder="商品を検索" name="search_key"
                                             oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"> --}}
                                             <input type="text" class="form-control bg-second search-bar" id="search"
-                                                placeholder="{{ trans_lang('search_products') }}" name="search_key">
+                                                placeholder="商品を検索" name="search_key">
                                             <button type="submit" class="bg-main text-white magnifying-glass">
                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                             </button>
@@ -411,8 +411,9 @@
                     <p class="my-2 txt-13">&copy; Copyright 2024-fisherman Designed by Andfun</p>
                 </div>
                 <div class="col-lg-5 text-white text-lg-end text-center mb-2 mb-lg-0">
-                    <p class="mb-4 my-lg-2 txt-13"><a href="{{ route('policy') }}">Privacy | </a><a
-                            href="{{ route('terms') }}">Terms</a></p>
+                    <p class="mb-4 my-lg-2 txt-13"><a href="{{ route('policy') }}">プライバシーポリシー</a>
+                    <!-- <a
+                            href="{{ route('terms') }}">Terms</a></p> -->
                 </div>
             </div>
         </div>
@@ -475,7 +476,7 @@
             </a>
         </div>
         <a href="{{ route('white_list.index') }}" class="bottom-menu position-relative hv-icon white-list-fx"><i class="fa-solid fa-bookmark"></i><br>
-            <p>{{ trans_lang('whitelist') }}
+            <p>{{ trans_lang('タグ') }}
                 <span class="noti-animation nth-1 position-absolute rounded-circle"></span>
                 <span class="noti-animation nth-2 position-absolute rounded-circle cart-item-btn"></span>
                 <span class="mobile-white-list-noti position-absolute bg-danger text-white rounded-circle white_list_count">0</span>
@@ -576,7 +577,7 @@
                                     `);
                                 });
                             } else {
-                                $('#product-list').html('<p>No products found.</p>');
+                                $('#product-list').html('<p>検索されませんでした。</p>');
                             }
                         }
                     });
