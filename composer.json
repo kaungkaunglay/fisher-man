@@ -17,7 +17,7 @@
         "socialiteproviders/line": "^4.1",
         "socialiteproviders/manager": "^4.8",
         "spatie/image-optimizer": "^1.8",
-        "spatie/laravel-responsecache": "^7.6"
+        "spatie/laravel-responsecache": "^7.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
