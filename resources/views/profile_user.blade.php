@@ -33,14 +33,14 @@
                 <div class="row">
                     <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-3">
                         <div class="p-6 d-flex justify-content-center align-items-center">
-                            <div class="w-75 d-flex align-center border p-2  ">
+                            <div class="w-auto d-flex align-center border p-2  " style="max-width: 75%;">
                                 <form action="{{ route('update_avatar')}}" method="POST"  enctype="multipart/form-data">
                                     @csrf 
                                     @method('PUT')
                                     <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input"
                                                 accept="image/*" >
 
-                                    <div class="w-100 d-flex align-center position-relative  overflow-hidden gallery">
+                                    <div class="w-100 d-flex align-center position-relative  overflow-hidden gallery" style="max-height: 500px;">
                                         <img src="{{ auth_helper()->getAvatar() }}" class="default-preview img-fluid " id="form-img"
                                             alt="{{ $user->username ?? 'Account.png' }}" >
                                         
@@ -60,80 +60,82 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-6 d-flex flex-column gap-5">
-                        <div class="w-100">
-                            <!-- Form Headline -->
-                            <div class="bg-primary text-white p-2 form-headline mb-2">
-                                <h2 class="fw-bold d-flex justify-content-between">{{ trans_lang('info') }}
-                                    <div class="d-flex justify-content-end gap-4">
-                                        <button type="submit" class="save d-none">
-                                            <i class="fa-solid fa-save fs-5 text-white"></i>
-                                        </button>
-                                        <button class="edit">
-                                            <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
-                                        </button>
-                                        <button class="cancel d-none">
-                                            <i class="fa-solid fa-x fs-5 text-white"></i>
-                                        </button>
+                        <form action="">
+                            <div class="w-100">
+                                <!-- Form Headline -->
+                                <div class="bg-primary text-white p-2 form-headline mb-2">
+                                    <h2 class="fw-bold d-flex justify-content-between">{{ trans_lang('info') }}
+                                        <div class="d-flex justify-content-end gap-4">
+                                            <button type="submit" class="save d-none">
+                                                <i class="fa-solid fa-save fs-5 text-white"></i>
+                                            </button>
+                                            <button class="edit">
+                                                <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
+                                            </button>
+                                            <button class="cancel d-none">
+                                                <i class="fa-solid fa-x fs-5 text-white"></i>
+                                            </button>
+                                        </div>
+                                    </h2>
+                                </div>
+                                <!-- /Form Headline -->
+    
+                                <!-- /Form Content -->
+                                <div class="">
+                                    <div class="input-group mb-2 shadow-none">
+                                        <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('name') }}</span>
+                                        <input type="text" class="form-control shadow-none" name="username" id="username"
+                                            value="{{ $user->username }}" readonly/>
                                     </div>
-                                </h2>
+    
+                                    <div class="input-group mb-2 shadow-none">
+                                        <span class="input-group-text w-25"  style="min-width: 130px;">{{ trans_lang('email') }}</span>
+                                        <input type="text" class="form-control shadow-none" name="email" id="email"
+                                            value="{{ $user->email }}" readonly/>
+                                    </div>
+    
+                                    <div class="d-flex gap-2">
+                                        <div class="d-flex border rounded-3 overflow-hidden">
+                                            <label class="d-flex justify-content-center align-items-center border p-2 " for="line_login">
+                                                <i class="fa-brands fa-line fs-2"></i>
+                                            </label>
+                                            <div class="d-flex justify-content-center align-items-center p-2">
+                                                <div class="form-check form-switch align-self-center">
+                                                    <input type="checkbox" id="line_login" class="border form-check-input"
+                                                        role="switch" @if ($user->checkProvider('line')) checked @endif />
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="d-flex border rounded-3 overflow-hidden">
+                                            <label class="d-flex justify-content-center align-items-center border p-2 " for="line_login">
+                                                <i class="fa-brands fa-facebook fs-2"></i>
+                                            </label>
+                                            <div class="d-flex justify-content-center align-items-center p-2">
+                                                <div class="form-check form-switch align-self-center">
+                                                    <input type="checkbox" id="facebook_login"
+                                                        class="border form-check-input" role="switch"
+                                                        @if ($user->checkProvider('facebook')) checked @endif />
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="d-flex border rounded-3 overflow-hidden">
+                                            <label class="d-flex justify-content-center align-items-center border p-2 " for="line_login">
+                                                <i class="fa-brands fa-google fs-2"></i>
+                                            </label>
+                                            <div class="d-flex justify-content-center align-items-center p-2">
+                                                <div class="form-check form-switch align-self-center">
+                                                    <input type="checkbox" id="google_login" class="border form-check-input"
+                                                        role="switch" @if ($user->checkProvider('google')) checked @endif />
+                                                </div>
+                                            </div>
+                                        </div>
+                            
+                                    </div>
+                                </div>
                             </div>
-                            <!-- /Form Headline -->
-
-                            <!-- /Form Content -->
-                            <div class="">
-                                <div class="input-group mb-2 shadow-none">
-                                    <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('name') }}</span>
-                                    <input type="text" class="form-control shadow-none" name="username" id="username"
-                                        value="{{ $user->username }}" readonly/>
-                                </div>
-
-                                <div class="input-group mb-2 shadow-none">
-                                    <span class="input-group-text w-25"  style="min-width: 130px;">{{ trans_lang('email') }}</span>
-                                    <input type="text" class="form-control shadow-none" name="email" id="email"
-                                        value="{{ $user->email }}" readonly/>
-                                </div>
-
-                                <div class="d-flex gap-2">
-                                    <div class="d-flex border rounded-3 overflow-hidden">
-                                        <label class="d-flex justify-content-center align-items-center border p-2 " for="line_login">
-                                            <i class="fa-brands fa-line fs-2"></i>
-                                        </label>
-                                        <div class="d-flex justify-content-center align-items-center p-2">
-                                            <div class="form-check form-switch align-self-center">
-                                                <input type="checkbox" id="line_login" class="border form-check-input"
-                                                    role="switch" @if ($user->checkProvider('line')) checked @endif />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex border rounded-3 overflow-hidden">
-                                        <label class="d-flex justify-content-center align-items-center border p-2 " for="line_login">
-                                            <i class="fa-brands fa-facebook fs-2"></i>
-                                        </label>
-                                        <div class="d-flex justify-content-center align-items-center p-2">
-                                            <div class="form-check form-switch align-self-center">
-                                                <input type="checkbox" id="facebook_login"
-                                                    class="border form-check-input" role="switch"
-                                                    @if ($user->checkProvider('facebook')) checked @endif />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex border rounded-3 overflow-hidden">
-                                        <label class="d-flex justify-content-center align-items-center border p-2 " for="line_login">
-                                            <i class="fa-brands fa-google fs-2"></i>
-                                        </label>
-                                        <div class="d-flex justify-content-center align-items-center p-2">
-                                            <div class="form-check form-switch align-self-center">
-                                                <input type="checkbox" id="google_login" class="border form-check-input"
-                                                    role="switch" @if ($user->checkProvider('google')) checked @endif />
-                                            </div>
-                                        </div>
-                                    </div>
-                        
-                                </div>
-                            </div>
-                        </div>
+                        </form>
 
                         <div class="w-100">
                             <!-- Form Headline -->
