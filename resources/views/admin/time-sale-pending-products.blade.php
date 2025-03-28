@@ -98,17 +98,15 @@
 
                 @foreach($products as $product)
                 <ul class="flex flex-column">
-                    <li class="product-item gap14">
+                    <li class="product-item gap20">
                         <div class="image no-bg">
                             <img src="{{ asset('assets/products/'.$product->product_image) }}" alt="{{ $product->name }}">
                         </div>
-                        <div class="flex items-center justify-between gap20 flex-grow">
-                            <div class="name">
-                                <a href="{{ route('admin.products', $product->id) }}" class="body-title-2">{{ $product->name }}</a>
-                            </div>
-                            
-                            <div class="body-text">{{ $product->id }}</div>
-                            
+                        <div class="name">
+                            <a href="{{ route('admin.products', $product->id) }}" class="body-title-2">{{ $product->name }}</a>
+                        </div>
+                        <div class="flex items-center justify-between gap20 flex-grow">                      
+                            <div class="body-text">{{ $product->id }}</div>                      
                         </div>
                         <div class="body-text">{{ $product->created_at->locale('ja')->isoFormat('YYYY年MM月DD日') }}</div>
                         <div class="list-icon-function">

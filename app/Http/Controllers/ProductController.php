@@ -100,7 +100,7 @@ class ProductController extends Controller
     }
 
     public function pendingTimeSale(){
-        $products = Product::where('is-time-sale' ,2)->where('status', 'approved')->paginate(10);
+        $products = Product::where('is_time_sale' ,1)->where('status', 'approved')->paginate(10);
         return view('admin.time-sale-pending-products',compact('products'));
     }
 
