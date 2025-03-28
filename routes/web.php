@@ -173,6 +173,7 @@ Route::middleware(['is_admin'])->group(function () {
     Route::get('/admin/pending-products', [ProductController::class, 'pendingProducts'])->name('pending-products');
     Route::post('/admin/products/updateStatus', [ProductController::class , 'updateStatus'])->name('admin.products.updateStatus');
     Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+    Route::get('/admin/pending-time-sale',[ProductController::class,'pendingTimeSale']);
 
     //User Request
     Route::get('/admin/request-contact', [AdminController::class, 'contact'])->name('admin.users.contact');

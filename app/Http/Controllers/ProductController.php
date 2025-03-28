@@ -99,6 +99,11 @@ class ProductController extends Controller
         return view('admin.pending-products', compact('products'));
     }
 
+    public function pendingTimeSale(){
+        $products = Product::where('is-time-sale' ,2)->where('status', 'approved')->paginate(10);
+        return view('admin.time-sale-pending-products',compact('products'));
+    }
+
     public function store(Request $request)
     {
 
@@ -262,7 +267,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
 
-        logger($request->all());
+        // logger($request->all());
         $messages = [
             'sub_category_id.exists' => 'サブカテゴリーは存在しません',
             'name.string' => '名前は文字列でなければなりません',
