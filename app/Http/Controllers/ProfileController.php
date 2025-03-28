@@ -39,9 +39,14 @@ class ProfileController extends Controller
 
     public function update_avatar(Request $request)
     {
+
+        // logger($request->all());
+
         $request->validate([
             'avatar' => 'sometimes|image|mimes:jpeg,jpg,png|max:2048'
         ]);
+
+        // dd("validate success");
 
         if ($request->hasFile('avatar')) {
 
@@ -76,6 +81,7 @@ class ProfileController extends Controller
 
         }
 
+        return redirect()->route('profile');
     }
 
     public function update_basic_profile(Request $request)

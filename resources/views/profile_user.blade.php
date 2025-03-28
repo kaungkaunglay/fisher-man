@@ -34,20 +34,27 @@
                     <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-3">
                         <div class="p-6 d-flex justify-content-center align-items-center">
                             <div class="w-75 d-flex align-center border p-2  ">
-                                <div class="w-100 d-flex align-center position-relative  overflow-hidden gallery">
-                                    <img src="{{ auth_helper()->getAvatar() }}" class="default-preview img-fluid " id="form-img"
-                                        alt="{{ $user->username ?? 'Account.png' }}" >
-                                    <form action="" method="POST">
-                                        @csrf 
-                                        @method('PUT')
-                                        <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input"
-                                            accept="image/*" hidden>
-                                        <label for="avatar-input" class="d-flex justify-content-center align-items-center position-absolute text-black bg-white rounded-5 px-4 py-2" style="right: 10px; bottom: 10px;">
-                                            <i class="fa-solid fa-upload" ></i>
-                                            <small class="fs-6 d-none d-md-inline ms-2">アップロード</small>
-                                        </label>
-                                    </form>
-                                </div>
+                                <form action="{{ route('update_avatar')}}" method="POST"  enctype="multipart/form-data">
+                                    @csrf 
+                                    @method('PUT')
+                                    <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input"
+                                                accept="image/*" >
+
+                                    <div class="w-100 d-flex align-center position-relative  overflow-hidden gallery">
+                                        <img src="{{ auth_helper()->getAvatar() }}" class="default-preview img-fluid " id="form-img"
+                                            alt="{{ $user->username ?? 'Account.png' }}" >
+                                        
+                                            <label for="avatar-input" class="d-flex justify-content-center align-items-center position-absolute text-black bg-white rounded-5 shadow px-4 py-2" style="right: 10px; bottom: 10px;">
+                                                <i class="fa-solid fa-upload" ></i>
+                                                <small class="fs-6 d-none d-md-inline ms-2">アップロード</small>
+                                            </label>
+
+                                        @error('avatar')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        
+                                    </div>
+                                </form>
                             </div>
 
                         </div>

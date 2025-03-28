@@ -120,13 +120,37 @@ let previewImage = function (input, outputSelector) {
             fileReader.onload = function (e) {
                 const img = $('<img>', {
                     src: e.target.result,
-                    class: 'preview-image',
+                    class: 'preview-image default-preview img-fluid ',
                     alt: 'Preview',
                     css: {
                         // Add some styles to the image
                     }
                 });
+                const button = $('<button>',{
+                    type: 'submit',
+                    class: 'd-flex justify-content-center align-items-center position-absolute text-black bg-white rounded-5 shadow border-0 outline-0 px-4 py-2',
+                    css: {
+                        "right" : "10px",
+                        "bottom": "10px"
+                    }
+                });
+
+                //<i class="fa-solid fa-floppy-disk"></i>
+                const icon = $('<icon>',{
+                    class: "fa-solid fa-floppy-disk"
+                });
+
+
+                const small = $('<small>',{
+                    class: "fs-6 d-none d-md-inline ms-2",
+                    text: "保存"
+                });
+
+                button.append(icon);
+                button.append(small);
+
                 output.append(img);
+                output.append(button);
             };
 
             fileReader.onerror = function (e) {
