@@ -74,7 +74,7 @@
                                     <button class="btn decrement"
                                         @if ($product->inCart()) disabled @endif>-</button>
                                     <input type="number" class="quantity-value"
-                                        value="{{ $product->getCart()->quantity ?? 1 }}" disabled>
+                                        value="{{ $product->getCart()->quantity ?? 1 }}" readonly>
                                     <button class="btn increment"
                                         @if ($product->inCart()) disabled @endif>+</button>
                                 </div>
