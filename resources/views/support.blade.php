@@ -75,7 +75,7 @@
                                 <div class="input-group mb-3">
                                     @php
                                         $user = auth_helper()->user();
-                                        $phone = $user->first_phone;
+                                        $phone = $user->first_phone ?? '';
                                     @endphp
 
                                     <input type="number" maxlength="10" class="form-control" name="phone" id="phone" placeholder="—（ハイフン）なしで入力してください" value="{{ $phone }}" 
