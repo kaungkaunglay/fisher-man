@@ -277,7 +277,7 @@
                                     {{ $product->description }}
                                 </a>
                             </div>
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center gap-2">
                                 <a href="javascript:void(0);"
                                     class="py-1 common-btn2 -solid cart-btn"
                                     data-id="{{ $product->id }}"

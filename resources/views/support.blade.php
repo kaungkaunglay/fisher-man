@@ -87,7 +87,6 @@
 
 
 
-
                             <div class="mb-3 contact-box">
                                 <label for="email" class="form-label">{{ trans_lang('email') }}</label>
                                 <input type="email" name="email" class="form-control" id="email"
