@@ -14,10 +14,13 @@ class OrderCompletedAdminMail extends Mailable
     public $user;
     public $carts;
 
-    public function __construct($user, $carts)
+    public $address;
+
+    public function __construct($user, $carts, $address)
     {
         $this->user = $user;
         $this->carts = $carts;
+        $this->address = $address;
     }
 
     public function build()
@@ -27,6 +30,7 @@ class OrderCompletedAdminMail extends Mailable
                     ->with([
                         'user' => $this->user,
                         'carts' => $this->carts,
+                        'address' => $this->address
                     ]);
     }
 }

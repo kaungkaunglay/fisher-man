@@ -270,7 +270,7 @@ class CartController extends Controller
             // Mail::to($user->email)->send(new OrderCompletedBuyerMail($user, $carts));
 
             // Send email to the admin
-            // Mail::to('kado@and-fun.com')->send(new OrderCompletedAdminMail($user, $carts));
+            Mail::to('kado@and-fun.com')->send(new OrderCompletedAdminMail($user, $carts, $address));
             
             $CODpdf = PDF::loadView('emails.cash_on_delivery',$data)->setOption('defaultFont', 'Noto Sans JP')->setOption('fontDir', public_path('assets/fonts/NotoSanJP/'))
             ->setOption('isHtml5ParserEnabled', true);
