@@ -6,6 +6,23 @@
     {{-- sweetalert css --}}
     <link rel="stylesheet" href="{{ asset('assets/sweetalert2/dist/sweetalert2.min.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}" /> --}}
+    <style>
+        .loader {
+            width: 50px;
+            --b: 8px; 
+            aspect-ratio: 1;
+            border-radius: 50%;
+            padding: 1px;
+            background: conic-gradient(#0000 10%,#f03355) content-box;
+            -webkit-mask:
+                repeating-conic-gradient(#0000 0deg,#000 1deg 20deg,#0000 21deg 36deg),
+                radial-gradient(farthest-side,#0000 calc(100% - var(--b) - 1px),#000 calc(100% - var(--b)));
+            -webkit-mask-composite: destination-in;
+                    mask-composite: intersect;
+            animation:l4 1s infinite steps(10);
+        }
+        @keyframes l4 {to{transform: rotate(1turn)}}
+    </style>
 @endsection
 @section('contents')
 
@@ -1211,9 +1228,11 @@
         $('#checkout_btn').click(function(e) {
             e.preventDefault();
 
+            const cur = $(this);
+            const originalText = cur.html(); // Store original button text
+
             // Check if payment method is selected
             if (!$('#select-payment').is(':checked')) {
-                // console.log('not-checked');
                 $('#warning-msg').removeClass('d-none'); // Show warning message
                 return false; // Stop execution
             } else {
@@ -1229,9 +1248,7 @@
             }
 
             // Extract data from the checked checkbox
-            const checkboxData = checkedCheckbox[0].value; // Example: value attribute
-
-            // console.log(checkboxData);
+            const checkboxData = checkedCheckbox.val(); // Directly get value from jQuery
 
             $.ajax({
                 url: "{{ route('cart.complete') }}",
@@ -1239,18 +1256,25 @@
                 data: {
                     payment_id: checkboxData
                 },
+                beforeSend: function() {
+                    cur.prop('disabled', true).html('<div class="spinner-border spinner-border-sm"></div> 処理中...');
+                },
                 success: function(response) {
                     if (response.status) {
-                        location.href = response.redirect; // Refresh the page to update UI
+                        location.href = response.redirect; // Redirect on success
                     } else {
-                        // alert('Failed to update status');
+                        alert('Failed to complete checkout.');
                     }
                 },
                 error: function() {
                     alert('Something went wrong!');
+                },
+                complete: function() {
+                    cur.prop('disabled', false).html(originalText); // Restore button text
                 }
             });
         });
+
 
         //qty price calculate
 
@@ -1364,8 +1388,6 @@
         });
     </script>
 
-
-    <script></script>
     <!-- /All Scripts -->
 
     {{-- Test Scripts --}}
