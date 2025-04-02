@@ -41,7 +41,7 @@
     <p><strong>口座番号:</strong> ◯◯◯◯◯◯</p>
     <p><strong>口座名義:</strong> 株式会社Acompany</p>
 
-    <h2>重要なお知らせ</h2>
+    <h2>重要なお知らせ</h2>cash_on_delivery.blade.php
     <p>- お支払いは<strong>3営業日以内</strong>にお願いいたします。</p>
     <p>- 振込時の通信欄には<strong>注文番号</strong>をご記入ください。</p>
     <p>- 入金確認後、商品を発送し、お届け予定日をご連絡いたします。</p>
