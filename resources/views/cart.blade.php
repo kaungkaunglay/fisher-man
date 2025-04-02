@@ -107,10 +107,10 @@
                                 <td class="price format" id="cart-price-{{ $item->product->id }}"
                                     data-price="{{ $item->product->getSellPrice() ?? 0 }}">
                                     ¥{{ number_format($item->product->getSellPrice(), 0) }}</td>
-                                <td id="cart-qty-{{ $item->product->id }}" data-qty="{{ $item->quantity }}">
+                                <td>
                                     <div class="quantity d-flex justify-content-center">
                                         <button class="btn decrement">-</button>
-                                        <input type="number"  value="{{ $item->quantity }}" class="quantity-value"
+                                        <input type="number" id="cart-qty-{{ $item->product->id }}"  value="{{ $item->quantity }}" class="quantity-value"
                                             min="1">
                                         <button class="btn increment">+</button>
                                     </div>
@@ -284,7 +284,7 @@
                             style="min-width: 120px">{{ trans_lang('phone_number') }}</span>
                         <input type="text" id="phone" name="phone" maxlength="11"
                             placeholder="—（ハイフン）なしで入力してください"
-                            value="{{ old('phone', session('address') ? session('address')['phone'] : substr(auth_helper()?->user()->first_phone ?? (auth_helper()?->user()->second_phone ?? ''), 3)) }}"
+                            value="{{ old('phone', session('address') ? session('address')['phone'] : (auth_helper()->user()->first_phone ?? auth_helper()->user()->second_phone) )}}"
                             class="form-control t-blue shadow-none  @error('phone') is-invalid border border-danger @enderror" />
                         @error('phone')
                             <div class="invalid-feedback text-center">
@@ -1179,7 +1179,7 @@
                     id = $(this).data('id');
                     name = $("#cart-name-"+ id).data('name');
                     price = +($("#cart-price-" + id).data('price'));
-                    quantity = +($("#cart-qty-" + id).data('qty'));
+                    quantity = +($("#cart-qty-" + id).val());
                     let itemTotal = price * quantity;
                     total += itemTotal;
                     tableRows += `
