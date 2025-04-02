@@ -5,8 +5,20 @@
     <title>注文確認 - 代金引換</title>
     <style>
         body {
-            font-family: 'Noto Sans JP', sans-serif;
+            font-family: 'Noto Sans JP',  "Hiragino Kaku Gothic Pro", Meiryo, sans-serif;
+            line-height: 1.6;
+            color: #333;
         }
+
+        @font-face {
+            font-family: 'Noto Sans JP';
+            font-style: normal;
+            font-weight: 400;
+            src: url('https://fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Regular.woff2') format('woff2'),
+                 url('https://fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Regular.woff') format('woff');
+        }
+        
+
     </style>
 </head>
 <body>
