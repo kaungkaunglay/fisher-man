@@ -24,6 +24,6 @@ class RestrictIP
         //     abort(403, 'Access denied');
         // }
 
-        // return $next($request);
+        return $next($request);
     }
 }

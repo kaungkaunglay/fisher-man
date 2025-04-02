@@ -116,7 +116,7 @@
                                 <a href="{{ route('admin.products', $product->id) }}" class="body-title-2">{{ $product->name }}</a>
                             </div>
                             <div class="body-text">
-                                <input type="checkbox" class="timesale" id="timesale-{{ $product->id }} myCheckbox" data-id="{{ $product->id }}" {{ $product->is_time_sale == 1 ? 'checked' : '' }}>
+                                <input type="checkbox" class="timesale" id="timesale-{{ $product->id }} myCheckbox" data-id="{{ $product->id }}" {{ $product->is_time_sale >  0 ? 'checked' : '' }}>
                             </div>
                             <div class="body-text">{{ $product->id }}</div>
                             <div class="body-text">¥{{ number_format($product->product_price - $product->discount, 0) }} <span style="text-decoration: line-through; opacity: 0.5;">¥{{ number_format($product->product_price)}}</span></div>
@@ -130,7 +130,7 @@
                                     {{ $product->status }}
                                 @endif
                             </div>                            
-\                            <div>
+                            <div>
                                 @if($product->stock <= 0)
                                     <div class="block-not-available">在庫切れ</div>
                                 @else

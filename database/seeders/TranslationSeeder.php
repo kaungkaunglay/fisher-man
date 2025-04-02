@@ -272,14 +272,19 @@ class TranslationSeeder extends Seeder
             ],
 
             [
-                'key' => 'quanity',
-                'en' => 'Quanity',
+                'key' => 'sub_total',
+                'en' => 'Subtotal',
                 'jp' => '数量',
             ],
             [
                 'key' => 'total',
                 'en' => 'Total',
                 'jp' => '合計',
+            ],
+            [
+                'key' => 'total_amount',
+                'en' => 'Total Amount',
+                'jp' => '合計金額',
             ],
             [
                 'key' => 'remove',

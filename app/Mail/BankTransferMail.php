@@ -5,6 +5,7 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -17,13 +18,11 @@ class BankTransferMail extends Mailable
      * Create a new message instance.
      */
 
-    public $address;
-    public $carts;
+    public $mailData;
 
-    public function __construct($address,$carts)
+    public function __construct($mailData)
     {
-        $this->address = $address;
-        $this->carts = $carts;
+        $this->mailData = $mailData;
     }
 
     /**
@@ -42,11 +41,11 @@ class BankTransferMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.bank_transfer',
-            with: [
-                'address' => $this->address,
-                'carts' => $this->carts
-            ]
+            view: 'emails.empty',
+            // with: [
+            //     'address' => $this->address,
+            //     'carts' => $this->carts
+            // ]
         );
     }
 
@@ -57,6 +56,9 @@ class BankTransferMail extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            Attachment::fromData(fn () => $this->mailData['btpdf']->output(), 'bank_transfer_mail.pdf')
+            ->withMime('application/pdf'),
+        ];
     }
 }

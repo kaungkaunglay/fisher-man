@@ -66,7 +66,7 @@
                         </div>
                         <div class="wg-table table-top-product">
                             <ul class="flex flex-column gap14">
-                            @foreach($top_products as $top_product)
+                            @foreach($top_selling_products as $top_product)
                             <li class="product-item">
                                 <div class="image">
                                     <img src="{{asset('assets/products/'.$top_product->product_image)}}" alt="">
@@ -217,7 +217,11 @@
                     <!-- /product-overview -->
                 </div>
             </div>
-            
+            <div class="tf-section-1  rounded-5">
+                <div class="wg-box">
+                    <iframe src="https://www.market.jafic.or.jp/today.htm" frameborder="0" class="w-100" style="height: 75vh;border-radius: 20px;"></iframe>
+                </div>
+            </div>
         </div>
         <!-- /main-content-wrap -->
     </div>

@@ -47,7 +47,7 @@ class ProductController extends Controller
     public function showallproducts(Request $request)
     {
         $sortBy = $request->get('sort_by', 'latest');
-        $query = Product::query();
+        $query = Product::query()->where('stock','>',0);
 
         if ($sortBy === 'price_asc') {
             $query->orderBy('product_price', 'asc');
@@ -62,10 +62,10 @@ class ProductController extends Controller
         }
 
         $products = $query->get();
-        $discount_products = setting('is_time_sale') == 'active'  ?$query->where('is_time_sale',1)->where('status','approved')->latest()->limit(6)->get() : collect();
+        $discount_products = setting('is_time_sale') == 'active'  ?$query->where('is_time_sale',2)->where('status','approved')->where('stock','>',0)->latest()->limit(6)->get() : collect();
         $popular_shops = Shop::where('status','approved')->inRandomOrder()->take(4)->get();
 
-        $random_products  = Product::inRandomOrder()->take(6)->get(); // Fetch 6 random products
+        $random_products  = Product::where('stock', '>', 0)->inRandomOrder()->take(6)->get(); // Fetch 6 random products
 
         $settings = Setting::pluck('value', 'key')->toArray();
         $bannerImages = isset($settings['site_banner_images']) ? json_decode($settings['site_banner_images']) : [];
@@ -97,6 +97,11 @@ class ProductController extends Controller
     {
         $products = Product::where('status', 'pending')->paginate(10);
         return view('admin.pending-products', compact('products'));
+    }
+
+    public function pendingTimeSale(){
+        $products = Product::where('is_time_sale' ,1)->where('status', 'approved')->paginate(10);
+        return view('admin.time-sale-pending-products',compact('products'));
     }
 
     public function store(Request $request)
@@ -228,7 +233,7 @@ class ProductController extends Controller
             $products = collect();
         } else {
             $sortBy = $request->get('sort_by', 'latest');
-            $query = Product::where('is_time_sale',1)->where('status','approved');
+            $query = Product::where('is_time_sale',2)->where('status','approved') ->where('stock', '>', 0);
 
             if ($sortBy === 'price_asc') {
                 $query->orderBy('product_price', 'asc');
@@ -249,7 +254,7 @@ class ProductController extends Controller
 
     public function timeSaleProducts(Request $request)
     {
-        $products = Product::where('is_time_sale',1)->where('status','approved')->paginate(10);
+        $products = Product::where('is_time_sale','>',0)->where('status','approved')->paginate(10);
         return view('admin.time-sale-products', compact('products'));
     }
 
@@ -262,6 +267,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
 
+        // logger($request->all());
         $messages = [
             'sub_category_id.exists' => 'サブカテゴリーは存在しません',
             'name.string' => '名前は文字列でなければなりません',

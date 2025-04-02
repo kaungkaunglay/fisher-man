@@ -29,7 +29,7 @@ class SubCategoriesController extends Controller
         $minPrice = $request->get('min_price', 1);
         $maxPrice = $request->get('max_price', 10000);
 
-        $query = Product::where('sub_category_id', $id)->whereBetween('product_price', [$minPrice, $maxPrice])->where('status','approved');
+        $query = Product::where('sub_category_id', $id)->whereBetween('product_price', [$minPrice, $maxPrice])->where('status','approved')->where('stock','>',0);
 
         if ($sortBy === 'price_asc') {
             $query->orderBy('product_price', 'asc');

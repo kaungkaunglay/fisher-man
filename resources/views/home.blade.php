@@ -9,7 +9,7 @@
     <div class="mt-4 mb-3"></div>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero mt-5">
         <div class="container-custom">
 
             <div class="row justify-content-between rowreverce">
@@ -17,7 +17,7 @@
                     @include('includes.aside') <!-- Aside Layout -->
                     <div class="r-buzz mt-3">
                         <a href="https://fisherman-myanmar.com/" target="_blank">
-                            <img src="{{ asset('assets/images/r-buzz.jpg')}}" alt="r-buzz" style="border-radius: 10px;">
+                            <img src="{{ asset('assets/images/r-buzz.jpg')}}" alt="r-buzz" loading="lazy" style="border-radius: 10px;">
                         </a>
                     </div>
                 </div>
@@ -277,7 +277,7 @@
                                     {{ $product->description }}
                                 </a>
                             </div>
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center gap-2">
                                 <a href="javascript:void(0);"
                                     class="py-1 common-btn2 -solid cart-btn"
                                     data-id="{{ $product->id }}"

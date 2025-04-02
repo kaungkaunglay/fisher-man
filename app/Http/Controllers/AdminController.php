@@ -42,7 +42,7 @@ class AdminController extends Controller
                         ->paginate(10);
 
         $total_product_count = Product::count();
-        return view('admin.index',compact('top_products','all_products','total_product_count'));
+        return view('admin.index',compact('top_products','all_products','total_product_count','top_selling_products'));
     }
     public function categoreis()
     {

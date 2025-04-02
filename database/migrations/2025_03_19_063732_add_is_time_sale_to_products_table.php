@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->boolean('is_time_sale')->default(false)->after('discount');
+            $table->integer('is_time_sale')->default(0)->after('discount');
         });
     }
 

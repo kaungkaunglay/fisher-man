@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>注文確認 - 代金引換</title>
 </head>
-
 <body>
     <h1>注文確認</h1>
     <p>{{ $address['username']}}様</p>
@@ -15,15 +13,17 @@
     <h2>注文内容</h2>
     <p style="color: red;"><strong>商品名</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>価格</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>小計</strong></p>
 
-    @foreach ($carts as $item)
-    <p>{{ $item->product->name }}&nbsp;&nbsp;&nbsp;&nbsp;¥{{ number_format($item->product->getSellPrice(), 0) }}&nbsp;&nbsp;&nbsp;&nbsp;¥{{ number_format($item->product->getSellPrice() * $item->quantity, 0) }}</p>
-    @endforeach
-
-    @php
+            @php
         $total = $carts->sum(function ($cart) {
             return $cart->product->getSellPrice() * $cart->quantity;
         }) ?? 0;
     @endphp
+            <tr class="total">
+                <td colspan="3">{{ trans_lang('total_amount') }}:</td>
+                <td>¥{{ number_format($total, 0) }}</td>
+            </tr>
+        </tbody>
+    </table>
 
     <p><strong>合計金額:</strong> ¥{{ number_format($total, 0) }}</p>
 
