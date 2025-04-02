@@ -535,4 +535,6 @@ class CartController extends Controller
 
         return response()->json(['status' => true, 'product_id' => $product_id, 'message' => '商品がカートから削除されました']);
     }
+
+    
 }
