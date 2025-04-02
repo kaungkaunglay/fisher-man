@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <title>注文確認 - 代金引換</title>
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+    </style>
 </head>
 <body>
     <h1>注文確認</h1>
@@ -17,13 +23,8 @@
         $total = $carts->sum(function ($cart) {
             return $cart->product->getSellPrice() * $cart->quantity;
         }) ?? 0;
-    @endphp
-            <tr class="total">
-                <td colspan="3">{{ trans_lang('total_amount') }}:</td>
-                <td>¥{{ number_format($total, 0) }}</td>
-            </tr>
-        </tbody>
-    </table>
+    @endphp>
+    <p>{{trans_lang(('total_amount'))}} : ¥{{ number_format($total, 0) }}</p>
 
     <p><strong>合計金額:</strong> ¥{{ number_format($total, 0) }}</p>
 
