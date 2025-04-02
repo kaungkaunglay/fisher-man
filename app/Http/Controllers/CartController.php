@@ -23,6 +23,12 @@ class CartController extends Controller
 {
     public function index()
     {
+
+         // Reset step if not coming from a cart step process
+    if (!request()->headers->get('referer') || !str_contains(request()->headers->get('referer'), 'cart')) {
+        $step = session(['cart_step' => 1]);
+    }
+
         if (AuthHelper::check()) {
             $carts = AuthHelper::user()->carts;
             $carts->load('product');
@@ -52,6 +58,10 @@ class CartController extends Controller
         }
 
         $step = min(session('cart_step',1),5);
+
+        // $step = session(['cart_step' => 1]);
+
+        // logger($step);
         
         $total = $carts->sum(function ($cart) {
             return $cart->product->getSellPrice() * $cart->quantity;
