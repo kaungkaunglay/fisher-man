@@ -7,7 +7,7 @@
     <h1>{{ trans_lang('以下ユーザーから購入連絡がありました。') }}</h1>
 
     <p><strong>名前 :</strong> {{ $address['username'] }}</p>
-    <p><strong>メールアドレス :</strong> {{ $addressemail }}</p>
+    <p><strong>メールアドレス :</strong> {{ $user->email }}</p>
     <p><strong>郵便番号 :</strong> {{ session('address') ? session('address')['postal'] :''}}</p>
     <p><strong>住所 :</strong> {{ $user->address }}</p>
     <p><strong>電話番号 :</strong> {{session('address') ? session('address')['phone'] :''}}</p>
