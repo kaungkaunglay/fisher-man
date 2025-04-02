@@ -15,7 +15,7 @@ class AuthHelper
     /**
      * Get the currently authenticated user.
      *
-     * @return \App\Models\User|null
+     * @return \App\Models\Users|null
      */
     public static function auth(): ?Users
     {

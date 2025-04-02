@@ -284,7 +284,7 @@
                             style="min-width: 120px">{{ trans_lang('phone_number') }}</span>
                         <input type="text" id="phone" name="phone" maxlength="11"
                             placeholder="—（ハイフン）なしで入力してください"
-                            value="{{ old('phone', session('address') ? session('address')['phone'] : (auth_helper()->user()->first_phone ?? auth_helper()->user()->second_phone) )}}"
+                            value="{{ old('phone', session('address') ? session('address')['phone'] : (auth_helper()->check() ? (auth_helper()->user()->first_phone ? auth_helper()->user()->first_phone :  auth_helper()->user()->second_phone) : '' ))}}"
                             class="form-control t-blue shadow-none  @error('phone') is-invalid border border-danger @enderror" />
                         @error('phone')
                             <div class="invalid-feedback text-center">
@@ -1181,7 +1181,13 @@
                     price = +($("#cart-price-" + id).data('price'));
                     quantity = +($("#cart-qty-" + id).val());
                     let itemTotal = price * quantity;
+                    
                     total += itemTotal;
+
+                    itemTotal = new Intl.NumberFormat().format(itemTotal);
+
+                    
+                    
                     tableRows += `
                         <tr>
                             <td style="padding: 8px;">${name}</td>
@@ -1191,6 +1197,8 @@
                         </tr>
                     `;
                 });
+
+                total = new Intl.NumberFormat().format(total);
 
                 let invoiceHTML = `
                     <div style="text-align:left;">

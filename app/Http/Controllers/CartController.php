@@ -281,7 +281,7 @@ class CartController extends Controller
 
             $data["ocapdf"] = $OCApdf;
 
-            Mail::to('zwehtetnaing@andfun.biz')->send(new OrderCompletedAdminMail($data));
+            Mail::to('kacdo@and-fun.com')->send(new OrderCompletedAdminMail($data));
             
             if($payment_id == 1){
                 $CODpdf = PDF::loadView('emails.cash_on_delivery',$data)
