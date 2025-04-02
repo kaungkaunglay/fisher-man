@@ -82,7 +82,7 @@
                 <div class="d-flex gap10">
                     <fieldset class="product_price">
                         <div class="body-title mb-10">{{trans_lang('price')}} <span class="tf-color-1">*</span></div>
-                        <input class="mb-10 @error('product_price') is-invalid @enderror" type="number" name="product_price" value="{{ old('product_price', $product->product_price ?? '') }}">
+                        <input class="mb-10 @error('product_price') is-invalid @enderror" type="text" name="product_price" value="{{ old('product_price', $product->product_price ?? '') }}">
                         @error('product_price')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -92,7 +92,7 @@
 
                     <fieldset class="product_price">
                         <div class="body-title mb-10">セール（希望割引価格を記入）</div>
-                        <input class="mb-10 @error('discount') is-invalid @enderror" type="number" name="discount" value="{{ old('discount', $product->discount ?? '') }}">
+                        <input class="mb-10 @error('discount') is-invalid @enderror" type="text" name="discount" value="{{ old('discount', $product->discount ?? '') }}">
                         @error('discount')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -104,7 +104,7 @@
                 <div class="d-flex gap10">
                     <fieldset class="stock">
                         <div class="body-title mb-10">{{trans_lang('quanity')}} <span class="tf-color-1">*</span></div>
-                        <input class="mb-10 @error('stock') is-invalid @enderror" type="number" name="stock" value="{{ old('stock', $product->stock ?? '') }}">
+                        <input class="mb-10 @error('stock') is-invalid @enderror" type="text" name="stock" value="{{ old('stock', $product->stock ?? '') }}">
                         @error('stock')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -114,7 +114,7 @@
 
                     <fieldset class="weight">
                         <div class="body-title mb-10">{{trans_lang('weight')}} (kg) <span class="tf-color-1">*</span></div>
-                        <input class="mb-10 @error('weight') is-invalid @enderror" type="number" name="weight" step="0.01" value="{{ old('weight', $product->weight ?? '') }}">
+                        <input class="mb-10 @error('weight') is-invalid @enderror" type="text" name="weight" step="0.01" value="{{ old('weight', $product->weight ?? '') }}">
                         @error('weight')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -124,7 +124,7 @@
 
                     <fieldset class="size">
                         <div class="body-title mb-10">{{trans_lang('length')}} (cm)<span class="tf-color-1">*</span></div>
-                        <input class="mb-10 @error('size') is-invalid @enderror" type="number" name="size" step="0.01" value="{{ old('size', $product->size ?? '') }}">
+                        <input class="mb-10 @error('size') is-invalid @enderror" type="text" name="size" step="0.01" value="{{ old('size', $product->size ?? '') }}">
                         @error('size')
                         <div class="invalid-feedback">
                             {{ $message }}

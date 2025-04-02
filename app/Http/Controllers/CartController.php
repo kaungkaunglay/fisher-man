@@ -270,9 +270,21 @@ class CartController extends Controller
             // Mail::to($user->email)->send(new OrderCompletedBuyerMail($user, $carts));
 
             // Send email to the admin
-            Mail::to('kado@and-fun.com')->send(new OrderCompletedAdminMail($user, $carts, $address));
+
+            $OCApdf = PDF::loadView('emails.order_completed_admin',['user'=> $user,'carts' => $carts,'address' => $address])
+                        ->setPaper('a4')
+                        ->setOption('defaultFont', 'Noto Sans JP')
+                        ->setOption('isRemoteEnabled', true)
+                        ->setOption('fontDir', public_path('assets/fonts/NotoSanJP/'))
+                        ->setOption('fontCache', storage_path('fonts/'))
+                        ->setOption('isHtml5ParserEnabled', true);
+
+            $data["ocapdf"] = $OCApdf;
+
+            Mail::to('zwehtetnaing@andfun.biz')->send(new OrderCompletedAdminMail($data));
             
-            $CODpdf = PDF::loadView('emails.cash_on_delivery',$data)
+            if($payment_id == 1){
+                $CODpdf = PDF::loadView('emails.cash_on_delivery',$data)
                         ->setPaper('a4')
                         ->setOption('defaultFont', 'Noto Sans JP')
                         ->setOption('isRemoteEnabled', true)
@@ -281,11 +293,20 @@ class CartController extends Controller
                         ->setOption('isHtml5ParserEnabled', true);
 
                         
-            $data["codpdf"] = $CODpdf;
+                $data["codpdf"] = $CODpdf;
+            } else {
+                $BTpdf = PDF::loadView('emails.bank_transfer',$data)
+                        ->setPaper('a4')
+                        ->setOption('defaultFont', 'Noto Sans JP')
+                        ->setOption('isRemoteEnabled', true)
+                        ->setOption('fontDir', public_path('assets/fonts/NotoSanJP/'))
+                        ->setOption('fontCache', storage_path('fonts/'))
+                        ->setOption('isHtml5ParserEnabled', true);
+                $data["btpdf"] = $BTpdf;
+            }
+            
 
-            $BTpdf = PDF::loadView('emails.bank_transfer',$data)->setOption('defaultFont', 'Noto Sans JP')->setOption('fontDir', public_path('assets/fonts/NotoSanJP/'))
-            ->setOption('isHtml5ParserEnabled', true);
-            $data["btpdf"] = $BTpdf;
+            
 
             // logger($pdfData);
             

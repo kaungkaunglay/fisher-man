@@ -281,7 +281,7 @@
                     <div class="input-group mb-2  shadow-none">
                         <span class="input-group-text t-blue w-25 text-wrap"
                             style="min-width: 120px">{{ trans_lang('postal') }}</span>
-                        <input type="text" id="postal" name="postal" maxlength="7"
+                        <input type="number" id="postal" name="postal" maxlength="7"
                             placeholder="—（ハイフン）なしで入力してください"
                             value="{{ old('postal', session('address') ? session('address')['postal'] : auth_helper()->user()->postal_code ?? '') }}"
                             class="form-control t-blue shadow-none  @error('postal') is-invalid border border-danger @enderror" />
