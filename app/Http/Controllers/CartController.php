@@ -362,6 +362,17 @@ class CartController extends Controller
     {
         $products = $request->input('products');
 
+        logger($products);
+
+        $actualProductsStock = Product::select('stock')
+                                ->where('products.id','=',$products['0']['id'])->get();
+
+        if($products['0']['quantity'] > $actualProductsStock->first()->stock){
+            return response()->json(['status' => false, 'message' => "Not Enough stock"]);
+        }
+
+
+
         if (empty($products)) {
             session()->flash('error',"商品が選択されていません");
             return response()->json(['status' => false, 'message' => "商品が選択されていません"]);

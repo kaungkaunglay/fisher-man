@@ -74,7 +74,7 @@
                                     <button class="btn decrement"
                                         @if ($product->inCart()) disabled @endif>-</button>
                                     <input type="number" class="quantity-value"
-                                        value="{{ $product->getCart()->quantity ?? 1 }}" readonly>
+                                        value="{{ $product->getCart()->quantity ?? 1 }}">
                                     <button class="btn increment"
                                         @if ($product->inCart()) disabled @endif>+</button>
                                 </div>
@@ -289,6 +289,8 @@
                             cur.prop('disabled', true); // Disable the button
                             cur.siblings('.quantity').find('.decrement, .increment').prop('disabled', true);
                             cur.html("{{ trans_lang('added_cart') }}");
+                        }else{
+                          toastr.error($('.stock-error').html(),'');
                         }
                     }
                 });
@@ -296,5 +298,18 @@
             });
 
         });
+    </script>
+
+    <script>
+       document.addEventListener('DOMContentLoaded', function() {
+            const quantityInput = document.querySelector('.quantity-value');
+                // Prevent decimal input on keypress
+                quantityInput.addEventListener('keypress', function(e) {
+                    if (e.key === '.' || e.key === ',') {
+                        e.preventDefault();
+                    }
+                });
+            });
+          
     </script>
 @endsection
