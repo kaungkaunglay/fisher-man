@@ -20,7 +20,7 @@ class OrderCompletedAdminMail extends Mailable
 
     public function build()
     {
-        return $this->subject('New Order Completed')
+        return $this->subject('新規注文完了')
                     ->view('emails.empty') ;// Use admin's view
                     // ->with([
                     //     'user' => $this->user,
@@ -32,7 +32,7 @@ class OrderCompletedAdminMail extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromData(fn () => $this->mailData['ocapdf']->output(), 'order_completed_mail.pdf')
+            Attachment::fromData(fn () => $this->mailData['ocapdf']->output(), '注文完了.pdf')
             ->withMime('application/pdf'),
         ];
     }

@@ -31,7 +31,7 @@ class BankTransferMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Bank Transfer Mail',
+            subject: '銀行振込メール',
         );
     }
 
@@ -57,7 +57,7 @@ class BankTransferMail extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromData(fn () => $this->mailData['btpdf']->output(), 'bank_transfer_mail.pdf')
+            Attachment::fromData(fn () => $this->mailData['btpdf']->output(), '銀行振込.pdf')
             ->withMime('application/pdf'),
         ];
     }

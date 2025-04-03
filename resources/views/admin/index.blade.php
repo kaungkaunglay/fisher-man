@@ -67,6 +67,7 @@
                         <div class="wg-table table-top-product">
                             <ul class="flex flex-column gap14">
                             @foreach($top_selling_products as $top_product)
+
                             <li class="product-item">
                                 <div class="image">
                                     <img src="{{asset('assets/products/'.$top_product->product_image)}}" alt="">
@@ -82,11 +83,15 @@
                                     </div>
                                     <div class="seller-name">
                                         <div class="text-tiny mb-3">A company</div>
-                                        <div class="body-text">{{$top_product->username}}</div>
+                                        <div class="body-text">{{$top_product->user->username}}</div>
                                     </div>
                                     <div class="stock">
                                         <div class="text-tiny mb-3">在庫数</div>
                                         <div class="body-text">{{$top_product->stock}}</div>
+                                    </div>
+                                    <div class="order">
+                                        <div class="text-tiny mb-3" style="width: 50px">注文数</div>
+                                        <div class="body-text">{{$top_product->total_quantity_sold}}</div>
                                     </div>
                                 </div>
                             </li>

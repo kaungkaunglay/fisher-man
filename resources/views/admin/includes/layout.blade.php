@@ -6,13 +6,10 @@
                 ->first();
 @endphp
 <!DOCTYPE html>
-<!--[if IE 8 ]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <!--<![endif]-->
 
-
-<!-- Mirrored from themesflat.co/html/remos/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 22 Jan 2025 01:48:33 GMT -->
 <head>
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
@@ -72,10 +69,10 @@
                     <div class="box-logo">
                         <a href="{{route('admin.index')}}" id="site-logo-inner">
                             @if (file_exists(public_path('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value'))))
-              <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" id="logo_header" class="logo" alt="logo" style="width: 60px;">
-              @else
-              <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" id="logo_header" class="logo" alt="logo" style="width: 60px;">
-              @endif
+                            <img src="{{ asset('assets/logos/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" id="logo_header" class="logo" alt="logo" style="width: 60px;">
+                            @else
+                            <img src="{{ asset('assets/images/' . \App\Models\Setting::where('key', 'logo')->value('value')) }}" id="logo_header" class="logo" alt="logo" style="width: 60px;">
+                            @endif
                         </a>
                         <div class="button-show-hide">
                             <i class="icon-menu-left"></i>
@@ -253,7 +250,7 @@
                                             </li>
                                             <li class="sub-menu-item">
                                                 <a href="{{route('pending-time-sale')}}" class="{{request()->is('admin/pending-time-sale') ? 'active' : ''}}">
-                                                    <div class="text">保留中のタイムセール</div>
+                                                    <div class="text">タイムセールを承認</div>
                                                 </a>
                                             </li>
                                         </ul>

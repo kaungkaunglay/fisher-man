@@ -35,7 +35,7 @@ class CashOnDeliveryMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Cash On Delivery Mail',
+            subject: '代金引換メール',
         );
     }
 
@@ -59,7 +59,7 @@ class CashOnDeliveryMail extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromData(fn () => $this->mailData['codpdf']->output(), 'cash_on_delivery.pdf')
+            Attachment::fromData(fn () => $this->mailData['codpdf']->output(), '代金引換.pdf')
             ->withMime('application/pdf'),
         ];
     }
