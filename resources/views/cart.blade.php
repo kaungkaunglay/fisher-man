@@ -110,7 +110,7 @@
                                 <td>
                                     <div class="quantity d-flex justify-content-center">
                                         <button class="btn decrement">-</button>
-                                        <input type="number" id="cart-qty-{{ $item->product->id }}"  value="{{ $item->quantity }}" class="quantity-value"
+                                        <input type="number" id="cart-qty-{{ $item->product->id }}" value="{{ $item->quantity }}" class="quantity-value"
                                             min="1">
                                         <button class="btn increment">+</button>
                                     </div>
