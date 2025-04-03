@@ -368,7 +368,7 @@ class CartController extends Controller
                                 ->where('products.id','=',$products['0']['id'])->get();
 
         if($products['0']['quantity'] > $actualProductsStock->first()->stock){
-            return response()->json(['status' => false, 'message' => "Not Enough stock"]);
+            return response()->json(['status' => false, 'message' => "在庫が足りない"]);
         }
 
 

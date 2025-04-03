@@ -290,8 +290,10 @@
                             cur.siblings('.quantity').find('.decrement, .increment').prop('disabled', true);
                             cur.html("{{ trans_lang('added_cart') }}");
                         }else{
-                          toastr.error($('.stock-error').html(),'');
+                          
                         }
+
+                        response.status ? toastr.success('',response.message) : toastr.info('',response.message);
                     }
                 });
                 updateCartCount();
