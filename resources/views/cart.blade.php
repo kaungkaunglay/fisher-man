@@ -9,19 +9,24 @@
     <style>
         .loader {
             width: 50px;
-            --b: 8px; 
+            --b: 8px;
             aspect-ratio: 1;
             border-radius: 50%;
             padding: 1px;
-            background: conic-gradient(#0000 10%,#f03355) content-box;
+            background: conic-gradient(#0000 10%, #f03355) content-box;
             -webkit-mask:
-                repeating-conic-gradient(#0000 0deg,#000 1deg 20deg,#0000 21deg 36deg),
-                radial-gradient(farthest-side,#0000 calc(100% - var(--b) - 1px),#000 calc(100% - var(--b)));
+                repeating-conic-gradient(#0000 0deg, #000 1deg 20deg, #0000 21deg 36deg),
+                radial-gradient(farthest-side, #0000 calc(100% - var(--b) - 1px), #000 calc(100% - var(--b)));
             -webkit-mask-composite: destination-in;
-                    mask-composite: intersect;
-            animation:l4 1s infinite steps(10);
+            mask-composite: intersect;
+            animation: l4 1s infinite steps(10);
         }
-        @keyframes l4 {to{transform: rotate(1turn)}}
+
+        @keyframes l4 {
+            to {
+                transform: rotate(1turn)
+            }
+        }
     </style>
 @endsection
 @section('contents')
@@ -103,15 +108,16 @@
                                             src="{{ asset('assets/products/' . $item->product->product_image) }}"
                                             alt="{{ $item->product->name }}"></div>
                                 </td>
-                                <td class="col-name" id="cart-name-{{ $item->product->id }}" data-name="{{ $item->product->name }}">{{ $item->product->name }}</td>
+                                <td class="col-name" id="cart-name-{{ $item->product->id }}"
+                                    data-name="{{ $item->product->name }}">{{ $item->product->name }}</td>
                                 <td class="price format" id="cart-price-{{ $item->product->id }}"
                                     data-price="{{ $item->product->getSellPrice() ?? 0 }}">
                                     ¥{{ number_format($item->product->getSellPrice(), 0) }}</td>
                                 <td>
                                     <div class="quantity d-flex justify-content-center">
                                         <button class="btn decrement">-</button>
-                                        <input type="number" id="cart-qty-{{ $item->product->id }}" value="{{ $item->quantity }}" class="quantity-value"
-                                            min="1">
+                                        <input type="number" id="cart-qty-{{ $item->product->id }}"
+                                            value="{{ $item->quantity }}" class="quantity-value" min="1">
                                         <button class="btn increment">+</button>
                                     </div>
                                 </td>
@@ -142,7 +148,8 @@
             <!-- Mobile Style -->
             <div class="mobile d-md-none d-flex flex-column gap-3 table-item mb-cart-body">
                 @foreach ($carts as $item)
-                    <div class="card cart-{{ $item->product->id }}">
+                    <div class="card cart-{{ $item->product->id }} mobile-card" data-id="{{ $item->product->id }}"
+                        data-stock="{{ $item->product->stock }}">
                         <div class="card-img align-content-center me-2">
                             <img src="{{ asset('assets/products/' . $item->product->product_image) }}" alt="product img">
                         </div>
@@ -155,9 +162,10 @@
                                         class="price format">¥{{ number_format($item->product->getSellPrice(), 0) }}</span>
                                 </div>
                                 <div class="quantity d-flex">
-                                    <button class="btn decrement">-</button>
-                                    <input type="number" value="{{ $item->quantity }}" class="quantity-value">
-                                    <button class="btn increment">+</button>
+                                    <button class="btn decrement mobile-btn">-</button>
+                                    <input type="number" value="{{ $item->quantity }}"
+                                        class="quantity-value mobile-input">
+                                    <button class="btn increment mobile-btn">+</button>
                                 </div>
                             </div>
                             <a href="javascript:void(0);" class="btn mb-cart-del-btn" data-id="{{ $item->product->id }}">
@@ -170,7 +178,7 @@
                 <div class="d-flex justify-content-between bg-primary text-white p-2 mt-3">
                     <p>{{ trans_lang('total') }} :</p>
                     <p>
-                        <span class="total">¥{{ number_format($total, 0) }}</span>
+                        <span class="total" id='mobile-total'>¥{{ number_format($total, 0) }}</span>
                     </p>
                 </div>
             </div>
@@ -284,7 +292,7 @@
                             style="min-width: 120px">{{ trans_lang('phone_number') }}</span>
                         <input type="text" id="phone" name="phone" maxlength="11"
                             placeholder="—（ハイフン）なしで入力してください"
-                            value="{{ old('phone', session('address') ? session('address')['phone'] : (auth_helper()->check() ? (auth_helper()->user()->first_phone ? auth_helper()->user()->first_phone :  auth_helper()->user()->second_phone) : '' ))}}"
+                            value="{{ old('phone', session('address') ? session('address')['phone'] : (auth_helper()->check() ? (auth_helper()->user()->first_phone ? auth_helper()->user()->first_phone : auth_helper()->user()->second_phone) : '')) }}"
                             class="form-control t-blue shadow-none  @error('phone') is-invalid border border-danger @enderror" />
                         @error('phone')
                             <div class="invalid-feedback text-center">
@@ -568,87 +576,87 @@
             <!-- Payment Method Form -->
             <!-- No need to use said by customer -->
             <!-- <div class="popup">
-                                                <div class="bg-white rounded-3 border text-black mx-auto" id="payment-form">
-                                                    <h2 class="title">{{ trans_lang('payment') }}</h2>
-                                                    <form class="d-flex flex-column" action="">
-                                                        <div>
-                                                            <label for="card-number">Card number</label>
-                                                            <div class="input-group border bg-white rounded">
-                                                                <input type="number" name="" id="card-number"
-                                                                    class="form-control border-0 p-2 shadow-none" placeholder="1234 1234 1234 1234">
-                                                                <div class="input-group-append d-flex gap-1 p-2 align-item-center">
-                                                                    <div class="card-bank-img align-content-center">
-                                                                        <img src="{{ asset('assets/icons/custom/visa.svg') }}" alt="visa.svg">
-                                                                    </div>
-                                                                    <div class="card-bank-img align-content-center">
-                                                                        <img src="{{ asset('assets/icons/custom/mastercard.svg') }}"
-                                                                            alt="mastercard.svg">
-                                                                    </div>
-                                                                    <div class="card-bank-img align-content-center">
-                                                                        <img src="{{ asset('assets/icons/custom/visa.svg') }}" alt="amex.svg">
-                                                                    </div>
-                                                                    <div class="card-bank-img align-content-center">
-                                                                        <img src="{{ asset('assets/icons/custom/discover.svg') }}" alt="discover.svg">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="d-flex flex-column flex-sm-row input-wpr">
-                                                            <div class="w-100">
-                                                                <label for="expire">Expiration</label>
-                                                                <input type="date" name="" id="expire" class="w-100 p-2 border rounded">
-                                                            </div>
-                                                            <div class="w-100">
-                                                                <label for="cvc">CVC</label>
-                                                                <div class="input-group border bg-white rounded">
-                                                                    <input type="number" name="" id="cvc"
-                                                                        class="form-control border-0 p-2 shadow-none" placeholder="CVC">
-                                                                    <div class="input-group-append p-2 align-content-center">
-                                                                        <div class="card-bank-img">
-                                                                            <img src="{{ asset('assets/icons/custom/discover.svg') }}" alt="visa.svg">
+                                                        <div class="bg-white rounded-3 border text-black mx-auto" id="payment-form">
+                                                            <h2 class="title">{{ trans_lang('payment') }}</h2>
+                                                            <form class="d-flex flex-column" action="">
+                                                                <div>
+                                                                    <label for="card-number">Card number</label>
+                                                                    <div class="input-group border bg-white rounded">
+                                                                        <input type="number" name="" id="card-number"
+                                                                            class="form-control border-0 p-2 shadow-none" placeholder="1234 1234 1234 1234">
+                                                                        <div class="input-group-append d-flex gap-1 p-2 align-item-center">
+                                                                            <div class="card-bank-img align-content-center">
+                                                                                <img src="{{ asset('assets/icons/custom/visa.svg') }}" alt="visa.svg">
+                                                                            </div>
+                                                                            <div class="card-bank-img align-content-center">
+                                                                                <img src="{{ asset('assets/icons/custom/mastercard.svg') }}"
+                                                                                    alt="mastercard.svg">
+                                                                            </div>
+                                                                            <div class="card-bank-img align-content-center">
+                                                                                <img src="{{ asset('assets/icons/custom/visa.svg') }}" alt="amex.svg">
+                                                                            </div>
+                                                                            <div class="card-bank-img align-content-center">
+                                                                                <img src="{{ asset('assets/icons/custom/discover.svg') }}" alt="discover.svg">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
 
-                                                        <div class="d-flex flex-column flex-sm-row input-wpr">
-                                                            <div class="w-100">
-                                                                <label for="count">{{ trans_lang('country') }}</label>
-                                                                <select id="count" class="w-100 p-2 border rounded">
-                                                                    <option value="jpn" selected>Japan</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="w-100">
-                                                                <label for="zp">{{ trans_lang('postal') }}</label>
-                                                                <input name="" type="number" id="zp" class="w-100 p-2 border rounded"
-                                                                    placeholder="104-0044">
-                                                            </div>
-                                                        </div>
+                                                                <div class="d-flex flex-column flex-sm-row input-wpr">
+                                                                    <div class="w-100">
+                                                                        <label for="expire">Expiration</label>
+                                                                        <input type="date" name="" id="expire" class="w-100 p-2 border rounded">
+                                                                    </div>
+                                                                    <div class="w-100">
+                                                                        <label for="cvc">CVC</label>
+                                                                        <div class="input-group border bg-white rounded">
+                                                                            <input type="number" name="" id="cvc"
+                                                                                class="form-control border-0 p-2 shadow-none" placeholder="CVC">
+                                                                            <div class="input-group-append p-2 align-content-center">
+                                                                                <div class="card-bank-img">
+                                                                                    <img src="{{ asset('assets/icons/custom/discover.svg') }}" alt="visa.svg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
-                                                        <p class="content">
-                                                            By providing your card information, you allow Awardco, Inc. to charge your card for future
-                                                            payments in
-                                                            accordance with their terms.
-                                                        </p>
-                                                        <div class="d-flex align-items-start gap-2">
-                                                            <input type="checkbox" id="agree" class=" mt-2">
-                                                            <label for="agree">
-                                                                I agree that by saving this payment method it will be available for use to all who have
-                                                                access to this
-                                                                page or to processing funding deposits.
-                                                            </label>
-                                                        </div>
+                                                                <div class="d-flex flex-column flex-sm-row input-wpr">
+                                                                    <div class="w-100">
+                                                                        <label for="count">{{ trans_lang('country') }}</label>
+                                                                        <select id="count" class="w-100 p-2 border rounded">
+                                                                            <option value="jpn" selected>Japan</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="w-100">
+                                                                        <label for="zp">{{ trans_lang('postal') }}</label>
+                                                                        <input name="" type="number" id="zp" class="w-100 p-2 border rounded"
+                                                                            placeholder="104-0044">
+                                                                    </div>
+                                                                </div>
 
-                                                        <div class="d-flex gap-3 text-center justify-content-center">
-                                                            <button class="common-btn btn btn-outline-primary"
-                                                                id="cancel">{{ trans_lang('cancle') }}</button>
-                                                            <a href="" class="common-btn btn btn-outline-primary btn-next-">{{ trans_lang('save') }}</a>
+                                                                <p class="content">
+                                                                    By providing your card information, you allow Awardco, Inc. to charge your card for future
+                                                                    payments in
+                                                                    accordance with their terms.
+                                                                </p>
+                                                                <div class="d-flex align-items-start gap-2">
+                                                                    <input type="checkbox" id="agree" class=" mt-2">
+                                                                    <label for="agree">
+                                                                        I agree that by saving this payment method it will be available for use to all who have
+                                                                        access to this
+                                                                        page or to processing funding deposits.
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="d-flex gap-3 text-center justify-content-center">
+                                                                    <button class="common-btn btn btn-outline-primary"
+                                                                        id="cancel">{{ trans_lang('cancle') }}</button>
+                                                                    <a href="" class="common-btn btn btn-outline-primary btn-next-">{{ trans_lang('save') }}</a>
+                                                                </div>
+                                                            </form>
                                                         </div>
-                                                    </form>
-                                                </div>
-                                            </div> -->
+                                                    </div> -->
             <!-- ./Payment Method Form -->
 
             <!-- Desktop Style -->
@@ -797,14 +805,15 @@
                         <!-- postal link -->
                         <div class="form-group d-flex">
                             <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('postal') }}</h3>:
-                            <h3 class="form-output ms-1">{{ session('address') ? session('address')['postal'] : '' }}</h3>
+                            <h3 class="form-output ms-1">{{ session('address') ? session('address')['postal'] : '' }}
+                            </h3>
                         </div>
 
                         <!-- country link -->
                         <!-- <div class="form-group d-flex">
-                                                                <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('country') }}</h3>:
-                                                                <h3 class="form-output ms-1">{{ session('address') ? session('address')['country'] : '' }}</h3>
-                                                            </div> -->
+                                                                        <h3 class="w-25" style="min-width: 120px;">{{ trans_lang('country') }}</h3>:
+                                                                        <h3 class="form-output ms-1">{{ session('address') ? session('address')['country'] : '' }}</h3>
+                                                                    </div> -->
 
                         <!-- address link -->
                         <div class="form-group d-flex align-items-start">
@@ -1121,8 +1130,15 @@
             function handleQty(class_name, value) {
                 $(class_name).click(function(e) {
                     btn = $(e.currentTarget);
-                    product_id = btn.closest('tr.table-row').data('id');
-                    stock = btn.closest('tr.table-row').data('stock'); // Add stock data attribute
+                    if (btn.hasClass('mobile-btn')) {
+                        product_id = btn.closest('.mobile-card').data('id');
+                        stock = btn.closest('.mobile-card').data('stock'); // Add stock data attribute
+
+                    } else {
+                        // console.log('Mobile class does not exist in currentTarget');
+                        product_id = btn.closest('tr.table-row').data('id');
+                        stock = btn.closest('tr.table-row').data('stock'); // Add stock data attribute
+                    }
 
                     quantity_box = btn.siblings('.quantity-value');
                     quantity = Number(quantity_box.val());
@@ -1161,7 +1177,7 @@
             });
 
             $('#cart_btn').click(function() {
-                let cart = $('.dsk-cart-body .table-row'); 
+                let cart = $('.dsk-cart-body .table-row');
                 console.log(cart);
 
 
@@ -1173,21 +1189,21 @@
                 let total = 0;
                 let tableRows = '';
 
-                cart.each(function(){
+                cart.each(function() {
 
 
                     id = $(this).data('id');
-                    name = $("#cart-name-"+ id).data('name');
+                    name = $("#cart-name-" + id).data('name');
                     price = +($("#cart-price-" + id).data('price'));
                     quantity = +($("#cart-qty-" + id).val());
                     let itemTotal = price * quantity;
-                    
+
                     total += itemTotal;
 
                     itemTotal = new Intl.NumberFormat().format(itemTotal);
 
-                    
-                    
+
+
                     tableRows += `
                         <tr>
                             <td style="padding: 8px;">${name}</td>
@@ -1225,7 +1241,7 @@
                     cancelButtonText: 'キャンセル',
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        location.href="{{ route('cart.login')}}"
+                        location.href = "{{ route('cart.login') }}"
                     }
                 });
             });
@@ -1265,7 +1281,8 @@
                     payment_id: checkboxData
                 },
                 beforeSend: function() {
-                    cur.prop('disabled', true).html('<div class="spinner-border spinner-border-sm"></div> 処理中...');
+                    cur.prop('disabled', true).html(
+                        '<div class="spinner-border spinner-border-sm"></div> 処理中...');
                 },
                 success: function(response) {
                     if (response.status) {
@@ -1347,9 +1364,15 @@
             }
 
             function validateAndUpdate() {
-                const row = this.closest('tr');
+                // console.log('changed');
+                const row = this.closest('.mobile-input') ? this.closest('.mobile-card') : this.closest('tr');
+
+                // console.log(row);
                 const stock = +(row.getAttribute('data-stock')); // Get stock value
                 const quantity = +(this.value); // Get entered quantity
+
+                // console.log(stock);
+                // console.log(quantity);
 
                 // Remove any decimal places
                 // quantity = Math.floor(quantity);
@@ -1366,8 +1389,10 @@
             }
 
             function updateTotals() {
-                let grandTotal = 0;
-
+                let deskgrandTotal = 0;
+                let mobilegrandTotal = 0;
+                // console.log('updated');
+                //for desktop
                 document.querySelectorAll('tbody tr').forEach(row => {
 
                     product_id = row.getAttribute('data-id');
@@ -1386,13 +1411,123 @@
                     //   console.log(subtotal);
 
                     row.querySelector('.cost').textContent = '¥' + subtotal.toLocaleString();
-                    grandTotal += subtotal;
+                    deskgrandTotal += subtotal;
                 });
 
-                document.getElementById('total').textContent = '¥' + grandTotal.toLocaleString();
+                //for mobile
+                document.querySelectorAll('.mobile .mobile-card').forEach(row => {
+                    product_id = row.getAttribute('data-id');
+                    stock = +(row.getAttribute('data-stock')); // Convert stock to integer
+                    const priceElement = row.querySelector('.price');
+                    const priceVal = priceElement ? priceElement.textContent.replace('¥', '').replace(/,/g,
+                        '') : 0;
+
+                    const quantity = +(row.querySelector('.quantity-value')
+                        .value); // Convert quantity to integer
+
+                    addQty(product_id, quantity, stock);
+
+                    //   console.log(quantity);
+                    const subtotal = priceVal * quantity;
+
+                    //   console.log(subtotal);
+
+                    // row.querySelector('.cost').textContent = '¥' + subtotal.toLocaleString();
+                    mobilegrandTotal += subtotal;
+                });
+
+
+                document.getElementById('total').textContent = '¥' + deskgrandTotal.toLocaleString();
+                document.getElementById('mobile-total').textContent = '¥' + mobilegrandTotal.toLocaleString();
             }
 
 
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const desktopInputs = document.querySelectorAll('.dsk-cart-body .quantity-value');
+            const mobileInputs = document.querySelectorAll('.mb-cart-body .quantity-value');
+
+            // Function to synchronize quantities between desktop and mobile
+            function syncQuantities(productId, newQuantity) {
+                // Update desktop input
+                const desktopInput = document.querySelector(`.dsk-cart-body .cart-${productId} .quantity-value`);
+                if (desktopInput) {
+                    desktopInput.value = newQuantity;
+                }
+
+                // Update mobile input
+                const mobileInput = document.querySelector(`.mb-cart-body .cart-${productId} .quantity-value`);
+                if (mobileInput) {
+                    mobileInput.value = newQuantity;
+                }
+            }
+
+            // Add event listeners to desktop inputs
+            desktopInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    const productId = this.closest('.table-row').getAttribute('data-id');
+                    const newQuantity = this.value;
+
+                    // Synchronize with mobile
+                    syncQuantities(productId, newQuantity);
+
+                    // Optionally, update totals or perform other actions
+                    updateTotals();
+                });
+
+                input.addEventListener('blur', function() {
+                    const productId = this.closest('.table-row').getAttribute('data-id');
+                    const newQuantity = this.value;
+
+                    // Synchronize with mobile
+                    syncQuantities(productId, newQuantity);
+
+                    // Optionally, update totals or perform other actions
+                    updateTotals();
+                });
+            });
+
+            // Add event listeners to mobile inputs
+            mobileInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    const productId = this.closest('.mobile-card').getAttribute('data-id');
+                    const newQuantity = this.value;
+
+                    // Synchronize with desktop
+                    syncQuantities(productId, newQuantity);
+
+                    // Optionally, update totals or perform other actions
+                    updateTotals();
+                });
+
+                input.addEventListener('blur', function() {
+                    const productId = this.closest('.mobile-card').getAttribute('data-id');
+                    const newQuantity = this.value;
+
+                    // Synchronize with desktop
+                    syncQuantities(productId, newQuantity);
+
+                    // Optionally, update totals or perform other actions
+                    updateTotals();
+                });
+            });
+
+            // Function to update totals (optional)
+            function updateTotals() {
+                let total = 0;
+
+                document.querySelectorAll('.dsk-cart-body .table-row').forEach(row => {
+                    const price = parseFloat(row.querySelector('.price').getAttribute('data-price'));
+                    const quantity = parseInt(row.querySelector('.quantity-value').value);
+                    total += price * quantity;
+                });
+
+                document.getElementById('total').textContent = '¥' + total.toLocaleString();
+                document.getElementById('mobile-total').textContent = '¥' + total.toLocaleString();
+            }
         });
     </script>
 

@@ -23,11 +23,12 @@ class CartController extends Controller
 {
     public function index()
     {
-
-         // Reset step if not coming from a cart step process
-    if (!request()->headers->get('referer') || !str_contains(request()->headers->get('referer'), 'cart')) {
-        $step = session(['cart_step' => 1]);
-    }
+        $referer = request()->headers->get('referer');
+    
+        // Reset step if not coming from cart and not going to login
+        if (!$referer || (!str_contains($referer, 'cart') && !str_contains($referer, 'login'))) {
+            session(['cart_step' => 1]);
+        }
 
         if (AuthHelper::check()) {
             $carts = AuthHelper::user()->carts;
