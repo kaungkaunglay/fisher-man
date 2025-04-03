@@ -4497,7 +4497,7 @@ select.h40 {
   flex-shrink: 0;
 }
 .wg-table.table-orders > * {
-  min-width: 459px;
+  width: 459px;
 }
 .wg-table.table-orders ul.table-title li:nth-child(1) {
   width: 225px;
@@ -4553,6 +4553,9 @@ select.h40 {
 .wg-table.table-top-selling-product ul.table-title li:nth-child(4) {
   width: 90px;
 }
+.wg-table.table-top-selling-product ul.table-title li:nth-child(5) {
+  width: 90px;
+}
 .wg-table.table-top-selling-product .product-item .body-text {
   color: var(--Heading);
 }
@@ -4566,6 +4569,9 @@ select.h40 {
   width: 126px;
 }
 .wg-table.table-top-selling-product .product-item > .flex > div:nth-child(4) {
+  width: 90px;
+}
+.wg-table.table-top-selling-product .product-item > .flex > div:nth-child(5) {
   width: 90px;
 }
 .wg-table.table-orders-1 {

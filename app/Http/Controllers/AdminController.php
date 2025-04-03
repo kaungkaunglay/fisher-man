@@ -21,17 +21,24 @@ use App\Models\OrderProduct;
 class AdminController extends Controller
 {
     public function home(Request $request){
-        $top_selling_products = Product::select(
-            'products.id',
-            'products.name',
-            'products.product_image',
-            DB::raw('COUNT(order_products.product_id) as total_quantity_sold')
-        )
-            ->join('order_products', 'products.id', '=', 'order_products.product_id')
-            ->groupBy('products.id', 'products.name', 'products.product_image')
+        // $top_selling_products = Product::select(
+        //     'products.id',
+        //     'products.name',
+        //     'products.product_image',
+        //     DB::raw('COUNT(order_products.product_id) as total_quantity_sold')
+        // )
+        //     ->join('order_products', 'products.id', '=', 'order_products.product_id')
+        //     ->groupBy('products.id', 'products.name', 'products.product_image')
+        //     ->orderByDesc('total_quantity_sold')
+        //     ->limit(5)
+        //     ->get();
+
+        $top_selling_products = Product::with('orders')
+            ->withCount('orders as total_quantity_sold')
             ->orderByDesc('total_quantity_sold')
             ->limit(5)
             ->get();
+
 
         $top_products = Product::with('user:id,username')
                         ->inRandomOrder()
