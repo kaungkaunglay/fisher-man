@@ -708,7 +708,7 @@
 
                         @if ($order_histories->isEmpty())
                             <tr>
-                                <td colspan="8" class="text-center">注文履歴がありません。</td>
+                                <td colspan="9" class="text-center">注文履歴がありません。</td>
                             </tr>
                         @else
                             @foreach ($order_histories as $order)
