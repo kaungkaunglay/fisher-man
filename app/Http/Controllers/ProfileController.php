@@ -383,6 +383,7 @@ class ProfileController extends Controller
             'postal_code.integer' => '郵便番号は整数である必要があります。',
             'postal_code.min' => '郵便番号は7桁以上である必要があります。',
             'postal_code.max' => '郵便番号は8桁以下である必要があります。',
+            'postal_code.digits_between' => '郵便番号は7桁から8桁の間でなければなりません。',
             'address.max' => '住所は255文字を超えることはできません。',
             'address.string' => '住所を入力してください。',
             'first_phone.numeric' => '最初の電話番号は数字である必要があります。',
@@ -400,7 +401,7 @@ class ProfileController extends Controller
         $user = AuthHelper::user();
 
         $request->validate([
-            'postal_code' => 'sometimes|nullable|integer|min:7|max:8',
+            'postal_code' => 'sometimes|nullable|integer|digits_between:7,8',
             'address' => 'sometimes|nullable|string|max:255',
             'first_phone' => [
                 'sometimes',
