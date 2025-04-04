@@ -37,7 +37,7 @@
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">{{trans_lang('time_sale_request')}}</div>
+                    <div class="text-tiny">{{trans_lang('special_offer')}}</div>
                 </li>
             </ul>
         </div>
