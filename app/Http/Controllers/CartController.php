@@ -282,7 +282,7 @@ class CartController extends Controller
 
             // Send email to the admin
 
-            $OCApdf = PDF::loadView('emails.order_completed_admin',['user'=> $user,'carts' => $carts,'address' => $address])
+            $OCApdf = PDF::loadView('emails.order_completed_admin',['user'=> $user,'carts' => $carts,'address' => $address,'payment_type' => $payment_id == 1 ? "代引き" : "銀行振込"])
                         ->setPaper('a4')
                         ->setOption('defaultFont', 'Noto Sans JP')
                         ->setOption('isRemoteEnabled', true)
@@ -291,6 +291,8 @@ class CartController extends Controller
                         ->setOption('isHtml5ParserEnabled', true);
 
             $data["ocapdf"] = $OCApdf;
+
+            $data["paymentType"] = $payment_id == 1 ? "代引き" : "銀行振込";
 
             Mail::to('kado@and-fun.com')->send(new OrderCompletedAdminMail($data));
             
