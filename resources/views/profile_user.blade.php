@@ -2,6 +2,7 @@
 @section('title', 'profile')
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/profile_user.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/sub_category.css') }}" />
 
 @endsection
 @section('contents')
@@ -25,8 +26,8 @@
         <div class="profile_seller container-custom row">
 
             <!-- <div class="col-12">
-                    @include('messages.index')
-                </div> -->
+                        @include('messages.index')
+                    </div> -->
 
             <!-- Profile Side -->
             <div class="col-12 col-lg-12 h-100 profile-side">
@@ -35,20 +36,24 @@
                     <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-3">
                         <div class="p-6 d-flex justify-content-center align-items-center">
                             <div class="w-auto d-flex align-center border p-2  " style="max-width: 75%;">
-                                <form action="{{ route('update_avatar')}}" method="POST"  enctype="multipart/form-data">
-                                    @csrf 
+                                <form action="{{ route('update_avatar') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
                                     @method('PUT')
                                     <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input"
-                                                accept="image/*" >
+                                        accept="image/*">
 
-                                    <div class="w-100 d-flex align-center position-relative  overflow-hidden gallery" style="max-height: 500px;">
-                                        <img src="{{ auth_helper()->getAvatar() }}" class="default-preview img-fluid profile-avatar" id="form-img"
-                                            alt="{{ $user->username ?? 'Account.png' }}" >
-                                        
-                                        <label for="avatar-input" class="d-flex justify-content-center align-items-center position-absolute text-black bg-white rounded-5 shadow px-4 py-2" style="right: 10px; bottom: 10px;">
-                                            <i class="fa-solid fa-upload" ></i>
+                                    <div class="w-100 d-flex align-center position-relative  overflow-hidden gallery"
+                                        style="max-height: 500px;">
+                                        <img src="{{ auth_helper()->getAvatar() }}"
+                                            class="default-preview img-fluid profile-avatar" id="form-img"
+                                            alt="{{ $user->username ?? 'Account.png' }}">
+
+                                        <label for="avatar-input"
+                                            class="d-flex justify-content-center align-items-center position-absolute text-black bg-white rounded-5 shadow px-4 py-2"
+                                            style="right: 10px; bottom: 10px;">
+                                            <i class="fa-solid fa-upload"></i>
                                             <small class="fs-6 d-none d-md-inline ms-2">アップロード</small>
-                                        </label>    
+                                        </label>
 
                                     </div>
                                     @error('avatar')
@@ -60,7 +65,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-6 d-flex flex-column gap-5">
-                        <form action="{{ route('update_info')}}" id="update_info" method="POST">
+                        <form action="{{ route('update_info') }}" id="update_info" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="w-100">
@@ -81,36 +86,41 @@
                                     </h2>
                                 </div>
                                 <!-- /Form Headline -->
-    
+
                                 <!-- /Form Content -->
                                 <div class="profile-form">
                                     <div class="mb-2">
                                         <div class="input-group mb-1 shadow-none">
-                                            <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('name') }}</span>
-                                            <input type="text" class="form-control shadow-none @error('username') is-invalid @enderror" name="username" id="username"
-                                                value="{{ $user->username }}" readonly/>
+                                            <span class="input-group-text w-25"
+                                                style="min-width: 130px;">{{ trans_lang('name') }}</span>
+                                            <input type="text"
+                                                class="form-control shadow-none @error('username') is-invalid @enderror"
+                                                name="username" id="username" value="{{ $user->username }}" readonly />
                                         </div>
                                         @error('username')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
-    
+
                                     <div class="mb-2">
                                         <div class="input-group mb-1 shadow-none">
-                                            <span class="input-group-text w-25"  style="min-width: 130px;">{{ trans_lang('email') }}</span>
-                                            <input type="text" class="form-control shadow-none @error('email') is-invalid @enderror" name="email" id="email"
-                                                value="{{ $user->email }}" readonly/>
+                                            <span class="input-group-text w-25"
+                                                style="min-width: 130px;">{{ trans_lang('email') }}</span>
+                                            <input type="text"
+                                                class="form-control shadow-none @error('email') is-invalid @enderror"
+                                                name="email" id="email" value="{{ $user->email }}" readonly />
                                         </div>
                                         @error('email')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
-    
+
                                     <div class="d-flex gap-2">
                                         <div class="d-flex border rounded-3 overflow-hidden">
-                                            <label class="d-flex justify-content-center align-items-center border p-2 " for="line_login">
+                                            <label class="d-flex justify-content-center align-items-center border p-2 "
+                                                for="line_login">
                                                 <i class="fa-brands fa-line fs-2"></i>
                                             </label>
                                             <div class="d-flex justify-content-center align-items-center p-2">
@@ -120,9 +130,10 @@
                                                 </div>
                                             </div>
                                         </div>
-    
+
                                         <div class="d-flex border rounded-3 overflow-hidden">
-                                            <label class="d-flex justify-content-center align-items-center border p-2 " for="line_login">
+                                            <label class="d-flex justify-content-center align-items-center border p-2 "
+                                                for="line_login">
                                                 <i class="fa-brands fa-facebook fs-2"></i>
                                             </label>
                                             <div class="d-flex justify-content-center align-items-center p-2">
@@ -133,25 +144,27 @@
                                                 </div>
                                             </div>
                                         </div>
-    
+
                                         <div class="d-flex border rounded-3 overflow-hidden">
-                                            <label class="d-flex justify-content-center align-items-center border p-2 " for="line_login">
+                                            <label class="d-flex justify-content-center align-items-center border p-2 "
+                                                for="line_login">
                                                 <i class="fa-brands fa-google fs-2"></i>
                                             </label>
                                             <div class="d-flex justify-content-center align-items-center p-2">
                                                 <div class="form-check form-switch align-self-center">
-                                                    <input type="checkbox" id="google_login" class="border form-check-input"
-                                                        role="switch" @if ($user->checkProvider('google')) checked @endif />
+                                                    <input type="checkbox" id="google_login"
+                                                        class="border form-check-input" role="switch"
+                                                        @if ($user->checkProvider('google')) checked @endif />
                                                 </div>
                                             </div>
                                         </div>
-                            
+
                                     </div>
                                 </div>
                             </div>
                         </form>
 
-                        <form action="{{ route('update_contact')}}" method="POST" id="update_contact">
+                        <form action="{{ route('update_contact') }}" method="POST" id="update_contact">
                             @csrf
                             @method('PUT')
                             <div class="w-100">
@@ -159,7 +172,7 @@
                                 <div class="bg-primary text-white p-2 form-headline mb-2">
                                     <h2 class="fw-bold d-flex justify-content-between ">
                                         {{ trans_lang('detail') }}
-    
+
                                         <!-- button group -->
                                         <div class="d-flex justify-content-end gap-4">
                                             <button type="submit" class="save d-none">
@@ -175,61 +188,72 @@
                                     </h2>
                                 </div>
                                 <!-- /Form Headline -->
-    
+
                                 <div class="profile-form">
                                     <div class="mb-2">
                                         <div class="input-group mb-1 shadow-none">
-                                            <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('postal') }}</span>
-                                            <input type="text" class="form-control shadow-none @error('postal_code') @enderror" name="postal_code" id="postal_code"
-                                                value="{{ $user->postal_code }}" readonly/>
+                                            <span class="input-group-text w-25"
+                                                style="min-width: 130px;">{{ trans_lang('postal') }}</span>
+                                            <input type="text"
+                                                class="form-control shadow-none @error('postal_code') @enderror"
+                                                name="postal_code" id="postal_code" value="{{ $user->postal_code }}"
+                                                readonly />
                                         </div>
-    
+
                                         @error('postal_code')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
-    
+
                                     <div class="mb-2">
                                         <div class="input-group mb-1 shadow-none">
-                                            <span class="input-group-text w-25"  style="min-width: 130px;">{{ trans_lang('address') }}</span>
-                                            <textarea class="form-control shadow-none @error('address') is-invalid @enderror" name="address" id="address" readonly>{{ $user->address }}</textarea>
+                                            <span class="input-group-text w-25"
+                                                style="min-width: 130px;">{{ trans_lang('address') }}</span>
+                                            <textarea class="form-control shadow-none @error('address') is-invalid @enderror" name="address" id="address"
+                                                readonly>{{ $user->address }}</textarea>
                                         </div>
-    
+
                                         @error('address')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
-    
+
                                     <div class="mb-2">
                                         <div class="input-group mb-1 shadow-none">
-                                            <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('first_ph') }}</span>
-                                            <input type="text" class="form-control shadow-none @error('first_phone') is-invalid @enderror" name="first_phone" id="first_phone"
-                                                value="{{ $user->first_phone }}" readonly/>
+                                            <span class="input-group-text w-25"
+                                                style="min-width: 130px;">{{ trans_lang('first_ph') }}</span>
+                                            <input type="text"
+                                                class="form-control shadow-none @error('first_phone') is-invalid @enderror"
+                                                name="first_phone" id="first_phone" value="{{ $user->first_phone }}"
+                                                readonly />
                                         </div>
-    
+
                                         @error('first_phone')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
-    
+
                                     <div class="mb-2">
                                         <div class="input-group mb-1 shadow-none">
-                                            <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('second_ph') }}</span>
-                                            <input type="text" class="form-control shadow-none @error('second_phone') is-invalid @enderror" name="second_phone" id="second_phone"
-                                                value="{{ $user->second_phone }}" readonly/>
+                                            <span class="input-group-text w-25"
+                                                style="min-width: 130px;">{{ trans_lang('second_ph') }}</span>
+                                            <input type="text"
+                                                class="form-control shadow-none @error('second_phone') is-invalid @enderror"
+                                                name="second_phone" id="second_phone" value="{{ $user->second_phone }}"
+                                                readonly />
                                         </div>
-    
+
                                         @error('second_phone')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
-    
+
                                 </div>
                             </div>
                         </form>
 
-                        
+
                         {{-- <div class="w-100">
                             @if (!auth_helper()->isEmailLinkInvalid())
                                
@@ -595,8 +619,8 @@
                             <div class="ms-1 d-flex flex-column phone-no-container">
                                 <div class="form-group">
                                     <select name="first_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
-                                        <option value="+81" @if($user->firstExtension == '+81') selected @endif>+81</option>
-                                        <option value="+95" @if($user->firstExtension == '+95') selected @endif>+95</option>
+                                        <option value="+81" @if ($user->firstExtension == '+81') selected @endif>+81</option>
+                                        <option value="+95" @if ($user->firstExtension == '+95') selected @endif>+95</option>
                                     </select>
                                     <input type="text" id="first_phone_extension"  name="first_phone_extension" 
                                         class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" 
@@ -610,8 +634,8 @@
                                 </div>
                                 <div class="form-group">
                                     <select name="second_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
-                                        <option value="+81" @if($user->secondExtension == '+81') selected @endif>+81</option>
-                                        <option value="+95" @if($user->secondExtension == '+95') selected @endif>+95</option>
+                                        <option value="+81" @if ($user->secondExtension == '+81') selected @endif>+81</option>
+                                        <option value="+95" @if ($user->secondExtension == '+95') selected @endif>+95</option>
                                     </select>
                                     <input type="text" id="second_phone_extension" name="second_phone_extension" 
                                         class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" 
@@ -643,16 +667,16 @@
             <!-- Map Side -->
             <!-- <div class="col-12 col-lg-5 mt-3 mt-lg-0 map-side">
 
-                    <div class="h-100 d-flex flex-column gap-4">
-                        <h2 class="fw-bold bg-primary text-white p-2">{{ trans_lang('shops') }}{{ trans_lang('location') }}
-                        </h2>
-                        <iframe class="w-100 border-0 h-100 shop-location"
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d207363.6189187792!2d139.5537195!3d35.7002261!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x605d1b87f02e57e7%3A0x2e01618b22571b89!2sTokyo%2C%20Japan!5e0!3m2!1sen!2smm!4v1742175704107!5m2!1sen!2smm"
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
+                        <div class="h-100 d-flex flex-column gap-4">
+                            <h2 class="fw-bold bg-primary text-white p-2">{{ trans_lang('shops') }}{{ trans_lang('location') }}
+                            </h2>
+                            <iframe class="w-100 border-0 h-100 shop-location"
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d207363.6189187792!2d139.5537195!3d35.7002261!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x605d1b87f02e57e7%3A0x2e01618b22571b89!2sTokyo%2C%20Japan!5e0!3m2!1sen!2smm!4v1742175704107!5m2!1sen!2smm"
+                                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
 
-                </div> -->
+                    </div> -->
             <!-- /Map Side -->
 
         </div>
@@ -666,10 +690,11 @@
             <div class="history rounded-2 table-responsive">
                 <h2 class="title">注文履歴</h2>
 
-                <table class="table table-hover">
+                <table class="table table-hover order-histories">
                     <thead class="fw-bold table-primary table-dark">
                         <tr>
                             <th scope="col">番号</th>
+                            <th scope="col">商品画像</th>
                             <th scope="col">商品名</th>
                             <th scope="col">価格</th>
                             <th scope="col">数量</th>
@@ -682,27 +707,68 @@
                     <tbody>
 
                         @if ($order_histories->isEmpty())
-                        <tr>
-                            <td colspan="8" class="text-center">注文履歴がありません。</td>
-                        </tr>
+                            <tr>
+                                <td colspan="8" class="text-center">注文履歴がありません。</td>
+                            </tr>
                         @else
-                        @foreach ($order_histories as $order)
-                        <tr>
-                            <th scope="row">{{$loop->iteration}}</th>
-                            <td>{{$order->name}}</td>
-                            <td>{{$order->product_price}}</td>
-                            <td>{{$order->quantity}}</td>
-                            <td>{{$order->total_amount}}</td>
-                            <td>{{$order->shop_name}}</td>
-                            <td>{{$order->payment_name}}</td>
-                            <td>{{ \Carbon\Carbon::parse($order->order_date)->format('Y-m-d') }}</td>
-                        </tr>
-                        @endforeach
+                            @foreach ($order_histories as $order)
+                                <tr>
+                                    <th scope="row">{{ ($order_histories->currentPage() - 1) * $order_histories->perPage() + $loop->iteration  }}</th>
+                                    <td>
+                                        <div class="image">
+                                        <img loading="lazy" src="{{ asset('assets/products/'.$order->product_image) }}" style="height: auto;max-width:100%;" alt="{{ $order->product_image }}">
+                                    </div>
+                                        
+                                    </td>
+                                    <td>{{ $order->name }}</td>
+                                    <td>{{ $order->product_price }}</td>
+                                    <td>{{ $order->quantity }}</td>
+                                    <td>{{ $order->total_amount }}</td>
+                                    <td>{{ $order->shop_name }}</td>
+                                    <td>{{ $order->payment_name }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($order->order_date)->format('Y-m-d') }}</td>
+                                </tr>
+                            @endforeach
                         @endif
-                        
+
                     </tbody>
                 </table>
-             
+
+                <!-- Pagination -->
+                <div class="row mt-4">
+                    @if ($order_histories->hasPages())
+                        <ul class="pagination">
+                            <!-- Previous Page Link -->
+                            @if ($order_histories->onFirstPage())
+                                <li class="disabled">&lt;</li>
+                            @else
+                                <li><a href="{{ $order_histories->previousPageUrl() }}" class="">&lt;</a></li>
+                            @endif
+
+                            <!-- Page Numbers (Only Show 3 Pages at a Time) -->
+                            @php
+                                $start = max(1, $order_histories->currentPage() - 1);
+                                $end = min($start + 2, $order_histories->lastPage());
+                            @endphp @for ($i = $start; $i <= $end; $i++)
+                                <li class="{{ $order_histories->currentPage() == $i ? 'active' : '' }}">
+                                    <a href="{{ $order_histories->url($i) }}" class="">{{ $i }}</a>
+                                </li>
+                            @endfor
+
+                            <!-- Next Page Link -->
+                            @if ($order_histories->hasMorePages())
+                                <li><a href="{{ $order_histories->nextPageUrl() }}" class="">&gt;</a></li>
+                            @else
+                                <li class="disabled">&gt;</li>
+                            @endif
+                        </ul>
+                    @endif
+                </div>
+            </div>
+
+        </div>
+
+        
                 {{-- <ol class="history-list">
                     <li>
                         <div class="history-item row">
@@ -779,10 +845,8 @@
                         </div>
                     </li>
                 </ol> --}}
-            </div>
 
-        </div>
-{{-- 
+        {{-- 
        <div class="table-responsive">
        
        </div> --}}
@@ -807,7 +871,7 @@
 
     @if (session('success'))
         <script>
-            toastr.success('{{ session("success") }}');
+            toastr.success('{{ session('success') }}');
         </script>
     @endif
 
@@ -1085,21 +1149,23 @@
 
 
             $('.edit').click(function() {
-                $(this).closest('.form-headline').siblings('.profile-form').find('input, textarea').attr('readonly', false);
+                $(this).closest('.form-headline').siblings('.profile-form').find('input, textarea').attr(
+                    'readonly', false);
                 $(this).addClass('d-none');
                 $(this).siblings('.save').removeClass('d-none');
                 $(this).siblings('.cancel').removeClass('d-none');
             });
 
             $('.cancel').click(function() {
-                $(this).closest('.form-headline').siblings('.profile-form').find('input, textarea').attr('readonly', true);
+                $(this).closest('.form-headline').siblings('.profile-form').find('input, textarea').attr(
+                    'readonly', true);
                 $(this).addClass('d-none');
                 $(this).siblings('.save').addClass('d-none');
                 $(this).siblings('.edit').removeClass('d-none');
             });
 
             // start image preview
-            let previewImage = function (input, outputSelector) {
+            let previewImage = function(input, outputSelector) {
                 const output = $(outputSelector);
 
                 // Clear previous preview
@@ -1112,7 +1178,7 @@
                     if (file.type.match('image.*')) {
                         const fileReader = new FileReader();
 
-                        fileReader.onload = function (e) {
+                        fileReader.onload = function(e) {
                             const img = $('<img>', {
                                 src: e.target.result,
                                 class: 'preview-image default-preview img-fluid ',
@@ -1121,22 +1187,22 @@
                                     // Add some styles to the image
                                 }
                             });
-                            const button = $('<button>',{
+                            const button = $('<button>', {
                                 type: 'submit',
                                 class: 'd-flex justify-content-center align-items-center position-absolute text-black bg-white rounded-5 shadow border-0 outline-0 px-4 py-2',
                                 css: {
-                                    "right" : "10px",
+                                    "right": "10px",
                                     "bottom": "10px"
                                 }
                             });
 
                             //<i class="fa-solid fa-floppy-disk"></i>
-                            const icon = $('<icon>',{
+                            const icon = $('<icon>', {
                                 class: "fa-solid fa-floppy-disk"
                             });
 
 
-                            const small = $('<small>',{
+                            const small = $('<small>', {
                                 class: "fs-6 d-none d-md-inline ms-2",
                                 text: "保存"
                             });
@@ -1148,7 +1214,7 @@
                             output.append(button);
                         };
 
-                        fileReader.onerror = function (e) {
+                        fileReader.onerror = function(e) {
                             console.error('Error reading file:', e);
                         };
 
@@ -1164,7 +1230,7 @@
             }
 
             // Event listener with error handling
-            $("#avatar-input").on('change', function () {
+            $("#avatar-input").on('change', function() {
                 try {
                     previewImage(this, ".gallery");
                 } catch (error) {

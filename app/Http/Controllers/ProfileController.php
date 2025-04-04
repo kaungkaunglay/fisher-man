@@ -41,6 +41,7 @@ class ProfileController extends Controller
             'order_products.quantity',
             'products.name',
             'products.product_price',
+            'products.product_image',
             'shops.shop_name',
             'payments.name as payment_name',
             \DB::raw('order_products.quantity * products.product_price as total_amount')
@@ -50,7 +51,8 @@ class ProfileController extends Controller
         ->join('shops', 'shops.user_id', '=', 'products.user_id')
         ->join('payments', 'payments.id', '=', 'orders.payment_id')
         ->join('users', 'users.id', '=', 'orders.user_id')
-        ->get();
+        ->where('users.id','=',$user->id)
+        ->paginate(10);
         // dd($order_histories);
 
         return view('profile_user', compact('user', 'hasShopRequest','order_histories'));
