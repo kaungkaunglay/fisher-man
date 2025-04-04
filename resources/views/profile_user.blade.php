@@ -24,8 +24,8 @@
         <div class="profile_seller container-custom row">
 
             <!-- <div class="col-12">
-                @include('messages.index')
-            </div> -->
+                    @include('messages.index')
+                </div> -->
 
             <!-- Profile Side -->
             <div class="col-12 col-lg-12 h-100 profile-side">
@@ -37,7 +37,8 @@
                     <div class="w-100 h-100 d-md-flex gap-3">
                         <!-- profile img -->
                         <div class="w-100 profile-form d-flex flex-column avatar-input justify-content-center">
-                            <label for="avatar-input" class="w-100 d-flex align-center position-relative gallery  justify-content-center">
+                            <label for="avatar-input"
+                                class="w-100 d-flex align-center position-relative gallery  justify-content-center">
                                 <img src="{{ auth_helper()->getAvatar() }}" class="default-preview" id="form-img"
                                     alt="{{ $user->username ?? 'Account.png' }}" style="width:40%;">
                                 <div class="avatar-upload position-absolute d-none">
@@ -146,49 +147,50 @@
                             </div>
 
                             <!-- @if (!auth_helper()->isEmailLinkInvalid())
-                                <div class="alert alert-success d-flex mb-2 mt-auto" role="alert">
-                                    <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
-                                        aria-label="Success:"></i>
-                                    <div class="text-start">
-                                        メール確認リンクはすでに送信されています。
-                                    </div>
-                                </div>
-                            @elseif(!auth_helper()->isVerified())
-                                <div class="alert alert-warning d-flex mb-2 email_verify_box" role="alert">
-                                    <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
-                                        aria-label="Warning:"></i>
-                                    <div class="text-start">
-                                        メールを確認してください
-                                        <a href="javascript:void(0);" id="sent_email_verify_link"
-                                            class="text-warning">こちら </a>
-                                    </div>
-                                </div>
-                            @endif -->
-                            <!-- /Form Content -->
-
-                            <!-- @if (!$hasShopRequest)
-                                alert box
-                                <div class="mt-auto modal-btn" data-bs-toggle="modal"
-                                    data-bs-target="#shop_modal_dialog">
-                                    <div class="alert alert-warning d-flex mb-0" role="alert">
-                                        <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1"
-                                            role="img" aria-label="Warning:"></i>
-                                        <div class="text-start">
-                                            {{ trans_lang('payment_method_used_card_last_no') }}
-                                        </div>
-                                    </div>
-                                </div>
-                            @else -->
-                                <!-- alert box -->
-                                <div>
-                                    <div class="alert alert-success d-flex mb-0 mt-auto" role="alert">
+    <div class="alert alert-success d-flex mb-2 mt-auto" role="alert">
                                         <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
                                             aria-label="Success:"></i>
                                         <div class="text-start">
-                                            {{ trans_lang('shop_request_sent') }}
+                                            メール確認リンクはすでに送信されています。
                                         </div>
                                     </div>
+@elseif(!auth_helper()->isVerified())
+    <div class="alert alert-warning d-flex mb-2 email_verify_box" role="alert">
+                                        <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1" role="img"
+                                            aria-label="Warning:"></i>
+                                        <div class="text-start">
+                                            メールを確認してください
+                                            <a href="javascript:void(0);" id="sent_email_verify_link"
+                                                class="text-warning">こちら </a>
+                                        </div>
+                                    </div>
+    @endif -->
+                            <!-- /Form Content -->
+
+                            <!-- @if (!$hasShopRequest)
+    alert box
+                                    <div class="mt-auto modal-btn" data-bs-toggle="modal"
+                                        data-bs-target="#shop_modal_dialog">
+                                        <div class="alert alert-warning d-flex mb-0" role="alert">
+                                            <i class="fa-solid fa-triangle-exclamation bi flex-shrink-0 me-2 mt-1"
+                                                role="img" aria-label="Warning:"></i>
+                                            <div class="text-start">
+                                                {{ trans_lang('payment_method_used_card_last_no') }}
+                                            </div>
+                                        </div>
+                                    </div>
+@else
+    -->
+                            <!-- alert box -->
+                            <div>
+                                <div class="alert alert-success d-flex mb-0 mt-auto" role="alert">
+                                    <i class="fa-solid fa-check bi flex-shrink-0 me-2 mt-1" role="img"
+                                        aria-label="Success:"></i>
+                                    <div class="text-start">
+                                        {{ trans_lang('shop_request_sent') }}
+                                    </div>
                                 </div>
+                            </div>
                             @endif
 
                         </div>
@@ -210,95 +212,95 @@
                             <!-- Modal Body -->
                             <!-- <div class="row modal-body p-3">
 
-                                <div class="col-12">
-                                    <form method="post" id="shopRequestForm" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="mb-2 row align-items-center">
-                                            <div class="col-lg-5 col-12">
-                                                <label for="exampleFormControlInput1"
-                                                    class="col-form-label">{{ trans_lang('shop_name') }}</label>
-                                            </div>
-                                            <div class="col-lg-7 col-12 input-box">
-                                                <input type="text" class="form-control" name="shopName"
-                                                    id="shopName">
-                                                <span class="invalid-feedback"></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-2 row align-items-center">
-                                            <div class="col-lg-5 col-12">
-                                                <label for="exampleFormControlInput1" class="col-form-label">Trans
-                                                    Management</label>
-                                            </div>
-                                            <div class="col-lg-7 col-12 input-box">
-                                                <input type="text" class="form-control" name="transManagement"
-                                                    id="transManagement">
-                                                <span class="invalid-feedback"></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-2 row align-items-center">
-                                            <div class="col-lg-5 col-12">
-                                                <label for="exampleFormControlInput1"
-                                                    class="col-form-label">{{ trans_lang('email') }}</label>
-                                            </div>
-
-                                            <div class="col-lg-7 col-12 input-box">
-                                                <input type="email" class="form-control" name="transEmail"
-                                                    id="transEmail">
-                                                <span class="invalid-feedback"></span>
-                                            </div>
-                                            
-                                        </div>
-
-                                        <div class="mb-2 row align-items-center">
-                                            <div class="col-lg-5 col-12">
-                                                <label for="exampleFormControlInput1"
-                                                    class="col-form-label">{{ trans_lang('phone_number') }}</label>
-                                            </div>
-                                            <div class="col-lg-7 col-12 input-box">
-                                                
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1">+81</span>
-                                                    <input type="text" maxlength="10" name="phoneNumber" class="form-control" id="phoneNumber"  aria-label="phoneNumber" aria-describedby="basic-addon1">
+                                    <div class="col-12">
+                                        <form method="post" id="shopRequestForm" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="mb-2 row align-items-center">
+                                                <div class="col-lg-5 col-12">
+                                                    <label for="exampleFormControlInput1"
+                                                        class="col-form-label">{{ trans_lang('shop_name') }}</label>
                                                 </div>
-                                                  
+                                                <div class="col-lg-7 col-12 input-box">
+                                                    <input type="text" class="form-control" name="shopName"
+                                                        id="shopName">
+                                                    <span class="invalid-feedback"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-2 row align-items-center">
+                                                <div class="col-lg-5 col-12">
+                                                    <label for="exampleFormControlInput1" class="col-form-label">Trans
+                                                        Management</label>
+                                                </div>
+                                                <div class="col-lg-7 col-12 input-box">
+                                                    <input type="text" class="form-control" name="transManagement"
+                                                        id="transManagement">
+                                                    <span class="invalid-feedback"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-2 row align-items-center">
+                                                <div class="col-lg-5 col-12">
+                                                    <label for="exampleFormControlInput1"
+                                                        class="col-form-label">{{ trans_lang('email') }}</label>
+                                                </div>
+
+                                                <div class="col-lg-7 col-12 input-box">
+                                                    <input type="email" class="form-control" name="transEmail"
+                                                        id="transEmail">
+                                                    <span class="invalid-feedback"></span>
+                                                </div>
+                                                
+                                            </div>
+
+                                            <div class="mb-2 row align-items-center">
+                                                <div class="col-lg-5 col-12">
+                                                    <label for="exampleFormControlInput1"
+                                                        class="col-form-label">{{ trans_lang('phone_number') }}</label>
+                                                </div>
+                                                <div class="col-lg-7 col-12 input-box">
+                                                    
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text" id="basic-addon1">+81</span>
+                                                        <input type="text" maxlength="10" name="phoneNumber" class="form-control" id="phoneNumber"  aria-label="phoneNumber" aria-describedby="basic-addon1">
+                                                    </div>
+                                                      
+                                                    <span class="invalid-feedback"></span>
+                                                </div>
+                                            </div>
+                                            <div class="mb-2 row">
+                                                <div class="col-lg-5 col-12">
+                                                    <label for="exampleFormControlInput1" class="col-form-label">Shop
+                                                        Description</label>
+                                                </div>
+                                                <div class="col-lg-7 col-12 input-box">
+                                                    <textarea name="shopDescription" class="form-control" id="shopDescription" cols="30" rows="10"></textarea>
+                                                    <span class="invalid-feedback"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-2 row align-items-center">
+                                                <div class="col-lg-5 col-12">
+                                                    <label for="exampleFormControlInput1"
+                                                        class="col-form-label">{{ trans_lang('upload_img') }}</label>
+                                                </div>
+                                                <div class="col-lg-7 col-12 input-box">
+                                                    <input type="file" class="form-control" name="avatar"
+                                                        id="avatar">
+                                                    <span class="invalid-feedback"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="input-box">
+                                                <div class="d-flex">
+                                                    <input type="checkbox" class="me-3" name="privacyPolicy" id="privacyPolicy">
+                                                    <label for="privacyPolicy">Privacy Policy</label>
+                                                </div>
                                                 <span class="invalid-feedback"></span>
                                             </div>
-                                        </div>
-                                        <div class="mb-2 row">
-                                            <div class="col-lg-5 col-12">
-                                                <label for="exampleFormControlInput1" class="col-form-label">Shop
-                                                    Description</label>
-                                            </div>
-                                            <div class="col-lg-7 col-12 input-box">
-                                                <textarea name="shopDescription" class="form-control" id="shopDescription" cols="30" rows="10"></textarea>
-                                                <span class="invalid-feedback"></span>
-                                            </div>
-                                        </div>
 
-                                        <div class="mb-2 row align-items-center">
-                                            <div class="col-lg-5 col-12">
-                                                <label for="exampleFormControlInput1"
-                                                    class="col-form-label">{{ trans_lang('upload_img') }}</label>
-                                            </div>
-                                            <div class="col-lg-7 col-12 input-box">
-                                                <input type="file" class="form-control" name="avatar"
-                                                    id="avatar">
-                                                <span class="invalid-feedback"></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="input-box">
-                                            <div class="d-flex">
-                                                <input type="checkbox" class="me-3" name="privacyPolicy" id="privacyPolicy">
-                                                <label for="privacyPolicy">Privacy Policy</label>
-                                            </div>
-                                            <span class="invalid-feedback"></span>
-                                        </div>
-
-                                </div>
-                            </div> -->
+                                    </div>
+                                </div> -->
                             <!-- /Modal Body -->
 
                             <!-- Modal Footer -->
@@ -349,7 +351,9 @@
                             <label class="w-25" for="postalCode">郵便番号</label>:
                             <div class="form-group">
                                 <output class="form-output ps-1" for="postalCode">{{ $user->postal_code }}</output>
-                                <input type="text" name="postalCode" placeholder="—（ハイフン）なし" id="postalCode" maxlength="7" class="p-1 mt-2 border-bottom border-2 d-none" value="{{ $user->postal_code }}">
+                                <input type="text" name="postalCode" placeholder="—（ハイフン）なし" id="postalCode"
+                                    maxlength="7" class="p-1 mt-2 border-bottom border-2 d-none"
+                                    value="{{ $user->postal_code }}">
                                 {{-- <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea> --}}
                                 <span class="invalid-feedback"></span>
                             </div>
@@ -360,12 +364,13 @@
                             <label class="w-25" for="address">{{ trans_lang('address') }}</label>:
                             <div class="form-group">
                                 <output class="form-output ps-1" for="address">{{ $user->address }}</output>
-                                <textarea name="address" class="p-1 mt-2 ms-1 border-0 outline-0 border-bottom border-2 d-none" id="address" disabled>{{ $user->address }}</textarea>
+                                <textarea name="address" class="p-1 mt-2 ms-1 border-0 outline-0 border-bottom border-2 d-none" id="address"
+                                    disabled>{{ $user->address }}</textarea>
                                 <span class="invalid-feedback"></span>
                             </div>
 
                         </div>
-                        
+
 
                         <!-- phone-number link -->
                         <div class="d-flex align-items-start">
@@ -373,8 +378,8 @@
                             <div class="ms-1 d-flex flex-column phone-no-container">
                                 <div class="form-group">
                                     {{-- <select name="first_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
-                                        <option value="+81" @if($user->firstExtension == '+81') selected @endif>+81</option>
-                                        <option value="+95" @if($user->firstExtension == '+95') selected @endif>+95</option>
+                                        <option value="+81" @if ($user->firstExtension == '+81') selected @endif>+81</option>
+                                        <option value="+95" @if ($user->firstExtension == '+95') selected @endif>+95</option>
                                     </select> --}}
                                     {{-- <input type="text" id="first_phone_extension"  name="first_phone_extension" 
                                         class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" 
@@ -382,16 +387,17 @@
                                     <a href="tel:">
                                         <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
                                     </a>
-                                    <input type="text" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none" 
-                                        style="width: 200px;" id="first_phone" maxlength="11" placeholder="—（ハイフン）なし"
+                                    <input type="text" name="first_phone"
+                                        class="p-1 mt-2 border-bottom border-2 d-none" style="width: 200px;"
+                                        id="first_phone" maxlength="11" placeholder="—（ハイフン）なし"
                                         value="{{ $user->firstNumber }}" disabled pattern="\d{0,11}">
 
                                     <span class="invalid-feedback"></span>
                                 </div>
                                 <div class="form-group">
                                     {{-- <select name="second_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
-                                        <option value="+81" @if($user->secondExtension == '+81') selected @endif>+81</option>
-                                        <option value="+95" @if($user->secondExtension == '+95') selected @endif>+95</option>
+                                        <option value="+81" @if ($user->secondExtension == '+81') selected @endif>+81</option>
+                                        <option value="+95" @if ($user->secondExtension == '+95') selected @endif>+95</option>
                                     </select>
                                     <input type="text" id="second_phone_extension" name="second_phone_extension" 
                                         class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" 
@@ -399,9 +405,10 @@
                                     <a href="tel:">
                                         <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
                                     </a>
-                                    <input type="text" name="second_phone" class="p-1 mt-2 border-bottom border-2 d-none" 
-                                        style="width: 200px;" id="second_phone" maxlength="11" 
-                                        value="{{ $user->secondNumber }}" disabled pattern="\d{0,11}" placeholder="—（ハイフン）なし">
+                                    <input type="text" name="second_phone"
+                                        class="p-1 mt-2 border-bottom border-2 d-none" style="width: 200px;"
+                                        id="second_phone" maxlength="11" value="{{ $user->secondNumber }}" disabled
+                                        pattern="\d{0,11}" placeholder="—（ハイフン）なし">
                                     <span class="invalid-feedback"></span>
                                 </div>
                             </div>
@@ -424,16 +431,16 @@
             <!-- Map Side -->
             <!-- <div class="col-12 col-lg-5 mt-3 mt-lg-0 map-side">
 
-                <div class="h-100 d-flex flex-column gap-4">
-                    <h2 class="fw-bold bg-primary text-white p-2">{{ trans_lang('shops') }}{{ trans_lang('location') }}
-                    </h2>
-                    <iframe class="w-100 border-0 h-100 shop-location"
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d207363.6189187792!2d139.5537195!3d35.7002261!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x605d1b87f02e57e7%3A0x2e01618b22571b89!2sTokyo%2C%20Japan!5e0!3m2!1sen!2smm!4v1742175704107!5m2!1sen!2smm"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
+                    <div class="h-100 d-flex flex-column gap-4">
+                        <h2 class="fw-bold bg-primary text-white p-2">{{ trans_lang('shops') }}{{ trans_lang('location') }}
+                        </h2>
+                        <iframe class="w-100 border-0 h-100 shop-location"
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d207363.6189187792!2d139.5537195!3d35.7002261!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x605d1b87f02e57e7%3A0x2e01618b22571b89!2sTokyo%2C%20Japan!5e0!3m2!1sen!2smm!4v1742175704107!5m2!1sen!2smm"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
 
-            </div> -->
+                </div> -->
             <!-- /Map Side -->
 
         </div>
@@ -441,12 +448,44 @@
     <!-- /Profile Section -->
 
     <!-- History Table -->
-    <!-- <section>
+    <section>
         <div class="container-custom">
 
-            <div class="history rounded-2">
-                <h2 class="title">History</h2>
-                <ol class="history-list">
+            <div class="history rounded-2 table-responsive">
+                <h2 class="title">Order History</h2>
+
+                <table class="table table-hover table-primary">
+                    <thead class="fw-bold">
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Shop Name</th>
+                            <th scope="col">Payment Type</th>
+                            <th scope="col">Ordered Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach ($order_histories as $order)
+                        <tr>
+                            <th scope="row">{{$loop->iteration}}</th>
+                            <td>{{$order->name}}</td>
+                            <td>{{$order->product_price}}</td>
+                            <td>{{$order->quantity}}</td>
+                            <td>{{$order->total_amount}}</td>
+                            <td>{{$order->shop_name}}</td>
+                            <td>{{$order->payment_name}}</td>
+                            <td>{{ \Carbon\Carbon::parse($order->order_date)->format('Y-m-d') }}</td>
+                        </tr>
+                        @endforeach
+                        
+                    </tbody>
+                </table>
+             
+                {{-- <ol class="history-list">
                     <li>
                         <div class="history-item row">
                             <div class="col-md-8 col-sm-12">
@@ -521,12 +560,16 @@
                             </div>
                         </div>
                     </li>
-                </ol>
+                </ol> --}}
             </div>
 
         </div>
+{{-- 
+       <div class="table-responsive">
+       
+       </div> --}}
 
-    </section> -->
+    </section>
     <!-- ./History Table -->
 
     <!-- All Scripts -->
@@ -547,61 +590,61 @@
     <script>
         $(document).ready(function() {
             $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
             });
             $("#shopRequestForm").submit(function(e) {
-            e.preventDefault();
-            var formData = new FormData(this);
+                e.preventDefault();
+                var formData = new FormData(this);
 
-            $.ajax({
-                url: "/buyer/request-shop",
-                type: 'POST',
-                dataType: 'json',
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                if (response.status == true) {
-                    window.location.href = "{{ route('profile_user') }}";
-                    
-                } else {
-                    var errors = response.errors ?? {};
+                $.ajax({
+                    url: "/buyer/request-shop",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        if (response.status == true) {
+                            window.location.href = "{{ route('profile_user') }}";
 
-                    var fields = [
-                    'shopName',
-                    'transManagement',
-                    'transEmail',
-                    'phoneNumber',
-                    'shopDescription',
-                    'avatar',
-                    'privacyPolicy'
-                    ];
+                        } else {
+                            var errors = response.errors ?? {};
 
-                    fields.forEach(function(field) {
-                    if (errors[field]) {
-                        $('#' + field)
-                        .closest('.input-box')
-                        .find('span.invalid-feedback')
-                        .addClass('d-block')
-                        .html(errors[field]);
-                    } else {
-                        $('#' + field)
-                        .closest('.input-box')
-                        .find('span.invalid-feedback')
-                        .removeClass('d-block')
-                        .html('');
+                            var fields = [
+                                'shopName',
+                                'transManagement',
+                                'transEmail',
+                                'phoneNumber',
+                                'shopDescription',
+                                'avatar',
+                                'privacyPolicy'
+                            ];
+
+                            fields.forEach(function(field) {
+                                if (errors[field]) {
+                                    $('#' + field)
+                                        .closest('.input-box')
+                                        .find('span.invalid-feedback')
+                                        .addClass('d-block')
+                                        .html(errors[field]);
+                                } else {
+                                    $('#' + field)
+                                        .closest('.input-box')
+                                        .find('span.invalid-feedback')
+                                        .removeClass('d-block')
+                                        .html('');
+                                }
+                            });
+                        }
                     }
-                    });
-                }
-                }
-            });
+                });
             });
 
             $('#cancel-btn').click(function() {
-            $('.invalid-feedback').text('');
-            $('#shopRequestForm input[type="checkbox"]').prop('checked', false);
+                $('.invalid-feedback').text('');
+                $('#shopRequestForm input[type="checkbox"]').prop('checked', false);
             });
         });
     </script>
