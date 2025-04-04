@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Helpers\AuthHelper;
 use Illuminate\Http\Request;
 use App\Models\EmailVerification;
+use App\Models\Order;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -33,9 +34,26 @@ class ProfileController extends Controller
         // [$user->firstExtension, $user->firstNumber] = $this->splitPhoneNumber($user->first_phone ?? '');
         // [$user->secondExtension, $user->secondNumber] = $this->splitPhoneNumber($user->second_phone ?? '');
 
+        $order_histories = Order::select(
+            'orders.*', 
+            'order_products.order_id', 
+            'order_products.product_id',
+            'order_products.quantity',
+            'products.name',
+            'products.product_price',
+            'shops.shop_name',
+            'payments.name as payment_name',
+            \DB::raw('order_products.quantity * products.product_price as total_amount')
+        )
+        ->join('order_products', 'order_products.order_id', '=', 'orders.id')
+        ->join('products', 'products.id', '=', 'order_products.product_id')
+        ->join('shops', 'shops.user_id', '=', 'products.user_id')
+        ->join('payments', 'payments.id', '=', 'orders.payment_id')
+        ->join('users', 'users.id', '=', 'orders.user_id')
+        ->get();
+        // dd($order_histories);
 
-
-        return view('profile_user', compact('user', 'hasShopRequest'));
+        return view('profile_user', compact('user', 'hasShopRequest','order_histories'));
     }
 
     public function update_avatar(Request $request)

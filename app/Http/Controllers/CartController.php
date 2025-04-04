@@ -23,11 +23,12 @@ class CartController extends Controller
 {
     public function index()
     {
-
-         // Reset step if not coming from a cart step process
-    if (!request()->headers->get('referer') || !str_contains(request()->headers->get('referer'), 'cart')) {
-        $step = session(['cart_step' => 1]);
-    }
+        $referer = request()->headers->get('referer');
+    
+        // Reset step if not coming from cart and not going to login
+        if (!$referer || (!str_contains($referer, 'cart') && !str_contains($referer, 'login'))) {
+            session(['cart_step' => 1]);
+        }
 
         if (AuthHelper::check()) {
             $carts = AuthHelper::user()->carts;
@@ -232,7 +233,7 @@ class CartController extends Controller
 
     public function complete(Request $request)
     {
-        logger($request->all());
+        // logger($request->all());
         if (!AuthHelper::check() || !$this->hasProductCart()) {
             return redirect()->route('cart.login');
         }
@@ -258,11 +259,11 @@ class CartController extends Controller
         foreach($carts as $cart)
         {
             // logger($cart);
-            $order->products()->attach($cart->product_id);
+            $order->products()->attach($cart->product_id, ['quantity' => $cart->quantity]);
             $product = $cart->product;
             $qty = $product->stock;
             if($qty >= $cart->quantity){
-                $qty -= $cart->quantity;
+            $qty -= $cart->quantity;
             }
             $product->stock = $qty;
             $product->save();
