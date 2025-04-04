@@ -71,7 +71,7 @@
                 </div>
                 @if (check_role(2))
                 
-                <a class="tf-button style-1 w208" id="toggle_time_sale" href="javascript:void(0);">{{ setting('is_time_sale') == 'active' ? trans_lang('実行する') : trans_lang('実行しない')}}</a>
+                <a class="tf-button style-1 w208" id="toggle_time_sale" href="javascript:void(0);">{{ setting('is_time_sale') == 'active' ?trans_lang('実行しない'): trans_lang('実行する') }}</a>
                 @endif
             </div>
             <div class="wg-table table-product-list">

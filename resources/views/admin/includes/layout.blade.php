@@ -83,6 +83,7 @@
                             <div class="center-item">
                                 <div class="center-heading">{{trans_lang('home')}}</div>
                                 <li class="menu-item">
+                                    
                                     <a href="{{route('admin.index')}}" class="{{ request()->is('admin') ? 'active' : '' }}">
                                         <div class="icon"><i class="icon-grid"></i></div>
                                         <div class="text">{{trans_lang('dashboard')}}</div>
