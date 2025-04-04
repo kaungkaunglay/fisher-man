@@ -95,7 +95,7 @@
                         <div class="detail">
                             <h3 class="m-b-20 title">{{ trans_lang('detail') }}</h3>
                             <ul>
-                                <li class="txt mb-1">{{ trans_lang('quanity') }} : {{ $product->stock }}</li>
+                                <li class="txt mb-1">{{ trans_lang('quantity') }} : {{ $product->stock }}</li>
                                 <li class="txt mb-1">{{ trans_lang('weight') }} : {{ $product->weight }}</li>
                                 <li class="txt mb-1">{{ trans_lang('length') }} : {{ $product->size }}cm</li>
                                 <li class="txt mb-1">{{ trans_lang('day_of_caught') }} : {{ $product->day_of_caught }}
