@@ -664,23 +664,28 @@
         <div class="container-custom">
 
             <div class="history rounded-2 table-responsive">
-                <h2 class="title">Order History</h2>
+                <h2 class="title">注文履歴</h2>
 
-                <table class="table table-hover table-primary">
-                    <thead class="fw-bold">
+                <table class="table table-hover">
+                    <thead class="fw-bold table-primary table-dark">
                         <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Product Name</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Qty</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Shop Name</th>
-                            <th scope="col">Payment Type</th>
-                            <th scope="col">Ordered Date</th>
+                            <th scope="col">番号</th>
+                            <th scope="col">商品名</th>
+                            <th scope="col">価格</th>
+                            <th scope="col">数量</th>
+                            <th scope="col">金額</th>
+                            <th scope="col">店名</th>
+                            <th scope="col">支払い種類</th>
+                            <th scope="col">注文日</th>
                         </tr>
                     </thead>
                     <tbody>
 
+                        @if ($order_histories->isEmpty())
+                        <tr>
+                            <td colspan="8" class="text-center">注文履歴がありません。</td>
+                        </tr>
+                        @else
                         @foreach ($order_histories as $order)
                         <tr>
                             <th scope="row">{{$loop->iteration}}</th>
@@ -693,6 +698,7 @@
                             <td>{{ \Carbon\Carbon::parse($order->order_date)->format('Y-m-d') }}</td>
                         </tr>
                         @endforeach
+                        @endif
                         
                     </tbody>
                 </table>
