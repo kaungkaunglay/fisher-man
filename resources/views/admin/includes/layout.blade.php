@@ -197,6 +197,28 @@
                                     </li> --}}
                                 </ul>
                             </div>
+
+                            <div class="center-item">
+                                <div class="center-heading">{{trans_lang('order_management')}}</div>
+
+                                <ul class="menu-list">
+                                    <li class="menu-item has-children {{ request()->is('admin/seller/orders') ? 'active' : '' }}">
+                                        <a href="javascript:void(0);" class="menu-item-button">
+                                            <div class="icon"><i class="icon-file-plus"></i></div>
+                                            <div class="text">{{trans_lang('order')}}</div>
+                                        </a>
+                                        <ul class="sub-menu" style="display: block;">
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('seller.orders')}}" class="{{request()->is('admin/seller/orders') ? 'active' : ''}}">
+                                                    <div class="text">{{ trans_lang('order_list') }}</div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    
+                                </ul>
+
+                            </div>
                             @endif
 
 
@@ -237,10 +259,19 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    
+                                </ul>
+
+                            </div>
+
+                            <div class="center-item">
+                                <div class="center-heading">{{trans_lang('product_management')}}</div>
+
+                                <ul class="menu-list">
                                     <li class="menu-item has-children {{ request()->is('admin/pending-products') ? 'active' : '' }}">
                                         <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-shopping-cart"></i></div>
-                                            <div class="text">{{trans_lang('product_management')}}</div>
+                                            <div class="text">{{trans_lang('product')}}</div>
                                         </a>
                                         <ul class="sub-menu" style="display: block;">
                                             <li class="sub-menu-item">
@@ -255,9 +286,12 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    
                                 </ul>
 
                             </div>
+
+                            
                             <!-- <div class="center-item">
                                 <div class="center-heading">{{trans_lang('manage_shop')}}</div>
                                 <ul class="menu-list">
@@ -286,6 +320,30 @@
                                     </li>
                                 </ul>
                             </div> -->
+
+                            <div class="center-item">
+                                <div class="center-heading">{{trans_lang('order_management')}}</div>
+
+                                <ul class="menu-list">
+                                    <li class="menu-item has-children {{ request()->is('admin/orders') ? 'active' : '' }}">
+                                        <a href="javascript:void(0);" class="menu-item-button">
+                                            <div class="icon"><i class="icon-file-plus"></i></div>
+                                            <div class="text">{{trans_lang('order')}}</div>
+                                        </a>
+                                        <ul class="sub-menu" style="display: block;">
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('admin.orders')}}" class="{{request()->is('admin/orders') ? 'active' : ''}}">
+                                                    <div class="text">{{ trans_lang('order_list') }}</div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    
+                                </ul>
+
+                            </div>
+
+                            
 
                             <div class="center-item">
                                 <div class="center-heading">{{trans_lang('manage_faqs')}}</div>
