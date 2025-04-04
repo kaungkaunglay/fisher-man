@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\LineApisController;
 use App\Http\Controllers\WishListController;
 use App\Http\Controllers\WhiteListController;
@@ -131,6 +133,10 @@ Route::middleware(['is_seller'])->group(function () {
     Route::delete('/admin/sub-categories/{sub_category}', [SubCategoriesController::class, 'destroy'])->name('admin.sub_categories.destroy');
 
 
+    // Order
+    Route::get('/admin/seller/orders', [OrderController::class, 'seller_orders'])->name('seller.orders');
+
+
 });
 
 Route::middleware(['is_buyer'])->group(function () {
@@ -162,7 +168,7 @@ Route::middleware(['is_admin'])->group(function () {
 
     // Admin Controller
     Route::get('/admin', [AdminController::class, 'home'])->name('admin.index');
-    Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
+    Route::get('/admin/orders', [OrderController::class, 'index'])->name('admin.orders');
     Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
     Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
     Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
@@ -290,3 +296,11 @@ Route::get('/login/facebook/callback', [OAuthController::class, 'handleFacebookC
 Route::get('/whitelist-count', [WhiteListController::class, 'WhiteListCount'])->name('whitelist-count');
 Route::get('/cart-count', [CartController::class, 'CartCount'])->name('cart-count');
 
+Route::get('/order',function(){
+    return view('admin.order');
+})->name('order');
+
+
+Route::get('/orders',function(){
+    return view('admin.orders');
+})->name('orders');

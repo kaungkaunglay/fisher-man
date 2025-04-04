@@ -833,7 +833,38 @@ class TranslationSeeder extends Seeder
                 'key'=> 'reCaptcha',
                 'en' => 'ReCaptcha',
                 'jp' => 'リキャプチャ',
-            ]
+            ],
+            [
+                'key'=> 'order_date',
+                'en' => 'Order Date',
+                'jp' => '注文した日',
+            ],
+            [
+                'key'=> 'ordered_by',
+                'en' => 'Ordered By',
+                'jp' => '注文した人',
+            ],
+            [
+                'key'=> 'pending',
+                'en' => 'Pending',
+                'jp' => '保留中',
+            ],
+            [
+                'key'=> 'success',
+                'en' => 'Success',
+                'jp' => '成功',
+            ],
+            [
+                'key'=> 'cancel',
+                'en' => 'Cancel',
+                'jp' => 'キャンセル',
+            ],
+            [
+                'key'=> 'order_management',
+                'en' => 'Order Management',
+                'jp' => '注文管理',
+            ],
+
         ];
         foreach($translations as $translation) {
             \App\Models\Translations::create($translation);

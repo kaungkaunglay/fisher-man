@@ -11,7 +11,7 @@ class Order extends Model
     
     protected $fillable = ['user_id','order_date','payment_id','status'];
 
-    public function customer()
+    public function user()
     {
         return $this->belongsTo(Users::class);
     }
@@ -20,5 +20,15 @@ class Order extends Model
     {
         return $this->belongsToMany(Product::class,'order_products');
     }
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class);
+    }
+    public function orderProducts()
+    {
+        return $this->hasMany(OrderProduct::class);
+    }
+
 
 }

@@ -13,41 +13,6 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/icon/style.css') }}">
 @endsection
 @section('contents')
-     
-@endsection
-@section('script')
-    <!-- Javascript -->
-    <script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/bootstrap-select.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/zoom.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/apexcharts/apexcharts.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/apexcharts/line-chart-1.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/apexcharts/line-chart-2.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/apexcharts/line-chart-3.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/apexcharts/line-chart-4.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/apexcharts/line-chart-5.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/apexcharts/line-chart-6.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/switcher.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/theme-settings.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/main.js') }}"></script>
-@endsection
-
-@extends('admin.includes.layout')
-@section('style')
-    <!-- Theme Style -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/animation.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/animation.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/bootstrap.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/bootstrap-select.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/style.css') }}">
-    <!-- Font -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/font/fonts.css') }}">
-    
-    <!-- Icon -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/icon/style.css') }}">
-@endsection
-@section('contents')
     <!-- main-content-wrap -->
     <div class="main-content-inner">
         <!-- main-content-wrap -->
@@ -109,7 +74,7 @@
                             <ul class="flex flex-column">
                                 <li class="product-item gap14">
                                     <div class="image no-bg">
-                                        <img src="images/products/41.png" alt="">
+                                        <img href=" {{ asset('assets/admin/images/products/41.png') }}" alt="">
                                     </div>
                                     <div class="flex items-center justify-between gap40 flex-grow">
                                         <div class="name">
@@ -128,7 +93,7 @@
                                 </li>
                                 <li class="product-item gap14">
                                     <div class="image no-bg">
-                                        <img src="images/products/44.png" alt="">
+                                        <img href=" {{ asset('assets/admin/images/products/44.png') }}" alt="">
                                     </div>
                                     <div class="flex items-center justify-between gap40 flex-grow">
                                         <div class="name">
@@ -147,7 +112,7 @@
                                 </li>
                                 <li class="product-item gap14">
                                     <div class="image no-bg">
-                                        <img src="images/products/43.png" alt="">
+                                        <img href=" {{ asset('assets/admin/images/products/43.png') }}" alt="">
                                     </div>
                                     <div class="flex items-center justify-between gap40 flex-grow">
                                         <div class="name">
@@ -249,7 +214,7 @@
     <script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/bootstrap-select.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/zoom.js') }}"></script>
+    {{-- <script src="{{ asset('assets/admin/js/zoom.js') }}"></script>
     <script src="{{ asset('assets/admin/js/apexcharts/apexcharts.js') }}"></script>
     <script src="{{ asset('assets/admin/js/apexcharts/line-chart-1.js') }}"></script>
     <script src="{{ asset('assets/admin/js/apexcharts/line-chart-2.js') }}"></script>
@@ -258,7 +223,7 @@
     <script src="{{ asset('assets/admin/js/apexcharts/line-chart-5.js') }}"></script>
     <script src="{{ asset('assets/admin/js/apexcharts/line-chart-6.js') }}"></script>
     <script src="{{ asset('assets/admin/js/switcher.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/theme-settings.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/theme-settings.js') }}"></script> --}}
     <script src="{{ asset('assets/admin/js/main.js') }}"></script>
 @endsection
 
