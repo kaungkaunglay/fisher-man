@@ -2,6 +2,7 @@
 @section('title', 'profile')
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/profile_user.css') }}" />
+
 @endsection
 @section('contents')
     <!-- Breadcrumbs -->
@@ -30,9 +31,228 @@
             <!-- Profile Side -->
             <div class="col-12 col-lg-12 h-100 profile-side">
 
-                <form action="#" id="update_basic_profile" class="profile-form" method="POST">
+                <div class="row">
+                    <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-3">
+                        <div class="p-6 d-flex justify-content-center align-items-center">
+                            <div class="w-auto d-flex align-center border p-2  " style="max-width: 75%;">
+                                <form action="{{ route('update_avatar')}}" method="POST"  enctype="multipart/form-data">
+                                    @csrf 
+                                    @method('PUT')
+                                    <input type="file" name="avatar" class="upload-photo d-none" id="avatar-input"
+                                                accept="image/*" >
+
+                                    <div class="w-100 d-flex align-center position-relative  overflow-hidden gallery" style="max-height: 500px;">
+                                        <img src="{{ auth_helper()->getAvatar() }}" class="default-preview img-fluid profile-avatar" id="form-img"
+                                            alt="{{ $user->username ?? 'Account.png' }}" >
+                                        
+                                        <label for="avatar-input" class="d-flex justify-content-center align-items-center position-absolute text-black bg-white rounded-5 shadow px-4 py-2" style="right: 10px; bottom: 10px;">
+                                            <i class="fa-solid fa-upload" ></i>
+                                            <small class="fs-6 d-none d-md-inline ms-2">アップロード</small>
+                                        </label>    
+
+                                    </div>
+                                    @error('avatar')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex flex-column gap-5">
+                        <form action="{{ route('update_info')}}" id="update_info" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="w-100">
+                                <!-- Form Headline -->
+                                <div class="bg-primary text-white p-2 form-headline mb-2">
+                                    <h2 class="fw-bold d-flex justify-content-between">{{ trans_lang('info') }}
+                                        <div class="d-flex justify-content-end gap-4">
+                                            <button type="submit" class="save d-none">
+                                                <i class="fa-solid fa-save fs-5 text-white"></i>
+                                            </button>
+                                            <button type="button" class="edit">
+                                                <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
+                                            </button>
+                                            <button type="reset" class="cancel d-none">
+                                                <i class="fa-solid fa-x fs-5 text-white"></i>
+                                            </button>
+                                        </div>
+                                    </h2>
+                                </div>
+                                <!-- /Form Headline -->
+    
+                                <!-- /Form Content -->
+                                <div class="profile-form">
+                                    <div class="mb-2">
+                                        <div class="input-group mb-1 shadow-none">
+                                            <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('name') }}</span>
+                                            <input type="text" class="form-control shadow-none @error('username') is-invalid @enderror" name="username" id="username"
+                                                value="{{ $user->username }}" readonly/>
+                                        </div>
+                                        @error('username')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+    
+                                    <div class="mb-2">
+                                        <div class="input-group mb-1 shadow-none">
+                                            <span class="input-group-text w-25"  style="min-width: 130px;">{{ trans_lang('email') }}</span>
+                                            <input type="text" class="form-control shadow-none @error('email') is-invalid @enderror" name="email" id="email"
+                                                value="{{ $user->email }}" readonly/>
+                                        </div>
+                                        @error('email')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+    
+                                    <div class="d-flex gap-2">
+                                        <div class="d-flex border rounded-3 overflow-hidden">
+                                            <label class="d-flex justify-content-center align-items-center border p-2 " for="line_login">
+                                                <i class="fa-brands fa-line fs-2"></i>
+                                            </label>
+                                            <div class="d-flex justify-content-center align-items-center p-2">
+                                                <div class="form-check form-switch align-self-center">
+                                                    <input type="checkbox" id="line_login" class="border form-check-input"
+                                                        role="switch" @if ($user->checkProvider('line')) checked @endif />
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="d-flex border rounded-3 overflow-hidden">
+                                            <label class="d-flex justify-content-center align-items-center border p-2 " for="line_login">
+                                                <i class="fa-brands fa-facebook fs-2"></i>
+                                            </label>
+                                            <div class="d-flex justify-content-center align-items-center p-2">
+                                                <div class="form-check form-switch align-self-center">
+                                                    <input type="checkbox" id="facebook_login"
+                                                        class="border form-check-input" role="switch"
+                                                        @if ($user->checkProvider('facebook')) checked @endif />
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="d-flex border rounded-3 overflow-hidden">
+                                            <label class="d-flex justify-content-center align-items-center border p-2 " for="line_login">
+                                                <i class="fa-brands fa-google fs-2"></i>
+                                            </label>
+                                            <div class="d-flex justify-content-center align-items-center p-2">
+                                                <div class="form-check form-switch align-self-center">
+                                                    <input type="checkbox" id="google_login" class="border form-check-input"
+                                                        role="switch" @if ($user->checkProvider('google')) checked @endif />
+                                                </div>
+                                            </div>
+                                        </div>
+                            
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <form action="{{ route('update_contact')}}" method="POST" id="update_contact">
+                            @csrf
+                            @method('PUT')
+                            <div class="w-100">
+                                <!-- Form Headline -->
+                                <div class="bg-primary text-white p-2 form-headline mb-2">
+                                    <h2 class="fw-bold d-flex justify-content-between ">
+                                        {{ trans_lang('detail') }}
+    
+                                        <!-- button group -->
+                                        <div class="d-flex justify-content-end gap-4">
+                                            <button type="submit" class="save d-none">
+                                                <i class="fa-solid fa-save fs-5 text-white"></i>
+                                            </button>
+                                            <button type="button" class="edit">
+                                                <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
+                                            </button>
+                                            <button type="reset" class="cancel d-none">
+                                                <i class="fa-solid fa-x fs-5 text-white"></i>
+                                            </button>
+                                        </div>
+                                    </h2>
+                                </div>
+                                <!-- /Form Headline -->
+    
+                                <div class="profile-form">
+                                    <div class="mb-2">
+                                        <div class="input-group mb-1 shadow-none">
+                                            <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('postal') }}</span>
+                                            <input type="text" class="form-control shadow-none @error('postal_code') @enderror" name="postal_code" id="postal_code"
+                                                value="{{ $user->postal_code }}" readonly/>
+                                        </div>
+    
+                                        @error('postal_code')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+    
+                                    <div class="mb-2">
+                                        <div class="input-group mb-1 shadow-none">
+                                            <span class="input-group-text w-25"  style="min-width: 130px;">{{ trans_lang('address') }}</span>
+                                            <textarea class="form-control shadow-none @error('address') is-invalid @enderror" name="address" id="address" readonly>{{ $user->address }}</textarea>
+                                        </div>
+    
+                                        @error('address')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+    
+                                    <div class="mb-2">
+                                        <div class="input-group mb-1 shadow-none">
+                                            <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('first_ph') }}</span>
+                                            <input type="text" class="form-control shadow-none @error('first_phone') is-invalid @enderror" name="first_phone" id="first_phone"
+                                                value="{{ $user->first_phone }}" readonly/>
+                                        </div>
+    
+                                        @error('first_phone')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+    
+                                    <div class="mb-2">
+                                        <div class="input-group mb-1 shadow-none">
+                                            <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('second_ph') }}</span>
+                                            <input type="text" class="form-control shadow-none @error('second_phone') is-invalid @enderror" name="second_phone" id="second_phone"
+                                                value="{{ $user->second_phone }}" readonly/>
+                                        </div>
+    
+                                        @error('second_phone')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+    
+                                </div>
+                            </div>
+                        </form>
+
+                        
+                        {{-- <div class="w-100">
+                            @if (!auth_helper()->isEmailLinkInvalid())
+                               
+                                <div class="input-group">
+                                    <span class="input-group-text">メール確認リンクはすでに送信されています。</span>
+                                </div>
+                            @elseif(!auth_helper()->isVerified())
+                                <div class="input-group">
+                                    <span class="input-group-text">メールアドレスを確認できません。メールアドレスを確認してください。</span>
+                                    <a href="javascript:void(0);" class="btn btn-outline-secondary" id="sent_email_verify_link">こちら</a>
+                                </div>
+                            @endif 
+                        </div> --}}
+
+                    </div>
+                </div>
+
+                {{-- <form action="#" id="update_basic_profile" class="profile-form" method="POST">
 
                     @csrf
+
+                    <!-- Profile Info -->
+                    
 
                     <div class="w-100 h-100 d-md-flex gap-3">
                         <!-- profile img -->
@@ -193,11 +413,11 @@
 
                         </div>
                     </div>
-                </form>
+                </form> --}}
                 <!-- /Profile Info -->
 
                 <!-- Form Modal -->
-                <div class="modal fade" id="shop_modal_dialog">
+                {{-- <div class="modal fade" id="shop_modal_dialog">
                     <div class="modal-dialog modal-md">
                         <div class="modal-content bg-white">
 
@@ -314,11 +534,11 @@
 
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- /Form Modal -->
 
                 <!-- Detail Info -->
-                <form action="" id="update_contact_details" method="POST" class="w-100 mt-3 profile-form">
+                {{-- <form action="" id="update_contact_details" method="POST" class="w-100 mt-3 profile-form">
 
                     <!-- Form Headline -->
                     <div>
@@ -344,13 +564,12 @@
                     <!-- Form Content -->
                     <div class="px-2 py-3">
 
-                        {{-- postal code --}}
                         <div class="d-flex">
-                            <label class="w-25" for="postalCode">郵便番号</label>:
+                            <label class="w-25" for="postalCode">{{ trans_lang('postal') }}</label>:
                             <div class="form-group">
                                 <output class="form-output ps-1" for="postalCode">{{ $user->postal_code }}</output>
-                                <input type="text" name="postalCode" placeholder="—（ハイフン）なし" id="postalCode" maxlength="7" class="p-1 mt-2 border-bottom border-2 d-none" value="{{ $user->postal_code }}">
-                                {{-- <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea> --}}
+                                <input type="text" name="postalCode" id="postalCode" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;" value="{{ $user->postal_code }}">
+                                <textarea name="address" class="p-1 mt-2 ms-1 border-2 d-none" id="address" disabled>{{ $user->address }}</textarea>
                                 <span class="invalid-feedback"></span>
                             </div>
                         </div>
@@ -372,36 +591,33 @@
                             <label class="w-25" for="first_phone">{{ trans_lang('phone_number') }}</label>:
                             <div class="ms-1 d-flex flex-column phone-no-container">
                                 <div class="form-group">
-                                    {{-- <select name="first_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
+                                    <select name="first_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
                                         <option value="+81" @if($user->firstExtension == '+81') selected @endif>+81</option>
                                         <option value="+95" @if($user->firstExtension == '+95') selected @endif>+95</option>
-                                    </select> --}}
-                                    {{-- <input type="text" id="first_phone_extension"  name="first_phone_extension" 
+                                    </select>
+                                    <input type="text" id="first_phone_extension"  name="first_phone_extension" 
                                         class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" 
-                                        style="width: 40px;"  value="+81" readonly /> --}}
+                                        style="width: 40px;"  value="+81" readonly />
                                     <a href="tel:">
                                         <output class="form-output" for="first_phone">{{ $user->first_phone }}</output>
                                     </a>
-                                    <input type="text" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none" 
-                                        style="width: 200px;" id="first_phone" maxlength="11" placeholder="—（ハイフン）なし"
-                                        value="{{ $user->firstNumber }}" disabled pattern="\d{0,11}">
-
+                                    <input type="number" maxlength="10" name="first_phone" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;"
+                                        id="first_phone" value="{{ $user->first_phone }}" disabled>
                                     <span class="invalid-feedback"></span>
                                 </div>
                                 <div class="form-group">
-                                    {{-- <select name="second_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
+                                    <select name="second_phone_extension" class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" disabled>
                                         <option value="+81" @if($user->secondExtension == '+81') selected @endif>+81</option>
                                         <option value="+95" @if($user->secondExtension == '+95') selected @endif>+95</option>
                                     </select>
                                     <input type="text" id="second_phone_extension" name="second_phone_extension" 
                                         class="p-1 mt-2 border-0 outline-0 border-bottom border-2 d-none" 
-                                        style="width: 40px;"  value="+81" readonly /> --}}
+                                        style="width: 40px;"  value="+81" readonly />
                                     <a href="tel:">
                                         <output class="form-output" for="second_phone">{{ $user->second_phone }}</output>
                                     </a>
-                                    <input type="text" name="second_phone" class="p-1 mt-2 border-bottom border-2 d-none" 
-                                        style="width: 200px;" id="second_phone" maxlength="11" 
-                                        value="{{ $user->secondNumber }}" disabled pattern="\d{0,11}" placeholder="—（ハイフン）なし">
+                                    <input type="number" maxlength="10" name="second_phone" class="p-1 mt-2 border-bottom border-2 d-none" style="width: 150px;"
+                                        value="{{ $user->second_phone }}" id="second_phone" disabled>
                                     <span class="invalid-feedback"></span>
                                 </div>
                             </div>
@@ -410,13 +626,13 @@
                     </div>
                     <!-- /Form Content -->
 
-                </form>
+                </form> --}}
                 <!-- /Detail Info -->
 
                 <!-- button group -->
-                <div class="buttons d-flex mt-3">
+                {{-- <div class="buttons d-flex mt-3">
                     <button class="common-btn">注文履歴を確認</button>
-                </div>
+                </div> --}}
 
             </div>
             <!-- /Profile Side -->
@@ -530,7 +746,7 @@
     <!-- ./History Table -->
 
     <!-- All Scripts -->
-    <script defer src="{{ asset('assets/js/updateForm.js') }}"></script>
+    {{-- <script defer src="{{ asset('assets/js/updateForm.js') }}"></script> --}}
     {{-- <script>
         $(document).ready(function() {
             if ("geolocation" in navigator) {
@@ -543,6 +759,13 @@
             }
         });
     </script> --}}
+
+    @if (session('success'))
+        <script>
+            toastr.success('{{ session("success") }}');
+        </script>
+    @endif
+
 
     <script>
         $(document).ready(function() {
@@ -814,6 +1037,96 @@
                     }
                 });
             });
+
+
+            $('.edit').click(function() {
+                $(this).closest('.form-headline').siblings('.profile-form').find('input, textarea').attr('readonly', false);
+                $(this).addClass('d-none');
+                $(this).siblings('.save').removeClass('d-none');
+                $(this).siblings('.cancel').removeClass('d-none');
+            });
+
+            $('.cancel').click(function() {
+                $(this).closest('.form-headline').siblings('.profile-form').find('input, textarea').attr('readonly', true);
+                $(this).addClass('d-none');
+                $(this).siblings('.save').addClass('d-none');
+                $(this).siblings('.edit').removeClass('d-none');
+            });
+
+            // start image preview
+            let previewImage = function (input, outputSelector) {
+                const output = $(outputSelector);
+
+                // Clear previous preview
+                output.empty();
+
+                if (input.files && input.files.length > 0) {
+                    const file = input.files[0]; // Only take the first file
+
+                    // Check if file is an image
+                    if (file.type.match('image.*')) {
+                        const fileReader = new FileReader();
+
+                        fileReader.onload = function (e) {
+                            const img = $('<img>', {
+                                src: e.target.result,
+                                class: 'preview-image default-preview img-fluid ',
+                                alt: 'Preview',
+                                css: {
+                                    // Add some styles to the image
+                                }
+                            });
+                            const button = $('<button>',{
+                                type: 'submit',
+                                class: 'd-flex justify-content-center align-items-center position-absolute text-black bg-white rounded-5 shadow border-0 outline-0 px-4 py-2',
+                                css: {
+                                    "right" : "10px",
+                                    "bottom": "10px"
+                                }
+                            });
+
+                            //<i class="fa-solid fa-floppy-disk"></i>
+                            const icon = $('<icon>',{
+                                class: "fa-solid fa-floppy-disk"
+                            });
+
+
+                            const small = $('<small>',{
+                                class: "fs-6 d-none d-md-inline ms-2",
+                                text: "保存"
+                            });
+
+                            button.append(icon);
+                            button.append(small);
+
+                            output.append(img);
+                            output.append(button);
+                        };
+
+                        fileReader.onerror = function (e) {
+                            console.error('Error reading file:', e);
+                        };
+
+                        fileReader.readAsDataURL(file);
+                    } else {
+                        // Show default image if file isn't an image
+                        output.find('img.default-preview').removeClass("d-none");
+                    }
+                } else {
+                    // Show default image when no file selected
+                    output.find('img.default-preview').removeClass("d-none");
+                }
+            }
+
+            // Event listener with error handling
+            $("#avatar-input").on('change', function () {
+                try {
+                    previewImage(this, ".gallery");
+                } catch (error) {
+                    console.error('Preview error:', error);
+                }
+            });
+            // end image preview
 
 
 
