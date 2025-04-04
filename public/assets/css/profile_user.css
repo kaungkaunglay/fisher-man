@@ -131,3 +131,11 @@ body {
     padding: 15px ;
   }
 }
+
+.profile-avatar {
+  max-width: 500px;
+  max-height: 500px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: center;
+}

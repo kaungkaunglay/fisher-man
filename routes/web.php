@@ -144,6 +144,9 @@ Route::post('/profile/update_basic', [ProfileController::class, 'update_basic_pr
 Route::put('/profile/update/avatar',[ProfileController::class,'update_avatar'])->name('update_avatar');
 Route::post('/profile/update_contact', [ProfileController::class, 'update_contact_details'])->name('update_contact_details');
 
+Route::put('/profile/update_info', [ProfileController::class, 'update_info'])->name('update_info');
+Route::put('/profile/update_contact', [ProfileController::class, 'update_contact'])->name('update_contact');
+
 Route::middleware(['is_admin'])->group(function () {
     Route::get('admin/components',function(){
         return view('admin.components');

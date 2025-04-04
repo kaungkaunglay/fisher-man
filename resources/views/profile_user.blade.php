@@ -2,6 +2,7 @@
 @section('title', 'profile')
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/profile_user.css') }}" />
+
 @endsection
 @section('contents')
     <!-- Breadcrumbs -->
@@ -41,26 +42,27 @@
                                                 accept="image/*" >
 
                                     <div class="w-100 d-flex align-center position-relative  overflow-hidden gallery" style="max-height: 500px;">
-                                        <img src="{{ auth_helper()->getAvatar() }}" class="default-preview img-fluid " id="form-img"
+                                        <img src="{{ auth_helper()->getAvatar() }}" class="default-preview img-fluid profile-avatar" id="form-img"
                                             alt="{{ $user->username ?? 'Account.png' }}" >
                                         
-                                            <label for="avatar-input" class="d-flex justify-content-center align-items-center position-absolute text-black bg-white rounded-5 shadow px-4 py-2" style="right: 10px; bottom: 10px;">
-                                                <i class="fa-solid fa-upload" ></i>
-                                                <small class="fs-6 d-none d-md-inline ms-2">アップロード</small>
-                                            </label>
+                                        <label for="avatar-input" class="d-flex justify-content-center align-items-center position-absolute text-black bg-white rounded-5 shadow px-4 py-2" style="right: 10px; bottom: 10px;">
+                                            <i class="fa-solid fa-upload" ></i>
+                                            <small class="fs-6 d-none d-md-inline ms-2">アップロード</small>
+                                        </label>    
 
-                                        @error('avatar')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                        
                                     </div>
+                                    @error('avatar')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </form>
                             </div>
 
                         </div>
                     </div>
                     <div class="col-12 col-md-6 d-flex flex-column gap-5">
-                        <form action="">
+                        <form action="{{ route('update_info')}}" id="update_info" method="POST">
+                            @csrf
+                            @method('PUT')
                             <div class="w-100">
                                 <!-- Form Headline -->
                                 <div class="bg-primary text-white p-2 form-headline mb-2">
@@ -69,10 +71,10 @@
                                             <button type="submit" class="save d-none">
                                                 <i class="fa-solid fa-save fs-5 text-white"></i>
                                             </button>
-                                            <button class="edit">
+                                            <button type="button" class="edit">
                                                 <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
                                             </button>
-                                            <button class="cancel d-none">
+                                            <button type="reset" class="cancel d-none">
                                                 <i class="fa-solid fa-x fs-5 text-white"></i>
                                             </button>
                                         </div>
@@ -81,18 +83,30 @@
                                 <!-- /Form Headline -->
     
                                 <!-- /Form Content -->
-                                <div class="">
-                                    <div class="input-group mb-2 shadow-none">
-                                        <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('name') }}</span>
-                                        <input type="text" class="form-control shadow-none" name="username" id="username"
-                                            value="{{ $user->username }}" readonly/>
+                                <div class="profile-form">
+                                    <div class="mb-2">
+                                        <div class="input-group mb-1 shadow-none">
+                                            <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('name') }}</span>
+                                            <input type="text" class="form-control shadow-none @error('username') is-invalid @enderror" name="username" id="username"
+                                                value="{{ $user->username }}" readonly/>
+                                        </div>
+                                        @error('username')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
+
     
-                                    <div class="input-group mb-2 shadow-none">
-                                        <span class="input-group-text w-25"  style="min-width: 130px;">{{ trans_lang('email') }}</span>
-                                        <input type="text" class="form-control shadow-none" name="email" id="email"
-                                            value="{{ $user->email }}" readonly/>
+                                    <div class="mb-2">
+                                        <div class="input-group mb-1 shadow-none">
+                                            <span class="input-group-text w-25"  style="min-width: 130px;">{{ trans_lang('email') }}</span>
+                                            <input type="text" class="form-control shadow-none @error('email') is-invalid @enderror" name="email" id="email"
+                                                value="{{ $user->email }}" readonly/>
+                                        </div>
+                                        @error('email')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
+
     
                                     <div class="d-flex gap-2">
                                         <div class="d-flex border rounded-3 overflow-hidden">
@@ -137,54 +151,83 @@
                             </div>
                         </form>
 
-                        <div class="w-100">
-                            <!-- Form Headline -->
-                            <div>
-                                <h2 class="fw-bold d-flex justify-content-between bg-primary text-white p-2 form-headline mb-2">
-                                    {{ trans_lang('detail') }}
-
-                                    <!-- button group -->
-                                    <div class="d-flex justify-content-end gap-4">
-                                        <button type="submit" class="save d-none">
-                                            <i class="fa-solid fa-save fs-5 text-white"></i>
-                                        </button>
-                                        <button class="edit">
-                                            <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
-                                        </button>
-                                        <button class="cancel d-none">
-                                            <i class="fa-solid fa-x fs-5 text-white"></i>
-                                        </button>
+                        <form action="{{ route('update_contact')}}" method="POST" id="update_contact">
+                            @csrf
+                            @method('PUT')
+                            <div class="w-100">
+                                <!-- Form Headline -->
+                                <div class="bg-primary text-white p-2 form-headline mb-2">
+                                    <h2 class="fw-bold d-flex justify-content-between ">
+                                        {{ trans_lang('detail') }}
+    
+                                        <!-- button group -->
+                                        <div class="d-flex justify-content-end gap-4">
+                                            <button type="submit" class="save d-none">
+                                                <i class="fa-solid fa-save fs-5 text-white"></i>
+                                            </button>
+                                            <button type="button" class="edit">
+                                                <i class="fa-solid fa-pen-to-square fs-5 text-white"></i>
+                                            </button>
+                                            <button type="reset" class="cancel d-none">
+                                                <i class="fa-solid fa-x fs-5 text-white"></i>
+                                            </button>
+                                        </div>
+                                    </h2>
+                                </div>
+                                <!-- /Form Headline -->
+    
+                                <div class="profile-form">
+                                    <div class="mb-2">
+                                        <div class="input-group mb-1 shadow-none">
+                                            <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('postal') }}</span>
+                                            <input type="text" class="form-control shadow-none @error('postal_code') @enderror" name="postal_code" id="postal_code"
+                                                value="{{ $user->postal_code }}" readonly/>
+                                        </div>
+    
+                                        @error('postal_code')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
-                                </h2>
+    
+                                    <div class="mb-2">
+                                        <div class="input-group mb-1 shadow-none">
+                                            <span class="input-group-text w-25"  style="min-width: 130px;">{{ trans_lang('address') }}</span>
+                                            <textarea class="form-control shadow-none @error('address') is-invalid @enderror" name="address" id="address" readonly>{{ $user->address }}</textarea>
+                                        </div>
+    
+                                        @error('address')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+    
+                                    <div class="mb-2">
+                                        <div class="input-group mb-1 shadow-none">
+                                            <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('first_ph') }}</span>
+                                            <input type="text" class="form-control shadow-none @error('first_phone') is-invalid @enderror" name="first_phone" id="first_phone"
+                                                value="{{ $user->first_phone }}" readonly/>
+                                        </div>
+    
+                                        @error('first_phone')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+    
+                                    <div class="mb-2">
+                                        <div class="input-group mb-1 shadow-none">
+                                            <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('second_ph') }}</span>
+                                            <input type="text" class="form-control shadow-none @error('second_phone') is-invalid @enderror" name="second_phone" id="second_phone"
+                                                value="{{ $user->second_phone }}" readonly/>
+                                        </div>
+    
+                                        @error('second_phone')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+    
+                                </div>
                             </div>
-                            <!-- /Form Headline -->
-
-                            <div class="">
-                                <div class="input-group mb-2 shadow-none">
-                                    <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('postal') }}</span>
-                                    <input type="text" class="form-control shadow-none" name="postal_code" id="postal_code"
-                                        value="{{ $user->postal_code }}" readonly/>
-                                </div>
-
-                                <div class="input-group mb-2 shadow-none">
-                                    <span class="input-group-text w-25"  style="min-width: 130px;">{{ trans_lang('address') }}</span>
-                                    <textarea class="form-control shadow-none" name="address" id="address" readonly>{{ $user->address }}</textarea>
-                                </div>
-
-                                <div class="input-group mb-2 shadow-none">
-                                    <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('first_ph') }}</span>
-                                    <input type="text" class="form-control shadow-none" name="first_phone" id="first_phone"
-                                        value="{{ $user->first_phone }}" readonly/>
-                                </div>
-
-                                <div class="input-group mb-2 shadow-none">
-                                    <span class="input-group-text w-25" style="min-width: 130px;">{{ trans_lang('second_ph') }}</span>
-                                    <input type="text" class="form-control shadow-none" name="second_phone" id="second_phone"
-                                        value="{{ $user->second_phone }}" readonly/>
-                                </div>
-
-                            </div>
-                        </div>
+                        </form>
 
                         
                         {{-- <div class="w-100">
@@ -703,7 +746,7 @@
     <!-- ./History Table -->
 
     <!-- All Scripts -->
-    <script defer src="{{ asset('assets/js/updateForm.js') }}"></script>
+    {{-- <script defer src="{{ asset('assets/js/updateForm.js') }}"></script> --}}
     {{-- <script>
         $(document).ready(function() {
             if ("geolocation" in navigator) {
@@ -716,6 +759,13 @@
             }
         });
     </script> --}}
+
+    @if (session('success'))
+        <script>
+            toastr.success('{{ session("success") }}');
+        </script>
+    @endif
+
 
     <script>
         $(document).ready(function() {
@@ -987,6 +1037,96 @@
                     }
                 });
             });
+
+
+            $('.edit').click(function() {
+                $(this).closest('.form-headline').siblings('.profile-form').find('input, textarea').attr('readonly', false);
+                $(this).addClass('d-none');
+                $(this).siblings('.save').removeClass('d-none');
+                $(this).siblings('.cancel').removeClass('d-none');
+            });
+
+            $('.cancel').click(function() {
+                $(this).closest('.form-headline').siblings('.profile-form').find('input, textarea').attr('readonly', true);
+                $(this).addClass('d-none');
+                $(this).siblings('.save').addClass('d-none');
+                $(this).siblings('.edit').removeClass('d-none');
+            });
+
+            // start image preview
+            let previewImage = function (input, outputSelector) {
+                const output = $(outputSelector);
+
+                // Clear previous preview
+                output.empty();
+
+                if (input.files && input.files.length > 0) {
+                    const file = input.files[0]; // Only take the first file
+
+                    // Check if file is an image
+                    if (file.type.match('image.*')) {
+                        const fileReader = new FileReader();
+
+                        fileReader.onload = function (e) {
+                            const img = $('<img>', {
+                                src: e.target.result,
+                                class: 'preview-image default-preview img-fluid ',
+                                alt: 'Preview',
+                                css: {
+                                    // Add some styles to the image
+                                }
+                            });
+                            const button = $('<button>',{
+                                type: 'submit',
+                                class: 'd-flex justify-content-center align-items-center position-absolute text-black bg-white rounded-5 shadow border-0 outline-0 px-4 py-2',
+                                css: {
+                                    "right" : "10px",
+                                    "bottom": "10px"
+                                }
+                            });
+
+                            //<i class="fa-solid fa-floppy-disk"></i>
+                            const icon = $('<icon>',{
+                                class: "fa-solid fa-floppy-disk"
+                            });
+
+
+                            const small = $('<small>',{
+                                class: "fs-6 d-none d-md-inline ms-2",
+                                text: "保存"
+                            });
+
+                            button.append(icon);
+                            button.append(small);
+
+                            output.append(img);
+                            output.append(button);
+                        };
+
+                        fileReader.onerror = function (e) {
+                            console.error('Error reading file:', e);
+                        };
+
+                        fileReader.readAsDataURL(file);
+                    } else {
+                        // Show default image if file isn't an image
+                        output.find('img.default-preview').removeClass("d-none");
+                    }
+                } else {
+                    // Show default image when no file selected
+                    output.find('img.default-preview').removeClass("d-none");
+                }
+            }
+
+            // Event listener with error handling
+            $("#avatar-input").on('change', function () {
+                try {
+                    previewImage(this, ".gallery");
+                } catch (error) {
+                    console.error('Preview error:', error);
+                }
+            });
+            // end image preview
 
 
 

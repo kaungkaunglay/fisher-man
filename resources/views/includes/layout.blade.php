@@ -504,6 +504,19 @@
     <script defer src="{{ asset('assets/js/moving-text.js') }}"></script>
     <script defer src="{{ asset('assets/js/password.js') }}"></script>
     <script src="{{ asset('assets\libs\toastr-master\build\toastr.min.js') }}"></script>
+
+    @if (session('success'))
+        <script>
+            toastr.success('{{ session("success") }}');
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            toastr.error('{{ session("error") }}');
+        </script>
+    @endif
+
     <script>
         $(document).ready(() => {
 
