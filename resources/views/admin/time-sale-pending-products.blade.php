@@ -71,7 +71,7 @@
                 </div>
                 @if (check_role(1))
                 
-                <a class="tf-button style-1 w208" id="approved_time_sale" href="javascript:void(0);" disabled>承認されたタイムセール</a>
+                <a class="tf-button style-1 w208" id="approved_time_sale" href="javascript:void(0);" disabled>タイムセールを承認</a>
                 @endif
             </div>
             <div class="wg-table table-product-list">
