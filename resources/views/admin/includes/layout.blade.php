@@ -98,18 +98,26 @@
                             <div class="center-item">
                                 <div class="center-heading">{{trans_lang('product_management')}}</div>
                                 <ul class="menu-list">
-                                    <li class="menu-item">
-                                        <a href="{{route('admin.products')}}" class="{{ request()->is('admin/products') ? 'active' : '' }}">
+                                    <li class="menu-item has-children {{ request()->is('admin/product*') ? 'active' : '' }}">
+                                        <a href="javascript:void(0);" class="menu-item-button">
                                             <div class="icon"><i class="icon-shopping-cart"></i></div>
-                                            <div class="text">{{trans_lang('all_products')}}</div>
+                                            <div class="text">{{trans_lang('product')}}</div>
                                         </a>
+                                        <ul class="sub-menu" style="display: block;">
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('admin.products')}}" class="{{ request()->is('admin/products') ? 'active' : '' }}">
+                                                    <div class="text">{{trans_lang('all_products')}}</div>
+                                                </a>
+                                            </li>
+                                            <li class="sub-menu-item">
+                                                <a href="{{route('admin.products.time_sale')}}" class="{{ request()->is('admin/products/time-sale') ? 'active' : '' }}">
+                                                    <div class="text">{{trans_lang('special_offer')}}</div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        
                                     </li>
-                                    <li class="menu-item">
-                                        <a href="{{route('admin.products.time_sale')}}" class="{{ request()->is('admin/products/time-sale') ? 'active' : '' }}">
-                                            <div class="icon"><i class="icon-shopping-cart"></i></div>
-                                            <div class="text">{{trans_lang('special_offer')}}</div>
-                                        </a>
-                                    </li>
+                                    
                                     <!-- Open later by thahar(Nishimura san request) -->
                                     <!-- <li class="menu-item">
                                         <a href="{{route('admin.categories')}}" class="{{ request()->is('admin/categories') ? 'active' : '' }}">
