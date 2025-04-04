@@ -20,7 +20,7 @@ class OrderCompletedAdminMail extends Mailable
 
     public function build()
     {
-        return $this->subject('新規注文完了')
+        return $this->subject('新規購入がありました（銀行振込）')
                     ->view('emails.empty') ;// Use admin's view
                     // ->with([
                     //     'user' => $this->user,

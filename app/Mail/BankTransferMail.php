@@ -31,7 +31,7 @@ class BankTransferMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '銀行振込メール',
+            subject: '購入が完了しました（銀行振込）',
         );
     }
 

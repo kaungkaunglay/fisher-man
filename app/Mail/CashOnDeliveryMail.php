@@ -35,7 +35,7 @@ class CashOnDeliveryMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '代金引換メール',
+            subject: '購入が完了しました（代引き）',
         );
     }
 

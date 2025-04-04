@@ -1233,7 +1233,7 @@
                 `;
 
                 Swal.fire({
-                    title: '請求書確認',
+                    title: '注文内容確認',
                     html: invoiceHTML,
                     icon: 'info',
                     showCancelButton: true,
