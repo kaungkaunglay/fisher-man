@@ -93,6 +93,8 @@ class OAuthController extends Controller
 
             session()->flash('status','success');
             session()->flash('message',`{$provider} OAuth added successfully`);
+        
+            session(['oauth_login' => true]); // Set flag before redirecting to cart
             return $this->isProfileUpdated ? redirect()->route('profile') : ( session('cart_login') ? redirect()->route('cart.login.finished')  :redirect()->route('home'));
         } catch (\Exception $e) {
             Log::error("Error in handle{$provider}Callback: " . $e->getMessage(), ['exception' => $e]);

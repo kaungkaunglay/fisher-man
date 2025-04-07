@@ -27,8 +27,15 @@ class CartController extends Controller
     
         // Reset step if not coming from cart and not going to login
         if (!$referer || (!str_contains($referer, 'cart') && !str_contains($referer, 'login'))) {
-            session(['cart_step' => 1]);
+             session(['cart_step' => 1]);
         }
+
+           // Check for OAuth login and set step to 2 if needed
+            if (AuthHelper::check() && session('oauth_login')) {
+                session(['cart_step' => 3]);
+                session()->forget('oauth_login'); // Clear the flag after use
+            }
+        
 
         if (AuthHelper::check()) {
             $carts = AuthHelper::user()->carts;
@@ -294,7 +301,7 @@ class CartController extends Controller
 
             $data["paymentType"] = $payment_id == 1 ? "代引き" : "銀行振込";
 
-            Mail::to('kado@and-fun.com')->send(new OrderCompletedAdminMail($data));
+            // Mail::to('kado@and-fun.com')->send(new OrderCompletedAdminMail($data));
             
             if($payment_id == 1){
                 $CODpdf = PDF::loadView('emails.cash_on_delivery',$data)
