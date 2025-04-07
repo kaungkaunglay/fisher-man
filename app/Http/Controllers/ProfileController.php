@@ -391,12 +391,12 @@ class ProfileController extends Controller
             'first_phone.numeric' => '最初の電話番号は数字である必要があります。',
             'first_phone.min' => '最初の電話番号は10桁以上である必要があります。',
             'first_phone.max' => '最初の電話番号は11桁以下である必要があります。',
-            'first_phone.digits_between' => '電話番号は10桁から11桁の間でなければなりません。',
+            'first_phone.digits_between' => '10～11桁で入力してください（－ハイフンなし）',
             'first_phone.different' => '1つ目と2つ目の電話番号は異なっていなければなりません。',
             'second_phone.numeric' => '2番目の電話番号は数字である必要があります。',
             'second_phone.min' => '最初の電話番号は10桁以上である必要があります。',
             'second_phone.max' => '最初の電話番号は11桁以下である必要があります。',      
-            'second_phone.digits_between' => '電話番号は10桁から11桁の間でなければなりません。',
+            'second_phone.digits_between' => '10～11桁で入力してください（－ハイフンなし）',
             'second_phone.different' => '2つ目と1つ目の電話番号は異なっていなければなりません。',
         ];
 
