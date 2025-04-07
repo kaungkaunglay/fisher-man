@@ -33,11 +33,28 @@ class AdminController extends Controller
         //     ->limit(5)
         //     ->get();
 
-        $top_selling_products = Product::with('orders')
-            ->withCount('orders as total_quantity_sold')
-            ->orderByDesc('total_quantity_sold')
-            ->limit(5)
-            ->get();
+        $top_selling_products = Product::withSum(['orders as total_quantity_sold' => function ($query) {
+                                    $query->whereHas('order', function ($q) {
+                                        $q->where('order_date', '>=', now()->subDays(30));
+                                    });
+                                }], 'quantity')
+                                ->orderByDesc('total_quantity_sold')
+                                ->take(5)
+                                ->get();
+
+
+        
+        $total_units_sold = OrderProduct::whereHas('order', function ($query) {
+                                $query->where('order_date', '>=', now()->subDays(30));
+                            })->sum('quantity');
+
+        $top_selling_products = $top_selling_products->map(function ($product) use ($total_units_sold) {
+                                    $product->sell_percentage = $total_units_sold > 0
+                                        ? ceil(($product->total_quantity_sold / $total_units_sold) * 100)
+                                        : 0;
+                                    return $product;
+                                });
+
 
 
         $top_products = Product::with('user:id,username')

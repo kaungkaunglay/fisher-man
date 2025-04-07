@@ -22,7 +22,7 @@ class Product extends Model
 
     public function orders()
     {
-        return $this->belongsToMany(Order::class,'order_products');
+        return $this->hasMany(OrderProduct::class, 'product_id');
     }
 
     public function carts()

@@ -93,6 +93,10 @@
                                         <div class="text-tiny mb-3" style="width: 50px">注文数</div>
                                         <div class="body-text">{{$top_product->total_quantity_sold}}</div>
                                     </div>
+                                    <div class="order">
+                                        <div class="text-tiny mb-3" style="width: 50px">販売割合</div>
+                                        <div class="body-text">{{$top_product->sell_percentage}}%</div>
+                                    </div>
                                 </div>
                             </li>
                             @endforeach
