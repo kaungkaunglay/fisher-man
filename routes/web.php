@@ -68,12 +68,11 @@ Route::middleware(['guest_custom'])->group(function(){
 
 
 Route::get('/verified', [AuthController::class, 'verified'])->name('verified');
-// Logout
+
 // Logout
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('/oauth/remove/{provider}',[OAuthController::class,'removeProvider'])->name('oauth.remove');
-
 
 // guest
 
