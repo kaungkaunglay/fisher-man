@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container my-4">
         <h2 class="mb-3">魚市場データ</h2>
@@ -97,7 +99,7 @@
             });
         }
 
-        fetch('http://aquaticadventureshop.com/fetch-data-api-data')
+        fetch('/fetch-data-api-data')
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
@@ -113,4 +115,5 @@
             });
     </script>
 </body>
+
 </html>
