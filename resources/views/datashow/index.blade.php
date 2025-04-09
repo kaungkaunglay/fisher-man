@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fish Market Data</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #loadingRow td {
+            text-align: center;
+            padding: 40px;
+        }
+    </style>
 </head>
 <body>
     <div class="container my-4">
@@ -20,7 +25,7 @@
                     <th rowspan="2" scope="col">水揚日</th>
                     <th rowspan="2" scope="col">魚種</th>
                     <th rowspan="2" scope="col">数量 (t)</th>
-                    <th colspan="4" scope="col">魚体組成 (%)</th> <!-- New columns for fish_body_composition -->
+                    <th colspan="4" scope="col">魚体組成 (%)</th>
                     <th colspan="3" scope="col">価格 (大)</th>
                     <th colspan="3" scope="col">価格 (中)</th>
                     <th colspan="3" scope="col">価格 (小)</th>
@@ -46,20 +51,23 @@
                 </tr>
             </thead>
             <tbody id="fishDataTable">
-                <!-- Data will be populated here by JavaScript -->
+                <tr id="loadingRow">
+                    <td colspan="20">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div>データを読み込んでいます...</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
 
-    <!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        
-
-        // Function to populate the table
         function populateTable(data) {
             const tbody = document.getElementById('fishDataTable');
-            tbody.innerHTML = ''; // Clear existing rows
+            tbody.innerHTML = ''; // Clear loading row
 
             data.forEach(item => {
                 const row = document.createElement('tr');
@@ -68,7 +76,7 @@
                     <td>${item.date}</td>
                     <td>${item.fishType}</td>
                     <td>${item.quantity}</td>
-                    <td>${item.prices.fish_body_composition.large ?? '-'}</td> <!-- Fish Body Composition -->
+                    <td>${item.prices.fish_body_composition.large ?? '-'}</td>
                     <td>${item.prices.fish_body_composition.medium ?? '-'}</td>
                     <td>${item.prices.fish_body_composition.small ?? '-'}</td>
                     <td>${item.prices.fish_body_composition.vary_small ?? '-'}</td>
@@ -81,7 +89,7 @@
                     <td>${item.prices.small.high ?? '-'}</td>
                     <td>${item.prices.small.middle_value ?? '-'}</td>
                     <td>${item.prices.small.low_price ?? '-'}</td>
-                    <td>${item.additional_metrics.high ?? '-'}</td> <!-- Additional Metrics -->
+                    <td>${item.additional_metrics.high ?? '-'}</td>
                     <td>${item.additional_metrics.middle_value ?? '-'}</td>
                     <td>${item.additional_metrics.low_price ?? '-'}</td>
                 `;
@@ -89,8 +97,7 @@
             });
         }
 
-    
-        fetch('https://aquaticadventureshop.com/fetch-data-api-data')
+        fetch('http://aquaticadventureshop.com/fetch-data-api-data')
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
@@ -99,8 +106,11 @@
                     console.error('Failed to fetch data');
                 }
             })
-            .catch(error => console.error('Error fetching data:', error));
-    
+            .catch(error => {
+                const tbody = document.getElementById('fishDataTable');
+                tbody.innerHTML = `<tr><td colspan="20" class="text-danger text-center">データの取得に失敗しました。</td></tr>`;
+                console.error('Error fetching data:', error);
+            });
     </script>
 </body>
 </html>
