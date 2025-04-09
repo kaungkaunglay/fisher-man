@@ -174,18 +174,18 @@ class DataCrawController extends Controller
 
 
     public function apidata()
-    {
-        try {
-         
-            $dataCrawRecords = DataCraw::all();
+{
+    try {
+        // Fetch all records from DataCraw
+        $dataCrawRecords = DataCraw::all();
 
-          
-            $formattedData = $dataCrawRecords->map(function ($record) {
+        // Group records by category and format the data
+        $groupedData = $dataCrawRecords->groupBy('category')->map(function ($records) {
+            return $records->map(function ($record) {
                 return [
-                    'category' => $record->category,
                     'market' => $record->market,
                     'market_code' => $record->market_code,
-                    'date' => $record->date, 
+                    'date' => $record->date,
                     'fishType' => $record->fish_type,
                     'quantity' => $record->quantity,
                     'unit' => $record->unit,
@@ -218,19 +218,20 @@ class DataCrawController extends Controller
                         'low_price' => $record->additional_low,
                     ],
                 ];
-            });
+            })->toArray();
+        })->toArray();
 
-            return response()->json([
-                'success' => true,
-                'data' => $formattedData->toArray(),
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'error' => 'Failed to retrieve data',
-                'message' => $e->getMessage(),
-            ], 500);
-        }
+        return response()->json([
+            'success' => true,
+            'data' => $groupedData,
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'error' => 'Failed to retrieve data',
+            'message' => $e->getMessage(),
+        ], 500);
     }
+}
 
 }
