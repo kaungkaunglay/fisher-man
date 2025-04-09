@@ -25,6 +25,8 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\SubCategoriesController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\SellersController;
+use App\Http\Controllers\DataCrawController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +70,13 @@ Route::middleware(['guest_custom'])->group(function(){
 
 
 Route::get('/verified', [AuthController::class, 'verified'])->name('verified');
+
+Route::get('/fetch-data-craws', [DataCrawController::class, 'fetchAndStore']);
+
+Route::get('/fetch-data-api-data', [DataCrawController::class, 'apidata']);
+
+Route::get('/datashow', [DataCrawController::class, 'datashow']);
+
 
 // Logout
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
