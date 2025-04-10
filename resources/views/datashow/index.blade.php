@@ -135,8 +135,8 @@
                                         <td>${item.prices.large.low_price ?? '-'}</td>
                                         <td>${item.prices.medium.high ?? '-'}</td>
                                         <td>${item.prices.medium.middle_value ?? '-'}</td>
-                                        <td>${item.prices.medium.low_price ?? '-'}</td>
                                         <td>${item.prices.small.high ?? '-'}</td>
+                                        <td>${item.prices.medium.low_price ?? '-'}</td>
                                         <td>${item.prices.small.middle_value ?? '-'}</td>
                                         <td>${item.prices.small.low_price ?? '-'}</td>
                                         <td>${item.additional_metrics.high ?? '-'}</td>
