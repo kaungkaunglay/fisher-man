@@ -90,6 +90,7 @@
                                 <tr>
                                     <th rowspan="2" scope="col">市場</th>
                                     <th rowspan="2" scope="col">水揚日</th>
+                                   <th rowspan="2" scope="col">カテゴリー</th>
                                     <th rowspan="2" scope="col">魚種</th>
                                     <th rowspan="2" scope="col">数量 (t)</th>
                                     <th colspan="4" scope="col">魚体組成 (%)</th>
@@ -121,7 +122,8 @@
                                 ${data[category].map(item => `
                                     <tr>
                                         <td>${item.market}</td>
-                                        <td>${item.date}</td>
+                                        <td>${item.date}</td> 
+                                        <td>${item.category}</td>  
                                         <td>${item.fishType}</td>
                                         <td>${item.quantity}</td>
                                         <td>${item.prices.fish_body_composition.large ?? '-'}</td>

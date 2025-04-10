@@ -183,6 +183,7 @@ class DataCrawController extends Controller
         $groupedData = $dataCrawRecords->groupBy('category')->map(function ($records) {
             return $records->map(function ($record) {
                 return [
+                    'category' => $record->category,
                     'market' => $record->market,
                     'market_code' => $record->market_code,
                     'date' => $record->date,
