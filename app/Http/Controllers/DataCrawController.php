@@ -174,65 +174,74 @@ class DataCrawController extends Controller
 
 
     public function apidata()
-{
-    try {
-        // Fetch all records from DataCraw
-        $dataCrawRecords = DataCraw::all();
-
-        // Group records by category and format the data
-        $groupedData = $dataCrawRecords->groupBy('category')->map(function ($records) {
-            return $records->map(function ($record) {
-                return [
-                    'category' => $record->category,
-                    'market' => $record->market,
-                    'market_code' => $record->market_code,
-                    'date' => $record->date,
-                    'fishType' => $record->fish_type,
-                    'quantity' => $record->quantity,
-                    'unit' => $record->unit,
-                    'prices' => [
-                        'fish_body_composition' => [
-                            'large' => $record->composition_large,
-                            'medium' => $record->composition_medium,
-                            'small' => $record->composition_small,
-                            'vary_small' => $record->composition_vary_small,
+    {
+        try {
+            // Get today's date and yesterday's date (assuming 2025-04-10 is today)
+            $today = now()->toDateString(); // e.g., '2025-04-10'
+            $yesterday = now()->subDay()->toDateString(); // e.g., '2025-04-09'
+    
+            // First, try to fetch records for today
+            $dataCrawRecords = DataCraw::whereDate('created_at', $today)->get();
+    
+            // If no records exist for today, fetch records from yesterday
+            if ($dataCrawRecords->isEmpty()) {
+                $dataCrawRecords = DataCraw::whereDate('created_at', $yesterday)->get();
+            }
+    
+            // Group and format the data
+            $groupedData = $dataCrawRecords->groupBy('category')->map(function ($records) {
+                return $records->map(function ($record) {
+                    return [
+                        'category' => $record->category,
+                        'market' => $record->market,
+                        'market_code' => $record->market_code,
+                        'date' => $record->date,
+                        'fishType' => $record->fish_type,
+                        'quantity' => $record->quantity,
+                        'unit' => $record->unit,
+                        'prices' => [
+                            'fish_body_composition' => [
+                                'large' => $record->composition_large,
+                                'medium' => $record->composition_medium,
+                                'small' => $record->composition_small,
+                                'vary_small' => $record->composition_vary_small,
+                            ],
+                            'large' => [
+                                'high' => $record->large_high,
+                                'medium' => $record->large_medium,
+                                'low_price' => $record->large_low,
+                            ],
+                            'medium' => [
+                                'high' => $record->medium_high,
+                                'middle_value' => $record->medium_middle,
+                                'low_price' => $record->medium_low,
+                            ],
+                            'small' => [
+                                'high' => $record->small_high,
+                                'middle_value' => $record->small_middle,
+                                'low_price' => $record->small_low,
+                            ],
                         ],
-                        'large' => [
-                            'high' => $record->large_high,
-                            'medium' => $record->large_medium,
-                            'low_price' => $record->large_low,
+                        'additional_metrics' => [
+                            'high' => $record->additional_high,
+                            'middle_value' => $record->additional_middle,
+                            'low_price' => $record->additional_low,
                         ],
-                        'medium' => [
-                            'high' => $record->medium_high,
-                            'middle_value' => $record->medium_middle,
-                            'low_price' => $record->medium_low,
-                        ],
-                        'small' => [
-                            'high' => $record->small_high,
-                            'middle_value' => $record->small_middle,
-                            'low_price' => $record->small_low,
-                        ],
-                    ],
-                    'additional_metrics' => [
-                        'high' => $record->additional_high,
-                        'middle_value' => $record->additional_middle,
-                        'low_price' => $record->additional_low,
-                    ],
-                ];
+                    ];
+                })->toArray();
             })->toArray();
-        })->toArray();
-
-        return response()->json([
-            'success' => true,
-            'data' => $groupedData,
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'success' => false,
-            'error' => 'Failed to retrieve data',
-            'message' => $e->getMessage(),
-        ], 500);
+    
+            return response()->json([
+                'success' => true,
+                'data' => $groupedData,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Failed to retrieve data',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
     }
-}
 
 }
