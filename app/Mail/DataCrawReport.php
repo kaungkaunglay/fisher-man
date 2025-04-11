@@ -26,7 +26,7 @@ class DataCrawReport extends Mailable
     public function build()
     {
         return $this->to('zwehtetnaing@andfun.biz')
-                    ->subject('DataCraw Fetch and Store Report - ' . now()->toDateString())
+                    ->subject('データ取得および保存レポート - ' . now()->toDateString())
                     ->view('emails.data_craw_report')
                     ->with(['stats' => $this->stats]);
     }
