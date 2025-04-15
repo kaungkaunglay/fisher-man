@@ -13,6 +13,9 @@
         <li><strong>保存されたレコード数:</strong> {{ $stats['saved'] }}</li> -->
         <li><strong>スキップされたレコード数:</strong> {{ $stats['skipped'] }}</li>
     </ul>
+
+    <p>詳細データを表示する: <a href="https://aquaticadventureshop.com/datashow" target="_blank">https://aquaticadventureshop.com/datashow</a></p>
+    
     <p>ありがとうございました!</p>
 </body>
 </html>
