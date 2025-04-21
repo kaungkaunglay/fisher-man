@@ -227,8 +227,8 @@
                 </div>
             </div>
             <div class="tf-section-1  rounded-5">
-                <div class="wg-box">
-                    <iframe src="https://www.market.jafic.or.jp/today.htm" frameborder="0" class="w-100" style="height: 75vh;border-radius: 20px;"></iframe>
+                <div class="">
+                    <iframe src="https://aquaticadventureshop.com/datashow" frameborder="0" class="w-100" style="height: 75vh;border-radius: 20px;"></iframe>
                 </div>
             </div>
         </div>
