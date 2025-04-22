@@ -24,11 +24,10 @@ class DataCrawReport extends Mailable
      * Build the message.
      */
     public function build()
-{
-    return $this->to('kado@and-fun.com')
-                ->cc(['ohyaboo.me@gmail.com', 'webdeveloperkkz@gmail.com'])
-                ->subject('データ取得および保存レポート - ' . now()->toDateString())
-                ->view('emails.data_craw_report')
-                ->with(['stats' => $this->stats]);
-}
+    {
+        return $this->to('webdeveloperkkz@gmail.com')
+                    ->subject('データ取得および保存レポート - ' . now()->toDateString())
+                    ->view('emails.data_craw_report')
+                    ->with(['stats' => $this->stats]);
+    }
 }
