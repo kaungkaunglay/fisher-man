@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Mail\DataCrawReport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -12,7 +13,8 @@ use Illuminate\Support\Facades\Validator;
 
 class DataCrawController extends Controller
 {
-    public function datashow() {
+    public function datashow()
+    {
         return view('datashow.index');
     }
     public function search(Request $request)
@@ -184,205 +186,205 @@ class DataCrawController extends Controller
             ], 500);
         }
     }
-    
+
     public function fetchAndStore()
-{
-   
-    $today = now()->toDateString();
+    {
 
-   
-    $existingData = DataCraw::whereDate('created_at', $today)->exists();
+        $today = now()->toDateString();
 
-    if ($existingData) {
-        $stats = [
-            'total' => 0,
-            'processed' => 0,
-            'saved' => 0,
-            'skipped' => 0,
-        ];
 
-        Mail::send(new DataCrawReport($stats));
+        $existingData = DataCraw::whereDate('created_at', $today)->exists();
 
-        return response()->json([
-            'success' => false,
-            'error' => 'Data already exists for today',
-            'date' => $today
-        ], 400);
-    }
+        if ($existingData) {
+            $stats = [
+                'total' => 0,
+                'processed' => 0,
+                'saved' => 0,
+                'skipped' => 0,
+            ];
 
-    
-    $response = Http::get('https://test.fishseller.shop/api.php');
+            Mail::send(new DataCrawReport($stats));
 
-    if (!$response->successful()) {
-        return response()->json([
-            'success' => false,
-            'error' => 'Failed to fetch data',
-            'status' => $response->status()
-        ], 500);
-    }
-
-    $data = $response->json();
-
-    if (!isset($data['data']) || !is_array($data['data'])) {
-        return response()->json([
-            'success' => false,
-            'error' => 'Invalid data format'
-        ], 400);
-    }
-
-    $processedData = [];
-    $lastValidMarket = null;
-
-    foreach ($data['data'] as $item) {
-        $market = $this->normalizeMarket($item['market'] ?? null);
-
-        if ($market === null && $lastValidMarket !== null) {
-            $market = $lastValidMarket;
+            return response()->json([
+                'success' => false,
+                'error' => 'Data already exists for today',
+                'date' => $today
+            ], 400);
         }
 
-        if ($market !== null) {
-            if ($this->normalizeMarket($item['market'] ?? null) !== null) {
-                $lastValidMarket = $market;
+
+        $response = Http::get('https://test.fishseller.shop/api.php');
+
+        if (!$response->successful()) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Failed to fetch data',
+                'status' => $response->status()
+            ], 500);
+        }
+
+        $data = $response->json();
+
+        if (!isset($data['data']) || !is_array($data['data'])) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Invalid data format'
+            ], 400);
+        }
+
+        $processedData = [];
+        $lastValidMarket = null;
+
+        foreach ($data['data'] as $item) {
+            $market = $this->normalizeMarket($item['market'] ?? null);
+
+            if ($market === null && $lastValidMarket !== null) {
+                $market = $lastValidMarket;
             }
 
-            $date = $this->normalizeDate($item['date'] ?? null);
+            if ($market !== null) {
+                if ($this->normalizeMarket($item['market'] ?? null) !== null) {
+                    $lastValidMarket = $market;
+                }
 
-            $processedData[] = [
-                'category' => $item['category'] ?? null,
-                'market' => $market,
-                'market_code' => $item['market_code'] ?? null,
-                'date' => $date,
-                'fish_type' => $item['fishType'] ?? null,
-                'quantity' => $item['quantity'] ?? null,
-                'unit' => $item['unit'] ?? null,
-                'composition_large' => $item['prices']['fish_body_composition']['large'] ?? 0,
-                'composition_medium' => $item['prices']['fish_body_composition']['medium'] ?? 0,
-                'composition_small' => $item['prices']['fish_body_composition']['small'] ?? 0,
-                'composition_vary_small' => $item['prices']['fish_body_composition']['vary_small'] ?? 0,
-                'large_high' => $item['prices']['large']['high'] ?? null,
-                'large_medium' => $item['prices']['large']['medium'] ?? null,
-                'large_low' => $item['prices']['large']['low_price'] ?? null,
-                'medium_high' => $item['prices']['medium']['high'] ?? null,
-                'medium_middle' => $item['prices']['medium']['middle_value'] ?? null,
-                'medium_low' => $item['prices']['medium']['low_price'] ?? null,
-                'small_high' => $item['prices']['small']['high'] ?? null,
-                'small_middle' => $item['prices']['small']['middle_value'] ?? null,
-                'small_low' => $item['prices']['small']['low_price'] ?? null,
-                'additional_high' => $item['additional_metrics']['high'] ?? null,
-                'additional_middle' => $item['additional_metrics']['middle_value'] ?? null,
-                'additional_low' => $item['additional_metrics']['low_price'] ?? null,
+                $date = $this->normalizeDate($item['date'] ?? null);
+
+                $processedData[] = [
+                    'category' => $item['category'] ?? null,
+                    'market' => $market,
+                    'market_code' => $item['market_code'] ?? null,
+                    'date' => $date,
+                    'fish_type' => $item['fishType'] ?? null,
+                    'quantity' => $item['quantity'] ?? null,
+                    'unit' => $item['unit'] ?? null,
+                    'composition_large' => $item['prices']['fish_body_composition']['large'] ?? 0,
+                    'composition_medium' => $item['prices']['fish_body_composition']['medium'] ?? 0,
+                    'composition_small' => $item['prices']['fish_body_composition']['small'] ?? 0,
+                    'composition_vary_small' => $item['prices']['fish_body_composition']['vary_small'] ?? 0,
+                    'large_high' => $item['prices']['large']['high'] ?? null,
+                    'large_medium' => $item['prices']['large']['medium'] ?? null,
+                    'large_low' => $item['prices']['large']['low_price'] ?? null,
+                    'medium_high' => $item['prices']['medium']['high'] ?? null,
+                    'medium_middle' => $item['prices']['medium']['middle_value'] ?? null,
+                    'medium_low' => $item['prices']['medium']['low_price'] ?? null,
+                    'small_high' => $item['prices']['small']['high'] ?? null,
+                    'small_middle' => $item['prices']['small']['middle_value'] ?? null,
+                    'small_low' => $item['prices']['small']['low_price'] ?? null,
+                    'additional_high' => $item['additional_metrics']['high'] ?? null,
+                    'additional_middle' => $item['additional_metrics']['middle_value'] ?? null,
+                    'additional_low' => $item['additional_metrics']['low_price'] ?? null,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+        }
+
+
+        $mergedData = collect($processedData)->groupBy(function ($item) {
+            return $item['market'] . '|' . $item['date'] . '|' . $item['fish_type'];
+        })->map(function ($group) {
+            if ($group->count() === 1) {
+                return $group->first();
+            }
+
+
+            $averageQuantity = $group->avg('quantity');
+            $avgCompositionLarge = $group->avg('composition_large') ?? 0;
+            $avgCompositionMedium = $group->avg('composition_medium') ?? 0;
+            $avgCompositionSmall = $group->avg('composition_small') ?? 0;
+            $avgCompositionVarySmall = $group->avg('composition_vary_small') ?? 0;
+
+            $avgLargeHigh = $group->pluck('large_high')->filter()->avg() ?? null;
+            $avgLargeMedium = $group->pluck('large_medium')->filter()->avg() ?? null;
+            $avgLargeLow = $group->pluck('large_low')->filter()->avg() ?? null;
+
+            $avgMediumHigh = $group->pluck('medium_high')->filter()->avg() ?? null;
+            $avgMediumMiddle = $group->pluck('medium_middle')->filter()->avg() ?? null;
+            $avgMediumLow = $group->pluck('medium_low')->filter()->avg() ?? null;
+
+            $avgSmallHigh = $group->pluck('small_high')->filter()->avg() ?? null;
+            $avgSmallMiddle = $group->pluck('small_middle')->filter()->avg() ?? null;
+            $avgSmallLow = $group->pluck('small_low')->filter()->avg() ?? null;
+
+            $avgAdditionalHigh = $group->pluck('additional_high')->filter()->avg() ?? null;
+            $avgAdditionalMiddle = $group->pluck('additional_middle')->filter()->avg() ?? null;
+            $avgAdditionalLow = $group->pluck('additional_low')->filter()->avg() ?? null;
+
+            $firstItem = $group->first();
+
+            return [
+                'category' => $firstItem['category'],
+                'market' => $firstItem['market'],
+                'market_code' => $firstItem['market_code'],
+                'date' => $firstItem['date'],
+                'fish_type' => $firstItem['fish_type'],
+                'quantity' => round($averageQuantity, 2),
+                'unit' => $firstItem['unit'],
+                'composition_large' => round($avgCompositionLarge, 2),
+                'composition_medium' => round($avgCompositionMedium, 2),
+                'composition_small' => round($avgCompositionSmall, 2),
+                'composition_vary_small' => round($avgCompositionVarySmall, 2),
+                'large_high' => $avgLargeHigh ? round($avgLargeHigh, 2) : null,
+                'large_medium' => $avgLargeMedium ? round($avgLargeMedium, 2) : null,
+                'large_low' => $avgLargeLow ? round($avgLargeLow, 2) : null,
+                'medium_high' => $avgMediumHigh ? round($avgMediumHigh, 2) : null,
+                'medium_middle' => $avgMediumMiddle ? round($avgMediumMiddle, 2) : null,
+                'medium_low' => $avgMediumLow ? round($avgMediumLow, 2) : null,
+                'small_high' => $avgSmallHigh ? round($avgSmallHigh, 2) : null,
+                'small_middle' => $avgSmallMiddle ? round($avgSmallMiddle, 2) : null,
+                'small_low' => $avgSmallLow ? round($avgSmallLow, 2) : null,
+                'additional_high' => $avgAdditionalHigh ? round($avgAdditionalHigh, 2) : null,
+                'additional_middle' => $avgAdditionalMiddle ? round($avgAdditionalMiddle, 2) : null,
+                'additional_low' => $avgAdditionalLow ? round($avgAdditionalLow, 2) : null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
+        })->values()->toArray();
+
+        try {
+            DB::beginTransaction();
+
+            $savedCount = 0;
+            foreach ($mergedData as $item) {
+                DataCraw::create($item);
+                $savedCount++;
+            }
+
+            DB::commit();
+            $stats = [
+                'total' => count($data['data']),
+                'processed' => count($mergedData),
+                'saved' => $savedCount,
+                'skipped' => count($data['data']) - count($mergedData)
+            ];
+
+            Mail::send(new DataCrawReport($stats));
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Data saved successfully',
+                'stats' => $stats
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $stats = [
+                'total' => count($data['data'] ?? []),
+                'processed' => count($mergedData),
+                'saved' => 0,
+                'skipped' => count($data['data'] ?? []) - count($mergedData)
+            ];
+
+            Mail::send(new DataCrawReport($stats));
+
+            return response()->json([
+                'success' => false,
+                'error' => 'Database error',
+                'message' => $e->getMessage()
+            ], 500);
         }
     }
 
-   
-    $mergedData = collect($processedData)->groupBy(function ($item) {
-        return $item['market'] . '|' . $item['date'] . '|' . $item['fish_type'];
-    })->map(function ($group) {
-        if ($group->count() === 1) {
-            return $group->first();
-        }
 
-       
-        $averageQuantity = $group->avg('quantity');
-        $avgCompositionLarge = $group->avg('composition_large') ?? 0;
-        $avgCompositionMedium = $group->avg('composition_medium') ?? 0;
-        $avgCompositionSmall = $group->avg('composition_small') ?? 0;
-        $avgCompositionVarySmall = $group->avg('composition_vary_small') ?? 0;
-
-        $avgLargeHigh = $group->pluck('large_high')->filter()->avg() ?? null;
-        $avgLargeMedium = $group->pluck('large_medium')->filter()->avg() ?? null;
-        $avgLargeLow = $group->pluck('large_low')->filter()->avg() ?? null;
-
-        $avgMediumHigh = $group->pluck('medium_high')->filter()->avg() ?? null;
-        $avgMediumMiddle = $group->pluck('medium_middle')->filter()->avg() ?? null;
-        $avgMediumLow = $group->pluck('medium_low')->filter()->avg() ?? null;
-
-        $avgSmallHigh = $group->pluck('small_high')->filter()->avg() ?? null;
-        $avgSmallMiddle = $group->pluck('small_middle')->filter()->avg() ?? null;
-        $avgSmallLow = $group->pluck('small_low')->filter()->avg() ?? null;
-
-        $avgAdditionalHigh = $group->pluck('additional_high')->filter()->avg() ?? null;
-        $avgAdditionalMiddle = $group->pluck('additional_middle')->filter()->avg() ?? null;
-        $avgAdditionalLow = $group->pluck('additional_low')->filter()->avg() ?? null;
-
-        $firstItem = $group->first();
-
-        return [
-            'category' => $firstItem['category'],
-            'market' => $firstItem['market'],
-            'market_code' => $firstItem['market_code'],
-            'date' => $firstItem['date'],
-            'fish_type' => $firstItem['fish_type'],
-            'quantity' => round($averageQuantity, 2),
-            'unit' => $firstItem['unit'],
-            'composition_large' => round($avgCompositionLarge, 2),
-            'composition_medium' => round($avgCompositionMedium, 2),
-            'composition_small' => round($avgCompositionSmall, 2),
-            'composition_vary_small' => round($avgCompositionVarySmall, 2),
-            'large_high' => $avgLargeHigh ? round($avgLargeHigh, 2) : null,
-            'large_medium' => $avgLargeMedium ? round($avgLargeMedium, 2) : null,
-            'large_low' => $avgLargeLow ? round($avgLargeLow, 2) : null,
-            'medium_high' => $avgMediumHigh ? round($avgMediumHigh, 2) : null,
-            'medium_middle' => $avgMediumMiddle ? round($avgMediumMiddle, 2) : null,
-            'medium_low' => $avgMediumLow ? round($avgMediumLow, 2) : null,
-            'small_high' => $avgSmallHigh ? round($avgSmallHigh, 2) : null,
-            'small_middle' => $avgSmallMiddle ? round($avgSmallMiddle, 2) : null,
-            'small_low' => $avgSmallLow ? round($avgSmallLow, 2) : null,
-            'additional_high' => $avgAdditionalHigh ? round($avgAdditionalHigh, 2) : null,
-            'additional_middle' => $avgAdditionalMiddle ? round($avgAdditionalMiddle, 2) : null,
-            'additional_low' => $avgAdditionalLow ? round($avgAdditionalLow, 2) : null,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ];
-    })->values()->toArray();
-
-    try {
-        DB::beginTransaction();
-
-        $savedCount = 0;
-        foreach ($mergedData as $item) {
-            DataCraw::create($item);
-            $savedCount++;
-        }
-
-        DB::commit();
-        $stats = [
-            'total' => count($data['data']),
-            'processed' => count($mergedData),
-            'saved' => $savedCount,
-            'skipped' => count($data['data']) - count($mergedData)
-        ];
-
-        Mail::send(new DataCrawReport($stats));
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Data saved successfully',
-            'stats' => $stats
-        ]);
-    } catch (\Exception $e) {
-        DB::rollBack();
-        $stats = [
-            'total' => count($data['data'] ?? []),
-            'processed' => count($mergedData),
-            'saved' => 0,
-            'skipped' => count($data['data'] ?? []) - count($mergedData)
-        ];
-
-        Mail::send(new DataCrawReport($stats));
-
-        return response()->json([
-            'success' => false,
-            'error' => 'Database error',
-            'message' => $e->getMessage()
-        ], 500);
-    }
-}
-
-    
     private function normalizeMarket($value)
     {
         if ($value === null) {
@@ -399,21 +401,21 @@ class DataCrawController extends Controller
         return $value;
     }
 
-   
+
     private function normalizeDate($date)
     {
-       
+
         $date = trim((string)$date, " \t\n\r\0\x0B\u{3000}");
 
-  
+
         if ($date === null || $date === '' || strtolower($date) === 'null') {
             return Carbon::now()->format('Y-m-d');
         }
 
-        
+
         $date = str_replace('分', '', $date);
 
-  
+
         if (preg_match('/^\d{1,2}\/\d{1,2}$/', $date)) {
             $date = Carbon::now()->format('Y-') . str_replace('/', '-', $date);
         }
@@ -430,18 +432,18 @@ class DataCrawController extends Controller
     public function apidata()
     {
         try {
-          
-            $today = now()->toDateString(); 
-            $yesterday = now()->subDay()->toDateString(); 
-    
+
+            $today = now()->toDateString();
+            $yesterday = now()->subDay()->toDateString();
+
             $dataCrawRecords = DataCraw::whereDate('created_at', $today)->get();
-    
-           
+
+
             if ($dataCrawRecords->isEmpty()) {
                 $dataCrawRecords = DataCraw::whereDate('created_at', $yesterday)->get();
             }
-    
-            
+
+
             $groupedData = $dataCrawRecords->groupBy('category')->map(function ($records) {
                 return $records->map(function ($record) {
                     return [
@@ -483,7 +485,7 @@ class DataCrawController extends Controller
                     ];
                 })->toArray();
             })->toArray();
-    
+
             return response()->json([
                 'success' => true,
                 'data' => $groupedData,
@@ -497,4 +499,27 @@ class DataCrawController extends Controller
         }
     }
 
+
+    public function getByMarket()
+    {
+        $data = DataCraw::distinct()->pluck('market');
+
+        return response()->json($data);
+    }
+
+
+
+    public function getByFish(Request $request)
+    {
+        $data = DataCraw::distinct()->pluck('fish_type');
+
+        return response()->json($data);
+    }
+
+    public function getByDate(Request $request)
+    {
+        $data = DataCraw::distinct()->pluck('date');
+
+        return response()->json($data);
+    }
 }

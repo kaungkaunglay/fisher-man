@@ -79,6 +79,10 @@ Route::get('/datashow', [DataCrawController::class, 'datashow']);
 
 Route::get('/fetch-data-search', [DataCrawController::class, 'search']);
 
+Route::get('/datacraw/market', [DataCrawController::class, 'getByMarket']);
+Route::get('/datacraw/fish', [DataCrawController::class, 'getByFish']);
+Route::get('/datacraw/date', [DataCrawController::class, 'getByDate']);
+
 // Logout
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
