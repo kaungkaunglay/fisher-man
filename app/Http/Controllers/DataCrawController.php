@@ -18,7 +18,7 @@ class DataCrawController extends Controller
     public function search(Request $request)
     {
         try {
-           
+            // Validate the request body
             $validator = Validator::make($request->all(), [
                 'market' => 'nullable|string',
                 'fishType' => 'nullable|string',
@@ -33,12 +33,12 @@ class DataCrawController extends Controller
                 ], 400);
             }
 
-           
+            // Get input parameters, default date to today if not provided
             $market = $request->input('market');
             $fishType = $request->input('fishType');
-            $date = $request->input('date', now()->toDateString()); 
+            $date = $request->input('date', now()->toDateString()); // Default to today
 
-          
+            // Build query
             $query = DataCraw::query();
 
             if ($market) {
@@ -53,50 +53,123 @@ class DataCrawController extends Controller
                 $query->whereDate('date', $date);
             }
 
-            
+            // Fetch matching records
             $dataCrawRecords = $query->get();
 
-            
+            // Group records by category
             $groupedData = $dataCrawRecords->groupBy('category')->map(function ($records) {
-                return $records->map(function ($record) {
+                // Group by market, date, and fishType to identify duplicates
+                $groupedByMarketDateFish = $records->groupBy(function ($record) {
+                    return $record->market . '|' . $record->date . '|' . $record->fish_type;
+                });
+
+                // Process each group to merge duplicates and calculate averages
+                $mergedRecords = $groupedByMarketDateFish->map(function ($group) {
+                    if ($group->count() === 1) {
+                        $record = $group->first();
+                        return [
+                            'category' => $record->category,
+                            'market' => $record->market,
+                            'market_code' => $record->market_code,
+                            'date' => $record->date,
+                            'fishType' => $record->fish_type,
+                            'quantity' => $record->quantity,
+                            'unit' => $record->unit,
+                            'prices' => [
+                                'fish_body_composition' => [
+                                    'large' => $record->composition_large,
+                                    'medium' => $record->composition_medium,
+                                    'small' => $record->composition_small,
+                                    'vary_small' => $record->composition_vary_small,
+                                ],
+                                'large' => [
+                                    'high' => $record->large_high,
+                                    'medium' => $record->large_medium,
+                                    'low_price' => $record->large_low,
+                                ],
+                                'medium' => [
+                                    'high' => $record->medium_high,
+                                    'middle_value' => $record->medium_middle,
+                                    'low_price' => $record->medium_low,
+                                ],
+                                'small' => [
+                                    'high' => $record->small_high,
+                                    'middle_value' => $record->small_middle,
+                                    'low_price' => $record->small_low,
+                                ],
+                            ],
+                            'additional_metrics' => [
+                                'high' => $record->additional_high,
+                                'middle_value' => $record->additional_middle,
+                                'low_price' => $record->additional_low,
+                            ],
+                        ];
+                    }
+
+                    // For multiple records, calculate averages
+                    $firstRecord = $group->first();
+                    $averageQuantity = $group->avg('quantity');
+                    $avgCompositionLarge = $group->avg('composition_large') ?? 0;
+                    $avgCompositionMedium = $group->avg('composition_medium') ?? 0;
+                    $avgCompositionSmall = $group->avg('composition_small') ?? 0;
+                    $avgCompositionVarySmall = $group->avg('composition_vary_small') ?? 0;
+
+                    $avgLargeHigh = $group->pluck('large_high')->filter()->avg() ?? null;
+                    $avgLargeMedium = $group->pluck('large_medium')->filter()->avg() ?? null;
+                    $avgLargeLow = $group->pluck('large_low')->filter()->avg() ?? null;
+
+                    $avgMediumHigh = $group->pluck('medium_high')->filter()->avg() ?? null;
+                    $avgMediumMiddle = $group->pluck('medium_middle')->filter()->avg() ?? null;
+                    $avgMediumLow = $group->pluck('medium_low')->filter()->avg() ?? null;
+
+                    $avgSmallHigh = $group->pluck('small_high')->filter()->avg() ?? null;
+                    $avgSmallMiddle = $group->pluck('small_middle')->filter()->avg() ?? null;
+                    $avgSmallLow = $group->pluck('small_low')->filter()->avg() ?? null;
+
+                    $avgAdditionalHigh = $group->pluck('additional_high')->filter()->avg() ?? null;
+                    $avgAdditionalMiddle = $group->pluck('additional_middle')->filter()->avg() ?? null;
+                    $avgAdditionalLow = $group->pluck('additional_low')->filter()->avg() ?? null;
+
                     return [
-                        'category' => $record->category,
-                        'market' => $record->market,
-                        'market_code' => $record->market_code,
-                        'date' => $record->date,
-                        'fishType' => $record->fish_type,
-                        'quantity' => $record->quantity,
-                        'unit' => $record->unit,
+                        'category' => $firstRecord->category,
+                        'market' => $firstRecord->market,
+                        'market_code' => $firstRecord->market_code,
+                        'date' => $firstRecord->date,
+                        'fishType' => $firstRecord->fish_type,
+                        'quantity' => round($averageQuantity, 2),
+                        'unit' => $firstRecord->unit,
                         'prices' => [
                             'fish_body_composition' => [
-                                'large' => $record->composition_large,
-                                'medium' => $record->composition_medium,
-                                'small' => $record->composition_small,
-                                'vary_small' => $record->composition_vary_small,
+                                'large' => round($avgCompositionLarge, 2),
+                                'medium' => round($avgCompositionMedium, 2),
+                                'small' => round($avgCompositionSmall, 2),
+                                'vary_small' => round($avgCompositionVarySmall, 2),
                             ],
                             'large' => [
-                                'high' => $record->large_high,
-                                'medium' => $record->large_medium,
-                                'low_price' => $record->large_low,
+                                'high' => $avgLargeHigh ? round($avgLargeHigh, 2) : null,
+                                'medium' => $avgLargeMedium ? round($avgLargeMedium, 2) : null,
+                                'low_price' => $avgLargeLow ? round($avgLargeLow, 2) : null,
                             ],
                             'medium' => [
-                                'high' => $record->medium_high,
-                                'middle_value' => $record->medium_middle,
-                                'low_price' => $record->medium_low,
+                                'high' => $avgMediumHigh ? round($avgMediumHigh, 2) : null,
+                                'middle_value' => $avgMediumMiddle ? round($avgMediumMiddle, 2) : null,
+                                'low_price' => $avgMediumLow ? round($avgMediumLow, 2) : null,
                             ],
                             'small' => [
-                                'high' => $record->small_high,
-                                'middle_value' => $record->small_middle,
-                                'low_price' => $record->small_low,
+                                'high' => $avgSmallHigh ? round($avgSmallHigh, 2) : null,
+                                'middle_value' => $avgSmallMiddle ? round($avgSmallMiddle, 2) : null,
+                                'low_price' => $avgSmallLow ? round($avgSmallLow, 2) : null,
                             ],
                         ],
                         'additional_metrics' => [
-                            'high' => $record->additional_high,
-                            'middle_value' => $record->additional_middle,
-                            'low_price' => $record->additional_low,
+                            'high' => $avgAdditionalHigh ? round($avgAdditionalHigh, 2) : null,
+                            'middle_value' => $avgAdditionalMiddle ? round($avgAdditionalMiddle, 2) : null,
+                            'low_price' => $avgAdditionalLow ? round($avgAdditionalLow, 2) : null,
                         ],
                     ];
-                })->toArray();
+                })->values()->toArray();
+
+                return $mergedRecords;
             })->toArray();
 
             return response()->json([
@@ -111,7 +184,6 @@ class DataCrawController extends Controller
             ], 500);
         }
     }
-    
     
     public function fetchAndStore()
 {
