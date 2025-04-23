@@ -77,6 +77,7 @@ Route::get('/fetch-data-api-data', [DataCrawController::class, 'apidata']);
 
 Route::get('/datashow', [DataCrawController::class, 'datashow']);
 
+Route::get('/fetch-data-search', [DataCrawController::class, 'search']);
 
 // Logout
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

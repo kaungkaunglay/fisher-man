@@ -8,12 +8,110 @@ use App\Models\DataCraw;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class DataCrawController extends Controller
 {
     public function datashow() {
         return view('datashow.index');
     }
+    public function search(Request $request)
+    {
+        try {
+           
+            $validator = Validator::make($request->all(), [
+                'market' => 'nullable|string',
+                'fishType' => 'nullable|string',
+                'date' => 'nullable|date_format:Y-m-d',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'error' => 'Validation failed',
+                    'messages' => $validator->errors()
+                ], 400);
+            }
+
+           
+            $market = $request->input('market');
+            $fishType = $request->input('fishType');
+            $date = $request->input('date', now()->toDateString()); 
+
+          
+            $query = DataCraw::query();
+
+            if ($market) {
+                $query->where('market', $market);
+            }
+
+            if ($fishType) {
+                $query->where('fish_type', $fishType);
+            }
+
+            if ($date) {
+                $query->whereDate('date', $date);
+            }
+
+            
+            $dataCrawRecords = $query->get();
+
+            
+            $groupedData = $dataCrawRecords->groupBy('category')->map(function ($records) {
+                return $records->map(function ($record) {
+                    return [
+                        'category' => $record->category,
+                        'market' => $record->market,
+                        'market_code' => $record->market_code,
+                        'date' => $record->date,
+                        'fishType' => $record->fish_type,
+                        'quantity' => $record->quantity,
+                        'unit' => $record->unit,
+                        'prices' => [
+                            'fish_body_composition' => [
+                                'large' => $record->composition_large,
+                                'medium' => $record->composition_medium,
+                                'small' => $record->composition_small,
+                                'vary_small' => $record->composition_vary_small,
+                            ],
+                            'large' => [
+                                'high' => $record->large_high,
+                                'medium' => $record->large_medium,
+                                'low_price' => $record->large_low,
+                            ],
+                            'medium' => [
+                                'high' => $record->medium_high,
+                                'middle_value' => $record->medium_middle,
+                                'low_price' => $record->medium_low,
+                            ],
+                            'small' => [
+                                'high' => $record->small_high,
+                                'middle_value' => $record->small_middle,
+                                'low_price' => $record->small_low,
+                            ],
+                        ],
+                        'additional_metrics' => [
+                            'high' => $record->additional_high,
+                            'middle_value' => $record->additional_middle,
+                            'low_price' => $record->additional_low,
+                        ],
+                    ];
+                })->toArray();
+            })->toArray();
+
+            return response()->json([
+                'success' => true,
+                'data' => $groupedData,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Failed to retrieve data',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+    
     
     public function fetchAndStore()
 {
