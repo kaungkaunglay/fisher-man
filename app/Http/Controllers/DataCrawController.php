@@ -26,7 +26,7 @@ class DataCrawController extends Controller
                 'fishType' => 'nullable|string',
                 'date' => 'nullable|date_format:Y-m-d',
             ]);
-
+    
             if ($validator->fails()) {
                 return response()->json([
                     'success' => false,
@@ -34,37 +34,40 @@ class DataCrawController extends Controller
                     'messages' => $validator->errors()
                 ], 400);
             }
-
-            // Get input parameters, default date to today if not provided
+    
+            // Get input parameters, default date to yesterday if not provided
             $market = $request->input('market');
             $fishType = $request->input('fishType');
-            $date = $request->input('date', now()->toDateString()); // Default to today
-
+            $date = $request->input('date');
+    
+            // If date is null, use yesterday's date
+            if (!$date) {
+                $date = now()->subDay()->toDateString(); // e.g., 2025-04-23 if today is 2025-04-24
+            }
+    
             // Build query
             $query = DataCraw::query();
-
+    
             if ($market) {
                 $query->where('market', $market);
             }
-
+    
             if ($fishType) {
                 $query->where('fish_type', $fishType);
             }
-
-            if ($date) {
-                $query->whereDate('date', $date);
-            }
-
+    
+            $query->whereDate('date', $date);
+    
             // Fetch matching records
             $dataCrawRecords = $query->get();
-
+    
             // Group records by category
             $groupedData = $dataCrawRecords->groupBy('category')->map(function ($records) {
                 // Group by market, date, and fishType to identify duplicates
                 $groupedByMarketDateFish = $records->groupBy(function ($record) {
                     return $record->market . '|' . $record->date . '|' . $record->fish_type;
                 });
-
+    
                 // Process each group to merge duplicates and calculate averages
                 $mergedRecords = $groupedByMarketDateFish->map(function ($group) {
                     if ($group->count() === 1) {
@@ -107,7 +110,7 @@ class DataCrawController extends Controller
                             ],
                         ];
                     }
-
+    
                     // For multiple records, calculate averages
                     $firstRecord = $group->first();
                     $averageQuantity = $group->avg('quantity');
@@ -115,23 +118,23 @@ class DataCrawController extends Controller
                     $avgCompositionMedium = $group->avg('composition_medium') ?? 0;
                     $avgCompositionSmall = $group->avg('composition_small') ?? 0;
                     $avgCompositionVarySmall = $group->avg('composition_vary_small') ?? 0;
-
+    
                     $avgLargeHigh = $group->pluck('large_high')->filter()->avg() ?? null;
                     $avgLargeMedium = $group->pluck('large_medium')->filter()->avg() ?? null;
                     $avgLargeLow = $group->pluck('large_low')->filter()->avg() ?? null;
-
+    
                     $avgMediumHigh = $group->pluck('medium_high')->filter()->avg() ?? null;
                     $avgMediumMiddle = $group->pluck('medium_middle')->filter()->avg() ?? null;
                     $avgMediumLow = $group->pluck('medium_low')->filter()->avg() ?? null;
-
+    
                     $avgSmallHigh = $group->pluck('small_high')->filter()->avg() ?? null;
                     $avgSmallMiddle = $group->pluck('small_middle')->filter()->avg() ?? null;
                     $avgSmallLow = $group->pluck('small_low')->filter()->avg() ?? null;
-
+    
                     $avgAdditionalHigh = $group->pluck('additional_high')->filter()->avg() ?? null;
                     $avgAdditionalMiddle = $group->pluck('additional_middle')->filter()->avg() ?? null;
                     $avgAdditionalLow = $group->pluck('additional_low')->filter()->avg() ?? null;
-
+    
                     return [
                         'category' => $firstRecord->category,
                         'market' => $firstRecord->market,
@@ -170,10 +173,10 @@ class DataCrawController extends Controller
                         ],
                     ];
                 })->values()->toArray();
-
+    
                 return $mergedRecords;
             })->toArray();
-
+    
             return response()->json([
                 'success' => true,
                 'data' => $groupedData,
