@@ -77,6 +77,8 @@ Route::get('/fetch-data-api-data', [DataCrawController::class, 'apidata']);
 
 Route::get('/datashow', [DataCrawController::class, 'datashow']);
 
+Route::get('/datashowrating ', [DataCrawController::class, 'datashowrating']);
+
 Route::get('/fetch-data-search', [DataCrawController::class, 'search']);
 
 Route::get('/datacraw/market', [DataCrawController::class, 'getByMarket']);

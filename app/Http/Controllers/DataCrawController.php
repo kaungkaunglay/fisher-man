@@ -189,7 +189,43 @@ class DataCrawController extends Controller
             ], 500);
         }
     }
+    public function datashowrating(Request $request)
+    {
+       
+        $validated = $request->validate([
+            'fish_type' => 'nullable|string|max:255',
+            'page' => 'nullable|integer|min:1',
+            'per_page' => 'nullable|integer|min:1|max:100',
+        ]);
 
+       
+        $fishType = $validated['fish_type'] ?? '';
+        $page = $validated['page'] ?? 1;
+        $perPage = $validated['per_page'] ?? 10;
+
+    
+        $query = DataCraw::query();
+
+        
+        if (!empty($fishType)) {
+            $query->where('fish_type', $fishType);
+        }
+
+     
+        $query->orderBy('quantity', 'desc');
+
+      
+        $data = $query->paginate($perPage);
+
+     
+        return response()->json([
+            'data' => $data->items(),
+            'current_page' => $data->currentPage(),
+            'last_page' => $data->lastPage(),
+            'total' => $data->total(),
+            'per_page' => $data->perPage(),
+        ]);
+    }
     public function fetchAndStore()
     {
 
