@@ -654,9 +654,12 @@ class DataCrawController extends Controller
     }
 
     public function getByDate(Request $request)
-    {   
-        $data = DataCraw::distinct()->pluck('date');
+{   
+    $data = DataCraw::distinct()
+        ->orderBy('date', 'desc')
+        ->pluck('date');
 
-        return response()->json($data);
-    }
+    return response()->json($data);
+}
+
 }
