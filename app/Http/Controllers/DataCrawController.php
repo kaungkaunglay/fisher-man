@@ -189,6 +189,109 @@ class DataCrawController extends Controller
             ], 500);
         }
     }
+
+    public function searchweek(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'market' => 'nullable|string',
+                'fishType' => 'nullable|string',
+                'date' => 'nullable|date_format:Y-m-d',
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'error' => 'Validation failed',
+                    'messages' => $validator->errors()
+                ], 400);
+            }
+    
+            $market = $request->input('market');
+            $fishType = $request->input('fishType');
+            $date = $request->input('date');
+    
+            $endDate = $date ? Carbon::parse($date) : now();
+            $startDate = $endDate->copy()->subDays(6);
+    
+            $query = DataCraw::query();
+    
+            if ($market) {
+                $query->where('market', $market);
+            }
+    
+            if ($fishType) {
+                $query->where('fish_type', $fishType);
+            }
+    
+            $query->whereBetween('date', [$startDate->toDateString(), $endDate->toDateString()]);
+    
+            $dataCrawRecords = $query->orderBy('date', 'asc')->get();
+    
+            // Group by date
+            $groupedData = [];
+    
+            foreach ($dataCrawRecords->groupBy('date') as $date => $records) {
+                $mergedByMarketFish = $records->groupBy(function ($record) {
+                    return $record->market . '|' . $record->fish_type;
+                });
+    
+                $mergedEntries = [];
+    
+                foreach ($mergedByMarketFish as $group) {
+                    $avgLargeHigh = $group->pluck('large_high')->filter()->avg();
+                    $avgLargeMedium = $group->pluck('large_medium')->filter()->avg();
+                    $avgLargeLow = $group->pluck('large_low')->filter()->avg();
+    
+                    $avgMediumHigh = $group->pluck('medium_high')->filter()->avg();
+                    $avgMediumMiddle = $group->pluck('medium_middle')->filter()->avg();
+                    $avgMediumLow = $group->pluck('medium_low')->filter()->avg();
+    
+                    $avgSmallHigh = $group->pluck('small_high')->filter()->avg();
+                    $avgSmallMiddle = $group->pluck('small_middle')->filter()->avg();
+                    $avgSmallLow = $group->pluck('small_low')->filter()->avg();
+    
+                    $mergedEntries[] = [
+                        'large' => [
+                            'high' => $avgLargeHigh ? round($avgLargeHigh, 2) : null,
+                            'medium' => $avgLargeMedium ? round($avgLargeMedium, 2) : null,
+                            'low_price' => $avgLargeLow ? round($avgLargeLow, 2) : null,
+                        ],
+                        'medium' => [
+                            'high' => $avgMediumHigh ? round($avgMediumHigh, 2) : null,
+                            'middle_value' => $avgMediumMiddle ? round($avgMediumMiddle, 2) : null,
+                            'low_price' => $avgMediumLow ? round($avgMediumLow, 2) : null,
+                        ],
+                        'small' => [
+                            'high' => $avgSmallHigh ? round($avgSmallHigh, 2) : null,
+                            'middle_value' => $avgSmallMiddle ? round($avgSmallMiddle, 2) : null,
+                            'low_price' => $avgSmallLow ? round($avgSmallLow, 2) : null,
+                        ],
+                    ];
+                }
+    
+                $groupedData[$date] = $mergedEntries;
+            }
+    
+            // Ensure 7 days are present
+            $result = [];
+            for ($i = 0; $i < 7; $i++) {
+                $currentDate = $startDate->copy()->addDays($i)->toDateString();
+                $result[$currentDate] = $groupedData[$currentDate] ?? [];
+            }
+    
+            return response()->json([
+                'success' => true,
+                'data' => $result,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Failed to retrieve data',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
     public function datashowrating(Request $request)
     {
        

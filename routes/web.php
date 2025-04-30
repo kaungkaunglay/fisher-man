@@ -81,6 +81,9 @@ Route::get('/datashowrating ', [DataCrawController::class, 'datashowrating']);
 
 Route::get('/fetch-data-search', [DataCrawController::class, 'search']);
 
+
+Route::get('/fetch-data-week', [DataCrawController::class, 'searchweek']);
+
 Route::get('/datacraw/market', [DataCrawController::class, 'getByMarket']);
 Route::get('/datacraw/fish', [DataCrawController::class, 'getByFish']);
 Route::get('/datacraw/date', [DataCrawController::class, 'getByDate']);
