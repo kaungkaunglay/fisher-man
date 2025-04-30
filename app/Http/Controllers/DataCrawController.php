@@ -228,56 +228,50 @@ class DataCrawController extends Controller
     
             $dataCrawRecords = $query->orderBy('date', 'asc')->get();
     
-            // Group by date
-            $groupedData = [];
-    
-            foreach ($dataCrawRecords->groupBy('date') as $date => $records) {
-                $mergedByMarketFish = $records->groupBy(function ($record) {
-                    return $record->market . '|' . $record->fish_type;
-                });
-    
-                $mergedEntries = [];
-    
-                foreach ($mergedByMarketFish as $group) {
-                    $avgLargeHigh = $group->pluck('large_high')->filter()->avg();
-                    $avgLargeMedium = $group->pluck('large_medium')->filter()->avg();
-                    $avgLargeLow = $group->pluck('large_low')->filter()->avg();
-    
-                    $avgMediumHigh = $group->pluck('medium_high')->filter()->avg();
-                    $avgMediumMiddle = $group->pluck('medium_middle')->filter()->avg();
-                    $avgMediumLow = $group->pluck('medium_low')->filter()->avg();
-    
-                    $avgSmallHigh = $group->pluck('small_high')->filter()->avg();
-                    $avgSmallMiddle = $group->pluck('small_middle')->filter()->avg();
-                    $avgSmallLow = $group->pluck('small_low')->filter()->avg();
-    
-                    $mergedEntries[] = [
-                        'large' => [
-                            'high' => $avgLargeHigh ? round($avgLargeHigh, 2) : null,
-                            'medium' => $avgLargeMedium ? round($avgLargeMedium, 2) : null,
-                            'low_price' => $avgLargeLow ? round($avgLargeLow, 2) : null,
-                        ],
-                        'medium' => [
-                            'high' => $avgMediumHigh ? round($avgMediumHigh, 2) : null,
-                            'middle_value' => $avgMediumMiddle ? round($avgMediumMiddle, 2) : null,
-                            'low_price' => $avgMediumLow ? round($avgMediumLow, 2) : null,
-                        ],
-                        'small' => [
-                            'high' => $avgSmallHigh ? round($avgSmallHigh, 2) : null,
-                            'middle_value' => $avgSmallMiddle ? round($avgSmallMiddle, 2) : null,
-                            'low_price' => $avgSmallLow ? round($avgSmallLow, 2) : null,
-                        ],
-                    ];
-                }
-    
-                $groupedData[$date] = $mergedEntries;
-            }
-    
-            // Ensure 7 days are present
             $result = [];
+    
+            // Prepare structure for each day
             for ($i = 0; $i < 7; $i++) {
                 $currentDate = $startDate->copy()->addDays($i)->toDateString();
-                $result[$currentDate] = $groupedData[$currentDate] ?? [];
+                $dailyRecords = $dataCrawRecords->where('date', $currentDate);
+    
+                if ($dailyRecords->isEmpty()) {
+                    $result[$currentDate] = [];
+                    continue;
+                }
+    
+                // Collect all values
+                $highValues = collect([
+                    ...$dailyRecords->pluck('large_high'),
+                    ...$dailyRecords->pluck('medium_high'),
+                    ...$dailyRecords->pluck('small_high')
+                ])->filter();
+    
+                $mediumValues = collect([
+                    ...$dailyRecords->pluck('large_medium'),
+                    ...$dailyRecords->pluck('medium_middle'),
+                    ...$dailyRecords->pluck('small_middle')
+                ])->filter();
+    
+                $lowValues = collect([
+                    ...$dailyRecords->pluck('large_low'),
+                    ...$dailyRecords->pluck('medium_low'),
+                    ...$dailyRecords->pluck('small_low')
+                ])->filter();
+    
+                // Calculate averages
+                $highAvg = $highValues->avg();
+                $mediumAvg = $mediumValues->avg();
+                $lowAvg = $lowValues->avg();
+    
+                // Add to result
+                $result[$currentDate] = [
+                    [
+                        'high' => $highAvg ? round($highAvg, 2) : null,
+                        'medium' => $mediumAvg ? round($mediumAvg, 2) : null,
+                        'low_price' => $lowAvg ? round($lowAvg, 2) : null,
+                    ]
+                ];
             }
     
             return response()->json([
@@ -292,6 +286,7 @@ class DataCrawController extends Controller
             ], 500);
         }
     }
+    
     public function datashowrating(Request $request)
     {
        
