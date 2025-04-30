@@ -228,50 +228,50 @@ class DataCrawController extends Controller
     
             $dataCrawRecords = $query->orderBy('date', 'asc')->get();
     
-            $result = [];
+            $groupedData = [];
     
-            // Prepare structure for each day
-            for ($i = 0; $i < 7; $i++) {
-                $currentDate = $startDate->copy()->addDays($i)->toDateString();
-                $dailyRecords = $dataCrawRecords->where('date', $currentDate);
+            foreach ($dataCrawRecords->groupBy('date') as $date => $records) {
+                $largeHighs = [];
+                $mediumHighs = [];
+                $smallHighs = [];
     
-                if ($dailyRecords->isEmpty()) {
-                    $result[$currentDate] = [];
-                    continue;
+                foreach ($records as $record) {
+                    // Collect large group values
+                    $largeHighs[] = $record->large_high;
+                    $largeHighs[] = $record->large_medium;
+                    $largeHighs[] = $record->large_low;
+    
+                    // Collect medium group values
+                    $mediumHighs[] = $record->medium_high;
+                    $mediumHighs[] = $record->medium_middle;
+                    $mediumHighs[] = $record->medium_low;
+    
+                    // Collect small group values
+                    $smallHighs[] = $record->small_high;
+                    $smallHighs[] = $record->small_middle;
+                    $smallHighs[] = $record->small_low;
                 }
     
-                // Collect all values
-                $highValues = collect([
-                    ...$dailyRecords->pluck('large_high'),
-                    ...$dailyRecords->pluck('medium_high'),
-                    ...$dailyRecords->pluck('small_high')
-                ])->filter();
+                // Helper to compute average ignoring nulls
+                $average = function ($values) {
+                    $filtered = array_filter($values, function ($val) {
+                        return !is_null($val);
+                    });
+                    return count($filtered) ? round(array_sum($filtered) / count($filtered), 2) : null;
+                };
     
-                $mediumValues = collect([
-                    ...$dailyRecords->pluck('large_medium'),
-                    ...$dailyRecords->pluck('medium_middle'),
-                    ...$dailyRecords->pluck('small_middle')
-                ])->filter();
-    
-                $lowValues = collect([
-                    ...$dailyRecords->pluck('large_low'),
-                    ...$dailyRecords->pluck('medium_low'),
-                    ...$dailyRecords->pluck('small_low')
-                ])->filter();
-    
-                // Calculate averages
-                $highAvg = $highValues->avg();
-                $mediumAvg = $mediumValues->avg();
-                $lowAvg = $lowValues->avg();
-    
-                // Add to result
-                $result[$currentDate] = [
-                    [
-                        'high' => $highAvg ? round($highAvg, 2) : null,
-                        'medium' => $mediumAvg ? round($mediumAvg, 2) : null,
-                        'low_price' => $lowAvg ? round($lowAvg, 2) : null,
-                    ]
+                $groupedData[$date][] = [
+                    'high' => $average($largeHighs),
+                    'medium' => $average($mediumHighs),
+                    'low_price' => $average($smallHighs),
                 ];
+            }
+    
+            // Ensure all 7 days included
+            $result = [];
+            for ($i = 0; $i < 7; $i++) {
+                $currentDate = $startDate->copy()->addDays($i)->toDateString();
+                $result[$currentDate] = $groupedData[$currentDate] ?? [];
             }
     
             return response()->json([
