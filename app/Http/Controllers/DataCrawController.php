@@ -299,9 +299,10 @@ public function datashowrating(Request $request)
     // Get today's date
     $today = Carbon::today()->toDateString();
     
-    // First try to get today's data where quantity is not null
+    // First try to get today's data where quantity is not null and not zero
     $query = DataCraw::where('date', $today)
-                    ->whereNotNull('quantity');
+                    ->whereNotNull('quantity')
+                    ->where('quantity', '>', 0);
 
     if (!empty($fishType)) {
         $query->where('fish_type', $fishType);
@@ -309,20 +310,22 @@ public function datashowrating(Request $request)
 
     $data = $query->orderBy('quantity', 'desc')->paginate($perPage);
 
-    // If no results for today, get the most recent available data where quantity is not null
+    // If no results for today, get the most recent available data where quantity is not null and not zero
     if ($data->isEmpty()) {
-        $query = DataCraw::whereNotNull('quantity');
+        $query = DataCraw::whereNotNull('quantity')
+                        ->where('quantity', '>', 0);
         
         if (!empty($fishType)) {
             $query->where('fish_type', $fishType);
         }
 
-        // Get the most recent date with data where quantity is not null
+        // Get the most recent date with data where quantity is not null and not zero
         $latestDate = DataCraw::whereNotNull('quantity')
-            ->when(!empty($fishType), function($q) use ($fishType) {
-                $q->where('fish_type', $fishType);
-            })
-            ->max('date');
+                            ->where('quantity', '>', 0)
+                            ->when(!empty($fishType), function($q) use ($fishType) {
+                                $q->where('fish_type', $fishType);
+                            })
+                            ->max('date');
 
         if ($latestDate) {
             $query->where('date', $latestDate);
