@@ -284,43 +284,59 @@ class DataCrawController extends Controller
     }
 }
     
-    public function datashowrating(Request $request)
-    {
-       
-        $validated = $request->validate([
-            'fish_type' => 'nullable|string|max:255',
-            'page' => 'nullable|integer|min:1',
-            'per_page' => 'nullable|integer|min:1|max:100',
-        ]);
+public function datashowrating(Request $request)
+{
+    $validated = $request->validate([
+        'fish_type' => 'nullable|string|max:255',
+        'page' => 'nullable|integer|min:1',
+        'per_page' => 'nullable|integer|min:1|max:100',
+    ]);
 
-       
-        $fishType = $validated['fish_type'] ?? '';
-        $page = $validated['page'] ?? 1;
-        $perPage = $validated['per_page'] ?? 10;
+    $fishType = $validated['fish_type'] ?? '';
+    $page = $validated['page'] ?? 1;
+    $perPage = $validated['per_page'] ?? 10;
 
+    // Get today's date
+    $today = Carbon::today()->toDateString();
     
-        $query = DataCraw::query();
+    // First try to get today's data
+    $query = DataCraw::where('date', $today);
 
+    if (!empty($fishType)) {
+        $query->where('fish_type', $fishType);
+    }
+
+    $data = $query->orderBy('quantity', 'desc')->paginate($perPage);
+
+    // If no results for today, get the most recent available data
+    if ($data->isEmpty()) {
+        $query = DataCraw::query();
         
         if (!empty($fishType)) {
             $query->where('fish_type', $fishType);
         }
 
-     
-        $query->orderBy('quantity', 'desc');
+        // Get the most recent date with data
+        $latestDate = DataCraw::when(!empty($fishType), function($q) use ($fishType) {
+                $q->where('fish_type', $fishType);
+            })
+            ->max('date');
 
-      
-        $data = $query->paginate($perPage);
-
-     
-        return response()->json([
-            'data' => $data->items(),
-            'current_page' => $data->currentPage(),
-            'last_page' => $data->lastPage(),
-            'total' => $data->total(),
-            'per_page' => $data->perPage(),
-        ]);
+        if ($latestDate) {
+            $query->where('date', $latestDate);
+            $data = $query->orderBy('quantity', 'desc')->paginate($perPage);
+        }
     }
+
+    return response()->json([
+        'data' => $data->items(),
+        'current_page' => $data->currentPage(),
+        'last_page' => $data->lastPage(),
+        'total' => $data->total(),
+        'per_page' => $data->perPage(),
+        'date_used' => $data->isNotEmpty() ? $data->first()->date : null,
+    ]);
+}
     public function fetchAndStore()
     {
 
