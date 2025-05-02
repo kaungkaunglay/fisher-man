@@ -233,7 +233,7 @@ class DataCrawController extends Controller
             $hasData = $dataCrawRecords->isNotEmpty();
             if (!$hasData) {
                 // Fallback to the previous 7 days if no data found
-                $endDate = $startDate->copy()->subDay(); // Move to the day before the current start
+                $endDate = $startDate->copy()->subDay();
                 $startDate = $endDate->copy()->subDays(6);
     
                 $query = DataCraw::query();
@@ -286,16 +286,21 @@ class DataCrawController extends Controller
                 ];
             }
     
-            // Ensure all 7 days in the final range are included
+            // Build the result for the 7-day range
             $result = [];
             for ($i = 0; $i < 7; $i++) {
                 $currentDate = $startDate->copy()->addDays($i)->toDateString();
                 $result[$currentDate] = $groupedData[$currentDate] ?? [];
             }
     
+            // Filter out dates with empty arrays
+            $filteredResult = array_filter($result, function ($data) {
+                return !empty($data); // Only keep dates with non-empty arrays
+            });
+    
             return response()->json([
                 'success' => true,
-                'data' => $result,
+                'data' => $filteredResult,
             ]);
         } catch (\Exception $e) {
             return response()->json([
