@@ -71,7 +71,7 @@ Route::middleware(['guest_custom'])->group(function(){
 
 Route::get('/verified', [AuthController::class, 'verified'])->name('verified');
 
-Route::get('/fetch-data-craws', [DataCrawController::class, 'fetchAndStore']);
+Route::get('/fetch-data-craws-syincs', [DataCrawController::class, 'fetchAndStore']);
 
 Route::get('/fetch-data-api-data', [DataCrawController::class, 'apidata']);
 
