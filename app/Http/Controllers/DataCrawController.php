@@ -191,100 +191,98 @@ class DataCrawController extends Controller
     }
 
     public function searchweek(Request $request)
-    {
-        try {
-            $validator = Validator::make($request->all(), [
-                'market' => 'nullable|string',
-                'fishType' => 'nullable|string',
-                'date' => 'nullable|date_format:Y-m-d',
-            ]);
-    
-            if ($validator->fails()) {
-                return response()->json([
-                    'success' => false,
-                    'error' => 'Validation failed',
-                    'messages' => $validator->errors()
-                ], 400);
-            }
-    
-            $market = $request->input('market');
-            $fishType = $request->input('fishType');
-            $date = $request->input('date');
-    
-            // Set end date to yesterday if no date is provided (e.g., 2025-05-01 if today is 2025-05-02)
-            $endDate = $date ? Carbon::parse($date) : now()->subDay();
-            $startDate = $endDate->copy()->subDays(6); // 6 days before end date (e.g., 2025-04-25)
-    
-            $query = DataCraw::query();
-    
-            if ($market) {
-                $query->where('market', $market);
-            }
-    
-            if ($fishType) {
-                $query->where('fish_type', $fishType);
-            }
-    
-            // Use created_at instead of date for the date range
-            $query->whereBetween('created_at', [$startDate->toDateString(), $endDate->toDateString()]);
-    
-            $dataCrawRecords = $query->orderBy('created_at', 'asc')->get();
-    
-            $groupedData = [];
-    
-            foreach ($dataCrawRecords->groupBy('created_at') as $date => $records) {
-                $highValues = [];
-                $mediumValues = [];
-                $lowValues = [];
-    
-                foreach ($records as $record) {
-                    // Collect high values (large.high, medium.high, small.high)
-                    if (!is_null($record->large_high)) $highValues[] = $record->large_high;
-                    if (!is_null($record->medium_high)) $highValues[] = $record->medium_high;
-                    if (!is_null($record->small_high)) $highValues[] = $record->small_high;
-    
-                    // Collect medium values (large.medium, medium.middle, small.middle)
-                    if (!is_null($record->large_medium)) $mediumValues[] = $record->large_medium;
-                    if (!is_null($record->medium_middle)) $mediumValues[] = $record->medium_middle;
-                    if (!is_null($record->small_middle)) $mediumValues[] = $record->small_middle;
-    
-                    // Collect low values (large.low, medium.low, small.low)
-                    if (!is_null($record->large_low)) $lowValues[] = $record->large_low;
-                    if (!is_null($record->medium_low)) $lowValues[] = $record->medium_low;
-                    if (!is_null($record->small_low)) $lowValues[] = $record->small_low;
-                }
-    
-                // Helper to compute average ignoring nulls
-                $average = function ($values) {
-                    return count($values) ? round(array_sum($values) / count($values), 2) : null;
-                };
-    
-                $groupedData[$date][] = [
-                    'high' => $average($highValues),
-                    'medium' => $average($mediumValues),
-                    'low_price' => $average($lowValues),
-                ];
-            }
-    
-            // Ensure all 7 days are included in the result
-            $result = [];
-            for ($i = 0; $i < 7; $i++) {
-                $currentDate = $startDate->copy()->addDays($i)->toDateString();
-                $result[$currentDate] = $groupedData[$currentDate] ?? [];
-            }
-    
-            return response()->json([
-                'success' => true,
-                'data' => $result,
-            ]);
-        } catch (\Exception $e) {
+{
+    try {
+        $validator = Validator::make($request->all(), [
+            'market' => 'nullable|string',
+            'fishType' => 'nullable|string',
+            'date' => 'nullable|date_format:Y-m-d',
+        ]);
+
+        if ($validator->fails()) {
             return response()->json([
                 'success' => false,
-                'error' => 'Failed to retrieve data',
-                'message' => $e->getMessage(),
-            ], 500);
+                'error' => 'Validation failed',
+                'messages' => $validator->errors()
+            ], 400);
         }
+
+        $market = $request->input('market');
+        $fishType = $request->input('fishType');
+        $date = $request->input('date');
+
+        $endDate = $date ? Carbon::parse($date) : now();
+        $startDate = $endDate->copy()->subDays(6);
+
+        $query = DataCraw::query();
+
+        if ($market) {
+            $query->where('market', $market);
+        }
+
+        if ($fishType) {
+            $query->where('fish_type', $fishType);
+        }
+
+        $query->whereBetween('date', [$startDate->toDateString(), $endDate->toDateString()]);
+
+        $dataCrawRecords = $query->orderBy('date', 'asc')->get();
+
+        $groupedData = [];
+
+        foreach ($dataCrawRecords->groupBy('date') as $date => $records) {
+            $highValues = [];
+            $mediumValues = [];
+            $lowValues = [];
+
+            foreach ($records as $record) {
+                // Collect high values (large.high, medium.high, small.high)
+                if (!is_null($record->large_high)) $highValues[] = $record->large_high;
+                if (!is_null($record->medium_high)) $highValues[] = $record->medium_high;
+                if (!is_null($record->small_high)) $highValues[] = $record->small_high;
+
+                // Collect medium values (large.medium, medium.middle, small.middle)
+                if (!is_null($record->large_medium)) $mediumValues[] = $record->large_medium;
+                if (!is_null($record->medium_middle)) $mediumValues[] = $record->medium_middle;
+                if (!is_null($record->small_middle)) $mediumValues[] = $record->small_middle;
+
+                // Collect low values (large.low, medium.low, small.low)
+                if (!is_null($record->large_low)) $lowValues[] = $record->large_low;
+                if (!is_null($record->medium_low)) $lowValues[] = $record->medium_low;
+                if (!is_null($record->small_low)) $lowValues[] = $record->small_low;
+            }
+
+            // Helper to compute average ignoring nulls
+            $average = function ($values) {
+                return count($values) ? round(array_sum($values) / count($values), 2) : null;
+            };
+
+            $groupedData[$date][] = [
+                'high' => $average($highValues),
+                'medium' => $average($mediumValues),
+                'low_price' => $average($lowValues),
+            ];
+        }
+
+        // Ensure all 7 days included
+        $result = [];
+        for ($i = 0; $i < 7; $i++) {
+            $currentDate = $startDate->copy()->addDays($i)->toDateString();
+            $result[$currentDate] = $groupedData[$currentDate] ?? [];
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $result,
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'error' => 'Failed to retrieve data',
+            'message' => $e->getMessage(),
+        ], 500);
     }
+}
     
 public function datashowrating(Request $request)
 {
