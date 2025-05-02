@@ -213,13 +213,28 @@ class DataCrawController extends Controller
     
             // Set end date to the provided date or today
             $endDate = $date ? Carbon::parse($date) : now();
-            $maxAttempts = 4; // Limit to 4 attempts (covering 28 days)
-            $attempt = 0;
-            $dataCrawRecords = collect();
+            $startDate = $endDate->copy()->subDays(6);
     
-            // Keep searching until data is found or max attempts are reached
-            while ($dataCrawRecords->isEmpty() && $attempt < $maxAttempts) {
-                $startDate = $endDate->copy()->subDays(6); // 7-day range
+            $query = DataCraw::query();
+    
+            if ($market) {
+                $query->where('market', $market);
+            }
+    
+            if ($fishType) {
+                $query->where('fish_type', $fishType);
+            }
+    
+            $query->whereBetween('date', [$startDate->toDateString(), $endDate->toDateString()]);
+    
+            $dataCrawRecords = $query->orderBy('date', 'asc')->get();
+    
+            // Check if all days have no data
+            $hasData = $dataCrawRecords->isNotEmpty();
+            if (!$hasData) {
+                // Fallback to the previous 7 days if no data found
+                $endDate = $startDate->copy()->subDay(); // Move to the day before the current start
+                $startDate = $endDate->copy()->subDays(6);
     
                 $query = DataCraw::query();
     
@@ -232,19 +247,7 @@ class DataCrawController extends Controller
                 }
     
                 $query->whereBetween('date', [$startDate->toDateString(), $endDate->toDateString()]);
-    
                 $dataCrawRecords = $query->orderBy('date', 'asc')->get();
-    
-                if ($dataCrawRecords->isEmpty()) {
-                    // No data found, shift the range back by 7 days
-                    $endDate = $startDate->copy()->subDay(); // Move end date to the day before the current start date
-                    $attempt++;
-                }
-            }
-    
-            // If no data found after max attempts, return empty result
-            if ($dataCrawRecords->isEmpty()) {
-                $startDate = $endDate->copy()->subDays(6); // Use the last attempted range for the response structure
             }
     
             $groupedData = [];
