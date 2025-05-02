@@ -295,19 +295,12 @@ class DataCrawController extends Controller
     
             // Filter out dates with empty arrays
             $filteredResult = array_filter($result, function ($data) {
-                return !empty($data);
+                return !empty($data); // Only keep dates with non-empty arrays
             });
-    
-            // Ensure exactly 7 days in the response by adding missing days
-            $finalResult = [];
-            for ($i = 0; $i < 7; $i++) {
-                $currentDate = $startDate->copy()->addDays($i)->toDateString();
-                $finalResult[$currentDate] = isset($filteredResult[$currentDate]) ? $filteredResult[$currentDate] : [];
-            }
     
             return response()->json([
                 'success' => true,
-                'data' => $finalResult,
+                'data' => $filteredResult,
             ]);
         } catch (\Exception $e) {
             return response()->json([
