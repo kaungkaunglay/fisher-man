@@ -274,14 +274,9 @@ class DataCrawController extends Controller
                 if (!is_null($record->small_low)) $lowValues[] = $record->small_low;
             }
 
-            // Helper to compute average and round to nearest integer
+            // Helper to compute average ignoring nulls
             $average = function ($values) {
-                if (count($values) === 0) {
-                    return null;
-                }
-                $sum = array_sum($values);
-                $count = count($values);
-                return (int) round($sum / $count); // Cast to int after rounding
+                return count($values) ? round(array_sum($values) / count($values)) : null;
             };
 
             $groupedData[$date][] = [
@@ -300,7 +295,7 @@ class DataCrawController extends Controller
 
         // Filter out dates with empty arrays
         $filteredResult = array_filter($result, function ($data) {
-            return !empty($data);
+            return !empty($data); // Only keep dates with non-empty arrays
         });
 
         return response()->json([
